@@ -15,16 +15,16 @@ export const ProtectRoute = ({ children }) => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const decodedJwt = parseJwt(token);
-    const isTokenValid = decodedJwt && decodedJwt?.exp * 1000 > Date.now();
-    const isAuthRoute = publicRoutes.includes(router.asPath);
+    // const token = localStorage.getItem('token');
+    // const decodedJwt = parseJwt(token);
+    // const isTokenValid = decodedJwt && decodedJwt?.exp * 1000 > Date.now();
+    // const isAuthRoute = publicRoutes.includes(router.asPath);
 
-    if (isAuthRoute && isTokenValid) {
-      router.replace('/');
-    } else if (!isTokenValid) {
-      router.replace('/login/');
-    }
+    // if (isAuthRoute && isTokenValid) {
+    //   router.replace('/');
+    // } else if (!isTokenValid) {
+    //   router.replace('/login/');
+    // }
     setTimeout(() => setloading(false), 500);
   }, []);
 

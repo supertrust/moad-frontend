@@ -18,10 +18,190 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+/* dashboard-layout-css-start */
+
+#dashboard {
+  display: flex;
+}
+
+.sidebar_menu {
+  width: 305px;
+  background-color: #2f48d1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+.main_content {
+  min-height: 781px;
+  background-color: #f5f7fb;
+  width: calc(100% - 305px);
+  padding-top: 120px;
+  padding-bottom: 60px;
+  margin-left: 305px;
+}
+
+/* dashboard-layout-css-end */
+
+/* sidebar-css-start */
+
+.sidebar_menu .content {
+  position: relative;
+  min-height: 900px;
+  height: 100%;
+}
+
+.sidebar_menu .side-logo {
+  width: 180px;
+  padding: 34px 0;
+  margin: 0 auto;
+}
+
+.sidebar_menu .content .sidemenu-wrap {
+  padding-left: 25px;
+}
+
+.sidebar_menu .side-logo img {
+  width: 100%;
+}
+
+.sidebar_menu .content .sidemenu-wrap .menu-wrap .menu-list .link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 8px;
+  margin-bottom: 10px;
+  padding: 15px 0 15px 40px;
+}
+
+.sidebar_menu .content .side-logout {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+}
+
+.sidebar_menu .content .side-logout .logout-btn {
+  width: 223px;
+  height: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  margin: 0 auto;
+  background: #3754f0;
+  border-radius: 5px;
+}
+
+.sidebar_menu .sidemenu-wrap .menu-wrap .menu-list.active .link {
+  background-color: #F5F7FB;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.sidebar_menu .content .sidemenu-wrap .menu-wrap .menu-list.active .link .name {
+  color: #2F48D1;
+}
+
+/* sidebar-css-end */
+
+/* header-css-start */
+
+#inner_header{
+  width: calc(100% - 305px);
+    height: 120px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 30px;
+    background-color: #e7e7e7;
+    z-index: 100;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.header-pc {
+  display: flex;
+  align-items: center;
+  color: #000;
+  justify-content: space-between;
+}
+
+.header-pc .header-title {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 38px;
+  color: #222222;
+}
+
+.header-pc .my-info {
+  position: relative;
+  height: 60px;
+  padding: 0 46px 0 12px;
+  background: #FFFFFF;
+  border: 1px solid #EBEDF4;
+  box-shadow: 0px 2px 10px rgba(217, 219, 231, 0.8);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-pc .my-info .info-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.header-pc .my-company .company-name {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.01em;
+  color: #1F1F1F;
+}
+
+.header-pc .my-company .email {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: -0.01em;
+  color: #373737;
+}
+
+/* header-css-end */
+
+/* footer-css-start */
+
+#inner_footer {
+  width: calc(100% - 305px);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+  background-color: #e7e7e7;
+  z-index: 100;
+  border-bottom: 1px solid #e7e7e7;
+  color: #aaa;
+  text-align: center;
+}
+
+/* footer-css-end */
+
+
+.p-10{
+  color: #000;
+}
+
+.statics{
+  color: #000;
+}
+
+.Advertisement{
+  color: #000;
 }

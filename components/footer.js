@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <div className='flex justify-center items-center h-20 bg-white'>
-      This is the Footer
+    <div id="inner_footer" className="inner-footer">
+       <span>2023@copyright. All rights reserved</span>
     </div>
   );
 }

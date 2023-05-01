@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import Sidebar from './sidebar';
-import Header from './header';
-import Footer from './footer';
-import { useRouter } from 'next/router';
+import Sidebar from "./sidebar";
+import Header from "./header";
+import Footer from "./footer";
+import { useRouter } from "next/router";
+import { Container } from "postcss";
 
 function Layout(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  // const [text, setText] = useState();
+
+  // const setStatus = ()=>{
+  //   console.log(statusdata);
+  // }
 
   const parseJwt = (token) => {
     try {
-      return JSON.parse(atob(token.split('.')[1]));
+      return JSON.parse(atob(token.split(".")[1]));
     } catch (e) {
       return null;
     }
@@ -27,7 +33,7 @@ function Layout(props) {
     // if (!userPages.includes(router.pathname) && isTokenValid) {
     //   router.push('/dashboard');
     // }
-    if (router.pathname === '/login') {
+    if (router.pathname === "/login") {
       setIsAuthenticated(false);
     }
   }, [router.pathname]);
@@ -35,18 +41,18 @@ function Layout(props) {
   if (!isAuthenticated) return <>{props.children}</>;
 
   return (
-    <div className='min-h-screen flex flex-col'>
-      <header>
-        <Header />
-      </header>
-      <div className='flex h-20 flex-col md:flex-row flex-1'>
-        <Sidebar />
-        <main className='flex-1'>{props.children}</main>
+    <>
+      <div id="dashboard" className="dashboard page">
+        <div className="sidebar_menu">
+          <Sidebar/>
+        </div>
+        <div className="main_content">
+          <Header />
+          <main>{props.children}</main>
+          <Footer />
+        </div>
       </div>
-      <div>
-        <Footer />
-      </div>
-    </div>
+    </>
   );
 }
 

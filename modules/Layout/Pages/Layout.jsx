@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import Sidebar from "./sidebar";
-import Header from "./header";
-import Footer from "./footer";
+import Sidebar from "../Components/sidebar";
+import Header from "../Components/header";
+import Footer from "../Components/footer";
 import { useRouter } from "next/router";
 import { Container } from "postcss";
 

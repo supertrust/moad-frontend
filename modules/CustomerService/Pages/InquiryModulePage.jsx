@@ -1,11 +1,10 @@
 import React from "react";
 
-export default function Announcement() {
+export default function InquiryModulePage() {
   return (
     <>
-      <h2>We will inform you from Icarus</h2>
       <div>
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">#</th>

@@ -1,10 +1,11 @@
-function Header() {
+function Header(props) {
+  // console.log(props.text);
   return (
     <div id="inner_header" className="inner-header">
       <div className="only-pc">
         <div className="header-pc">
           <div className="header-title">
-                Advertising management
+                {!props.text ? 'Advertising Management' : props.text}
           </div>
           <div className="my-info">
             <div className="info-wrap">

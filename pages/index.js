@@ -1,3 +1,5 @@
+import Advertisement from "./Advertisement";
+
 export default function Home() {
-  return <main className='p-10'>This is home page</main>;
+  return <main className='p-10'><Advertisement></Advertisement></main>;
 }

@@ -8,11 +8,11 @@ import { Container } from "postcss";
 
 function Layout(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  // const [text, setText] = useState();
+  const [text, setText] = useState();
 
-  // const setStatus = ()=>{
-  //   console.log(statusdata);
-  // }
+  const setMsg = (msgTxt)=>{
+    console.log(setText(msgTxt,"yes, I am calling"));
+  }
 
   const parseJwt = (token) => {
     try {
@@ -38,16 +38,18 @@ function Layout(props) {
     }
   }, [router.pathname]);
 
+
+
   if (!isAuthenticated) return <>{props.children}</>;
 
   return (
     <>
       <div id="dashboard" className="dashboard page">
         <div className="sidebar_menu">
-          <Sidebar/>
+          <Sidebar msg= {setMsg}/>
         </div>
         <div className="main_content">
-          <Header />
+          <Header text= {text}/>
           <main>{props.children}</main>
           <Footer />
         </div>

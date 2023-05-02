@@ -1,10 +1,10 @@
-import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-export default function ChangePass() {
+import React from 'react'
+import { Col, Row } from 'react-bootstrap'
+
+export default function ChangePasswordModule() {
   return (
     <>
-      <Container>
-        <Row>
+      <Row>
           <Col md="12">
             <div className="change-password-content">
               <form className="form-wraps">
@@ -29,10 +29,10 @@ export default function ChangePass() {
                         type="password"
                         id="old_password"
                         name="old_password"
-                        class="input-pass"
+                        className="input-pass"
                         placeholder="Enter Password"
                       ></input>
-                      <i class="icon pw-show" className="eyes"></i>
+                      <i className="icon pw-show" className="eyes"></i>
                     </li>
                     <li className="list-11">
                       <div className="desc">
@@ -42,10 +42,10 @@ export default function ChangePass() {
                         type="password"
                         id="old_password"
                         name="old_password"
-                        class="input-pass"
+                        className="input-pass"
                         placeholder="Enter New Password"
                       ></input>
-                      <i class="icon pw-show" className="eyes"></i>
+                      <i className="icon pw-show" className="eyes"></i>
                     </li>
                     <li className="list-11">
                       <div className="desc">
@@ -55,10 +55,10 @@ export default function ChangePass() {
                         type="password"
                         id="old_password"
                         name="old_password"
-                        class="input-pass"
+                        className="input-pass"
                         placeholder="Enter Re-enter new password"
                       ></input>
-                      <i class="icon pw-show" className="eyes"></i>
+                      <i className="icon pw-show" className="eyes"></i>
                     </li>
                   </ul>
                 </div>
@@ -69,8 +69,7 @@ export default function ChangePass() {
               </form>
             </div>
           </Col>
-        </Row>
-      </Container>
+        </Row> 
     </>
-  );
+  )
 }

@@ -5,12 +5,12 @@ const initialState = {
   user: {},
 };
 
-export const loggedIn = createAsyncThunk('auth/login', async (data) => {
+export const loggedIn = createAsyncThunk('login', async (data) => {
   const response = await login(data);
   return response.data;
 });
 
-export const signedUp = createAsyncThunk('auth/signup', async (data) => {
+export const signedUp = createAsyncThunk('signup', async (data) => {
   const response = await signup(data);
   return response.data;
 });

@@ -26,6 +26,13 @@ function Sidebar() {
           </li>
           <li className="menu-list">
             <div className="link">
+              <i class="icon"><img src="/images/ic-statistics.png" /></i>
+              <div className="name"><Link href="/notice">Notice</Link></div>
+            </div>
+            <ul className="sub-wrap"></ul>
+          </li>
+          <li className="menu-list">
+            <div className="link">
               <i class="icon"><img src="/images/ic-mypage.png" /></i>
               <div className="name">My Page</div>
             </div>

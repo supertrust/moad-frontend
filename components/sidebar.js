@@ -48,7 +48,6 @@ function Sidebar({ msg }) {
                 </Link>
               </div>
             </div>
-            <ul className="sub-wrap"></ul>
           </li>
           <li className="menu-list">
             <div className="link">
@@ -66,7 +65,23 @@ function Sidebar({ msg }) {
                 </Link>
               </div>
             </div>
-            <ul className="sub-wrap"></ul>
+          </li>
+          <li className="menu-list">
+            <div className="link">
+              <i class="icon">
+                <img src="/images/ic-mypage.png" />
+              </i>
+              <div className="name">
+                <Link
+                  href="/notice"
+                  onClick={() => {
+                    barStatus("Notice");
+                  }}
+                >
+                  Notice
+                </Link>
+              </div>
+            </div>
           </li>
           <li className="menu-list">
             <div className="link">
@@ -84,82 +99,76 @@ function Sidebar({ msg }) {
                 </Link>
               </div>
             </div>
-            <li className="menu-list">
-              <div className="link">
-                <div className="name">
-                  <Link
-                    href="/Announcement"
-                    onClick={() => {
-                      barStatus("Anouncement");
-                    }}
-                  >
-                    Announcement
-                  </Link>
-                </div>
+          </li>
+          <li className="menu-list">
+            <div className="link">
+              <div className="name">
+                <Link
+                  href="/Announcement"
+                  onClick={() => {
+                    barStatus("Anouncement");
+                  }}
+                >
+                  Announcement
+                </Link>
               </div>
-              <ul className="sub-wrap"></ul>
-            </li>
-            <li className="menu-list">
-              <div className="link">
-                <div className="name">
-                  <Link
-                    href="/Guide"
-                    onClick={() => {
-                      barStatus("Guide");
-                    }}
-                  >
-                    Guide
-                  </Link>
-                </div>
+            </div>
+          </li>
+          <li className="menu-list">
+            <div className="link">
+              <div className="name">
+                <Link
+                  href="/Guide"
+                  onClick={() => {
+                    barStatus("Guide");
+                  }}
+                >
+                  Guide
+                </Link>
               </div>
-              <ul className="sub-wrap"></ul>
-            </li>
-            <li className="menu-list">
-              <div className="link">
-                <div className="name">
-                  <Link
-                    href="/Faq"
-                    onClick={() => {
-                      barStatus("Faq");
-                    }}
-                  >
-                    Faq
-                  </Link>
-                </div>
+            </div>
+          </li>
+          <li className="menu-list">
+            <div className="link">
+              <div className="name">
+                <Link
+                  href="/Faq"
+                  onClick={() => {
+                    barStatus("Faq");
+                  }}
+                >
+                  Faq
+                </Link>
               </div>
-              <ul className="sub-wrap"></ul>
-            </li>
-            <li className="menu-list">
-              <div className="link">
-                <div className="name">
-                  <Link
-                    href="/Enquiry"
-                    onClick={() => {
-                      barStatus("Enquiry");
-                    }}
-                  >
-                    Enquiry
-                  </Link>
-                </div>
+            </div>
+          </li>
+          <li className="menu-list">
+            <div className="link">
+              <div className="name">
+                <Link
+                  href="/Enquiry"
+                  onClick={() => {
+                    barStatus("Enquiry");
+                  }}
+                >
+                  Enquiry
+                </Link>
               </div>
-              <ul className="sub-wrap"></ul>
-            </li>
-            <li className="menu-list">
-              <div className="link">
-                <div className="name">
-                  <Link
-                    href="/policies"
-                    onClick={() => {
-                      barStatus("Policies and Terms");
-                    }}
-                  >
-                    Policies and Terms
-                  </Link>
-                </div>
+            </div>
+          </li>
+          <li className="menu-list">
+            <div className="link">
+              <div className="name">
+                <Link
+                  href="/policies"
+                  onClick={() => {
+                    barStatus("Policies and Terms");
+                  }}
+                >
+                  Policies and Terms
+                </Link>
               </div>
-              <ul className="sub-wrap"></ul>
-            </li>
-            <ul className="sub-wrap"></ul>
+            </div>
           </li>
         </ul>
       </div>

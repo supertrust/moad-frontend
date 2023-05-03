@@ -4,7 +4,6 @@ import Sidebar from "./partials/sidebar";
 import Header from "./partials/header";
 import Footer from "./partials/footer";
 import { useRouter } from "next/router";
-import { Container } from "postcss";
 
 function Layout(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -22,25 +21,20 @@ function Layout(props) {
     }
   };
   const router = useRouter();
-  const userPages = [];
+  const userPages = ['/login'];
 
-  // useEffect(() => {
-  //   // const token = localStorage.getItem('token');
-  //   // const decodedJwt = parseJwt(token);
-  //   // const isTokenValid = decodedJwt && decodedJwt?.exp * 1000 > Date.now();
-  //   // setIsAuthenticated(isTokenValid);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const decodedJwt = parseJwt(token);
+    const isTokenValid = decodedJwt && decodedJwt?.exp * 1000 > Date.now();
+    setIsAuthenticated(isTokenValid);
 
-  //   // if (!userPages.includes(router.pathname) && isTokenValid) {
-  //   //   router.push('/dashboard');
-  //   // }
-  //   if (router.pathname === "/login") {
-  //     setIsAuthenticated(false);
-  //   }
-  // }, [router.pathname]);
+    if (!userPages.includes(router.pathname) && isTokenValid) {
+      router.push('/');
+    }
+  }, [router.pathname]);
 
-
-
-  // if (!isAuthenticated) return <>{props.children}</>;
+  if (!isAuthenticated) return <>{props.children}</>;
 
   return (
     <>

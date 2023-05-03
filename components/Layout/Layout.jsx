@@ -21,17 +21,12 @@ function Layout(props) {
     }
   };
   const router = useRouter();
-  const userPages = ['/login'];
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     const decodedJwt = parseJwt(token);
     const isTokenValid = decodedJwt && decodedJwt?.exp * 1000 > Date.now();
     setIsAuthenticated(isTokenValid);
-
-    if (!userPages.includes(router.pathname) && isTokenValid) {
-      router.push('/');
-    }
   }, [router.pathname]);
 
   if (!isAuthenticated) return <>{props.children}</>;

@@ -107,6 +107,32 @@ ul {
   color: #2f48d1;
 }
 
+ul.sub-wrap {
+  margin-left: 73px;
+  line-height: 34px;
+}
+ul.sub-wrap a.sub-link {
+  color: #B0BDFA !important;
+}
+.menu-wrap a{
+  color: #B0BDFA !important;
+}
+button, [type='button'], [type='reset'], [type='submit']{
+  border: none !important;
+  display: flex;
+}
+.drop-btns .btn:hover{
+  background-color: transparent !important;
+}
+.drop-btns .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
+  background-color: transparent !important;
+}
+.drop-btns .my-company {
+  margin-left: 10px;
+}
+.drop-btns .dropdown-menu.show{
+  width: 215px !important;
+}
 /* sidebar-css-end */
 
 /* header-css-start */
@@ -140,7 +166,8 @@ ul {
 .header-pc .my-info {
   position: relative;
   height: 60px;
-  padding: 0 46px 0 12px;
+  /* padding: 0 46px 0 12px; */
+  padding: 0 18px 0 6px;
   background: #ffffff;
   border: 1px solid #ebedf4;
   box-shadow: 0px 2px 10px rgba(217, 219, 231, 0.8);
@@ -749,8 +776,7 @@ a {
 
 #login .left {
   height: 100%;
-  background: url("/images/img-login.png") no-repeat center center / auto
-    #0868fd;
+  background: url("/images/img-login.png") no-repeat center center / auto #0868fd;
   width: 50%;
 }
 
@@ -838,14 +864,7 @@ a {
   cursor: pointer;
 }
 
-#login
-  .right
-  .right-wrap
-  .login-form
-  .login-utile-wrap
-  .login-keep-wrap
-  label
-  .login-keep {
+#login .right .right-wrap .login-form .login-utile-wrap .login-keep-wrap label .login-keep {
   width: 24px;
   height: 24px;
   background-size: contain;
@@ -855,13 +874,7 @@ a {
   cursor: pointer;
 }
 
-#login
-  .right
-  .right-wrap
-  .login-form
-  .login-utile-wrap
-  .login-error
-  .error-text {
+#login .right .right-wrap .login-form .login-utile-wrap .login-error .error-text {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -870,14 +883,7 @@ a {
   display: none;
 }
 
-#login
-  .right
-  .right-wrap
-  .login-form
-  .login-utile-wrap
-  .login-keep-wrap
-  label
-  .chk-text {
+#login .right .right-wrap .login-form .login-utile-wrap .login-keep-wrap label .chk-text {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -918,3 +924,86 @@ a {
   text-align: center;
   color: #999999;
 }
+
+
+/* <------guide-Page-style-start-------> */
+
+.guide-content{
+  padding: 20px 29px;
+}
+.guide-content .title-wrap{
+display: block;
+}
+.guide-content .title{
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
+  color: #2C324C;
+}
+.guide-content .sub-text{
+  font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #2C324C;
+}
+.guide-content .guide-box-wrap{
+  width: 100%;
+    height: 658px;
+    margin-top: 22px;
+    padding: 50px;
+    background-color: #ffffff;
+}
+.guide-content .box-wrap{
+
+}
+.guide-content .box-list{
+  margin-bottom: 40px;
+}
+.guide-content .box-list .box-title{
+  margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: #2C324C;
+}
+.guide-content .box-list .box-sub-text{
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2C324C;
+}
+.guide-content .box-list .box-link-wrap{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  column-gap: 15px;
+}
+.guide-content .box-list .box-link-wrap .box-link{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 335px;
+  height: 55px;
+  padding: 0 20px;
+  background-color: #456192;
+}
+.guide-content .box-link .box-text{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+}
+.guide-content   .ic-arrow-right{
+  display: block;
+    width: 20px;
+    height: 20px;
+    background: url(https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/guide/ic-arrow-right.png) no-repeat center center / cover;
+}
+.logout-danger{
+  color: red;
+  font-weight: 600;
+}
+/* <------guide-Page-style-end-------> */

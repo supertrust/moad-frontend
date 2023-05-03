@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 function Sidebar({ msg }) {
-  const [status, setStatus] = useState("");
+  const [tab, setTab] = useState("Advertising Management");
 
   const barStatus = (status) => {
-    setStatus("active");
+    setTab(status);
     msg(status);
   };
 
@@ -184,7 +184,13 @@ function Sidebar({ msg }) {
           </li>
         </ul> */}
         <ul className="menu-wrap">
-          <li className="menu-list active">
+          <li
+            className={
+              tab === "Advertising Management"
+                ? "menu-list active"
+                : "menu-list"
+            }
+          >
             <Link
               href={"/"}
               className="link"
@@ -192,12 +198,21 @@ function Sidebar({ msg }) {
                 barStatus("Advertising Management");
               }}
             >
-              <i className="icon home"></i>
+              <i className="icon">
+                <img
+                  src={`/images/ic-dashboard${
+                    tab == "Advertising Management" ? "-active" : ""
+                  }.png`}
+                  alt=""
+                />
+              </i>
               <div className="name">Advertising management</div>
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
-          <li className="menu-list ">
+          <li
+            className={tab === "Statistics" ? "menu-list active" : "menu-list"}
+          >
             <Link
               href={"/statistics"}
               className="link"
@@ -205,12 +220,18 @@ function Sidebar({ msg }) {
                 barStatus("Statistics");
               }}
             >
-              <i className="icon statistics"></i>
+              <i className="icon statistics">
+                <img
+                  src={`/images/ic-statistics${
+                    tab == "Statistics" ? "-active" : ""
+                  }.png`}
+                />
+              </i>
               <div className="name">Statistics</div>
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
-          <li className="menu-list ">
+          <li className={tab === "My Page" ? "menu-list active" : "menu-list"}>
             <Link
               href={"/my-info"}
               className="link"
@@ -218,17 +239,52 @@ function Sidebar({ msg }) {
                 barStatus("My Page");
               }}
             >
-              <i className="icon mypage"></i>
+              <i className="icon mypage">
+                {" "}
+                <img
+                  src={`/images/ic-mypage${
+                    tab == "My Info" ? "-active" : ""
+                  }.png`}
+                />
+              </i>
               <div className="name">My page</div>
             </Link>
-            <ul className="sub-wrap"></ul>
+            <ul className="sub-wrap nav"></ul>
           </li>
-          <li className="menu-list">
-            <a className="link">
-              <i className="icon center"></i>
+          <li
+            className={
+              tab === "Announcement" ||
+              tab === "Guide" ||
+              tab === "FAQ" ||
+              tab === "Inquiry" ||
+              tab === "Policies and Terms"
+                ? "menu-list active"
+                : "menu-list"
+            }
+          >
+            <Link
+              className="link"
+              href={"/notice"}
+              onClick={() => {
+                barStatus("Announcement");
+              }}
+            >
+              <i className="icon center">
+                <img
+                  src={`/images/ic-inquire${
+                    tab === "Inquiry" ||
+                    tab === "Policies and Terms" ||
+                    tab === "FAQ" ||
+                    tab === "Announcement" ||
+                    tab === "Guide"
+                      ? "-active"
+                      : ""
+                  }.png`}
+                />
+              </i>
               <div className="name">Customer Service Center</div>
-            </a>
-            <ul className="sub-wrap">
+            </Link>
+            <ul className="sub-wrap ">
               <li className="sub-list notice ">
                 <Link
                   href={"/notice"}

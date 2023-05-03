@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {login,signup} from '@/services/auth/authService';
+import { loginApi, signupApi } from '../api/authApi';
 
 const initialState = {
   user: {},
 };
 
-export const loggedIn = createAsyncThunk('login', async (data) => {
-  const response = await login(data);
-  return response.data;
+export const login = createAsyncThunk('login', async (data) => {
+  const response = await loginApi(data);
+  return response;
 });
 
-export const signedUp = createAsyncThunk('signup', async (data) => {
-  const response = await signup(data);
+export const signup = createAsyncThunk('signup', async (data) => {
+  const response = await signupApi(data);
   return response.data;
 });
 
@@ -24,7 +24,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [loggedIn.fulfilled]: (state, action) => {
+    [login.fulfilled]: (state, action) => {
       state.user = action.payload;
     },
   },

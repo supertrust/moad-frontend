@@ -1,5 +1,7 @@
 import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css'
 import { Provider as StoreProvider } from 'react-redux';
+import { ToastContainer } from 'react-toastify'
 
 import { store } from '../store/store';
 import { ProtectRoute } from 'auth';
@@ -27,6 +29,7 @@ export default function App({ Component, pageProps }) {
         </Layout>
       </QueryClientProvider>
       </StoreProvider>
+      <ToastContainer />
     </ProtectRoute>
   );
 }

@@ -1,43 +1,8 @@
-import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import LoginFormModule from "../Components/LoginFormModule";
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import authService from "@/services/auth/authService";
-import { useMutation } from "react-query";
 
 export default function LoginModulePage() {
-  const [inputValue, setInputValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
 
-  //mutations
-  const router = useRouter();
-  // const dispatch = useDispatch();
-
-  const loginMutation = useMutation(
-    (loginData) => authService.login(loginData),
-    {
-      onSuccess: (response) => {
-        console.log("login success:", response);
-        if (response?.status =="success") {
-          // dispatch(setAuthData(response));
-          router.push("/");
-        }
-      },
-      onError: (error) => {
-        console.error("Error logging in:", error);
-        if (error.response?.data?.data?.errors) {
-          const errorObj = error.response.data.data.errors;
-        }
-      },
-    }
-  );
-
-  //end mutations
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    loginMutation.mutate({ email: inputValue, password: passwordValue });
-  };
   return (
     <div id="login" className="login">
     <div className="left">
@@ -61,11 +26,6 @@ export default function LoginModulePage() {
                 </div>
             </div>
             <LoginFormModule
-            handleLoginSubmit={handleLoginSubmit}
-            passwordValue={passwordValue}
-            setPasswordValue={setPasswordValue}
-            inputValue={inputValue}
-            setInputValue={setInputValue}
           />
             <div className="link-wrap">
                 <a className="link text">회원가입</a>

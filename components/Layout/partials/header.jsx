@@ -1,3 +1,5 @@
+import Dropdown from "react-bootstrap/Dropdown";
+
 function Header(props) {
   // console.log(props.text);
   return (
@@ -5,23 +7,34 @@ function Header(props) {
       <div className="only-pc">
         <div className="header-pc">
           <div className="header-title">
-                {!props.text ? 'Advertising Management' : props.text}
+            {!props.text ? "Advertising Management" : props.text}
           </div>
           <div className="my-info">
             <div className="info-wrap">
+            
+              <Dropdown className="drop-btns">
+              <Dropdown.Toggle  id="dropdown-basic">
               <div className="my-photo">
                 <img
-                  src="http://localhost/icarus-frontend/wp-content/themes/icarus/assets/images/inner-header/img-my-pic.png"
+                  src="/images/img-my-pic.png"
                   alt=""
                   className="img"
                 />
               </div>
               <div className="my-company">
-                <div className="company-name">Must FinTech
-                </div>
+                <div className="company-name">Must FinTech</div>
                 <div className="email">mufincrew@mail.com</div>
               </div>
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3" className="logout-danger">Log Out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
             </div>
+         
           </div>
         </div>
       </div>

@@ -17,12 +17,12 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }) {
   //setting default header on refreshing the page
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      HttpService.setToken(token);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //    HttpService.setToken(token);
+  //   }
+  // }, []);
 
   return (
     <ProtectRoute>

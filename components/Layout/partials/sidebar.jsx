@@ -1,8 +1,10 @@
-import authService from "@/services/auth/authService";
+import { logout } from "@/store/slices/authSlice";
 import { HttpService } from "@/utils/HttpService";
 import { Http } from "@mui/icons-material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 function Sidebar({ msg }) {
   const [tab, setTab] = useState("Advertising Management");
@@ -12,14 +14,18 @@ function Sidebar({ msg }) {
     msg(status);
   };
 
+  const dispatch = useDispatch();
+  const route = useRouter();
   const handleLogout = async () => {
-    const res = await authService.logout();
-    console.log(res);
-    if (res.data.success) {
-      // dispatch(removeAuthData([]));
-      HttpService.removeToken();
+    try {
+      await logout();
+      window.location.reload();
+      router.replace('/login');
+    } catch (error) {
+      console.error('Error logging out:', error);
     }
-  };
+  }
+  
   return (
     <div className="content">
       <h1 className="side-logo">

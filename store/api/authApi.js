@@ -11,3 +11,8 @@ export async function signupApi(data) {
   const res = await api.post('user/signup', data);
   return res.data.data;
 }
+
+export async function logoutApi() {
+  const res = await api.post('logout');
+  return res.data;
+}

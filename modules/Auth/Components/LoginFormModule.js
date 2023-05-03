@@ -89,17 +89,19 @@ const LoginFormModule = () => {
           id="login_btn"
           className="login-btn active"
           onClick={formik.handleSubmit}
+          disabled={loading}
         >
-          {loading ? (
+          {loading ? <div className="d-flex justify-content-center">
             <ThreeDots
-              height="28"
+              height="20"
               width="40"
               radius="9"
               color="#FFFFFF"
               ariaLabel="three-dots-loading"
               visible
             />
-          ) : (
+          </div>
+          : (
             "Login"
           )}
         </button>

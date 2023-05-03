@@ -19,7 +19,7 @@ function Sidebar({ msg }) {
       // dispatch(removeAuthData([]));
       HttpService.removeToken();
     }
-  }; 
+  };
   return (
     <div className="content">
       <h1 className="side-logo">
@@ -185,65 +185,103 @@ function Sidebar({ msg }) {
         </ul> */}
         <ul className="menu-wrap">
           <li className="menu-list active">
-            <Link href={"/"} className="link" onClick={() => {
-                    barStatus("Advertising Management");
-                  }}>
+            <Link
+              href={"/"}
+              className="link"
+              onClick={() => {
+                barStatus("Advertising Management");
+              }}
+            >
               <i className="icon home"></i>
-              <div className="name">
-                    Advertising management
-              </div>
+              <div className="name">Advertising management</div>
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
           <li className="menu-list ">
-            <Link href={'/statistics'} className="link">
+            <Link
+              href={"/statistics"}
+              className="link"
+              onClick={() => {
+                barStatus("Statistics");
+              }}
+            >
               <i className="icon statistics"></i>
-              <div className="name">
-                  Statistics
-              </div>
+              <div className="name">Statistics</div>
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
           <li className="menu-list ">
-            <Link href={"/my-info"} className="link">
+            <Link
+              href={"/my-info"}
+              className="link"
+              onClick={() => {
+                barStatus("My Page");
+              }}
+            >
               <i className="icon mypage"></i>
-              <div className="name">
-                  My page
-              </div>
+              <div className="name">My page</div>
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
           <li className="menu-list">
             <a className="link">
               <i className="icon center"></i>
-              <div className="name">
-                    Customer Service Center
-              </div>
+              <div className="name">Customer Service Center</div>
             </a>
             <ul className="sub-wrap">
               <li className="sub-list notice ">
-                <Link href={"/notice"} className="sub-link">
-                    announcement
+                <Link
+                  href={"/notice"}
+                  className="sub-link"
+                  onClick={() => {
+                    barStatus("Announcement");
+                  }}
+                >
+                  announcement
                 </Link>
               </li>
               <li className="sub-list guide ">
-                <Link href={"/guide"} className="sub-link">
-                    guide
+                <Link
+                  href={"/guide"}
+                  className="sub-link"
+                  onClick={() => {
+                    barStatus("Guide");
+                  }}
+                >
+                  guide
                 </Link>
               </li>
               <li className="sub-list faq ">
-                <Link href={"/faq"} className="sub-link">
+                <Link
+                  href={"/faq"}
+                  className="sub-link"
+                  onClick={() => {
+                    barStatus("FAQ");
+                  }}
+                >
                   FAQ
                 </Link>
               </li>
               <li className="sub-list inquire active">
-                <Link href={"/inquire"} className="sub-link">
-                    1:1 inquiry
+                <Link
+                  href={"/inquire"}
+                  className="sub-link"
+                  onClick={() => {
+                    barStatus("Inquiry");
+                  }}
+                >
+                  1:1 inquiry
                 </Link>
               </li>
               <li className="sub-list terms ">
-                <Link href={"/terms"} className="sub-link">
-                      Policies and Terms
+                <Link
+                  href={"/terms"}
+                  className="sub-link"
+                  onClick={() => {
+                    barStatus("Policies and Terms");
+                  }}
+                >
+                  Policies and Terms
                 </Link>
               </li>
             </ul>

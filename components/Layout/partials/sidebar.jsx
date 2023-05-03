@@ -1,3 +1,6 @@
+import authService from "@/services/auth/authService";
+import { HttpService } from "@/utils/HttpService";
+import { Http } from "@mui/icons-material";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -8,6 +11,15 @@ function Sidebar({ msg }) {
     setStatus("active");
     msg(status);
   };
+
+  const handleLogout = async () => {
+    const res = await authService.logout();
+    console.log(res);
+    if (res.data.success) {
+      // dispatch(removeAuthData([]));
+      HttpService.removeToken();
+    }
+  }; 
   return (
     <div className="content">
       <h1 className="side-logo">
@@ -239,9 +251,9 @@ function Sidebar({ msg }) {
         </ul>
       </div>
       <div className="side-logout">
-        <div className="logout-btn">
+        <button onClick={handleLogout} className="logout-btn">
           <div className="text">log out</div>
-        </div>
+        </button>
       </div>
     </div>
   );

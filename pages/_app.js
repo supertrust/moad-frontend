@@ -9,6 +9,7 @@ import Layout from "@/components/Layout/Layout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { HttpService } from "@/utils/HttpService";
 import { useEffect } from "react";
+import api from "@/services/api";
 // import "@fortawesome/fontawesome-svg-core/styles.css";
 
 // import { config } from "@fortawesome/fontawesome-svg-core";
@@ -17,12 +18,13 @@ const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }) {
   //setting default header on refreshing the page
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //    HttpService.setToken(token);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      //  HttpService.setToken(token);
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+    }
+  }, []);
 
   return (
     <ProtectRoute>

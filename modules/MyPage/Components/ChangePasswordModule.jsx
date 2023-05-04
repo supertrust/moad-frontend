@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ThreeDots } from "react-loader-spinner";
-import { ChangePasswordApi } from "@/store/api/myInfoApi";
+import { ChangePasswordApi } from "@/store/api/myPageApi";
 import { Col, Row } from "react-bootstrap";
 
 export default function ChangePasswordModule() {

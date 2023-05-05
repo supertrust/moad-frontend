@@ -294,7 +294,11 @@ function Sidebar({ msg }) {
               <li className="sub-list notice ">
                 <Link
                   href={"/notice"}
-                  className="sub-link"
+                  className={
+                    tab === "Announcement"
+                      ? "sub-link active"
+                      : "sub-link "
+                  }
                   onClick={() => {
                     barStatus("Announcement");
                   }}
@@ -305,7 +309,11 @@ function Sidebar({ msg }) {
               <li className="sub-list guide ">
                 <Link
                   href={"/guide"}
-                  className="sub-link"
+                  className={
+                    tab === "Guide"
+                      ? "sub-link active"
+                      : "sub-link "
+                  }
                   onClick={() => {
                     barStatus("Guide");
                   }}
@@ -316,7 +324,11 @@ function Sidebar({ msg }) {
               <li className="sub-list faq ">
                 <Link
                   href={"/faq"}
-                  className="sub-link"
+                  className={
+                    tab === "FAQ"
+                      ? "sub-link active"
+                      : "sub-link "
+                  }
                   onClick={() => {
                     barStatus("FAQ");
                   }}
@@ -327,7 +339,11 @@ function Sidebar({ msg }) {
               <li className="sub-list inquire active">
                 <Link
                   href={"/inquire"}
-                  className="sub-link"
+                  className={
+                    tab === "Inquiry"
+                      ? "sub-link active"
+                      : "sub-link "
+                  }
                   onClick={() => {
                     barStatus("Inquiry");
                   }}
@@ -338,7 +354,11 @@ function Sidebar({ msg }) {
               <li className="sub-list terms ">
                 <Link
                   href={"/terms"}
-                  className="sub-link"
+                  className={
+                    tab === "Policies and Terms"
+                      ? "sub-link active"
+                      : "sub-link "
+                  }
                   onClick={() => {
                     barStatus("Policies and Terms");
                   }}

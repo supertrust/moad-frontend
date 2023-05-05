@@ -34,9 +34,16 @@ ul {
   top: 0;
   left: 0;
   height: 100%;
-  overflow: auto;
+  /* overflow: hidden; */
 }
-
+.sidebar_menu{
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+.sidebar_menu::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
 .main_content {
   min-height: 781px;
   background-color: #f5f7fb;
@@ -78,7 +85,15 @@ ul {
   margin-bottom: 10px;
   padding: 15px 0 15px 40px;
 }
-
+.sidebar_menu .content .sidemenu-wrap .menu-wrap .menu-list .sub-wrap{
+display: none;
+}
+.sidebar_menu .content .sidemenu-wrap .menu-wrap .menu-list.active .sub-wrap{
+display: block;
+}
+.sidebar_menu .content .sidemenu-wrap .menu-wrap .menu-list.active .sub-wrap .sub-link.active{
+color: #fff !important;
+}
 .sidebar_menu .content .side-logout {
   position: absolute;
   left: 0;

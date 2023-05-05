@@ -1,12 +1,18 @@
-import React from "react";
+import React,{useState } from "react";
 import {Form } from "react-bootstrap";
+import AdModel from "./AdModel";
 
 export default function AdListModule() {
+  const [showModal, setShowModal] = useState(false);
+const openModal = () => {
+    setShowModal(true);
+  };
   return (
     <>
       <div className="ad-list">
         <h4>ad list</h4>{" "}
       </div>
+      {showModal ? <AdModel setShowModal={setShowModal} /> : null}
       <div className="ad-contents">
         <div className="menu-hd">
           <div className="tab-menu">
@@ -24,7 +30,7 @@ export default function AdListModule() {
             </div>
           </div>
           <div className="right-menu">
-            <button className="ad-add-btn">
+            <button onClick={openModal} className="ad-add-btn">
               <img src="/images/add-icon.png" alt="add"></img>
               Advertisement registration
             </button>

@@ -112,25 +112,32 @@ ul.sub-wrap {
   line-height: 34px;
 }
 ul.sub-wrap a.sub-link {
-  color: #B0BDFA !important;
+  color: #b0bdfa !important;
 }
-.menu-wrap a{
-  color: #B0BDFA !important;
+.menu-wrap a {
+  color: #b0bdfa !important;
 }
-button, [type='button'], [type='reset'], [type='submit']{
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
   border: none !important;
   display: flex;
 }
-.drop-btns .btn:hover{
+.drop-btns .btn:hover {
   background-color: transparent !important;
 }
-.drop-btns .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
+.drop-btns .btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
   background-color: transparent !important;
 }
 .drop-btns .my-company {
   margin-left: 10px;
 }
-.drop-btns .dropdown-menu.show{
+.drop-btns .dropdown-menu.show {
   width: 215px !important;
 }
 /* sidebar-css-end */
@@ -925,62 +932,60 @@ a {
   color: #999999;
 }
 
-
 /* <------guide-Page-style-start-------> */
 
-.guide-content{
+.guide-content {
   padding: 20px 29px;
 }
-.guide-content .title-wrap{
-display: block;
+.guide-content .title-wrap {
+  display: block;
 }
-.guide-content .title{
+.guide-content .title {
   margin-bottom: 8px;
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
-  color: #2C324C;
+  color: #2c324c;
 }
-.guide-content .sub-text{
+.guide-content .sub-text {
   font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    color: #2C324C;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2c324c;
 }
-.guide-content .guide-box-wrap{
+.guide-content .guide-box-wrap {
   width: 100%;
-    height: 658px;
-    margin-top: 22px;
-    padding: 50px;
-    background-color: #ffffff;
+  height: 658px;
+  margin-top: 22px;
+  padding: 50px;
+  background-color: #ffffff;
 }
-.guide-content .box-wrap{
-
+.guide-content .box-wrap {
 }
-.guide-content .box-list{
+.guide-content .box-list {
   margin-bottom: 40px;
 }
-.guide-content .box-list .box-title{
+.guide-content .box-list .box-title {
   margin-bottom: 8px;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 26px;
-    color: #2C324C;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #2c324c;
 }
-.guide-content .box-list .box-sub-text{
+.guide-content .box-list .box-sub-text {
   margin-bottom: 20px;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  color: #2C324C;
+  color: #2c324c;
 }
-.guide-content .box-list .box-link-wrap{
+.guide-content .box-list .box-link-wrap {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   column-gap: 15px;
 }
-.guide-content .box-list .box-link-wrap .box-link{
+.guide-content .box-list .box-link-wrap .box-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -990,20 +995,486 @@ display: block;
   padding: 0 20px;
   background-color: #456192;
 }
-.guide-content .box-link .box-text{
+.guide-content .box-link .box-text {
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   color: #ffffff;
 }
-.guide-content   .ic-arrow-right{
+.guide-content .ic-arrow-right {
   display: block;
-    width: 20px;
-    height: 20px;
-    background: url(https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/guide/ic-arrow-right.png) no-repeat center center / cover;
+  width: 20px;
+  height: 20px;
+  background: url(https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/guide/ic-arrow-right.png)
+    no-repeat center center / cover;
 }
-.logout-danger{
+.logout-danger {
   color: red;
   font-weight: 600;
 }
 /* <------guide-Page-style-end-------> */
+
+/* Signup Page Css Start */
+
+#sign_up {
+  height: 100vh;
+}
+
+#sign_up .step-section {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#sign_up .step-section .left {
+  width: 50%;
+  height: 100%;
+}
+
+#sign_up .step-section .right {
+  width: 50%;
+  height: 100%;
+  overflow: auto;
+}
+
+#sign_up .step01 .left {
+  background: url("/images/img-step-1.png") no-repeat center center / auto #0868fd;
+}
+
+#sign_up .step02 .left {
+  background: url("/images/img-step-2.png") no-repeat center center / auto #0868fd;
+}
+
+#sign_up .step03 .left {
+  background: url("/images/img-step-3.png") no-repeat center center / auto #0868fd;
+}
+
+#sign_up .step04 .left {
+  background: url("/images/img-step-4.png") no-repeat center center / auto #0868fd;
+}
+
+#sign_up .step-section .left .left-wrap {
+  margin: 20px;
+  width: 140px;
+}
+
+#sign_up .step-section .right .right-wrap {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#sign_up .step-section .right .right-wrap .right-content {
+  width: 380px;
+}
+
+#sign_up .step-section .right .right-wrap .right-content .back-btn {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 20px;
+  background: url("/images/ic-back.png") no-repeat center center / cover;
+}
+
+#sign_up .step-section .right .right-wrap .right-content .step-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: #222222;
+}
+
+#sign_up .step-section .right .right-wrap .right-content .step-text {
+  margin: 6px 0 30px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #373737;
+}
+
+#sign_up .step01 .right .right-wrap .right-content .agree-content .agree-wrap .agree-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#sign_up .step01 .right .right-wrap .right-content .agree-content .agree-wrap .agree-list .chk-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+}
+
+#sign_up .step01 .right .right-wrap .right-content .agree-content .agree-wrap .agree-list .chk-wrap .terms-chk {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background-image: url("/images/ic-check.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  cursor: pointer;
+}
+
+#sign_up .step01 .right .right-wrap .right-content .agree-content .agree-wrap .agree-list .chk-wrap .terms-chk:checked {
+  background-image: url("/images/ic-checked.png");
+}
+
+#sign_up .step01 .right .right-wrap .right-content .agree-content .agree-wrap .agree-list .chk-wrap .chk-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #373737;
+}
+
+#sign_up .step03 .right .right-wrap {
+  min-height: 1090px;
+}
+
+#sign_up .step-section .right .right-wrap .right-content .input-wrap .error-text {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: right;
+  color: #f24747;
+}
+
+#sign_up .step-section .right .right-wrap .right-content .input-wrap .input-text {
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #373737;
+}
+
+#sign_up .step03 .right .right-wrap .right-content .user-info .input-wrap .business-num-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10px;
+}
+
+#sign_up .step03 .right .right-wrap .right-content .user-info .input-wrap .business-num-wrap .business-num-btn {
+  flex: 0 0 auto;
+  width: 84px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 48px;
+  text-align: center;
+  color: #ffffff;
+  background: #0868fd;
+  border-radius: 4px;
+  cursor: pointer;
+  justify-content: center;
+}
+
+#sign_up .step03 .right .right-wrap .right-content .user-info .input-wrap .file-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10px;
+}
+
+#sign_up .step03 .right .right-wrap .right-content .user-info .input-wrap .file-wrap .file-label {
+  display: block;
+  width: 84px;
+  flex: 0 0 auto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 46px;
+  color: #6191f2;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #6191f2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#sign_up .step03 .right .right-wrap .right-content .user-info .input-wrap .file-wrap .company-file {
+  display: none;
+}
+
+#sign_up .step03 .right .right-wrap .right-content .user-info .input-wrap .file-info {
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: right;
+  color: #999999;
+}
+
+#sign_up .step03 .right .right-wrap .right-content .user-info .input-wrap .file-wrap .file-name {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  text-align: left;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  width: 100%;
+  height: 48px;
+  padding: 0 12px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #999999;
+  line-height: 46px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+}
+
+#sign_up .step-section .right .right-wrap .right-content .link {
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  padding: 17px 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #0563f6;
+  color: #ffffff;
+}
+
+.more-content-modal .modal-dialog {
+  max-width: 840px;
+  width: 100%;
+  height: 595px;
+}
+
+.more-content-modal .modal-header {
+  padding: 11px 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 29px;
+  color: #ffffff;
+  background-color: #0868fd;
+  border-radius: 4px 4px 0px 0px;
+  text-align: center;
+  justify-content: center;
+}
+
+.more-content-modal .modal-body {
+  height: 440px;
+  padding: 30px 30px 0 30px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+.more-content-modal .modal-body .inner-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+  color: #222222;
+}
+
+.more-content-modal .modal-body .text {
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999999;
+}
+
+.more-content-modal .modal-footer {
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  padding: 40px 0 30px;
+  border: none;
+}
+
+.more-content-modal .modal-footer button {
+  width: 150px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0 !important;
+  justify-content: center;
+}
+
+.more-content-modal .modal-footer button.btn-primary {
+  background-color: #0868fd !important;
+  border: 1px solid #0868fd !important;
+  color: #ffffff !important;
+}
+
+.more-content-modal .modal-footer button.btn-outline-primary {
+  border: 1px solid #0868fd !important;
+  background-color: #ffffff !important;
+  color: #0868fd !important;
+}
+
+#sign_up .step02 .right .right-wrap .right-content .input-wrap .text-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+#sign_up .step-section .right .right-wrap .right-content .input-wrap {
+  display: block;
+  position: relative;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#sign_up .step-section .right .right-wrap .right-content .input-wrap input {
+  width: 100%;
+  display: block;
+  padding: 13px 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #222222;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+}
+
+#sign_up .step02 .right .right-wrap .right-content .input-wrap .text-wrap .input-text {
+  margin-bottom: 0px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #373737;
+}
+
+#sign_up .step02 .right .right-wrap .right-content .input-wrap .pw-info-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  color: #999999;
+}
+
+#sign_up .step02 .right .right-wrap .right-content .input-wrap .icon {
+  position: absolute;
+  right: 16px;
+  top: 44px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("/images/ic-hide.png") no-repeat center center / cover;
+  cursor: pointer;
+}
+
+#sign_up .step02 .right .right-wrap .right-content .input-wrap .icon.active {
+  background: url("/images/ic-show.png") no-repeat center center / cover;
+}
+
+#sign_up .step04 .right .right-wrap .right-content .step-title {
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 43px;
+  text-align: center;
+  color: #222222;
+}
+
+#sign_up .step04 .right .right-wrap .right-content .step-text {
+  margin: 8px 0 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #373737;
+}
+
+#sign_up .step-section .right .logo-mb {
+  display: none;
+}
+
+.bussiness-modal .modal-title{
+  font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    color: #222222;
+}
+
+.bussiness-modal .modal-body{
+  margin: 20px 0;
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #373737;
+    text-align: center;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.bussiness-modal .btn.btn-primary{
+  width: 60px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    color: #FFFFFF;
+    background: #0868FD !important;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  #sign_up .step-section .left {
+    display: none;
+  }
+  #sign_up .step-section .right .logo-mb {
+    display: block;
+    width: 115px;
+    height: 33px;
+  }
+  #sign_up .step-section .right {
+    width: 100%;
+    padding: 20px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 2em 20px;
+    overflow: auto;
+    row-gap: 37px;
+  }
+  #sign_up .step-section .right .right-wrap {
+    width: 100%;
+    height: auto;
+    margin: auto;
+  }
+  #sign_up .step-section .right .right-wrap .right-content {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+/* Signup Page Css End */
+
+
+.step01-none {
+  display: none !important;
+}

@@ -15,7 +15,7 @@ export default function SingleNoticeModulePage() {
   useEffect(() => {
     setDataId(router.query.id);
     getData(dataId);
-  }, [dataId, router.query.id]);
+  }, [router.query.id]);
 
   const getData = async (id) => {
     setLoading(true);

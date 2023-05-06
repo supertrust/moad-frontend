@@ -1,4 +1,4 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
+/* @import "bootstrap/dist/css/bootstrap.min.css"; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -111,28 +111,43 @@ ul.sub-wrap {
   margin-left: 73px;
   line-height: 34px;
 }
+
 ul.sub-wrap a.sub-link {
   color: #B0BDFA !important;
 }
-.menu-wrap a{
+
+.menu-wrap a {
   color: #B0BDFA !important;
 }
-button, [type='button'], [type='reset'], [type='submit']{
-  border: none !important;
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  /* border: none !important; */
   display: flex;
 }
-.drop-btns .btn:hover{
+
+.drop-btns .btn:hover {
   background-color: transparent !important;
 }
-.drop-btns .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
+
+.drop-btns .btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
   background-color: transparent !important;
 }
+
 .drop-btns .my-company {
   margin-left: 10px;
 }
-.drop-btns .dropdown-menu.show{
+
+.drop-btns .dropdown-menu.show {
   width: 215px !important;
 }
+
 /* sidebar-css-end */
 
 /* header-css-start */
@@ -312,8 +327,7 @@ button, [type='button'], [type='reset'], [type='submit']{
   padding: 15px 0;
 }
 
-.text-wrap {
-}
+.text-wrap {}
 
 .text {
   font-weight: 400;
@@ -443,8 +457,7 @@ a {
   position: relative;
 }
 
-.tab-wrap {
-}
+.tab-wrap {}
 
 .list-hd {
   height: 60px;
@@ -539,8 +552,7 @@ a {
   cursor: pointer;
 }
 
-.profile-text {
-}
+.profile-text {}
 
 .company-name {
   font-weight: 700;
@@ -594,8 +606,7 @@ a {
   position: relative;
 }
 
-.list-wrap {
-}
+.list-wrap {}
 
 .lists {
   display: flex;
@@ -928,59 +939,67 @@ a {
 
 /* <------guide-Page-style-start-------> */
 
-.guide-content{
+.guide-content {
   padding: 20px 29px;
 }
-.guide-content .title-wrap{
-display: block;
+
+.guide-content .title-wrap {
+  display: block;
 }
-.guide-content .title{
+
+.guide-content .title {
   margin-bottom: 8px;
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
   color: #2C324C;
 }
-.guide-content .sub-text{
-  font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    color: #2C324C;
-}
-.guide-content .guide-box-wrap{
-  width: 100%;
-    height: 658px;
-    margin-top: 22px;
-    padding: 50px;
-    background-color: #ffffff;
-}
-.guide-content .box-wrap{
 
+.guide-content .sub-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2C324C;
 }
-.guide-content .box-list{
+
+.guide-content .guide-box-wrap {
+  width: 100%;
+  height: 658px;
+  margin-top: 22px;
+  padding: 50px;
+  background-color: #ffffff;
+}
+
+.guide-content .box-wrap {}
+
+.guide-content .box-list {
   margin-bottom: 40px;
 }
-.guide-content .box-list .box-title{
+
+.guide-content .box-list .box-title {
   margin-bottom: 8px;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 26px;
-    color: #2C324C;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #2C324C;
 }
-.guide-content .box-list .box-sub-text{
+
+.guide-content .box-list .box-sub-text {
   margin-bottom: 20px;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   color: #2C324C;
 }
-.guide-content .box-list .box-link-wrap{
+
+.guide-content .box-list .box-link-wrap {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   column-gap: 15px;
 }
-.guide-content .box-list .box-link-wrap .box-link{
+
+.guide-content .box-list .box-link-wrap .box-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -990,20 +1009,24 @@ display: block;
   padding: 0 20px;
   background-color: #456192;
 }
-.guide-content .box-link .box-text{
+
+.guide-content .box-link .box-text {
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   color: #ffffff;
 }
-.guide-content   .ic-arrow-right{
+
+.guide-content .ic-arrow-right {
   display: block;
-    width: 20px;
-    height: 20px;
-    background: url(https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/guide/ic-arrow-right.png) no-repeat center center / cover;
+  width: 20px;
+  height: 20px;
+  background: url(https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/guide/ic-arrow-right.png) no-repeat center center / cover;
 }
-.logout-danger{
+
+.logout-danger {
   color: red;
   font-weight: 600;
 }
+
 /* <------guide-Page-style-end-------> */

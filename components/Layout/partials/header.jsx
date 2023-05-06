@@ -15,7 +15,7 @@ function Header(props) {
               <Dropdown className="drop-btns">
               <Dropdown.Toggle  id="dropdown-basic">
               <div className="my-photo">
-                <img
+                <Image
                   src="/images/img-my-pic.png"
                   alt=""
                   className="img"

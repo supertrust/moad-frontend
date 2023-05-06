@@ -29,14 +29,14 @@ function Sidebar({ msg }) {
   return (
     <div className="content">
       <h1 className="side-logo">
-        <img src="/images/logo-pc.svg" />
+        <Image src="/images/logo-pc.svg" />
       </h1>
       <div className="sidemenu-wrap">
         {/* <ul className="menu-wrap">
           <li className="menu-list active">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-dashboard-active.png" />
+                <Image src="/images/ic-dashboard-active.png" />
               </i>
               <div className="name">
                 <Link
@@ -53,7 +53,7 @@ function Sidebar({ msg }) {
           <li className="menu-list">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-statistics.png" />
+                <Image src="/images/ic-statistics.png" />
               </i>
               <div className="name">
                 <Link
@@ -70,7 +70,7 @@ function Sidebar({ msg }) {
           <li className="menu-list">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-mypage.png" />
+                <Image src="/images/ic-mypage.png" />
               </i>
               <div className="name">
                 <Link
@@ -87,7 +87,7 @@ function Sidebar({ msg }) {
           <li className="menu-list">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-mypage.png" />
+                <Image src="/images/ic-mypage.png" />
               </i>
               <div className="name">
                 <Link
@@ -104,7 +104,7 @@ function Sidebar({ msg }) {
           <li className="menu-list">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-inquire.png" />
+                <Image src="/images/ic-inquire.png" />
               </i>
               <div className="name">
                 <Link
@@ -205,7 +205,7 @@ function Sidebar({ msg }) {
               }}
             >
               <i className="icon">
-                <img
+                <Image
                   src={`/images/ic-dashboard${
                     tab == "Advertising Management" ? "-active" : ""
                   }.png`}
@@ -227,7 +227,7 @@ function Sidebar({ msg }) {
               }}
             >
               <i className="icon statistics">
-                <img
+                <Image
                   src={`/images/ic-statistics${
                     tab == "Statistics" ? "-active" : ""
                   }.png`}
@@ -247,7 +247,7 @@ function Sidebar({ msg }) {
             >
               <i className="icon mypage">
                 {" "}
-                <img
+                <Image
                   src={`/images/ic-mypage${
                     tab == "My Info" ? "-active" : ""
                   }.png`}
@@ -276,7 +276,7 @@ function Sidebar({ msg }) {
               }}
             >
               <i className="icon center">
-                <img
+                <Image
                   src={`/images/ic-inquire${
                     tab === "Inquiry" ||
                     tab === "Policies and Terms" ||

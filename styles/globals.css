@@ -1922,7 +1922,7 @@ body .div{
 	position: relative
 }
 
-#ad_apply_modal .ad-modal-wrap .ad-apply-content .modal-step .date-section .ipnut-wrap .select-wrap .select-text .select-input {
+#ad_apply_modal .ad-modal-wrap .ad-apply-content .modal-step .date-section .ipnut-wrap .select-wrap .select-text .select-input,#ad_apply_modal .ad-modal-wrap .ad-apply-content .modal-step .date-section .ipnut-wrap .select-wrap .advertising_period {
 	width: 260px;
 	background: url("/images/advertising/ic-down-gray.png") no-repeat center right 10px / 24px #ffffff;
 	cursor: pointer
@@ -2892,8 +2892,8 @@ div#slide_wrap .list {
 		padding-left: 6.5px
 	}
 
-	#ad_apply_modal .ad-modal-wrap .ad-apply-content .modal-step .date-section .ipnut-wrap .select-wrap .select-text .select-input {
-		width: 100%
+	#ad_apply_modal .ad-modal-wrap .ad-apply-content .modal-step .date-section .ipnut-wrap .select-wrap .select-text .select-input,.advertising_period  {
+		width: 100%	
 	}
 
 	#ad_apply_modal .ad-modal-wrap .ad-apply-content .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box {
@@ -3610,7 +3610,14 @@ div#slide_wrap .list {
 	border-radius: 4px;
 	cursor: pointer
 }
-
+#statistics .container .board-content .statistics-content .step-01 .driving-vehicle .driving-vehicle-box .list-wrap .list {
+    border-bottom: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: column;
+}
 @media screen and (max-width:1400px) {
 	#statistics {
 		min-height: 100%;
@@ -3622,7 +3629,7 @@ div#slide_wrap .list {
 		background-color: #F5F7FB;
 		margin-left: 10px;
 		padding-top: 119px;
-		width: calc(100% - 305px)
+		width: auto;
 	}
 
 	#statistics .container .board-content .statistics-content .step-02 .ad-content .tab-wrap .list-flex .grid {

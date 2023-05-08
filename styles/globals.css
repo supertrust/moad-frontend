@@ -152,7 +152,9 @@ button,
   /* border: none !important; */
   display: flex;
 }
-
+button#dropdown-basic{
+	border: none !important;
+}
 .drop-btns .btn:hover {
   background-color: transparent !important;
 }
@@ -411,10 +413,11 @@ a {
 }
 
 .menu-hd {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 19px 16px 19px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 16px 19px 30px;
+    flex-wrap: wrap;
 }
 
 .tab-menu {
@@ -460,7 +463,8 @@ a {
 }
 
 .ad-delet-btn {
-  width: 74px;
+  /* width: 74px; */
+  padding: 2px 15px;
   font-weight: 500;
   font-size: 14px;
   line-height: 36px;
@@ -506,6 +510,16 @@ a {
   width: 100%;
   display: grid;
   grid-template-columns: 115px 1fr 127px 227px 172px;
+}
+
+.ad-contents .grid-box {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  line-height: 14px;
+  color: #2c324c;
+  padding: 0 0 0 20px;
+  border-right: 1px solid #ebedf4;
 }
 
 .grid-box {
@@ -943,6 +957,7 @@ a {
   color: #ffffff;
   margin-top: 20px;
   background-color: #0868fd;
+  justify-content: center;
 }
 
 #login .right .right-wrap .link-wrap {
@@ -3868,7 +3883,45 @@ div#slide_wrap .list {
 	#statistics .only-mb {
 		display: block
 	}
+
 }
+@media screen and (max-width:1094px){
+
+	button.ad-add-btn p {
+		display: none;
+	}
+	
+	button.ad-add-btn {
+		width: 50px;
+	}
+	
+	button.ad-add-btn img {
+		width: 18px;
+	}
+
+	.ad-delet-btn {
+		    /* width: 74px; */
+			padding: 2px 15px;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 36px;
+			text-align: center;
+			color: #999999;
+			border: 1px solid #eeeeee;
+			border-radius: 5px;
+			cursor: pointer;
+	}
+
+	.select-box.only-pc .form-select {
+		display: none;
+	}
+
+	/* .filter-wrp img {
+		width: 100%;
+		height: 100%;
+	} */
+}
+
 
 /* faq css start */
 

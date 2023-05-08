@@ -221,6 +221,36 @@ export default function StatisticsModulePage() {
           </div>
         </div>
       </div>
+      {/* <!--TODO 삭제버튼을 눌렀을때 : 종료된 광고가 아닐때 출력--> */}
+      {/* <!--TODO Output when active class is added to confirm-modal class--> */}
+      <div id="check_modal" class="check-modal confirm-modal">
+        <div class="check-modal-wrap">
+          <div class="title">확인사항</div>
+          <div class="text">
+            종료된 광고만<br/>
+              삭제하실 수 있습니다
+          </div>
+          <div class="btn-wrap">
+            <button type="button" class="check-close-btn active-btn">확인</button>
+          </div>
+        </div>
+      </div>
+
+      {/* <!--TODO 삭베버튼을 눌렀을때 : 종료된 광고가 삭제 되기전 출력 -->
+      <!--TODO Output when active class is added to remove-ads-modal class--> */}
+      <div id="remove_ads_modal" class="check-modal remove-ads-modal">
+        <div class="check-modal-wrap">
+          <div class="title">광고삭제</div>
+          <div class="text">
+            삭제시 복구할 수 없으며<br/>
+              광고에 대한 정보를 확인하실 수 없습니다.
+          </div>
+          <div class="btn-wrap">
+            <button type="button" class="check-close-btn line-btn">취소</button>
+            <button type="button" id="remove_ads_modal_confirm" class="active-btn">삭제</button>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

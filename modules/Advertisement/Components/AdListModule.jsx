@@ -1,10 +1,10 @@
-import React,{useState } from "react";
-import {Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 import AdModel from "./AdModel";
 
 export default function AdListModule() {
   const [showModal, setShowModal] = useState(false);
-const openModal = () => {
+  const openModal = () => {
     setShowModal(true);
   };
   return (
@@ -32,9 +32,15 @@ const openModal = () => {
           <div className="right-menu">
             <button onClick={openModal} className="ad-add-btn">
               <img src="/images/add-icon.png" alt="add"></img>
-              Advertisement registration
+              <p>
+                Advertisement registration
+              </p>
             </button>
-            <button className="ad-delet-btn">delete</button>
+            <button className="ad-delet-btn">
+              <p>
+                delete
+              </p>
+            </button>
             <div className="select-box only-pc">
               <Form.Select aria-label="Default select example">
                 <option>Choose your campaign type</option>
@@ -43,45 +49,50 @@ const openModal = () => {
                 <option value="3">Three</option>
               </Form.Select>
             </div>
+              {/* <div className="filter-wrp">
+              <img
+                    src={"/images/statistics/filter.png"}
+                  />
+                </div> */}
           </div>
-        </div>
-        <div className="tab-wrap">
-          <div className="list-hd list-flex">
-            <div className="chk-box hd-all-chk">
-              <input
-                type="checkbox"
-                name="all_chk"
-                id="all_chk"
-                className="all-chk"
-                value=""
-              />
-            </div>
-            <div className="grid">
-              <div className="grid-box type-wrap hd-type">ad name</div>
-              <div className="grid-box title-wrap hd-name">ad name</div>
-              <div className="grid-box car-wrap hd-car only-pc">ad name</div>
-              <div className="grid-box car-wrap hd-car only-mb">ad name</div>
-              <div className="grid-box date-wrap hd-date">ad name</div>
-            </div>
-          </div>
-          <div className="list-hd list-flex">
-            <div className="chk-box hd-all-chk">
-              <input
-                type="checkbox"
-                name="all_chk"
-                id="all_chk"
-                className="all-chk"
-                value=""
-              />
-            </div>
-            <div className="grid">
-              <div className="grid-box type-wrap hd-type">ad name</div>
-              <div className="grid-box title-wrap hd-name">
-                Celebrating the opening of the Icarus service. 25 characters
+          <div className="tab-wrap">
+            <div className="list-hd list-flex">
+              <div className="chk-box hd-all-chk">
+                <input
+                  type="checkbox"
+                  name="all_chk"
+                  id="all_chk"
+                  className="all-chk"
+                  value=""
+                />
               </div>
-              <div className="grid-box car-wrap hd-car only-pc">ad name</div>
-              <div className="grid-box car-wrap hd-car only-mb">ad name</div>
-              <div className="grid-box date-wrap hd-date">ad name</div>
+              <div className="grid">
+                <div className="grid-box type-wrap hd-type">ad name</div>
+                <div className="grid-box title-wrap hd-name">ad name</div>
+                <div className="grid-box car-wrap hd-car only-pc">ad name</div>
+                <div className="grid-box car-wrap hd-car only-mb">ad name</div>
+                <div className="grid-box date-wrap hd-date">ad name</div>
+              </div>
+            </div>
+            <div className="list-hd list-flex">
+              <div className="chk-box hd-all-chk">
+                <input
+                  type="checkbox"
+                  name="all_chk"
+                  id="all_chk"
+                  className="all-chk"
+                  value=""
+                />
+              </div>
+              <div className="grid">
+                <div className="grid-box type-wrap hd-type">ad name</div>
+                <div className="grid-box title-wrap hd-name">
+                  Celebrating the opening of the Icarus service. 25 characters
+                </div>
+                <div className="grid-box car-wrap hd-car only-pc">ad name</div>
+                <div className="grid-box car-wrap hd-car only-mb">ad name</div>
+                <div className="grid-box date-wrap hd-date">ad name</div>
+              </div>
             </div>
           </div>
         </div>

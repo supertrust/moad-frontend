@@ -176,7 +176,12 @@ export default function AdModel({setShowModal}) {
                         </div>
                         <div className="ipnut-wrap ad-start-date">
                             <div className="sub-title">시작일</div>
-                            <input type="date" id="input_calendar" className="box input-calendar" placeholder="날짜 입력" />
+                            <Form.Control 
+                                 type="date" 
+                                 name="doj"
+                                 placeholder="Date of Joining" 
+                                 />
+
                         </div>
                         <div className="ipnut-wrap">
                             <div className="sub-title">총 광고기간</div>

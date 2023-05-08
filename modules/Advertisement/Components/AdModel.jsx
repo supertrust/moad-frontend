@@ -9,10 +9,21 @@ export default function AdModel({setShowModal}) {
   const modelStatus = (status) => {
     setmodel(status);
   };
+  const [isOpen, openPeriodlist] = useState();
+  const [period,setPeriod] = useState();
+
+  const periodList = () => {
+    openPeriodlist(!isOpen);
+  };
+  const periodStatus = (period) => {
+    setPeriod(period);
+    openPeriodlist(false);;
+  };
   const [isActive, setActive] = useState(false);
   const ToggleClass = () => {
     setActive(!isActive); 
    };
+   
   const area = [
     {
       'id' : 'seoul', 'value' : '서울'
@@ -151,21 +162,21 @@ export default function AdModel({setShowModal}) {
                     <div className="input-section date-section">
                         <div className="ipnut-wrap">
                             <div className="input-title">광고기간</div>
-                            <div className="select-wrap spot-add">
-                                <div className="select-text">
-                                    <input type="text" className="box select-input spot-input-add" id="select_input" placeholder="기간 선택" readOnly/>
-                                    <div id="calender_area"></div>
-                                </div>
-                                <ul className="date-select-box">
-                                    <li className="date-list" data-months="6_months"><label htmlFor="6_months" className="period-label">6개월<input type="radio" value="6" name="date_period" id="6_months" className="period-input"/></label></li>
-                                    <li className="date-list" data-months="12_months"><label htmlFor="12_months" className="period-label">12개월<input type="radio" value="12" name="date_period" id="12_months" className="period-input"/></label></li>
-                                    <li className="date-list hidden" data-months="consulting"><label htmlFor="consulting" className="period-label">추후상담<input type="radio" value="consulting" name="date_period" id="consulting" className="period-input"/></label></li>
-                                </ul>
+                            <div className={isOpen ? "select-wrap spot-add active" : "select-wrap spot-add"}>
+                                    <div className="select-text">
+                                        <input type="text" onClick={periodList} value={period ? period : ''} className="box select-input spot-input-add" id="select_input" placeholder="기간 선택" readOnly/>
+                                        <div id="calender_area"></div>
+                                    </div>
+                                    <ul className="date-select-box">
+                                        <li className="date-list" onClick={() => periodStatus("6개월")} data-months="6_months"><label htmlFor="6_months" className="period-label">6개월<input type="radio" value="6" name="date_period" id="6_months" className="period-input"/></label></li>
+                                        <li className="date-list" onClick={() => periodStatus("12개월")} data-months="12_months"><label htmlFor="12_months" className="period-label">12개월<input type="radio" value="12" name="date_period" id="12_months" className="period-input"/></label></li>
+                                        <li className="date-list hidden" data-months="consulting"><label htmlFor="consulting" className="period-label">추후상담<input type="radio" value="consulting" name="date_period" id="consulting" className="period-input"/></label></li>
+                                    </ul>
                             </div>
                         </div>
                         <div className="ipnut-wrap ad-start-date">
                             <div className="sub-title">시작일</div>
-                            <input type="text" id="input_calendar" className="box input-calendar" placeholder="날짜 입력" readOnly/>
+                            <input type="date" id="input_calendar" className="box input-calendar" placeholder="날짜 입력" />
                         </div>
                         <div className="ipnut-wrap">
                             <div className="sub-title">총 광고기간</div>

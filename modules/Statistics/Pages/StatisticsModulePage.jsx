@@ -4,16 +4,32 @@ export default function StatisticsModulePage() {
   const date_start = '2023. 03. 01';
   const date_end = '2023. 03. 08';
   const ad_amount = '123,456,789';
-
+  const driving_vehicle = [
+    {
+      'title':'모든 차량수',
+      'data':'120',
+  },
+  {
+      'title':'운행차량',
+      'data':'120',
+  },
+  {
+      'title':'운행예정',
+      'data':'',
+  },
+  {
+      'title':'종료예정',
+      'data':'60',
+  },
+  {
+      'title':'종료',
+      'data':'20',
+  },
+  ];
   return (
     <>
     <div id="statistics" class="statistics page">
     <div class="container">
-        <div class="sidemenu-wrap">
-            {/* <?php */}
-                {/* get_template_part('templates/part/side-menu', null, $args); */}
-            {/* ?> */}
-        </div>
         <div class="board-content">
             <div class="inner-header-wrap">
                 {/* <?php
@@ -30,7 +46,7 @@ export default function StatisticsModulePage() {
                         </div>
                         <div class="ad-amount-box">
                             <div class="box-wrap">
-                                <div class="date">2023. 03. 01 ~ 2023. 03. 08</div>
+                                <div class="date">{date_start} ~ {date_end}</div>
                                  <div class="amount">{ad_amount ? ad_amount : '-'}</div>
                                 
                             </div>
@@ -54,6 +70,14 @@ export default function StatisticsModulePage() {
                                     <?php endif; ?>
                                 </li>
                                 <?php endforeach; ?> */}
+                                {
+                                  driving_vehicle.map((data) =>
+                                  <li class="list">
+                                  <div class="title">{data.title}</div>
+                                  <div class="data">{data.data ? data.data+'대' : '-'}</div>
+                                  </li>
+                                  )
+                                }
                             </ul>
                         </div>
                     </div>

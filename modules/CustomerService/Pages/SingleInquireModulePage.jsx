@@ -102,8 +102,8 @@ export default function SingleInquireModulePage({ id }) {
                       <Link href={`/inquire/form/${dataId}`}><span className="text-gray-400">수정</span></Link>
                       <button className="text-gray-400" onClick={() => {
                         deleteModal.open = true;
-                        deleteModal.text = '<div class="font-semibold text-blue-600">게시물 삭제</div>';
-                        deleteModal.text += '<div class="font-semibold">게시물을 정말 삭제하시겠습니까?</div>';
+                        deleteModal.text = '<div className="font-semibold text-blue-600">게시물 삭제</div>';
+                        deleteModal.text += '<div className="font-semibold">게시물을 정말 삭제하시겠습니까?</div>';
                         setDeleteModal({ ...deleteModal });
                       }}>삭제</button>
                       <span className="font-bold text-red-600">답변 전</span>

@@ -1,4 +1,4 @@
-/* @import "bootstrap/dist/css/bootstrap.min.css"; */
+@import "bootstrap/dist/css/bootstrap.min.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -3862,3 +3862,121 @@ div#slide_wrap .list {
 		display: block
 	}
 }
+
+/* faq css start */
+
+.faq-content{
+  padding: 23px 30px 43px 30px;
+}
+
+.tab-section {
+  border: none;
+  gap: 20px;
+  align-items: center;
+}
+
+.tab-section li button {
+  border: none !important;
+  color: #000;
+  padding: 0;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.tab-section li button:hover{
+  color: #000;
+}
+
+.tab-section li button.active {
+  color: #2F48D1 !important;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.accordion-section .accordion-item{
+  border: none !important;
+}
+
+.accordion-section .accordion-item button{
+  padding: 20px 40px;
+  box-shadow: none;
+  border-radius: 5px;
+  background: #E1ECFF;
+}
+
+.accordion-section .accordion-item button.collapsed{
+  background: transparent;
+}
+
+.accordion-button::after{
+  width: 15px !important;
+  height: 15px !important;
+  background-size: contain !important;
+}
+
+.accordion-section .accordion-body {
+  padding: 20px 40px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: #2C324C;
+}
+
+.list-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 19px;
+  color: #000;
+}
+
+.list-title .category{
+  color: #2F48D1;
+}
+
+ul.pagination {
+  justify-content: center;
+  padding: 20px 0;
+}
+
+ul.pagination .page-item.prev-btn a{
+  background: transparent;
+  color: #4D5E80;
+  font-size: 22px;
+  padding: 0 10px;
+}
+
+ul.pagination .page-item.next-btn a{
+  background: transparent;
+  color: #4D5E80;
+  font-size: 22px;
+  padding: 0 10px;
+}
+
+ul.pagination .page-item a{
+  border: none;
+  background: #4D5E80;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+ul.pagination .page-item a:focus{
+  box-shadow: none !important;
+}
+
+.none-list {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: -0.5px;
+  color: #999999;
+  margin: 320px 0;
+}
+/* faq css end */

@@ -7,21 +7,19 @@ export type GetNoticeDetailPropsType = {
 }
 
 export interface INotice {
-    id: string;
-    important: boolean;
-    date: string;
+    id: number;
     title: string;
+    content: string;
+    image: string | null;
+    important: boolean;
+    created_at: string | null;
 }
 
 export interface INoticeDetail {
-    prev: string | null;
-    next: string | null;
-    content: {
-        important: boolean;
-        id: string;
-        content: string;
-        date: string;
-        image: string;
-        title: string;
-    }
+    id: number;
+    title: string;
+    content: string;
+    image: string | null;
+    important: boolean;
+    created_at: string | null;
 }

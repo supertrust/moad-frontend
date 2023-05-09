@@ -1,0 +1,63 @@
+.adStatus {}
+
+.titleWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    padding-right: 20px;
+    color: #2C324C;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.line {
+    height: 1px;
+    background-color: #EBEDF4;
+    flex: 1;
+}
+
+.text {
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #373737;
+    font-size: 14px;
+    text-align: center;
+    padding: 15px 20px;
+}
+
+.adContents {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 17px;
+    row-gap: 17px;
+}
+
+.cards {
+    height: 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+    border-radius: 5px;
+    border: 1px solid #ebedf4;
+}
+
+.itemTitle {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    color: #2C324C;
+}
+
+.value {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 140%;
+}

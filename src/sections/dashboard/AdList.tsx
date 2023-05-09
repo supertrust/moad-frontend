@@ -1,12 +1,67 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import AdModel from "./AdModel";
-
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
 export default function AdListModule() {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
   };
+  const data = quantity => {
+    const items = [
+      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    ];
+    
+    return items;
+  };
+  
+  const products = data();
+  
+  const columns = [
+    {
+      dataField: "ad_type",
+      text: "광고 유형",
+      sort: true,
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "advertising_name",
+      text: "광고 이름",
+      sort: true,
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "vehicles",
+      text: "운행 차량수",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "period",
+      text: "기간",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "status",
+      text: "상태",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    }
+  ];
   return (
     <>
       <div className="ad-list">
@@ -55,47 +110,15 @@ export default function AdListModule() {
                   />
                 </div> */}
           </div>
-          <div className="tab-wrap">
-            <div className="list-hd list-flex">
-              <div className="chk-box hd-all-chk">
-                <input
-                  type="checkbox"
-                  name="all_chk"
-                  id="all_chk"
-                  className="all-chk"
-                  value=""
-                />
-              </div>
-              <div className="grid">
-                <div className="grid-box type-wrap hd-type">ad name</div>
-                <div className="grid-box title-wrap hd-name">ad name</div>
-                <div className="grid-box car-wrap hd-car only-pc">ad name</div>
-                <div className="grid-box car-wrap hd-car only-mb">ad name</div>
-                <div className="grid-box date-wrap hd-date">ad name</div>
-              </div>
-            </div>
-            <div className="list-hd list-flex">
-              <div className="chk-box hd-all-chk">
-                <input
-                  type="checkbox"
-                  name="all_chk"
-                  id="all_chk"
-                  className="all-chk"
-                  value=""
-                />
-              </div>
-              <div className="grid">
-                <div className="grid-box type-wrap hd-type">ad name</div>
-                <div className="grid-box title-wrap hd-name">
-                  Celebrating the opening of the Icarus service. 25 characters
-                </div>
-                <div className="grid-box car-wrap hd-car only-pc">ad name</div>
-                <div className="grid-box car-wrap hd-car only-mb">ad name</div>
-                <div className="grid-box date-wrap hd-date">ad name</div>
-              </div>
-            </div>
-          </div>
         </div>
+        <BootstrapTable
+                  keyField="id"
+                  data={ products }
+                  columns={ columns }
+                  pagination={ paginationFactory({hideSizePerPage : true,sizePerPage: 6}) }
+                  selectRow={ { mode: 'checkbox', clickToSelect: true } }
+                  noDataIndication={'진행중인 광고가 없습니다.' }
+                />
       </div>
     </>
   );

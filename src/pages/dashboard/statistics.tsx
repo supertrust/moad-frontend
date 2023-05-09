@@ -1,4 +1,6 @@
 import React from 'react'
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
 export default function StatisticsScreen() {
   const date_start = '2023. 03. 01';
@@ -25,6 +27,60 @@ export default function StatisticsScreen() {
       'title': '종료',
       'data': '20',
     },
+  ];
+  const data = quantity => {
+    const items = [
+      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    ];
+    
+    return items;
+  };
+  
+  const products = data();
+  
+  const columns = [
+    {
+      dataField: "ad_type",
+      text: "광고 유형",
+      sort: true,
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "advertising_name",
+      text: "광고 이름",
+      sort: true,
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "vehicles",
+      text: "운행 차량수",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "period",
+      text: "기간",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "status",
+      text: "상태",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    }
   ];
   return (
     <>
@@ -87,6 +143,14 @@ export default function StatisticsScreen() {
                   <div className="title">운행거리/운행시간</div>
                   <div className="line"></div>
                 </div>
+                <BootstrapTable
+                  keyField="id"
+                  data={ products }
+                  columns={ columns }
+                  pagination={ paginationFactory({hideSizePerPage : true,sizePerPage: 6}) }
+                  selectRow={ { mode: 'checkbox', clickToSelect: true } }
+                  noDataIndication={'진행중인 광고가 없습니다.' }
+                />
                 <div className="ad-content">
                   <div className="menu-hd">
                     <div className="tab-menu">
@@ -215,6 +279,7 @@ export default function StatisticsScreen() {
                       <button type="button" className="arrow next" disabled></button>
                     </div>
                   </div>
+                  
                 </div>
               </div>
             </div>

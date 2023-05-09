@@ -2397,7 +2397,7 @@ body .div{
 	cursor: pointer;
 	color: #ffffff;
 	border-radius: 5px;
-	width: 138px;
+	width: 148px;
 	padding: 13.5px 40px
 }
 
@@ -2411,6 +2411,13 @@ body .div{
 	background: #2F48D1
 }
 
+/* pagination and table */
+th.selection-cell-header {
+    background: rgb(244 247 251);
+}
+td.react-bs-table-no-data {
+    padding: 100px;
+}
 @media screen and (max-width:1024px) {
 	#ad_apply_modal .ad-modal-wrap .ad-apply-content .modal-step .btn-section .btns {
 		padding: 9px 20px;

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function NotificationCentre() {
   return (
@@ -9,9 +10,12 @@ export default function NotificationCentre() {
             <span>notification center</span>
           </div>
           <div className="line"></div>
-          <a href="/notification-center" className="text">
+          {/* <a href="/notification-center" className="text">
             view all
-          </a>
+          </a> */}
+          <Link
+              href={"/dashboard"}
+              className="link">View all </Link>
         </div>
         <div className="notification-content">
           <a href="#">

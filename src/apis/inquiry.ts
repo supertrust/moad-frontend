@@ -1,17 +1,10 @@
-import { DeleteInquiryPropsType, GetInquiriesPropsType, GetInquiryDetailPropsType, IInquiry, IInquiryDetail } from "@src/types/inquiry";
+import { DeleteInquiryPropsType, GetInquiriesPropsType, GetInquiryDetailPropsType, IGetInquiriesResponse, IInquiry, IInquiryDetail, SaveInquiryType, UpdateInquiryType } from "@src/types/inquiry";
 import axios from "@src/utils/axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-export const useGetInquiries = ({ page }: GetInquiriesPropsType) => useQuery<{ data: IInquiry[], last_page: number }, string>({
+export const useGetInquiries = ({ page }: GetInquiriesPropsType) => useQuery<IGetInquiriesResponse, string>({
     queryKey: ["inquiries", page],
-    queryFn: async () => {
-        try {
-            const { data } = await axios.get("/api/get-inquiry", { params: { page: page.toString() } })
-            return { data: data.data, last_page: data.last_page }
-        } catch (error) {
-            throw error
-        }
-    },
+    queryFn: async () => (await axios.get("/api/get-inquiry", { params: { page } })).data
 })
 
 export const useGetInquiryDetail = ({ id }: GetInquiryDetailPropsType) => useQuery<IInquiryDetail, string>({
@@ -19,15 +12,15 @@ export const useGetInquiryDetail = ({ id }: GetInquiryDetailPropsType) => useQue
     queryFn: async () => (await axios.get(`/api/inquiry/${id}`)).data.data,
 })
 
-export const useSaveInquiry = () => useMutation<void, string, FormData>({
+export const useSaveInquiry = () => useMutation<void, string, SaveInquiryType>({
     mutationFn: async (props) => axios.post("/api/save-inquiry", props),
 })
 
-export const useUpdateInquiry = () => useMutation<void, string, FormData>({
+export const useUpdateInquiry = () => useMutation<void, string, UpdateInquiryType>({
     mutationFn: async (props) => axios.post("/api/update-inquiry", props)
 })
 
 
 export const useDeleteInquiry = () => useMutation<void, string, DeleteInquiryPropsType>({
-    mutationFn: async ({ id }) => axios.post(`/api/delete-inquiry/${id}`)
+    mutationFn: async ({ id }) => axios.get(`/api/delete-inquiry/${id}`)
 })

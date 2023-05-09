@@ -4,7 +4,7 @@ import { useGetNoticeDetail } from '@src/apis/notice';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 export default function NoticeDetailScreen() {
   const id = useRouter().query.id as string;
@@ -13,7 +13,7 @@ export default function NoticeDetailScreen() {
   return (
     <>
       <Head>
-        <title>{isLoading ? "Loading page ..." : data?.content?.title}</title>
+        <title>{isLoading ? "Loading page ..." : data?.title}</title>
       </Head>
       <div className="p-7 text-gray-700 flex flex-col gap-5">
         <div className="font-bold">이카루스에서 알려드립니다.</div>
@@ -29,19 +29,19 @@ export default function NoticeDetailScreen() {
           ) : (
             <>
               <div className="px-7 py-3 border-b flex gap-2 justify-between items-center">
-                <span>[Notice] {data?.content?.title}</span>
+                <span>[Notice] {data?.title}</span>
                 <div className="flex gap-3 justify-end text-sm">
                   <span className="font-semibold">By. 이카루스</span>
-                  <span>{data?.content?.date}</span>
+                  <span>{data?.created_at}</span>
                 </div>
               </div>
               <div className="px-7 py-3 max-h-96 overflow-y-auto flex flex-col gap-2">
-                {data?.content?.image !== null && (
-                  <img src={data?.content?.image} className="w-full" />
+                {data?.image !== null && (
+                  <img src={data?.image} className="w-full" />
                 )}
-                <div>{data?.content?.content}</div>
+                <div>{data?.content}</div>
               </div>
-              <div className="px-7 py-5 pb-7 flex justify-around items-center gap-5 border-t">
+              {/* <div className="px-7 py-5 pb-7 flex justify-around items-center gap-5 border-t">
                 <Link
                   href={data?.prev !== null ? `/notice/${data?.prev}` : "#"}
                 >
@@ -72,7 +72,7 @@ export default function NoticeDetailScreen() {
                     다음글 <ChevronRightIcon className="w-7 h-7" />
                   </button>
                 </Link>
-              </div>
+              </div> */}
             </>
           )}
         </Card>

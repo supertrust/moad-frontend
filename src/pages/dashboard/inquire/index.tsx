@@ -12,7 +12,7 @@ export default function InquireScreen() {
   const { data, isLoading } = useGetInquiries({ page })
   const router = useRouter();
 
-  const getDetail = (id: string) => {
+  const getDetail = (id: number) => {
     router.push(`/inquire/${id}`);
   }
 

@@ -10,10 +10,10 @@ export default function NoticeScreen() {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useGetNotices({ page });
 
-  const setImportant = (id: string) => {
-    data?.data?.forEach((v, i) => {
+  const setImportant = (id: number) => {
+    data?.forEach((v, i) => {
       if (v.id === id) {
-        data.data[i].important = !v.important;
+        data[i].important = !v.important;
       }
     });
   };
@@ -40,7 +40,7 @@ export default function NoticeScreen() {
                 </TableRow>
               </TableHead>
               <TableBody className="divide-y">
-                {data?.data?.map((v, i) => {
+                {data?.map((v, i) => {
                   return (
                     <TableRow key={i}>
                       <TableCell className="!text-center">
@@ -53,7 +53,7 @@ export default function NoticeScreen() {
                           ) : (
                             i +
                             1 -
-                            data?.data.filter((v) => v.important == true)
+                            data?.filter((v) => v.important == true)
                               .length +
                             (page - 1) * 10
                           )}
@@ -67,17 +67,17 @@ export default function NoticeScreen() {
                           {v.title}
                         </Link>
                       </TableCell>
-                      <TableCell className="!text-center">{v.date}</TableCell>
+                      <TableCell className="!text-center">{v.created_at}</TableCell>
                     </TableRow>
                   );
                 })}
               </TableBody>
             </Table>
           )}
-          {data?.data?.length ? (
+          {data?.length ? (
             <div className="p-3 pb-10 flex justify-center">
               <Pagination
-                count={(data?.total || 0) / 10}
+                // count={(data?.total || 0) / 10}
                 variant="outlined"
                 shape="rounded"
                 onChange={(e, val) => setPage(val)}

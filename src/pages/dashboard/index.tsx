@@ -5,7 +5,7 @@ import { AdList, AdModel, Advertising, NotificationCentre } from '@src/sections/
 export default function DashboardScreen() {
   return (
     <main className="p-10">
-      <Row>
+      <Row className="ad-page">
         {/* <Col md="6">
           <div className="ad-status">
             <div className="title-wrap">

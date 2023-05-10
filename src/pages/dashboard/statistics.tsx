@@ -1,4 +1,6 @@
 import React from 'react'
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
 export default function StatisticsScreen() {
   const date_start = '2023. 03. 01';
@@ -25,6 +27,54 @@ export default function StatisticsScreen() {
       'title': '종료',
       'data': '20',
     },
+  ];
+  const data =[
+    { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 10, ad_type: "item5",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 20, ad_type: "item6",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 30, ad_type: "item7",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 40, ad_type: "item8",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 11, ad_type: "item9",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 12, ad_type: "item10",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 13, ad_type: "item11",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 14, ad_type: "item12",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 21, ad_type: "item13",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 22, ad_type: "item14",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 23, ad_type: "item15",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+    { id: 24, ad_type: "item16",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
+  ] 
+  
+  const columns = [
+    {
+      dataField: "ad_type",
+      text: "광고 유형",
+      sort: true,
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "advertising_name",
+      text: "광고 이름",
+      sort: true,
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "vehicles",
+      text: "운행 차량수",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "period",
+      text: "기간",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    },
+    {
+      dataField: "status",
+      text: "상태",
+      headerStyle: { backgroundColor: 'rgb(244 247 251)' }
+    }
   ];
   return (
     <>
@@ -87,135 +137,14 @@ export default function StatisticsScreen() {
                   <div className="title">운행거리/운행시간</div>
                   <div className="line"></div>
                 </div>
-                <div className="ad-content">
-                  <div className="menu-hd">
-                    <div className="tab-menu">
-                      <div className="tab-01 tab-title active">전체</div>
-                      <div className="tab-02 tab-title">진행중</div>
-                      <div className="tab-03 tab-title">종료</div>
-                    </div>
-                    <div className="right-menu">
-                      <div className="select-box only-pc">
-                        <div id="select_text" className="select-text">
-                          <span className="text-box">캠페인 유형 선택</span>
-                          <i className="ic-arrow-down"></i></div>
-                        <ul className="option-wrap">
-                          <li data-select="all" className="options">ALL</li>
-                          <li data-select="fixed" className="options">고정형</li>
-                          <li data-select="nationwide" className="options">전국형</li>
-                          <li data-select="spot" className="options">스팟</li>
-                        </ul>
-                      </div>
-                      <button type="button" id="ad_delet_btn" className="ad-delet-btn">삭제</button>
-                    </div>
-                  </div>
-
-                  <div className="tab-wrap">
-                    <div className="list-hd list-flex">
-                      <div className="chk-box hd-all-chk">
-                        <input type="checkbox" name="all_chk" id="all_chk" className="all-chk" />
-                      </div>
-                      <div className="grid">
-                        <div className="grid-box title-wrap hd-name only-mb">광고 이름</div>
-                        <div className="grid-box type-wrap hd-type">광고 유형</div>
-                        <div className="grid-box title-wrap hd-name only-pc">광고 이름</div>
-                        <div className="grid-box car-wrap hd-car">운행 차량수</div>
-                        <div className="grid-box distance-wrap hd-distance">총 운행거리</div>
-                        <div className="grid-box time-wrap hd-time">총 운행시간</div>
-                      </div>
-                    </div>
-
-                    {/* <!--전체 리스트--> */}
-                    <div className="tab-content all-wrap on">
-                      <ul className="list-wrap">
-                        {/* <?php if($ad_list):?>
-                                        <?php foreach($ad_list as $list):?>
-                                        <li className="list-flex">
-                                            <div className="chk-box chk-wrap">
-                                                <input type="checkbox" className="list-chk" name="list_chk">
-                                            </div>
-                                            <a href="<?= $list['url'] ?>" className="grid" target="_blank">
-                                                <div className="grid-box title-wrap only-mb"><?= $list['title'] ?></div>
-                                                <div className="grid-box type-wrap"><?= $list['type'] ?></div>
-                                                <div className="grid-box title-wrap only-pc"><?= $list['title'] ?></div>
-                                                <div className="grid-box car-wrap"><?= $list['car'] ?> 대</div>
-                                                <div className="grid-box distance-wrap"><?= $list['distance'] ?> km</div>
-                                                <div className="grid-box time-wrap"><?= $list['time'] ?> 시간</div>
-                                                <i className="only-mb ic-arrow-right"></i>
-                                            </a>
-                                        </li>
-                                        <?php endforeach; ?>
-                                    <?php else: ?> <!--list 없을때-->
-                                        <div className="none-list">진행중인 광고가 없습니다.</div>
-                                    <?php endif; ?> */}
-                      </ul>
-                    </div>
-
-                    {/* <!--진행중 리스트--> */}
-                    <div className="tab-content proceeding-wrap">
-                      <ul className="list-wrap">
-                        {/* <?php if($ad_list):?>
-                                        <?php foreach($ad_list as $list):?>
-                                        <li className="list-flex">
-                                            <div className="chk-box chk-wrap">
-                                                <input type="checkbox" className="list-chk" name="list_chk">
-                                            </div>
-                                            <a href="<?= $list['url'] ?>" className="grid" target="_blank">
-                                                <div className="grid-box title-wrap only-mb"><?= $list['title'] ?></div>
-                                                <div className="grid-box type-wrap"><?= $list['type'] ?></div>
-                                                <div className="grid-box title-wrap only-pc"><?= $list['title'] ?></div>
-                                                <div className="grid-box car-wrap"><?= $list['car'] ?> 대</div>
-                                                <div className="grid-box distance-wrap"><?= $list['distance'] ?> km</div>
-                                                <div className="grid-box time-wrap"><?= $list['time'] ?> 시간</div>
-                                                <i className="only-mb ic-arrow-right"></i>
-                                            </a>
-                                        </li>
-                                        <?php endforeach; ?>
-                                    <?php else: ?> <!--list 없을때-->
-                                        <div className="none-list">진행중인 광고가 없습니다.</div>
-                                    <?php endif; ?> */}
-                      </ul>
-                    </div>
-
-                    {/* <!--종료 리스트--> */}
-                    <div className="tab-content end-wrap">
-                      <ul className="list-wrap">
-                        {/* <?php if($ad_list):?>
-                                        <?php foreach($ad_list as $list):?>
-                                        <li className="list-flex">
-                                            <div className="chk-box chk-wrap">
-                                                <input type="checkbox" className="list-chk" name="list_chk">
-                                            </div>
-                                            <a href="<?= $list['url'] ?>" className="grid" target="_blank">
-                                                <div className="grid-box title-wrap only-mb"><?= $list['title'] ?></div>
-                                                <div className="grid-box type-wrap"><?= $list['type'] ?></div>
-                                                <div className="grid-box title-wrap only-pc"><?= $list['title'] ?></div>
-                                                <div className="grid-box car-wrap"><?= $list['car'] ?> 대</div>
-                                                <div className="grid-box distance-wrap"><?= $list['distance'] ?> km</div>
-                                                <div className="grid-box time-wrap"><?= $list['time'] ?> 시간</div>
-                                                <i className="only-mb ic-arrow-right"></i>
-                                            </a>
-                                        </li>
-                                        <?php endforeach; ?>
-                                    <?php else: ?> <!--list 없을때-->
-                                        <div className="none-list">진행중인 광고가 없습니다.</div>
-                                    <?php endif; ?> */}
-                      </ul>
-                    </div>
-
-                    <div className="pagination-wrap">
-                      <button type="button" className="arrow prev"></button>
-                      <ul className="num-wrap">
-                        <li className="number active">1</li>
-                        <li className="number">2</li>
-                        <li className="number">3</li>
-                        <li className="number">4</li>
-                        <li className="number">5</li>
-                      </ul>
-                      <button type="button" className="arrow next" disabled></button>
-                    </div>
-                  </div>
-                </div>
+                <BootstrapTable
+                  keyField="id"
+                  data={ data }
+                  columns={ columns }
+                  pagination={ paginationFactory({hideSizePerPage : true,sizePerPage: 6}) }
+                  selectRow={ { mode: 'checkbox', clickToSelect: true } }
+                  noDataIndication={'진행중인 광고가 없습니다.' }
+                />
               </div>
             </div>
           </div>

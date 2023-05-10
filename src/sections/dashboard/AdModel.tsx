@@ -320,7 +320,7 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
 
                             <div className="btn-section">
                                 <button type="button" id="ad_apply_cancel" onClick={() => setShowModal(false)} className="btns cancel-btn">취소</button>
-                                {/* <button type="button" id="ad_apply_btn" className="btns active ad-apply-btn" onclick="return onClickSave()">광고 신청</button> */}
+                                <button type="button" id="ad_apply_btn" className="btns active ad-apply-btn">광고 신청</button>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,1198 @@
+.text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.adApplyModal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(34, 34, 34, 0.6);
+    z-index: 102;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 30px
+}
+
+.adApplyModal .adModalWrap {
+    max-width: 972px;
+    width: 100%;
+    margin: auto;
+    background-color: #FAFAFA;
+    border-radius: 5px
+}
+
+.adApplyModal .adModalWrap .adApplyTitle {
+    padding: 15px 30px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.015em;
+    color: #2C324C;
+    border-radius: 5px 5px 0 0;
+    background-color: #E1ECFF
+}
+
+.adApplyModal .adModalWrap .adApplyInfo {
+    margin: 30px 30px 40px;
+    border: 1px solid #2F48D1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent {
+    width: 100%;
+    padding: 20px;
+    border-right: 1px solid #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .infoText {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap {
+    display: none;
+    margin-top: 10px
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoListWrap .list {
+    position: relative;
+    padding-left: 10px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+    color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoListWrap .list::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoImgWrap {
+    margin-bottom: 10px
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoImgWrap .imgTitle {
+    margin: 14px 0 22px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
+    color: #000000;
+    text-align: center
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoImgWrap .img-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 84px
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoImgWrap .img-wrap .img {
+    display: block;
+    width: auto
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoImgWrap .img-wrap .img01 {
+    width: 242px
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoImgWrap .img-wrap .img02 {
+    width: 242px
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .infoContent .slideWrap .infoImgWrap .img-wrap .img03 {
+    width: 112px
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .moreBtn {
+    width: 87px;
+    flex: 0 0 auto;
+    cursor: pointer
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .moreBtn .textWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 3px
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .moreBtn .textWrap .more-text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
+    color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyInfo .moreBtn .textWrap .ic-down-blue {
+    position: relative;
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: url("/images/advertising/ic-down-blue.png") no-repeat center center;
+    transform: rotate(0)
+}
+
+.adApplyModal .adModalWrap .adApplyInfo.active .infoContent {
+    border-right: 1px solid #EBEDF4
+}
+
+.adApplyModal .adModalWrap .adApplyInfo.active .moreBtn .ic-down-blue {
+    transform: rotate(180deg)
+}
+
+.adApplyModal .adModalWrap .adApplyContent {
+    padding: 0px 30px 50px;
+    margin: 0 auto
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap {
+    margin-bottom: 29px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .title {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+    color: #2C324C
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect {
+    width: 290px;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF4;
+    border-radius: 5px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox {
+    position: relative;
+    padding: 25px 0 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .hidden {
+    display: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .icRadio {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url("/images/advertising/ic-radio-defalut.png") no-repeat center center
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .detailDesc {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    text-decoration-line: underline;
+    color: #999999
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .boxIcon{
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 21px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .box-icon.boxIcon01 {
+    background: url("/images/advertising/img-check01-defalut.png") no-repeat center center / cover
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .box-icon.box-icon02 {
+    background: url("/images/advertising/img-check02-defalut.png") no-repeat center center / cover
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .box-icon.box-icon03 {
+    background: url("/images/advertising/img-check03-defalut.png") no-repeat center center / cover
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .text {
+    text-align: center;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.015em;
+    color: #373737
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .text strong {
+    font-weight: 700
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active {
+    border: 1px solid #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .icRadio {
+    background: url("/images/advertising/ic-radio-active.png") no-repeat center center;
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .detailDesc {
+    color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .box-icon.boxIcon01 {
+    background: url("/images/advertising/img-check01-active.png") no-repeat center center / cover
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .box-icon.box-icon02 {
+    background: url("/images/advertising/img-check02-active.png") no-repeat center center / cover
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .box-icon.box-icon03 {
+    background: url("/images/advertising/img-check03-active.png") no-repeat center center / cover
+}
+
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .text {
+    color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .input-section {
+    margin-bottom: 20px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .box {
+    display: block;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #373737;
+    background-color: #FFFFFF;
+    border: 1px solid #EBEDF4;
+    border-radius: 5px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .input-title {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+    color: #2C324C
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .sub-title {
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+    color: #2C324C
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .input-ad-title {
+    width: 100%
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .text-count {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #999999;
+    text-align: right
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .title-section .input-ad-title {
+    font-size: 14px;
+    line-height: 20px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .title-section .input-ad-title:focus {
+    border: 1px solid #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 15px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap.ad-start-date {
+    max-width: 260px;
+    width: 100%
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .input-title {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+    color: #2C324C
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap {
+    position: relative
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .select-text .select-input,.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .advertising_period {
+    width: 260px;
+    background: url("/images/advertising/ic-down-gray.png") no-repeat center right 10px / 24px #ffffff;
+    cursor: pointer
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box {
+    display: none;
+    width: 260px;
+    height: 68px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 4px;
+    padding: 11px;
+    background: #FFFFFF;
+    border: 1px solid #EBEDF4;
+    border-radius: 5px;
+    position: absolute;
+    top: 43px;
+    left: 0
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box .date-list {
+    width: 100%;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+    color: #373737;
+    cursor: pointer
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box .date-list .period-label {
+    display: block
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box .date-list .period-label .period-input {
+    display: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box .date-list.hidden {
+    display: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap.active .date-select-box {
+    display: flex
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap.spot-add.on.active .date-select-box {
+    display: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .input-calendar {
+    background: url("/images/advertising/ic-calendar.png") no-repeat center right 10px / 16px #ffffff;
+    cursor: pointer;
+    width: 100%
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 8px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #999999
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content .input-date-start {
+    width: 169px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content .input-date-end {
+    width: 169px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap {
+    border: 1px solid #EBEDF4;
+    border-radius: 5px;
+    background-color: #ffffff
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row {
+    display: grid;
+    grid-template-columns: 1fr 192px 306px 249px;
+    border-bottom: 1px solid #EBEDF4
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row:last-child {
+    border-bottom: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row .text {
+    font-size: 14px;
+    line-height: 20px;
+    color: #2C324C
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row .cell {
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #EBEDF4
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row .cell:last-child {
+    border-right: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list-hd .text {
+    font-weight: 500
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .vehicles-num-wrap {
+    column-gap: 3px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .vehicles-num-wrap .input-num {
+    width: 78px;
+    height: 20px;
+    padding: 0 3px;
+    text-align: right;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    color: #999999;
+    border: 1px solid #EBEDF4
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap .price-input {
+    text-align: right;
+    border: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap .price-input::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: right;
+    color: #2C324C
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap .won {
+    display: block
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap.on .price-input {
+    text-align: center
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap.on .won {
+    display: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .spot-info {
+    display: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.015em;
+    color: #2C324C;
+    margin-top: 10px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .spot-info.on {
+    display: block
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section {
+    position: relative;
+    display: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section.active {
+    display: block
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .reset-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 2px;
+    cursor: pointer
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .reset-btn .text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #999999
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .reset-btn .ic-reset {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url("/images/advertising/ic-reset.png") no-repeat center center
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px 6px;
+    flex-wrap: wrap
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap {
+    width: 125px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap .chk-area {
+    height: 40px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.015em;
+    color: #373737;
+    background-color: #FFFFFF;
+    border: 1px solid #EBEDF4;
+    border-radius: 5px;
+    cursor: pointer
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap .chk-input {
+    display: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap .chk-input:checked+.chk-area {
+    color: #ffffff;
+    background: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(34, 34, 34, 0.6);
+    z-index: 110
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal.active {
+    display: flex
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap {
+    width: 335px;
+    height: 199px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .text {
+    margin: 20px 0;
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 5px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .btn-wrap .active-btn {
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+    background: #0868FD;
+    border-radius: 4px;
+    cursor: pointer
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .btn-wrap .line-btn {
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #FFFFFF;
+    color: #0868FD;
+    border: 1px solid #0868FD;
+    border-radius: 4px;
+    cursor: pointer
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box {
+    width: 343px;
+    padding: 17px 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 2px;
+    border: 1px solid #EBEDF4;
+    border-radius: 5px;
+    background-color: #ffffff
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .price-text {
+    display: block;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.015em;
+    color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .total-price {
+    display: block;
+    width: 215px;
+    text-align: right
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .spot-price {
+    display: none;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.015em;
+    color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box.on {
+    justify-content: space-between
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box.on .text-won {
+    display: none
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-info {
+    margin-top: 8px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #999999
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box {
+    height: 44px;
+    display: none;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 30px;
+    padding: 0 30px;
+    background: #F24747;
+    margin-left: -30px;
+    margin-right: -30px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box.active {
+    display: flex
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 8px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line .ic-error {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url("/images/advertising/ic-error.png") no-repeat center center
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line .error-text {
+    display: none;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line .error-text span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line .error-text.active {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    margin-top: 35px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns {
+    padding: 7px 20px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #2F48D1;
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 5px;
+    width: 138px;
+    padding: 13.5px 40px
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns.line {
+    border: 1px solid #2F48D1;
+    background-color: #ffffff;
+    color: #2F48D1
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns.active {
+    background: #2F48D1
+}
+
+@media screen and (max-width:1024px) {
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns {
+        padding: 9px 20px;
+        font-size: 12px;
+        line-height: 17px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns .onlyPc {
+        display: none
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns .only-mb {
+        display: block
+    }
+}
+
+.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .cancel-btn {
+    padding: 12.5px;
+    background-color: #ffffff;
+    border: 1px solid #999999 !important;
+    color: #999999
+}
+
+@media screen and (max-width:1024px) {
+    .adApplyModal {
+        padding: 0;
+        width: 100%;
+        top: 64px
+    }
+
+    .adApplyModal .adModalWrap {
+        position: relative;
+        max-width: 100%;
+        border-radius: 0;
+        background-color: #F5F7FB
+    }
+
+    .adApplyModal .adModalWrap .adApplyTitle {
+        text-align: center;
+        border-radius: 0;
+        background-color: #F5F7FB
+    }
+
+    .adApplyModal .adModalWrap .adApplyTitle .ic-close-btn {
+        position: absolute;
+        top: 18px;
+        left: 20px;
+        display: block;
+        width: 24px;
+        height: 24px;
+        background: url("/images/advertising/ic-close-btn.png") no-repeat center center / cover;
+        cursor: pointer
+    }
+
+    .adApplyModal .adModalWrap .adApplyInfo {
+        display: none
+    }
+
+    .adApplyModal .adModalWrap .adApplyInfoMb {
+        padding: 20px
+    }
+
+    .adApplyModal .adModalWrap .adApplyInfoMb .infoText {
+        padding: 20px 10px;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: -0.015em;
+        color: #2F48D1;
+        background: #FFFFFF;
+        border: 1px solid #2F48D1;
+        border-radius: 5px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent {
+        padding: 0px 20px 90px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap {
+        flex-direction: column;
+        row-gap: 10px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect {
+        width: 100%
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox {
+        flex-direction: row;
+        justify-content: flex-start;
+        column-gap: 16px;
+        padding: 20px 0 20px 50px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .boxIcon{
+        flex: 0 0 auto;
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .text {
+        text-align: left
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .text strong {
+        margin-bottom: 4px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .box {
+        font-size: 12px;
+        line-height: 17px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .title-section .input-ad-title {
+        font-size: 12px;
+        line-height: 17px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section {
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        column-gap: 0
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap {
+        width: 100%;
+        margin-bottom: 20px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap:first-child {
+        width: 50%;
+        padding-right: 6.5px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap.ad-start-date {
+        max-width: 50%;
+        padding-left: 6.5px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .select-text .select-input, .advertising_period {
+        width: 100%
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box {
+        width: 100%
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content {
+        column-gap: 3px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content .input-date-start {
+        width: 100%
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content .input-date-end {
+        width: 100%
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row {
+        grid-template-columns: 65px 148px 1fr
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row .standard-wrap {
+        display: none
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap {
+        padding: 0 20px;
+        justify-content: flex-end
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap .price-input {
+        width: 100%
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section {
+        margin-bottom: 40px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .reset-btn {
+        background-color: #F5F7FB
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px 10px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap {
+        width: auto
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap .chk-area {
+        height: 36px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box {
+        width: 250px;
+        padding: 11px 10px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .price-text {
+        font-size: 15px;
+        line-height: 22px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .total-price {
+        width: 155px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .error-box {
+        margin-left: -20px;
+        margin-right: -20px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section {
+        column-gap: 12px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns {
+        width: 161px;
+        padding: 8px 0
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .cancel-btn {
+        color: #ffffff;
+        background: #999999;
+        border: none
+    }
+}
+
+@media (max-width:768px) {
+    .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox {
+        padding: 20px 0 20px 30px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .icRadio {
+        top: 10px;
+        left: 10px
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row {
+        grid-template-columns: 45px 110px 1fr
+    }
+
+    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap {
+        padding: 0 20px;
+        justify-content: flex-end
+    }
+
+    .onlyPc {
+        display: none
+    }
+
+    .only-mb {
+        display: block
+    }
+}
+
+div#ad_apply_info.active div#slide_wrap{
+    display: block;
+}
+
+div#ad_apply_info div#slide_wrap{
+    display: none;
+}
+
+div#slide_wrap .list {
+    padding: 0px;
+    border: 0;
+}
+
+.list {
+    border-bottom: 1px solid #ebedf4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    column-gap: 8px;
+    padding: 15px 0;
+}
+
+.check-modal .check-modal-wrap .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px
+}
+
+.check-modal .check-modal-wrap .text {
+    margin: 20px 0;
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE
+}
+
+.check-modal .check-modal-wrap .btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 5px
+}
+
+.check-modal .check-modal-wrap .btn-wrap .active-btn {
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+    background: #0868FD;
+    border-radius: 4px;
+    cursor: pointer
+}
+
+.check-modal .check-modal-wrap .btn-wrap .line-btn {
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #FFFFFF;
+    color: #0868FD;
+    border: 1px solid #0868FD;
+    border-radius: 4px;
+    cursor: pointer
+}

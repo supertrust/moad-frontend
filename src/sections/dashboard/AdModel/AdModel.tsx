@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Form } from "react-bootstrap";
+import styles from './styles.module.css';
 
 export default function AdModel({ setShowModal }: { setShowModal: (show: boolean) => void }) {
-   
+
     const closeModal = () => {
         setShowModal(false);
     };
@@ -53,28 +54,28 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
         <h4>ad model</h4>
       </div>
       <button onClick={() => setShowModal(false)}>Close</button> */}
-            <div id="ad_apply_modal" className="ad-apply-modal">
-                <div className="ad-modal-wrap">
-                    <div className="ad-apply-title">
+            <div className={styles.adApplyModal}>
+                <div className={styles.adModalWrap}>
+                    <div className={styles.adApplyTitle}>
                         <button type="button" id="ic_close_btn" className="ic-close-btn only-mb"></button>광고신청
                     </div>
-                    <div id="ad_apply_info" className={isActive ? "ad-apply-info only-pc active" : "ad-apply-info only-pc"}>
-                        <div className="info-content">
-                            <div className="info-text">
+                    <div id="ad_apply_info" className={isActive ? `${styles.adApplyInfo} ${styles.onlyPc} active` : `${styles.adApplyInfo} ${styles.onlyPc}`}>
+                        <div className={styles.infoContent}>
+                            <div className={styles.infoText}>
                                 광고가 노출되는 지역을 선택해  광고를 생성하세요.<br />
                                 지역에 따라 광고의 특성이 달라질 수 있습니다.
                             </div>
-                            <div id="slide_wrap" className="slide-wrap" >
-                                <ul className="info-list-wrap">
-                                    <li className="list">광고 목적에 따라 광고 상품 유형을 선택하고, 광고 노출 기간 등 원하시는 조건을 등록하실 수 있습니다.</li>
-                                    <li className="list">광고 유형은 ‘고정형광고, ‘전국광고’, ‘스팟광고’,  총 3가지입니다.  등록 후 유형 변경은 불가하니 어떤 광고 상품을 진행할지 검토 후 선택하세요.</li>
-                                    <li className="list">광고 등록시 1~2일 정도 검수시간이 소요됩니다.  (담당자 전화번호로 연락드립니다.)</li>
+                            <div id="slide_wrap" className={styles.slideWrap} >
+                                <ul className={styles.infoListWrap}>
+                                    <li className={styles.list}>광고 목적에 따라 광고 상품 유형을 선택하고, 광고 노출 기간 등 원하시는 조건을 등록하실 수 있습니다.</li>
+                                    <li className={styles.list}>광고 유형은 ‘고정형광고, ‘전국광고’, ‘스팟광고’,  총 3가지입니다.  등록 후 유형 변경은 불가하니 어떤 광고 상품을 진행할지 검토 후 선택하세요.</li>
+                                    <li className={styles.list}>광고 등록시 1~2일 정도 검수시간이 소요됩니다.  (담당자 전화번호로 연락드립니다.)</li>
                                 </ul>
-                                <div className="info-img-wrap">
-                                    <div className="img-title">
+                                <div className={styles.infoImgWrap}>
+                                    <div className={styles.imgTitle}>
                                         부착예시
                                     </div>
-                                    <div className="img-wrap">
+                                    <div className={styles.imgWrap}>
                                         {/* <img src={`/images/advertising-apply-modal/img-car01.png`} alt="" className= "img img01" />
                                 <img src={`/images/advertising-apply-modal/img-car02.png`} alt="" className="img img02" />
                                 <img src={`/images/advertising-apply-modal/img-car03.png`} alt="" className="img img03" /> */}
@@ -82,36 +83,36 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                                 </div>
                             </div>
                         </div>
-                        <div id="more_btn" className="more-btn">
-                            <div className="text-wrap" onClick={ToggleClass}><span className="more-text">자세히</span> <i className="ic-down-blue"></i></div>
+                        <div id="more_btn" className={styles.moreBtn}>
+                            <div className={styles.textWrap} onClick={ToggleClass}><span className="more-text">자세히</span> <i className="ic-down-blue"></i></div>
                         </div>
                     </div>
-                    <div className="ad-apply-info-mb only-mb">
-                        <div className="info-text">
-                            광고가 노출되는 지역을 선택해  광고를 생성하세요.<br />
-                            지역에 따라 광고의 특성이 달라질 수 있습니다.<br /><br />
-                            광고 목적에 따라 광고 상품 유형을 선택하고, 광고 노출 기간 등 원하시는 조건을 등록하실 수 있습니다.<br /><br />
-                            광고 유형은 ‘고정형광고, ‘전국광고’, ‘스팟광고’,  총 3가지입니다.  등록 후 유형 변경은 불가하니 어떤 광고 상품을 진행할지 검토 후 선택하세요.<br /><br />
-                            광고 등록시 1~2일 정도 검수시간이 소요됩니다.<br />
-                            (담당자 전화번호로 연락드립니다.)
-                        </div>
-                    </div>
+                    {/*<div className={`${styles.adApplyInfoMb} ${styles.onlyMb}`}>*/}
+                    {/*    <div className={styles.infoText}>*/}
+                    {/*        광고가 노출되는 지역을 선택해  광고를 생성하세요.<br />*/}
+                    {/*        지역에 따라 광고의 특성이 달라질 수 있습니다.<br /><br />*/}
+                    {/*        광고 목적에 따라 광고 상품 유형을 선택하고, 광고 노출 기간 등 원하시는 조건을 등록하실 수 있습니다.<br /><br />*/}
+                    {/*        광고 유형은 ‘고정형광고, ‘전국광고’, ‘스팟광고’,  총 3가지입니다.  등록 후 유형 변경은 불가하니 어떤 광고 상품을 진행할지 검토 후 선택하세요.<br /><br />*/}
+                    {/*        광고 등록시 1~2일 정도 검수시간이 소요됩니다.<br />*/}
+                    {/*        (담당자 전화번호로 연락드립니다.)*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
-                    <div className="ad-apply-content">
-                        <div className="radio-wrap">
-                            <div className="title only-pc">광고 유형</div>
-                            <div className="modal-select-wrap">
+                    <div className={styles.adApplyContent}>
+                        <div className={styles.radioWrap}>
+                            <div className={`${styles.title} ${styles.onlyPc}`}>광고 유형</div>
+                            <div className={styles.modalSelectWrap}>
                                 <div onClick={() => {
                                     modelStatus("card1");
                                 }}
-                                    className={model === "card1" ? "modal-select reset active" : "modal-select"}>
-                                    <label className="select-box">
+                                    className={model === "card1" ? `${styles.modalSelect} reset active` : styles.modalSelect}>
+                                    <label className={styles.selectBox}>
                                         <input type="radio" name="ad_type" id="fixed_ad" className="hidden" />
-                                        <i className="ic-radio"></i>
-                                        <a href="" className="detail-desc">상세설명</a>
-                                        <div className="box-icon box-icon01"></div>
-                                        <div className="text">
-                                            <strong className="text">고정형 광고</strong><br />
+                                        <i className={styles.icRadio}></i>
+                                        <a href="src/sections/dashboard" className={styles.detailDesc}>상세설명</a>
+                                        <div className={`${styles.boxIcon} ${styles.boxIcon01}`}></div>
+                                        <div className={styles.text}>
+                                            <strong className={styles.text}>고정형 광고</strong><br />
                                             특정 지역 화주들을 매칭하여<br />
                                             노출할 수 있는 고정형 광고
                                         </div>
@@ -120,14 +121,14 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                                 <div onClick={() => {
                                     modelStatus("card2");
                                 }}
-                                    className={model === "card2" ? "modal-select active" : "modal-select"}>
-                                    <label className="select-box">
+                                    className={model === "card2" ? `${styles.modalSelect} active` : styles.modalSelect}>
+                                    <label className={styles.selectBox}>
                                         <input type="radio" name="ad_type" value="전국형광고" id="nationwide_ad" className="hidden" />
-                                        <i className="ic-radio"></i>
-                                        <a href="" className="detail-desc">상세설명</a>
-                                        <div className="box-icon box-icon02"></div>
-                                        <div className="text">
-                                            <strong className="text">전국형 광고 </strong><br />
+                                        <i className={styles.icRadio}></i>
+                                        <a href="src/sections/dashboard" className={styles.detailDesc}>상세설명</a>
+                                        <div className={`${styles.boxIcon} ${styles.boxIcon01}`}></div>
+                                        <div className={styles.text}>
+                                            <strong className={styles.text}>전국형 광고 </strong><br />
                                             전국 모든 화주들을 매칭하여 적은 비용으로<br />
                                             광고효과를 최대화 할 수 있는 광고
                                         </div>
@@ -136,11 +137,11 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                                 <div onClick={() => {
                                     modelStatus("card3");
                                 }}
-                                    className={model === "card3" ? "modal-select active" : "modal-select"}>
+                                    className={model === "card3" ? `${styles.modalSelect} active` : styles.modalSelect}>
                                     <label className="select-box">
                                         <input type="radio" name="ad_type" value="스팟광고" id="spot_ad" className="hidden" />
                                         <i className="ic-radio"></i>
-                                        <a href="" className="detail-desc">상세설명</a>
+                                        <a href="src/sections/dashboard" className="detail-desc">상세설명</a>
                                         <div className="box-icon box-icon03"></div>
                                         <div className="text">
                                             <strong className="text">스팟광고</strong><br />

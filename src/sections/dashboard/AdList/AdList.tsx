@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import AdModel from "./AdModel";
+import AdModel from "../AdModel/AdModel";
+import styles from './style.module.css'
 
 export default function AdListModule() {
   const [showModal, setShowModal] = useState(false);
@@ -9,39 +10,42 @@ export default function AdListModule() {
   };
   return (
     <>
-      <div className="ad-list">
-        <h4>ad list</h4>{" "}
+      <div className={styles.titleWrap}>
+        <div className={styles.title}>
+          <h4>ad list</h4>{" "}
+        </div>
+        <div className={styles.line} />
       </div>
       {showModal ? <AdModel setShowModal={setShowModal} /> : null}
-      <div className="ad-contents">
-        <div className="menu-hd">
-          <div className="tab-menu">
-            <div className="tab-01 tab-title active">
+      <div className={styles.adContents}>
+        <div className={styles.menuHd}>
+          <div className={styles.tabMenu}>
+            <div className={styles.tabTitle}>
               <span>entire</span>
             </div>
-            <div className="tab-02 tab-title">
+            <div className={styles.tabTitle}>
               <span>Proceeding</span>
             </div>
-            <div className="tab-02 tab-title">
+            <div className={styles.tabTitle}>
               <span>Applying</span>
             </div>
-            <div className="tab-02 tab-title">
+            <div className={styles.tabTitle}>
               <span>end</span>
             </div>
           </div>
-          <div className="right-menu">
-            <button onClick={openModal} className="ad-add-btn">
+          <div className={styles.rightMenu}>
+            <button onClick={openModal} className={styles.adAddBtn}>
               <img src="/images/add-icon.png" alt="add"></img>
               <p>
                 Advertisement registration
               </p>
             </button>
-            <button className="ad-delet-btn">
+            <button className={styles.adDeleteBtn}>
               <p>
                 delete
               </p>
             </button>
-            <div className="select-box only-pc">
+            <div>
               <Form.Select aria-label="Default select example">
                 <option>Choose your campaign type</option>
                 <option value="1">One</option>
@@ -55,9 +59,10 @@ export default function AdListModule() {
                   />
                 </div> */}
           </div>
-          <div className="tab-wrap">
-            <div className="list-hd list-flex">
-              <div className="chk-box hd-all-chk">
+          </div>
+          <div className={styles.tabWrap}>
+            <div className={`${styles.listHd} ${styles.listFlex}`}>
+              <div className={styles.chkBox}>
                 <input
                   type="checkbox"
                   name="all_chk"
@@ -66,16 +71,16 @@ export default function AdListModule() {
                   value=""
                 />
               </div>
-              <div className="grid">
-                <div className="grid-box type-wrap hd-type">ad name</div>
-                <div className="grid-box title-wrap hd-name">ad name</div>
-                <div className="grid-box car-wrap hd-car only-pc">ad name</div>
-                <div className="grid-box car-wrap hd-car only-mb">ad name</div>
-                <div className="grid-box date-wrap hd-date">ad name</div>
+              <div className={styles.grid}>
+                <div className={styles.gridBox}>ad name</div>
+                <div className={styles.gridBox}>ad name</div>
+                <div className={styles.gridBox}>ad name</div>
+                <div className={styles.gridBox}>ad name</div>
+                <div className={styles.gridBox}>ad name</div>
               </div>
             </div>
-            <div className="list-hd list-flex">
-              <div className="chk-box hd-all-chk">
+            <div className={`${styles.listHd} ${styles.listFlex}`}>
+              <div className={styles.chkBox}>
                 <input
                   type="checkbox"
                   name="all_chk"
@@ -84,18 +89,17 @@ export default function AdListModule() {
                   value=""
                 />
               </div>
-              <div className="grid">
-                <div className="grid-box type-wrap hd-type">ad name</div>
-                <div className="grid-box title-wrap hd-name">
+              <div className={styles.grid}>
+                <div className={styles.gridBox}>ad name</div>
+                <div className={styles.gridBox}>
                   Celebrating the opening of the Icarus service. 25 characters
                 </div>
-                <div className="grid-box car-wrap hd-car only-pc">ad name</div>
-                <div className="grid-box car-wrap hd-car only-mb">ad name</div>
-                <div className="grid-box date-wrap hd-date">ad name</div>
+                <div className={styles.gridBox}>ad name</div>
+                <div className={styles.gridBox}>ad name</div>
+                <div className={styles.gridBox}>ad name</div>
               </div>
             </div>
           </div>
-        </div>
       </div>
     </>
   );

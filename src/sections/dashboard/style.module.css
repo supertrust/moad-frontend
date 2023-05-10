@@ -1,0 +1,881 @@
+/* Model popup CSS */
+div#slide_wrap .list {
+    padding: 0px;
+    border: 0;
+  }
+div#ad_apply_info.active div#slide_wrap{
+    display: block;
+  }
+  div#ad_apply_info div#slide_wrap{
+    display: none;
+  }
+  .btn_section button#ad_apply_cancel {
+	display: flex;
+	justify-content: center;
+  }
+.list {
+  border-bottom: 1px solid #ebedf4;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  column-gap: 8px;
+  padding: 15px 0;
+}
+.btn_section button#ad_apply_cancel {
+	display: flex;
+	justify-content: center;
+  }
+.only_mb {
+	display: none
+}
+body .div{
+	background-color: #000000 !important;
+}
+#ad_apply_modal {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(34, 34, 34, 0.6);
+	z-index: 102;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	overflow: auto;
+	padding: 30px
+}
+
+#ad_apply_modal .ad_modal_wrap {
+	max-width: 972px;
+	width: 100%;
+	margin: auto;
+	background-color: #FAFAFA;
+	border-radius: 5px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_title {
+	padding: 15px 30px;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 29px;
+	letter-spacing: -0.015em;
+	color: #2C324C;
+	border-radius: 5px 5px 0 0;
+	background-color: #E1ECFF
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info {
+	margin: 30px 30px 40px;
+	border: 1px solid #2F48D1;
+	border-radius: 5px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content {
+	width: 100%;
+	padding: 20px;
+	border-right: 1px solid #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .info_text {
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.015em;
+	color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap {
+	display: none;
+	margin-top: 10px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_list_wrap .list {
+	position: relative;
+	padding-left: 10px;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 20px;
+	letter-spacing: -0.015em;
+	color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_list_wrap .list::before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 9px;
+	left: 0;
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background-color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap {
+	margin-bottom: 10px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap .img_title {
+	margin: 14px 0 22px;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 19px;
+	color: #000000;
+	text-align: center
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap .img_wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 84px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap .img_wrap .img {
+	display: block;
+	width: auto
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap .img_wrap .img01 {
+	width: 242px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap .img_wrap .img02 {
+	width: 242px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap .img_wrap .img03 {
+	width: 112px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .more_btn {
+	width: 87px;
+	flex: 0 0 auto;
+	cursor: pointer
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .more_btn .text_wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 3px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .more_btn .text_wrap .more_text {
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 19px;
+	color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info .more_btn .text_wrap .ic_down_blue {
+	position: relative;
+	display: block;
+	width: 10px;
+	height: 10px;
+	background: url("/images/advertising/ic-down-blue.png") no-repeat center center;
+	transform: rotate(0)
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info.active .info_content {
+	border-right: 1px solid #EBEDF4
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_info.active .more_btn .ic_down_blue {
+	transform: rotate(180deg)
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content {
+	padding: 0px 30px 50px;
+	margin: 0 auto
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap {
+	margin-bottom: 29px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .title {
+	margin-bottom: 10px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.015em;
+	color: #2C324C
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select {
+	width: 290px;
+	background: #FFFFFF;
+	border: 1px solid #EBEDF4;
+	border-radius: 5px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box {
+	position: relative;
+	padding: 25px 0 21px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .hidden {
+	display: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .ic_radio {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url("/images/advertising/ic-radio-defalut.png") no-repeat center center
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .detail_desc {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	letter-spacing: -0.01em;
+	text-decoration-line: underline;
+	color: #999999
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .box_icon {
+	display: block;
+	width: 80px;
+	height: 80px;
+	margin-bottom: 21px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .box_icon.box_icon01 {
+	background: url("/images/advertising/img-check01-defalut.png") no-repeat center center / cover
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .box_icon.box_icon02 {
+	background: url("/images/advertising/img-check02-defalut.png") no-repeat center center / cover
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .box_icon.box_icon03 {
+	background: url("/images/advertising/img-check03-defalut.png") no-repeat center center / cover
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .text {
+	text-align: center;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 19px;
+	letter-spacing: -0.015em;
+	color: #373737
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .text strong {
+	font-weight: 700
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active {
+	border: 1px solid #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .ic_radio {
+  background: url("/images/advertising/ic-radio-active.png") no-repeat center center;
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .detail_desc {
+	color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .box_icon.box_icon01 {
+	background: url("/images/advertising/img-check01-active.png") no-repeat center center / cover
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .box_icon.box_icon02 {
+	background: url("/images/advertising/img-check02-active.png") no-repeat center center / cover
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .box_icon.box_icon03 {
+	background: url("/images/advertising/img-check03-active.png") no-repeat center center / cover
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .text {
+	color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .input_section {
+	margin-bottom: 20px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .box {
+	display: block;
+	padding: 10px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	letter-spacing: -0.015em;
+	color: #373737;
+	background-color: #FFFFFF;
+	border: 1px solid #EBEDF4;
+	border-radius: 5px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .input_title {
+	margin-bottom: 10px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.015em;
+	color: #2C324C
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .sub_title {
+	margin-bottom: 10px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.015em;
+	color: #2C324C
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .input_ad_title {
+	width: 100%
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .text_count {
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 17px;
+	letter-spacing: -0.015em;
+	color: #999999;
+	text-align: right
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .title_section .input_ad_title {
+	font-size: 14px;
+	line-height: 20px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .title_section .input_ad_title:focus {
+	border: 1px solid #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 15px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap.ad_start_date {
+	max-width: 260px;
+	width: 100%
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .input_title {
+	margin-bottom: 10px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.015em;
+	color: #2C324C
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap {
+	position: relative
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .select_text .select_input,#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .advertising_period {
+	width: 260px;
+	background: url("/images/advertising/ic-down-gray.png") no-repeat center right 10px / 24px #ffffff;
+	cursor: pointer
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .date_select_box {
+	display: none;
+	width: 260px;
+	height: 68px;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	row-gap: 4px;
+	padding: 11px;
+	background: #FFFFFF;
+	border: 1px solid #EBEDF4;
+	border-radius: 5px;
+	position: absolute;
+	top: 43px;
+	left: 0
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .date_select_box .date_list {
+	width: 100%;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.015em;
+	color: #373737;
+	cursor: pointer
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .date_select_box .date_list .period_label {
+	display: block
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .date_select_box .date_list .period_label .period_input {
+	display: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .date_select_box .date_list.hidden {
+	display: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap.active .date_select_box {
+	display: flex
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap.spot_add.on.active .date_select_box {
+	display: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .input-calendar {
+	background: url("/images/advertising/ic-calendar.png") no-repeat center right 10px / 16px #ffffff;
+	cursor: pointer;
+	width: 100%
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 8px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	letter-spacing: -0.015em;
+	color: #999999
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content .input_date_start {
+	width: 169px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content .input_date_end {
+	width: 169px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap {
+	border: 1px solid #EBEDF4;
+	border-radius: 5px;
+	background-color: #ffffff
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row {
+	display: grid;
+	grid-template-columns: 1fr 192px 306px 249px;
+	border-bottom: 1px solid #EBEDF4
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row:last-child {
+	border-bottom: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row .text {
+	font-size: 14px;
+	line-height: 20px;
+	color: #2C324C
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row .cell {
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-right: 1px solid #EBEDF4
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row .cell:last-child {
+	border-right: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list_hd .text {
+	font-weight: 500
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list .vehicles_num_wrap {
+	column-gap: 3px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list .vehicles_num_wrap .input_num {
+	width: 78px;
+	height: 20px;
+	padding: 0 3px;
+	text-align: right;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	color: #999999;
+	border: 1px solid #EBEDF4
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list .price_wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 4px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list .price_wrap .price_input {
+	text-align: right;
+	border: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list .price_wrap .price_input::placeholder {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: right;
+	color: #2C324C
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list .price_wrap .won {
+	display: block
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list .price_wrap.on .price_input {
+	text-align: center
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap .table_row.list .price_wrap.on .won {
+	display: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .spot_info {
+	display: none;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.015em;
+	color: #2C324C;
+	margin-top: 10px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .spot_info.on {
+	display: block
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section {
+	position: relative;
+	display: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section.active {
+	display: block
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .reset_btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 2px;
+	cursor: pointer
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .reset_btn .text {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	letter-spacing: -0.015em;
+	color: #999999
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .reset_btn .ic_reset {
+	display: block;
+	width: 12px;
+	height: 12px;
+	background: url("/images/advertising/ic-reset.png") no-repeat center center
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 4px 6px;
+	flex-wrap: wrap
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap {
+	width: 125px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap .chk_area {
+	height: 40px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	letter-spacing: -0.015em;
+	color: #373737;
+	background-color: #FFFFFF;
+	border: 1px solid #EBEDF4;
+	border-radius: 5px;
+	cursor: pointer
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap .chk_input {
+	display: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap .chk_input:checked+.chk_area {
+	color: #ffffff;
+	background: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	background: rgba(34, 34, 34, 0.6);
+	z-index: 110
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal.active {
+	display: flex
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal .check_modal-wrap {
+	width: 335px;
+	height: 199px;
+	padding: 20px;
+	background: #ffffff;
+	border-radius: 10px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal .check_modal-wrap .title {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 29px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal .check_modal-wrap .text {
+	margin: 20px 0;
+	padding: 10px 0;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	border-top: 1px solid #EEEEEE;
+	border-bottom: 1px solid #EEEEEE
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal .check_modal-wrap .btn_wrap {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	column-gap: 5px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal .check_modal-wrap .btn_wrap .active_btn {
+	width: 60px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #FFFFFF;
+	background: #0868FD;
+	border-radius: 4px;
+	cursor: pointer
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal .check_modal-wrap .btn_wrap .line-btn {
+	width: 60px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	background-color: #FFFFFF;
+	color: #0868FD;
+	border: 1px solid #0868FD;
+	border-radius: 4px;
+	cursor: pointer
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	flex-direction: column
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box {
+	width: 343px;
+	padding: 17px 20px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 2px;
+	border: 1px solid #EBEDF4;
+	border-radius: 5px;
+	background-color: #ffffff
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box .price_text {
+	display: block;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 26px;
+	letter-spacing: -0.015em;
+	color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box .total_price {
+	display: block;
+	width: 215px;
+	text-align: right
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box .spot-price {
+	display: none;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 26px;
+	letter-spacing: -0.015em;
+	color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box.on {
+	justify-content: space-between
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box.on .text_won {
+	display: none
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_info {
+	margin-top: 8px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	letter-spacing: -0.015em;
+	color: #999999
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .error_box {
+	height: 44px;
+	display: none;
+	align-items: center;
+	justify-content: flex-start;
+	margin-top: 30px;
+	padding: 0 30px;
+	background: #F24747;
+	margin-left: -30px;
+	margin-right: -30px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .error_box.active {
+	display: flex
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .error_box .error_line {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	column-gap: 8px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .error_box .error_line .ic_error {
+	display: block;
+	width: 24px;
+	height: 24px;
+	background: url("/images/advertising/ic-error.png") no-repeat center center
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .error_box .error_line .error_text {
+	display: none;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 20px;
+	color: #FFFFFF
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .error_box .error_line .error_text span {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #FFFFFF
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .error_box .error_line .error_text.active {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 5px;
+	margin-top: 35px
+}
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .cancel_btn {
+	padding: 12.5px;
+	background-color: #ffffff;
+	border: 1px solid #999999 !important;
+	color: #999999 !important
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns {
+	padding: 7px 20px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	color: #2F48D1;
+	cursor: pointer;
+	color: #ffffff;
+	border-radius: 5px;
+	width: 148px;
+	padding: 13.5px 40px
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.line {
+	border: 1px solid #2F48D1;
+	background-color: #ffffff;
+	color: #2F48D1
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.active {
+	background: #2F48D1
+}

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Form } from "react-bootstrap";
-
+import { styles } from "./index";
 export default function AdModel({ setShowModal }: { setShowModal: (show: boolean) => void }) {
    
     const closeModal = () => {
@@ -49,32 +49,28 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
     ]
     return (
         <>
-            {/* <div className="ad-list">
-        <h4>ad model</h4>
-      </div>
-      <button onClick={() => setShowModal(false)}>Close</button> */}
-            <div id="ad_apply_modal" className="ad-apply-modal">
-                <div className="ad-modal-wrap">
-                    <div className="ad-apply-title">
-                        <button type="button" id="ic_close_btn" className="ic-close-btn only-mb"></button>광고신청
+            <div id={styles.ad_apply_modal} className="ad-apply-modal">
+                <div className={styles.ad_modal_wrap}>
+                    <div className={styles.ad_apply_title}>
+                        <button type="button" id={styles.ic_close_btn} className={`${styles.ic_close_btn} ${styles.only_mb}`}></button>광고신청
                     </div>
-                    <div id="ad_apply_info" className={isActive ? "ad-apply-info only-pc active" : "ad-apply-info only-pc"}>
-                        <div className="info-content">
-                            <div className="info-text">
+                    <div id={styles.ad_apply_info} className={`${isActive ? styles.active : ""} ${styles.ad_apply_info} ${styles.only_pc}`}>
+                        <div className={styles.info_content}>
+                            <div className={styles.info_text}>
                                 광고가 노출되는 지역을 선택해  광고를 생성하세요.<br />
                                 지역에 따라 광고의 특성이 달라질 수 있습니다.
                             </div>
-                            <div id="slide_wrap" className="slide-wrap" >
-                                <ul className="info-list-wrap">
-                                    <li className="list">광고 목적에 따라 광고 상품 유형을 선택하고, 광고 노출 기간 등 원하시는 조건을 등록하실 수 있습니다.</li>
-                                    <li className="list">광고 유형은 ‘고정형광고, ‘전국광고’, ‘스팟광고’,  총 3가지입니다.  등록 후 유형 변경은 불가하니 어떤 광고 상품을 진행할지 검토 후 선택하세요.</li>
-                                    <li className="list">광고 등록시 1~2일 정도 검수시간이 소요됩니다.  (담당자 전화번호로 연락드립니다.)</li>
+                            <div id={styles.slide_wrap} className={styles.slide_wrap} >
+                                <ul className={styles.info_list_wrap}>
+                                    <li className={styles.list}>광고 목적에 따라 광고 상품 유형을 선택하고, 광고 노출 기간 등 원하시는 조건을 등록하실 수 있습니다.</li>
+                                    <li className={styles.list}>광고 유형은 ‘고정형광고, ‘전국광고’, ‘스팟광고’,  총 3가지입니다.  등록 후 유형 변경은 불가하니 어떤 광고 상품을 진행할지 검토 후 선택하세요.</li>
+                                    <li className={styles.list}>광고 등록시 1~2일 정도 검수시간이 소요됩니다.  (담당자 전화번호로 연락드립니다.)</li>
                                 </ul>
-                                <div className="info-img-wrap">
-                                    <div className="img-title">
+                                <div className={styles.info_img_wrap}>
+                                    <div className={styles.img_title}>
                                         부착예시
                                     </div>
-                                    <div className="img-wrap">
+                                    <div className={styles.img_wrap}>
                                         {/* <img src={`/images/advertising-apply-modal/img-car01.png`} alt="" className= "img img01" />
                                 <img src={`/images/advertising-apply-modal/img-car02.png`} alt="" className="img img02" />
                                 <img src={`/images/advertising-apply-modal/img-car03.png`} alt="" className="img img03" /> */}
@@ -82,12 +78,12 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                                 </div>
                             </div>
                         </div>
-                        <div id="more_btn" className="more-btn">
-                            <div className="text-wrap" onClick={ToggleClass}><span className="more-text">자세히</span> <i className="ic-down-blue"></i></div>
+                        <div id={styles.more_btn} className={styles.more_btn}>
+                            <div className={styles.text_wrap} onClick={ToggleClass}><span className={styles.more_text}>자세히</span> <i className={styles.ic_down_blue}></i></div>
                         </div>
                     </div>
-                    <div className="ad-apply-info-mb only-mb">
-                        <div className="info-text">
+                    <div className={`${styles.only_mb} ${styles.ad_apply_info_mb}`}>
+                        <div className={styles.info_text}>
                             광고가 노출되는 지역을 선택해  광고를 생성하세요.<br />
                             지역에 따라 광고의 특성이 달라질 수 있습니다.<br /><br />
                             광고 목적에 따라 광고 상품 유형을 선택하고, 광고 노출 기간 등 원하시는 조건을 등록하실 수 있습니다.<br /><br />
@@ -97,21 +93,21 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                         </div>
                     </div>
 
-                    <div className="ad-apply-content">
-                        <div className="radio-wrap">
-                            <div className="title only-pc">광고 유형</div>
-                            <div className="modal-select-wrap">
+                    <div className={styles.ad_apply_content}>
+                        <div className={styles.radio_wrap}>
+                            <div className={`${styles.title} ${styles.only_pc}`}>광고 유형</div>
+                            <div className={styles.modal_select_wrap}>
                                 <div onClick={() => {
                                     modelStatus("card1");
                                 }}
-                                    className={model === "card1" ? "modal-select reset active" : "modal-select"}>
-                                    <label className="select-box">
-                                        <input type="radio" name="ad_type" id="fixed_ad" className="hidden" />
-                                        <i className="ic-radio"></i>
-                                        <a href="" className="detail-desc">상세설명</a>
-                                        <div className="box-icon box-icon01"></div>
-                                        <div className="text">
-                                            <strong className="text">고정형 광고</strong><br />
+                                    className={`${model === "card1" ? styles.active : ""} ${styles.modal_select}`}>
+                                    <label className={styles.select_box}>
+                                        <input type="radio" name="ad_type" id="fixed_ad" className={styles.hidden} />
+                                        <i className={styles.ic_radio}></i>
+                                        <a href="" className={styles.detail_desc}>상세설명</a>
+                                        <div className={`${styles.box_icon} ${styles.box_icon01}`}></div>
+                                        <div className={styles.text}>
+                                            <strong className={styles.text}>고정형 광고</strong><br />
                                             특정 지역 화주들을 매칭하여<br />
                                             노출할 수 있는 고정형 광고
                                         </div>
@@ -120,14 +116,14 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                                 <div onClick={() => {
                                     modelStatus("card2");
                                 }}
-                                    className={model === "card2" ? "modal-select active" : "modal-select"}>
-                                    <label className="select-box">
-                                        <input type="radio" name="ad_type" value="전국형광고" id="nationwide_ad" className="hidden" />
-                                        <i className="ic-radio"></i>
-                                        <a href="" className="detail-desc">상세설명</a>
-                                        <div className="box-icon box-icon02"></div>
-                                        <div className="text">
-                                            <strong className="text">전국형 광고 </strong><br />
+                                className={`${model === "card2" ? styles.active : ""} ${styles.modal_select}`}>
+                                    <label className={styles.select_box}>
+                                        <input type="radio" name="ad_type" value="전국형광고" id="nationwide_ad" className={styles.hidden} />
+                                        <i className={styles.ic_radio}></i>
+                                        <a href="" className={styles.detail_desc}>상세설명</a>
+                                        <div className={`${styles.box_icon} ${styles.box_icon02}`}></div>
+                                        <div className={styles.text}>
+                                            <strong className={styles.text}>전국형 광고 </strong><br />
                                             전국 모든 화주들을 매칭하여 적은 비용으로<br />
                                             광고효과를 최대화 할 수 있는 광고
                                         </div>
@@ -136,14 +132,14 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                                 <div onClick={() => {
                                     modelStatus("card3");
                                 }}
-                                    className={model === "card3" ? "modal-select active" : "modal-select"}>
-                                    <label className="select-box">
-                                        <input type="radio" name="ad_type" value="스팟광고" id="spot_ad" className="hidden" />
-                                        <i className="ic-radio"></i>
-                                        <a href="" className="detail-desc">상세설명</a>
-                                        <div className="box-icon box-icon03"></div>
-                                        <div className="text">
-                                            <strong className="text">스팟광고</strong><br />
+                                className={`${model === "card3" ? styles.active : ""} ${styles.modal_select}`}>
+                                    <label className={styles.select_box}>
+                                        <input type="radio" name="ad_type" value="스팟광고" id="spot_ad" className={styles.hidden} />
+                                        <i className={styles.ic_radio}></i>
+                                        <a href="" className={styles.detail_desc}>상세설명</a>
+                                        <div className={`${styles.box_icon} ${styles.box_icon03}`}></div>
+                                        <div className={styles.text}>
+                                            <strong className={styles.text}>스팟광고</strong><br />
                                             1시간 단위로 원하는 특정지역과 특정시간에<br />
                                             노출할 수 있는 광고
                                         </div>
@@ -152,32 +148,32 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                             </div>
                         </div>
 
-                        <div className="modal-step">
-                            <div className="input-section title-section">
-                                <div className="input-title">광고이름</div>
-                                <input type="text" id="input_ad_title" className="box input-ad-title" maxLength={25} />
-                                <div className="text-count">
+                        <div className={styles.modal_step}>
+                            <div className={`${styles.input_section} ${styles.title_section}`}>
+                                <div className={styles.input_title}>광고이름</div>
+                                <input type="text" id="input_ad_title" className={`${styles.box} ${styles.input_ad_title}`} maxLength={25} />
+                                <div className={styles.text_count}>
                                     0/25
                                 </div>
                             </div>
 
-                            <div className="input-section date-section">
-                                <div className="ipnut-wrap">
-                                    <div className="input-title">광고기간</div>
-                                    <div className={isOpen ? "select-wrap spot-add active" : "select-wrap spot-add"}>
-                                        <div className="select-text">
-                                            <input type="text" onClick={periodList} value={period ? period : ''} className="box select-input spot-input-add" id="select_input" placeholder="기간 선택" readOnly />
+                            <div className={`${styles.input_section} ${styles.date_section}`}>
+                                <div className={styles.input_wrap}>
+                                    <div className={styles.input_title}>광고기간</div>
+                                    <div className={`${isOpen ? styles.active : ""} ${styles.select_wrap} ${styles.spot_add}`}>
+                                        <div className={styles.select_text}>
+                                            <input type="text" onClick={periodList} value={period ? period : ''} className={`${styles.box} ${styles.select_input} ${styles.spot_input_add}`} id="select_input" placeholder="기간 선택" readOnly />
                                             <div id="calender_area"></div>
                                         </div>
-                                        <ul className="date-select-box">
-                                            <li className="date-list" onClick={() => periodStatus("6개월")} data-months="6_months"><label htmlFor="6_months" className="period-label">6개월<input type="radio" value="6" name="date_period" id="6_months" className="period-input" /></label></li>
-                                            <li className="date-list" onClick={() => periodStatus("12개월")} data-months="12_months"><label htmlFor="12_months" className="period-label">12개월<input type="radio" value="12" name="date_period" id="12_months" className="period-input" /></label></li>
-                                            <li className="date-list hidden" data-months="consulting"><label htmlFor="consulting" className="period-label">추후상담<input type="radio" value="consulting" name="date_period" id="consulting" className="period-input" /></label></li>
+                                        <ul className={styles.date_select_box}>
+                                            <li className={styles.date_list} onClick={() => periodStatus("6개월")} data-months="6_months"><label htmlFor="6_months" className={styles.period_label}>6개월<input type="radio" value="6" name="date_period" id="6_months" className={styles.period_input} /></label></li>
+                                            <li className={styles.date_list} onClick={() => periodStatus("12개월")} data-months="12_months"><label htmlFor="12_months" className={styles.period_label}>12개월<input type="radio" value="12" name="date_period" id="12_months" className={styles.period_input} /></label></li>
+                                            <li className={styles.date_list} data-months="consulting"><label htmlFor="consulting" className={styles.period_label}>추후상담<input type="radio" value="consulting" name="date_period" id="consulting" className={styles.period_input} /></label></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="ipnut-wrap ad-start-date">
-                                    <div className="sub-title">시작일</div>
+                                <div className={`${styles.ad_start_date} ${styles.input_wrap}`}>
+                                    <div className={styles.sub_title}>시작일</div>
                                     <Form.Control
                                         type="date"
                                         name="doj"
@@ -185,142 +181,142 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                                     />
 
                                 </div>
-                                <div className="ipnut-wrap">
-                                    <div className="sub-title">총 광고기간</div>
-                                    <div className="date-content">
-                                        <input type="text" name="date_start" id="input_date_start" className="box input-date-start" readOnly /> ~
-                                        <input type="text" name="date_end" id="input_date_end" className="box input-date-end spot-input-add" readOnly />
+                                <div className={styles.input_wrap}>
+                                    <div className={styles.sub_title}>총 광고기간</div>
+                                    <div className={styles.date_content}>
+                                        <input type="text" name="date_start" id="input_date_start" className={`${styles.box} ${styles.input_date_start}`} readOnly /> ~
+                                        <input type="text" name="date_end" id="input_date_end" className={`${styles.box} ${styles.input_date_end} ${styles.spot_input_add}`} readOnly />
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="input-section vehicles-section">
-                                <div className="input-title">운행차량</div>
-                                <ul className="table-wrap">
-                                    <li className="table-row list-hd">
-                                        <div className="text cell">차량</div>
-                                        <div className="text cell">차량대수</div>
-                                        <div className="text cell standard-wrap">규격</div>
-                                        <div className="text cell price-wrap">가격</div>
+                            <div className={`${styles.input_section} ${styles.vehicles_section}`}>
+                                <div className={styles.input_title}>운행차량</div>
+                                <ul className={styles.table_wrap}>
+                                    <li className={`${styles.table_row} ${styles.list_hd}`}>
+                                        <div className={`${styles.text} ${styles.cell}`}>차량</div>
+                                        <div className={`${styles.text} ${styles.cell}`}>차량대수</div>
+                                        <div className={`${styles.text} ${styles.cell} ${styles.standard_wrap}`}>규격</div>
+                                        <div className={`${styles.text} ${styles.cell} ${styles.celprice_wrapl}`}>가격</div>
                                     </li>
-                                    <li className="table-row list">
-                                        <div className="text cell vehicles-wrap">1t</div>
-                                        <div className="cell vehicles-num-wrap">
-                                            <input type="text" name="vehicles_num" className="input-num" id="1t" placeholder="직접입력" />
-                                            <span className="text">대</span>
+                                    <li className={`${styles.table_row} ${styles.list}`}>
+                                        <div className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>1t</div>
+                                        <div className={`${styles.vehicles_num_wrap} ${styles.cell}`}>
+                                            <input type="text" name="vehicles_num" className={styles.input_num} id="1t" placeholder="직접입력" />
+                                            <span className={styles.text}>대</span>
                                         </div>
-                                        <div className="cell standard-wrap">
-                                            <span className="text">2m X 1.1m x 2 / 후면 (무료서비스)</span>
+                                        <div className={` ${styles.cell} ${styles.standard_wrap}`}>
+                                            <span className={styles.text}>2m X 1.1m x 2 / 후면 (무료서비스)</span>
                                         </div>
-                                        <div className="price-wrap spot-add">
-                                            <input type="text" name="1t_price" className="text price-input spot-input-add" readOnly />
-                                            <span className="text won">원</span>
-                                        </div>
-                                    </li>
-                                    <li className="table-row list">
-                                        <div className="text cell vehicles-wrap">2.5t</div>
-                                        <div className="cell vehicles-num-wrap">
-                                            <input type="text" name="vehicles_num" className="input-num" id="2_5t" placeholder="직접입력" />
-                                            <span className="text">대</span>
-                                        </div>
-                                        <div className="cell standard-wrap">
-                                            <span className="text">3.8m X 1.2m x 2 / 후면 (무료서비스)</span>
-                                        </div>
-                                        <div className="price-wrap spot-add">
-                                            <input type="text" name="2_5t_price" className="text price-input spot-input-add" readOnly />
-                                            <span className="text won">원</span>
+                                        <div className={`${styles.spot_add} ${styles.price_wrap}`}>
+                                            <input type="text" name="1t_price" className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`} readOnly />
+                                            <span className={`${styles.text} ${styles.won}`}>원</span>
                                         </div>
                                     </li>
-                                    <li className="table-row list">
-                                        <div className="text cell vehicles-wrap">5t</div>
-                                        <div className="cell vehicles-num-wrap">
-                                            <input type="text" name="vehicles_num" className="input-num" id="5t" placeholder="직접입력" />
-                                            <span className="text">대</span>
+                                    <li className={`${styles.table_row} ${styles.list}`}>
+                                        <div className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>2.5t</div>
+                                        <div className={`${styles.vehicles_num_wrap} ${styles.cell}`}>
+                                            <input type="text" name="vehicles_num" className={styles.input_num} id="2_5t" placeholder="직접입력" />
+                                            <span className={styles.text}>대</span>
                                         </div>
-                                        <div className="cell standard-wrap">
-                                            <span className="text">6m X 1.3m x 2 / 후면 (무료서비스)</span>
+                                        <div className={` ${styles.cell} ${styles.standard_wrap}`}>
+                                            <span className={styles.text}>3.8m X 1.2m x 2 / 후면 (무료서비스)</span>
                                         </div>
-                                        <div className="price-wrap spot-add">
-                                            <input type="text" name="5t_price" className="text price-input spot-input-add" readOnly />
-                                            <span className="text won">원</span>
+                                        <div className={`${styles.spot_add} ${styles.price_wrap}`}>
+                                            <input type="text" name="2_5t_price" className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`} readOnly />
+                                            <span className={`${styles.text} ${styles.won}`}>원</span>
                                         </div>
                                     </li>
-                                    <li className="table-row list">
-                                        <div className="text cell vehicles-wrap">11t</div>
-                                        <div className="cell vehicles-num-wrap">
-                                            <input type="text" name="vehicles_num" className="input-num" id="11t" placeholder="직접입력" />
-                                            <span className="text">대</span>
+                                    <li className={`${styles.table_row} ${styles.list}`}>
+                                        <div className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>5t</div>
+                                        <div className={`${styles.vehicles_num_wrap} ${styles.cell}`}>
+                                            <input type="text" name="vehicles_num" className={styles.input_num} id="5t" placeholder="직접입력" />
+                                            <span className={styles.text}>대</span>
                                         </div>
-                                        <div className="cell standard-wrap">
-                                            <span className="text">8m X 1.3m x 2 / 후면 (무료서비스)</span>
+                                        <div className={` ${styles.cell} ${styles.standard_wrap}`}>
+                                            <span className={styles.text}>6m X 1.3m x 2 / 후면 (무료서비스)</span>
                                         </div>
-                                        <div className="price-wrap spot-add">
-                                            <input type="text" name="11t_price" className="text price-input spot-input-add" readOnly />
-                                            <span className="text won">원</span>
+                                        <div className={`${styles.spot_add} ${styles.price_wrap}`}>
+                                            <input type="text" name="5t_price" className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`} readOnly />
+                                            <span className={`${styles.text} ${styles.won}`}>원</span>
+                                        </div>
+                                    </li>
+                                    <li className={`${styles.table_row} ${styles.list}`}>
+                                        <div className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>11t</div>
+                                        <div className={`${styles.vehicles_num_wrap} ${styles.cell}`}>
+                                            <input type="text" name="vehicles_num" className={styles.input_num} id="11t" placeholder="직접입력" />
+                                            <span className={styles.text}>대</span>
+                                        </div>
+                                        <div className={` ${styles.cell} ${styles.standard_wrap}`}>
+                                            <span className={styles.text}>8m X 1.3m x 2 / 후면 (무료서비스)</span>
+                                        </div>
+                                        <div className={`${styles.spot_add} ${styles.price_wrap}`}>
+                                            <input type="text" name="11t_price" className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`} readOnly />
+                                            <span className={`${styles.text} ${styles.won}`}>원</span>
                                         </div>
                                     </li>
                                 </ul>
-                                <div className="spot-info spot-add">
+                                <div className={`${styles.spot_add} ${styles.spot_info}`}>
                                     스팟광고의 광고 희망시간/기간등 차후 상담에 따라 결정됩니다.
                                 </div>
                             </div>
 
-                            <div className="input-section area-section active">
-                                <div className="input-title">운행지역 (다중 선택 가능)</div>
-                                <button type="button" id="reset_btn" className="reset-btn">
-                                    <span className="text">초기화</span>
-                                    <i className="ic-reset"></i>
-                                </button>
-                                <div className="chk-grid">
+                            <div className={`${styles.input_section} ${styles.area_section} ${styles.active}`}>
+                                <div className={styles.input_title}>운행지역 (다중 선택 가능)</div>
+                                <button type="button" id="reset_btn" className={styles.reset_btn}>
+                                    <span className={styles.text}>초기화</span>
+                                    <i className={styles.ic_reset}></i>
+                                </button>   
+                                <div className={styles.chk_grid}>
                                     {area.map((item) =>
-                                        <div key={item.id} className="chk-wrap"><input type="checkbox" id={item.id} className="chk-input" name="area" />
-                                            <label htmlFor={item.id} className="chk-area">{item.value}</label></div>
+                                        <div key={item.id} className={styles.chk_wrap}><input type="checkbox" id={item.id} className={styles.chk_input} name="area" />
+                                            <label htmlFor={item.id} className={styles.chk_area}>{item.value}</label></div>
 
                                     )}
                                 </div>
-                                <div id="area_modal" className="area-modal check-modal">
-                                    <div className="check-modal-wrap">
-                                        <div className="title">확인사항</div>
-                                        <div className="text">
+                                <div id="area_modal" className={`${styles.check_modal} ${styles.area_modal}`}>
+                                    <div className={styles.check_modal_wrap}>
+                                        <div className={styles.title}>확인사항</div>
+                                        <div className={styles.text}>
                                             모든 운행 지역을 선택할 시<br />
                                             광고 유형을 전국형으로 변경해주세요
                                         </div>
-                                        <div className="btn-wrap">
-                                            <button type="button" id="area_modal_close" className="active-btn">확인</button>
+                                        <div className={styles.btn_wrap}>
+                                            <button type="button" id="area_modal_close" className={styles.active_btn}>확인</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="price-section">
-                                <div className="price-box spot-add">
-                                    <div className="price-text">광고비용</div>
-                                    <div id="total_price" className="price-text total-price"></div>
-                                    <div className="price-text text-won">원</div>
+                            <div className={styles.price_section}>
+                                <div className={`${styles.price_box} ${styles.spot_add}`}>
+                                    <div className={styles.price_text}>광고비용</div>
+                                    <div id="total_price" className={`${styles.price_text} ${styles.total_price}`}></div>
+                                    <div className={`${styles.price_text} ${styles.text_won}`}>원</div>
                                 </div>
-                                <div className="price-info">
+                                <div className={styles.price_info}>
                                     광고비용은 차후 상담에 따라 변경 될 수  있습니다.
                                 </div>
                             </div>
 
-                            <div className="error-box">
-                                <div className="error-line">
-                                    <i className="ic-error"></i>
-                                    <div className="error-text title-error">광고이름을 입력해주세요.</div>
-                                    <div className="error-text end-error">광고기간을 6개월 또는 12개월 선택해주세요.</div>
-                                    <div className="error-text start-error">
+                            <div className={styles.error_box}>
+                                <div className={styles.error_line}>
+                                    <i className={styles.ic_error}></i>
+                                    <div className={`${styles.error_text} ${styles.title_error}`}>광고이름을 입력해주세요.</div>
+                                    <div className={`${styles.error_text} ${styles.end_error}`}>광고기간을 6개월 또는 12개월 선택해주세요.</div>
+                                    <div className={`${styles.error_text} ${styles.start_error}`}>
                                         시작일을 선택해주세요.
-                                        <span className="only-pc">(광고 등록일 기준 1달 이후 부터 선택 가능)</span>
-                                        <span className="only-mb">(등록 기준 1달 이후 선택)</span>
+                                        <span className={styles.only_pc}>(광고 등록일 기준 1달 이후 부터 선택 가능)</span>
+                                        <span className={styles.only_mb}>(등록 기준 1달 이후 선택)</span>
                                     </div>
-                                    <div className="error-text vehicles-error">운행차량을 입력해주세요.</div>
-                                    <div className="error-text area-error">운행지역을 선택해주세요.</div>
+                                    <div className={`${styles.error_text} ${styles.vehicles_error}`}>운행차량을 입력해주세요.</div>
+                                    <div className={`${styles.error_text} ${styles.area_error}`}>운행지역을 선택해주세요.</div>
                                 </div>
                             </div>
 
-                            <div className="btn-section">
-                                <button type="button" id="ad_apply_cancel" onClick={() => setShowModal(false)} className="btns cancel-btn">취소</button>
-                                <button type="button" id="ad_apply_btn" className="btns active ad-apply-btn">광고 신청</button>
+                            <div className={styles.btn_section}>
+                                <button type="button" id={styles.ad_apply_cancel} onClick={() => setShowModal(false)} className={`${styles.btns} ${styles.cancel_btn}`}>취소</button>
+                                <button type="button" id={styles.ad_apply_btn} className={`${styles.btns} ${styles.active} ${styles.ad_apply_btn}`}>광고 신청 </button>
                             </div>
                         </div>
                     </div>

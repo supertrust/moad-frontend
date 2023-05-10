@@ -5,10 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { styles } from "@src/sections/advertisement-detail";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import 'swiper/css/autoplay';
+import { style } from '@mui/system';
 
 function AdvertisementDetailScreen() {
   const title = '신제품 홍보 출시기념';
@@ -135,28 +137,18 @@ function AdvertisementDetailScreen() {
   }
   return (
     <>
-      <div id="ad_detail_list" className="ad-detail-list page">
-        <div className="container">
-          <div className="sidemenu-wrap">
-            {/* <?php
-                get_template_part('templates/part/side-menu', null, $args);
-            ?> */}
-          </div>
-          <div className="board-content">
-            <div className="inner-header-wrap">
-              {/* <?php
-                    get_template_part('templates/part/inner-header', null, $args);
-                ?> */}
-            </div>
-            <div className="ad-detail-list-content">
+      <div id={styles.ad_detail_list} className="ad-detail-list page">
+        <div className={styles.container}>
+          <div className={styles.board_content}>
+            <div className={styles.ad_detail_list_content}>
               <div className="page-link">
                 <a href="/ad-management" className="link">광고관리</a><span className="link"></span><span className="link"></span><a href="/ad-detail-list" className="link">{title}</a>
               </div>
 
-              <div className="detail-content">
-                <div className="slide-box">
-                  <div className={model === 'image' ? "detail-slide active" : "detail-slide box"} id="div3d">
-                    <div className="swiper-wrapper">
+              <div className={styles.detail_content}>
+                <div className={styles.slide_box}>
+                  <div className={`${model === 'image' ? styles.active : ""} ${styles.detail_slide} ${styles.box}`} id="div3d">
+                    <div className={styles.swiper_wrapper}>
 
                       <Carousel activeIndex={index} onSelect={handleSelect}>
                         {mockup_arr.map((item, index) => (
@@ -170,7 +162,7 @@ function AdvertisementDetailScreen() {
                       </Carousel>
                     </div>
                   </div>
-                  <div className={model === 'model' ? "detail-3d active box" : "detail-3d box"} id="div2d" >
+                  <div className={`${model === 'model' ? styles.active : ""} ${styles.detail_3d} ${styles.box}`} id="div2d" >
                     <div>
                       3D Model
                     </div>
@@ -184,50 +176,41 @@ function AdvertisementDetailScreen() {
                     modules={[Autoplay]}
                     slidesPerView={1}
                     autoplay={{ delay: 1000 }}
-                    className="mySwiper"
+                    className={styles.mySwiper}
                     onClick={openBox}
                   >
-                    <SwiperSlide><img src={`/images/ad-detail-list/ic-3d-rotation.svg`} alt="" /></SwiperSlide>
-                    <SwiperSlide><img src={`/images/ad-detail-list/ic-img.png`} alt="" /></SwiperSlide>
+                    <SwiperSlide><img className={styles.img} src={`/images/ad-detail-list/ic-3d-rotation.svg`} alt="" /></SwiperSlide>
+                    <SwiperSlide><img className={styles.img} src={`/images/ad-detail-list/ic-img.png`} alt="" /></SwiperSlide>
                   </Swiper>
-
-
-
-
-                  <div className={swiper ? "mockup-btn active" : "mockup-btn"} >
-                    <button onClick={() => { openModel('model') }} type="button" id="3d_btn" className="btns">
-                      <i className="ic-3d-rotation icons"></i> <span className="text">360°로 돌려보기</span>
+                  
+                  <div className={`${swiper ? styles.active : ""} ${styles.mockup_btn}`} >
+                    <button onClick={() => { openModel('model') }} type="button" id="3d_btn" className={styles.btns}>
+                      <i className={`${styles.ic_3d_rotation} ${styles.icons}`}></i> <span className={styles.text}>360°로 돌려보기</span>
                     </button>
-                    <button onClick={() => { openModel('image') }} type="button" id="img_btn" className="btns">
-                      <i className="ic-img icons"></i> <span className="text">이미지로 보기</span>
+                    <button onClick={() => { openModel('image') }} type="button" id="img_btn" className={styles.btns}>
+                      <i className={`${styles.ic_img} ${styles.icons}`}></i> <span className={styles.text}>이미지로 보기</span>
                     </button>
                   </div>
 
                 </div>
 
-                <div className="table-box">
-                  {/* <?php foreach($ad_detail_arr as $detail):?>
-                        <div className="table-line">
-                            <div className="title"><?= $detail['title'] ?></div>
-                            <div className="text"><?= $detail['value'] ?></div>
-                        </div>
-                        <?php endforeach; ?> */}
+                <div className={styles.table_box}>
                   {
                     ad_detail_arr.map((data, index) => (
-                      <div key={index} className="table-line">
-                        <div className="title">{data.title}</div>
-                        <div className="text">{data.value}</div>
+                      <div key={index} className={styles.table_line}>
+                        <div className={styles.title}>{data.title}</div>
+                        <div className={styles.text}>{data.value}</div>
                       </div>
                     ))
                   }
                 </div>
               </div>
 
-              <div className="ad-contents">
-                <div className="tab-menu">
-                  <div className="tab-01 tab-title active">전체</div>
-                  <div className="tab-02 tab-title">운행중</div>
-                  <div className="tab-03 tab-title">운행정지</div>
+              <div className={styles.ad_contents}>
+                <div className={styles.tab_menu}>
+                  <div className={`${styles.tab_01} ${styles.tab_title} ${styles.active}`}>전체</div>
+                  <div className={`${styles.tab_02} ${styles.tab_title}`}>운행중</div>
+                  <div className={`${styles.tab_03} ${styles.tab_title}`}>운행정지</div>
                 </div>
 
                 <BootstrapTable

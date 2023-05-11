@@ -1,0 +1,158 @@
+.adList {
+    padding-left: 1.5rem;
+}
+
+.titleWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px 20px 0px;
+}
+
+.title {
+    color: #2C324C;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+    padding-right: 20px;
+}
+
+.line {
+    height: 1px;
+    background-color: #EBEDF4;
+    flex: 1;
+}
+
+.adContents {
+    height: 560px;
+    background: #ffffff;
+    box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    line-height: 14px;
+    color: #2c324c;
+    border-right: 1px solid #ebedf4;
+}
+
+.heading {
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #2C324C;
+    font-size: 16px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+}
+
+.menuHd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 19px 16px 19px 30px;
+    flex-wrap: wrap;
+}
+
+.tabMenu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.tab01 .tabTitle {
+    /*font-weight: 700;*/
+    /*font-size: 20px;*/
+    /*line-height: 29px;*/
+    /*color: #2f48d1;*/
+}
+
+.tabTitle {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+    cursor: pointer;
+}
+
+.rightMenu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.adAddBtn {
+    width: 149px;
+    padding: 10px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 9px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ffffff;
+    background: #2f48d1;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.adDeleteBtn {
+    padding: 2px 15px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 36px;
+    text-align: center;
+    color: #999999;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tabWrap {}
+
+.listHd {
+    height: 60px;
+    background: #f5f7fb;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.listFlex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center
+}
+
+.chkBox {
+    width: 60px;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #ebedf4;
+}
+
+.grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 115px 1fr 127px 227px 172px;
+}
+
+.gridBox {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    line-height: 60px;
+    color: #2c324c;
+    padding: 0 0 0 20px;
+    border-right: 1px solid #ebedf4;
+}

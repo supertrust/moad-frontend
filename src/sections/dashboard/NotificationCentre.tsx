@@ -23,18 +23,18 @@ export default function NotificationCentre() {
 
     return (
       <a href={styles.notification_center}>
-          <ul className={styles.content_wrap}>
-            {drive_list.map((data,index) => (
-              <li key={index} className={styles.list}>
+        <ul className={styles.content_wrap}>
+          {drive_list.map((data, index) => (
+            <li key={index} className={styles.list}>
               <div className={styles.text_wrap}>
                 <div className={`${styles.title} ${styles.text}`}>{data.title}</div>
                 <div className={styles.text}>{data.text}</div>
               </div>
               <div className={styles.timestamp}>3시간 전</div>
             </li>
-            ))}
-          </ul>
-        </a>
+          ))}
+        </ul>
+      </a>
     )
   }
   return (
@@ -43,7 +43,9 @@ export default function NotificationCentre() {
         <div className={styles.title_wrap}>
           <div className={styles.title}>알림 센터</div>
           <div className={styles.line}></div>
-          <a href="/notification-center" className={styles.text}>view all</a>
+          <Link href={"/dashboard/notification"} className={styles.text}>
+            view all
+          </Link>
         </div>
         <div className={`${!drive_list.length ? styles.none : ""} ${styles.notification_content}`}>
           <DriveList data={drive_list} />

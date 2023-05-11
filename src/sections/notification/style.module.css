@@ -1,0 +1,254 @@
+
+/* Notification Page */
+.only_mb {
+	display: none
+}
+
+#notification_center {
+	min-height: 100%;
+	background-color: #F5F7FB
+}
+
+#notification_center .container .board-content {
+	min-height: 781px;
+	background-color: #F5F7FB;
+	margin-left: 305px;
+	padding-top: 119px;
+	width: calc(100% - 305px)
+}
+
+@media screen and (max-width:1024px) {
+	#notification_center {
+		min-height: 100%;
+		background-color: #F5F7FB
+	}
+
+	#notification_center .container .board-content {
+		min-height: auto;
+		background-color: #F5F7FB;
+		margin-left: 0;
+		padding-top: 64px;
+		width: 100%
+	}
+
+	#notification_center .only_pc {
+		display: none
+	}
+
+	#notification_center .only_mb {
+		display: block
+	}
+}
+
+.notification_center_content {
+	padding: 50px 30px 76px
+}
+
+.notification_center_content .notification_wrap {
+	min-height: 605px;
+	display: grid;
+	grid-template-rows: repeat(3, minmax(180px, auto));
+	grid-template-columns: repeat(4, 1fr);
+	gap: 25px
+}
+
+.notification_center_content .notification_wrap .list {
+	min-height: 180px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 20px;
+	background: #FFFFFF;
+	border: 1px solid #EBEDF4;
+	box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+	border-radius: 5px
+}
+
+.notification_center_content .notification_wrap .list .info {
+	margin-bottom: 20px
+}
+
+.notification_center_content .notification_wrap .list .info .title {
+	margin-bottom: 4px;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 26px;
+	letter-spacing: -0.01em;
+	color: #2C324C
+}
+
+.notification_center_content .notification_wrap .list .info .text {
+	width: 144px;
+	margin-bottom: 10px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #2C324C
+}
+
+.notification_center_content .notification_wrap .list .info .badge_wrap .badge {
+	width: 64px;
+	line-height: 21px;
+	border-radius: 10px;
+	font-weight: 500;
+	font-size: 12px;
+	text-align: center
+}
+
+.notification_center_content .notification_wrap .list .info .badge_wrap .driving {
+	color: #4F5AED;
+	background-color: #F0F1FA
+}
+
+.notification_center_content .notification_wrap .list .info .badge_wrap .stop {
+	color: #D12953;
+	background-color: #FAF0F3
+}
+
+.notification_center_content .notification_wrap .list .date {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	text-align: right;
+	color: #999999
+}
+
+.notification_center_content .pagination_wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 8px;
+	margin-top: 21px;
+	margin-top: 40px
+}
+
+.notification_center_content .pagination_wrap .arrow {
+	display: block;
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	cursor: pointer
+}
+
+.notification_center_content .pagination_wrap .arrow.prev {
+	background: url("/images/ic-arrow-prev.png") no-repeat center center / auto #EBEDF4
+}
+
+.notification_center_content .pagination_wrap .arrow.next {
+	background: url("/images/ic-arrow-next.png") no-repeat center center / auto #EBEDF4
+}
+
+.notification_center_content .pagination_wrap .num_wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 8px
+}
+
+.notification_center_content .pagination_wrap .num_wrap .number {
+	width: 25px;
+	height: 25px;
+	background: #EBEDF4;
+	border-radius: 5px;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 25px;
+	text-align: center;
+	color: #2C324C;
+	cursor: pointer
+}
+
+.notification_center_content .pagination_wrap .num_wrap .number.active {
+	background-color: #4D5E80;
+	color: #ffffff
+}
+
+@media screen and (max-width:1400px) {
+	.notification_center_content .notification_wrap {
+		grid-template-columns: repeat(2, 1fr)
+	}
+
+	.only_pc {
+		display: block
+	}
+
+	.only_mb {
+		display: none
+	}
+}
+
+@media screen and (max-width:1024px) {
+	.notification_center_content {
+		padding: 20px 20px 41px
+	}
+
+	.notification_center_content .notification_wrap {
+		min-height: auto;
+		gap: 12px;
+		grid-template-rows: repeat(1, minmax(166px, auto));
+		grid-template-columns: 1fr
+	}
+
+	.notification_center_content .notification_wrap .list {
+		min-height: 166px
+	}
+
+	.notification_center_content .pagination_wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		column-gap: 8px;
+		margin-top: 21px
+	}
+
+	.notification_center_content .pagination_wrap .arrow {
+		display: block;
+		width: 25px;
+		height: 25px;
+		border-radius: 5px;
+		cursor: pointer
+	}
+
+	.notification_center_content .pagination_wrap .arrow.prev {
+		background: url("/images/ic-arrow-prev.png") no-repeat center center / auto #EBEDF4
+	}
+
+	.notification_center_content .pagination_wrap .arrow.next {
+		background: url("/images/ic-arrow-next.png") no-repeat center center / auto #EBEDF4
+	}
+
+	.notification_center_content .pagination_wrap .num_wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		column-gap: 8px
+	}
+
+	.notification_center_content .pagination_wrap .num_wrap .number {
+		width: 25px;
+		height: 25px;
+		background: #EBEDF4;
+		border-radius: 5px;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 25px;
+		text-align: center;
+		color: #2C324C;
+		cursor: pointer
+	}
+
+	.notification_center_content .pagination_wrap .num_wrap .number.active {
+		background-color: #4D5E80;
+		color: #ffffff
+	}
+
+	.only_pc {
+		display: none
+	}
+
+	.only_mb {
+		display: block
+	}
+}

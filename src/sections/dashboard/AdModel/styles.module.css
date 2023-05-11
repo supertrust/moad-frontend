@@ -15,6 +15,44 @@
     -webkit-box-orient: vertical;
 }
 
+.listHd {
+    /*height: 60px;*/
+    background: #f5f7fb;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.cancelBtn {
+    line-height: 33px;
+    color: #2f48d1;
+    border: 1px solid #2f48d1;
+}
+
+.btns {
+    width: 92px;
+    border-radius: 5px;
+    line-height: 35px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+}
+
+.btnWrap  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+    margin-top: 67px;
+}
+
+.btnSection button#ad_apply_cancel {
+    display: flex;
+    justify-content: center;
+}
+
 .adApplyModal {
     position: fixed;
     width: 100%;
@@ -164,7 +202,7 @@
     display: block;
     width: 10px;
     height: 10px;
-    background: url("/images/advertising/ic-down-blue.png") no-repeat center center;
+    background: url("/public/images/advertising/ic-down-blue.png") no-repeat center center;
     transform: rotate(0)
 }
 
@@ -227,7 +265,7 @@
     display: block;
     width: 20px;
     height: 20px;
-    background: url("/images/advertising/ic-radio-defalut.png") no-repeat center center
+    background: url("/public/images/advertising/ic-radio-defalut.png") no-repeat center center
 }
 
 .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .detailDesc {
@@ -249,16 +287,16 @@
     margin-bottom: 21px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .box-icon.boxIcon01 {
-    background: url("/images/advertising/img-check01-defalut.png") no-repeat center center / cover
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .boxIcon .boxIcon01 {
+    background: url("/public/images/advertising/img-check01-defalut.png") no-repeat center center / cover
 }
 
-.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .box-icon.box-icon02 {
-    background: url("/images/advertising/img-check02-defalut.png") no-repeat center center / cover
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .boxIcon.boxIcon02 {
+    background: url("/public/images/advertising/img-check02-defalut.png") no-repeat center center / cover
 }
 
-.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .box-icon.box-icon03 {
-    background: url("/images/advertising/img-check03-defalut.png") no-repeat center center / cover
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .boxIcon.boxIcon03 {
+    background: url("/public/images/advertising/img-check03-defalut.png") no-repeat center center / cover
 }
 
 .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modalSelect .selectBox .text {
@@ -279,34 +317,34 @@
 }
 
 .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .icRadio {
-    background: url("/images/advertising/ic-radio-active.png") no-repeat center center;
+    background: url("/public/images/advertising/ic-radio-active.png") no-repeat center center;
 }
 
 .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .detailDesc {
     color: #2F48D1
 }
 
-.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .box-icon.boxIcon01 {
-    background: url("/images/advertising/img-check01-active.png") no-repeat center center / cover
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .boxIcon .boxIcon01 {
+    background: url("/public/images/advertising/img-check01-active.png") no-repeat center center / cover
 }
 
-.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .box-icon.box-icon02 {
-    background: url("/images/advertising/img-check02-active.png") no-repeat center center / cover
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .boxIcon .boxIcon02 {
+    background: url("/public/images/advertising/img-check02-active.png") no-repeat center center / cover
 }
 
-.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .box-icon.box-icon03 {
-    background: url("/images/advertising/img-check03-active.png") no-repeat center center / cover
+.adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .boxIcon .boxIcon03 {
+    background: url("/public/images/advertising/img-check03-active.png") no-repeat center center / cover
 }
 
 .adApplyModal .adModalWrap .adApplyContent .radioWrap .modalSelectWrap .modal-select.active .selectBox .text {
     color: #2F48D1
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .input-section {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .inputSection {
     margin-bottom: 20px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .box {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .box {
     display: block;
     padding: 10px;
     font-weight: 400;
@@ -319,7 +357,7 @@
     border-radius: 5px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .input-title {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .inputTitle {
     margin-bottom: 10px;
     font-weight: 500;
     font-size: 14px;
@@ -328,7 +366,7 @@
     color: #2C324C
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .sub-title {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .subTitle {
     margin-bottom: 10px;
     font-weight: 400;
     font-size: 14px;
@@ -337,11 +375,11 @@
     color: #2C324C
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .input-ad-title {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .inputAdTitle {
     width: 100%
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .text-count {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .textCount {
     font-weight: 500;
     font-size: 12px;
     line-height: 17px;
@@ -350,28 +388,28 @@
     text-align: right
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .title-section .input-ad-title {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .titleSection .inputAdTitle {
     font-size: 14px;
     line-height: 20px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .title-section .input-ad-title:focus {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .titleSection .inputAdTitle:focus {
     border: 1px solid #2F48D1
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     column-gap: 15px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap.ad-start-date {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .adStartDate {
     max-width: 260px;
     width: 100%
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .input-title {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .inputTitle {
     margin-bottom: 10px;
     font-weight: 500;
     font-size: 14px;
@@ -380,17 +418,17 @@
     color: #2C324C
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap {
     position: relative
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .select-text .select-input,.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .advertising_period {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .selectText .selectInput,.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .advertising_period {
     width: 260px;
-    background: url("/images/advertising/ic-down-gray.png") no-repeat center right 10px / 24px #ffffff;
+    background: url("/public/images/advertising/ic-down-gray.png") no-repeat center right 10px / 24px #ffffff;
     cursor: pointer
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .dateSelectBox {
     display: none;
     width: 260px;
     height: 68px;
@@ -407,7 +445,7 @@
     left: 0
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box .date-list {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .dateSelectBox .dateList {
     width: 100%;
     font-weight: 400;
     font-size: 14px;
@@ -417,33 +455,33 @@
     cursor: pointer
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box .date-list .period-label {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .dateSelectBox .dateList .period-label {
     display: block
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box .date-list .period-label .period-input {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .dateSelectBox .dateList .period-label .periodInput {
     display: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box .date-list.hidden {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .dateSelectBox .dateList.hidden {
     display: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap.active .date-select-box {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap.active .dateSelectBox {
     display: flex
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap.spot-add.on.active .date-select-box {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .spotAdd .on .active .dateSelectBox {
     display: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .input-calendar {
-    background: url("/images/advertising/ic-calendar.png") no-repeat center right 10px / 16px #ffffff;
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .input-calendar {
+    background: url("/public/images/advertising/ic-calendar.png") no-repeat center right 10px / 16px #ffffff;
     cursor: pointer;
     width: 100%
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .dateContent {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -455,37 +493,37 @@
     color: #999999
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content .input-date-start {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .dateContent .inputDateStart {
     width: 169px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content .input-date-end {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .dateContent .inputDateEnd {
     width: 169px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap {
     border: 1px solid #EBEDF4;
     border-radius: 5px;
     background-color: #ffffff
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow {
     display: grid;
     grid-template-columns: 1fr 192px 306px 249px;
     border-bottom: 1px solid #EBEDF4
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row:last-child {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow:last-child {
     border-bottom: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row .text {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .text {
     font-size: 14px;
     line-height: 20px;
     color: #2C324C
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row .cell {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .cell {
     height: 36px;
     display: flex;
     justify-content: center;
@@ -493,19 +531,19 @@
     border-right: 1px solid #EBEDF4
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row .cell:last-child {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .cell:last-child {
     border-right: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list-hd .text {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .listHd .text {
     font-weight: 500
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .vehicles-num-wrap {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow.list .vehiclesNumWrap {
     column-gap: 3px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .vehicles-num-wrap .input-num {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow.list .vehiclesNumWrap .inputNum {
     width: 78px;
     height: 20px;
     padding: 0 3px;
@@ -517,19 +555,19 @@
     border: 1px solid #EBEDF4
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .list .priceWrap {
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 4px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap .price-input {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .list .priceWrap .price-input {
     text-align: right;
     border: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap .price-input::placeholder {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .list .priceWrap .price-input::placeholder {
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
@@ -537,19 +575,19 @@
     color: #2C324C
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap .won {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .list .priceWrap .won {
     display: block
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap.on .price-input {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .list .priceWrap .on .price-input {
     text-align: center
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap.on .won {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .list .priceWrap .on .won {
     display: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .spot-info {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .spotInfo {
     display: none;
     font-weight: 400;
     font-size: 14px;
@@ -559,20 +597,20 @@
     margin-top: 10px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .spot-info.on {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .spotInfo .on {
     display: block
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection {
     position: relative;
     display: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section.active {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection.active {
     display: block
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .reset-btn {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .reset-btn {
     position: absolute;
     top: 0;
     right: 0;
@@ -583,7 +621,7 @@
     cursor: pointer
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .reset-btn .text {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .reset-btn .text {
     font-weight: 400;
     font-size: 12px;
     line-height: 17px;
@@ -591,14 +629,14 @@
     color: #999999
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .reset-btn .ic-reset {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .reset-btn .icReset {
     display: block;
     width: 12px;
     height: 12px;
-    background: url("/images/advertising/ic-reset.png") no-repeat center center
+    background: url("/public/images/advertising/ic-reset.png") no-repeat center center
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .chkGrid {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -606,11 +644,11 @@
     flex-wrap: wrap
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .chkGrid .chkWrap {
     width: 125px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap .chk-area {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .chkGrid .chkWrap .chkArea {
     height: 40px;
     font-weight: 400;
     font-size: 14px;
@@ -626,16 +664,16 @@
     cursor: pointer
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap .chk-input {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .chkGrid .chkWrap .chkInput {
     display: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap .chk-input:checked+.chk-area {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .chkGrid .chkWrap .chkInput:checked+.chkArea {
     color: #ffffff;
     background: #2F48D1
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .areaModal {
     position: fixed;
     top: 0;
     left: 0;
@@ -648,11 +686,11 @@
     z-index: 110
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal.active {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .areaModal.active {
     display: flex
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .areaModal .checkModalWrap  {
     width: 335px;
     height: 199px;
     padding: 20px;
@@ -660,13 +698,13 @@
     border-radius: 10px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .title {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .areaModal .checkModalWrap  .title {
     font-weight: 700;
     font-size: 20px;
     line-height: 29px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .text {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .areaModal .checkModalWrap  .text {
     margin: 20px 0;
     padding: 10px 0;
     font-weight: 400;
@@ -677,14 +715,14 @@
     border-bottom: 1px solid #EEEEEE
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .btn-wrap {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .areaModal .checkModalWrap  .btnWrap  {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     column-gap: 5px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .btn-wrap .active-btn {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .areaModal .checkModalWrap  .btnWrap  .activeBtn {
     width: 60px;
     height: 30px;
     display: flex;
@@ -699,7 +737,7 @@
     cursor: pointer
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .area-modal .check-modal-wrap .btn-wrap .line-btn {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .areaModal .checkModalWrap  .btnWrap  .line-btn {
     width: 60px;
     height: 30px;
     display: flex;
@@ -715,14 +753,14 @@
     cursor: pointer
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     flex-direction: column
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox {
     width: 343px;
     padding: 17px 20px;
     display: flex;
@@ -734,7 +772,7 @@
     background-color: #ffffff
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .price-text {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox .priceText {
     display: block;
     font-weight: 500;
     font-size: 18px;
@@ -743,13 +781,13 @@
     color: #2F48D1
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .total-price {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox .totalPrice {
     display: block;
     width: 215px;
     text-align: right
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .spot-price {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox .spot-price {
     display: none;
     font-weight: 500;
     font-size: 18px;
@@ -758,15 +796,15 @@
     color: #2F48D1
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box.on {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox.on {
     justify-content: space-between
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box.on .text-won {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox.on .textWon {
     display: none
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-info {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceInfo {
     margin-top: 8px;
     font-weight: 400;
     font-size: 12px;
@@ -775,7 +813,7 @@
     color: #999999
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .errorBox {
     height: 44px;
     display: none;
     align-items: center;
@@ -787,25 +825,25 @@
     margin-right: -30px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box.active {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .errorBox.active {
     display: flex
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .errorBox .errorLine {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     column-gap: 8px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line .ic-error {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .errorBox .errorLine .icError {
     display: block;
     width: 24px;
     height: 24px;
-    background: url("/images/advertising/ic-error.png") no-repeat center center
+    background: url("/public/images/advertising/ic-error.png") no-repeat center center
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line .error-text {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .errorBox .errorLine .errorText {
     display: none;
     font-weight: 700;
     font-size: 14px;
@@ -813,20 +851,20 @@
     color: #FFFFFF
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line .error-text span {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .errorBox .errorLine .errorText span {
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     color: #FFFFFF
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .error-box .error-line .error-text.active {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .errorBox .errorLine .errorText.active {
     display: flex;
     justify-content: flex-start;
     align-items: center
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -834,7 +872,7 @@
     margin-top: 35px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .btns {
     padding: 7px 20px;
     font-weight: 400;
     font-size: 14px;
@@ -848,33 +886,33 @@
     padding: 13.5px 40px
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns.line {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .btns.line {
     border: 1px solid #2F48D1;
     background-color: #ffffff;
     color: #2F48D1
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns.active {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .btns.active {
     background: #2F48D1
 }
 
 @media screen and (max-width:1024px) {
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .btns {
         padding: 9px 20px;
         font-size: 12px;
         line-height: 17px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns .onlyPc {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .btns .onlyPc {
         display: none
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns .only-mb {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .btns .only-mb {
         display: block
     }
 }
 
-.adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .cancel-btn {
+.adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .cancelBtn {
     padding: 12.5px;
     background-color: #ffffff;
     border: 1px solid #999999 !important;
@@ -908,7 +946,7 @@
         display: block;
         width: 24px;
         height: 24px;
-        background: url("/images/advertising/ic-close-btn.png") no-repeat center center / cover;
+        background: url("/public/images/advertising/ic-close-btn.png") no-repeat center center / cover;
         cursor: pointer
     }
 
@@ -967,125 +1005,125 @@
         margin-bottom: 4px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .box {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .box {
         font-size: 12px;
         line-height: 17px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .title-section .input-ad-title {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .titleSection .inputAdTitle {
         font-size: 12px;
         line-height: 17px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection {
         flex-wrap: wrap;
         margin-bottom: 0;
         column-gap: 0
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap {
         width: 100%;
         margin-bottom: 20px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap:first-child {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap:first-child {
         width: 50%;
         padding-right: 6.5px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap.ad-start-date {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .adStartDate {
         max-width: 50%;
         padding-left: 6.5px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .select-text .select-input, .advertising_period {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .selectText .selectInput, .advertising_period {
         width: 100%
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .select-wrap .date-select-box {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .selectWrap .dateSelectBox {
         width: 100%
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .dateContent {
         column-gap: 3px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content .input-date-start {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .dateContent .inputDateStart {
         width: 100%
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .date-section .ipnut-wrap .date-content .input-date-end {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .dateSection .inputWrap .dateContent .inputDateEnd {
         width: 100%
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow {
         grid-template-columns: 65px 148px 1fr
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row .standard-wrap {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow .standardWrap {
         display: none
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow.list .priceWrap {
         padding: 0 20px;
         justify-content: flex-end
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap .price-input {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow.list .priceWrap .price-input {
         width: 100%
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection {
         margin-bottom: 40px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .reset-btn {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .reset-btn {
         background-color: #F5F7FB
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .chkGrid {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 4px 10px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .chkGrid .chkWrap {
         width: auto
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .area-section .chk-grid .chk-wrap .chk-area {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .areaSection .chkGrid .chkWrap .chkArea {
         height: 36px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox {
         width: 250px;
         padding: 11px 10px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .price-text {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox .priceText {
         font-size: 15px;
         line-height: 22px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .price-section .price-box .total-price {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .priceSection .priceBox .totalPrice {
         width: 155px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .error-box {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .errorBox {
         margin-left: -20px;
         margin-right: -20px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection {
         column-gap: 12px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .btns {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .btns {
         width: 161px;
         padding: 8px 0
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .btn-section .cancel-btn {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .btnSection .cancelBtn {
         color: #ffffff;
         background: #999999;
         border: none
@@ -1102,11 +1140,11 @@
         left: 10px
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow {
         grid-template-columns: 45px 110px 1fr
     }
 
-    .adApplyModal .adModalWrap .adApplyContent .modal-step .vehicles-section .table-wrap .table-row.list .price-wrap {
+    .adApplyModal .adModalWrap .adApplyContent .modalStep .vehiclesSection .tableWrap .tableRow.list .priceWrap {
         padding: 0 20px;
         justify-content: flex-end
     }
@@ -1139,16 +1177,41 @@ div#slide_wrap .list {
     justify-content: flex-start;
     align-items: flex-end;
     column-gap: 8px;
-    padding: 15px 0;
+    /*padding: 15px 0;*/
 }
 
-.check-modal .check-modal-wrap .title {
+.checkModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(34, 34, 34, 0.6);
+    z-index: 110
+}
+
+.checkModal.active {
+    display: flex
+}
+
+.checkModal .checkModalWrap  {
+    width: 335px;
+    height: 199px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px
+}
+
+.checkModal .checkModalWrap .title {
     font-weight: 700;
     font-size: 20px;
     line-height: 29px
 }
 
-.check-modal .check-modal-wrap .text {
+.checkModal .checkModalWrap .text {
     margin: 20px 0;
     padding: 10px 0;
     font-weight: 400;
@@ -1159,14 +1222,14 @@ div#slide_wrap .list {
     border-bottom: 1px solid #EEEEEE
 }
 
-.check-modal .check-modal-wrap .btn-wrap {
+.checkModal .checkModalWrap .btnWrap  {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     column-gap: 5px
 }
 
-.check-modal .check-modal-wrap .btn-wrap .active-btn {
+.checkModal .checkModalWrap .btnWrap .activeBtn {
     width: 60px;
     height: 30px;
     display: flex;
@@ -1181,7 +1244,7 @@ div#slide_wrap .list {
     cursor: pointer
 }
 
-.check-modal .check-modal-wrap .btn-wrap .line-btn {
+.checkModal .checkModalWrap .btnWrap .line-btn {
     width: 60px;
     height: 30px;
     display: flex;

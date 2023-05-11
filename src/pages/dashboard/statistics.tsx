@@ -1,6 +1,7 @@
 import React from 'react'
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { styles } from "@src/sections/statistics";
 
 export default function StatisticsScreen() {
   const date_start = '2023. 03. 01';
@@ -78,53 +79,37 @@ export default function StatisticsScreen() {
   ];
   return (
     <>
-      <div id="statistics" className="statistics page">
-        <div className="container">
-          <div className="board-content">
-            <div className="inner-header-wrap">
-              {/* <?php
-                    get_template_part('templates/part/inner-header', null, $args);
-                ?> */}
-            </div>
-            <div className="statistics-content">
-              <div className="step-01">
-                <div className="ad-amount">
-                  <div className="title-wrap">
-                    <div className="title">광고 금액</div>
-                    <div className="line"></div>
-                    <a href="/ad-amount" className="text">view all</a>
+      <div id={styles.statistics} className={`${styles.page} ${styles.statistics}`}>
+        <div className={styles.container}>
+          <div className={styles.board_content}>
+            <div className={styles.statistics_content}>
+              <div className={styles.step_01}>
+                <div className={styles.ad_amount}>
+                  <div className={styles.title_wrap}>
+                    <div className={styles.title}>광고 금액</div>
+                    <div className={styles.line}></div>
+                    <a href="/ad-amount" className={styles.text}>view all</a>
                   </div>
-                  <div className="ad-amount-box">
-                    <div className="box-wrap">
-                      <div className="date">{date_start} ~ {date_end}</div>
-                      <div className="amount">{ad_amount ? ad_amount : '-'}</div>
-
+                  <div className={styles.ad_amount_box}>
+                    <div className={styles.box_wrap}>
+                      <div className={styles.date}>{date_start} ~ {date_end}</div>
+                      <div className={styles.amount}>{ad_amount ? ad_amount : '-'}</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="driving-vehicle">
-                  <div className="title-wrap">
-                    <div className="title">운행차량</div>
-                    <div className="line"></div>
+                <div className={styles.driving_vehicle}>
+                  <div className={styles.title_wrap}>
+                    <div className={styles.title}>운행차량</div>
+                    <div className={styles.line}></div>
                   </div>
-                  <div className="driving-vehicle-box">
-                    <ul className="list-wrap">
-                      {/* <?php foreach($driving_vehicle as $data): ?>
-                                <li className="list">
-                                    <div className="title"><?= $data['title'] ?></div>
-                                    <?php if($data['data']): ?>
-                                        <div className="data"><?= $data['data'] ?> 대</div>
-                                    <?php else: ?>
-                                        <div className="data">-</div>
-                                    <?php endif; ?>
-                                </li>
-                                <?php endforeach; ?> */}
+                  <div className={styles.driving_vehicle_box}>
+                    <ul className={styles.list_wrap}>
                       {
                         driving_vehicle.map((data) =>
-                          <li className="list">
-                            <div className="title">{data.title}</div>
-                            <div className="data">{data.data ? data.data + '대' : '-'}</div>
+                          <li className={styles.list}>
+                            <div className={styles.title}>{data.title}</div>
+                            <div className={styles.data}>{data.data ? data.data + '대' : '-'}</div>
                           </li>
                         )
                       }
@@ -132,10 +117,10 @@ export default function StatisticsScreen() {
                   </div>
                 </div>
               </div>
-              <div className="step-02">
-                <div className="title-wrap">
-                  <div className="title">운행거리/운행시간</div>
-                  <div className="line"></div>
+              <div className={styles.step_02}>
+                <div className={styles.title_wrap}>
+                  <div className={styles.title}>운행거리/운행시간</div>
+                  <div className={styles.line}></div>
                 </div>
                 <BootstrapTable
                   keyField="id"
@@ -152,31 +137,31 @@ export default function StatisticsScreen() {
       </div>
       {/* <!--TODO 삭제버튼을 눌렀을때 : 종료된 광고가 아닐때 출력--> */}
       {/* <!--TODO Output when active className is added to confirm-modal className--> */}
-      <div id="check_modal" className="check-modal confirm-modal">
-        <div className="check-modal-wrap">
-          <div className="title">확인사항</div>
-          <div className="text">
+      <div id="check_modal" className={`${styles.check_modal} ${styles.confirm_modal}`}>
+        <div className={styles.check_modal_wrap}>
+          <div className={styles.title}>확인사항</div>
+          <div className={styles.text}>
             종료된 광고만<br/>
               삭제하실 수 있습니다
           </div>
-          <div className="btn-wrap">
-            <button type="button" className="check-close-btn active-btn">확인</button>
+          <div className={styles.btn_wrap}>
+            <button type="button" className={`${styles.check_close_btn} ${styles.active_btn}`}>확인</button>
           </div>
         </div>
       </div>
 
       {/* <!--TODO 삭베버튼을 눌렀을때 : 종료된 광고가 삭제 되기전 출력 -->
       <!--TODO Output when active className is added to remove-ads-modal className--> */}
-      <div id="remove_ads_modal" className="check-modal remove-ads-modal">
-        <div className="check-modal-wrap">
-          <div className="title">광고삭제</div>
-          <div className="text">
+      <div id="remove_ads_modal" className={`${styles.check_modal} ${styles.remove_ads_modal}`}>
+        <div className={styles.check_modal_wrap}>
+          <div className={styles.title}>광고삭제</div>
+          <div className={styles.text}>
             삭제시 복구할 수 없으며<br/>
               광고에 대한 정보를 확인하실 수 없습니다.
           </div>
-          <div className="btn-wrap">
-            <button type="button" className="check-close-btn line-btn">취소</button>
-            <button type="button" id="remove_ads_modal_confirm" className="active-btn">삭제</button>
+          <div className={styles.btn_wrap}>
+            <button type="button" className={`${styles.check_close_btn} ${styles.line_btn}`}>취소</button>
+            <button type="button" id="remove_ads_modal_confirm" className={styles.active_btn}>삭제</button>
           </div>
         </div>
       </div>

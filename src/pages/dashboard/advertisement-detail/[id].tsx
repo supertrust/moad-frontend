@@ -1,16 +1,17 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { Carousel } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper";
+import { Autoplay } from "swiper";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { styles } from "@src/sections/advertisement-detail";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import 'swiper/css/autoplay';
-import { style } from '@mui/system';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Center } from '@react-three/drei';
+import TruckModel from '@src/models/truck';
 
 function AdvertisementDetailScreen() {
   const title = '신제품 홍보 출시기념';
@@ -60,7 +61,7 @@ function AdvertisementDetailScreen() {
       'value': '2,100,000원'
     }];
   const [index, setIndex] = useState(0);
-  const handleSelect = (selectedIndex, e) => {
+  const handleSelect = (selectedIndex: any, e: any) => {
     setIndex(selectedIndex);
   };
   const data = [
@@ -75,7 +76,7 @@ function AdvertisementDetailScreen() {
     {
       dataField: 'sl.no',
       text: 'no',
-      formatter: (cell, row, rowIndex, formatExtraData) => {
+      formatter: (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
         return rowIndex + 1;
       },
       sort: true,
@@ -163,10 +164,25 @@ function AdvertisementDetailScreen() {
                     </div>
                   </div>
                   <div className={`${model === 'model' ? styles.active : ""} ${styles.detail_3d} ${styles.box}`} id="div2d" >
-                    <div>
-                      3D Model
-                    </div>
-
+                    <Canvas
+                      camera={{ fov: 75, position: [0, 0, 3000] }}
+                      style={{
+                        backgroundColor: 'white',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                    >
+                      <ambientLight intensity={1.25} />
+                      <ambientLight intensity={0.1} />
+                      <directionalLight intensity={0.4} />
+                      <Suspense fallback={null}>
+                        {/* @ts-ignore */}
+                        <Center>
+                          <TruckModel />
+                        </Center>
+                      </Suspense>
+                      <OrbitControls maxDistance={750} minDistance={500} autoRotate />
+                    </Canvas>
                   </div>
                   <Swiper
                     direction={"vertical"}
@@ -182,7 +198,7 @@ function AdvertisementDetailScreen() {
                     <SwiperSlide><img className={styles.img} src={`/images/ad-detail-list/ic-3d-rotation.svg`} alt="" /></SwiperSlide>
                     <SwiperSlide><img className={styles.img} src={`/images/ad-detail-list/ic-img.png`} alt="" /></SwiperSlide>
                   </Swiper>
-                  
+
                   <div className={`${swiper ? styles.active : ""} ${styles.mockup_btn}`} >
                     <button onClick={() => { openModel('model') }} type="button" id="3d_btn" className={styles.btns}>
                       <i className={`${styles.ic_3d_rotation} ${styles.icons}`}></i> <span className={styles.text}>360°로 돌려보기</span>
@@ -225,7 +241,7 @@ function AdvertisementDetailScreen() {
 
           </div>
         </div>
-      </div>
+      </div >
     </>
   )
 }

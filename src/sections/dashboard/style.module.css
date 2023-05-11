@@ -879,3 +879,155 @@ body .div{
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.active {
 	background: #2F48D1
 }
+
+/* Notification section */
+ .title_wrap {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	column-gap: 8px;
+	padding: 20px 0
+}
+ .title_wrap .line {
+	height: 1px;
+	background-color: #EBEDF4;
+	width: 100%
+}
+  .title_wrap .title {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 29px;
+	letter-spacing: -0.01em;
+	color: #2C324C;
+	flex: 0 0 auto
+}
+ .title_wrap .text {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	letter-spacing: -0.01em;
+	color: #373737;
+	flex: 0 0 auto
+}
+.notification .notification_content {
+	height: 298px;
+	background: #FFFFFF;
+	border: 1px solid #EBEDF4;
+	box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+	border-radius: 5px
+}
+.notification .notification_content .content_wrap {
+	padding: 4px 30px 5px
+}
+.notification_content.none {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #D9D9D9 !important;
+}
+.notification .notification_content .content_wrap .list {
+	border-bottom: 1px solid #EBEDF4;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+	column-gap: 8px;
+	padding: 15px 0
+}
+
+.notification .notification_content .content_wrap .list:last-child {
+	border-bottom: none
+}
+
+.notification .notification_content .content_wrap .list .text_wrap .text {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	letter-spacing: -0.01em;
+	color: #2C324C;
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical
+}
+
+.notification .notification_content .content_wrap .list .timestamp {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 21px;
+	letter-spacing: -0.01em;
+	color: #999999;
+	flex: 0 0 auto
+}
+/* Notification section End */
+
+/* Advirtiser status */
+
+ .ad_status {
+	width: auto
+}
+
+ .ad_status .ad_contents {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: 17px;
+	row-gap: 17px
+}
+
+ .ad_status .ad_contents .card {
+	height: 88px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #FFFFFF;
+	box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+	border-radius: 5px;
+	border: 1px solid #EBEDF4
+}
+
+ .ad_status .ad_contents .card .title {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.01em;
+	color: #2C324C
+}
+
+ .ad_status .ad_contents .card .value {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 140%;
+	color: #2C324C
+}
+ .ad-status .ad_contents .card {
+	height: 88px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #FFFFFF;
+	box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+	border-radius: 5px;
+	border: 1px solid #EBEDF4
+}
+
+ .ad-status .ad_contents .card .title {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.01em;
+	color: #2C324C
+}
+
+ .ad-status .ad_contents .card .value {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 140%;
+	color: #2C324C
+}
+/* Advirtiser status End */

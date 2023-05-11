@@ -29,25 +29,25 @@ export default function StatisticsScreen() {
       'data': '20',
     },
   ];
-  const data =[
-    { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 10, ad_type: "item5",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 20, ad_type: "item6",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 30, ad_type: "item7",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 40, ad_type: "item8",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 11, ad_type: "item9",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 12, ad_type: "item10",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 13, ad_type: "item11",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 14, ad_type: "item12",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 21, ad_type: "item13",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 22, ad_type: "item14",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 23, ad_type: "item15",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    { id: 24, ad_type: "item16",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-  ] 
-  
+  const data = [
+    { id: 1, ad_type: "item1", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 2, ad_type: "item2", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 3, ad_type: "item3", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 4, ad_type: "item4", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 10, ad_type: "item5", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 20, ad_type: "item6", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 30, ad_type: "item7", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 40, ad_type: "item8", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 11, ad_type: "item9", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 12, ad_type: "item10", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 13, ad_type: "item11", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 14, ad_type: "item12", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 21, ad_type: "item13", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 22, ad_type: "item14", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 23, ad_type: "item15", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 24, ad_type: "item16", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+  ]
+
   const columns = [
     {
       dataField: "ad_type",
@@ -117,19 +117,22 @@ export default function StatisticsScreen() {
                   </div>
                 </div>
               </div>
-              <div className={styles.step_02}>
-                <div className={styles.title_wrap}>
-                  <div className={styles.title}>운행거리/운행시간</div>
-                  <div className={styles.line}></div>
+              <div className="ad-contents">
+                <div className={styles.step_02}>
+                  <div className={styles.title_wrap}>
+                    <div className={styles.title}>운행거리/운행시간</div>
+                    <div className={styles.line}></div>
+                  </div>
+
+                  <BootstrapTable
+                    keyField="id"
+                    data={data}
+                    columns={columns}
+                    pagination={paginationFactory({ hideSizePerPage: true, sizePerPage: 6 })}
+                    selectRow={{ mode: 'checkbox', clickToSelect: true }}
+                    noDataIndication={'진행중인 광고가 없습니다.'}
+                  />
                 </div>
-                <BootstrapTable
-                  keyField="id"
-                  data={ data }
-                  columns={ columns }
-                  pagination={ paginationFactory({hideSizePerPage : true,sizePerPage: 6}) }
-                  selectRow={ { mode: 'checkbox', clickToSelect: true } }
-                  noDataIndication={'진행중인 광고가 없습니다.' }
-                />
               </div>
             </div>
           </div>
@@ -141,8 +144,8 @@ export default function StatisticsScreen() {
         <div className={styles.check_modal_wrap}>
           <div className={styles.title}>확인사항</div>
           <div className={styles.text}>
-            종료된 광고만<br/>
-              삭제하실 수 있습니다
+            종료된 광고만<br />
+            삭제하실 수 있습니다
           </div>
           <div className={styles.btn_wrap}>
             <button type="button" className={`${styles.check_close_btn} ${styles.active_btn}`}>확인</button>
@@ -156,8 +159,8 @@ export default function StatisticsScreen() {
         <div className={styles.check_modal_wrap}>
           <div className={styles.title}>광고삭제</div>
           <div className={styles.text}>
-            삭제시 복구할 수 없으며<br/>
-              광고에 대한 정보를 확인하실 수 없습니다.
+            삭제시 복구할 수 없으며<br />
+            광고에 대한 정보를 확인하실 수 없습니다.
           </div>
           <div className={styles.btn_wrap}>
             <button type="button" className={`${styles.check_close_btn} ${styles.line_btn}`}>취소</button>

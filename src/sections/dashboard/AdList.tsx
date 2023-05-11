@@ -3,30 +3,30 @@ import { Form } from "react-bootstrap";
 import AdModel from "./AdModel";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
-
+import { styles } from './index'
 export default function AdListModule() {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
   };
-  const data =[
-      { id: 1, ad_type: "item1",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 2, ad_type: "item2",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 3, ad_type: "item3",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 4, ad_type: "item4",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 10, ad_type: "item5",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 20, ad_type: "item6",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 30, ad_type: "item7",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 40, ad_type: "item8",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 11, ad_type: "item9",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 12, ad_type: "item10",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 13, ad_type: "item11",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 14, ad_type: "item12",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 21, ad_type: "item13",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 22, ad_type: "item14",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 23, ad_type: "item15",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-      { id: 24, ad_type: "item16",advertising_name: "f_item", vehicles: 10,period:6,status: "active" },
-    ]  
+  const data = [
+    { id: 1, ad_type: "item1", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 2, ad_type: "item2", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 3, ad_type: "item3", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 4, ad_type: "item4", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 10, ad_type: "item5", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 20, ad_type: "item6", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 30, ad_type: "item7", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 40, ad_type: "item8", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 11, ad_type: "item9", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 12, ad_type: "item10", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 13, ad_type: "item11", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 14, ad_type: "item12", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 21, ad_type: "item13", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 22, ad_type: "item14", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 23, ad_type: "item15", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+    { id: 24, ad_type: "item16", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
+  ]
   const columns = [
     {
       dataField: "ad_type",
@@ -58,8 +58,9 @@ export default function AdListModule() {
   ];
   return (
     <>
-      <div className="ad-list">
-        <h4>ad list</h4>{" "}
+      <div className={styles.title_wrap}>
+        <div className={styles.title}>광고 목록</div>
+        <div className={styles.line}></div>
       </div>
       {showModal ? <AdModel setShowModal={setShowModal} /> : null}
       <div className="ad-contents">
@@ -98,7 +99,7 @@ export default function AdListModule() {
                 <option value="3">Three</option>
               </Form.Select>
             </div>
-              {/* <div className="filter-wrp">
+            {/* <div className="filter-wrp">
               <img
                     src={"/images/statistics/filter.png"}
                   />
@@ -106,13 +107,13 @@ export default function AdListModule() {
           </div>
         </div>
         <BootstrapTable
-                  keyField="id"
-                  data={ data }
-                  columns={ columns }
-                  pagination={ paginationFactory({hideSizePerPage : true,sizePerPage: 6}) }
-                  selectRow={ { mode: 'checkbox', clickToSelect: true } }
-                  noDataIndication={'진행중인 광고가 없습니다.' }
-                />
+          keyField="id"
+          data={data}
+          columns={columns}
+          pagination={paginationFactory({ hideSizePerPage: true, sizePerPage: 6 })}
+          selectRow={{ mode: 'checkbox', clickToSelect: true }}
+          noDataIndication={'진행중인 광고가 없습니다.'}
+        />
       </div>
     </>
   );

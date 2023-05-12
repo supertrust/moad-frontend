@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import '@src/styles/globals.css'
+import '@src/styles/responsive.css'
 import "react-toastify/dist/ReactToastify.css";
 import ReactQueryClient from '@src/services/ReactQueryClient'
 import { AuthProvider } from '@src/contexts/AuthContext'

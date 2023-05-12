@@ -42,12 +42,12 @@ function Header(props: HeaderProps) {
           </div>
         </div>
       </div>
-      {/* <div className="only-mb">
+      <div className="only-mb">
         <div className="header-mb">
           <h1 className="logo-wrap">
             <a href="home" className="link">
               <img
-                src="http://localhost/icarus-frontend/wp-content/themes/icarus/assets/images/uikit/logo-mb.svg"
+                src="assets/images/icons/logo-mb.svg"
                 alt=""
               />
             </a>
@@ -61,7 +61,7 @@ function Header(props: HeaderProps) {
             ></button>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

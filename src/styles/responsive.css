@@ -61,4 +61,47 @@
   .only-mb {
     display: block;
   }
+
+  .main_content {
+		min-height: auto;
+		background-color: #F5F7FB;
+		margin-left: 0;
+		padding-top: 64px;
+		width: 100%;
+	}
+
+  #inner_header {
+    width: 100%;
+    height: 64px;
+    padding: 15px 20px;
+    background: #ffffff;
+    border-bottom: none;
+  }
+
+  #inner_header .only-mb .header-mb .util-wrap .side-mb-btn {
+    width: 30px;
+    height: 30px;
+    background: url(../../public/images/ic-menu.png) no-repeat center center / cover;
+    cursor: pointer;
+  }
+
+  #inner_header .only-mb .header-mb .util-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #inner_header .only-mb .header-mb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #inner_header .only-mb .header-mb .util-wrap .info-btn {
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+    background: url(../../public/images/ic-setting-mb.png) no-repeat center center / cover;
+    cursor: pointer;
+}
 }

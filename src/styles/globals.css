@@ -2791,3 +2791,7 @@ ul.pagination .page-item a:focus {
   width: 26px;
   height: 26px;
 }
+
+.only-mb {
+  display: none;
+}

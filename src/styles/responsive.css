@@ -1,2 +1,64 @@
-  /* only for global responsiveness  */
-  /* if you want particular component responsiveness so do it in it's own css file */
+/* only for global responsiveness  */
+/* if you want particular component responsiveness so do it in it's own css file */
+@media screen and (max-width: 1024px) {
+  #login {
+    display: block;
+    position: relative;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  #login .left {
+    display: none;
+  }
+
+  #login .right {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    overflow: auto;
+    padding: 5em 20px;
+  }
+
+  #login .right .logo-mb {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  #login .right .right-wrap {
+    width: 100%;
+    margin: auto;
+  }
+
+  #login .right .right-wrap .title-wrap .title {
+    font-size: 20px;
+    line-height: 29px;
+  }
+
+  #login .right .right-wrap .title-wrap .title strong {
+    font-size: 20px;
+    line-height: 29px;
+  }
+
+  #login .right .right-wrap .title-wrap .text {
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .only-pc {
+    display: none;
+  }
+
+  .only-mb {
+    display: block;
+  }
+}

@@ -23,7 +23,7 @@ export type RegisterPropsType = {
     employee_name: string;
     employee_phone_number: string;
     employee_email: string;
-    sector: string;
+    sector: string | undefined;
     business_license: null | File;
 }
 

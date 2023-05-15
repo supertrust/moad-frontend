@@ -123,13 +123,13 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 10px;
 }
 
 .listFlex {
     display: flex;
     justify-content: flex-start;
-    align-items: center
+    align-items: center;
+    border-bottom: 1px solid #EBEDF4;
 }
 
 .chkBox {
@@ -139,6 +139,7 @@
     justify-content: center;
     align-items: center;
     border-right: 1px solid #ebedf4;
+    height: 60px;
 }
 
 .grid {
@@ -155,4 +156,56 @@
     color: #2c324c;
     padding: 0 0 0 20px;
     border-right: 1px solid #ebedf4;
+}
+
+.listGrid {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 400;
+    font-size: 14px;
+    height: 50px;
+    letter-spacing: -0.01em;
+    color: #2C324C;
+    padding: 0 0 0 20px;
+    border-right: 1px solid #EBEDF4;
+}
+
+@media screen and (max-width: 1400px){
+    .typeWrap, .statusWrap {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 99px 235px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .adDeleteBtn, .chkBox {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 75px 116px;
+    }
+
+    .gridBox {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 40px;
+    }
+
+    .tabMenu {
+        column-gap: 8px;
+    }
+
+    .menuHd {
+        padding: 12px;
+    }
+
+    .tabTitle {
+        font-size: 12px;
+        line-height: 140%;
+    }
 }

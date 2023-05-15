@@ -78,7 +78,7 @@
 }
 
 #id_find_modal .modal_wrap .id_find_form .id_message {
-	display: none;
+	/*display: none;*/
 	margin-bottom: 30px;
 	text-align: center;
 	font-weight: 400;
@@ -95,7 +95,7 @@
 }
 
 #id_find_modal .modal_wrap .id_find_form .none_profile {
-	display: none;
+	/*display: none;*/
 	margin-bottom: 30px;
 	font-style: normal;
 	font-weight: 400;

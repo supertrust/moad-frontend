@@ -41,3 +41,8 @@ export type VerifyInputPropsType = {
     key: string;
     value: string;
 }
+
+export type FindIdProps = {
+    company_name: string,
+    company_phone_number: string,
+}

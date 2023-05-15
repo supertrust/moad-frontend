@@ -1,3 +1,8 @@
+export type GetAdvertisementsPropType = {
+    type?: "national_ad" | "spot_ad" | "fixed_ad";
+    status?: "proceeding" | "applying" | "end";
+}
+
 export interface IVehicle {
     created_at: null | string;
     deleted_at: null | string;

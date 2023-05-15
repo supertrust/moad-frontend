@@ -152,7 +152,7 @@ export default function MyInfoScreen() {
                               className={styles.company}
                               // onChange={handleChange}
                               // onBlur={handleBlur}
-                              // value={values.company_name}
+                              value={user?.company_name}
                               id="company_name"
                             />
                           </div>
@@ -170,7 +170,7 @@ export default function MyInfoScreen() {
                             className={styles.input}
                             // onChange={handleChange}
                             // onBlur={handleBlur}
-                            // value={values.company_phone_number}
+                            value={user?.company_phone_number}
                             id="company_phone_number"
                           />
                         </li>
@@ -187,7 +187,7 @@ export default function MyInfoScreen() {
                             name="employee_email"
                             // onChange={handleChange}
                             // onBlur={handleBlur}
-                            // value={values.employee_email}
+                            value={user?.employee_email}
                             className={styles.input}
                           />
                         </li>
@@ -200,7 +200,7 @@ export default function MyInfoScreen() {
                               name="employee_phone_number"
                               className={styles.input}
                               id="employee_phone_number"
-                            // value={values.employee_phone_number}
+                            value={user?.employee_phone_number}
                             // onChange={handleChange}
                             // onBlur={handleBlur}
                             />
@@ -215,7 +215,7 @@ export default function MyInfoScreen() {
                               name="business_registration_number"
                               className={styles.input}
                               id="business_registration_number"
-                            // value={values.business_registration_number}
+                            value={user?.business_registration_number}
                             // onChange={handleChange}
                             // onBlur={handleBlur}
                             />
@@ -248,6 +248,7 @@ export default function MyInfoScreen() {
                             type="text"
                             id="sector"
                             name="sector"
+                            value={user?.sector}
                             className={styles.input}
                           />
                         </li>

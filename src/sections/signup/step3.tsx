@@ -14,6 +14,7 @@ interface Step3Props {
     membershipInformation: MembershipInformation;
 }
 
+
 const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
     const { mutateAsync: verifyInput } = useVerifyInput();
     const { register } = useAuth();
@@ -97,20 +98,12 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
 
     const onSubmit = handleSubmit(async (props) => {
         try {
-            console.log('{...membershipInformation, ...props}', {...props.business_license} )
             await register({
                 ...membershipInformation,
-                ...props,
-                business_license: {
-                    lastModified: props.business_license.lastModified,
-                    name: props.business_license.name,
-                    size: props.business_license.size,
-                    type: props.business_license.type,
-                    webkitRelativePath: props.business_license.webkitRelativePath,
-                }
+                ...props
             });
-            // onNextStep();
-            // toast("User registered successfully", { type: "success" });
+            toast("User registered successfully", { type: "success" });
+            onNextStep();
         } catch (error: any) {
             toast(error?.message || "Something went wrong Please try again later", {
                 type: "error",

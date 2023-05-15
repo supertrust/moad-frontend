@@ -49,8 +49,9 @@ function AuthProvider({ children }: AuthProviderProps) {
     const register = useCallback(async (props: RegisterPropsType) => {
         try {
             const data = await _register(props);
-            localStorage.setItem('token', data.token);
-            checkAuth();
+            console.log('asdsad', data);
+            // localStorage.setItem('token', data.token);
+            // checkAuth();
         } catch (error) {
             //
         }

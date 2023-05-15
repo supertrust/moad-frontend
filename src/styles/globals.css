@@ -2135,3 +2135,112 @@ ul.pagination .page-item a:focus{
 		display: block
 	}
 }
+
+/* policypage css here */
+.bgnonr {
+	background-color: transparent !important;
+}
+.privacy-content {
+	padding: 23px 30px 43px 30px;
+}
+.content-terms{width:100%; float:left;}
+.policy-container .policy-title {
+	margin-bottom: 40px;
+}
+.policy-container .privacy-content ul li {
+	list-style: none;
+	margin-left: 0;
+	margin-right: 20px;
+}
+.policy-container .privacy-content ul li button.nav-link.active {
+	background: transparent;
+}
+.policy-container .policy-title span {
+	color: #2f48d1;
+	font-weight: 700;
+	font-size: 20px;
+	padding-right: 20px;
+}
+.policy-container .content {
+	background-color: #e1ecff;
+	border-top: solid 1px #a2a3a6;
+	padding: 40px 15px;
+	text-align: center;
+}
+.policy-container .content-table {
+	margin-top: 30px;
+}
+.policy-container .content-table .card {
+	border-radius: 0;
+	border-width: 0 1px 1px 0;
+	border-color: #999;
+}
+.policy-container .content-table .col:nth-child(3n + 1) .card {
+	border-left-width: 1px;
+}
+.policy-container .content-table .col:nth-child(1) .card,
+.policy-container .content-table .col:nth-child(2) .card,
+.policy-container .content-table .col:nth-child(3) .card {
+	border-top-width: 1px;
+}
+.policy-container .content-table .card .card-title {
+	margin-bottom: 0;
+	font-size: 15px;
+	padding: 5px 0;
+}
+.privacy-content ul {
+	margin-top: 15px;
+	float: left;
+	width: 100%;
+}
+.privacy-content ul li {
+	margin-bottom: 12px;
+	list-style: circle;
+	margin-left: 30px;
+}
+.privacy-content ul li ol li {
+	list-style-type: auto;
+	margin-bottom: 5px;
+}
+.table-cont {
+	padding-left: 10px;
+	float: left;
+	width: calc(100% - 10px);
+}
+.table-cont table {
+	margin-top: 15px;
+	text-align: center;
+}
+.table-cont table th {
+	background-color: #e1ecff;
+	padding: 15px;
+	border: solid 1px #999;
+}
+.table-cont table td {
+	padding: 3rem 1rem;
+	border: solid 1px #999;
+}
+.table-cont table.inner-table td {
+	padding: 20px;
+}
+.table-cont table.inner-table td table {
+	width: 100%;
+	border: 0;
+	margin: 0;
+}
+.table-cont table.inner-table td table td {
+	border: 0;
+	padding: 8px;
+	vertical-align: middle;
+}
+.policy-container {
+}
+.card-body li {
+    font-size: 14px;
+}
+.content-table .card-body:hover {
+    background: #2F48D1;
+}
+.content-table .card-body:hover a {
+  color: #fff;
+}

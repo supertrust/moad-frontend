@@ -1,6 +1,9 @@
-import { LoginForm,styles } from "@src/sections/login";
+import { LoginForm, styles,FindIdModel,FindPassModel } from "@src/sections/login";
+import { useState } from "react";
 
 export default function Login() {
+  const [findId, SetFindId] = useState(false);
+  const [findPass, SetFindPass] = useState(false);
   return (
     <main className="min-h-screen">
       <div id="login" className="login">
@@ -28,17 +31,19 @@ export default function Login() {
             <div className="link-wrap">
               <a className="link text">회원가입</a>
               <span className="bar text">|</span>
-              <div id="find_id_btn" className="link text">
+              <div onClick={() => SetFindId(true)} id="find_id_btn" className="link text">
                 아이디 찾기
               </div>
               <span className="bar text">|</span>
-              <div id="find_pw_btn" className="link text">
+              <div onClick={() => SetFindPass(true)} id="find_pw_btn" className="link text">
                 비밀번호 찾기
               </div>
             </div>
           </div>
         </div>
       </div>
+        {findId ? <FindIdModel SetFindId={SetFindId} /> : null}
+        {findPass ? <FindPassModel SetFindPass={SetFindPass} /> : null}
     </main>
   );
 }

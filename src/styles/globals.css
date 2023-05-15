@@ -839,6 +839,7 @@ a {
 
 #login .right .right-wrap {
   width: 380px;
+  cursor: pointer;
 }
 
 #login .right .right-wrap .title-wrap-login {
@@ -2394,4 +2395,18 @@ ul.pagination .page-item a:focus{
     border-radius: 50%;
     width: 26px;
     height: 26px;
+}
+
+.only-mb {
+	display: none
+}
+
+@media (max-width:768px) {
+	.only-pc {
+		display: none
+	}
+
+	.only-mb {
+		display: block
+	}
 }

@@ -2794,3 +2794,104 @@ ul.pagination .page-item a:focus {
   display: none;
 }
 
+#side_mb {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  overflow: auto;
+  margin: auto;
+  z-index: 101;
+  top: 60px;
+}
+
+#side_mb .side-content {
+  position: relative;
+  min-height: 800px;
+  height: 100%;
+}
+
+#side_mb .side-content .side-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 16px 15px 22px;
+  border-bottom: 1px solid #EBEDF4;
+}
+
+#side_mb .side-content .side-top .side-logo {
+  width: 115px;
+}
+
+#side_mb .side-content .side-menu-wrap {
+  margin-top: 10px;
+}
+
+#side_mb .side-content .side-menu-wrap .menu-wrap .list {
+  margin-bottom: 10px;
+}
+
+#side_mb .side-content .side-menu-wrap .menu-wrap .list .link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 8px;
+  padding: 16px 23px 15px;
+}
+
+#side_mb .side-content .side-menu-wrap .menu-wrap .list.center .link {
+  position: relative;
+}
+
+#side_mb .side-content .side-menu-wrap .menu-wrap .list.center.active .sub-wrap {
+  display: block;
+}
+
+#side_mb .side-content .side-menu-wrap .menu-wrap .list .sub-wrap .sub-list .sub-link {
+  padding: 10px 0 10px 59px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #373737;
+}
+
+#side_mb .side-content .side-menu-wrap .side-logout {
+  position: absolute;
+  bottom: 34px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  width: 234px;
+  height: 49px;
+  border: 1px solid #3754F0;
+  border-radius: 5px;
+}
+
+#side_mb .side-content .side-menu-wrap .side-logout .ic-logout {
+  display: block;
+  width: 24px;
+  height: 23px;
+  background: url('/images/ic-logout.png') no-repeat center center / cover;
+}
+
+#side_mb .side-content .side-menu-wrap .side-logout .text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  color: #3754F0;
+}
+
+.side-close {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url('/images/ic-close.png') no-repeat center center / cover;
+  cursor: pointer;
+}

@@ -1,15 +1,21 @@
 import {Button, Modal} from "react-bootstrap";
 import React, {useState} from "react";
+import {useRouter} from "next/router";
 
 interface Step1Props {
     onNextStep: () => void;
 }
 const Step1 = ({onNextStep}: Step1Props) => {
+    const router = useRouter();
     const [privacyPolicy, setPrivacyPolicy] = useState<boolean>(false)
     const [termsAndConditions, setTermsAndConditions] = useState<boolean>(false)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleBackButton = () => {
+        router.push("/login");
+    }
     return (
         <div className="step01 step-section">
            <div className="left">
@@ -25,7 +31,7 @@ const Step1 = ({onNextStep}: Step1Props) => {
                 </h1>
                 <div className="right-wrap">
                     <div className="right-content">
-                        <div className="back-btn"></div>
+                        <div onClick={handleBackButton} className="back-btn"></div>
                         <div className="step-title">
                             서비스 이용약관 및<br />
                             개인정보 이용약관 동의

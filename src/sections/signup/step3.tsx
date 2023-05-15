@@ -76,7 +76,6 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
                 return true;
             }),
     })
-    console.log('data', membershipInformation);
     const methods = useForm({
         defaultValues,
         resolver: yupResolver(RegisterSchema)
@@ -98,9 +97,20 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
 
     const onSubmit = handleSubmit(async (props) => {
         try {
-            await register({...membershipInformation, ...props});
-            onNextStep();
-            toast("User registered successfully", { type: "success" });
+            console.log('{...membershipInformation, ...props}', {...props.business_license} )
+            await register({
+                ...membershipInformation,
+                ...props,
+                business_license: {
+                    lastModified: props.business_license.lastModified,
+                    name: props.business_license.name,
+                    size: props.business_license.size,
+                    type: props.business_license.type,
+                    webkitRelativePath: props.business_license.webkitRelativePath,
+                }
+            });
+            // onNextStep();
+            // toast("User registered successfully", { type: "success" });
         } catch (error: any) {
             toast(error?.message || "Something went wrong Please try again later", {
                 type: "error",
@@ -283,10 +293,10 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
                                             className="company-file company-input"
                                             name="business_license"
                                             onChange={(event) => {
+                                                console.log('asdsad', event.target?.files[0]);
                                                 setValue(
                                                     "business_license",
-                                                    // @ts-ignore
-                                                    event.target?.files?.[0]
+                                                    event.target?.files[0]
                                                 );
                                             }}
                                         />

@@ -879,3 +879,7 @@ body .div{
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.active {
 	background: #2F48D1
 }
+
+.error{
+	color: red;
+}

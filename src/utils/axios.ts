@@ -1,14 +1,13 @@
 import Axios from 'axios';
 
 import { API_BASE_URL } from '@src/config';
-import { toast } from 'react-toastify';
 
 const axios = Axios.create({
     baseURL: API_BASE_URL,
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Accept-Language': 'en'
+        'Accept-Language': 'kr'
     },
 });
 
@@ -22,13 +21,12 @@ const handleError = (error: any) => {
         response_data: error.data || error.response.data,
     });
     const errorMessage = error?.response?.data?.message || error?.data?.message || 'Something went wrong!';
-    toast(errorMessage, { type: 'error' });
     return Promise.reject(errorMessage);
 };
 
 axios.interceptors.response.use(
     (res) => {
-        if (!(res.data.status === "success")) {
+        if (!(res.data.status === "success") || ((res.data.success !== undefined) && !res.data.success)) {
             return handleError(res);
         }
         return res;

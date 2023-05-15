@@ -75,7 +75,7 @@
     height: 64px;
     padding: 15px 20px;
     background: #ffffff;
-    border-bottom: none;
+    border-bottom: 1px solid #EBEDF4;
   }
 
   #inner_header .only-mb .header-mb .util-wrap .side-mb-btn {

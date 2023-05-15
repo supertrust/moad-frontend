@@ -1,0 +1,293 @@
+
+.my_info_content {
+    padding: 30px 20px;
+  }
+  .my_info_content .profile_wrap,.my_info_content .title_wraps_1{
+    background-color: #fff;
+  }
+  .form_wrap {
+    max-width: 855px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .title_wraps_1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 30px;
+    border-bottom: 1px solid #ebedf4;
+  }
+  
+  .profile_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 30px;
+    padding: 20px 22px;
+  }
+  
+  .profile_img {
+    position: relative;
+    width: 72px;
+    height: 72px;
+  }
+  
+  .user_photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .input_file {
+    display: none;
+  }
+  
+  .photo_btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: block;
+    border: none;
+    width: 20px;
+    height: 20px;
+    background: url("/images/ic-change.png") no-repeat center center / cover;
+    cursor: pointer;
+  }
+  
+  .profile_text {}
+  
+  .company_name {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+    width: 100%;
+  }
+  .modify_btn {
+    width: 92px;
+    margin: 37px auto 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 35px;
+    color: #ffffff;
+    background: #2F48D1;
+    border-radius: 5px;
+    display: inherit;
+    cursor: pointer;
+  }
+  .correction {
+    color: #333333;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+  }
+  
+  .change_password {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 15px 30px;
+    background: #ffffff;
+    border: 1px solid #ebedf4;
+    border-radius: 5px;
+  }
+  
+  .my_information {
+    background: #ffffff;
+    border: 1px solid #ebedf4;
+    border-radius: 5px;
+  }
+  
+  .my_infos {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .my_information .title {
+    padding: 15px 30px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+    border-bottom: 1px solid #ebedf4;
+  }
+  
+  .information_wrap {
+    padding: 20px 30px 30px;
+    display: block;
+    position: relative;
+  }
+  
+  .list_wrap {}
+  
+  .lists {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  #company_name {
+    display: block;
+    max-width: 380px;
+    width: 100%;
+    padding: 13px 16px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #2c324c;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+  }
+  
+  .desc {
+    width: 231px;
+    margin: 20px 0;
+    flex: 0 0 auto;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #2c324c;
+  }
+  
+  .point {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #f24747;
+  }
+  
+  .information_wrap input {
+    display: block;
+    width: 100%;
+    max-width: 380px;
+    padding: 13px 16px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #222222;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+  }
+  
+  .list_input {
+    max-width: 380px;
+    width: 100%;
+  }
+  
+  #modify_btn {
+    width: 92px;
+    margin: 37px auto 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 35px;
+    color: #ffffff;
+    background: #2f48d1;
+    border-radius: 5px;
+    display: inherit;
+    cursor: pointer;
+  }
+  
+  .change_password-content {
+    padding: 40px 0;
+  }
+  
+  .form_wraps {
+    width: 420px;
+    margin: 0 auto;
+    padding: 50px 20px 30px;
+    background-color: #ffffff;
+    border: 1px solid #ebedf4;
+    border-radius: 5px;
+  }
+  
+  .change_password_wrap .title_wrap .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+  }
+  
+  .sub_text {
+    margin-top: 4px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    color: #999999;
+  }
+  
+  .list_wrap_11 .list_11 {
+    display: block;
+    position: relative;
+  }
+  
+  .input_pass {
+    width: 100%;
+    display: block;
+    padding: 13px 16px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #222222;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+  }
+  
+  .eyes {
+    position: absolute;
+    right: 16px;
+    top: 44px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url("/images/ic-hide.png") no-repeat center center / cover;
+    cursor: pointer;
+  }
+  
+  .btn_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+    margin-top: 67px;
+  }
+  
+  .cancel_btn {
+    line-height: 33px;
+    color: #2f48d1;
+    border: 1px solid #2f48d1;
+  }
+  
+  .btns {
+    width: 92px;
+    border-radius: 5px;
+    line-height: 35px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+  }
+  
+  .modify_btn {
+    color: #ffffff;
+    background-color: #2f48d1;
+    cursor: pointer;
+  }
+  
+  .btnss {
+    width: 92px;
+    border-radius: 5px;
+    line-height: 35px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+  }
+  

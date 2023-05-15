@@ -30,6 +30,7 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
         employee_email: "",
         sector: "",
         business_license: null,
+        verify_business_registration_number: null,
     }
 
     const RegisterSchema = Yup.object({
@@ -46,6 +47,7 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
         business_registration_number: Yup.string()
             .required("Business Registration Number is required")
             .matches(/^[0-9]{10}$/, "Should be 10 digits"),
+        verify_business_registration_number: Yup.boolean().required('Please verify business registration number'),
         employee_email: Yup.string()
             .email("Invalid email")
             .required("Employee Email is required"),
@@ -84,6 +86,7 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
     const _verifyInput = async (key: string, value: string) => {
         await verifyInput({ key, value }, {
             onSuccess: () => {
+                setValue('verify_business_registration_number', true);
                 toast.success("국세청에 등록된 사업자등록번호입니다.");
             },
             onError: (error) => {
@@ -251,6 +254,11 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
                                     >
                                         확인
                                     </button>
+                                    {errors.verify_business_registration_number && (
+                                        <span className="text-danger">
+                                            {errors.verify_business_registration_number.message}
+                                        </span>
+                                    )}
                                 </div>
                                 <div className="input-wrap business-license">
                                     <div className="input-text">

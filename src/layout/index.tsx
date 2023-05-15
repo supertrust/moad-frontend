@@ -15,7 +15,7 @@ function Layout(props: LayoutProps) {
 
   return (
     <div id="dashboard" className="dashboard page">
-      <div className="sidebar_menu">
+      <div className="sidebar_menu only-pc">
         <Sidebar msg={setMsg} />
       </div>
       <div className="main_content">

@@ -15,9 +15,9 @@ export default function Login() {
           </div>
         </div>
         <div className="right">
-          {/* <h1 className="logo-mb noly-mb">
-          <img src="assets/images/icons/logo-mb.svg" alt="" />
-        </h1> */}
+          <h1 className="logo-mb noly-mb">
+            <img src="assets/images/icons/logo-mb.svg" alt="" />
+          </h1>
           <div className="right-wrap">
             <div className="title-wrap-login">
               <div className="title">
@@ -47,4 +47,3 @@ export default function Login() {
     </main>
   );
 }
-

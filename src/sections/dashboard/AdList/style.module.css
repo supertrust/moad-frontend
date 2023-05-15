@@ -195,4 +195,17 @@
         font-size: 12px;
         line-height: 40px;
     }
+
+    .tabMenu {
+        column-gap: 8px;
+    }
+
+    .menuHd {
+        padding: 12px;
+    }
+
+    .tabTitle {
+        font-size: 12px;
+        line-height: 140%;
+    }
 }

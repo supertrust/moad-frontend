@@ -21,7 +21,7 @@ export default function AdListModule() {
         <div className={styles.menuHd}>
           <div className={styles.tabMenu}>
             <div className={styles.tabTitle}>
-              <span>entire</span>
+              <span>Entire</span>
             </div>
             <div className={styles.tabTitle}>
               <span>Proceeding</span>
@@ -30,7 +30,7 @@ export default function AdListModule() {
               <span>Applying</span>
             </div>
             <div className={styles.tabTitle}>
-              <span>end</span>
+              <span>End</span>
             </div>
           </div>
           <div className={styles.rightMenu}>

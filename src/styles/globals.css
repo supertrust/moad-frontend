@@ -55,7 +55,6 @@ ul {
   background-color: #f5f7fb;
   width: calc(100% - 305px);
   padding-top: 120px;
-  padding-bottom: 60px;
   margin-left: 305px;
 }
 
@@ -254,8 +253,7 @@ button#dropdown-basic {
 /* footer-css-start */
 
 #inner_footer {
-  width: calc(100% - 305px);
-  position: fixed;
+  width: 100%;
   bottom: 0;
   right: 0;
   padding: 15px;
@@ -2795,3 +2793,4 @@ ul.pagination .page-item a:focus {
 .only-mb {
   display: none;
 }
+

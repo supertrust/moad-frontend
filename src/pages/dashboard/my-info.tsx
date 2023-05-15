@@ -250,9 +250,6 @@ export default function MyInfoScreen() {
                             id="sector"
                             name="sector"
                             className="input"
-                          // value={values.sector}
-                          // onChange={handleChange}
-                          // onBlur={handleBlur}
                           />
                         </li>
                       </ul>

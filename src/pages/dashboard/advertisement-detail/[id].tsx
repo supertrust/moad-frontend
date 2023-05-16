@@ -12,9 +12,15 @@ import 'swiper/css/autoplay';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Center } from '@react-three/drei';
 import TruckModel from '@src/models/truck';
+import { useRouter } from 'next/router';
+import { useGetAdvertisementDetail } from '@src/apis/advertisement';
 
 function AdvertisementDetailScreen() {
+  const { query } = useRouter();
+  const advertisementId = query.id as string;
+  const { data: advertisement } = useGetAdvertisementDetail({ id: advertisementId });
   const title = '신제품 홍보 출시기념';
+
   const mockup_arr = [
     {
       'badge_text': '옆면',
@@ -38,19 +44,19 @@ function AdvertisementDetailScreen() {
   const ad_detail_arr = [
     {
       'title': '광고이름',
-      'value': '이카루스 서비스 오픈 출시기념'
+      'value': advertisement?.ad_name
     },
     {
       'title': '광고기간',
-      'value': '2023.03.01 ~ 2023.05.31 (3개월)'
+      'value': (advertisement?.start_date && advertisement?.end_date) ? `${advertisement?.start_date} ~ ${advertisement?.end_date} (${advertisement.ad_period}개월)` : "--"
     },
     {
       'title': '광고유형',
-      'value': '고정형'
+      'value': advertisement?.type.replace("_"," ").toUpperCase()
     },
     {
       'title': '광고상태',
-      'value': '광고검수중'
+      'value': advertisement?.status
     },
     {
       'title': '광고지역',
@@ -58,7 +64,7 @@ function AdvertisementDetailScreen() {
     },
     {
       'title': '광고금액',
-      'value': '2,100,000원'
+      'value': `${advertisement?.amount}원`
     }];
   const [index, setIndex] = useState(0);
   const handleSelect = (selectedIndex: any, e: any) => {

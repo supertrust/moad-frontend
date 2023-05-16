@@ -1,0 +1,168 @@
+#id_find_modal {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(34, 34, 34, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+#id_find_modal .modal_wrap {
+	width: 340px;
+	padding: 20px;
+	background: #FFFFFF;
+	border-radius: 10px
+}
+
+#id_find_modal .modal_wrap .modal_title {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 29px;
+	color: #222222
+}
+
+#id_find_modal .modal_wrap .modal_text {
+	margin: 10px 0 30px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #222222
+}
+
+#id_find_modal .modal_wrap .id_find_form .input_content {
+	margin-bottom: 30px
+}
+
+#id_find_modal .modal_wrap .id_find_form .input_content .input_wrap:first-child {
+	margin-bottom: 12px
+}
+
+#id_find_modal .modal_wrap .id_find_form .input_content .input_wrap .input_text {
+	margin-bottom: 10px;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 20px;
+	color: #222222
+}
+
+#id_find_modal .modal_wrap .id_find_form .input_content .input_wrap .input_text .essential {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 20px;
+	color: #222222;
+	color: #F24747
+}
+
+#id_find_modal .modal_wrap .id_find_form .input_content .input_wrap .input {
+	display: block;
+	width: 100%;
+	padding: 5px 16px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	display: flex;
+	color: #222222;
+	background: #FFFFFF;
+	border: 1px solid #EEEEEE;
+	border-radius: 4px
+}
+
+#id_find_modal .modal_wrap .id_find_form .input_content .input_wrap .input::placeholder {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #999999
+}
+
+#id_find_modal .modal_wrap .id_find_form .id_message {
+	display: none;
+	margin-bottom: 30px;
+	text-align: center;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #222222
+}
+
+#id_find_modal .modal_wrap .id_find_form .id_message .user_mail {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #6191F2
+}
+
+#id_find_modal .modal_wrap .id_find_form .none_profile {
+	display: none;
+	margin-bottom: 30px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	color: #373737
+}
+
+#id_find_modal .modal_wrap .id_find_form .none_profile .text {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	color: #F24747
+}
+
+#id_find_modal .modal_wrap .id_find_form .btn_wrap .btns {
+	width: 100%;
+	display: block;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 4px;
+	cursor: pointer
+}
+
+#id_find_modal .modal_wrap .id_find_form .btn_wrap .sign_up_link {
+	display: none;
+	margin-bottom: 10px;
+	background-color: #6191F2;
+	color: #ffffff
+}
+
+#id_find_modal .modal_wrap .id_find_form .btn_wrap .id_model_find {
+	margin-bottom: 10px;
+	color: #ffffff;
+	background-color: #0868FD
+}
+
+#id_find_modal .modal_wrap .id_find_form .btn_wrap .id_model_find.disabled {
+	background-color: #6191F2;
+	cursor: auto;
+	pointer-events: none
+}
+
+#id_find_modal .modal_wrap .id_find_form .btn_wrap .id_model_close {
+	border: 1px solid #0868FD;
+	color: #0868FD
+}
+
+@media (max-width:768px) {
+	#id_find_modal {
+		padding: 20px
+	}
+
+	#id_find_modal .modal_wrap {
+		width: 100%
+	}
+
+	.only-pc {
+		display: none
+	}
+
+	.only-mb {
+		display: block
+	}
+}

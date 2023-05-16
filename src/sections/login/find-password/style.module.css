@@ -1,0 +1,305 @@
+#pw_find_modal {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(34, 34, 34, 0.6)
+}
+
+#pw_find_modal .pw_find_form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%
+}
+#pw_find_modal .pw_find_form .model_wrap {
+	width: 340px;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: #ffffff;
+	display: none;
+}
+
+#pw_find_modal .pw_find_form .model_wrap.active {
+	display: block;	
+}
+#pw_find_modal .pw_find_form .model_wrap .model_title {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 29px;
+	color: #222222
+}
+
+#pw_find_modal .pw_find_form .model_wrap .modal_text {
+	margin: 10px 0 30px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #222222
+}
+
+#pw_find_modal .pw_find_form .model_wrap .modal_text .id_find_link {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	text-decoration-line: underline;
+	color: #0868FD;
+	cursor: pointer
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap {
+	margin-bottom: 12px
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap:last-child {
+	margin-bottom: 0
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap input[type="number"]::-webkit-outer-spin-button,
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap .input_text {
+	margin-bottom: 10px;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 20px;
+	color: #222222
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap .input_text .essential {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 20px;
+	color: #F24747
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap .pw_find_email02 {
+	margin-bottom: 23px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	color: #373737
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap .error_text {
+	display: none;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	text-align: right;
+	color: #F24747
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap .input {
+	width: 100%;
+	display: block;
+	padding: 0 16px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 30px;
+	color: #222222;
+	background: #FFFFFF;
+	border: 1px solid #EEEEEE;
+	border-radius: 4px
+}
+
+#pw_find_modal .pw_find_form .model_wrap .input_content .input_wrap .input::placeholder {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 30px;
+	color: #999999
+}
+
+#pw_find_modal .pw_find_form .model_wrap .btn_wrap {
+	margin-top: 30px
+}
+
+#pw_find_modal .pw_find_form .model_wrap .btn_wrap .btns {
+	display: block;
+	width: 100%;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 4px;
+	cursor: pointer
+}
+
+#pw_find_modal .pw_find_form .model_wrap .btn_wrap .confirm_btn {
+	margin-bottom: 10px;
+	background-color: #0868FD;
+	color: #ffffff
+}
+
+#pw_find_modal .pw_find_form .model_wrap .btn_wrap .confirm_btn.disabled {
+	cursor: auto;
+	pointer-events: none;
+	background-color: #6191F2
+}
+
+#pw_find_modal .pw_find_form .model_wrap .btn_wrap .cancel_btn {
+	border: 1px solid #6191F2;
+	color: #6191F2
+}
+
+#pw_find_modal .pw_find_form .step01_modal .input_content .input_wrap {
+	position: relative
+}
+
+#pw_find_modal .pw_find_form .step01_modal .input_content .input_wrap .input.active {
+	border: 1px solid #F24747
+}
+
+#pw_find_modal .pw_find_form .step01_modal .input_content .input_wrap .error_text {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	color: #F24747;
+	text-align: left
+}
+
+#pw_find_modal .pw_find_form .step01_modal .input_content .input_wrap .error_text.active {
+	display: block
+}
+
+#pw_find_modal .pw_find_form .step02_modal {
+	display: none
+}
+
+#pw_find_modal .pw_find_form .step02_modal .input_content .input_wrap .certification_wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center
+}
+
+#pw_find_modal .pw_find_form .step02_modal .input_content .input_wrap .certification_wrap .certification_email {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px
+}
+
+#pw_find_modal .pw_find_form .step02_modal .input_content .input_wrap .certification_wrap .certification_btn {
+	width: 80px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 30px;
+	color: #FFFFFF;
+	text-align: center;
+	background: #6191F2;
+	border-radius: 4px
+}
+
+#pw_find_modal .pw_find_form .step02_modal .input_content .input_wrap .certification_num {
+	position: relative
+}
+
+#pw_find_modal .pw_find_form .step02_modal .input_content .input_wrap .certification_num input[type="number"]::-webkit-outer-spin-button,
+#pw_find_modal .pw_find_form .step02_modal .input_content .input_wrap .certification_num input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0
+}
+
+#pw_find_modal .pw_find_form .step02_modal .input_content .input_wrap .certification_num .input-num {
+	width: 100%;
+	display: block;
+	padding: 0 16px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 30px;
+	color: #222222;
+	background: #FFFFFF;
+	border: 1px solid #EEEEEE;
+	border-radius: 4px
+}
+
+#pw_find_modal .pw_find_form .step02_modal .input_content .input_wrap .certification_num .certification_time {
+	position: absolute;
+	right: 11px;
+	top: 5px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #0868FD
+}
+
+#pw_find_modal .pw_find_form .step03_modal {
+	display: none
+}
+
+#pw_find_modal .pw_find_form .step03_modal .input_content .input_wrap {
+	position: relative
+}
+
+#pw_find_modal .pw_find_form .step03_modal .input_content .input_wrap .input.active {
+	border: 1px solid #F24747
+}
+
+#pw_find_modal .pw_find_form .step03_modal .input_content .input_wrap .pw-error_text {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	text-align: left;
+	color: #999999
+}
+
+#pw_find_modal .pw_find_form .step03_modal .input_content .input_wrap .pw-error_text.active {
+	color: #F24747
+}
+
+#pw_find_modal .pw_find_form .step03_modal .input_content .input_wrap .error_text {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	text-align: left;
+	color: #F24747
+}
+
+#pw_find_modal .pw_find_form .step03_modal .input_content .input_wrap .error_text.active {
+	display: block
+}
+
+#pw_find_modal .pw_find_form .step03_modal .input_content .input_wrap .icon {
+	position: absolute;
+	right: 16px;
+	top: 38px;
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url("/images/login/ic-hide.png") no-repeat center center / cover;
+	cursor: pointer
+}
+
+#pw_find_modal .pw_find_form .step03_modal .input_content .input_wrap .icon.active {
+	background: url("/images/login/ic-show.png") no-repeat center center / cover
+}
+
+@media (max-width:768px) {
+	#pw_find_modal {
+		padding: 20px
+	}
+
+	#pw_find_modal .pw_find_form .model-wrap {
+		width: 100%
+	}
+
+	#pw_find_modal .pw_find_form .step02_modal {
+		display: none
+	}
+}

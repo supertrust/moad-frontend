@@ -6,6 +6,7 @@ import useAuth from "@src/hooks/useAuth";
 import { useUpdateUserInfo } from "@src/apis/user";
 import Button from "@src/components/Button";
 import { FormProvider, RHFInput, Yup, useForm, yupResolver } from '@src/components/Form';
+import {styles} from "@src/sections/my-info";
 
 const defaultValues = {
   company_name: "",
@@ -91,92 +92,92 @@ export default function MyInfoScreen() {
     <>
       <Row>
         <Col md="12">
-          <div className="my-info-content">
+          <div className={styles.my_info_content}>
             <FormProvider methods={methods}>
-              <div className="form-wrap">
-                <div className="profile">
-                  <div className="title-wraps-1">
-                    <div className="title">
+              <div className={styles.form_wrap}>
+                <div className={styles.profile}>
+                  <div className={styles.title_wraps_1}>
+                    <div className={styles.title}>
                       <span>Profile</span>
                     </div>
                     <a href="#">
                       <span>to withdraw</span>
                     </a>
                   </div>
-                  <div className="profile-wrap">
-                    <div className="profile-img">
-                      <div className="user-photo">
+                  <div className={styles.profile_wrap}>
+                    <div className={styles.profile_img}>
+                      <div className={styles.user_photo}>
                         <img
                           src="https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/my-info/img-default.png"
                           alt=""
                         />
                       </div>
-                      <input type="file" id="input_file" className="input-file" />
+                      <input type="file" id="input_file" className={styles.input_file} />
                       <button
                         type="button"
                         id="photo_btn"
-                        className="photo-btn"
+                        className={styles.photo_btn}
                       />
                     </div>
-                    <div className="profile-text">
-                      <div className="company-name">
+                    <div className={styles.profile_text}>
+                      <div className={styles.company_name}>
                         <span>Must Fintech</span>
                       </div>
-                      <div className="email">{email}</div>
+                      <div className={styles.email}>{email}</div>
                     </div>
                   </div>
-                  <div className="change-password">
-                    <div className="title">
+                  <div className={styles.change_password}>
+                    <div className={styles.title}>
                       <span>Change Password</span>
                     </div>
                     <span>
-                      <Link href={"/change-password"} className="correction">
+                      <Link href={"/change-password"} className={styles.correction}>
                         correction
                       </Link>
                     </span>
                   </div>
-                  <div className="my-information">
-                    <div className="title">
-                      <span className="my-infos">My Info</span>
+                  <div className={styles.my_information}>
+                    <div className={styles.title}>
+                      <span className={styles.my_infos}>My Info</span>
                     </div>
-                    <div className="information-wrap">
-                      <ul className="list-wrap">
-                        <li className="lists">
-                          <div className="desc">
+                    <div className={styles.information_wrap}>
+                      <ul className={styles.list_wrap}>
+                        <li className={styles.lists}>
+                          <div className={styles.desc}>
                             <span>Company Name</span>
                           </div>
-                          <div className="company-name text">
+                          <div className={`${styles.company_name} ${styles.text}`}>
                             <input
                               type="text"
-                              className="company"
+                              className={styles.company}
                               // onChange={handleChange}
                               // onBlur={handleBlur}
-                              // value={values.company_name}
+                              value={user?.company_name}
                               id="company_name"
                             />
                           </div>
                         </li>
-                        <li className="lists">
-                          <div className="desc">
+                        <li className={styles.lists}>
+                          <div className={styles.desc}>
                             <span>Company phone number </span>
-                            <span className="point">
+                            <span className={styles.point}>
                               <span>*</span>
                             </span>
                           </div>
                           <input
                             type="number"
                             name="company_phone_number"
-                            className="input"
+                            className={styles.input}
                             // onChange={handleChange}
                             // onBlur={handleBlur}
-                            // value={values.company_phone_number}
+                            value={user?.company_phone_number}
                             id="company_phone_number"
                           />
                         </li>
-                        <li className="lists">
-                          <div className="desc">
+                        <li className={styles.lists}>
+                          <div className={styles.desc}>
                             <span>Contact Email (Invoice Issuance) </span>
-                            <span className="point">
+                            <span className={styles.point}>
                               <span>*</span>
                             </span>
                           </div>
@@ -186,51 +187,49 @@ export default function MyInfoScreen() {
                             name="employee_email"
                             // onChange={handleChange}
                             // onBlur={handleBlur}
-                            // value={values.employee_email}
-                            className="input"
+                            value={user?.employee_email}
+                            className={styles.input}
                           />
                         </li>
-                        <li className="lists">
-                          <div className="desc">
+                        <li className={styles.lists}>
+                          <div className={styles.desc}>
                             <span>Employee Phone Number</span>
                           </div>
-                          <div className="text">
                             <input
                               type="number"
                               name="employee_phone_number"
-                              className="input"
+                              className={styles.input}
                               id="employee_phone_number"
-                            // value={values.employee_phone_number}
+                            value={user?.employee_phone_number}
                             // onChange={handleChange}
                             // onBlur={handleBlur}
                             />
-                          </div>
                         </li>
-                        <li className="lists">
-                          <div className="desc">
+                        <li className={styles.lists}>
+                          <div className={styles.desc}>
                             <span>Company Registration Number</span>
                           </div>
-                          <div className="company-name text">
+                          <div className={`${styles.company_name} ${styles.text}`}>
                             <input
                               type="number"
                               name="business_registration_number"
-                              className="input"
+                              className={styles.input}
                               id="business_registration_number"
-                            // value={values.business_registration_number}
+                            value={user?.business_registration_number}
                             // onChange={handleChange}
                             // onBlur={handleBlur}
                             />
                           </div>
                         </li>
-                        <li className="lists">
-                          <div className="desc">
+                        <li className={styles.lists}>
+                          <div className={styles.desc}>
                             <span>Bussiness License</span>
                           </div>
                           <input
                             type="file"
                             id="business_license"
                             name="business_license"
-                            className="input"
+                            className={styles.input}
                             onChange={(event) => {
                               console.log(event.target.files);
                               setValue(
@@ -241,25 +240,23 @@ export default function MyInfoScreen() {
                             }}
                           />
                         </li>
-                        <li className="lists">
-                          <div className="desc">
+                        <li className={styles.lists}>
+                          <div className={styles.desc}>
                             <span>Sectors</span>
                           </div>
                           <input
                             type="text"
                             id="sector"
                             name="sector"
-                            className="input"
-                          // value={values.sector}
-                          // onChange={handleChange}
-                          // onBlur={handleBlur}
+                            value={user?.sector}
+                            className={styles.input}
                           />
                         </li>
                       </ul>
                       <Button
                         loading={isSubmitting}
                         type="submit"
-                        className="modify-btn btnss"
+                        className={`${styles.modify_btn} ${styles.btnss}`}
                         onClick={onSubmit}
                       >
                         Modifications completed

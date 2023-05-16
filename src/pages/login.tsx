@@ -1,7 +1,10 @@
-import { LoginForm,styles } from "@src/sections/login";
+import { LoginForm, styles,FindIdModel,FindPassModel } from "@src/sections/login";
+import { useState } from "react";
 import {useRouter} from "next/router";
 
 export default function Login() {
+  const [findId, SetFindId] = useState(false);
+  const [findPass, SetFindPass] = useState(false);
   const router = useRouter();
   const handleSignup = () => {
     router.push("/signup");
@@ -18,9 +21,9 @@ export default function Login() {
           </div>
         </div>
         <div className="right">
-          {/* <h1 className="logo-mb noly-mb">
-          <img src="assets/images/icons/logo-mb.svg" alt="" />
-        </h1> */}
+          <h1 className="logo-mb noly-mb">
+            <img src="assets/images/icons/logo-mb.svg" alt="" />
+          </h1>
           <div className="right-wrap">
             <div className="title-wrap-login">
               <div className="title">
@@ -34,18 +37,19 @@ export default function Login() {
             <div className="link-wrap">
               <a href={'#'} className="link text" onClick={handleSignup}>회원가입</a>
               <span className="bar text">|</span>
-              <div id="find_id_btn" className="link text">
+              <div onClick={() => SetFindId(true)} id="find_id_btn" className="link text">
                 아이디 찾기
               </div>
               <span className="bar text">|</span>
-              <div id="find_pw_btn" className="link text">
+              <div onClick={() => SetFindPass(true)} id="find_pw_btn" className="link text">
                 비밀번호 찾기
               </div>
             </div>
           </div>
         </div>
       </div>
+        {findId ? <FindIdModel SetFindId={SetFindId} /> : null}
+        {findPass ? <FindPassModel SetFindPass={SetFindPass} /> : null}
     </main>
   );
 }
-

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Pagination } from "react-bootstrap";
 import AdModel from "../AdModel/AdModel";
 import styles from './style.module.css'
 import { useGetAdvertisements } from "@src/apis/advertisement";
@@ -99,6 +99,11 @@ export default function AdListModule() {
               ))}
             </ul>
           </div>
+          <Pagination className={styles.adlistPagination}>
+              <Pagination.Prev className="prev-btn" />
+              <Pagination.Item>{1}</Pagination.Item>
+              <Pagination.Next className="next-btn" />
+            </Pagination>
         </div>
       </div>
     </>

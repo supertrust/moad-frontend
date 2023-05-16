@@ -1,9 +1,15 @@
 import { LoginForm, styles,FindIdModel,FindPassModel } from "@src/sections/login";
 import { useState } from "react";
+import {useRouter} from "next/router";
 
 export default function Login() {
   const [findId, SetFindId] = useState(false);
   const [findPass, SetFindPass] = useState(false);
+  const router = useRouter();
+  const handleSignup = () => {
+    router.push("/signup");
+  }
+
   return (
     <main className="min-h-screen">
       <div id="login" className="login">
@@ -29,7 +35,7 @@ export default function Login() {
             </div>
             <LoginForm />
             <div className="link-wrap">
-              <a className="link text">회원가입</a>
+              <a href={'#'} className="link text" onClick={handleSignup}>회원가입</a>
               <span className="bar text">|</span>
               <div onClick={() => SetFindId(true)} id="find_id_btn" className="link text">
                 아이디 찾기

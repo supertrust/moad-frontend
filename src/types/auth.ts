@@ -1,4 +1,5 @@
 import { IUser } from "./user";
+import {File} from "buffer";
 
 export type LoginPropsType = {
     email: string;
@@ -23,8 +24,8 @@ export type RegisterPropsType = {
     employee_name: string;
     employee_phone_number: string;
     employee_email: string;
-    sector: string;
-    business_license: null | File;
+    sector: string | undefined;
+    business_license: File;
 }
 
 export type AuthContextType = {

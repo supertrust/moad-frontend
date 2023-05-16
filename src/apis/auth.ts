@@ -15,7 +15,14 @@ export const useLogin = () => useMutation<ILoginResponse, string, LoginPropsType
 });
 
 export const useRegister = () => useMutation<IRegisterResponse, string, RegisterPropsType>({
-    mutationFn: async (props) => (await axios.post("/api/register", props)).data
+    mutationFn: async (props) => {
+        const {business_license, ...rest} = props;
+        const formData = new FormData();
+        Object.entries(props).forEach(([key, value]) => formData.append(key, value as string | Blob));
+        return (await axios.post("/api/register", formData, {
+            headers: { 'content-type': 'multipart/form-data' }
+        })).data
+    }
 });
 
 export const useLogout = () => useMutation<void, string>({

@@ -1,10 +1,15 @@
 import axios from "@src/utils/axios";
-import { GetAdvertisementsPropType, IAdvertisement, IOperatingArea, IVehicle, SaveAdvertisementType } from "@src/types/advertisement";
+import { GetAdvertisementDetailPropType, GetAdvertisementsPropType, IAdvertisement, IOperatingArea, IVehicle, SaveAdvertisementType } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) => useQuery<IAdvertisement[], string>({
     queryKey: ["advertisements", ...Object.values(props)],
     queryFn: async () => (await axios.get("/api/get-advertisement", { params: props })).data.data
+})
+
+export const useGetAdvertisementDetail = (props: GetAdvertisementDetailPropType) => useQuery<IAdvertisement, string>({
+    queryKey: ["advertisement-detail", props.id],
+    queryFn: async () => (await axios.get("/api/get-advertisement", { params: { id: props.id } })).data.data?.[0]
 })
 
 export const useGetVehicles = () => useQuery<IVehicle[], string>({

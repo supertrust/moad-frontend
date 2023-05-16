@@ -1,8 +1,14 @@
+export type AdTypesType = "national_ad" | "spot_ad" | "fixed_ad";
+export type AdStatusesType = "proceeding" | "applying" | "end";
+
 export type GetAdvertisementsPropType = {
-    type?: "national_ad" | "spot_ad" | "fixed_ad";
-    status?: "proceeding" | "applying" | "end";
+    type?: AdTypesType;
+    status?: AdStatusesType;
 }
 
+export type GetAdvertisementDetailPropType = {
+    id: string;
+}
 export interface IVehicle {
     created_at: null | string;
     deleted_at: null | string;

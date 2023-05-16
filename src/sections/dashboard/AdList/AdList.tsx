@@ -77,7 +77,7 @@ export default function AdListModule() {
               <div className={styles.gridBox}>ad name</div>
               <div className={styles.gridBox}>No of vehicles</div>
               <div className={styles.gridBox}>Period</div>
-              <div className={`${styles.statusWrap} ${styles.gridBox}`}>Situation</div>
+              <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div>
             </div>
           </div>
           <div className="tab-content all-wrap on">
@@ -92,7 +92,7 @@ export default function AdListModule() {
                     <div className={styles.gridBox}>{item.ad_name}</div>
                     <div className={styles.gridBox}>{"1/120"}</div>
                     <div className={styles.gridBox}>{(item.start_date && item.start_date) ? `${item.start_date} ~ ${item.end_date}` : "--"}</div>
-                    <div className={`${styles.statusWrap} ${styles.gridBox}`}>situation</div>
+                    <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div>
                     <i className="only-mb ic-arrow-right"></i>
                   </a>
                 </li>

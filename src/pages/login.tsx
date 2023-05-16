@@ -49,7 +49,7 @@ export default function Login() {
         </div>
       </div>
         {findId ? <FindIdModel SetFindId={SetFindId} /> : null}
-        {findPass ? <FindPassModel SetFindPass={SetFindPass} /> : null}
+        {findPass ? <FindPassModel setFindPass={SetFindPass} setFindId={SetFindId} /> : null}
     </main>
   );
 }

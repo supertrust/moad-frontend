@@ -24,7 +24,6 @@
 }
 
 .adContents {
-    height: 560px;
     background: #ffffff;
     box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
     border-radius: 5px;
@@ -179,6 +178,10 @@
     .grid {
         grid-template-columns: 1fr 99px 235px;
     }
+
+    .gridBox {
+        line-height: 20px;
+    }
 }
 
 @media screen and (max-width: 1024px) {
@@ -187,7 +190,7 @@
     }
 
     .grid {
-        grid-template-columns: 1fr 75px 116px;
+        grid-template-columns: 1fr 110px 185px;
     }
 
     .gridBox {

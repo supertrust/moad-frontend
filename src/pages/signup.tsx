@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import {Step1, Step2, Step3, Step4} from "@src/sections/signup";
 
-export interface MembershipInformation {
+export type MembershipInformation = {
   email: string;
   password: string;
   confirm_password: string;

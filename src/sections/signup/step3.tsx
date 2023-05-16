@@ -14,6 +14,61 @@ interface Step3Props {
     membershipInformation: MembershipInformation;
 }
 
+const defaultValues = {
+    company_name: "",
+    company_phone_number: "",
+    business_registration_number: "",
+    employee_name: "",
+    employee_phone_number: "",
+    employee_email: "",
+    sector: "",
+    business_license: null,
+    verify_business_registration_number: null,
+}
+
+const RegisterSchema = Yup.object({
+    company_name: Yup.string().required("Company Name is required"),
+    employee_name: Yup.string()
+        .required("Employee Name is required")
+        .max(10, "The employee name must not be greater than 10 characters."),
+    company_phone_number: Yup.string()
+        .required("Company Phone is required")
+        .matches(/^[0-9]{11}$/, "Should be 11 digits"),
+    employee_phone_number: Yup.string()
+        .required("Employee Phone is required")
+        .matches(/^[0-9]{11}$/, "Should be 11 digits"),
+    business_registration_number: Yup.string()
+        .required("Business Registration Number is required")
+        .matches(/^[0-9]{10}$/, "Should be 10 digits"),
+    verify_business_registration_number: Yup.boolean().required('Please verify business registration number'),
+    employee_email: Yup.string()
+        .email("Invalid email")
+        .required("Employee Email is required"),
+    business_license: Yup.mixed()
+        .required("Please upload your business license.")
+        .test(
+            "fileFormat",
+            "Only .doc, .docx, .pdf, .jpg, .jpeg, .png files are allowed",
+            (value: any) => {
+                if (value) {
+                    return [
+                        "application/msword",
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "application/pdf",
+                        "image/jpeg",
+                        "image/png",
+                    ].includes(value.type);
+                }
+                return true;
+            }
+        )
+        .test("fileSize", "File size should be less than 10MB", (value: any) => {
+            if (value) {
+                return value.size <= 10 * 1024 * 1024;
+            }
+            return true;
+        }),
+})
 
 const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
     const { mutateAsync: verifyInput } = useVerifyInput();
@@ -22,61 +77,6 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
     const ModalhandleClose = () => setShowModal(false);
     const ModalhandleShow = () => setShowModal(true);
 
-    const defaultValues = {
-        company_name: "",
-        company_phone_number: "",
-        business_registration_number: "",
-        employee_name: "",
-        employee_phone_number: "",
-        employee_email: "",
-        sector: "",
-        business_license: null,
-        verify_business_registration_number: null,
-    }
-
-    const RegisterSchema = Yup.object({
-        company_name: Yup.string().required("Company Name is required"),
-        employee_name: Yup.string()
-            .required("Employee Name is required")
-            .max(10, "The employee name must not be greater than 10 characters."),
-        company_phone_number: Yup.string()
-            .required("Company Phone is required")
-            .matches(/^[0-9]{11}$/, "Should be 11 digits"),
-        employee_phone_number: Yup.string()
-            .required("Employee Phone is required")
-            .matches(/^[0-9]{11}$/, "Should be 11 digits"),
-        business_registration_number: Yup.string()
-            .required("Business Registration Number is required")
-            .matches(/^[0-9]{10}$/, "Should be 10 digits"),
-        verify_business_registration_number: Yup.boolean().required('Please verify business registration number'),
-        employee_email: Yup.string()
-            .email("Invalid email")
-            .required("Employee Email is required"),
-        business_license: Yup.mixed()
-            .required("Please upload your business license.")
-            .test(
-                "fileFormat",
-                "Only .doc, .docx, .pdf, .jpg, .jpeg, .png files are allowed",
-                (value: any) => {
-                    if (value) {
-                        return [
-                            "application/msword",
-                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                            "application/pdf",
-                            "image/jpeg",
-                            "image/png",
-                        ].includes(value.type);
-                    }
-                    return true;
-                }
-            )
-            .test("fileSize", "File size should be less than 10MB", (value: any) => {
-                if (value) {
-                    return value.size <= 10 * 1024 * 1024;
-                }
-                return true;
-            }),
-    })
     const methods = useForm({
         defaultValues,
         resolver: yupResolver(RegisterSchema)
@@ -98,12 +98,14 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
 
     const onSubmit = handleSubmit(async (props) => {
         try {
-            await register({
+            const res = await register({
                 ...membershipInformation,
                 ...props
             });
-            toast("User registered successfully", { type: "success" });
-            onNextStep();
+            if (res) {
+                toast("User registered successfully", {type: "success"});
+                onNextStep();
+            }
         } catch (error: any) {
             toast(error?.message || "Something went wrong Please try again later", {
                 type: "error",

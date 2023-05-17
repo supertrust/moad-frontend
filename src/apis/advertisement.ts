@@ -39,3 +39,7 @@ export const useGetAdvertisementOperationArea = ({ advertisement_id }: GetAdvert
         queryFn: async () => (await axios.get(`/api/get-advertisement-operating-area/${advertisement_id}`)).data.data,
         enabled: !!advertisement_id
     })
+
+export const useDeleteAdvertisement = () => useMutation<void, string, { id: string }>({
+    mutationFn: async ({ id }) => await axios.delete(`/api/delete-advertisement/${id}`)
+})

@@ -57,7 +57,7 @@ const SaveAdvertisementSchema = Yup.object().shape({
     operating_area: Yup.array().required("운영지역을 선택해주세요."),
 })
 
-export default function AdModel({ setShowModal }: { setShowModal: (show: boolean) => void }) {
+export default function AdModel({ setShowModal, refetchAds }: { refetchAds: VoidFunction; setShowModal: (show: boolean) => void }) {
     const methods = useForm<FormDataType>({
         defaultValues,
         resolver: yupResolver(SaveAdvertisementSchema)
@@ -105,6 +105,7 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
         await saveAdvertisement(values, {
             onSuccess: () => {
                 toast.success("Saved advertisement successfully!");
+                refetchAds();
                 onCancel();
             }
         });
@@ -400,7 +401,7 @@ export default function AdModel({ setShowModal }: { setShowModal: (show: boolean
                                         </div>
                                     )}
                                 />
-                            <span className={styles.error}>{errors?.operating_area?.message}</span>
+                                <span className={styles.error}>{errors?.operating_area?.message}</span>
                                 <div id="area_modal" className={`${styles.check_modal} ${styles.area_modal}`}>
                                     <div className={styles.check_modal_wrap}>
                                         <div className={styles.title}>확인사항</div>

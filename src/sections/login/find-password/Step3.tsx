@@ -1,8 +1,7 @@
 import {styles} from "@src/sections/login/find-password/index";
-import React, {useEffect, useState} from "react";
-import {useResetPassword, useSendOTP, useVerifyOTP} from "@src/apis/auth";
+import React, {useState} from "react";
+import {useResetPassword} from "@src/apis/auth";
 import {toast} from "react-toastify";
-import {MembershipInformation} from "@src/pages/signup";
 import * as Yup from "yup";
 import {PASSWORD_REGEX} from "@src/constants";
 import {FormProvider, RHFInput, useForm, yupResolver} from "@src/components/Form";
@@ -53,9 +52,10 @@ const Step3 = ({step, email, onClose, }: Step3Props) => {
             ...props
         }, {
             onSuccess: (res) => {
-                toast(res, {
-                    type: "error",
+                toast('Password updated successfully', {
+                    type: "success",
                 });
+                onClose();
             }, onError: (err) => {
                 toast(err || "Something went wrong Please try again later", {
                     type: "error",
@@ -83,7 +83,6 @@ const Step3 = ({step, email, onClose, }: Step3Props) => {
                             id="pw_find_password"
                             placeholder="비밀번호"
                         />
-                        {/*<div className={styles.pw_error_text}>문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요</div>*/}
                         <i
                             onClick={() => setPasswordStatus(!show_password)}
                             className={`${styles.icon} ${styles.pw_show} ${show_password ? styles.active : ""}`} >
@@ -98,7 +97,6 @@ const Step3 = ({step, email, onClose, }: Step3Props) => {
                             id="pw_find_password_confirm"
                             placeholder="비밀번호"
                         />
-                        {/*<div className={`${styles.pw_confirm_text} ${styles.error_text}`}>비밀번호가 일치하지 않습니다.</div>*/}
                         <i
                             onClick={() => setConfirmPassStatus(!show_confirmPassword)}
                             className={`${styles.icon} ${styles.pw_show} ${show_confirmPassword ? styles.active : ""}`}>

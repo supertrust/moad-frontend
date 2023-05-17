@@ -52,7 +52,8 @@ export interface IAdvertisement {
     start_date: string;
     status: "proceeding"
     total_cost: number;
-    type: "fixed_ad" | "national_ad" | "spot_ad"
+    type: "fixed_ad" | "national_ad" | "spot_ad";
+    number_of_vehicles: number;
     advertiser: {
         business_license: string;
         business_registration_number: string;
@@ -63,5 +64,52 @@ export interface IAdvertisement {
         employee_phone_number: string;
         id: number;
         sector: string;
+    }
+}
+
+export type GetAdvertisementVehiclesPropsType = {
+    advertisement_id: string;
+}
+
+export type GetAdvertisementOperationAreaPropsType = {
+    advertisement_id: string;
+}
+
+export interface IAdvertisementVehicle {
+    id: number;
+    advertisement_id: number;
+    vehicle_id: number;
+    number_of_vehicles: number;
+    price: number;
+    vehicles: {
+        id: number;
+        vehicle_type: string;
+        vehicle_standard: string
+        expenses: number[];
+    };
+    advertisement: IAdvertisement & {
+        advertisement_vehicles: {
+            id: number;
+            advertisement_id: number;
+            vehicle_id: number;
+            number_of_vehicles: number;
+            price: number;
+            created_at: string;
+            updated_at: string;
+            deleted_at: null | string;
+            status: string;
+        }[];
+    }
+}
+
+export interface IAdvertisementOperatingArea {
+    id: number;
+    area: string;
+    created_at: null | string;
+    updated_at: null | string;
+    deleted_at: null | string;
+    pivot: {
+        advertisement_id: number;
+        operating_area_id: number;
     }
 }

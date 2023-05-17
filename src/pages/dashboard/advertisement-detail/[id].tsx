@@ -52,7 +52,7 @@ function AdvertisementDetailScreen() {
     },
     {
       'title': '광고유형',
-      'value': advertisement?.type.replace("_"," ").toUpperCase()
+      'value': advertisement?.type.replace("_", " ").toUpperCase()
     },
     {
       'title': '광고상태',
@@ -171,7 +171,7 @@ function AdvertisementDetailScreen() {
                   </div>
                   <div className={`${model === 'model' ? styles.active : ""} ${styles.detail_3d} ${styles.box}`} id="div2d" >
                     <Canvas
-                      camera={{ fov: 75, position: [0, 0, 3000] }}
+                      camera={{ fov: 75, position: [0, 0, 7] }}
                       style={{
                         backgroundColor: 'white',
                         width: '100%',
@@ -187,7 +187,7 @@ function AdvertisementDetailScreen() {
                           <TruckModel />
                         </Center>
                       </Suspense>
-                      <OrbitControls maxDistance={750} minDistance={500} autoRotate />
+                      <OrbitControls maxDistance={15} minDistance={5} />
                     </Canvas>
                   </div>
                   <Swiper

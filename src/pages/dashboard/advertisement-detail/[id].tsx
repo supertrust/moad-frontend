@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import { useState, Suspense } from "react";
 import { Carousel } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -142,6 +142,21 @@ function AdvertisementDetailScreen() {
     setModel(modeltab);
     setSwiper(false);
   }
+
+  const [modelImages, setModelImages] = useState({
+    left: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+    right: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+    doorLeft: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+    doorRight: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+  })
+
+  const handleModelImageChange = (key: string) => (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setModelImages(old => ({ ...old, [key]: URL.createObjectURL(file) }))
+    }
+  }
+
   return (
     <>
       <div id={styles.ad_detail_list} className="ad-detail-list page">
@@ -184,10 +199,10 @@ function AdvertisementDetailScreen() {
                       <Suspense fallback={null}>
                         {/* @ts-ignore */}
                         <Center>
-                          <TruckModel />
+                          <TruckModel images={modelImages} />
                         </Center>
                       </Suspense>
-                      <OrbitControls maxDistance={15} minDistance={5} />
+                      <OrbitControls maxDistance={15} minDistance={5} autoRotate />
                     </Canvas>
                   </div>
                   <Swiper
@@ -225,6 +240,40 @@ function AdvertisementDetailScreen() {
                       </div>
                     ))
                   }
+                </div>
+              </div>
+
+              <div className={styles.model_contents_container}>
+                <div className={styles.model_content}>
+                  <p>Left</p>
+                  <div className={styles.model_side_image_con}>
+                    <img className={styles.model_images} src={modelImages.left} alt="left" />
+                  </div>
+                  <input onChange={handleModelImageChange("left")} className={styles.file_input} type="file" />
+                </div>
+                <div className={styles.model_content}>
+                  <p>Right</p>
+                  <div className={styles.model_side_image_con}>
+                    <img className={styles.model_images} src={modelImages.right} alt="right" />
+                  </div>
+                  <input width={"200px"} height={"100px"} onChange={handleModelImageChange("right")} className={styles.file_input} type="file" />
+                </div>
+                <div className={styles.model_content}>
+                  <p>Back</p>
+                  <div className={styles.back_doors_con}>
+                    <div className={styles.back_door_con}>
+                      <div className={styles.model_back_image_con}>
+                        <img className={styles.model_images} width={50} height={200} src={modelImages.doorLeft} alt="doorLeft" />
+                      </div>
+                      <input onChange={handleModelImageChange("doorLeft")} className={styles.file_input} type="file" />
+                    </div>
+                    <div className={styles.back_door_con}>
+                      <div className={styles.model_back_image_con}>
+                        <img className={styles.model_images} width={50} height={200} src={modelImages.doorRight} alt="doorRight" />
+                      </div>
+                      <input onChange={handleModelImageChange("doorRight")} className={styles.file_input} type="file" />
+                    </div>
+                  </div>
                 </div>
               </div>
 

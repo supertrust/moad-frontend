@@ -1,31 +1,42 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three';
-import { useLoader } from '@react-three/fiber';
+import { GroupProps, useLoader } from '@react-three/fiber';
 
-export default function Model(props: any) {
+interface IModel extends GroupProps {
+  images?: {
+    left: string;
+    right: string;
+    doorLeft: string;
+    doorRight: string;
+  }
+}
+
+export default function Model(props: IModel) {
+  const { images, ...rest } = props
 
   const leftSideMaterial = new THREE.MeshBasicMaterial({
-    map: useLoader(THREE.TextureLoader, '/images/ad-detail-list/TruckLeftBanner.png'),
+    map: useLoader(THREE.TextureLoader, images?.left || ""),
     side: THREE.DoubleSide
   })
   const rightSideMaterial = new THREE.MeshBasicMaterial({
-    map: useLoader(THREE.TextureLoader, '/images/ad-detail-list/TruckRightBanner.png'),
+    map: useLoader(THREE.TextureLoader, images?.right || ""),
     side: THREE.DoubleSide
   })
   const rightBackDoorMaterial = new THREE.MeshBasicMaterial({
-    map: useLoader(THREE.TextureLoader, '/images/ad-detail-list/TruckRightDoorBanner.png'),
+    map: useLoader(THREE.TextureLoader, images?.doorRight || ""),
     side: THREE.DoubleSide,
   })
   const leftBackDoorMaterial = new THREE.MeshBasicMaterial({
-    map: useLoader(THREE.TextureLoader, '/images/ad-detail-list/TruckLeftDoorBanner.png'),
+    map: useLoader(THREE.TextureLoader, images?.doorLeft || ""),
     side: THREE.DoubleSide,
   })
 
   // @ts-ignore
   const { nodes, materials } = useGLTF('/3ds/3dtruck.glb');
+
   return (
-    <group {...props} dispose={null}>
+    <group {...rest} dispose={null}>
       <group scale={0.01}>
         <mesh geometry={nodes.Mesh.geometry} material={materials.MediumTruck01} />
         <mesh geometry={nodes.Mesh_1.geometry} material={materials.MediumTruck01Glass} />

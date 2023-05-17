@@ -22,7 +22,7 @@
 }
 
 #pw_find_modal .pw_find_form .model_wrap.active {
-	display: block;	
+	display: block;
 }
 #pw_find_modal .pw_find_form .model_wrap .model_title {
 	font-weight: 700;
@@ -137,6 +137,10 @@
 	color: #ffffff
 }
 
+#pw_find_modal .confirm_btn_loading {
+	padding: 7px;
+}
+
 #pw_find_modal .pw_find_form .model_wrap .btn_wrap .confirm_btn.disabled {
 	cursor: auto;
 	pointer-events: none;
@@ -196,6 +200,7 @@
 	line-height: 30px;
 	color: #FFFFFF;
 	text-align: center;
+	justify-content: center;
 	background: #6191F2;
 	border-radius: 4px
 }

@@ -2,6 +2,7 @@ import {styles} from "@src/sections/login/find-password/index";
 import React, {useEffect, useState} from "react";
 import {useSendOTP, useVerifyOTP} from "@src/apis/auth";
 import {toast} from "react-toastify";
+import MyButton from "@src/components/Button";
 
 type Step2Props = {
     step: number;
@@ -16,8 +17,8 @@ const Step2 = ({step, email, onClose, onVerifyOTPSuccess}: Step2Props) => {
     const [seconds, setSeconds ] =  useState(0);
     const [otp, setOTP] = useState<string>("");
 
-    const {mutateAsync: sendOTP} = useSendOTP();
-    const {mutateAsync: verifyOTP} = useVerifyOTP();
+    const {mutateAsync: sendOTP, isLoading: isLoadingSendOTP} = useSendOTP();
+    const {mutateAsync: verifyOTP, isLoading: isLoadingVerifyOTP} = useVerifyOTP();
 
     useEffect(()=>{
         let interval;
@@ -87,12 +88,13 @@ const Step2 = ({step, email, onClose, onVerifyOTPSuccess}: Step2Props) => {
                     <div className={styles.input_text}>인증 번호를 받을 이메일주소</div>
                     <div className={styles.certification_wrap}>
                         <div className={styles.certification_email}>{email}</div>
-                        <button
-                            onClick={handleSendOTP}
+                        <MyButton
                             type="button"
-                            className={styles.certification_btn}>
+                            loading={isLoadingSendOTP}
+                            onClick={handleSendOTP}
+                            className={`${styles.certification_btn} ${isLoadingSendOTP && styles.confirm_btn_loading}`}>
                             인증번호받기
-                        </button>
+                        </MyButton>
                     </div>
                 </div>
                 <div className={styles.input_wrap}>
@@ -115,13 +117,15 @@ const Step2 = ({step, email, onClose, onVerifyOTPSuccess}: Step2Props) => {
                 </div>
             </div>
             <div className={styles.btn_wrap}>
-                <button
+                <MyButton
+                    type="button"
                     disabled={otp?.length === 0 || !otp}
-                    type="button" id="step02_confirm"
+                    id="step02_confirm"
+                    loading={isLoadingVerifyOTP}
                     onClick={handleVerifyOTP}
-                    className={`${styles.confirm_btn} ${styles.btns} `}>
+                    className={`${styles.confirm_btn} ${styles.btns} ${isLoadingVerifyOTP && styles.confirm_btn_loading}`}>
                     인증번호 확인
-                </button>
+                </MyButton>
                 <button type="button"
                         onClick={onClose}
                         className={`${styles.pw_modal_close} ${styles.cancel_btn} ${styles.btns}`}>

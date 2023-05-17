@@ -1,10 +1,11 @@
 import {styles} from "@src/sections/login/find-password/index";
-import React, {useState} from "react";
+import React from "react";
 import {FormProvider, RHFInput, useForm, yupResolver} from "@src/components/Form";
 import * as Yup from "yup";
 import {CheckUserProps} from "@src/types/auth";
 import {toast} from "react-toastify";
 import {useCheckUser} from "@src/apis/auth";
+import MyButton from "@src/components/Button";
 
 type Step1Props = {
     step: number;
@@ -27,7 +28,7 @@ const CheckUserSchema = Yup.object({
 })
 
 const Step1 = ({step, onCheckUserSuccess, onClose, onFindId}: Step1Props) => {
-    const {mutateAsync: checkUser} = useCheckUser();
+    const {mutateAsync: checkUser, isLoading} = useCheckUser();
 
     const methods = useForm<CheckUserProps>({
         defaultValues,
@@ -75,7 +76,6 @@ const Step1 = ({step, onCheckUserSuccess, onClose, onFindId}: Step1Props) => {
                             type="text"
                             placeholder="이메일 입력"
                         />
-                        {/*<input type="text" id="pw_find_email" name="pw_find_email" className={`${styles.user_email} ${styles.input}`} placeholder="이메일 입력" />*/}
                         <div className={`${styles.email_error_text} ${styles.error_text}`}>아이디(이메일)를 확인해주세요</div>
                     </div>
                     <div className={styles.input_wrap}>
@@ -88,7 +88,6 @@ const Step1 = ({step, onCheckUserSuccess, onClose, onFindId}: Step1Props) => {
                             className={`${styles.company_name} ${styles.input}`}
                             placeholder="회사명 입력"
                         />
-                        {/*<input type="text" id="pw_find_company_name" className={`${styles.company_name} ${styles.input}`} placeholder="회사명 입력" />*/}
                         <div className={`${styles.company_error_text} ${styles.error_text}`}>회사명을 확인해주세요</div>
                     </div>
                     <div className={styles.input_wrap}>
@@ -101,18 +100,17 @@ const Step1 = ({step, onCheckUserSuccess, onClose, onFindId}: Step1Props) => {
                             className={`${styles.user_phone} ${styles.input}`}
                             placeholder="전화번호 입력"
                         />
-                        {/*<input type="number" id="pw_find_company_phone" name="pw_find_company_phone" className={`${styles.user_phone} ${styles.input}`} placeholder="전화번호 입력" />*/}
                         <div className={`${styles.phone_error_text} ${styles.error_text}`}>전화번호를 확인해주세요</div>
                     </div>
                 </div>
                 <div className={styles.btn_wrap}>
-                    <button
-                        type="button" id="step01_confirm"
-                        // onClick={() => onCheckUserSuccess('z.moh@mufin.co.kr')}
+                    <MyButton
+                        id="step01_confirm"
+                        loading={isLoading}
                         onClick={onSubmit}
-                        className={`${styles.confirm_btn} ${styles.btns}`}>
+                        className={`${styles.confirm_btn} ${styles.btns} ${isLoading && styles.confirm_btn_loading}`}>
                         확인
-                    </button>
+                    </MyButton>
                     <button type="button"
                             onClick={onClose}
                             className={`${styles.pw_modal_close} ${styles.cancel_btn} ${styles.btns}`}>

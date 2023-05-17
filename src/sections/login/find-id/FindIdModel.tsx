@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import {toast} from "react-toastify";
 import {FindIdProps} from "@src/types/auth";
 import {useRouter} from "next/router";
+import MyButton from "@src/components/Button";
 
 const defaultValues: FindIdProps = {
     company_name: "",
@@ -19,7 +20,7 @@ const LoginSchema = Yup.object({
 })
 const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
     const router = useRouter();
-    const { mutateAsync: findId } = useFindId();
+    const { mutateAsync: findId, isLoading } = useFindId();
     const [id, setId] = useState<string | boolean>()
 
     const methods = useForm<FindIdProps>({
@@ -101,13 +102,14 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 
             <div className={styles.btn_wrap}>
                 <a href="sign-up" className={`${styles.btns} ${styles.sign_up_link}`}>회원가입</a>
-                <button
-                    onClick={onSubmit}
-                    type="button"
+                <MyButton
                     id="id_modal_find"
-                    className={`${styles.id_model_find} ${styles.btns}`}>
+                    type="button"
+                    loading={isLoading}
+                    onClick={onSubmit}
+                    className={`${styles.id_model_find} ${styles.btns} ${isLoading && styles.btns_loading}`}>
                     찾기
-                </button>
+                </MyButton>
                 <button type="button" id="id_modal_close" className={`${styles.id_model_close} ${styles.btns}`} onClick={() => SetFindId(false)}>취소</button>
             </div>
             </FormProvider>

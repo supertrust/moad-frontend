@@ -125,6 +125,10 @@
 	cursor: pointer
 }
 
+#id_find_modal .btns_loading {
+	padding: 6px
+}
+
 #id_find_modal .modal_wrap .id_find_form .btn_wrap .sign_up_link {
 	display: none;
 	margin-bottom: 10px;

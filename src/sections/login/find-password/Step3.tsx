@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import {PASSWORD_REGEX} from "@src/constants";
 import {FormProvider, RHFInput, useForm, yupResolver} from "@src/components/Form";
 import {ResetPasswordProps} from "@src/types/auth";
+import MyButton from "@src/components/Button";
 
 type Step3Props = {
     step: number;
@@ -38,7 +39,7 @@ const ResetPasswordSchema = Yup.object({
 const Step3 = ({step, email, onClose, }: Step3Props) => {
     const [show_password, setPasswordStatus] = useState(false);
     const [show_confirmPassword, setConfirmPassStatus] = useState(false);
-    const {mutateAsync: resetPassword} = useResetPassword();
+    const {mutateAsync: resetPassword, isLoading} = useResetPassword();
 
     const methods = useForm<ResetPasswordProps>({
         defaultValues,
@@ -104,12 +105,14 @@ const Step3 = ({step, email, onClose, }: Step3Props) => {
                     </div>
                 </div>
                 <div className={styles.btn_wrap}>
-                    <button type="button"
-                            id="step03_confirm"
-                            onClick={onSubmit}
-                            className={`${styles.confirm_btn} ${styles.btns} `}>
+                    <MyButton
+                        type="button"
+                        id="step03_confirm"
+                        loading={isLoading}
+                        onClick={onSubmit}
+                        className={`${styles.confirm_btn} ${styles.btns} ${isLoading && styles.confirm_btn_loading}`}>
                         완료
-                    </button>
+                    </MyButton>
                     <button type="button"
                             onClick={onClose}
                             className={`${styles.pw_modal_close} ${styles.cancel_btn} ${styles.btns}`}>

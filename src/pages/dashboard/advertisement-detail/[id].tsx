@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useMemo } from 'react'
 import { useState, Suspense } from "react";
 import { Carousel } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,12 +13,15 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Center } from '@react-three/drei';
 import TruckModel from '@src/models/truck';
 import { useRouter } from 'next/router';
-import { useGetAdvertisementDetail } from '@src/apis/advertisement';
+import { useGetAdvertisementDetail, useGetAdvertisementOperationArea, useGetAdvertisementVehicles } from '@src/apis/advertisement';
 
 function AdvertisementDetailScreen() {
   const { query } = useRouter();
   const advertisementId = query.id as string;
   const { data: advertisement } = useGetAdvertisementDetail({ id: advertisementId });
+  const { data: vehicles } = useGetAdvertisementVehicles({ advertisement_id: advertisementId });
+  const { data: operationAreas } = useGetAdvertisementOperationArea({ advertisement_id: advertisementId })
+
   const title = '신제품 홍보 출시기념';
 
   const mockup_arr = [
@@ -60,7 +63,7 @@ function AdvertisementDetailScreen() {
     },
     {
       'title': '광고지역',
-      'value': '서울, 경기, 인천, 대전, 세종, 충남, 충북, 광주, 전남,전북, 대구, 경북, 부산, 울산, 경남, 강원, 제주'
+      'value': operationAreas?.map((item) => `${item.area}, `)
     },
     {
       'title': '광고금액',
@@ -70,14 +73,16 @@ function AdvertisementDetailScreen() {
   const handleSelect = (selectedIndex: any, e: any) => {
     setIndex(selectedIndex);
   };
-  const data = [
-    { id: 1, registration_number: "10150122호", vehicle_type: "윙바디 1t", operation_vehicle_location: "운행중", vehicle_information: "보기", vehicle_location: "보기" },
-    { id: 2, registration_number: "10150122호", vehicle_type: "윙바디 1t", operation_vehicle_location: "운행중", vehicle_information: "보기", vehicle_location: "보기" },
-    { id: 3, registration_number: "10150122호", vehicle_type: "윙바디 1t", operation_vehicle_location: "운행중", vehicle_information: "보기", vehicle_location: "보기" },
-    { id: 4, registration_number: "10150122호", vehicle_type: "윙바디 1t", operation_vehicle_location: "운행중", vehicle_information: "보기", vehicle_location: "보기" },
-    { id: 5, registration_number: "10150122호", vehicle_type: "윙바디 1t", operation_vehicle_location: "운행중", vehicle_information: "보기", vehicle_location: "보기" },
 
-  ]
+  const vehiclesData = useMemo(() => !vehicles?.length ? [] : vehicles?.map((item) => ({
+    id: item.id,
+    registration_number: item.advertisement.advertiser.business_registration_number,
+    vehicle_type: item.vehicles.vehicle_type,
+    vehicle_status: item.advertisement.advertisement_vehicles.find(_item => _item.vehicle_id === item.vehicles.id)?.status,
+    vehicle_information: "보기",
+    vehicle_location: "보기"
+  })), [vehicles?.length]);
+
   const columns = [
     {
       dataField: 'sl.no',
@@ -109,7 +114,7 @@ function AdvertisementDetailScreen() {
       }
     },
     {
-      dataField: "operation_vehicle_location",
+      dataField: "vehicle_status",
       text: "운행여부",
       headerStyle: {
         backgroundColor: 'rgb(244 247 251)', paddingTop: "20px",
@@ -286,9 +291,9 @@ function AdvertisementDetailScreen() {
 
                 <BootstrapTable
                   keyField="id"
-                  data={data}
+                  data={vehiclesData}
                   columns={columns}
-                  pagination={paginationFactory({ hideSizePerPage: true, sizePerPage: 6 })}
+                  pagination={paginationFactory({ hideSizePerPage: true, sizePerPage: 10 })}
                   noDataIndication={'진행중인 광고가 없습니다.'}
                 />
               </div>

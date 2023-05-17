@@ -1,5 +1,5 @@
 import axios from "@src/utils/axios";
-import { GetAdvertisementDetailPropType, GetAdvertisementsPropType, IAdvertisement, IOperatingArea, IVehicle, SaveAdvertisementType } from "@src/types/advertisement";
+import { GetAdvertisementDetailPropType, GetAdvertisementOperationAreaPropsType, GetAdvertisementVehiclesPropsType, GetAdvertisementsPropType, IAdvertisement, IAdvertisementOperatingArea, IAdvertisementVehicle, IOperatingArea, IVehicle, SaveAdvertisementType } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) => useQuery<IAdvertisement[], string>({
@@ -25,3 +25,17 @@ export const useGetOperatingAreas = () => useQuery<IOperatingArea[], string>({
 export const useSaveAdvertisement = () => useMutation<IAdvertisement, string, SaveAdvertisementType>({
     mutationFn: async (props) => (await axios.post("/api/save-advertisement", props)).data.data
 })
+
+export const useGetAdvertisementVehicles = ({ advertisement_id }: GetAdvertisementVehiclesPropsType) =>
+    useQuery<IAdvertisementVehicle[], string>({
+        queryKey: ["advertisement-vehicles", advertisement_id],
+        queryFn: async () => (await axios.get("/api/get-advehicles", { params: { advertisement_id } })).data.data,
+        enabled: !!advertisement_id
+    })
+
+export const useGetAdvertisementOperationArea = ({ advertisement_id }: GetAdvertisementOperationAreaPropsType) =>
+    useQuery<IAdvertisementOperatingArea[], string>({
+        queryKey: ["advertisement-operation-area", advertisement_id],
+        queryFn: async () => (await axios.get(`/api/get-advertisement-operating-area/${advertisement_id}`)).data.data,
+        enabled: !!advertisement_id
+    })

@@ -1,0 +1,33 @@
+/* Vehicle Info CSS */
+#vehicle_information {
+  min-height: 100%;
+  background-color: #f5f7fb;
+}
+
+#vehicle_information .container .board-content .vehicle_information_content {
+  padding: 20px 25px 56px;
+}
+
+#vehicle_information
+  .container
+  .board_content
+  .vehicle_information_content
+  .page_link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+#vehicle_information
+  .container
+  .board_content
+  .vehicle_information_content
+  .page_link
+  .link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  color: #2c324c;
+}

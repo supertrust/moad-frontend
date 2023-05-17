@@ -47,3 +47,24 @@ export type FindIdProps = {
     company_name: string,
     company_phone_number: string,
 }
+
+export type CheckUserProps = {
+    email: string;
+    company_name: string;
+    company_phone_number: string;
+}
+
+export type SendOTP = {
+    email: string;
+}
+
+export type VerifyOTP = {
+    email: string;
+    otp: string;
+}
+
+export type ResetPasswordProps = {
+    email: string;
+    password: string;
+    confirm_password: string;
+}

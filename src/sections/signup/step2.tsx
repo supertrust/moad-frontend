@@ -10,30 +10,32 @@ interface Step2Props {
     onNextStep: () => void;
     setMembershipInformation: (MembershipInformation: MembershipInformation) => void;
 }
-const Step2 = ({onPrevStep, onNextStep, setMembershipInformation}: Step2Props) => {
-    const defaultValues: MembershipInformation = {
-        email: "",
-        password: "",
-        confirm_password: "",
-    }
 
-    const RegisterSchema = Yup.object({
-        email: Yup.string().email("Invalid email").required("Email is required"),
-        password: Yup.string()
-            .required("Password is required")
-            .matches(
-                PASSWORD_REGEX,
-                "Password must be at least 8 characters with a combination of letters, numbers, and symbols"
-            )
-            .min(8, "Password must be at least 8 characters"),
-        confirm_password: Yup.string()
-            .required("Confirm Password is required")
-            .oneOf(
-                // @ts-ignore
-                [Yup.ref("password"), null],
-                "Passwords and Confirm password must match"
-            ),
-    })
+const defaultValues: MembershipInformation = {
+    email: "",
+    password: "",
+    confirm_password: "",
+}
+
+const RegisterSchema = Yup.object({
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string()
+        .required("Password is required")
+        .matches(
+            PASSWORD_REGEX,
+            "Password must be at least 8 characters with a combination of letters, numbers, and symbols"
+        )
+        .min(8, "Password must be at least 8 characters"),
+    confirm_password: Yup.string()
+        .required("Confirm Password is required")
+        .oneOf(
+            // @ts-ignore
+            [Yup.ref("password"), null],
+            "Passwords and Confirm password must match"
+        ),
+})
+
+const Step2 = ({onPrevStep, onNextStep, setMembershipInformation}: Step2Props) => {
     const methods = useForm<MembershipInformation>({
         defaultValues,
         resolver: yupResolver(RegisterSchema)

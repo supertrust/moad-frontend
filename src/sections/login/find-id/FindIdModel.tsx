@@ -60,7 +60,6 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
                     <div className={styles.input_wrap}>
                         <div className={styles.input_text}>회사명<span className={styles.essential}>*</span></div>
                         <RHFInput
-                            // wrapperClassName="company-name"
                             required
                             type="text"
                             id="id_find_company_name"
@@ -70,12 +69,10 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
                             spellCheck="false"
                             data-ms-editor="true"
                         />
-                        {/*<input type="text" id="id_find_company_name" name="id_find_company_name" className={`${styles.user_company} ${styles.input} `} placeholder="회사명"/>*/}
                     </div>
                     <div className={styles.input_wrap}>
                         <div className={styles.input_text}>전화번호<span className={styles.essential}>*</span></div>
                         <RHFInput
-                            // wrapperClassName="company-tel"
                             required
                             type="text"
                             id="id_find_company_phone"
@@ -85,7 +82,6 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
                             spellCheck="false"
                             data-ms-editor="true"
                         />
-                        {/*<input type="text" id="id_find_company_phone" name="id_find_company_phone" className={`${styles.user_num} ${styles.input}`} placeholder="전화번호 입력"/>*/}
                     </div>
                 </div>
 

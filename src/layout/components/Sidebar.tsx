@@ -7,7 +7,7 @@ interface SidebarProps {
 }
 
 function Sidebar({ msg }: SidebarProps) {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const [tab, setTab] = useState("Advertising Management");
 
   const barStatus = (status: string) => {
@@ -212,6 +212,30 @@ function Sidebar({ msg }: SidebarProps) {
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
+          {user?.role === 'Advertise' && <li
+              className={
+                tab === "Ad Management"
+                    ? "menu-list active"
+                    : "menu-list"
+              }>
+            <Link
+                href={"/dashboard/ad-management"}
+                className="link"
+                onClick={() => {
+                  barStatus("Ad Management");
+                }}
+            >
+              <i className="icon">
+                <img
+                    src={`/images/ic-dashboard${tab == "Ad Management" ? "-active" : ""
+                    }.png`}
+                    alt=""
+                />
+              </i>
+              <div className="name">Ad Management</div>
+            </Link>
+            <ul className="sub-wrap"></ul>
+          </li>}
           <li
             className={tab === "Statistics" ? "menu-list active" : "menu-list"}
           >

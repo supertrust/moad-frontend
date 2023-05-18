@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Form, Pagination } from "react-bootstrap";
-import AdModel from "../AdModel/AdModel";
+import AdModel, { AdModelRef } from "../SaveAdModel";
 import styles from './style.module.css'
 import { useDeleteAdvertisement, useGetAdvertisements } from "@src/apis/advertisement";
 import { AdStatusesType, AdTypesType } from "@src/types/advertisement";
@@ -14,15 +14,15 @@ const statuses = [
 ]
 
 export default function AdListModule() {
+  const adModel = useRef<AdModelRef>(null);
   const [selectedAds, setSelectedAds] = useState<number[]>([]);
-  const [showModal, setShowModal] = useState(false);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
 
   const { data: advertisements, refetch: refetchAdvertisements } = useGetAdvertisements({ status, type })
   const { mutateAsync: deleteAd } = useDeleteAdvertisement()
 
-  const openModal = () => setShowModal(true);
+  const openModal = () => adModel.current?.open();
 
   const handleToggleSelect = (id: number, selected: boolean) => () => {
     if (selected) {
@@ -60,7 +60,6 @@ export default function AdListModule() {
         </div>
         <div className={styles.line} />
       </div>
-      {showModal ? <AdModel refetchAds={refetchAdvertisements} setShowModal={setShowModal} /> : null}
       <div className={styles.adContents}>
         <div className={styles.menuHd}>
           <div className={styles.tabMenu}>
@@ -147,6 +146,7 @@ export default function AdListModule() {
           </Pagination>
         </div>
       </div>
+      <AdModel refetchAds={refetchAdvertisements} ref={adModel} />
     </>
   );
 }

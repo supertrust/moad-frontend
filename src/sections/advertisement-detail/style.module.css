@@ -12,7 +12,7 @@
   min-height: 781px;
   background-color: #f5f7fb;
   /* margin-left: 305px; */
-  padding-top: 119px;
+  padding-top: 12px;
   width: 100%;
 }
 
@@ -68,9 +68,9 @@
   .board_content
   .ad_detail_list_content
   .detail_content {
+  margin-top: 12px;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
   column-gap: 20px;
 }
 
@@ -1355,4 +1355,8 @@ span.carousel-control-prev-icon {
   .model_contents_container {
     flex-wrap: wrap;
   }
+}
+
+.right_side {
+  width: 100%;
 }

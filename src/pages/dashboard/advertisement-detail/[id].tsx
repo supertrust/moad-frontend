@@ -18,6 +18,7 @@ import {
   useGetAdvertisementOperationArea,
   useGetAdvertisementVehicles,
 } from "@src/apis/advertisement";
+import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 
 function AdvertisementDetailScreen() {
   const { query } = useRouter();
@@ -444,4 +445,11 @@ function AdvertisementDetailScreen() {
   );
 }
 
-export default AdvertisementDetailScreen;
+//if user role is 'Advertiser'
+const WithRoles=()=>(
+    <RoleBasedGuard roles={['Advertiser']}>
+      <AdvertisementDetailScreen />
+    </RoleBasedGuard>
+)
+
+export default WithRoles

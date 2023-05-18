@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { styles } from "@src/sections/vehicle-info";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { FreeMode, Navigation, Thumbs } from "swiper";
+import Image from "next/image";
+
+const imageStyle = {
+  objectFit: "cover",
+  width: "100%",
+  height: "100%",
+};
 
 export default function VehicleInfoScreen() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div
       id={styles.vehicle_information}
@@ -22,311 +36,147 @@ export default function VehicleInfoScreen() {
               <div className={styles.link}>차량정보</div>
             </div>
 
-            <div className="content-inner">
-              <div className="slide-box content-body">
-                <div
-                  id="slider"
-                  className="swiper slider swiper-initialized swiper-horizontal swiper-backface-hidden"
+            <div className={styles.content_inner}>
+              <div className={`${styles.slide_box} ${styles.content_body}`}>
+                <Swiper
+                  spaceBetween={10}
+                  navigation={true}
+                  thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className={styles.slider}
                 >
-                  <div
-                    className="swiper-wrapper"
-                    id="swiper-wrapper-272914705cac83fc"
-                    aria-live="polite"
-                  >
-                    <div className="swiper-slide swiper-slide-active">
-                      <div className="badge">
-                        <div className="text">옆면</div>
-                        <div className="text-sub">(운전석)</div>
-                      </div>
-                      <img
-                        src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-01.png"
-                        alt=""
-                        className="img"
-                      />
+                  <SwiperSlide>
+                    <div className={styles.badge}>
+                      <div className={styles.text}>옆면</div>
+                      <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                    <div className="swiper-slide swiper-slide-next">
-                      <div className="badge">
-                        <div className="text">옆면</div>
-                        <div className="text-sub">(조수석)</div>
-                      </div>
-                      <img
-                        src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-02.png"
-                        alt=""
-                        className="img"
-                      />
+                    <img
+                      className={styles.img}
+                      src={`/images/vehicle_info/img-mockup-sample-01.png`}
+                      alt=""
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className={styles.badge}>
+                      <div className={styles.text}>옆면</div>
+                      <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                    <div
-                      className="swiper-slide"
-                      role="group"
-                      aria-label="3 / 4"
-                      data-swiper-slide-index="2"
-                    >
-                      <div className="badge">
-                        <div className="text">후면</div>
-                      </div>
-                      <img
-                        src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-03.png"
-                        alt=""
-                        className="img"
-                      />
+                    <img
+                      src={`/images/vehicle_info/img-mockup-sample-02.png`}
+                      alt=""
+                      className={styles.img}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className={styles.badge}>
+                      <div className={styles.text}>옆면</div>
+                      <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                    <div
-                      className="swiper-slide"
-                      role="group"
-                      aria-label="4 / 4"
-                      data-swiper-slide-index="3"
-                    >
-                      <div className="badge">
-                        <div className="text">계측기</div>
-                      </div>
-                      <img
-                        src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-04.png"
-                        alt=""
-                        className="img"
-                      />
+                    <img
+                      src={`/images/vehicle_info/img-mockup-sample-03.png`}
+                      alt=""
+                      className={styles.img}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className={styles.badge}>
+                      <div className={styles.text}>옆면</div>
+                      <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                  </div>
-                  <span
-                    className="swiper-notification"
-                    aria-live="assertive"
-                    aria-atomic="true"
-                  ></span>
-                </div>
-
-                <div className="swiper thumbs-slider swiper-initialized swiper-horizontal swiper-free-mode swiper-watch-progress swiper-backface-hidden swiper-thumbs">
-                  <div
-                    className="swiper-wrapper"
-                    id="swiper-wrapper-274100f46735107375"
-                    aria-live="polite"
-                  >
-                    <div
-                      className="swiper-slide swiper-slide-visible swiper-slide-active swiper-slide-thumb-active"
-                      role="group"
-                      aria-label="1 / 4"
-                      data-swiper-slide-index="0"
-                    >
-                      <img
-                        src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-01.png"
-                        alt=""
-                        className="img"
-                      />
-                    </div>
-                    <div
-                      className="swiper-slide swiper-slide-visible swiper-slide-next"
-                      role="group"
-                      aria-label="2 / 4"
-                      data-swiper-slide-index="1"
-                    >
-                      <img
-                        src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-02.png"
-                        alt=""
-                        className="img"
-                      />
-                    </div>
-                    <div
-                      className="swiper-slide swiper-slide-visible"
-                      role="group"
-                      aria-label="3 / 4"
-                      data-swiper-slide-index="2"
-                    >
-                      <img
-                        src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-03.png"
-                        alt=""
-                        className="img"
-                      />
-                    </div>
-                    <div
-                      className="swiper-slide swiper-slide-visible"
-                      role="group"
-                      aria-label="4 / 4"
-                    >
-                      <img
-                        src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-04.png"
-                        alt=""
-                        className="img"
-                      />
-                    </div>
-                  </div>
-                  <span
-                    className="swiper-notification"
-                    aria-live="assertive"
-                    aria-atomic="true"
-                  ></span>
-                </div>
-
-                <div id="viewer_slider" className="viewer-slider">
-                  <div className="swiper viewer swiper-initialized swiper-horizontal swiper-autoheight">
-                    <div
-                      className="swiper-wrapper"
-                      id="swiper-wrapper-4baf367272a2dbf8"
-                      aria-live="polite"
-                    >
-                      <div
-                        className="swiper-slide swiper-slide-active"
-                        data-swiper-slide-index="0"
-                        role="group"
-                        aria-label="1 / 4"
-                      >
-                        <div className="slide-content">
-                          <div className="ic-close"></div>
-                          <div className="badge target">
-                            <div className="text target">옆면</div>
-                            <div className="text-sub target">(운전석)</div>
-                          </div>
-                          <img
-                            src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-01.png"
-                            alt=""
-                            className="img target"
-                          />
-                          <div
-                            className="slide-arrow ic-prev target"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Previous slide"
-                            aria-controls="swiper-wrapper-4baf367272a2dbf8"
-                          ></div>
-                          <div
-                            className="slide-arrow ic-next target"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Next slide"
-                            aria-controls="swiper-wrapper-4baf367272a2dbf8"
-                          ></div>
-                        </div>
-                      </div>
-                      <div
-                        className="swiper-slide swiper-slide-next"
-                        data-swiper-slide-index="1"
-                        role="group"
-                        aria-label="2 / 4"
-                      >
-                        <div className="slide-content">
-                          <div className="ic-close"></div>
-                          <div className="badge target">
-                            <div className="text target">옆면</div>
-                            <div className="text-sub target">(조수석)</div>
-                          </div>
-                          <img
-                            src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-02.png"
-                            alt=""
-                            className="img target"
-                          />
-                          <div
-                            className="slide-arrow ic-prev target"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Previous slide"
-                            aria-controls="swiper-wrapper-4baf367272a2dbf8"
-                          ></div>
-                          <div
-                            className="slide-arrow ic-next target"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Next slide"
-                            aria-controls="swiper-wrapper-4baf367272a2dbf8"
-                          ></div>
-                        </div>
-                      </div>
-                      <div
-                        className="swiper-slide"
-                        data-swiper-slide-index="2"
-                        role="group"
-                        aria-label="3 / 4"
-                      >
-                        <div className="slide-content">
-                          <div className="ic-close"></div>
-                          <div className="badge target">
-                            <div className="text target">후면</div>
-                          </div>
-                          <img
-                            src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-03.png"
-                            alt=""
-                            className="img target"
-                          />
-                          <div
-                            className="slide-arrow ic-prev target"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Previous slide"
-                            aria-controls="swiper-wrapper-4baf367272a2dbf8"
-                          ></div>
-                          <div
-                            className="slide-arrow ic-next target"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Next slide"
-                            aria-controls="swiper-wrapper-4baf367272a2dbf8"
-                          ></div>
-                        </div>
-                      </div>
-                      <div
-                        className="swiper-slide"
-                        data-swiper-slide-index="3"
-                        role="group"
-                        aria-label="4 / 4"
-                      >
-                        <div className="slide-content">
-                          <div className="ic-close"></div>
-                          <div className="badge target">
-                            <div className="text target">계측기</div>
-                          </div>
-                          <img
-                            src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-information/img-mockup-sample-04.png"
-                            alt=""
-                            className="img target"
-                          />
-                          <div
-                            className="slide-arrow ic-prev target"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Previous slide"
-                            aria-controls="swiper-wrapper-4baf367272a2dbf8"
-                          ></div>
-                          <div
-                            className="slide-arrow ic-next target"
-                            tabIndex={0}
-                            role="button"
-                            aria-label="Next slide"
-                            aria-controls="swiper-wrapper-4baf367272a2dbf8"
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                    <span
-                      className="swiper-notification"
-                      aria-live="assertive"
-                      aria-atomic="true"
-                    ></span>
-                  </div>
-                </div>
+                    <img
+                      src={`/images/vehicle_info/img-mockup-sample-04.png`}
+                      alt=""
+                      className={styles.img}
+                    />
+                  </SwiperSlide>
+                </Swiper>
+                <Swiper
+                  onSwiper={setThumbsSwiper}
+                  spaceBetween={10}
+                  slidesPerView={4}
+                  freeMode={true}
+                  watchSlidesProgress={true}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className={styles.thumbs_slider}
+                >
+                  <SwiperSlide className={styles.swiperslide}>
+                    <img
+                      src={`/images/vehicle_info/img-mockup-sample-01.png`}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide className={styles.swiperslide}>
+                    <img
+                      src={`/images/vehicle_info/img-mockup-sample-02.png`}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide className={styles.swiperslide}>
+                    <img
+                      src={`/images/vehicle_info/img-mockup-sample-03.png`}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide className={styles.swiperslide}>
+                    <img
+                      src={`/images/vehicle_info/img-mockup-sample-04.png`}
+                    />
+                  </SwiperSlide>
+                </Swiper>
               </div>
 
-              <div className="table-box content-body">
-                <div className="vehicle-number">제 22101301호</div>
-                <ul className="list-wrap">
-                  <li className="list">
-                    <div className="title text">차량종류</div>
-                    <div className="value text">윙바디 1.5t</div>
+              <div className={`${styles.table_box} ${styles.content_body}`}>
+                <div className="vehicle_number">
+                  제 22101301호
+                  <style jsx>{`
+                    .vehicle_number {
+                      padding: 38px 30px;
+                      font-weight: 700;
+                      font-size: 22px;
+                      line-height: 32px;
+                      color: #2c324c;
+                    }
+                  `}</style>
+                </div>
+                <ul className={styles.list_wrap}>
+                  <li className={styles.list}>
+                    <div className={`${styles.title} ${styles.text}`}>
+                      차량종류
+                    </div>
+                    <div className={`${styles.value} ${styles.text}`}>
+                      윙바디 1.5t
+                    </div>
                   </li>
-                  <li className="list">
-                    <div className="title text">평균 운행거리 (월)</div>
-                    <div className="value text">1500km</div>
+                  <li className={styles.list}>
+                    <div className={`${styles.title} ${styles.text}`}>
+                      평균 운행거리 (월)
+                    </div>
+                    <div className={`${styles.value} ${styles.text}`}>
+                      1500km
+                    </div>
                   </li>
-                  <li className="list">
-                    <div className="title text">평균 운행일수 (월)</div>
-                    <div className="value text">25일</div>
+                  <li className={styles.list}>
+                    <div className={`${styles.title} ${styles.text}`}>
+                      평균 운행일수 (월)
+                    </div>
+                    <div className={`${styles.value} ${styles.text}`}>25일</div>
                   </li>
-                  <li className="list">
-                    <div className="title text">일평균 운행시간 (일)</div>
-                    <div className="value text">일 7시간</div>
+                  <li className={styles.list}>
+                    <div className={`${styles.title} ${styles.text}`}>
+                      일평균 운행시간 (일)
+                    </div>
+                    <div className={`${styles.value} ${styles.text}`}>
+                      일 7시간
+                    </div>
                   </li>
-                  <li className="list">
-                    <div className="title text">고정 출발지</div>
-                    <div className="value text">-</div>
+                  <li className={styles.list}>
+                    <div className={`${styles.title} ${styles.text}`}>
+                      고정 출발지
+                    </div>
+                    <div className={`${styles.value} ${styles.text}`}>-</div>
                   </li>
-                  <li className="list">
-                    <div className="title text">고정 도착지</div>
-                    <div className="value text">
+                  <li className={styles.list}>
+                    <div className={`${styles.title} ${styles.text}`}>
+                      고정 도착지
+                    </div>
+                    <div className={`${styles.value} ${styles.text}`}>
                       경기도 안산시 상록구 월피동
                     </div>
                   </li>

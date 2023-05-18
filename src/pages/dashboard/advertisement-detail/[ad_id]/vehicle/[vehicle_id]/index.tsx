@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const imageStyle = {
   objectFit: "cover",
@@ -15,6 +16,9 @@ const imageStyle = {
 };
 
 export default function VehicleInfoScreen() {
+  const { query } = useRouter();
+  const { ad_id, vehicle_id } = query;
+  
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div

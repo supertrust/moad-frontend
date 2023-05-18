@@ -5,6 +5,7 @@ import styles from './style.module.css'
 import { useDeleteAdvertisement, useGetAdvertisements } from "@src/apis/advertisement";
 import { AdStatusesType, AdTypesType } from "@src/types/advertisement";
 import { toast } from "react-toastify";
+import useAuth from "@src/hooks/useAuth";
 
 const statuses = [
   { label: "All", value: undefined },
@@ -14,12 +15,18 @@ const statuses = [
 ]
 
 export default function AdListModule() {
+  const { user } = useAuth();
   const adModel = useRef<AdModelRef>(null);
   const [selectedAds, setSelectedAds] = useState<number[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
 
-  const { data: advertisements, refetch: refetchAdvertisements } = useGetAdvertisements({ status, type })
+  const { data: advertisements, refetch: refetchAdvertisements } = useGetAdvertisements({
+    status,
+    type,
+    for_admin: user?.role !== "Advertiser"
+  });
+  
   const { mutateAsync: deleteAd } = useDeleteAdvertisement()
 
   const openModal = () => adModel.current?.open();

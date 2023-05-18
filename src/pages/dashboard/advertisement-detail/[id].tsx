@@ -328,7 +328,7 @@ function AdvertisementDetailScreen() {
                     </button>
                   </div>
                 </div>
-                <div className="right_side">
+                <div className={styles.right_side}>
                   <div className={styles.table_box}>
                     {ad_detail_arr.map((data, index) => (
                       <div key={index} className={styles.table_line}>

@@ -19,10 +19,11 @@ import {
   useGetAdvertisementVehicles,
 } from "@src/apis/advertisement";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
+import Link from "next/link";
 
 function AdvertisementDetailScreen() {
   const { query } = useRouter();
-  const advertisementId = query.id as string;
+  const advertisementId = query.ad_id as string;
   const { data: advertisement } = useGetAdvertisementDetail({
     id: advertisementId,
   });
@@ -84,6 +85,7 @@ function AdvertisementDetailScreen() {
       value: `${advertisement?.amount}원`,
     },
   ];
+
   const [index, setIndex] = useState(0);
   const handleSelect = (selectedIndex: any, e: any) => {
     setIndex(selectedIndex);
@@ -94,16 +96,16 @@ function AdvertisementDetailScreen() {
       !vehicles?.length
         ? []
         : vehicles?.map((item) => ({
-            id: item.id,
-            registration_number:
-              item.advertisement.advertiser.business_registration_number,
-            vehicle_type: item.vehicles.vehicle_type,
-            vehicle_status: item.advertisement.advertisement_vehicles.find(
-              (_item) => _item.vehicle_id === item.vehicles.id
-            )?.status,
-            vehicle_information: "보기",
-            vehicle_location: "보기",
-          })),
+          id: item.id,
+          registration_number:
+            item.advertisement.advertiser.business_registration_number,
+          vehicle_type: item.vehicles.vehicle_type,
+          vehicle_status: item.advertisement.advertisement_vehicles.find(
+            (_item) => _item.vehicle_id === item.vehicles.id
+          )?.status,
+          vehicle_information: item.vehicle_id,
+          vehicle_location: item.vehicle_id,
+        })),
     [vehicles?.length]
   );
 
@@ -129,7 +131,7 @@ function AdvertisementDetailScreen() {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
         paddingBottom: "20px",
-      },
+      }
     },
     {
       dataField: "vehicle_type",
@@ -157,6 +159,11 @@ function AdvertisementDetailScreen() {
         paddingTop: "20px",
         paddingBottom: "20px",
       },
+      formatter: (vehicle_id: string) => (
+        <Link href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${vehicle_id}`}>
+          보기
+        </Link>
+      )
     },
     {
       dataField: "vehicle_location",
@@ -166,6 +173,11 @@ function AdvertisementDetailScreen() {
         paddingTop: "20px",
         paddingBottom: "20px",
       },
+      formatter: (vehicle_id: string) => (
+        <Link href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${vehicle_id}/location`}>
+          보기
+        </Link>
+      )
     },
   ];
   const [swiper, setSwiper] = useState(false);
@@ -216,9 +228,8 @@ function AdvertisementDetailScreen() {
               <div className={styles.detail_content}>
                 <div className={styles.slide_box}>
                   <div
-                    className={`${model === "image" ? styles.active : ""} ${
-                      styles.detail_slide
-                    } ${styles.box}`}
+                    className={`${model === "image" ? styles.active : ""} ${styles.detail_slide
+                      } ${styles.box}`}
                     id="div3d"
                   >
                     <div className={styles.swiper_wrapper}>
@@ -241,9 +252,8 @@ function AdvertisementDetailScreen() {
                     </div>
                   </div>
                   <div
-                    className={`${model === "model" ? styles.active : ""} ${
-                      styles.detail_3d
-                    } ${styles.box}`}
+                    className={`${model === "model" ? styles.active : ""} ${styles.detail_3d
+                      } ${styles.box}`}
                     id="div2d"
                   >
                     <Canvas
@@ -298,9 +308,8 @@ function AdvertisementDetailScreen() {
                   </Swiper>
 
                   <div
-                    className={`${swiper ? styles.active : ""} ${
-                      styles.mockup_btn
-                    }`}
+                    className={`${swiper ? styles.active : ""} ${styles.mockup_btn
+                      }`}
                   >
                     <button
                       onClick={() => {
@@ -446,10 +455,10 @@ function AdvertisementDetailScreen() {
 }
 
 //if user role is 'Advertiser'
-const WithRoles=()=>(
-    <RoleBasedGuard roles={['Advertiser']}>
-      <AdvertisementDetailScreen />
-    </RoleBasedGuard>
+const WithRoles = () => (
+  <RoleBasedGuard roles={['Advertiser']}>
+    <AdvertisementDetailScreen />
+  </RoleBasedGuard>
 )
 
 export default WithRoles

@@ -1,13 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { getMapScriptTag, registerEvents } from '../../../helpers/map'
+import { getMapScriptTag, registerEvents } from '@src/helpers/map'
 import { Button }  from 'react-bootstrap'
 import { useSaveLocation } from '@src/apis/map';
 import {toast} from "react-toastify";
 import {dateFormat} from "@src/helpers";
 import useDebouncedState from "@restart/hooks/useDebouncedState";
 import { Drawer, Paper} from '@mui/material';
+import { useRouter } from 'next/router';
 
 const Map = () => {
+    const { query } = useRouter();
+    const { ad_id, vehicle_id } = query;
+
     const mapRef = useRef(null);
     const startInputRef = useRef(null);
     const endInputRef = useRef(null);

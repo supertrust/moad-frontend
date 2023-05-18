@@ -24,7 +24,7 @@ export default function AdListModule() {
   const { data: advertisements, refetch: refetchAdvertisements } = useGetAdvertisements({
     status,
     type,
-    for_admin: user?.role !== "Advertiser"
+    for_admin: user?.role !== "Admin"
   });
   
   const { mutateAsync: deleteAd } = useDeleteAdvertisement()

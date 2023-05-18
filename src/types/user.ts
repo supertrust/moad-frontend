@@ -9,7 +9,7 @@ export interface IUser {
     employee_phone_number: string;
     id: number
     sector: string;
-    role: "Advertiser" | "Admin";
+    role: "Advertiser" | "Admin" | "Cargo";
 }
 
 export type GetUserPropsType = {

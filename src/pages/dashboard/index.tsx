@@ -23,7 +23,7 @@ const DashboardScreen = () => {
 
 //if user role is 'Advertiser'
 const WithRoles=()=>(
-    <RoleBasedGuard roles={['Advertise']}>
+    <RoleBasedGuard roles={['Advertiser']}>
       <DashboardScreen/>
     </RoleBasedGuard>
 )

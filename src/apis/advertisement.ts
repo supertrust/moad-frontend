@@ -1,5 +1,5 @@
 import axios from "@src/utils/axios";
-import { GetAdvertisementDetailPropType, GetAdvertisementOperationAreaPropsType, GetAdvertisementVehiclesPropsType, GetAdvertisementsPropType, IAdvertisement, IAdvertisementOperatingArea, IAdvertisementVehicle, IOperatingArea, IVehicle, SaveAdvertisementType } from "@src/types/advertisement";
+import { GetAdvertisementDetailPropType, GetAdvertisementOperationAreaPropsType, GetAdvertisementVehiclesPropsType, GetAdvertisementsPropType, IAdvertisement, IAdvertisementOperatingArea, IAdvertisementVehicle, IOperatingArea, IVehicle, SaveAdvertisementType, UpdateAdvertisementStatusType } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) => useQuery<IAdvertisement[], string>({
@@ -42,4 +42,8 @@ export const useGetAdvertisementOperationArea = ({ advertisement_id }: GetAdvert
 
 export const useDeleteAdvertisement = () => useMutation<void, string, { id: string }>({
     mutationFn: async ({ id }) => await axios.delete(`/api/delete-advertisement/${id}`)
+})
+
+export const useUpdateAdStatus = () => useMutation<void, string, UpdateAdvertisementStatusType>({
+    mutationFn: (props) => axios.post("/api/update-advertisement-status", props)
 })

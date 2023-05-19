@@ -1,8 +1,8 @@
 import useAuth from "@src/hooks/useAuth";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 type RoleBasedGuardProp = {
-    roles?: string[];
+    roles?: ("Admin" | "Advertiser" | "Cargo")[];
     children: React.ReactNode;
 };
 export default function RoleBasedGuard({ roles, children }: RoleBasedGuardProp) {
@@ -10,7 +10,7 @@ export default function RoleBasedGuard({ roles, children }: RoleBasedGuardProp) 
     const { user } = useAuth();
     const { replace } = useRouter();
 
-    if (typeof roles !== 'undefined' && !roles.includes(user?.role || '')) {
+    if (typeof roles !== undefined && user?.role && !roles?.includes(user?.role)) {
         return <></>
     }
     return <> {children} </>;

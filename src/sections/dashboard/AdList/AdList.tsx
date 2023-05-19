@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import { Form, Pagination } from "react-bootstrap";
 import AdModel, { AdModelRef } from "../SaveAdModel";
 import styles from './style.module.css'
-import { useDeleteAdvertisement, useGetAdvertisements } from "@src/apis/advertisement";
+import { useDeleteAdvertisement, useGetAdvertisements, useUpdateAdStatus } from "@src/apis/advertisement";
 import { AdStatusesType, AdTypesType } from "@src/types/advertisement";
 import { toast } from "react-toastify";
 import useAuth from "@src/hooks/useAuth";
+import Button from "@src/components/Button";
+import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 
 const statuses = [
   { label: "All", value: undefined },
@@ -26,7 +28,7 @@ export default function AdListModule() {
     type,
     for_admin: user?.role !== "Admin"
   });
-  
+  const { mutateAsync: updateAdStatus } = useUpdateAdStatus();
   const { mutateAsync: deleteAd } = useDeleteAdvertisement()
 
   const openModal = () => adModel.current?.open();
@@ -57,6 +59,14 @@ export default function AdListModule() {
     } catch (error: any) {
       toast.error(error)
     }
+  }
+
+  const handleUpdateAdStatus = (status: "yes" | "no", id: number) => () => {
+    updateAdStatus({ id, status }, {
+      onSuccess: () => {
+        refetchAdvertisements()
+      }
+    })
   }
 
   return (
@@ -117,6 +127,9 @@ export default function AdListModule() {
               <div className={styles.gridBox}>Period</div>
               <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div>
             </div>
+            <RoleBasedGuard roles={["Admin"]}>
+              <div className={`${styles.gridBox}`}>Action</div>
+            </RoleBasedGuard>
           </div>
           <div className="tab-content all-wrap on">
             <ul className="list-wrap">
@@ -141,6 +154,12 @@ export default function AdListModule() {
                       <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div>
                       <i className="only-mb ic-arrow-right"></i>
                     </a>
+                    <RoleBasedGuard roles={["Admin"]}>
+                      <div className={styles.gridBox}>
+                        <Button onClick={handleUpdateAdStatus("no", item.id)}>Reject</Button>
+                        <Button onClick={handleUpdateAdStatus("yes", item.id)}>Approve</Button>
+                      </div>
+                    </RoleBasedGuard>
                   </li>
                 )
               })}

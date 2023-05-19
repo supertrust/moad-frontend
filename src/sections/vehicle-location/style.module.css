@@ -1,0 +1,480 @@
+.only-mb {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .only_pc {
+    display: none;
+  }
+
+  .only_mb {
+    display: block;
+  }
+}
+
+.vehicle_location_content {
+  height: 100%;
+}
+
+.vehicle_location_content .location_detail_wrap {
+  position: absolute;
+  top: 120px;
+  right: 0;
+  width: 340px;
+  height: inherit;
+  background-color: #ffffff;
+  z-index: 10;
+}
+
+.vehicle_location_content .location_detail_wrap.active {
+  right: -340px;
+}
+
+.vehicle_location_content .location_detail_wrap .address {
+  background: #e1ecff;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+  color: #2f48d1;
+}
+
+.vehicle_location_content .location_detail_wrap .button_wrap .arrow_wrap {
+  width: 22px;
+  height: 48px;
+  position: absolute;
+  right: 340px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid #eeeeee;
+  border-right: none;
+  background: url("../../../public/images/vehicle_location/ic-arrow-right.png")
+    no-repeat center center / auto #ffffff;
+  border-radius: 5px 0px 0px 5px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .button_wrap
+  .arrow_wrap.active {
+  background: url("../../../public/images/vehicle_location/ic-arrow-left.png")
+    no-repeat center center / auto #ffffff;
+}
+
+.vehicle_location_content .location_detail_wrap .content_inner {
+  height: calc(100% - 47px);
+  overflow-y: auto;
+}
+
+.vehicle_location_content .location_detail_wrap .content_inner .inner {
+  padding: 0 20px 20px;
+}
+
+.vehicle_location_content .location_detail_wrap .content_inner .inner .section {
+  padding: 30px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .section
+  .title {
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23px;
+  color: #2c324c;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .now_location
+  .img {
+  margin-bottom: 16px;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .now_location
+  .location_name {
+  margin-bottom: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2c324c;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .now_location
+  .text_wrap
+  .text {
+  font-weight: 350;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2c324c;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .operation_history
+  .history {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .operation_history
+  .history
+  .list {
+  text-align: center;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .operation_history
+  .history
+  .list
+  .icons {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto 6px;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .operation_history
+  .history
+  .list
+  .ic_start {
+  background: url("../../../public/images/vehicle_location/ic-start.png")
+    no-repeat center center / cover;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .operation_history
+  .history
+  .list
+  .ic_end {
+  background: url("../../../public/images/vehicle_location/ic-end.png")
+    no-repeat center center / cover;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .operation_history
+  .history
+  .list
+  .ic_drive {
+  background: url("../../../public/images/vehicle_location/ic-drive.png")
+    no-repeat center center / cover;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .operation_history
+  .history
+  .list
+  .data {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 35px;
+  color: #2c324c;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .operation_history
+  .history
+  .list
+  .text {
+  font-weight: 350;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999999;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate {
+  border-bottom: 0;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: center;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap
+  .list
+  .text {
+  color: #2c324c;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap
+  .list
+  .bar_wrap {
+  height: 144px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap
+  .list
+  .bar_wrap
+  .km {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap
+  .list
+  .bar_wrap
+  .bar {
+  width: 40px;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap
+  .list
+  .bar_wrap
+  .bar.today {
+  background-color: #2f48d1;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap
+  .list
+  .bar_wrap
+  .bar.total {
+  background-color: #515e93;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap
+  .list
+  .bar_wrap
+  .bar.average {
+  height: 120px;
+  background-color: #2c324c;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .accomplishment_rate
+  .list_wrap
+  .list
+  .desc {
+  margin-top: 6px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  color: #2c324c;
+}
+
+.vehicle_location_content
+  .location_detail_wrap
+  .content_inner
+  .inner
+  .standard {
+  text-align: right;
+  font-weight: 350;
+  font-size: 14px;
+  line-height: 20px;
+  color: #999999;
+}
+
+.vehicle_location_content .refresh_wrap {
+  position: relative;
+  width: calc(100% - 340px);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.vehicle_location_content .refresh_wrap.active {
+  width: 100%;
+}
+
+.vehicle_location_content .refresh_wrap .refresh_btn {
+  display: block;
+  width: 100px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  bottom: 39px;
+  transform: translateX(-50%);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  color: #ffffff;
+  background-color: #2c324c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+  .vehicle_location_content .location_detail_wrap .content_inner {
+    height: calc(100% - 117px);
+  }
+
+  .vehicle_location_content .refresh_wrap {
+    display: none;
+  }
+
+  .only-pc {
+    display: none;
+  }
+
+  .only-mb {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .vehicle_location_content .location_detail_wrap {
+    width: 100%;
+    top: 70px;
+  }
+
+  .vehicle_location_content .location_detail_wrap.active {
+    bottom: 106px;
+    right: 0;
+    height: 0;
+    top: inherit;
+  }
+
+  .vehicle_location_content .location_detail_wrap.active .content_inner {
+    height: 0;
+  }
+
+  .vehicle_location_content .location_detail_wrap .address {
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    background: #ffffff;
+  }
+
+  .vehicle_location_content .location_detail_wrap .button_wrap {
+    position: relative;
+  }
+
+  .vehicle_location_content .location_detail_wrap .button_wrap .arrow_wrap {
+    width: 48px;
+    height: 22px;
+    top: -69px;
+    right: 50%;
+    transform: translateX(50%);
+    border-color: #eeeeee;
+    border-radius: 5px 5px 0px 0px;
+    background: url("../../../public/images/vehicle_location/ic-arrow-down.png")
+      no-repeat center center / auto #ffffff;
+    border-bottom: 0;
+  }
+
+  .vehicle_location_content
+    .location_detail_wrap
+    .button_wrap
+    .arrow_wrap.active {
+    top: inherit;
+    bottom: 46px;
+    background: url("../../../public/images/vehicle_location/ic-arrow-up.png")
+      no-repeat center center / auto #ffffff;
+  }
+
+  .vehicle_location_content .location_detail_wrap .content_inner {
+    height: calc(100% - 176px);
+  }
+
+  .vehicle_location_content .refresh_wrap {
+    display: none;
+  }
+
+  .only-pc {
+    display: none;
+  }
+
+  .only-mb {
+    display: block;
+  }
+}
+
+#inner_footer {
+  display: none !important;
+}

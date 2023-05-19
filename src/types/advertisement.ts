@@ -114,3 +114,8 @@ export interface IAdvertisementOperatingArea {
         operating_area_id: number;
     }
 }
+
+export type UpdateAdvertisementStatusType = {
+    id: number;
+    status: "yes" | "no"
+}

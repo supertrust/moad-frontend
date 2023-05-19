@@ -4,7 +4,7 @@ export type AdStatusesType = "proceeding" | "applying" | "end";
 export type GetAdvertisementsPropType = {
     type?: AdTypesType;
     status?: AdStatusesType;
-    for_admin?: boolean;
+    for_admin?: "yes" | "no";
 }
 
 export type GetAdvertisementDetailPropType = {

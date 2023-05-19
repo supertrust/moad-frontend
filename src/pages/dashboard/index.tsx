@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { AdList, Advertising, NotificationCentre } from '@src/sections/dashboard';
-import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 
 const DashboardScreen = () => {
   return (
@@ -21,11 +20,4 @@ const DashboardScreen = () => {
   );
 }
 
-//if user role is 'Advertiser'
-const WithRoles=()=>(
-    <RoleBasedGuard roles={['Advertiser']}>
-      <DashboardScreen/>
-    </RoleBasedGuard>
-)
-
-export default WithRoles
+export default DashboardScreen

@@ -18,13 +18,10 @@ const imageStyle = {
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
   const { ad_id, vehicle_id } = query;
-  
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <div
-      id={styles.vehicle_information}
-      className={`${styles.page} ${styles.statistics}`}
-    >
+    <div id={styles.vehicle_information}>
       <div className={styles.container}>
         <div className={styles.board_content}>
           <div className={styles.vehicle_information_content}>

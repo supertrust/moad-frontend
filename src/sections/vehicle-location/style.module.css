@@ -14,16 +14,35 @@
 
 .vehicle_location_content {
   height: 100%;
+  overflow: hidden;
 }
 
 .vehicle_location_content .location_detail_wrap {
   position: absolute;
   top: 120px;
-  right: 0;
   width: 340px;
   height: inherit;
   background-color: #ffffff;
   z-index: 10;
+  transition: right 0.5s ease;
+}
+.open {
+  right: 0;
+}
+
+.closed {
+  right: -340px; /* adjust the value based on your sidebar width */
+  display: none;
+}
+
+.btn_closed {
+  right: 0 !important;
+  display: block !important;
+  transform: rotate(180deg) !important;
+}
+
+.btn_open {
+  display: block !important;
 }
 
 .vehicle_location_content .location_detail_wrap.active {
@@ -39,7 +58,7 @@
   color: #2f48d1;
 }
 
-.vehicle_location_content .location_detail_wrap .button_wrap .arrow_wrap {
+.button_wrap .arrow_wrap {
   width: 22px;
   height: 48px;
   position: absolute;
@@ -55,10 +74,7 @@
   z-index: 10;
 }
 
-.vehicle_location_content
-  .location_detail_wrap
-  .button_wrap
-  .arrow_wrap.active {
+.button_wrap .arrow_wrap.active {
   background: url("../../../public/images/vehicle_location/ic-arrow-left.png")
     no-repeat center center / auto #ffffff;
 }
@@ -307,6 +323,7 @@
   .list
   .bar_wrap
   .bar.today {
+  height: 20%;
   background-color: #2f48d1;
 }
 
@@ -319,6 +336,7 @@
   .list
   .bar_wrap
   .bar.total {
+  height: 50%;
   background-color: #515e93;
 }
 

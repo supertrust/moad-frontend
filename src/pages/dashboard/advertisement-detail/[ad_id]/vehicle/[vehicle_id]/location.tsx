@@ -14,8 +14,8 @@ const Map = () => {
   const { ad_id, vehicle_id } = query;
 
   const mapRef = useRef(null);
-  const startInputRef = useRef(null);
-  const endInputRef = useRef(null);
+  const startInputRef = useRef<HTMLInputElement | null>(null);
+  const endInputRef = useRef<HTMLInputElement | null>(null);
   const [savingRide, setSavingRide] = useState(false);
   const [showDrawer, setShowDrawer] = useState(false);
   const { mutateAsync: saveLocation } = useSaveLocation();
@@ -26,12 +26,13 @@ const Map = () => {
     try {
       setSavingRide(true);
       event.preventDefault();
+      const currentDate = new Date();
       const data = {
         cargo_vehicle_id: 1,
-        starting_point: startInputRef.current.value,
-        end_point: endInputRef.current.value,
-        start_time: dateFormat(new Date()),
-        end_time: dateFormat(new Date()),
+        starting_point: startInputRef.current?.value || "",
+        end_point: endInputRef.current?.value || "",
+        start_time: dateFormat(currentDate.toLocaleDateString()),
+        end_time: dateFormat(currentDate.toLocaleDateString()),
         route_no: Date.now(),
       };
       await saveLocation(data);
@@ -40,13 +41,19 @@ const Map = () => {
     }
   };
   useEffect(() => {
-    const mapScript = getMapScriptTag();
+    const mapScript = getMapScriptTag(mapRef.current);
     registerEvents(mapScript, mapRef, startInputRef, endInputRef);
     document.head.appendChild(mapScript);
     return () => {
       document.head.removeChild(mapScript);
     };
   }, []);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClose = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div>
@@ -70,24 +77,31 @@ const Map = () => {
         style={{ width: "100%", minHeight: "49vw", position: "relative" }}
       />
       <div>
+        <div className={styles.button_wrap}>
+          <button
+            type="button"
+            id="location_detail_btn"
+            className={`${styles.arrow_wrap} ${
+              isOpen ? styles.btn_closed : styles.btn_open
+            }`}
+            onClick={handleClose}
+          >
+            <i className={styles.ic_arrrow}></i>
+          </button>
+        </div>
         <div className={styles.vehicle_location_content}>
-          <div className={styles.location_detail_wrap}>
+          <div
+            className={`${styles.location_detail_wrap} ${
+              isOpen ? styles.closed : styles.open
+            }`}
+          >
             <div className={styles.address}>안산시 상록구 월피동</div>
-            <div className={styles.button_wrap}>
-              <button
-                type="button"
-                id="location_detail_btn"
-                className={styles.arrow_wrap}
-              >
-                <i className={styles.ic_arrrow}></i>
-              </button>
-            </div>
             <div className={styles.content_inner}>
               <div className={styles.inner}>
                 <div className={`${styles.section} ${styles.now_location}`}>
                   <div className={styles.title}>지금 이곳은?</div>
                   <img
-                    src="http://localhost/wordpress/wp-content/themes/icarus/assets/images/vehicle-location/img-location.png"
+                    src="/images/img-location.png"
                     alt=""
                     className={styles.img}
                   />

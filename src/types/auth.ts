@@ -1,5 +1,5 @@
-import { IUser } from "./user";
-import {File} from "buffer";
+import { IUser, IUserRole } from "./user";
+import { File } from "buffer";
 
 export type LoginPropsType = {
     email: string;
@@ -35,6 +35,7 @@ export type AuthContextType = {
     logout: () => Promise<void>;
     token: string | null;
     user: IUser | null;
+    userRole: IUserRole | null;
     loading: boolean
 }
 

@@ -16,6 +16,17 @@ export type GetUserPropsType = {
     isAuthenticated: boolean
 }
 
+export type GetUserRolePropsType = {
+    isAuthenticated: boolean
+}
+
+export interface IUserRole {
+    id: number;
+    role_name: "Advertiser" | "Admin" | "Cargo";
+    created_at: null | string;
+    updated_at: null | string;
+}
+
 export type ChangePasswordPropsType = {
     old_password: string;
     new_password: string;

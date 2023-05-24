@@ -3,7 +3,7 @@ import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useSt
 import { AuthContextType, LoginPropsType, RegisterPropsType } from '@src/types/auth';
 import { useLogin, useRegister, useLogout } from '@src/apis/auth';
 import { removeAxiosToken, setAxiosToken } from '@src/utils/axios';
-import { useGetUser } from '@src/apis/user';
+import { useGetUser, useGetUserRole } from '@src/apis/user';
 import { queryClient } from '@src/services/ReactQueryClient';
 import { parseJwt } from '@src/helpers';
 
@@ -23,6 +23,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     const [token, setToken] = useState<string | null>(null);
 
     const { data: user } = useGetUser({ isAuthenticated });
+    const { data: userRole } = useGetUserRole({ isAuthenticated });
 
     const checkAuth = useCallback(() => {
         const token = localStorage.getItem('token');
@@ -71,6 +72,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     const value = useMemo(() => ({
         user: user || null,
+        userRole: userRole || null,
         isAuthenticated,
         token,
         login,
@@ -81,7 +83,8 @@ function AuthProvider({ children }: AuthProviderProps) {
         isAuthenticated,
         user,
         token,
-        loading
+        loading,
+        userRole
     ]);
 
     return (

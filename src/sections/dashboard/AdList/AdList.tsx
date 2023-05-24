@@ -17,7 +17,7 @@ const statuses = [
 ]
 
 export default function AdListModule() {
-  const { user } = useAuth();
+  const { userRole } = useAuth();
   const adModel = useRef<AdModelRef>(null);
   const [selectedAds, setSelectedAds] = useState<number[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
@@ -26,7 +26,7 @@ export default function AdListModule() {
   const { data: advertisements, refetch: refetchAdvertisements } = useGetAdvertisements({
     status,
     type,
-    for_admin: user?.role === "Admin"
+    for_admin: userRole?.role_name === "Admin"
   });
   const { mutateAsync: updateAdStatus } = useUpdateAdStatus();
   const { mutateAsync: deleteAd } = useDeleteAdvertisement()

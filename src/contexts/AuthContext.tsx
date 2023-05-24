@@ -89,6 +89,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     return (
         <AuthContext.Provider
+            // @ts-ignore
             value={value}
         >
             {loading ? null : children}

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { useGetInquiryDetail, useSaveInquiry, useUpdateInquiry } from '@src/apis/inquiry';
+import Image from 'next/image';
 
 export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
@@ -131,7 +132,7 @@ export default function Index({ id }: { id: string }) {
           ) : (
             <div className="px-7 py-9 flex gap-3 items-center">
               <div className="w-full hidden lg:flex">
-                <img src="/images/img-contact-us.png" alt="Contact Us" />
+                <Image src="/images/img-contact-us.png" alt="Contact Us" width={500} height={500}/>
               </div>
               <div className="flex w-full">
                 <form className='flex flex-col gap-4 w-full' onSubmit={handleFormSubmit}>

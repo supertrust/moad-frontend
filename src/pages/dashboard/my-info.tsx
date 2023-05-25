@@ -7,6 +7,7 @@ import { useUpdateUserInfo } from "@src/apis/user";
 import Button from "@src/components/Button";
 import { FormProvider, RHFInput, Yup, useForm, yupResolver } from '@src/components/Form';
 import {styles} from "@src/sections/my-info";
+import Image from "next/image";
 
 const defaultValues = {
   company_name: "",
@@ -107,9 +108,15 @@ export default function MyInfoScreen() {
                   <div className={styles.profile_wrap}>
                     <div className={styles.profile_img}>
                       <div className={styles.user_photo}>
-                        <img
+                        {/* <img
                           src="https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/my-info/img-default.png"
                           alt=""
+                        /> */}
+                        <Image
+                          src="https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/my-info/img-default.png"
+                          alt=""
+                          width={200}
+                          height={200}
                         />
                       </div>
                       <input type="file" id="input_file" className={styles.input_file} />

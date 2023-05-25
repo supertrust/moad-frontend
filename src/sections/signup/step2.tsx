@@ -1,9 +1,10 @@
-import {FormProvider, RHFInput, useForm, yupResolver} from "@src/components/Form";
+import { FormProvider, RHFInput, useForm, yupResolver } from "@src/components/Form";
 import React from "react";
 import * as Yup from "yup";
-import {PASSWORD_REGEX} from "@src/constants";
-import {Button} from "react-bootstrap";
-import {MembershipInformation} from "@src/pages/signup";
+import { PASSWORD_REGEX } from "@src/constants";
+import { Button } from "react-bootstrap";
+import { MembershipInformation } from "@src/pages/signup";
+import Image from "next/image";
 
 interface Step2Props {
     onPrevStep: () => void;
@@ -35,7 +36,7 @@ const RegisterSchema = Yup.object({
         ),
 })
 
-const Step2 = ({onPrevStep, onNextStep, setMembershipInformation}: Step2Props) => {
+const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props) => {
     const methods = useForm<MembershipInformation>({
         defaultValues,
         resolver: yupResolver(RegisterSchema)
@@ -52,7 +53,8 @@ const Step2 = ({onPrevStep, onNextStep, setMembershipInformation}: Step2Props) =
             <div className="left">
                 <div className="left-wrap">
                     <h1 className="logo-pc">
-                        <img src="assets/images/icons/logo-pc.svg" alt="" />
+                        <Image src="/images/logo-pc.svg" alt='logo-pc' width={150} height={50} />
+
                     </h1>
                 </div>
             </div>
@@ -70,44 +72,44 @@ const Step2 = ({onPrevStep, onNextStep, setMembershipInformation}: Step2Props) =
                         </div>
                         <FormProvider methods={methods}>
                             <div className="user-info">
-                            <RHFInput
-                                type="text"
-                                className="user-input"
-                                placeholder="아이디"
-                                name="email"
-                                id="email"
-                                label="아이디 (이메일)"
-                            />
-                            <RHFInput
-                                type="password"
-                                className="user-input"
-                                name="password"
-                                id="password"
-                                label="비밀번호"
-                                caption={
-                                    <p className="pw-info-text">
-                                        문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요
-                                    </p>
-                                }
-                            />
-                            <RHFInput
-                                type="password"
-                                id="confirm_password"
-                                className="user-input"
-                                name="confirm_password"
-                                placeholder="비밀번호 확인"
-                                label="비밀번호 확인"
-                                caption={
-                                    <i className="icon pw-show"></i>
-                                }
-                            />
-                            <Button
-                                className="link link-step01"
-                                onClick={onSubmit}
-                            >
-                              다음
-                            </Button>
-                        </div>
+                                <RHFInput
+                                    type="text"
+                                    className="user-input"
+                                    placeholder="아이디"
+                                    name="email"
+                                    id="email"
+                                    label="아이디 (이메일)"
+                                />
+                                <RHFInput
+                                    type="password"
+                                    className="user-input"
+                                    name="password"
+                                    id="password"
+                                    label="비밀번호"
+                                    caption={
+                                        <p className="pw-info-text">
+                                            문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요
+                                        </p>
+                                    }
+                                />
+                                <RHFInput
+                                    type="password"
+                                    id="confirm_password"
+                                    className="user-input"
+                                    name="confirm_password"
+                                    placeholder="비밀번호 확인"
+                                    label="비밀번호 확인"
+                                    caption={
+                                        <i className="icon pw-show"></i>
+                                    }
+                                />
+                                <Button
+                                    className="link link-step01"
+                                    onClick={onSubmit}
+                                >
+                                    다음
+                                </Button>
+                            </div>
                         </FormProvider>
                     </div>
                 </div>

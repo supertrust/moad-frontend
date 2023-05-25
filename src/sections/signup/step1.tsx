@@ -1,11 +1,12 @@
-import {Button, Modal} from "react-bootstrap";
-import React, {useState} from "react";
-import {useRouter} from "next/router";
+import { Button, Modal } from "react-bootstrap";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 interface Step1Props {
     onNextStep: () => void;
 }
-const Step1 = ({onNextStep}: Step1Props) => {
+const Step1 = ({ onNextStep }: Step1Props) => {
     const router = useRouter();
     const [privacyPolicy, setPrivacyPolicy] = useState<boolean>(false)
     const [termsAndConditions, setTermsAndConditions] = useState<boolean>(false)
@@ -18,16 +19,23 @@ const Step1 = ({onNextStep}: Step1Props) => {
     }
     return (
         <div className="step01 step-section">
-           <div className="left">
-             <div className="left-wrap">
+            <div className="left">
+                <div className="left-wrap">
                     <h1 className="logo-pc">
-                        <img src="assets/images/icons/logo-pc.svg" alt="" />
+                        <Image src="/images/logo-pc.svg" alt='logo-pc' width={150} height={50} />
+
                     </h1>
                 </div>
             </div>
+
             <div className={"right"}>
                 <h1 className="logo-mb">
-                    <img src="/images/logo-mb.svg" alt="" />
+                    <Image
+                        src="assets/images/icons/logo-mb.svg"
+                        alt=""
+                        width={120}
+                        height={50}
+                    />
                 </h1>
                 <div className="right-wrap">
                     <div className="right-content">

@@ -1,6 +1,7 @@
-import { LoginForm, styles,FindIdModel,FindPassModel } from "@src/sections/login";
+import { LoginForm, styles, FindIdModel, FindPassModel } from "@src/sections/login";
 import { useState } from "react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function Login() {
   const [findId, SetFindId] = useState(false);
@@ -16,14 +17,14 @@ export default function Login() {
         <div className="left">
           <div className="left-wrap">
             <h1 className="logo-pc">
-              <img src="assets/images/icons/logo-pc.svg" alt="" />
-            
+              <Image src="/images/logo-pc.svg" alt='logo-pc' width={150} height={50} />
+
             </h1>
           </div>
         </div>
         <div className="right">
           <h1 className="logo-mb noly-mb">
-            <img src="assets/images/icons/logo-mb.svg" alt="" />
+            <Image src="assets/images/icons/logo-mb.svg" alt='logo-mb' width={120} height={50} />
           </h1>
           <div className="right-wrap">
             <div className="title-wrap-login">
@@ -49,8 +50,8 @@ export default function Login() {
           </div>
         </div>
       </div>
-        {findId ? <FindIdModel SetFindId={SetFindId} /> : null}
-        {findPass ? <FindPassModel setFindPass={SetFindPass} setFindId={SetFindId} /> : null}
+      {findId ? <FindIdModel SetFindId={SetFindId} /> : null}
+      {findPass ? <FindPassModel setFindPass={SetFindPass} setFindId={SetFindId} /> : null}
     </main>
   );
 }

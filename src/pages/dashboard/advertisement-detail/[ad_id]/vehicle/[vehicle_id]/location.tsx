@@ -8,6 +8,7 @@ import useDebouncedState from "@restart/hooks/useDebouncedState";
 import { Drawer, Paper } from "@mui/material";
 import { useRouter } from "next/router";
 import { styles } from "@src/sections/vehicle-location";
+import Image from "next/image";
 
 const Map = () => {
   const { query } = useRouter();
@@ -100,7 +101,7 @@ const Map = () => {
               <div className={styles.inner}>
                 <div className={`${styles.section} ${styles.now_location}`}>
                   <div className={styles.title}>지금 이곳은?</div>
-                  <img
+                  <Image
                     src="/images/img-location.png"
                     alt=""
                     className={styles.img}

@@ -1,6 +1,7 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
 import MobileNav from "./MobileNav";
+import Image from "next/image";
 
 interface HeaderProps {
   text: string;
@@ -27,7 +28,7 @@ function Header(props: HeaderProps) {
                 <Dropdown className="drop-btns">
                   <Dropdown.Toggle id="dropdown-basic">
                     <div className="my-photo">
-                      <img
+                      <Image
                         src="/images/img-my-pic.png"
                         alt=""
                         className="img"
@@ -54,7 +55,7 @@ function Header(props: HeaderProps) {
           <div className="header-mb">
             <h1 className="logo-wrap">
               <a href="home" className="link">
-                <img
+                <Image
                   src="assets/images/icons/logo-mb.svg"
                   alt=""
                 />

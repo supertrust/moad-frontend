@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import {PASSWORD_REGEX} from "@src/constants";
 import {Button} from "react-bootstrap";
 import {MembershipInformation} from "@src/pages/signup";
+import Image from "next/image";
 
 interface Step2Props {
     onPrevStep: () => void;
@@ -52,7 +53,7 @@ const Step2 = ({onPrevStep, onNextStep, setMembershipInformation}: Step2Props) =
             <div className="left">
                 <div className="left-wrap">
                     <h1 className="logo-pc">
-                        <img src="assets/images/icons/logo-pc.svg" alt="" />
+                        <Image src="assets/images/icons/logo-pc.svg" alt="" />
                     </h1>
                 </div>
             </div>

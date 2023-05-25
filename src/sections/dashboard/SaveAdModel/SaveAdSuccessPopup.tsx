@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./styles.module.css";
 import useAuth from "@src/hooks/useAuth";
+import Image from "next/image";
 
 function SaveAdSuccessPopup({ onOk }: { onOk: VoidFunction }) {
   const { user } = useAuth();
   return (
     <div className={styles.apply_completed_wrap}>
       <div className={styles.ad_apply_content}>
-        <img
+        <Image
           className={styles.ic_modal_chk}
           alt="icon"
           src="/images/ic-success.png"

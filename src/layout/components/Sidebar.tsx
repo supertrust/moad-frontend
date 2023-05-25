@@ -1,6 +1,7 @@
 import useAuth from "@src/hooks/useAuth";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 interface SidebarProps {
   msg: (msg: string) => void;
@@ -26,14 +27,14 @@ function Sidebar({ msg }: SidebarProps) {
   return (
     <div className="content">
       <h1 className="side-logo">
-        <img src="/images/logo-pc.svg" />
+        <Image src="/images/logo-pc.svg" alt='logo'/>
       </h1>
       <div className="sidemenu-wrap">
         {/* <ul className="menu-wrap">
           <li className="menu-list active">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-dashboard-active.png" />
+                <Image src="/images/ic-dashboard-active.png" />
               </i>
               <div className="name">
                 <Link
@@ -50,7 +51,7 @@ function Sidebar({ msg }: SidebarProps) {
           <li className="menu-list">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-statistics.png" />
+                <Image src="/images/ic-statistics.png" />
               </i>
               <div className="name">
                 <Link
@@ -67,7 +68,7 @@ function Sidebar({ msg }: SidebarProps) {
           <li className="menu-list">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-mypage.png" />
+                <Image src="/images/ic-mypage.png" />
               </i>
               <div className="name">
                 <Link
@@ -84,7 +85,7 @@ function Sidebar({ msg }: SidebarProps) {
           <li className="menu-list">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-mypage.png" />
+                <Image src="/images/ic-mypage.png" />
               </i>
               <div className="name">
                 <Link
@@ -101,7 +102,7 @@ function Sidebar({ msg }: SidebarProps) {
           <li className="menu-list">
             <div className="link">
               <i className="icon">
-                <img src="/images/ic-inquire.png" />
+                <Image src="/images/ic-inquire.png" />
               </i>
               <div className="name">
                 <Link
@@ -202,7 +203,7 @@ function Sidebar({ msg }: SidebarProps) {
               }}
             >
               <i className="icon">
-                <img
+                <Image
                   src={`/images/ic-dashboard${tab == "Advertising Management" ? "-active" : ""
                     }.png`}
                   alt=""
@@ -226,7 +227,7 @@ function Sidebar({ msg }: SidebarProps) {
                 }}
             >
               <i className="icon">
-                <img
+                <Image
                     src={`/images/ic-dashboard${tab == "Ad Management" ? "-active" : ""
                     }.png`}
                     alt=""
@@ -247,7 +248,7 @@ function Sidebar({ msg }: SidebarProps) {
               }}
             >
               <i className="icon statistics">
-                <img
+                <Image
                   src={`/images/ic-statistics${tab == "Statistics" ? "-active" : ""
                     }.png`}
                 />
@@ -266,7 +267,7 @@ function Sidebar({ msg }: SidebarProps) {
             >
               <i className="icon mypage">
                 {" "}
-                <img
+                <Image
                   src={`/images/ic-mypage${tab == "My Info" ? "-active" : ""
                     }.png`}
                 />
@@ -294,7 +295,7 @@ function Sidebar({ msg }: SidebarProps) {
               }}
             >
               <i className="icon center">
-                <img
+                <Image
                   src={`/images/ic-inquire${tab === "Inquiry" ||
                     tab === "Policies and Terms" ||
                     tab === "FAQ" ||

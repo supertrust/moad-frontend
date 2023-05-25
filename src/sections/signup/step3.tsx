@@ -7,6 +7,7 @@ import {useVerifyInput} from "@src/apis/auth";
 import useAuth from "@src/hooks/useAuth";
 import {Button, Modal} from "react-bootstrap";
 import {MembershipInformation} from "@src/pages/signup";
+import Image from "next/image";
 
 interface Step3Props {
     onPrevStep: () => void;
@@ -118,7 +119,7 @@ const Step3 = ({onPrevStep, onNextStep, membershipInformation}: Step3Props) => {
             <div className="left">
                 <div className="left-wrap">
                     <h1 className="logo-pc">
-                        <img src="assets/images/icons/logo-pc.svg" alt="" />
+                        <Image src="assets/images/icons/logo-pc.svg" alt="" />
                     </h1>
                 </div>
             </div>

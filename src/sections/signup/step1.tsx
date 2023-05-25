@@ -1,6 +1,7 @@
 import {Button, Modal} from "react-bootstrap";
 import React, {useState} from "react";
 import {useRouter} from "next/router";
+import Image from "next/image";
 
 interface Step1Props {
     onNextStep: () => void;
@@ -21,13 +22,13 @@ const Step1 = ({onNextStep}: Step1Props) => {
            <div className="left">
              <div className="left-wrap">
                     <h1 className="logo-pc">
-                        <img src="assets/images/icons/logo-pc.svg" alt="" />
+                        <Image src="assets/images/icons/logo-pc.svg" alt="" />
                     </h1>
                 </div>
             </div>
             <div className={"right"}>
                 <h1 className="logo-mb">
-                    <img src="/images/logo-mb.svg" alt="" />
+                    <Image src="/images/logo-mb.svg" alt="" />
                 </h1>
                 <div className="right-wrap">
                     <div className="right-content">

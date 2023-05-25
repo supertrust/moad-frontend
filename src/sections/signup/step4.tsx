@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -7,7 +8,7 @@ const Step4 = () => {
             <div className="left">
                 <div className="left-wrap">
                     <h1 className="logo-pc">
-                        <img src="assets/images/icons/logo-pc.svg" alt="" />
+                        <Image src="assets/images/icons/logo-pc.svg" alt="" />
                     </h1>
                 </div>
             </div>

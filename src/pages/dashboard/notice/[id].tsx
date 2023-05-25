@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import React from 'react'
+import Image from "next/image";
 
 export default function NoticeDetailScreen() {
   const id = useRouter().query.id as string;
@@ -37,7 +38,7 @@ export default function NoticeDetailScreen() {
               </div>
               <div className="px-7 py-3 max-h-96 overflow-y-auto flex flex-col gap-2">
                 {data?.image !== null && (
-                  <img src={data?.image} className="w-full" />
+                  <Image src={data?.image} className="w-full" alt=''/>
                 )}
                 <div>{data?.content}</div>
               </div>

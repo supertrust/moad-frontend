@@ -1,6 +1,7 @@
 import { LoginForm, styles,FindIdModel,FindPassModel } from "@src/sections/login";
 import { useState } from "react";
 import {useRouter} from "next/router";
+import Image from "next/image";
 
 export default function Login() {
   const [findId, SetFindId] = useState(false);
@@ -16,13 +17,13 @@ export default function Login() {
         <div className="left">
           <div className="left-wrap">
             <h1 className="logo-pc">
-              <img src="assets/images/icons/logo-pc.svg" alt="" />
+              <Image src="assets/images/icons/logo-pc.svg" alt="" />
             </h1>
           </div>
         </div>
         <div className="right">
           <h1 className="logo-mb noly-mb">
-            <img src="assets/images/icons/logo-mb.svg" alt="" />
+            <Image src="assets/images/icons/logo-mb.svg" alt="" />
           </h1>
           <div className="right-wrap">
             <div className="title-wrap-login">

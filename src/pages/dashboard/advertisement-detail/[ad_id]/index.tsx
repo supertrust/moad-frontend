@@ -435,7 +435,7 @@ function AdvertisementDetailScreen() {
                   </div>
                 </div>
 
-                <BootstrapTable
+                {/* <BootstrapTable
                   keyField="id"
                   data={vehiclesData}
                   columns={columns}
@@ -444,7 +444,7 @@ function AdvertisementDetailScreen() {
                     sizePerPage: 10,
                   })}
                   noDataIndication={"진행중인 광고가 없습니다."}
-                />
+                /> */}
               </div>
             </div>
           </div>

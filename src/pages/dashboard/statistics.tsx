@@ -2,6 +2,7 @@ import React from 'react'
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { styles } from "@src/sections/statistics";
+import DataTable from '@src/components/DataGrid/DataGrid';
 
 export default function StatisticsScreen() {
   const date_start = '2023. 03. 01';
@@ -123,15 +124,15 @@ export default function StatisticsScreen() {
                     <div className={styles.title}>운행거리/운행시간</div>
                     <div className={styles.line}></div>
                   </div>
-
-                  <BootstrapTable
+                  <DataTable />
+                  {/* <BootstrapTable
                     keyField="id"
                     data={data}
                     columns={columns}
                     pagination={paginationFactory({ hideSizePerPage: true, sizePerPage: 6 })}
                     selectRow={{ mode: 'checkbox', clickToSelect: true }}
                     noDataIndication={'진행중인 광고가 없습니다.'}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

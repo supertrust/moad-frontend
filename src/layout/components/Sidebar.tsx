@@ -1,7 +1,6 @@
 import useAuth from "@src/hooks/useAuth";
 import Link from "next/link";
 import { useState } from "react";
-
 interface SidebarProps {
   msg: (msg: string) => void;
 }
@@ -26,7 +25,7 @@ function Sidebar({ msg }: SidebarProps) {
   return (
     <div className="content">
       <h1 className="side-logo">
-        <img src="/images/logo-pc.svg" />
+        <img src="/images/logo-pc.svg" alt='logo'/>
       </h1>
       <div className="sidemenu-wrap">
         {/* <ul className="menu-wrap">

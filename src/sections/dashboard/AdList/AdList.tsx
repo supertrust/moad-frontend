@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import useAuth from "@src/hooks/useAuth";
 import Button from "@src/components/Button";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
-
 const statuses = [
   { label: "All", value: undefined },
   { label: "Proceeding", value: "proceeding" },
@@ -88,7 +87,7 @@ export default function AdListModule() {
           </div>
           <div className={styles.rightMenu}>
             <button onClick={openModal} className={styles.adAddBtn}>
-              <img src="/images/add-icon.png" alt="add"></img>
+              <img src={`/images/add-icon.png`} alt="add"/>
               <p>
                 Advertisement registration
               </p>

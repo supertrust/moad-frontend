@@ -6,7 +6,6 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 const imageStyle = {
@@ -103,21 +102,25 @@ export default function VehicleInfoScreen() {
                   <SwiperSlide className={styles.swiperslide}>
                     <img
                       src={`/images/vehicle_info/img-mockup-sample-01.png`}
+                      alt=''
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
                     <img
                       src={`/images/vehicle_info/img-mockup-sample-02.png`}
+                      alt=''
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
                     <img
                       src={`/images/vehicle_info/img-mockup-sample-03.png`}
+                      alt=''
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
                     <img
                       src={`/images/vehicle_info/img-mockup-sample-04.png`}
+                      alt=''
                     />
                   </SwiperSlide>
                 </Swiper>

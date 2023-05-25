@@ -1,7 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
 import MobileNav from "./MobileNav";
-
 interface HeaderProps {
   text: string;
 }

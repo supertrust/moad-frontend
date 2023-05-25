@@ -37,7 +37,7 @@ export default function NoticeDetailScreen() {
               </div>
               <div className="px-7 py-3 max-h-96 overflow-y-auto flex flex-col gap-2">
                 {data?.image !== null && (
-                  <img src={data?.image} className="w-full" />
+                  <img src={data?.image} className="w-full" alt=''/>
                 )}
                 <div>{data?.content}</div>
               </div>

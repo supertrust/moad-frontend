@@ -17,6 +17,7 @@ export default function Login() {
           <div className="left-wrap">
             <h1 className="logo-pc">
               <img src="assets/images/icons/logo-pc.svg" alt="" />
+            
             </h1>
           </div>
         </div>

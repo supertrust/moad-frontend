@@ -20,6 +20,7 @@ import {
 } from "@src/apis/advertisement";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 import Link from "next/link";
+import Image from "next/image";
 
 function AdvertisementDetailScreen() {
   const { query } = useRouter();
@@ -236,9 +237,11 @@ function AdvertisementDetailScreen() {
                       <Carousel activeIndex={index} onSelect={handleSelect}>
                         {mockup_arr.map((item, index) => (
                           <Carousel.Item key={index} interval={undefined}>
-                            <img
+                            <Image
                               src={item.img ? item.img : item.default_img}
                               alt="slides"
+                              width={550}
+                              height={500}
                             />
                             <Carousel.Caption className="valu-text">
                               <h3>
@@ -292,17 +295,21 @@ function AdvertisementDetailScreen() {
                     onClick={openBox}
                   >
                     <SwiperSlide>
-                      <img
+                      <Image
                         className={styles.img}
                         src={`/images/ad-detail-list/ic-3d-rotation.svg`}
                         alt=""
+                        width={18}
+                        height={18}
                       />
                     </SwiperSlide>
                     <SwiperSlide>
-                      <img
+                      <Image
                         className={styles.img}
                         src={`/images/ad-detail-list/ic-img.png`}
                         alt=""
+                        width={18}
+                        height={18}
                       />
                     </SwiperSlide>
                   </Swiper>
@@ -350,10 +357,12 @@ function AdvertisementDetailScreen() {
                     <div className={styles.model_content}>
                       <p>Left</p>
                       <div className={styles.model_side_image_con}>
-                        <img
+                        <Image
                           className={styles.model_images}
                           src={modelImages.left}
                           alt="left"
+                          width={200}
+                          height={200}
                         />
                       </div>
                       <input
@@ -365,11 +374,14 @@ function AdvertisementDetailScreen() {
                     <div className={styles.model_content}>
                       <p>Right</p>
                       <div className={styles.model_side_image_con}>
-                        <img
+                        <Image
                           className={styles.model_images}
                           src={modelImages.right}
                           alt="right"
+                          width={200}
+                          height={200}
                         />
+
                       </div>
                       <input
                         width={"200px"}
@@ -384,7 +396,7 @@ function AdvertisementDetailScreen() {
                       <div className={styles.back_doors_con}>
                         <div className={styles.back_door_con}>
                           <div className={styles.model_back_image_con}>
-                            <img
+                            <Image
                               className={styles.model_images}
                               width={50}
                               height={200}
@@ -400,7 +412,7 @@ function AdvertisementDetailScreen() {
                         </div>
                         <div className={styles.back_door_con}>
                           <div className={styles.model_back_image_con}>
-                            <img
+                            <Image
                               className={styles.model_images}
                               width={50}
                               height={200}

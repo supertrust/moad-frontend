@@ -1,4 +1,5 @@
 import useAuth from "@src/hooks/useAuth";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 interface SidebarProps {
@@ -25,7 +26,7 @@ function Sidebar({ msg }: SidebarProps) {
   return (
     <div className="content">
       <h1 className="side-logo">
-        <img src="/images/logo-pc.svg" alt='logo'/>
+        <Image src="/images/logo-pc.svg" alt='logo-pc' width={150} height={50} />
       </h1>
       <div className="sidemenu-wrap">
         {/* <ul className="menu-wrap">
@@ -201,10 +202,11 @@ function Sidebar({ msg }: SidebarProps) {
               }}
             >
               <i className="icon">
-                <img
+                <Image
                   src={`/images/ic-dashboard${tab == "Advertising Management" ? "-active" : ""
                     }.png`}
                   alt=""
+                  width={25} height={25}
                 />
               </i>
               <div className="name">Advertising management</div>
@@ -212,23 +214,24 @@ function Sidebar({ msg }: SidebarProps) {
             <ul className="sub-wrap"></ul>
           </li>
           {user?.role === 'Advertise' && <li
-              className={
-                tab === "Ad Management"
-                    ? "menu-list active"
-                    : "menu-list"
-              }>
+            className={
+              tab === "Ad Management"
+                ? "menu-list active"
+                : "menu-list"
+            }>
             <Link
-                href={"/dashboard/ad-management"}
-                className="link"
-                onClick={() => {
-                  barStatus("Ad Management");
-                }}
+              href={"/dashboard/ad-management"}
+              className="link"
+              onClick={() => {
+                barStatus("Ad Management");
+              }}
             >
               <i className="icon">
-                <img
-                    src={`/images/ic-dashboard${tab == "Ad Management" ? "-active" : ""
+                <Image
+                  src={`/images/ic-dashboard${tab == "Ad Management" ? "-active" : ""
                     }.png`}
-                    alt=""
+                  alt=""
+                  width={25} height={25}
                 />
               </i>
               <div className="name">Ad Management</div>
@@ -246,9 +249,11 @@ function Sidebar({ msg }: SidebarProps) {
               }}
             >
               <i className="icon statistics">
-                <img
+                <Image
                   src={`/images/ic-statistics${tab == "Statistics" ? "-active" : ""
                     }.png`}
+                  width={25} height={25}
+                  alt=''
                 />
               </i>
               <div className="name">Statistics</div>
@@ -265,9 +270,11 @@ function Sidebar({ msg }: SidebarProps) {
             >
               <i className="icon mypage">
                 {" "}
-                <img
+                <Image
                   src={`/images/ic-mypage${tab == "My Info" ? "-active" : ""
                     }.png`}
+                  alt='my-info'
+                  width={25} height={25}
                 />
               </i>
               <div className="name">My page</div>
@@ -293,7 +300,7 @@ function Sidebar({ msg }: SidebarProps) {
               }}
             >
               <i className="icon center">
-                <img
+                <Image
                   src={`/images/ic-inquire${tab === "Inquiry" ||
                     tab === "Policies and Terms" ||
                     tab === "FAQ" ||
@@ -302,7 +309,10 @@ function Sidebar({ msg }: SidebarProps) {
                     ? "-active"
                     : ""
                     }.png`}
+                  width={25} height={25}
+                  alt=''
                 />
+
               </i>
               <div className="name">Customer Service Center</div>
             </Link>

@@ -8,6 +8,7 @@ import useDebouncedState from "@restart/hooks/useDebouncedState";
 import { Drawer, Paper } from "@mui/material";
 import { useRouter } from "next/router";
 import { styles } from "@src/sections/vehicle-location";
+import Image from "next/image";
 
 const Map = () => {
   const { query } = useRouter();
@@ -81,9 +82,8 @@ const Map = () => {
           <button
             type="button"
             id="location_detail_btn"
-            className={`${styles.arrow_wrap} ${
-              isOpen ? styles.btn_closed : styles.btn_open
-            }`}
+            className={`${styles.arrow_wrap} ${isOpen ? styles.btn_closed : styles.btn_open
+              }`}
             onClick={handleClose}
           >
             <i className={styles.ic_arrrow}></i>
@@ -91,19 +91,20 @@ const Map = () => {
         </div>
         <div className={styles.vehicle_location_content}>
           <div
-            className={`${styles.location_detail_wrap} ${
-              isOpen ? styles.closed : styles.open
-            }`}
+            className={`${styles.location_detail_wrap} ${isOpen ? styles.closed : styles.open
+              }`}
           >
             <div className={styles.address}>안산시 상록구 월피동</div>
             <div className={styles.content_inner}>
               <div className={styles.inner}>
                 <div className={`${styles.section} ${styles.now_location}`}>
                   <div className={styles.title}>지금 이곳은?</div>
-                  <img
+                  <Image
                     src="/images/img-location.png"
                     alt=""
                     className={styles.img}
+                    width={300}
+                    height={300}
                   />
                   <div className={styles.location_name}>영동고속도로</div>
                   <div className={styles.text_wrap}>

@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const imageStyle = {
   objectFit: "cover",
@@ -50,10 +51,13 @@ export default function VehicleInfoScreen() {
                       <div className={styles.text}>옆면</div>
                       <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                    <img
+
+                    <Image
                       className={styles.img}
                       src={`/images/vehicle_info/img-mockup-sample-01.png`}
                       alt=""
+                      width={500}
+                      height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide>
@@ -61,10 +65,12 @@ export default function VehicleInfoScreen() {
                       <div className={styles.text}>옆면</div>
                       <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                    <img
+                    <Image
                       src={`/images/vehicle_info/img-mockup-sample-02.png`}
                       alt=""
                       className={styles.img}
+                      width={500}
+                      height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide>
@@ -72,10 +78,12 @@ export default function VehicleInfoScreen() {
                       <div className={styles.text}>옆면</div>
                       <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                    <img
+                    <Image
                       src={`/images/vehicle_info/img-mockup-sample-03.png`}
                       alt=""
                       className={styles.img}
+                      width={500}
+                      height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide>
@@ -83,10 +91,12 @@ export default function VehicleInfoScreen() {
                       <div className={styles.text}>옆면</div>
                       <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                    <img
+                    <Image
                       src={`/images/vehicle_info/img-mockup-sample-04.png`}
                       alt=""
                       className={styles.img}
+                      width={500}
+                      height={500}
                     />
                   </SwiperSlide>
                 </Swiper>
@@ -100,27 +110,35 @@ export default function VehicleInfoScreen() {
                   className={styles.thumbs_slider}
                 >
                   <SwiperSlide className={styles.swiperslide}>
-                    <img
+                    <Image
                       src={`/images/vehicle_info/img-mockup-sample-01.png`}
                       alt=''
+                      width={500}
+                      height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
-                    <img
+                    <Image
                       src={`/images/vehicle_info/img-mockup-sample-02.png`}
                       alt=''
+                      width={500}
+                      height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
-                    <img
+                    <Image
                       src={`/images/vehicle_info/img-mockup-sample-03.png`}
                       alt=''
+                      width={500}
+                      height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
-                    <img
+                    <Image
                       src={`/images/vehicle_info/img-mockup-sample-04.png`}
                       alt=''
+                      width={500}
+                      height={500}
                     />
                   </SwiperSlide>
                 </Swiper>

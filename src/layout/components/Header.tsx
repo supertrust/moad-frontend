@@ -1,6 +1,7 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
 import MobileNav from "./MobileNav";
+import Image from "next/image";
 interface HeaderProps {
   text: string;
 }
@@ -8,7 +9,7 @@ interface HeaderProps {
 function Header(props: HeaderProps) {
   // console.log(props.text);
   const [showMobileNav, setShowMobileNav] = useState(false);
-  function toggle(){
+  function toggle() {
     setShowMobileNav(!showMobileNav);
   }
 
@@ -26,10 +27,12 @@ function Header(props: HeaderProps) {
                 <Dropdown className="drop-btns">
                   <Dropdown.Toggle id="dropdown-basic">
                     <div className="my-photo">
-                      <img
+                      <Image
                         src="/images/img-my-pic.png"
                         alt=""
                         className="img"
+                        width={40}
+                        height={40}
                       />
                     </div>
                     <div className="my-company">
@@ -53,9 +56,11 @@ function Header(props: HeaderProps) {
           <div className="header-mb">
             <h1 className="logo-wrap">
               <a href="home" className="link">
-                <img
+                <Image
                   src="assets/images/icons/logo-mb.svg"
                   alt=""
+                  width={120}
+                  height={50}
                 />
               </a>
             </h1>
@@ -72,9 +77,9 @@ function Header(props: HeaderProps) {
         </div>
       </div>
 
-      <div id="side_mb" className="side-mb" 
+      <div id="side_mb" className="side-mb"
         style={{
-          display: showMobileNav?"block":"none"
+          display: showMobileNav ? "block" : "none"
         }}>
 
         {showMobileNav ? <MobileNav /> : null}

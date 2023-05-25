@@ -107,8 +107,8 @@ export default function StatisticsScreen() {
                   <div className={styles.driving_vehicle_box}>
                     <ul className={styles.list_wrap}>
                       {
-                        driving_vehicle.map((data) =>
-                          <li className={styles.list}>
+                        driving_vehicle.map((data, index) =>
+                          <li key={index} className={styles.list}>
                             <div className={styles.title}>{data.title}</div>
                             <div className={styles.data}>{data.data ? data.data + '대' : '-'}</div>
                           </li>

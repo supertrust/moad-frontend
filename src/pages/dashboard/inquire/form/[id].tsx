@@ -17,7 +17,7 @@ export default function Form() {
   const { data } = useGetUserRole({ isAuthenticated });
   return (
     <>
-      {data?.user_role === "admin" ? (
+      {data?.role_name === "Admin" ? (
         <EditInquiryAnswer id={router.query.id as string} />
       ) : (
         <div className="flex items-center justify-center h-full">

@@ -17,13 +17,15 @@ export default function Form() {
   const { data } = useGetUserRole({ isAuthenticated });
   return (
     <>
+      {data?.role_name === "Admin" ? (
         <EditInquiryAnswer id={router.query.id as string} />
-      {/* {data?.role_name === "Admin" ? (
       ) : (
         <div className="flex items-center justify-center h-full">
-          <h1 className='font-semibold'>Only admin is allowed to update data</h1>
+          <h1 className="font-semibold">
+            Only admin is allowed to update data
+          </h1>
         </div>
-      )} */}
+      )}
     </>
   );
 }

@@ -18,9 +18,9 @@ function Layout(props: LayoutProps) {
       <div className="sidebar_menu only-pc">
         <Sidebar msg={setMsg} />
       </div>
-      <div className="main_content">
+      <div className="main_content flex flex-col min-h-screen">
         <Header text={text} />
-        <main>{props.children}</main>
+        <main className="flex-grow">{props.children}</main>
         <Footer />
       </div>
     </div>

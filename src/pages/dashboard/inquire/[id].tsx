@@ -32,7 +32,7 @@ export default function InquireDetailScreen() {
       { id },
       {
         onSuccess: () => {
-          router.push("/inquire");
+          router.push("/dashboard/inquire");
         },
       }
     );
@@ -43,7 +43,7 @@ export default function InquireDetailScreen() {
         <title>
           {isLoading
             ? "Loading page ..."
-            : data !== null
+            : data !== undefined
             ? `[${data?.inquiry_type}] ${data?.inquiry_title}`
             : "Data Not Found"}
         </title>
@@ -59,7 +59,7 @@ export default function InquireDetailScreen() {
       />
       <div className="p-7 text-gray-700 flex flex-col gap-5">
         <div className="flex gap-5 items-center">
-          <Link href={`/inquire`}>
+          <Link href={`/dashboard/inquire`}>
             <button className="font-bold text-lg text-blue-700">
               문의내역확인
             </button>
@@ -121,7 +121,7 @@ export default function InquireDetailScreen() {
                         className="text-gray-400"
                         onClick={() => {
                           deleteModal.open = true;
-                          if (deleteModal.text) {
+                          if (!deleteModal.text) {
                             deleteModal.text =
                               '<div className="font-semibold text-blue-600">게시물 삭제</div>';
                             deleteModal.text +=
@@ -176,18 +176,16 @@ export default function InquireDetailScreen() {
                 </div>
               </div>
               <div className="px-7 py-5 pb-7 flex justify-around items-center gap-5 border-t">
-                <Link
-                  href={data?.prev !== null ? `/inquire/${data?.prev}` : "#"}
-                >
+                <Link href={data?.prev !== null ? `${data?.prev}` : "#"}>
                   <button
                     disabled={data?.prev === null}
                     type="button"
-                    className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 disabled:hover:text-gray-200 hover:font-bold hover:text-blue-600 transition-all duration-200"
+                    className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 disabled:hover:text-gray-200 disabled:cursor-not-allowed hover:font-bold hover:text-blue-600 transition-all duration-200"
                   >
                     <ChevronLeftIcon className="w-7 h-7" /> 이전글
                   </button>
                 </Link>
-                <Link href={`/inquire`}>
+                <Link href={`/dashboard/inquire`}>
                   <button
                     type="button"
                     className="px-10 py-2 border border-blue-600 hover:bg-blue-600 hover:text-gray-50 transition-all duration-200"
@@ -195,13 +193,11 @@ export default function InquireDetailScreen() {
                     목록
                   </button>
                 </Link>
-                <Link
-                  href={data?.next !== null ? `/inquire/${data?.next}` : "#"}
-                >
+                <Link href={data?.next !== null ? `${data?.next}` : "#"}>
                   <button
                     disabled={data?.next === null}
                     type="button"
-                    className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 disabled:hover:text-gray-200 hover:font-bold hover:text-blue-600 transition-all duration-200"
+                    className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 disabled:cursor-not-allowed disabled:hover:text-gray-200 hover:font-bold hover:text-blue-600 transition-all duration-200"
                   >
                     다음글 <ChevronRightIcon className="w-7 h-7" />
                   </button>

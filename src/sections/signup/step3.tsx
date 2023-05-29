@@ -310,7 +310,7 @@ const Step3 = ({
                       onChange={(event) => {
                         const file = event?.target?.files?.[0];
                         if (file) {
-                          setValue("business_license", file);
+                          setValue("business_license", file as unknown as typeof File);
                         }
                       }}
                     />

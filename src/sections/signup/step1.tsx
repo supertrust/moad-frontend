@@ -1,7 +1,8 @@
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Button from "@src/components/Button";
 
 interface Step1Props {
     onNextStep: () => void;
@@ -119,10 +120,10 @@ const Step1 = ({ onNextStep }: Step1Props) => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="outline-primary" onClick={handleClose}>
+                    <Button className="outline-primary" onClick={handleClose}>
                         취소
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button className="primary" onClick={handleClose}>
                         동의
                     </Button>
                 </Modal.Footer>

@@ -1,16 +1,15 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
-import { Card, CircularProgress } from '@mui/material'
-import { useGetNoticeDetail } from '@src/apis/notice';
-import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router'
-import React from 'react'
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { Card, CircularProgress } from "@mui/material";
+import { useGetNoticeDetail } from "@src/apis/notice";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
 
 export default function NoticeDetailScreen() {
   const id = useRouter().query.id as string;
-  const { data, isLoading } = useGetNoticeDetail({ id })
-
+  const { data, isLoading } = useGetNoticeDetail({ id });
   return (
     <>
       <Head>
@@ -37,8 +36,14 @@ export default function NoticeDetailScreen() {
                 </div>
               </div>
               <div className="px-7 py-3 max-h-96 overflow-y-auto flex flex-col gap-2">
-                {data?.image !== null && (
-                  <Image src={data?.image} className="w-full" alt='' width={500} height={500} />
+                {data?.image && (
+                  <Image
+                    src={data?.image}
+                    className="w-full"
+                    alt=""
+                    width={500}
+                    height={500}
+                  />
                 )}
                 <div>{data?.content}</div>
               </div>

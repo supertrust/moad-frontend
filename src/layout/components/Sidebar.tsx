@@ -213,7 +213,7 @@ function Sidebar({ msg }: SidebarProps) {
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
-          {user?.role === 'Advertise' && <li
+          {user?.role === 'Advertiser' && <li
             className={
               tab === "Ad Management"
                 ? "menu-list active"

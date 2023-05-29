@@ -15,7 +15,7 @@ import FormData from "form-data";
 export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
   const { mutateAsync: saveInquiry } = useSaveInquiry();
-  const { data, isLoading } = useGetInquiryDetail({ id });
+  const { data } = useGetInquiryDetail({ id });
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     id: "",
@@ -24,8 +24,8 @@ export default function Index({ id }: { id: string }) {
     inquiry_question: "",
     inquiry_answer: "",
   });
-  const [files, setFiles] = useState([]);
-  const [fileNames, setFileNames] = useState([]);
+  const [files, setFiles] = useState<any[]>([]);
+  const [fileNames, setFileNames] = useState<any[]>([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -51,9 +51,10 @@ export default function Index({ id }: { id: string }) {
     }
   };
 
-  const handleInput = (e) => {
-    form[e.target.name] = e.target.value;
-    setForm({ ...form });
+  const handleInput = (e: any) => {
+    const { name, value } = e.target;
+    const updatedForm = { ...form, [name]: value };
+    setForm(updatedForm);
   };
 
   const renderFileInputs = () => {
@@ -111,18 +112,18 @@ export default function Index({ id }: { id: string }) {
     event.preventDefault();
     setSubmitting(true);
     const formData = new FormData();
-    formData.append("inquiry_type", form.inquiry_type);
-    formData.append("inquiry_title", form.inquiry_title);
-    formData.append("inquiry_question", form.inquiry_question);
+    formData.append("inquiry_type", form.inquiry_type as string);
+    formData.append("inquiry_title", form.inquiry_title as string);
+    formData.append("inquiry_question", form.inquiry_question as string);
     if (id !== null && id !== undefined) {
       formData.append("id", form.id);
-      formData.append("inquiry_answer", form.inquiry_answer);
+      formData.append("inquiry_answer", form.inquiry_answer as string);
     }
     files.forEach((file, index) => {
-      formData.append(`inquiry_documents[]`, file);
+      formData.append(`inquiry_documents[]`, file as File);
     });
     try {
-      if (id === null || id === undefined) {
+      if (!id) {
         await saveInquiry(formData);
         router.push("/dashboard/inquire");
       } else if (id !== null && id !== undefined) {

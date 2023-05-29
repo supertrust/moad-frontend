@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetInquiries = ({ page }: GetInquiriesPropsType) => useQuery<IGetInquiriesResponse, string>({
     queryKey: ["inquiries", page],
-    queryFn: async () => (await axios.get("/api/get-inquiry", { params: { page } })).data
+    queryFn: async () => (await axios.get("/api/get-inquiry", { params: { page } })).data.data
 })
 
 export const useGetInquiryDetail = ({ id }: GetInquiryDetailPropsType) => useQuery<IInquiryDetail, string>({

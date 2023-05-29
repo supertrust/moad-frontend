@@ -7,12 +7,6 @@ const AdManagementScreen = () => {
   return (
     <main className="p-10">
       <Row className="ad-page">
-        <Col md="6">
-          <Advertising />
-        </Col>
-        <Col md="6">
-          <NotificationCentre />
-        </Col>
         <Col md="12">
           <AdList />
         </Col>

@@ -64,19 +64,22 @@ export interface IInquiryDetail {
     }
 }
 
+// type ae causing npm build fails 
+// Will see it in the future
+
 export type UpdateInquiryType = {
-    id: string;
-    inquiry_title: string;
-    inquiry_type: "classification_of_payment" | "error" | "usage_inquiry" | "member_related";
-    inquiry_question: string;
-    inquiry_answer: string;
-    inquiry_documents: File | null
+    // id: string;
+    // inquiry_title: string;
+    // inquiry_type: "classification_of_payment" | "error" | "usage_inquiry" | "member_related";
+    // inquiry_question: string;
+    // inquiry_answer: string;
+    // inquiry_documents: File | null
 }
 
 export type SaveInquiryType = {
-    inquiry_title: string;
-    user_id: number;
-    inquiry_type: "classification_of_payment" | "error" | "usage_inquiry" | "member_related";
-    inquiry_question: string;
-    inquiry_documents: File | null
+    // inquiry_title: string;
+    // user_id: number;
+    // inquiry_type: "classification_of_payment" | "error" | "usage_inquiry" | "member_related";
+    // inquiry_question: string;
+    // inquiry_documents: File | null
 }

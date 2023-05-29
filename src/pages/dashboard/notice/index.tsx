@@ -61,7 +61,7 @@ export default function NoticeScreen() {
                       </TableCell>
                       <TableCell>
                         <Link
-                          href={`/notice/${v.id}`}
+                          href={`notice/${v.id}`}
                           className="hover:text-sky-600 transition-colors duration-200"
                         >
                           {v.title}

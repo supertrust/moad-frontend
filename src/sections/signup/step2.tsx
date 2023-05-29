@@ -2,21 +2,16 @@ import { FormProvider, RHFInput, useForm, yupResolver } from "@src/components/Fo
 import React from "react";
 import * as Yup from "yup";
 import { PASSWORD_REGEX } from "@src/constants";
-import { Button } from "react-bootstrap";
-import { MembershipInformation } from "@src/pages/signup";
 import Image from "next/image";
+import Button from "@src/components/Button";
+import { RegisterPropsType } from "@src/types/auth";
 
 interface Step2Props {
     onPrevStep: () => void;
     onNextStep: () => void;
-    setMembershipInformation: (MembershipInformation: MembershipInformation) => void;
+    setMembershipInformation: (MembershipInformation: RegisterPropsType) => void;
 }
 
-const defaultValues: MembershipInformation = {
-    email: "",
-    password: "",
-    confirm_password: "",
-}
 
 const RegisterSchema = Yup.object({
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -37,8 +32,7 @@ const RegisterSchema = Yup.object({
 })
 
 const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props) => {
-    const methods = useForm<MembershipInformation>({
-        defaultValues,
+    const methods = useForm<RegisterPropsType>({
         resolver: yupResolver(RegisterSchema)
     });
     const { handleSubmit } = methods;
@@ -54,7 +48,6 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
                 <div className="left-wrap">
                     <h1 className="logo-pc">
                         <Image src="/images/logo-pc.svg" alt='logo-pc' width={150} height={50} />
-
                     </h1>
                 </div>
             </div>

@@ -22,7 +22,7 @@ const AdManagementScreen = () => {
 }
 
 const WithRoles=()=>(
-    <RoleBasedGuard roles={['Advertise']}>
+    <RoleBasedGuard roles={['Advertiser']}>
       <AdManagementScreen />
     </RoleBasedGuard>
 )

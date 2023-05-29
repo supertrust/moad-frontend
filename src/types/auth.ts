@@ -25,7 +25,8 @@ export type RegisterPropsType = {
     employee_phone_number: string;
     employee_email: string;
     sector: string | undefined;
-    business_license: File;
+    business_license: any;
+    verify_business_registration_number: boolean;
 }
 
 export type AuthContextType = {

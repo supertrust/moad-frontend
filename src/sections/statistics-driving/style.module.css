@@ -961,7 +961,7 @@
     .statistics_driving_content
     .driving_wrap
     .hd_wrap {
-    background: #f5f7fb;
+    background: #fff;
   }
   
   #statistics_driving
@@ -982,9 +982,8 @@
     .board_content
     .statistics_driving_content
     .driving_wrap
-    .list_content
-    .list_wrap {
-    height: auto;
+    .hd_wrap {
+    height: 320px;
   }
   
   #statistics_driving

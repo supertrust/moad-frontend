@@ -1,0 +1,1465 @@
+.only-mb {
+    display: none;
+  }
+  
+  #statistics_driving {
+    min-height: 100%;
+    background-color: #f5f7fb;
+  }
+  
+  #statistics_driving .container .board_content {
+    min-height: 781px;
+    background-color: #f5f7fb;
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    #statistics_driving {
+      min-height: 100%;
+      background-color: #f5f7fb;
+    }
+  
+    #statistics_driving .container .board_content {
+      min-height: auto;
+      background-color: #f5f7fb;
+      margin-left: 0;
+      padding-top: 64px;
+      width: 100%;
+    }
+  
+    #statistics_driving .only_pc {
+      display: none;
+    }
+  
+    #statistics_driving .only_mb {
+      display: block;
+    }
+  }
+  
+  #statistics_driving .container .board_content .statistics_driving_content {
+    padding: 20px 30px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .page_link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .page_link
+    .link {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .title_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 4px;
+    padding: 28px 0 16px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .title_wrap
+    .title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+    flex: 0 0 auto;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .title_wrap
+    .line {
+    height: 1px;
+    background-color: #ebedf4;
+    width: 100%;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .total_driving
+    .list_wrap {
+    height: 134px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 29px;
+    padding: 0 30px;
+    background: #ffffff;
+    border: 1px solid #ebedf4;
+    box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+    border-radius: 5px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .total_driving
+    .list_wrap
+    .list {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .total_driving
+    .list_wrap
+    .list
+    .text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .total_driving
+    .list_wrap
+    .list
+    .data {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #2c324c;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 30px;
+    padding: 17px 0 17px 43px;
+    background: #ffffff;
+    border-bottom: 1px solid #ebedf4;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .date_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .date_wrap
+    .icons {
+    display: block;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .date_wrap
+    .ic_arrow_prev {
+    background: url("/images/ic-arrow-prev.png")
+      no-repeat center center / auto #eeeeee;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .date_wrap
+    .ic_arrow_next {
+    background: url("/images/ic-arrow-next.png")
+      no-repeat center center / auto #eeeeee;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .date_wrap
+    .date {
+    height: 40px;
+    width: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ebedf4;
+    cursor: pointer;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .date_wrap
+    .date
+    .text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #2c324c;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .date_info {
+    padding: 15px 20px 0 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.01em;
+    color: #999999;
+    text-align: right;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner {
+    position: absolute;
+    top: 65px;
+    left: 43px;
+    width: 546px;
+    height: 434px;
+    background: #ffffff;
+    box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+    border-radius: 6px;
+    display: none;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 23px;
+    row-gap: 6px;
+    padding: 20px 75px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .top
+    .text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    cursor: pointer;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .text_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #e1ecff;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .text_wrap
+    .text {
+    width: 50%;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 25px;
+    color: #2d3748;
+    text-align: center;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar {
+    width: 50%;
+    height: 277px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    input {
+    display: none;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar.start_date
+    .hasDatepicker {
+    border-right: 1px solid #ebedf4;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content {
+    width: 100%;
+    padding: 0px 15px;
+    border: 0;
+    background-color: #ffffff;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_state_default,
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_widget_header
+    .ui_state_default {
+    border: initial;
+    font-weight: initial;
+    color: initial;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_state_hover
+    .ui_icon,
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_state_focus
+    .ui_icon {
+    background-image: inherit;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_state_hover,
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_widget_header
+    .ui_state_hover,
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_state_focus,
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_widget_header
+    .ui_state_focus {
+    border: initial;
+    background: initial;
+    font-weight: initial;
+    color: initial;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_header {
+    margin-top: 10px;
+    background: #ffffff;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid #f5f5f5;
+    border-radius: 0;
+    margin: 0 22px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_header
+    .ui_corner_all
+    span {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_header
+    .ui_datepicker_prev_hover {
+    left: 2px;
+    top: 2px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_header
+    .ui_datepicker_prev
+    span {
+    background: url("/images/ic-calendar-prev.png")
+      no-repeat center center / cover;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_header
+    .ui_datepicker_next_hover {
+    right: 2px;
+    top: 2px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_header
+    .ui_datepicker_next
+    span {
+    background: url("/images/ic-calendar-next.png")
+      no-repeat center center / cover;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_header
+    .ui_datepicker_title {
+    padding: 12px 0;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_header
+    .ui_datepicker_title
+    span {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_calendar
+    .ui_state_default {
+    background: #ffffff;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_calendar
+    thead
+    tr
+    th
+    span {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    color: #2c324c;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_calendar
+    tbody
+    tr
+    td {
+    background: #ffffff;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_calendar
+    tbody
+    tr
+    td
+    .ui_state_default {
+    padding: 5px 8px;
+    font-size: 12px;
+    line-height: 17px;
+    color: #373737;
+    text-align: center;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_calendar
+    tbody
+    tr
+    td
+    .ui_priority_secondary {
+    color: #999999;
+    background: #ffffff;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .datepicker
+    .calendar_wrap
+    .calendar
+    .hasDatepicker
+    .ui_widget_content
+    .ui_datepicker_calendar
+    tbody
+    tr
+    td
+    .ui_state_active {
+    background: #2f48d1;
+    color: #ffffff;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: #e1ecff;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .bottom
+    .date_text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    color: #2c324c;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .bottom
+    .btn_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 6px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .bottom
+    .btn_wrap
+    .btns {
+    width: 50px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    cursor: pointer;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .bottom
+    .btn_wrap
+    .apply_btn {
+    color: #ffffff;
+    background: #2f48d1;
+    border-radius: 5px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .calendar_content
+    .calendar_inner
+    .bottom
+    .btn_wrap
+    .close_btn {
+    border: 1px solid #999999;
+    border-radius: 5px;
+    color: #999999;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap {
+    padding-bottom: 30px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+    border-radius: 0 0 5px 5px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .list_wrap
+    .list {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+    border-bottom: 1px solid #ebedf4;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .list_wrap
+    .list
+    .text_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    border-right: 1px solid #ebedf4;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .list_wrap
+    .list
+    .text_wrap:last-child {
+    border-right: 0;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .list_wrap
+    .list
+    .text_wrap
+    .text {
+    font-weight: 350;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #2c324c;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .hd_wrap {
+    background: #fff;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .hd_wrap
+    .list_wrap
+    .list
+    .text_wrap
+    .text {
+    font-weight: 500;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .hd_wrap {
+    height: 320px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .pagination_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    margin-top: 21px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .pagination_wrap
+    .arrow {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .pagination_wrap
+    .arrow.prev {
+    background: url("/images/ic-arrow-prev.png") no-repeat center
+      center / auto #ebedf4;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .pagination_wrap
+    .arrow.next {
+    background: url("/images/ic-arrow-next.png") no-repeat center
+      center / auto #ebedf4;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .pagination_wrap
+    .num_wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .pagination_wrap
+    .num_wrap
+    .number {
+    width: 25px;
+    height: 25px;
+    background: #ebedf4;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 25px;
+    text-align: center;
+    color: #2c324c;
+    cursor: pointer;
+  }
+  
+  #statistics_driving
+    .container
+    .board_content
+    .statistics_driving_content
+    .driving_wrap
+    .pagination_wrap
+    .num_wrap
+    .number.active {
+    background-color: #4d5e80;
+    color: #ffffff;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    #statistics_driving .container .board_content .statistics_driving_content {
+      padding: 0 20px 30px 20px;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content {
+      background-color: transparent;
+      padding: 0 0 20px 0;
+      box-shadow: none;
+      border-bottom: 0;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .date_wrap
+      .icons {
+      flex: 0 0 auto;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .date_wrap
+      .date {
+      width: 100%;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      z-index: 200;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar {
+      height: 780px;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .mb_top {
+      position: relative;
+      margin-bottom: 60px;
+      background-color: #f5f7fb;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .mb_top
+      .close_btn {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      width: 24px;
+      height: 24px;
+      background: url("/images/ic-close.png")
+        no-repeat center center / cover;
+      cursor: pointer;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .mb_top
+      .title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 60px;
+      letter-spacing: -0.01em;
+      text-align: center;
+      color: #2c324c;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .top {
+      display: none;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker {
+      margin: 0 20px;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker
+      .text_wrap {
+      display: none;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker
+      .calendar_wrap {
+      display: block;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker
+      .calendar_wrap
+      .calendar {
+      width: 100%;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker
+      .calendar_wrap
+      .calendar.start_date
+      .hasDatepicker {
+      border-right: 0;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker
+      .calendar_wrap
+      .calendar
+      .hasDatepicker
+      .ui_widget_content {
+      width: 100%;
+      padding: 0px 15px;
+      border: 0;
+      background-color: #ffffff;
+      border-bottom: 1px solid #f5f5f5;
+      border-radius: 0;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker
+      .calendar_wrap
+      .calendar
+      .hasDatepicker
+      .ui_widget_content
+      .ui_datepicker_header {
+      border-bottom: 0;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker
+      .calendar_wrap
+      .calendar
+      .hasDatepicker
+      .ui_widget_content
+      .ui_datepicker_calendar
+      .ui_state_default {
+      width: 24px;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .datepicker
+      .calendar_wrap
+      .calendar
+      .hasDatepicker
+      .ui_widget_content
+      .ui_datepicker_calendar
+      tbody
+      tr
+      td
+      .ui_state_default {
+      padding: 5px 0;
+      margin: 0 auto;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .bottom {
+      margin: 32px 20px 0;
+      padding: 12px 20px;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .calendar_content
+      .calendar_inner
+      .calendar
+      .bottom
+      .btn-wrap {
+      display: none;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .driving_wrap {
+      background-color: transparent;
+      box-shadow: none;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .driving_wrap
+      .hd_wrap {
+      display: none;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .driving_wrap
+      .list_content
+      .list_wrap {
+      height: auto;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .driving_wrap
+      .list_content
+      .list_wrap
+      .list {
+      display: block;
+      padding: 20px 30px;
+      border-bottom: 0;
+      background-color: #ffffff;
+      box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
+      border-radius: 5px;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .driving_wrap
+      .list_content
+      .list_wrap
+      .list
+      .text_wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-right: 0;
+      border-bottom: 1px solid #ebedf4;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .driving_wrap
+      .list_content
+      .list_wrap
+      .list
+      .text_wrap:last-child {
+      border-bottom: 0;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .driving_wrap
+      .list_content
+      .list_wrap
+      .list
+      .num_wrap {
+      display: none;
+    }
+  
+    #statistics_driving
+      .container
+      .board_content
+      .statistics_driving_content
+      .driving_wrap
+      .info_text {
+      display: none;
+    }
+  
+    .only_pc {
+      display: none;
+    }
+  
+    .only_mb {
+      display: block;
+    }
+  }

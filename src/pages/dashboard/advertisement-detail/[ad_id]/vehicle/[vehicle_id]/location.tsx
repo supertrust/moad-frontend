@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getMapScriptTag, registerEvents } from "@src/helpers/map";
-import { Button } from "react-bootstrap";
 import { useSaveLocation } from "@src/apis/map";
 import { toast } from "react-toastify";
 import { dateFormat } from "@src/helpers";
@@ -9,6 +8,7 @@ import { Drawer, Paper } from "@mui/material";
 import { useRouter } from "next/router";
 import { styles } from "@src/sections/vehicle-location";
 import Image from "next/image";
+import Button from "@src/components/Button";
 
 const Map = () => {
   const { query } = useRouter();
@@ -65,7 +65,6 @@ const Map = () => {
           <Button
             disabled={savingRide}
             onClick={handleStartRide}
-            variant="primary"
             className="bg-sky-500/100 absolute mt-[350px] ml-[450px] z-50"
           >
             Save Ride
@@ -105,6 +104,7 @@ const Map = () => {
                     className={styles.img}
                     width={300}
                     height={300}
+                    priority
                   />
                   <div className={styles.location_name}>영동고속도로</div>
                   <div className={styles.text_wrap}>

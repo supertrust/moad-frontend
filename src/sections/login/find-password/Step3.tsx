@@ -49,8 +49,8 @@ const Step3 = ({step, email, onClose, }: Step3Props) => {
 
     const onSubmit = handleSubmit(async (props) => {
         await resetPassword({
-            email,
-            ...props
+            ...props,
+            email
         }, {
             onSuccess: (res) => {
                 toast('Password updated successfully', {

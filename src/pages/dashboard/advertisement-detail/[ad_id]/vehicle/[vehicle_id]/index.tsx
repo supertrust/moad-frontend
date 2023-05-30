@@ -101,7 +101,7 @@ export default function VehicleInfoScreen() {
                   </SwiperSlide>
                 </Swiper>
                 <Swiper
-                  onSwiper={setThumbsSwiper}
+                  // onSwiper={setThumbsSwiper}
                   spaceBetween={10}
                   slidesPerView={4}
                   freeMode={true}

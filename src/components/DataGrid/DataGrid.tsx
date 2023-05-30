@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { TableRowSelection } from 'antd/es/table/interface';
-import { rows, columns, rowData } from '@src/sections/statistics/tabelData';
+// import { rows, columns, rowData } from '@src/sections/statistics/tabelData';
 
-
-const App: React.FC = () => {
+interface TableProps {
+  columns: any,
+  rows : any
+}
+const App: React.FC<TableProps> = ({columns,rows}) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [top, setTop] = useState('topLeft');
   const [bottom, setBottom] = useState('bottomRight');
@@ -15,7 +18,7 @@ const App: React.FC = () => {
     setSelectedRowKeys(newSelectedRowKeys);
   };
 
-  const rowSelection: TableRowSelection<rowData> = {
+  const rowSelection: TableRowSelection<any> = {
     selectedRowKeys,
     onChange: onSelectChange,
     selections: [

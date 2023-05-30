@@ -1,6 +1,4 @@
 import React from 'react'
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
 import { styles } from "@src/sections/statistics";
 import DataTable from '@src/components/DataGrid/DataGrid';
 import { rows, columns, rowData } from '@src/sections/statistics/tabelData';

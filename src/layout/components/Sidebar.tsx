@@ -19,14 +19,19 @@ function Sidebar({ msg }: SidebarProps) {
     try {
       await logout();
     } catch (error) {
-      console.error('Error logging out:', error);
+      console.error("Error logging out:", error);
     }
-  }
+  };
 
   return (
     <div className="content">
       <h1 className="side-logo">
-        <Image src="/images/logo-pc.svg" alt='logo-pc' width={150} height={50} />
+        <Image
+          src="/images/logo-pc.svg"
+          alt="logo-pc"
+          width={150}
+          height={50}
+        />
       </h1>
       <div className="sidemenu-wrap">
         {/* <ul className="menu-wrap">
@@ -203,41 +208,46 @@ function Sidebar({ msg }: SidebarProps) {
             >
               <i className="icon">
                 <Image
-                  src={`/images/ic-dashboard${tab == "Advertising Management" ? "-active" : ""
-                    }.png`}
+                  src={`/images/ic-dashboard${
+                    tab == "Advertising Management" ? "-active" : ""
+                  }.png`}
                   alt=""
-                  width={25} height={25}
+                  width={25}
+                  height={25}
                 />
               </i>
               <div className="name">Advertising management</div>
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
-          {user?.role === 'Advertiser' && <li
-            className={
-              tab === "Ad Management"
-                ? "menu-list active"
-                : "menu-list"
-            }>
-            <Link
-              href={"/dashboard/ad-management"}
-              className="link"
-              onClick={() => {
-                barStatus("Ad Management");
-              }}
+          {user?.role === "Advertiser" && (
+            <li
+              className={
+                tab === "Ad Management" ? "menu-list active" : "menu-list"
+              }
             >
-              <i className="icon">
-                <Image
-                  src={`/images/ic-dashboard${tab == "Ad Management" ? "-active" : ""
+              <Link
+                href={"/dashboard/ad-management"}
+                className="link"
+                onClick={() => {
+                  barStatus("Ad Management");
+                }}
+              >
+                <i className="icon">
+                  <Image
+                    src={`/images/ic-dashboard${
+                      tab == "Ad Management" ? "-active" : ""
                     }.png`}
-                  alt=""
-                  width={25} height={25}
-                />
-              </i>
-              <div className="name">Ad Management</div>
-            </Link>
-            <ul className="sub-wrap"></ul>
-          </li>}
+                    alt=""
+                    width={25}
+                    height={25}
+                  />
+                </i>
+                <div className="name">Ad Management</div>
+              </Link>
+              <ul className="sub-wrap"></ul>
+            </li>
+          )}
           <li
             className={tab === "Statistics" ? "menu-list active" : "menu-list"}
           >
@@ -250,10 +260,12 @@ function Sidebar({ msg }: SidebarProps) {
             >
               <i className="icon statistics">
                 <Image
-                  src={`/images/ic-statistics${tab == "Statistics" ? "-active" : ""
-                    }.png`}
-                  width={25} height={25}
-                  alt=''
+                  src={`/images/ic-statistics${
+                    tab == "Statistics" ? "-active" : ""
+                  }.png`}
+                  width={25}
+                  height={25}
+                  alt=""
                 />
               </i>
               <div className="name">Statistics</div>
@@ -271,10 +283,12 @@ function Sidebar({ msg }: SidebarProps) {
               <i className="icon mypage">
                 {" "}
                 <Image
-                  src={`/images/ic-mypage${tab == "My Info" ? "-active" : ""
-                    }.png`}
-                  alt='my-info'
-                  width={25} height={25}
+                  src={`/images/ic-mypage${
+                    tab == "My Info" ? "-active" : ""
+                  }.png`}
+                  alt="my-info"
+                  width={25}
+                  height={25}
                 />
               </i>
               <div className="name">My page</div>
@@ -284,46 +298,45 @@ function Sidebar({ msg }: SidebarProps) {
           <li
             className={
               tab === "Announcement" ||
-                tab === "Guide" ||
-                tab === "FAQ" ||
-                tab === "Inquiry" ||
-                tab === "Policies and Terms"
+              tab === "Guide" ||
+              tab === "FAQ" ||
+              tab === "Inquiry" ||
+              tab === "Policies and Terms"
                 ? "menu-list active"
                 : "menu-list"
             }
           >
             <Link
               className="link"
-              href={"/dashboard/notice"}
+              href={"/dashboard/customer-service/notice"}
               onClick={() => {
                 barStatus("Announcement");
               }}
             >
               <i className="icon center">
                 <Image
-                  src={`/images/ic-inquire${tab === "Inquiry" ||
+                  src={`/images/ic-inquire${
+                    tab === "Inquiry" ||
                     tab === "Policies and Terms" ||
                     tab === "FAQ" ||
                     tab === "Announcement" ||
                     tab === "Guide"
-                    ? "-active"
-                    : ""
-                    }.png`}
-                  width={25} height={25}
-                  alt=''
+                      ? "-active"
+                      : ""
+                  }.png`}
+                  width={25}
+                  height={25}
+                  alt=""
                 />
-
               </i>
               <div className="name">Customer Service Center</div>
             </Link>
             <ul className="sub-wrap ">
               <li className="sub-list notice ">
                 <Link
-                  href={"/dashboard/notice"}
+                  href={"/dashboard/customer-service/notice"}
                   className={
-                    tab === "Announcement"
-                      ? "sub-link active"
-                      : "sub-link "
+                    tab === "Announcement" ? "sub-link active" : "sub-link "
                   }
                   onClick={() => {
                     barStatus("Announcement");
@@ -332,43 +345,41 @@ function Sidebar({ msg }: SidebarProps) {
                   announcement
                 </Link>
               </li>
-              <li className="sub-list guide ">
-                <Link
-                  href={"/dashboard/guide"}
-                  className={
-                    tab === "Guide"
-                      ? "sub-link active"
-                      : "sub-link "
-                  }
-                  onClick={() => {
-                    barStatus("Guide");
-                  }}
-                >
-                  guide
-                </Link>
-              </li>
-              <li className="sub-list faq ">
-                <Link
-                  href={"/dashboard/faq"}
-                  className={
-                    tab === "FAQ"
-                      ? "sub-link active"
-                      : "sub-link "
-                  }
-                  onClick={() => {
-                    barStatus("FAQ");
-                  }}
-                >
-                  FAQ
-                </Link>
-              </li>
+              {user?.role === "Advertiser" && (
+                <>
+                  <li className="sub-list guide ">
+                    <Link
+                      href={"/dashboard/customer-service/guide"}
+                      className={
+                        tab === "Guide" ? "sub-link active" : "sub-link "
+                      }
+                      onClick={() => {
+                        barStatus("Guide");
+                      }}
+                    >
+                      guide
+                    </Link>
+                  </li>
+                  <li className="sub-list faq ">
+                    <Link
+                      href={"/dashboard/customer-service/faq"}
+                      className={
+                        tab === "FAQ" ? "sub-link active" : "sub-link "
+                      }
+                      onClick={() => {
+                        barStatus("FAQ");
+                      }}
+                    >
+                      FAQ
+                    </Link>
+                  </li>
+                </>
+              )}
               <li className="sub-list inquire active">
                 <Link
-                  href={"/dashboard/inquire"}
+                  href={"/dashboard/customer-service/inquire"}
                   className={
-                    tab === "Inquiry"
-                      ? "sub-link active"
-                      : "sub-link "
+                    tab === "Inquiry" ? "sub-link active" : "sub-link "
                   }
                   onClick={() => {
                     barStatus("Inquiry");
@@ -377,21 +388,23 @@ function Sidebar({ msg }: SidebarProps) {
                   1:1 inquiry
                 </Link>
               </li>
-              <li className="sub-list terms ">
-                <Link
-                  href={"/dashboard/terms"}
-                  className={
-                    tab === "Policies and Terms"
-                      ? "sub-link active"
-                      : "sub-link "
-                  }
-                  onClick={() => {
-                    barStatus("Policies and Terms");
-                  }}
-                >
-                  Policies and Terms
-                </Link>
-              </li>
+              {user?.role === "Advertiser" && (
+                <li className="sub-list terms ">
+                  <Link
+                    href={"/dashboard/customer-service/terms"}
+                    className={
+                      tab === "Policies and Terms"
+                        ? "sub-link active"
+                        : "sub-link "
+                    }
+                    onClick={() => {
+                      barStatus("Policies and Terms");
+                    }}
+                  >
+                    Policies and Terms
+                  </Link>
+                </li>
+              )}
             </ul>
           </li>
         </ul>

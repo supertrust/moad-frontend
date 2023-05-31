@@ -11,11 +11,13 @@ import {
 } from "@src/apis/inquiry";
 import Image from "next/image";
 import FormData from "form-data";
+import useAuth from "@src/hooks/useAuth";
 
 export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
   const { mutateAsync: saveInquiry } = useSaveInquiry();
   const { data } = useGetInquiryDetail({ id });
+  const { user } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     id: "",
@@ -125,10 +127,10 @@ export default function Index({ id }: { id: string }) {
     try {
       if (!id) {
         await saveInquiry(formData);
-        router.push("/dashboard/inquire");
+        router.push("/dashboard/customer-service/inquire");
       } else if (id !== null && id !== undefined) {
         await updateInquiry(formData);
-        router.push(`/dashboard/inquire/${id}`);
+        router.push(`/dashboard/customer-service/inquire/${id}`);
       }
     } catch (error: any) {
       console.log(error);
@@ -144,14 +146,16 @@ export default function Index({ id }: { id: string }) {
       </Head>
       <div className="p-7 text-gray-700 flex flex-col gap-5">
         <div className="flex gap-5 items-center">
-          <Link href={`/dashboard/inquire`}>
+          <Link href={`/dashboard/customer-service/inquire`}>
             <button>문의내역확인</button>
           </Link>
-          <Link href={`/dashboard/inquire/form`}>
-            <button className="font-bold text-lg text-blue-700">
-              문의하기
-            </button>
-          </Link>
+          {user?.role === "Advertiser" && (
+            <Link href={`form`}>
+              <button className="font-bold text-lg text-blue-700">
+                문의하기
+              </button>
+            </Link>
+          )}
         </div>
         <Card
           variant="elevation"

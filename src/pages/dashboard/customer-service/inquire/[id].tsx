@@ -8,11 +8,13 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { API_BASE_URL } from "@src/config";
 import { useDeleteInquiry, useGetInquiryDetail } from "@src/apis/inquiry";
+import useAuth from "@src/hooks/useAuth";
 
 export default function InquireDetailScreen() {
   const id = useRouter().query.id as string;
   const { data, isLoading } = useGetInquiryDetail({ id });
   const { mutateAsync: deleteInquiry } = useDeleteInquiry();
+  const { user } = useAuth();
   const [deleteModal, setDeleteModal] = useState<{
     open: boolean;
     text: string | null;
@@ -32,7 +34,7 @@ export default function InquireDetailScreen() {
       { id },
       {
         onSuccess: () => {
-          router.push("/dashboard/inquire");
+          router.push("/dashboard/customer-service/inquire");
         },
       }
     );
@@ -59,14 +61,16 @@ export default function InquireDetailScreen() {
       />
       <div className="p-7 text-gray-700 flex flex-col gap-5">
         <div className="flex gap-5 items-center">
-          <Link href={`/dashboard/inquire`}>
+          <Link href={`/dashboard/customer-service/inquire`}>
             <button className="font-bold text-lg text-blue-700">
               문의내역확인
             </button>
           </Link>
-          <Link href={`/dashboard/inquire/form`}>
-            <button>문의하기</button>
-          </Link>
+          {user?.role === "Advertiser" && (
+            <Link href={`form`}>
+              <button>문의하기</button>
+            </Link>
+          )}
         </div>
         <Card
           variant="elevation"
@@ -114,7 +118,9 @@ export default function InquireDetailScreen() {
                     <span className="font-bold text-blue-700">답변완료</span>
                   ) : (
                     <>
-                      <Link href={`/dashboard/inquire/form/${id}`}>
+                      <Link
+                        href={`/dashboard/customer-service/inquire/form/${id}`}
+                      >
                         <span className="text-gray-400">수정</span>
                       </Link>
                       <button
@@ -185,7 +191,7 @@ export default function InquireDetailScreen() {
                     <ChevronLeftIcon className="w-7 h-7" /> 이전글
                   </button>
                 </Link>
-                <Link href={`/dashboard/inquire`}>
+                <Link href={`/dashboard/customer-service/inquire`}>
                   <button
                     type="button"
                     className="px-10 py-2 border border-blue-600 hover:bg-blue-600 hover:text-gray-50 transition-all duration-200"

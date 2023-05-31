@@ -138,7 +138,7 @@ export default function MyInfoScreen() {
                       <span>Change Password</span>
                     </div>
                     <span>
-                      <Link href={"/change-password"} className={styles.correction}>
+                      <Link href={"change-password"} className={styles.correction}>
                         correction
                       </Link>
                     </span>

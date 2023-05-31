@@ -12,7 +12,13 @@ import {
 } from "@src/types/auth";
 
 export const useLogin = () => useMutation<ILoginResponse, string, LoginPropsType>({
-    mutationFn: async (props) => (await axios.post("/api/login", props)).data.data
+    mutationFn: async (props) => (await axios.post("/api/login", props,{
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },
+    })).data.data
 });
 
 export const useRegister = () => useMutation<IRegisterResponse, string, RegisterPropsType>({

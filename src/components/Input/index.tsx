@@ -23,7 +23,7 @@ function Input(props: InputProps, ref: Ref<any>) {
                 {...rest}
             />
             {caption && <span>{caption}</span>}
-            {error !== undefined && <span className="text-danger">{error}</span>}
+            {error !== undefined && <span className="d-block bg-danger text-white mt-1 rounded-1 p-2">{error}</span>}
         </div>
     )
 }

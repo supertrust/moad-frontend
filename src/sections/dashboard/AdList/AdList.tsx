@@ -88,22 +88,18 @@ export default function AdListModule() {
           </div>
           <div className={styles.rightMenu}>
             <button onClick={openModal} className={styles.adAddBtn}>
-              <Image src={`/images/add-icon.png`} alt="add-ixon" width={40} height={40}/>
-              <p>
-                Advertisement registration
-              </p>
+              <i className="ic-plus"></i>
+                광고등록
             </button>
             <button disabled={!selectedAds.length} onClick={handleDeleteAds} className={styles.adDeleteBtn}>
-              <p>
-                delete
-              </p>
+              삭제
             </button>
             <div className="select-box only-pc">
-              <Form.Select onChange={e => setType(e.target.value as AdTypesType)} aria-label="Default select example">
-                <option value={undefined}>All</option>
-                <option value="fixed_ad">Fixed</option>
-                <option value="national_ad">National</option>
-                <option value="spot_ad">Spot</option>
+              <Form.Select onChange={e => setType(e.target.value as AdTypesType)} aria-label="Default select example" className="border-1 border-primary">
+                <option value={undefined}>캠페인 유형 선택</option>
+                <option value="fixed_ad">고정형</option>
+                <option value="national_ad">전국형</option>
+                <option value="spot_ad">스팟</option>
               </Form.Select>
             </div>
           </div>

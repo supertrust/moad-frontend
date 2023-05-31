@@ -24,7 +24,7 @@ export default function Login() {
         </div>
         <div className="right">
           <h1 className="logo-mb noly-mb">
-            <Image src="assets/images/icons/logo-mb.svg" alt='logo-mb' width={120} height={50} />
+            <Image src="/images/logo-mb.svg" alt='logo-mb' width={120} height={50} />
           </h1>
           <div className="right-wrap">
             <div className="title-wrap-login">

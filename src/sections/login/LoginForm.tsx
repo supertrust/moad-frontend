@@ -20,7 +20,6 @@ const LoginSchema = Yup.object({
 const LoginFormModule = () => {
   const { login } = useAuth();
   const router = useRouter();
-
   const methods = useForm({
     defaultValues,
     resolver: yupResolver(LoginSchema)
@@ -56,15 +55,15 @@ const LoginFormModule = () => {
           label="비밀번호"
           className="user-input active"
         />
-        <div className="login-utile-wrap">
+        <div className="login-utile-wrap flex-column align-items-start gap-2">
           <div className="login-keep-wrap">
             <label htmlFor="login_keep">
               <input type="checkbox" id="login_keep" className="login-keep" />
               <div className="chk-text">아이디기억하기</div>
             </label>
           </div>
-          <div className="login-error">
-            <div className="error-text">아이디/비밀번호를 확인하세요</div>
+          <div className="login-error w-100">
+            <div className="bg-danger rounded-2 p-2 text-white">아이디/비밀번호를 확인하세요</div>
           </div>
         </div>
         <Button

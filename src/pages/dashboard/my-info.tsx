@@ -263,10 +263,10 @@ export default function MyInfoScreen() {
                       <Button
                         loading={isSubmitting}
                         type="submit"
-                        className={`${styles.modify_btn} ${styles.btnss}`}
+                        className={`${styles.modify_btn} p-0`}
                         onClick={onSubmit}
                       >
-                        Modifications completed
+                        수정완료
                       </Button>
                     </div>
                   </div>

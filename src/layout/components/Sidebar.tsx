@@ -396,10 +396,11 @@ function Sidebar({ msg }: SidebarProps) {
           </li>
         </ul>
       </div>
-      <div className="side-logout">
-        <button onClick={handleLogout} className="logout-btn">
-          <div className="text">log out</div>
-        </button>
+      <div className="side-logout d-flex align-items-center">
+        <a href="#" onClick={handleLogout} className="logout-btn">
+          <i className="ic-logout"></i>
+          <div className="text-white">로그아웃</div>
+        </a>
       </div>
     </div>
   );

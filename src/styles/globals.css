@@ -2610,7 +2610,7 @@ ul.pagination .page-item a:focus {
   border-radius: 5px;
 }
 
-#side_mb .side-content .side-menu-wrap .side-logout .ic-logout {
+.sidebar_menu .content .side-logout .ic-logout {
   display: block;
   width: 24px;
   height: 23px;
@@ -2691,6 +2691,13 @@ ul.pagination .page-item a:focus {
 
 .only-mb {
 	display: none
+}
+
+.ic-plus {
+  display: block;
+  width: 25px;
+  height: 24px;
+  background: url(/images/ic-plus.png) no-repeat center center / cover;
 }
 
 @media (max-width:768px) {

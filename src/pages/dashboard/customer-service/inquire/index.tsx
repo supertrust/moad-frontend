@@ -14,10 +14,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { dateFormat } from "@src/helpers";
 import { useGetInquiries } from "@src/apis/inquiry";
+import useAuth from "@src/hooks/useAuth";
 
 export default function InquireScreen() {
   const [page, setPage] = useState(1);
   const { data, isLoading } = useGetInquiries({ page });
+  const { user } = useAuth();
   const inquiries = data?.data;
   const router = useRouter();
 
@@ -32,14 +34,16 @@ export default function InquireScreen() {
       </Head>
       <div className="p-8 text-gray-700 flex flex-col gap-5">
         <div className="flex gap-5 items-center">
-          <Link href={`/dashboard/inquire`}>
+          <Link href={`/dashboard/customer-service/inquire`}>
             <button className="font-bold text-lg text-blue-700">
               문의내역확인
             </button>
           </Link>
-          <Link href={`inquire/form`}>
-            <button>문의하기</button>
-          </Link>
+          {user?.role === "Advertiser" && (
+            <Link href={`inquire/form`}>
+              <button>문의하기</button>
+            </Link>
+          )}
         </div>
         <Card variant="elevation" elevation={1} className="flex flex-col gap-2">
           {isLoading ? (

@@ -2,6 +2,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
 import MobileNav from "./MobileNav";
 import Image from "next/image";
+import Link from "next/link";
 interface HeaderProps {
   text: string;
 }
@@ -55,17 +56,17 @@ function Header(props: HeaderProps) {
         <div className="only-mb">
           <div className="header-mb">
             <h1 className="logo-wrap">
-              <a href="home" className="link">
+              <Link href="/dashboard" className="link">
                 <Image
                   src="assets/images/icons/logo-mb.svg"
                   alt=""
                   width={120}
                   height={50}
                 />
-              </a>
+              </Link>
             </h1>
             <div className="util-wrap">
-              <a href="/my-info" className="info-btn"></a>
+              <Link href="/dashboard/my-info" className="info-btn"></Link>
               <button
                 onClick={toggle}
                 type="button"

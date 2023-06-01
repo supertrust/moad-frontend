@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { styles } from './index';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -30,7 +31,13 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
             <div className={styles.emailtag}>
               <input type={!isVisible ? "password" : "text"} placeholder={placeholder} name={name}></input>
               <div className={styles.eyeicon} onClick={toggle}>
-                <img  src={isVisible ? '/images/ic-show.png' : '/images/ic-hide.png'} />
+                {/* <img  src={isVisible ? '/images/ic-show.png' : '/images/ic-hide.png'} /> */}
+                <Image
+                    src={isVisible ? '/images/ic-show.png' : '/images/ic-hide.png'}
+                    alt="logo-pc"
+                    width={24}
+                    height={24}
+                />
               </div>
             </div>
           </div>
@@ -44,7 +51,13 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
     >
       <Modal className={styles.modalcheck} show={show} onHide={verifyClose}>
         <div className={styles.modalicon}>
-            <img src={'/images/cargo/checkwhite.svg'}/>
+            {/* <img src={'/images/cargo/checkwhite.svg'}/> */}
+            <Image
+                    src="/images/cargo/checkwhite.svg"
+                    alt="logo-pc"
+                    width={20}
+                    height={20}
+                />
         </div>
         <Modal.Body className={styles.modal_content}>
           <div className={styles.modalheading}>인증번호 발송</div>
@@ -58,7 +71,13 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
       </Modal>
       <Modal className={styles.modalcheck} show={error} onHide={errorClose}>
         <div className={styles.modaliconred}>
-            <img src={'/images/cargo/close.svg'}/>
+            {/* <img src={'/images/cargo/close.svg'}/> */}
+            <Image
+                    src="/images/cargo/close.svg"
+                    alt="logo-pc"
+                    width={20}
+                    height={20}
+                />
         </div>
         <Modal.Body className={styles.modal_content}>
           <div className={styles.modalheading}>휴대폰 번호 오류</div>
@@ -95,24 +114,6 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
             <p>원활한 서비스 이용을 위채 최초 1회 인증이 필요합니다.</p>
           </div>
 
-          {/* <div className={styles.inputlable}>
-            <label>비밀번호 입력 *</label>
-            <div className={styles.emailtag}>
-              <input type="number" placeholder="비밀번호 입력"></input>
-              <div className={styles.eyeicon}><img src={'/images/ic-hide.png'} /></div>
-            </div>
-            <p>문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요</p>
-          </div>
-
-          <div className={styles.inputlable}>
-            <label>비밀번호 재입력 *</label>
-            <div className={styles.emailtag}>
-              <input type="number" placeholder="비밀번호 재입력"></input>
-              <div className={styles.eyeicon}>
-                <img src={'/images/ic-hide.png'} />
-              </div>
-            </div>
-          </div> */}
           <ShowHidePassword name="password" label="비밀번호 입력" placeholder="비밀번호 입력" />
           <ShowHidePassword name="confirmpassword" label="비밀번호 재입력" placeholder="비밀번호 재입력" />
         </form>

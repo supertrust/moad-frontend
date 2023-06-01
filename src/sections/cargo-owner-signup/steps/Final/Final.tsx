@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Container from 'react-bootstrap/Container';
 import { styles } from './index';
 import Button from 'react-bootstrap/Button';
@@ -17,7 +18,12 @@ const Final = () => {
             1~2일(영업일 기준) 승인이 소요되며
             가입완료 시 승인여부를 문자로 보내드립니다.</p>
           <div className={styles.bottomfixedimg}>
-            <img src={'/images/cargo/gift.svg'} />
+            <Image
+                    src='/images/cargo/gift.svg'
+                    alt="gift"
+                    width={270}
+                    height={216}
+                />
           </div>
           <div className={styles.bottomfixed}>
             <Link

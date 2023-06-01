@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useMemo, useState } from "react";
+import Image from "next/image";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -26,7 +27,13 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
             <div className={styles.iconwrap}>
               <div className={`${styles.iconwrapli} ${styles.active}`} >
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  {/* <img src={'/images/cargo/ic-01.svg'} /> */}
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
@@ -34,7 +41,12 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
               </div>
               <div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
@@ -42,7 +54,12 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
               </div>
               <div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
@@ -50,7 +67,12 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
               </div>
               <div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
@@ -58,7 +80,12 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
               </div>
               <div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
@@ -66,7 +93,12 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
               </div>
               <div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
@@ -74,28 +106,48 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
               </div>
               <div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
                 </div>
               </div><div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
                 </div>
               </div><div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
                 </div>
               </div><div className={styles.iconwrapli}>
                 <div className={styles.iconwrapimage}>
-                  <img src={'/images/cargo/ic-01.svg'} />
+                  <Image
+                    src="/images/cargo/ic-01.svg"
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
@@ -216,12 +268,25 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
               {
                 modelImages.first ?
                   <>
-                    <img className={styles.fitimage} src={modelImages.first} />
+                    {/* <img className={styles.fitimage} src={modelImages.first} /> */}
+                    <Image
+                    className={styles.fitimage}
+                    src={modelImages.first}
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                     <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("first")} />
                   </>
                   :
                   <>
-                    <img src={'/images/cargo/camera_alt.svg'} />
+                    {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
+                    <Image
+                      src="/images/cargo/camera_alt.svg"
+                      alt="logo-pc"
+                      width={30}
+                      height={30}
+                    />
                     <Form.Label>차량 옆면 (운전석) 사진을<br />
                       등록해주세요.</Form.Label>
                     <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("first")} />
@@ -234,12 +299,25 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
               {
                 modelImages.second ?
                   <>
-                    <img className={styles.fitimage} src={modelImages.second} />
+                    {/* <img className={styles.fitimage} src={modelImages.second} /> */}
+                    <Image
+                    className={styles.fitimage}
+                    src={modelImages.second}
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                     <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("second")} />
                   </>
                   :
                   <>
-                    <img src={'/images/cargo/camera_alt.svg'} />
+                    {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
+                    <Image
+                      src="/images/cargo/camera_alt.svg"
+                      alt="logo-pc"
+                      width={30}
+                      height={30}
+                    />
                     <Form.Label>차량 옆면 (조수석) 사진을<br />
                       등록해주세요.</Form.Label>
                     <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("second")} />
@@ -254,12 +332,25 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                 {
                   modelImages.three ?
                     <>
-                      <img className={styles.fitimage} src={modelImages.three} />
+                      {/* <img className={styles.fitimage} src={modelImages.three} /> */}
+                      <Image
+                    className={styles.fitimage}
+                    src={modelImages.three}
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                       <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("three")} />
                     </>
                     :
                     <>
-                      <img src={'/images/cargo/camera_alt.svg'} />
+                      {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
+                      <Image
+                      src="/images/cargo/camera_alt.svg"
+                      alt="logo-pc"
+                      width={30}
+                      height={30}
+                    />
                       <Form.Label>차량 옆면 (조수석) 사진을<br />
                         등록해주세요.</Form.Label>
                       <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("three")} />
@@ -270,12 +361,25 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                 {
                   modelImages.four ?
                     <>
-                      <img className={styles.fitimage} src={modelImages.four} />
+                      {/* <img className={styles.fitimage} src={modelImages.four} /> */}
+                      <Image
+                    className={styles.fitimage}
+                    src={modelImages.four}
+                    alt="logo-pc"
+                    width={30}
+                    height={30}
+                />
                       <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("four")} />
                     </>
                     :
                     <>
-                      <img src={'/images/cargo/camera_alt.svg'} />
+                      {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
+                      <Image
+                      src="/images/cargo/camera_alt.svg"
+                      alt="logo-pc"
+                      width={30}
+                      height={30}
+                    />
                       <Form.Label>차량 옆면 (조수석) 사진을<br />
                         등록해주세요.</Form.Label>
                       <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("four")} />
@@ -288,13 +392,25 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
             <div className={styles.heading_preview}>인증 예시</div>
             <Form.Label className={styles.lable_preview}>차량 옆면 (운전석)</Form.Label>
             <div className={styles.desc}>
-              <img src={'/images/cargo/truck.png'} />
+              {/* <img src={'/images/cargo/truck.png'} /> */}
+              <Image
+                      src="/images/cargo/truck.png"
+                      alt="logo-pc"
+                      width={240}
+                      height={100}
+                    />
             </div>
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Label className={styles.lable_preview}>차량 옆면 (조수석)</Form.Label>
             <div className={styles.desc}>
-              <img src={'/images/cargo/truck.png'} />
+              {/* <img src={'/images/cargo/truck.png'} /> */}
+              <Image
+                      src="/images/cargo/truck.png"
+                      alt="logo-pc"
+                      width={240}
+                      height={100}
+                    />
             </div>
           </Row>
           <Row className={styles.mbcustom}>
@@ -303,13 +419,25 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                 <div className={styles.twocolumninner}>
                   <Form.Label className={styles.lable_preview}>뒷면 사진</Form.Label>
                   <div className={styles.desc}>
-                    <img src={'/images/cargo/truck.png'} />
+                    {/* <img src={'/images/cargo/truck.png'} /> */}
+                    <Image
+                      src="/images/cargo/truck.png"
+                      alt="logo-pc"
+                      width={150}
+                      height={60}
+                    />
                   </div>
                 </div>
                 <div className={styles.twocolumninner}>
                   <Form.Label className={styles.lable_preview}>뒷면 사진</Form.Label>
                   <div className={styles.desc}>
-                    <img src={'/images/cargo/truck.png'} />
+                    {/* <img src={'/images/cargo/truck.png'} /> */}
+                    <Image
+                      src="/images/cargo/truck.png"
+                      alt="logo-pc"
+                      width={150}
+                      height={60}
+                    />
                   </div>
                 </div>
               </div>

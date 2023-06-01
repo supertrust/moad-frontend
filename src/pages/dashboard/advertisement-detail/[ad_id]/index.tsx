@@ -165,7 +165,7 @@ function AdvertisementDetailScreen() {
       },
       render: (text: any, record: any) => (
         <Link legacyBehavior href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${record.key}`}>
-          <a target="_blank">{text}</a>
+          <a target="_blank" className='hover:no-underline'>{text}</a>
         </Link>
       ),
     },
@@ -183,7 +183,7 @@ function AdvertisementDetailScreen() {
           legacyBehavior
           href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${record.key}/location`}
         >
-          <a target="_blank">{text}</a>
+          <a target="_blank" className='hover:no-underline'>{text}</a>
         </Link>
       ),
     },

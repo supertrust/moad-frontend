@@ -164,7 +164,7 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-        <Link legacyBehavior href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${record.key}`}>
+        <Link legacyBehavior href={`/dashboard/vehicle-detail/${advertisementId}`}>
           <a target="_blank" className='hover:no-underline'>{text}</a>
         </Link>
       ),
@@ -181,7 +181,7 @@ function AdvertisementDetailScreen() {
       render: (text: any, record: any) => (
         <Link
           legacyBehavior
-          href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${record.key}/location`}
+          href={`/dashboard/vehicle-location/${advertisementId}`}
         >
           <a target="_blank" className='hover:no-underline'>{text}</a>
         </Link>

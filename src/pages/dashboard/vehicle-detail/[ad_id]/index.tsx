@@ -8,7 +8,6 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import {useGetAdvertisementVehicleImages} from "@src/apis/advertisement";
 
 const imageStyle = {
   objectFit: "cover",
@@ -18,11 +17,6 @@ const imageStyle = {
 
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
-  const { ad_id, vehicle_id } = query;
-  const imagesData=useGetAdvertisementVehicleImages({advertisement_id:ad_id})
-  useEffect(()=>{
-    console.log("here is the images data",imagesData)
-  })
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div id={styles.vehicle_information}>

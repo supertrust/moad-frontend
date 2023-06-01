@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Table } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
-import type { TableRowSelection } from 'antd/es/table/interface';
+import React, { useState } from "react";
+import { Table } from "antd";
+import type { ColumnsType } from "antd/es/table";
+import type { TableRowSelection } from "antd/es/table/interface";
 // import { rows, columns, rowData } from '@src/sections/statistics/tabelData';
 
 interface TableProps {
-  columns: any,
-  rows : any
+  columns: any;
+  rows: any;
 }
-const App: React.FC<TableProps> = ({columns,rows}) => {
+const App: React.FC<TableProps> = ({ columns, rows }) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [top, setTop] = useState("topLeft");
   const [bottom, setBottom] = useState("bottomRight");

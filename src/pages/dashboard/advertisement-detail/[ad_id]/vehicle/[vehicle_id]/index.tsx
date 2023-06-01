@@ -8,7 +8,6 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import {useGetAdvertisementVehicleImages} from "@src/apis/advertisement";
 
 const imageStyle = {
   objectFit: "cover",

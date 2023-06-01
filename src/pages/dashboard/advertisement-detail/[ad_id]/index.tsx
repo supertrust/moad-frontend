@@ -21,6 +21,7 @@ import {
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 import Link from "next/link";
 import Image from "next/image";
+import DataTable from "@src/components/DataGrid/DataGrid";
 
 function AdvertisementDetailScreen() {
   const { query } = useRouter();
@@ -31,6 +32,7 @@ function AdvertisementDetailScreen() {
   const { data: vehicles } = useGetAdvertisementVehicles({
     advertisement_id: advertisementId,
   });
+
   const { data: operationAreas } = useGetAdvertisementOperationArea({
     advertisement_id: advertisementId,
   });
@@ -97,23 +99,24 @@ function AdvertisementDetailScreen() {
       !vehicles?.length
         ? []
         : vehicles?.map((item) => ({
-          id: item.id,
-          registration_number:
-            item.advertisement.advertiser.business_registration_number,
-          vehicle_type: item.vehicles.vehicle_type,
-          vehicle_status: item.advertisement.advertisement_vehicles.find(
-            (_item) => _item.vehicle_id === item.vehicles.id
-          )?.status,
-          vehicle_information: item.vehicle_id,
-          vehicle_location: item.vehicle_id,
-        })),
+            key: item.id,
+            no: item.id,
+            registration_number:
+              item.advertisement.advertiser.business_registration_number,
+            vehicle_type: item.vehicles.vehicle_type,
+            vehicle_status: item.advertisement.advertisement_vehicles.find(
+              (_item) => _item.vehicle_id === item.vehicles.id
+            )?.status,
+            vehicle_information: item.vehicle_id,
+            vehicle_location: item.vehicle_id,
+          })),
     [vehicles?.length]
   );
 
   const columns = [
     {
-      dataField: "sl.no",
-      text: "no",
+      dataIndex: "no",
+      title: "no",
       formatter: (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
         return rowIndex + 1;
       },
@@ -125,18 +128,18 @@ function AdvertisementDetailScreen() {
       },
     },
     {
-      dataField: "registration_number",
-      text: "등록번호",
+      dataIndex: "registration_number",
+      title: "등록번호",
       sort: true,
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
         paddingBottom: "20px",
-      }
+      },
     },
     {
-      dataField: "vehicle_type",
-      text: "차량종류",
+      dataIndex: "vehicle_type",
+      title: "차량종류",
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -144,8 +147,8 @@ function AdvertisementDetailScreen() {
       },
     },
     {
-      dataField: "vehicle_status",
-      text: "운행여부",
+      dataIndex: "vehicle_status",
+      title: "운행여부",
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -153,32 +156,36 @@ function AdvertisementDetailScreen() {
       },
     },
     {
-      dataField: "vehicle_information",
-      text: "차량정보",
-      headerStyle: {
-        backgroundColor: "rgb(244 247 251)",
-        paddingTop: "20px",
-        paddingBottom: "20px",
-      },
-      formatter: (vehicle_id: string) => (
-        <Link href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${vehicle_id}`}>
-          보기
-        </Link>
-      )
-    },
-    {
-      dataField: "vehicle_location",
-      text: "차량위치",
+      dataIndex: "vehicle_information",
+      title: "차량정보",
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
         paddingBottom: "20px",
       },
       formatter: (vehicle_id: string) => (
-        <Link href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${vehicle_id}/location`}>
+        <Link
+          href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${vehicle_id}`}
+        >
           보기
         </Link>
-      )
+      ),
+    },
+    {
+      dataIndex: "vehicle_location",
+      title: "차량위치",
+      headerStyle: {
+        backgroundColor: "rgb(244 247 251)",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+      },
+      formatter: (vehicle_id: string) => (
+        <Link
+          href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${vehicle_id}/location`}
+        >
+          보기
+        </Link>
+      ),
     },
   ];
   const [swiper, setSwiper] = useState(false);
@@ -229,8 +236,9 @@ function AdvertisementDetailScreen() {
               <div className={styles.detail_content}>
                 <div className={styles.slide_box}>
                   <div
-                    className={`${model === "image" ? styles.active : ""} ${styles.detail_slide
-                      } ${styles.box}`}
+                    className={`${model === "image" ? styles.active : ""} ${
+                      styles.detail_slide
+                    } ${styles.box}`}
                     id="div3d"
                   >
                     <div className={styles.swiper_wrapper}>
@@ -255,8 +263,9 @@ function AdvertisementDetailScreen() {
                     </div>
                   </div>
                   <div
-                    className={`${model === "model" ? styles.active : ""} ${styles.detail_3d
-                      } ${styles.box}`}
+                    className={`${model === "model" ? styles.active : ""} ${
+                      styles.detail_3d
+                    } ${styles.box}`}
                     id="div2d"
                   >
                     <Canvas
@@ -315,8 +324,9 @@ function AdvertisementDetailScreen() {
                   </Swiper>
 
                   <div
-                    className={`${swiper ? styles.active : ""} ${styles.mockup_btn
-                      }`}
+                    className={`${swiper ? styles.active : ""} ${
+                      styles.mockup_btn
+                    }`}
                   >
                     <button
                       onClick={() => {
@@ -381,7 +391,6 @@ function AdvertisementDetailScreen() {
                           width={200}
                           height={200}
                         />
-
                       </div>
                       <input
                         width={"200px"}
@@ -457,6 +466,7 @@ function AdvertisementDetailScreen() {
                   })}
                   noDataIndication={"진행중인 광고가 없습니다."}
                 /> */}
+                <DataTable columns={columns} rows={vehiclesData} />
               </div>
             </div>
           </div>
@@ -468,9 +478,9 @@ function AdvertisementDetailScreen() {
 
 //if user role is 'Advertiser'
 const WithRoles = () => (
-  <RoleBasedGuard roles={['Advertiser']}>
+  <RoleBasedGuard roles={["Advertiser"]}>
     <AdvertisementDetailScreen />
   </RoleBasedGuard>
-)
+);
 
-export default WithRoles
+export default WithRoles;

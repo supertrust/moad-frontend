@@ -99,10 +99,10 @@ export default function MyInfoScreen() {
                 <div className={styles.profile}>
                   <div className={styles.title_wraps_1}>
                     <div className={styles.title}>
-                      <span>Profile</span>
+                      프로필
                     </div>
-                    <a href="#">
-                      <span>to withdraw</span>
+                    <a href="#" className={styles.link}>
+                      탈퇴하기
                     </a>
                   </div>
                   <div className={styles.profile_wrap}>
@@ -135,23 +135,20 @@ export default function MyInfoScreen() {
                   </div>
                   <div className={styles.change_password}>
                     <div className={styles.title}>
-                      <span>Change Password</span>
+                      비밀번호 변경
                     </div>
-                    <span>
-                      <Link href={"/change-password"} className={styles.correction}>
-                        correction
+                      <Link href={"change-password"} className={styles.correction}>
+                        수정
                       </Link>
-                    </span>
                   </div>
                   <div className={styles.my_information}>
-                    <div className={styles.title}>
-                      <span className={styles.my_infos}>My Info</span>
+                    <div className={styles.title}>내 정보
                     </div>
                     <div className={styles.information_wrap}>
                       <ul className={styles.list_wrap}>
                         <li className={styles.lists}>
                           <div className={styles.desc}>
-                            <span>Company Name</span>
+                            회사명
                           </div>
                           <div className={`${styles.company_name} ${styles.text}`}>
                             <input
@@ -166,10 +163,8 @@ export default function MyInfoScreen() {
                         </li>
                         <li className={styles.lists}>
                           <div className={styles.desc}>
-                            <span>Company phone number </span>
-                            <span className={styles.point}>
-                              <span>*</span>
-                            </span>
+                            회사 전화번호
+                              <span className={styles.point}>*</span>
                           </div>
                           <input
                             type="number"
@@ -183,10 +178,8 @@ export default function MyInfoScreen() {
                         </li>
                         <li className={styles.lists}>
                           <div className={styles.desc}>
-                            <span>Contact Email (Invoice Issuance) </span>
-                            <span className={styles.point}>
-                              <span>*</span>
-                            </span>
+                            담당자 성함
+                            <span className={styles.point}>*</span>
                           </div>
                           <input
                             type="email"
@@ -200,7 +193,8 @@ export default function MyInfoScreen() {
                         </li>
                         <li className={styles.lists}>
                           <div className={styles.desc}>
-                            <span>Employee Phone Number</span>
+                            담당자 핸드폰
+                            <span className={styles.point}>*</span>
                           </div>
                             <input
                               type="number"
@@ -214,7 +208,8 @@ export default function MyInfoScreen() {
                         </li>
                         <li className={styles.lists}>
                           <div className={styles.desc}>
-                            <span>Company Registration Number</span>
+                            담당자 이메일 (계산서 발행)
+                            <span className={styles.point}>*</span>
                           </div>
                           <div className={`${styles.company_name} ${styles.text}`}>
                             <input
@@ -230,7 +225,7 @@ export default function MyInfoScreen() {
                         </li>
                         <li className={styles.lists}>
                           <div className={styles.desc}>
-                            <span>Bussiness License</span>
+                            사업자 등록번호
                           </div>
                           <input
                             type="file"
@@ -249,7 +244,7 @@ export default function MyInfoScreen() {
                         </li>
                         <li className={styles.lists}>
                           <div className={styles.desc}>
-                            <span>Sectors</span>
+                            업종
                           </div>
                           <input
                             type="text"
@@ -263,10 +258,10 @@ export default function MyInfoScreen() {
                       <Button
                         loading={isSubmitting}
                         type="submit"
-                        className={`${styles.modify_btn} ${styles.btnss}`}
+                        className={`${styles.modify_btn} p-0`}
                         onClick={onSubmit}
                       >
-                        Modifications completed
+                        수정완료
                       </Button>
                     </div>
                   </div>

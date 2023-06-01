@@ -7,7 +7,11 @@ import { startOfDay, endOfDay, addDays, subDays } from 'date-fns';
 
 export default function StatisticsScreen() {
 
-  const Ranges = [
+  interface RangeType{
+    label:string,
+    value:[Date, Date]
+  }
+  const Ranges: RangeType[] = [
     {
       // Today
       label: '오늘',

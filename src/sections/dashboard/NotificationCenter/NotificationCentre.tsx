@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './style.module.css'
+import Link from "next/link";
 
 export default function NotificationCentre() {
   return (
@@ -9,9 +10,9 @@ export default function NotificationCentre() {
             <span>notification center</span>
           </div>
           <div className={styles.line}></div>
-          <a href="/notification-center" className={`${styles.text} ${styles.viewText}`}>
+          <Link href="dashboard/notification" className={`${styles.text} ${styles.viewText}`}>
             view all
-          </a>
+          </Link>
         </div>
         <div className={styles.notificationContent}>
           <a href="src/sections/dashboard#">

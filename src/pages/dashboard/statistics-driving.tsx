@@ -82,6 +82,7 @@ export default function StatisticsScreen() {
                         yesterday: '어제',
                         Last_7_day: '지난 7일',
                       }}
+                      defaultValue={[new Date(),new Date()]}
                     />
                   </button>
                   <button

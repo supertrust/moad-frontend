@@ -1,0 +1,230 @@
+.iconwrap{
+    display: flex;
+    gap: 13px;
+    flex-wrap: wrap;
+}
+.iconwrap .iconwrapli{
+    background: #F5F7FB;
+    width: calc(25% - 10px);
+    height: 74px;
+    border-radius: 5px;
+    padding: 10px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.iconwrap .iconwrapli.active{
+    border: 1px solid #0868FD;
+}
+.Offcanvas{
+    height: calc(100% - 170px) !important;
+    border-radius: 10px 10px 0px 0px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.iconwrapimage{
+    margin-bottom: 6px;
+}
+.iconwraptext{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
+    color: #373737;
+}
+.offcanvasbody h4 {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+}
+.offcanvasheader{
+    flex-direction: row-reverse;
+}
+.offcanvastitle{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #0868FD;
+}
+.offcanvasheader button {
+    background: url(/images/cargo/close-black.svg) no-repeat 0 0;
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    padding: 0 !important;
+}
+.verificationButton{
+    padding: 0;
+}
+.button{
+    background-color: #0868FD;
+    color: #fff;
+}
+.bluebutton button{
+	padding:15px 10px;
+    background: #006BF8;
+    width: 100%;
+    text-align: center;
+    display: block;
+	color: #fff;
+    max-width: 570px;
+	margin: 0 auto;
+}
+.bluebutton{
+	position: fixed;
+    bottom: 20px;
+    left: 15px;
+    right: 15px;
+}
+.formall label{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #373737;
+}
+.mbcustom{
+    margin-bottom: 20px;
+}
+.mbcustom.fileUploaded .fileupload{
+    padding: 0;
+}
+.formall{
+    margin-bottom: 20px;
+}
+.formall input{
+    border: 1px solid #EBEDF4;
+    height: 40px;
+}
+.formall select{
+    border: 1px solid #EBEDF4;
+    height: 40px;
+}
+.titleheading{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: -0.04em;
+    color: #373737;
+    margin-bottom: 24px;
+}
+.phonewrap{
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+}
+.leftphone{
+    width: calc(100% - 102px);
+}
+.customarrow{
+    position: relative;
+}
+.customarrow::after{
+    content: "";
+    background: url(/images/cargo/down-arrow.svg) no-repeat 0 0;
+    width: 10px;
+    height: 8px;
+    position: absolute;
+    right: 28px;
+    top: 44px;
+}
+.fileupload{
+    background: rgba(8, 104, 253, 0.03);
+    border: 1px dashed #E1ECFF;
+    border-radius: 10px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    gap: 10px;
+    width: calc(100% - 24px);
+    margin-left: auto;
+    margin-right: auto;
+}
+.fileuploadmain{
+    position: absolute;
+    opacity: 0;
+    height: 100% !important;
+    width: 100%;
+}
+.fileupload label{
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+    color: rgba(8, 104, 253, 0.25);
+}
+.heading_preview{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #373737;
+    margin-bottom: 8px;
+}
+.desc{
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 24px);
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #EBEDF4;
+    border-radius: 6px;
+}
+.lable_preview{
+    background: #F5F7FB;
+    border-radius: 4px;
+    display: inline-block;
+    width: auto;
+    padding: 4px 12px;
+    margin-left: 12px;
+    margin-bottom: 4px;
+}
+.twocolumn{
+    display: flex;
+}
+.twocolumn .twocolumninner{
+    width: 50%;
+    padding: 0;
+}
+.twocolumnbtn{
+    display: flex;
+    flex: 1;
+    gap: 24px;
+}
+.twocolumnbtn button{
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+.buttonwhite{
+    background: #FFFFFF;
+border: 1px solid #EBEDF4;
+border-radius: 4px;
+font-weight: 350;
+font-size: 14px;
+line-height: 140%;
+color: #373737;
+}
+.buttonfull{
+    background-color: #0868FD;
+    color: #fff;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.fitimage{
+    max-width: 100%;
+    height: 160px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 10px;
+}

@@ -58,33 +58,9 @@ const App: React.FC<TableProps> = ({ columns, rows }) => {
     ],
   };
 
-  const handleRowClick = (row: any) => {
-    const columnData = row.columnName;
-    console.log("Clicked column:", row);
-
-    if (row.vehicle_information === 'vehicle_information') {
-      console.log(
-        "🚀 ~ file: DataGrid.tsx:67 ~ handleRowClick ~ vehicle_information:",
-        row.vehicle_information
-      );
-
-      // router.push("/page1"); // Replace '/page1' with the actual URL of the first link
-    } else if (row.vehicle_location) {
-      console.log(
-        "🚀 ~ file: DataGrid.tsx:71 ~ handleRowClick ~ row.vehicle_location:",
-        row.vehicle_location
-      );
-      // router.push(""); // Replace '/page2' with the actual URL of the second link
-    }
-  };
-
   return (
     <Table
       rowSelection={rowSelection}
-      // onRow={(record, rowIndex) => ({
-      //   onClick: () => handleRowClick(record),
-      //   className: "cursor-pointer", // Add any necessary CSS classes to the rows
-      // })}
       pagination={{
         position: ["bottomCenter"],
         pageSize: 5,

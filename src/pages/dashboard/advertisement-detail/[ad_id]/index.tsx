@@ -107,8 +107,8 @@ function AdvertisementDetailScreen() {
             vehicle_status: item.advertisement.advertisement_vehicles.find(
               (_item) => _item.vehicle_id === item.vehicles.id
             )?.status,
-            vehicle_information: item.vehicle_id,
-            vehicle_location: item.vehicle_id,
+            vehicle_information: 'vehicle information',
+            vehicle_location: 'vehicle location',
           })),
     [vehicles?.length]
   );
@@ -164,8 +164,8 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-        <Link legacyBehavior href={`${advertisementId}/vehicle/${record.key}`}>
-          <a>{text}</a>
+        <Link legacyBehavior href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${record.key}`}>
+          <a target="_blank">{text}</a>
         </Link>
       ),
     },
@@ -181,9 +181,9 @@ function AdvertisementDetailScreen() {
       render: (text: any, record: any) => (
         <Link
           legacyBehavior
-          href={`${advertisementId}/vehicle/${record.key}/location`}
+          href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${record.key}/location`}
         >
-          <a>{text}</a>
+          <a target="_blank">{text}</a>
         </Link>
       ),
     },
@@ -442,7 +442,7 @@ function AdvertisementDetailScreen() {
               </div>
 
               <div className={styles.ad_contents}>
-                <div className={styles.tab_menu}>
+                {/* <div className={styles.tab_menu}>
                   <div
                     className={`${styles.tab_01} ${styles.tab_title} ${styles.active}`}
                   >
@@ -454,7 +454,7 @@ function AdvertisementDetailScreen() {
                   <div className={`${styles.tab_03} ${styles.tab_title}`}>
                     운행정지
                   </div>
-                </div>
+                </div> */}
 
                 {/* <BootstrapTable
                   keyField="id"

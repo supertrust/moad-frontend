@@ -8,6 +8,8 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import {useGetAdvertisementAllDetail} from "@src/apis/advertisement";
+
 
 const imageStyle = {
   objectFit: "cover",
@@ -18,6 +20,8 @@ const imageStyle = {
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const advertisementId = query.ad_id as string;
+  const { data: advertisement } = useGetAdvertisementAllDetail({ advertisement_id: advertisementId }) as { data: any };
   return (
     <div id={styles.vehicle_information}>
       <div className={styles.container}>
@@ -144,7 +148,7 @@ export default function VehicleInfoScreen() {
 
               <div className={`${styles.table_box} ${styles.content_body}`}>
                 <div className="vehicle_number">
-                  제 22101301호
+                  제 { advertisement?.cargo_vehicles?.[0]?.car_number } 호
                   <style jsx>{`
                     .vehicle_number {
                       padding: 38px 30px;
@@ -161,7 +165,7 @@ export default function VehicleInfoScreen() {
                       차량종류
                     </div>
                     <div className={`${styles.value} ${styles.text}`}>
-                      윙바디 1.5t
+                      {advertisement?.['cargo_vehicles']?.[0]?.vehicle?.vehicle_type}
                     </div>
                   </li>
                   <li className={styles.list}>
@@ -169,37 +173,44 @@ export default function VehicleInfoScreen() {
                       평균 운행거리 (월)
                     </div>
                     <div className={`${styles.value} ${styles.text}`}>
-                      1500km
+                      {advertisement?.cargo_vehicles?.[0]?.estimated_driving_distance}
                     </div>
                   </li>
                   <li className={styles.list}>
                     <div className={`${styles.title} ${styles.text}`}>
                       평균 운행일수 (월)
                     </div>
-                    <div className={`${styles.value} ${styles.text}`}>25일</div>
+                    <div className={`${styles.value} ${styles.text}`}>
+                      { advertisement?.cargo_vehicles?.[0]?.monthly_avg_operating_days }
+                    </div>
                   </li>
                   <li className={styles.list}>
                     <div className={`${styles.title} ${styles.text}`}>
                       일평균 운행시간 (일)
                     </div>
                     <div className={`${styles.value} ${styles.text}`}>
-                      일 7시간
+                      일 { advertisement?.cargo_vehicles?.[0]?.daily_avg_drive_time } 시간
                     </div>
                   </li>
-                  <li className={styles.list}>
-                    <div className={`${styles.title} ${styles.text}`}>
-                      고정 출발지
-                    </div>
-                    <div className={`${styles.value} ${styles.text}`}>-</div>
-                  </li>
-                  <li className={styles.list}>
-                    <div className={`${styles.title} ${styles.text}`}>
-                      고정 도착지
-                    </div>
-                    <div className={`${styles.value} ${styles.text}`}>
-                      경기도 안산시 상록구 월피동
-                    </div>
-                  </li>
+                  {advertisement?.cargo_vehicles?.[0]?.fixed_destination == "Yes" &&  <>
+                    <li className={styles.list}>
+                      <div className={`${styles.title} ${styles.text}`}>
+                        고정 출발지
+                      </div>
+                      <div className={`${styles.title} ${styles.text}`}>
+                        { advertisement?.cargo_vehicles?.[0]?.fixed_destination }
+                      </div>
+                      <div className={`${styles.value} ${styles.text}`}>-</div>
+                    </li>
+                    <li className={styles.list}>
+                      <div className={`${styles.title} ${styles.text}`}>
+                        고정 도착지
+                      </div>
+                      <div className={`${styles.value} ${styles.text}`}>
+                        { advertisement?.cargo_vehicles?.[0]?.destination }
+                      </div>
+                    </li>
+                  </>}
                 </ul>
               </div>
             </div>

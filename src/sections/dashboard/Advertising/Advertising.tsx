@@ -1,7 +1,26 @@
-import React from "react";
-import styles from './style.module.css';
-
+import React, { useRef, useState } from "react";
+import styles from "./style.module.css";
+import AdModel, { AdModelRef } from "../SaveAdModel";
+import {
+  useDeleteAdvertisement,
+  useGetAdvertisements,
+  useUpdateAdStatus,
+} from "@src/apis/advertisement";
+import { AdStatusesType, AdTypesType } from "@src/types/advertisement";
+import { toast } from "react-toastify";
+import useAuth from "@src/hooks/useAuth";
+import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 export default function Advertising() {
+  const { userRole } = useAuth();
+  const adModel = useRef<AdModelRef>(null);
+  const [selectedAds, setSelectedAds] = useState<number[]>([]);
+  const [status, setStatus] = useState<AdStatusesType | undefined>();
+  const [type, setType] = useState<AdTypesType | undefined>();
+  const { data: advertisements } = useGetAdvertisements({
+    status,
+    type,
+    for_admin: userRole?.role_name === "Admin",
+  });
   return (
     <>
       <div className={styles.adStatus}>
@@ -17,12 +36,12 @@ export default function Advertising() {
       </div>
       <div className={styles.adContents}>
         <div className={styles.cards}>
-      {/*    <div className={styles.title}>*/}
+          {/*    <div className={styles.title}>*/}
           <div className={styles.itemTitle}>
             <span>registered advertisement</span>
           </div>
           <div className={styles.value}>
-            <span>-</span>
+            <span>{advertisements?.length}</span>
           </div>
         </div>
         <div className={styles.cards}>

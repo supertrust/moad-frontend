@@ -163,11 +163,9 @@ function AdvertisementDetailScreen() {
         paddingTop: "20px",
         paddingBottom: "20px",
       },
-      formatter: (vehicle_id: string) => (
-        <Link
-          href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${vehicle_id}`}
-        >
-          보기
+      render: (text: any, record: any) => (
+        <Link legacyBehavior href={`${advertisementId}/vehicle/${record.key}`}>
+          <a>{text}</a>
         </Link>
       ),
     },
@@ -179,11 +177,13 @@ function AdvertisementDetailScreen() {
         paddingTop: "20px",
         paddingBottom: "20px",
       },
-      formatter: (vehicle_id: string) => (
+
+      render: (text: any, record: any) => (
         <Link
-          href={`/dashboard/advertisement-detail/${advertisementId}/vehicle/${vehicle_id}/location`}
+          legacyBehavior
+          href={`${advertisementId}/vehicle/${record.key}/location`}
         >
-          보기
+          <a>{text}</a>
         </Link>
       ),
     },

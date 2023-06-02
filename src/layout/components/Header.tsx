@@ -3,16 +3,26 @@ import { useState } from "react";
 import MobileNav from "./MobileNav";
 import Image from "next/image";
 import Link from "next/link";
+import useAuth from "@src/hooks/useAuth";
 interface HeaderProps {
   text: string;
 }
 
 function Header(props: HeaderProps) {
+  const {logout, user} = useAuth();
   // console.log(props.text);
   const [showMobileNav, setShowMobileNav] = useState(false);
   function toggle() {
     setShowMobileNav(!showMobileNav);
   }
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
 
   return (
     <div className="inner-header-wrap">
@@ -38,14 +48,14 @@ function Header(props: HeaderProps) {
                     </div>
                     <div className="my-company">
                       <div className="company-name">Must FinTech</div>
-                      <div className="email">mufincrew@mail.com</div>
+                      <div className="email">{user?.email}</div>
                     </div>
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                     <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3" className="logout-danger">Log Out</Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogout} className="logout-danger">Log Out</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>

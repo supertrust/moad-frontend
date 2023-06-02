@@ -15,23 +15,26 @@
     position: fixed;
     bottom: 20px;
     left: 0;
-    right: 15px;
+    right: 0;
+    width: calc(100% - 30px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottomfixed .buttonblue{
+    padding:15px 10px;
     background: #006BF8;
+    width: 100%;
+    text-align: center;
+    display: block;
+	color: #fff;
+	background: #006BF8;
     width: 100%;
     text-align: center;
     display: block;
     color: #fff;
     max-width: 570px;
     margin: 0 auto;
-}
-.bottomfixed .buttonblue{
-    background-color: #0868FD;
-    color: #fff;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 48px;
 }
 .bottomfixedimg{
     position: fixed;

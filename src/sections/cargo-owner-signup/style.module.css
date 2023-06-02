@@ -29,13 +29,6 @@
     bottom: 20px;
     left: 15px;
     right: 15px;
-    background: #006BF8;
-    width: 100%;
-    text-align: center;
-    display: block;
-    color: #fff;
-    max-width: 570px;
-    margin: 0 auto;
 }
 .bluebutton button{
 	padding:15px 10px;
@@ -44,6 +37,13 @@
     text-align: center;
     display: block;
 	color: #fff;
+	background: #006BF8;
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: #fff;
+    max-width: 570px;
+    margin: 0 auto;
 }
 
 /*  */

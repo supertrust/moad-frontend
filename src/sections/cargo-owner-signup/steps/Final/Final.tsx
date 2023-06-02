@@ -27,7 +27,7 @@ const Final = () => {
           </div>
           <div className={styles.bottomfixed}>
             <Link
-              href={"/login"}
+              href={"/cargo-owner-login"}
               className="link"
             >
               {/* <Button className={styles.buttonblue}>로그인하러 가기</Button> */}

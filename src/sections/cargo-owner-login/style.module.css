@@ -1,0 +1,28 @@
+.logo{
+    display: flex;
+    flex-direction: column;
+    border-bottom : none !important;
+    margin-bottom: 110px;
+}
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+
+.join_section {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 23px;
+}
+
+.join_section p{
+    color: #989898;
+    text-decoration: underline;
+}
+
+.join_section span {
+    font-size: 16px;
+    color: #989898;
+}

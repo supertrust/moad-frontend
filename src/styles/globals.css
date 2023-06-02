@@ -661,8 +661,8 @@ a {
 }
 
 #login .right .right-wrap .title-wrap-login {
-    padding-bottom: 16px;
     border-bottom: 1px solid #eeeeee;
+    margin-bottom: 100px;
 }
 
 #login .right .right-wrap .title-wrap-login .title {
@@ -690,6 +690,12 @@ a {
     display: block;
     position: relative;
     margin-top: 20px;
+}
+#login .right .right-wrap .login-form.cargo .input-wrap {
+    display: block;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 #login .right .right-wrap .login-form .input-wrap .desc {

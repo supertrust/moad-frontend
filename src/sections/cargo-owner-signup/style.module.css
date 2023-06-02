@@ -1,0 +1,184 @@
+.CargOwnerSignup{
+	padding: 15px;
+	position: relative;
+	height: 100vh;
+}
+.multistep{
+	max-width: 600px;
+	margin: 0 auto;
+}
+.maindiv h2{
+	font-size: 23px;
+    color: #006BF8;
+	margin: 0;
+	padding-bottom: 10px;
+}
+.maindiv p{
+	font-size: 17px;
+    color: #4e4e4e;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+.maindiv ul li{
+	font-size: 14px;
+    color: #373737;
+    padding: 4px 0;
+}
+.bluebutton{
+	position: fixed;
+    bottom: 20px;
+    left: 15px;
+    right: 15px;
+    background: #006BF8;
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: #fff;
+    max-width: 570px;
+    margin: 0 auto;
+}
+.bluebutton button{
+	padding:15px 10px;
+    background: #006BF8;
+    width: 100%;
+    text-align: center;
+    display: block;
+	color: #fff;
+}
+
+/*  */
+.accordionsPage{
+	padding: 15px;
+}
+.accordionsPage h2{
+	font-size: 23px;
+    color: #000;
+	margin: 0;
+	padding-bottom: 10px;
+}
+.accordeionitem{
+	border-left: 0 !important;
+	border-right: 0 !important;
+	border-radius: 0 !important;
+	border-top: 1px solid lightgray;
+	color: lightgray;		
+}
+.termsdetails{
+	border: 1px solid lightgray;
+	color: lightgray;		
+}
+.termsdetails .accordionHeader {
+    border: 0;
+    display: flex;
+    box-shadow: none !important;
+    border: none !important;
+    color: #000;
+    padding: 10px 20px !important;
+    display: flex;
+    gap: 5px;
+	font-weight: 700;
+    font-size: 16px;
+}
+
+.accordeionitem ul li{
+	color: lightgray;
+	padding:5px 0;
+	display:flex;
+	gap:5px;
+	align-items: center;
+	}
+
+.accordeionitem ul li a{
+color: lightgray;
+padding:5px 0;	
+display:flex;
+gap:5px;
+text-decoration: underline;
+}
+.accordeionitem svg,.accordeionitem ul li svg,.termsdetails svg{
+	fill: lightgray;
+}
+.accordeionitem .active svg{
+	fill: #0868FD;
+}
+.accordionHeader{
+	padding: 0 !important;
+}
+.accordionHeader button{
+	border: 1px solid lightgray;
+	border-radius: 0 !important;
+	border-top: 0;
+	padding: 0 10px;
+}
+.accordeionitem button{
+	padding:0 10px;
+}
+.accordionHeader button::after{
+	display: none !important;
+}
+.accordeionitem button{
+	box-shadow: none !important;
+	border: none !important;
+	color: #000;
+	padding: 0 20px;
+	display: flex;
+		gap: 5px;
+}
+.termsModel button{
+	padding: 0 !important;
+}
+.accordeionitem .active svg{
+fill: rgb(0, 89, 255);
+}
+.accordeionitem ul li button{
+	color: lightgray;
+padding:5px 0;	
+text-decoration: underline;
+background-color: transparent;
+border: none;
+}
+.accordeionitem ul li button:active{
+	color: lightgray;
+}
+.offcanvasbody p{
+font-size: 10px;
+padding-bottom: 70px;
+}
+.offcanvasbody h4{
+	font-size: 18px;
+    padding-bottom: 10px;
+}
+.offcanvasheader{
+	border-bottom: 1px solid lightgray;
+	margin: 0 10px;
+	position: relative;
+	text-align: center;
+}
+.offcanvasheader button{
+	background-image: initial;
+}
+.offcanvasheader div{
+	font-size: 18px;
+}
+.Offcanvas{
+	border-radius: 10px 10px 0 0;
+}
+
+.disable button{
+background-color: #ECECEC;
+color: #2b2b2b;
+}
+.accordianbody{
+	padding: 0 20px;
+}
+.lablemain{
+	display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.lablemain input{
+	opacity: 0;
+	height: 0;
+	width: 0;
+}

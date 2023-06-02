@@ -31,7 +31,7 @@ const App: React.FC<TableProps> = ({ columns, rows }) => {
         key: "odd",
         text: "Select Odd Row",
         onSelect: (changeableRowKeys) => {
-          let newSelectedRowKeys = [];
+          let newSelectedRowKeys: any[] = [];
           newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
             if (index % 2 !== 0) {
               return false;
@@ -45,7 +45,7 @@ const App: React.FC<TableProps> = ({ columns, rows }) => {
         key: "even",
         text: "Select Even Row",
         onSelect: (changeableRowKeys) => {
-          let newSelectedRowKeys = [];
+          let newSelectedRowKeys: any[] = [];
           newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
             if (index % 2 !== 0) {
               return true;

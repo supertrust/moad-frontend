@@ -2868,11 +2868,9 @@ ul.pagination .page-item a:focus {
     padding: 40px 15px;
     text-align: center;
 }
-
-.policy-container .content-table {
-    margin-top: 30px;
+.policy-container .content-table{
+    background: #f7f9ff;
 }
-
 .policy-container .content-table .card {
     border-radius: 0;
     border-width: 0 1px 1px 0;

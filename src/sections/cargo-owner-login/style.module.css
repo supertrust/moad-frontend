@@ -26,3 +26,12 @@
     font-size: 16px;
     color: #989898;
 }
+.password{
+    position: relative;
+}
+.password .image{
+    position: absolute;
+    bottom: 55%;
+    right: 10px;
+    top: 55%;
+}

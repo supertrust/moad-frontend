@@ -1,10 +1,28 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Accordion, Col, Row } from "react-bootstrap";
-import Button from 'react-bootstrap/Button';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { styles } from "@src/sections/cargo-owner-signup";
-const SubscriptionAgreement = ({ onButtonClick }:{onButtonClick: any}) => {
-  function TermsModel({ name, ...props }:{name: any}) {
+const SubscriptionAgreement = ({ onButtonClick }: { onButtonClick: any }) => {
+  const [checkedItems, setCheckedItems] = useState({});
+
+  const handleChange = event => {
+    setCheckedItems({
+      ...checkedItems,
+      [event.target.name]: event.target.checked
+    });
+  };
+  const terms = [
+    "[ 필수] 이카루스 서비스 이용 약관", 
+    "[필수 ] 이카루스 서비스 이용 약관",
+    "[필 수] 이카루스 서비스 이용 약관",
+    "[ 필수 ] 이카루스 서비스 이용 약관",
+  ];
+  const use_of_marketing = [
+    "[선택] 전체동의", 
+  ];
+  function TermsModel({ name, ...props }: { name: any, placement: any }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -12,9 +30,10 @@ const SubscriptionAgreement = ({ onButtonClick }:{onButtonClick: any}) => {
 
     return (
       <>
-        <Button variant="primary" onClick={handleShow} className="me-2">
+        {/* <Button  variant="primary" onClick={handleShow} className="me-2">
           {name}
-        </Button>
+        </Button> */}
+        <button  onClick={handleShow} className="p-0">[선택] 광고성 정보 수신 동의</button>
         <Offcanvas show={show} onHide={handleClose} {...props} className={styles.Offcanvas}>
           <Offcanvas.Header closeButton className={styles.offcanvasheader}>
             <Offcanvas.Title>이카루스 서비스 이용약관</Offcanvas.Title>
@@ -38,20 +57,30 @@ const SubscriptionAgreement = ({ onButtonClick }:{onButtonClick: any}) => {
           <Accordion.Header className={styles.accordionHeader}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[필수] 전체동의</Accordion.Header>
         </Accordion.Item> */}
         <div className={styles.termsdetails}>
-            <div className={styles.accordionHeader}>
+          <div className={styles.accordionHeader}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[필수] 전체동의
-            </div>
+          </div>
         </div>
         <Accordion.Item eventKey="1" className={styles.accordeionitem}>
           <Accordion.Header><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[필수] 이카루스 서비스 이용 약관</Accordion.Header>
-          <Accordion.Body>
-            <ul>
-              <li className={styles.active}> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[ 필수] 이카루스 서비스 이용 약관</li>
+          <Accordion.Body className={styles.accordianbody}>
+            {/* <ul>
+              <li className={styles.active}> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[필수] 이카루스 서비스 이용 약관</li>
               <li> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[필수] 이카루스 서비스 이용 약관</li>
               <li> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[필수] 이카루스 서비스 이용 약관</li>
               <li> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[필수] 이카루스 서비스 이용 약관</li>
-            </ul>
-
+            </ul> */}
+            {terms.map(item => (
+              <label key={item} className={`${checkedItems[item] ? styles.active : ''} ${styles.lablemain}`}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>{item}
+                <input
+                  type="checkbox"
+                  name={item}
+                  checked={checkedItems[item]}
+                  onChange={handleChange}
+                />
+              </label>
+            ))}
           </Accordion.Body>
         </Accordion.Item>
 
@@ -61,15 +90,15 @@ const SubscriptionAgreement = ({ onButtonClick }:{onButtonClick: any}) => {
           </Accordion.Body>
         </Accordion.Item> */}
         <div className={styles.termsdetails}>
-            <div className={styles.accordionHeader}>
+          <div className={styles.accordionHeader}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[선택] 전체동의
-            </div>
+          </div>
         </div>
 
         <Accordion.Item eventKey="3" className={styles.accordeionitem}>
           <Accordion.Header><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>[선택] 마케팅 활용 동의</Accordion.Header>
-          <Accordion.Body>
-            <ul>
+          <Accordion.Body className={styles.accordianbody}>
+            {/* <ul>
               <li>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>
                 <a href="#">[선택] 마케팅 활용 동의</a>
@@ -81,7 +110,24 @@ const SubscriptionAgreement = ({ onButtonClick }:{onButtonClick: any}) => {
                 ))}
 
               </li>
-            </ul>
+            </ul> */}
+            {use_of_marketing.map(item => (
+              <label key={item} className={`${checkedItems[item] ? styles.active : ''} ${styles.lablemain}`}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>{item}
+                <input
+                  type="checkbox"
+                  name={item}
+                  checked={checkedItems[item]}
+                  onChange={handleChange}
+                />
+              </label>
+            ))}
+            <label className={styles.lablemain}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="check"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M9 16.17L5.53 12.7c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L9 16.17z"></path></svg>
+            {['[선택] 광고성 정보 수신 동의'].map((placement, idx) => (
+                  <TermsModel key={idx} placement={placement} name={placement} />
+                ))}
+              </label>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

@@ -14,7 +14,7 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  function BankModel({ name, ...props }:{name: any}) {
+  function BankModel({ name, ...props }:{name: any,placement: any}) {
 
     return (
       <>
@@ -204,8 +204,9 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className={styles.verificationButton} controlId="validationCustom02">
-                <Button type="button" className={styles.button}>계좌확인</Button>
+              <Form.Group className={`${styles.verificationButton} w-25`} controlId="validationCustom02">
+                {/* <Button type="button" className={styles.button}>계좌확인</Button> */}
+                <button type="button" className={`${styles.button} btn btn-primary w-100 justify-content-center`}>확인</button>
               </Form.Group>
             </div>
           </Row>
@@ -247,8 +248,10 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Group controlId="averageDriving" className={styles.twocolumnbtn}>
-              <Button type="button" className={styles.button}>있음</Button>
-              <Button type="button" className={styles.buttonwhite}>없음</Button>
+              {/* <Button type="button" className={styles.button}>있음</Button> */}
+              <button type="button" className={styles.button}>확인</button>
+              {/* <Button type="button" className={styles.buttonwhite}>없음</Button> */}
+              <button type="button" className={styles.buttonwhite}>확인</button>
             </Form.Group>
           </Row>
           <Row className={styles.mbcustom}>
@@ -445,8 +448,8 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
           </Row>
 
           <div className={styles.bluebuttonnew}>
-            <Button type="button" className={styles.buttonfull} onClick={() => onButtonClick("stepthree")}>확인</Button>
-
+            {/* <Button type="button" className={styles.buttonfull} onClick={() => onButtonClick("stepthree")}>확인</Button> */}
+            <button type="button" className={styles.buttonfull} onClick={() => onButtonClick("stepthree")}>확인</button>
           </div>
         </Form>
         {['bottom'].map((placement, idx) => (

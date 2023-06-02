@@ -60,7 +60,7 @@ export default function Index({ id }: { id: string }) {
   };
 
   const renderFileInputs = () => {
-    const inputs = [];
+    const inputs: any[] = [];
     for (let i = 0; i < 5; i++) {
       inputs.push(
         <div

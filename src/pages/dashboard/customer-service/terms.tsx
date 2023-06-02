@@ -14,7 +14,7 @@ export default function PolicyModulePage() {
                     정책의 변화에 따라 달라질 수 있으니 이용자께서는 이카루스 마케팅 플랫폼 사이트를 방문 시 수시로 확인하여 주시기 바랍니다.
                     이카루스 마케팅 플랫폼의 개인정보처리방침은 다음과 같은 내용을 담고 있습니다.
                   </div>
-                  <div className='content-table'>
+                  <div className='content-table ps-4 pe-4 pt-5 pb-5'>
                     <div className="row row-cols-1 row-cols-md-3 g-0">
                       <div className="col">
                         <div className="card h-100">
@@ -95,7 +95,7 @@ export default function PolicyModulePage() {
                       </div>  
                     </div>  
                   </div>
-                  <div className="card border-0 mt-4 rounded-0">
+                  <div className="card border-0 rounded-0">
                     <div className="card-body" id="제1조">
                       <h5 className="card-title"><strong>제1조. 개인정보의 수집•이용</strong></h5>
                       <ul>

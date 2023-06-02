@@ -586,6 +586,19 @@ a {
     line-height: 20px;
     color: #373737;
 }
+.change-password-content .form-wrap .change-password-wrap .list-wrap-11 .input-wrap{
+    position: relative;
+}
+.change-password-content .form-wrap .change-password-wrap .list-wrap-11 .input-wrap .icon {
+    position: absolute;
+    right: 16px;
+    top: 39px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: url(/images/ic-hide.png) no-repeat center center / cover;
+    cursor: pointer;
+}
 
 .change-password-content .form-wrap .btn-wrap {
     display: flex;

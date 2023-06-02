@@ -50,7 +50,7 @@ export default function ChangePasswordScreen() {
             <FormProvider methods={methods}>
               <div className="form-wrap">
                 <div className="change-password-wrap">
-                  <div className="title-wrap">
+                  <div className="title-wrap p-0">
                     <div className="title">
                       비밀번호 변경
                     </div>

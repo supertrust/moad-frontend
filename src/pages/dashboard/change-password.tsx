@@ -46,51 +46,48 @@ export default function ChangePasswordScreen() {
     <>
       <Row>
         <Col md="12">
-          <div className="change-password-content">
+          <div className="change-password-content p-10">
             <FormProvider methods={methods}>
-              <div className="form-wraps">
+              <div className="form-wrap">
                 <div className="change-password-wrap">
-                  <div className="title-wrapss">
+                  <div className="title-wrap">
                     <div className="title">
-                      <span>Change Password</span>
+                      비밀번호 변경
                     </div>
                     <div className="sub-text">
-                      <span>
-                        8 or more characters with a combination of letters,
-                        numbers and symbols
-                      </span>
+                      문자, 숫자, 기호를 조합하여 8자 이상
                     </div>
                   </div>
                   <ul className="list-wrap-11">
                     <RHFInput
-                      label="old password"
+                      label="기존 비밀번호"
                       type="password"
                       id="old_password"
                       name="old_password"
                       className="input-pass form-control"
-                      placeholder="Enter Password"
+                      placeholder="비밀번호 입력"
                       caption={
                         <i className="icon pw-show eyes"></i>
                       }
                     />
                     <RHFInput
-                      label="New password"
+                      label="새 비밀번호"
                       type="password"
                       id="new_password"
                       name="new_password"
                       className="input-pass form-control"
-                      placeholder="Enter New Password"
+                      placeholder="새 비밀번호 입력"
                       caption={
                         <i className="icon pw-show eyes"></i>
                       }
                     />
                     <RHFInput
-                      label="Re-enter new password"
+                      label="새 비밀번호 재입력"
                       type="password"
                       id="confirm_password"
                       name="confirm_password"
                       className="input-pass form-control"
-                      placeholder="Enter Re-enter new password"
+                      placeholder="새 비밀번호 재입력"
                       caption={
                         <i className="icon pw-show eyes"></i>
                       }
@@ -99,7 +96,7 @@ export default function ChangePasswordScreen() {
                 </div>
                 <div className="btn-wrap">
                   <a href="#" className="cancel-btn btns">
-                    cancellation{" "}
+                    취소
                   </a>
                   <Button
                     loading={isSubmitting}
@@ -107,7 +104,7 @@ export default function ChangePasswordScreen() {
                     className="modify-btn btnss"
                     onClick={onSubmit}
                   >
-                    Modifications completed
+                    수정완료
                   </Button>
                 </div>
               </div>

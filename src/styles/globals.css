@@ -545,8 +545,78 @@ a {
 /* Advertisement Status css End */
 
 /* my-info-page- style start */
+.board-content {
+    min-height: 781px;
+    background-color: #F5F7FB;
+    margin-left: 305px;
+    padding-top: 119px;
+    width: calc(100% - 305px);
+}
+.change-password-content .form-wrap {
+    width: 420px;
+    margin: 0 auto;
+    padding: 50px 20px 30px;
+    background-color: #ffffff;
+    border: 1px solid #EBEDF4;
+    border-radius: 5px;
+}
+.change-password-content .form-wrap .change-password-wrap .title-wrap{
+    flex-direction: column;
+    align-items: start;
+}
+.change-password-content .form-wrap .change-password-wrap .title-wrap .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.01em;
+    color: #2C324C;
+}
 
+.change-password-content .form-wrap .change-password-wrap .title-wrap .sub-text {
+    margin-top: 4px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    color: #999999;
+}
+.change-password-content .form-wrap .change-password-wrap .list-wrap-11 .input-wrap .desc {
+    margin: 30px 0 12px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #373737;
+}
 
+.change-password-content .form-wrap .btn-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+    margin-top: 67px;
+}
+
+.change-password-content .form-wrap .btn-wrap .cancel-btn {
+    line-height: 33px;
+    color: #2F48D1;
+    border: 1px solid #2F48D1;
+}
+.change-password-content .form-wrap .btn-wrap .btns {
+    width: 92px;
+    border-radius: 5px;
+    line-height: 35px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+}
+.change-password-content .form-wrap .btn-wrap .modify-btn {
+    color: #ffffff;
+    background-color: #2F48D1;
+    cursor: pointer;
+    width: 92px;
+    align-items: center;
+    justify-content: center;
+}
 /* my-info-page- style end */
 
 /* Login style start */

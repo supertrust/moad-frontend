@@ -463,19 +463,25 @@ function AdvertisementDetailScreen() {
               <div className={styles.ad_contents}>
                 <div className={styles.tab_menu}>
                   <div
-                    className={`${styles.tab_01} ${styles.tab_title} ${styles.active}`}
+                    className={`${styles.tab_01} ${styles.tab_title} ${
+                      !filterTableValue && styles.active
+                    }`}
                     onClick={() => setFilterTableValue(null)}
                   >
                     전체
                   </div>
                   <div
-                    className={`${styles.tab_02} ${styles.tab_title}`}
+                    className={`${styles.tab_02} ${styles.tab_title} ${
+                      filterTableValue === "proceeding" && styles.active
+                    }`}
                     onClick={() => setFilterTableValue("proceeding")}
                   >
                     운행중
                   </div>
                   <div
-                    className={`${styles.tab_03} ${styles.tab_title}`}
+                    className={`${styles.tab_03} ${styles.tab_title} ${
+                      filterTableValue === "suspend" && styles.active
+                    }`}
                     onClick={() => setFilterTableValue("suspend")}
                   >
                     운행정지

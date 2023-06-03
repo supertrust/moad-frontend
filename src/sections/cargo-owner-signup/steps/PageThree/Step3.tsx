@@ -15,7 +15,7 @@ const PageThree = ({ onButtonClick }:{onButtonClick: any}) => {
         className="pt5 black-80 center"
 
       >
-        <form className="measure">
+        <form className={styles.measure}>
 
           <div className={styles.titleheading}>기사 정보 입력</div>
           <Row className={styles.mbcustom}>

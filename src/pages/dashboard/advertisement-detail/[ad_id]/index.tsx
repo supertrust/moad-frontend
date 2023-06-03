@@ -32,11 +32,6 @@ function AdvertisementDetailScreen() {
   const { data: vehicles } = useGetAdvertisementVehicles({
     advertisement_id: advertisementId,
   });
-  console.log(
-    "🚀 ~ file: index.tsx:37 ~ AdvertisementDetailScreen ~ vehicles:",
-    vehicles
-  );
-
   const { data: operationAreas } = useGetAdvertisementOperationArea({
     advertisement_id: advertisementId,
   });
@@ -71,9 +66,9 @@ function AdvertisementDetailScreen() {
     {
       title: "광고기간",
       value:
-        advertisement?.start_date && advertisement?.end_date
-          ? `${advertisement?.start_date} ~ ${advertisement?.end_date} (${advertisement.ad_period}개월)`
-          : "--",
+          advertisement?.start_date && advertisement?.end_date
+              ? `${advertisement?.start_date} ~ ${advertisement?.end_date} (${advertisement.ad_period}개월)`
+              : "--",
     },
     {
       title: "광고유형",
@@ -99,28 +94,30 @@ function AdvertisementDetailScreen() {
   };
 
   const vehiclesData = useMemo(
-    () =>
-      !vehicles?.length
-        ? []
-        : vehicles?.map((item) => ({
-            key: item.id,
-            no: item.id,
-            registration_number:
-              item.advertisement.advertiser.business_registration_number,
-            vehicle_type: item.vehicles.vehicle_type,
-            vehicle_status: item.advertisement.status,
-            operation_status: item.advertisement.advertisement_vehicles.find(
-              (_item) => _item.vehicle_id === item.vehicles.id
-            )?.status,
-            vehicle_information: "vehicle information",
-            vehicle_location: "vehicle location",
-          })),
-    [vehicles?.length]
+      () =>
+          !vehicles?.length
+              ? []
+              : vehicles?.map((item) => ({
+                key: item.id,
+                no: item.id,
+                registration_number:
+                item.advertisement.advertiser.business_registration_number,
+                vehicle_type: item.vehicles.vehicle_type,
+                vehicle_status: item.advertisement.status,
+                operation_status: item.advertisement.advertisement_vehicles.find(
+                    (_item) => _item.vehicle_id === item.vehicles.id
+                )?.status,
+                vehicle_information: 'Look',
+                vehicle_location: 'Look',
+                show_links:item.cargo_status == null ? false:true,
+                cargo_vehicle_id:item.cargo_status?.cargo_vehicle_id
+              })),
+      [vehicles?.length]
   );
 
   const filterTable = filterTableValue
-    ? vehiclesData.filter((item) => item.vehicle_status === filterTableValue)
-    : vehiclesData;
+      ? vehiclesData.filter((item) => item.vehicle_status === filterTableValue)
+      : vehiclesData;
   const columns = [
     {
       dataIndex: "no",
@@ -172,14 +169,9 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-        <Link
-          legacyBehavior
-          href={`/dashboard/vehicle-detail/${advertisementId}`}
-        >
-          <a target="_blank" className="hover:no-underline">
-            {text}
-          </a>
-        </Link>
+          record.show_links ? <Link legacyBehavior href={`/dashboard/vehicle-detail/${record.cargo_vehicle_id}`}>
+            <a target="_blank" className='hover:no-underline'>{text}</a>
+          </Link>:"Not assigned yet"
       ),
     },
     {
@@ -192,14 +184,12 @@ function AdvertisementDetailScreen() {
       },
 
       render: (text: any, record: any) => (
-        <Link
-          legacyBehavior
-          href={`/dashboard/vehicle-location/${advertisementId}`}
-        >
-          <a target="_blank" className="hover:no-underline">
-            {text}
-          </a>
-        </Link>
+          record.show_links ? <Link
+              legacyBehavior
+              href={`/dashboard/vehicle-location/${record.cargo_vehicle_id}`}
+          >
+            <a target="_blank" className='hover:no-underline'>{text}</a>
+          </Link>:"Not assigned yet"
       ),
     },
   ];
@@ -216,292 +206,292 @@ function AdvertisementDetailScreen() {
   const [modelImages, setModelImages] = useState({
     left: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
     right:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
     doorLeft:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
     doorRight:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
   });
 
   const handleModelImageChange =
-    (key: string) => (e: ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file) {
-        setModelImages((old) => ({ ...old, [key]: URL.createObjectURL(file) }));
-      }
-    };
+      (key: string) => (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+          setModelImages((old) => ({ ...old, [key]: URL.createObjectURL(file) }));
+        }
+      };
 
   return (
-    <>
-      <div id={styles.ad_detail_list} className="ad-detail-list page">
-        <div className={styles.container}>
-          <div className={styles.board_content}>
-            <div className={styles.ad_detail_list_content}>
-              <div className="page-link">
-                <a href="/ad-management" className="link">
-                  광고관리
-                </a>
-                <span className="link"></span>
-                <span className="link"></span>
-                <a href="/ad-detail-list" className="link">
-                  {title}
-                </a>
-              </div>
-
-              <div className={styles.detail_content}>
-                <div className={styles.slide_box}>
-                  <div
-                    className={`${model === "image" ? styles.active : ""} ${
-                      styles.detail_slide
-                    } ${styles.box}`}
-                    id="div3d"
-                  >
-                    <div className={styles.swiper_wrapper}>
-                      <Carousel activeIndex={index} onSelect={handleSelect}>
-                        {mockup_arr.map((item, index) => (
-                          <Carousel.Item key={index} interval={undefined}>
-                            <Image
-                              src={item.img ? item.img : item.default_img}
-                              alt="slides"
-                              width={550}
-                              height={500}
-                            />
-                            <Carousel.Caption className="valu-text">
-                              <h3>
-                                {item.badge_text}
-                                {item.badge_text2}
-                              </h3>
-                            </Carousel.Caption>
-                          </Carousel.Item>
-                        ))}
-                      </Carousel>
-                    </div>
-                  </div>
-                  <div
-                    className={`${model === "model" ? styles.active : ""} ${
-                      styles.detail_3d
-                    } ${styles.box}`}
-                    id="div2d"
-                  >
-                    <Canvas
-                      camera={{ fov: 75, position: [0, 0, 7] }}
-                      style={{
-                        backgroundColor: "white",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      <ambientLight intensity={1.25} />
-                      <ambientLight intensity={0.1} />
-                      <directionalLight intensity={0.4} />
-                      <Suspense fallback={null}>
-                        {/* @ts-ignore */}
-                        <Center>
-                          <TruckModel images={modelImages} />
-                        </Center>
-                      </Suspense>
-                      <OrbitControls
-                        maxDistance={15}
-                        minDistance={5}
-                        autoRotate
-                      />
-                    </Canvas>
-                  </div>
-                  <Swiper
-                    direction={"vertical"}
-                    pagination={{
-                      clickable: true,
-                    }}
-                    modules={[Autoplay]}
-                    slidesPerView={1}
-                    autoplay={{ delay: 1000 }}
-                    className={styles.mySwiper}
-                    onClick={openBox}
-                  >
-                    <SwiperSlide>
-                      <Image
-                        className={styles.img}
-                        src={`/images/ad-detail-list/ic-3d-rotation.svg`}
-                        alt=""
-                        width={18}
-                        height={18}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <Image
-                        className={styles.img}
-                        src={`/images/ad-detail-list/ic-img.png`}
-                        alt=""
-                        width={18}
-                        height={18}
-                      />
-                    </SwiperSlide>
-                  </Swiper>
-
-                  <div
-                    className={`${swiper ? styles.active : ""} ${
-                      styles.mockup_btn
-                    }`}
-                  >
-                    <button
-                      onClick={() => {
-                        openModel("model");
-                      }}
-                      type="button"
-                      id="3d_btn"
-                      className={styles.btns}
-                    >
-                      <i
-                        className={`${styles.ic_3d_rotation} ${styles.icons}`}
-                      ></i>{" "}
-                      <span className={styles.text}>360°로 돌려보기</span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        openModel("image");
-                      }}
-                      type="button"
-                      id="img_btn"
-                      className={styles.btns}
-                    >
-                      <i className={`${styles.ic_img} ${styles.icons}`}></i>{" "}
-                      <span className={styles.text}>이미지로 보기</span>
-                    </button>
-                  </div>
+      <>
+        <div id={styles.ad_detail_list} className="ad-detail-list page">
+          <div className={styles.container}>
+            <div className={styles.board_content}>
+              <div className={styles.ad_detail_list_content}>
+                <div className="page-link">
+                  <a href="/ad-management" className="link">
+                    광고관리
+                  </a>
+                  <span className="link"></span>
+                  <span className="link"></span>
+                  <a href="/ad-detail-list" className="link">
+                    {title}
+                  </a>
                 </div>
-                <div className={styles.right_side}>
-                  <div className={styles.table_box}>
-                    {ad_detail_arr.map((data, index) => (
-                      <div key={index} className={styles.table_line}>
-                        <div className={styles.title}>{data.title}</div>
-                        <div className={styles.text}>{data.value}</div>
+
+                <div className={styles.detail_content}>
+                  <div className={styles.slide_box}>
+                    <div
+                        className={`${model === "image" ? styles.active : ""} ${
+                            styles.detail_slide
+                        } ${styles.box}`}
+                        id="div3d"
+                    >
+                      <div className={styles.swiper_wrapper}>
+                        <Carousel activeIndex={index} onSelect={handleSelect}>
+                          {mockup_arr.map((item, index) => (
+                              <Carousel.Item key={index} interval={undefined}>
+                                <Image
+                                    src={item.img ? item.img : item.default_img}
+                                    alt="slides"
+                                    width={550}
+                                    height={500}
+                                />
+                                <Carousel.Caption className="valu-text">
+                                  <h3>
+                                    {item.badge_text}
+                                    {item.badge_text2}
+                                  </h3>
+                                </Carousel.Caption>
+                              </Carousel.Item>
+                          ))}
+                        </Carousel>
                       </div>
-                    ))}
+                    </div>
+                    <div
+                        className={`${model === "model" ? styles.active : ""} ${
+                            styles.detail_3d
+                        } ${styles.box}`}
+                        id="div2d"
+                    >
+                      <Canvas
+                          camera={{ fov: 75, position: [0, 0, 7] }}
+                          style={{
+                            backgroundColor: "white",
+                            width: "100%",
+                            height: "100%",
+                          }}
+                      >
+                        <ambientLight intensity={1.25} />
+                        <ambientLight intensity={0.1} />
+                        <directionalLight intensity={0.4} />
+                        <Suspense fallback={null}>
+                          {/* @ts-ignore */}
+                          <Center>
+                            <TruckModel images={modelImages} />
+                          </Center>
+                        </Suspense>
+                        <OrbitControls
+                            maxDistance={15}
+                            minDistance={5}
+                            autoRotate
+                        />
+                      </Canvas>
+                    </div>
+                    <Swiper
+                        direction={"vertical"}
+                        pagination={{
+                          clickable: true,
+                        }}
+                        modules={[Autoplay]}
+                        slidesPerView={1}
+                        autoplay={{ delay: 1000 }}
+                        className={styles.mySwiper}
+                        onClick={openBox}
+                    >
+                      <SwiperSlide>
+                        <Image
+                            className={styles.img}
+                            src={`/images/ad-detail-list/ic-3d-rotation.svg`}
+                            alt=""
+                            width={18}
+                            height={18}
+                        />
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <Image
+                            className={styles.img}
+                            src={`/images/ad-detail-list/ic-img.png`}
+                            alt=""
+                            width={18}
+                            height={18}
+                        />
+                      </SwiperSlide>
+                    </Swiper>
+
+                    <div
+                        className={`${swiper ? styles.active : ""} ${
+                            styles.mockup_btn
+                        }`}
+                    >
+                      <button
+                          onClick={() => {
+                            openModel("model");
+                          }}
+                          type="button"
+                          id="3d_btn"
+                          className={styles.btns}
+                      >
+                        <i
+                            className={`${styles.ic_3d_rotation} ${styles.icons}`}
+                        ></i>{" "}
+                        <span className={styles.text}>360°로 돌려보기</span>
+                      </button>
+                      <button
+                          onClick={() => {
+                            openModel("image");
+                          }}
+                          type="button"
+                          id="img_btn"
+                          className={styles.btns}
+                      >
+                        <i className={`${styles.ic_img} ${styles.icons}`}></i>{" "}
+                        <span className={styles.text}>이미지로 보기</span>
+                      </button>
+                    </div>
                   </div>
-                  <div className={styles.model_contents_container}>
-                    <div className={styles.model_content}>
-                      <p>Left</p>
-                      <div className={styles.model_side_image_con}>
-                        <Image
-                          className={styles.model_images}
-                          src={modelImages.left}
-                          alt="left"
-                          width={200}
-                          height={200}
-                        />
-                      </div>
-                      <input
-                        onChange={handleModelImageChange("left")}
-                        className={styles.file_input}
-                        type="file"
-                        placeholder="file"
-                      />
-                    </div>
-                    <div className={styles.model_content}>
-                      <p>Right</p>
-                      <div className={styles.model_side_image_con}>
-                        <Image
-                          className={styles.model_images}
-                          src={modelImages.right}
-                          alt="right"
-                          width={200}
-                          height={200}
-                        />
-                      </div>
-                      <input
-                        width={"200px"}
-                        height={"100px"}
-                        onChange={handleModelImageChange("right")}
-                        className={styles.file_input}
-                        type="file"
-                        placeholder="file"
-                      />
-                    </div>
-                    <div className={styles.model_content}>
-                      <p>Back</p>
-                      <div className={styles.back_doors_con}>
-                        <div className={styles.back_door_con}>
-                          <div className={styles.model_back_image_con}>
-                            <Image
-                              className={styles.model_images}
-                              width={50}
-                              height={200}
-                              src={modelImages.doorLeft}
-                              alt="doorLeft"
-                            />
+                  <div className={styles.right_side}>
+                    <div className={styles.table_box}>
+                      {ad_detail_arr.map((data, index) => (
+                          <div key={index} className={styles.table_line}>
+                            <div className={styles.title}>{data.title}</div>
+                            <div className={styles.text}>{data.value}</div>
                           </div>
-                          <input
-                            onChange={handleModelImageChange("doorLeft")}
+                      ))}
+                    </div>
+                    <div className={styles.model_contents_container}>
+                      <div className={styles.model_content}>
+                        <p>Left</p>
+                        <div className={styles.model_side_image_con}>
+                          <Image
+                              className={styles.model_images}
+                              src={modelImages.left}
+                              alt="left"
+                              width={200}
+                              height={200}
+                          />
+                        </div>
+                        <input
+                            onChange={handleModelImageChange("left")}
                             className={styles.file_input}
                             type="file"
                             placeholder="file"
+                        />
+                      </div>
+                      <div className={styles.model_content}>
+                        <p>Right</p>
+                        <div className={styles.model_side_image_con}>
+                          <Image
+                              className={styles.model_images}
+                              src={modelImages.right}
+                              alt="right"
+                              width={200}
+                              height={200}
                           />
                         </div>
-                        <div className={styles.back_door_con}>
-                          <div className={styles.model_back_image_con}>
-                            <Image
-                              className={styles.model_images}
-                              width={50}
-                              height={200}
-                              src={modelImages.doorRight}
-                              alt="doorRight"
-                            />
-                          </div>
-                          <input
-                            onChange={handleModelImageChange("doorRight")}
+                        <input
+                            width={"200px"}
+                            height={"100px"}
+                            onChange={handleModelImageChange("right")}
                             className={styles.file_input}
                             type="file"
                             placeholder="file"
-                          />
+                        />
+                      </div>
+                      <div className={styles.model_content}>
+                        <p>Back</p>
+                        <div className={styles.back_doors_con}>
+                          <div className={styles.back_door_con}>
+                            <div className={styles.model_back_image_con}>
+                              <Image
+                                  className={styles.model_images}
+                                  width={50}
+                                  height={200}
+                                  src={modelImages.doorLeft}
+                                  alt="doorLeft"
+                              />
+                            </div>
+                            <input
+                                onChange={handleModelImageChange("doorLeft")}
+                                className={styles.file_input}
+                                type="file"
+                                placeholder="file"
+                            />
+                          </div>
+                          <div className={styles.back_door_con}>
+                            <div className={styles.model_back_image_con}>
+                              <Image
+                                  className={styles.model_images}
+                                  width={50}
+                                  height={200}
+                                  src={modelImages.doorRight}
+                                  alt="doorRight"
+                              />
+                            </div>
+                            <input
+                                onChange={handleModelImageChange("doorRight")}
+                                className={styles.file_input}
+                                type="file"
+                                placeholder="file"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {/* Table */}
-              <div className={styles.ad_contents}>
-                <div className={styles.tab_menu}>
-                  <div
-                    className={`${styles.tab_01} ${styles.tab_title} ${
-                      !filterTableValue && styles.active
-                    }`}
-                    onClick={() => setFilterTableValue(null)}
-                  >
-                    전체
+                {/* Table */}
+                <div className={styles.ad_contents}>
+                  <div className={styles.tab_menu}>
+                    <div
+                        className={`${styles.tab_01} ${styles.tab_title} ${
+                            !filterTableValue && styles.active
+                        }`}
+                        onClick={() => setFilterTableValue(null)}
+                    >
+                      전체
+                    </div>
+                    <div
+                        className={`${styles.tab_02} ${styles.tab_title} ${
+                            filterTableValue === "proceeding" && styles.active
+                        }`}
+                        onClick={() => setFilterTableValue("proceeding")}
+                    >
+                      운행중
+                    </div>
+                    <div
+                        className={`${styles.tab_03} ${styles.tab_title} ${
+                            filterTableValue === "suspend" && styles.active
+                        }`}
+                        onClick={() => setFilterTableValue("suspend")}
+                    >
+                      운행정지
+                    </div>
                   </div>
-                  <div
-                    className={`${styles.tab_02} ${styles.tab_title} ${
-                      filterTableValue === "proceeding" && styles.active
-                    }`}
-                    onClick={() => setFilterTableValue("proceeding")}
-                  >
-                    운행중
-                  </div>
-                  <div
-                    className={`${styles.tab_03} ${styles.tab_title} ${
-                      filterTableValue === "suspend" && styles.active
-                    }`}
-                    onClick={() => setFilterTableValue("suspend")}
-                  >
-                    운행정지
-                  </div>
+                  <DataTable columns={columns} rows={filterTable} />
                 </div>
-                <DataTable columns={columns} rows={filterTable} />
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
   );
 }
 
 //if user role is 'Advertiser'
 const WithRoles = () => (
-  <RoleBasedGuard roles={["Advertiser"]}>
-    <AdvertisementDetailScreen />
-  </RoleBasedGuard>
+    <RoleBasedGuard roles={["Advertiser"]}>
+      <AdvertisementDetailScreen />
+    </RoleBasedGuard>
 );
 
 export default WithRoles;

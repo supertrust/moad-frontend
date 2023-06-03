@@ -82,6 +82,10 @@ export interface IAdvertisementVehicle {
     vehicle_id: number;
     number_of_vehicles: number;
     price: number;
+    cargo_status:{
+        advertisement_id:number;
+        cargo_vehicle_id:number;
+    }
     vehicles: {
         id: number;
         vehicle_type: string;

@@ -8,7 +8,7 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import {useGetAdvertisementAllDetail} from "@src/apis/advertisement";
+import {useGetAdvertisementAllDetail, useGetAdvertisementImages} from "@src/apis/advertisement";
 
 
 const imageStyle = {
@@ -22,6 +22,8 @@ export default function VehicleInfoScreen() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const advertisementId = query.ad_id as string;
   const { data: advertisement } = useGetAdvertisementAllDetail({ advertisement_id: advertisementId }) as { data: any };
+  const { data: advertisementImages } = useGetAdvertisementImages({ advertisement_id: advertisementId }) as { data: any };
+
   return (
     <div id={styles.vehicle_information}>
       <div className={styles.container}>

@@ -11,10 +11,16 @@ export const useGetAdvertisementDetail = (props: GetAdvertisementDetailPropType)
     queryKey: ["advertisement-detail", props.id],
     queryFn: async () => (await axios.get("/api/get-advertisement", { params: { id: props.id } })).data.data?.[0]
 })
-export const useGetAdvertisementAllDetail = ({ advertisement_id }: GetAdvertisementOperationAreaPropsType) =>
-    useQuery<IAdvertisementOperatingArea[], string>({
-        queryKey: ["advertisement-operation-area", advertisement_id],
+export const useGetAdvertisementAllDetail = ({ advertisement_id }: GetAdvertisementOperationAreaPropsType) => {
+    return useQuery<IAdvertisementOperatingArea[], string>({
+        queryKey: ["advertisement-all-detail", advertisement_id],
         queryFn: async () => (await axios.get(`/api/get-all-advertisement-vehicles/${advertisement_id}`)).data.data,
+    })
+}
+export const useGetAdvertisementImages = ({ advertisement_id }: GetAdvertisementOperationAreaPropsType) =>
+    useQuery<IAdvertisementOperatingArea[], string>({
+        queryKey: ["advertisement-images", advertisement_id],
+        queryFn: async () => (await axios.get(`/api/show-cargo-pictures/${advertisement_id}`)).data.data,
     })
 
 export const useGetVehicles = () => useQuery<IVehicle[], string>({

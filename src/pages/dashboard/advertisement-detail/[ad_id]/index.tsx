@@ -23,9 +23,7 @@ import Image from "next/image";
 import DataTable from "@src/components/DataGrid/DataGrid";
 
 function AdvertisementDetailScreen() {
-  const [filterTableValue, setFilterTableValue] = useState<null | string>(
-    "proceeding"
-  );
+  const [filterTableValue, setFilterTableValue] = useState<null | string>(null);
   const { query } = useRouter();
   const advertisementId = query.ad_id as string;
   const { data: advertisement } = useGetAdvertisementDetail({
@@ -34,6 +32,10 @@ function AdvertisementDetailScreen() {
   const { data: vehicles } = useGetAdvertisementVehicles({
     advertisement_id: advertisementId,
   });
+  console.log(
+    "🚀 ~ file: index.tsx:37 ~ AdvertisementDetailScreen ~ vehicles:",
+    vehicles
+  );
 
   const { data: operationAreas } = useGetAdvertisementOperationArea({
     advertisement_id: advertisementId,

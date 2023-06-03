@@ -1,5 +1,4 @@
-import React, { ChangeEvent, useMemo } from "react";
-import { useState, Suspense } from "react";
+import React, { Suspense, ChangeEvent, useMemo, useState } from "react";
 import { Carousel } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
@@ -24,6 +23,9 @@ import Image from "next/image";
 import DataTable from "@src/components/DataGrid/DataGrid";
 
 function AdvertisementDetailScreen() {
+  const [filterTableValue, setFilterTableValue] = useState<null | string>(
+    "proceeding"
+  );
   const { query } = useRouter();
   const advertisementId = query.ad_id as string;
   const { data: advertisement } = useGetAdvertisementDetail({
@@ -104,15 +106,19 @@ function AdvertisementDetailScreen() {
             registration_number:
               item.advertisement.advertiser.business_registration_number,
             vehicle_type: item.vehicles.vehicle_type,
-            vehicle_status: item.advertisement.advertisement_vehicles.find(
+            vehicle_status: item.advertisement.status,
+            operation_status: item.advertisement.advertisement_vehicles.find(
               (_item) => _item.vehicle_id === item.vehicles.id
             )?.status,
-            vehicle_information: 'vehicle information',
-            vehicle_location: 'vehicle location',
+            vehicle_information: "vehicle information",
+            vehicle_location: "vehicle location",
           })),
     [vehicles?.length]
   );
 
+  const filterTable = filterTableValue
+    ? vehiclesData.filter((item) => item.vehicle_status === filterTableValue)
+    : vehiclesData;
   const columns = [
     {
       dataIndex: "no",
@@ -147,7 +153,7 @@ function AdvertisementDetailScreen() {
       },
     },
     {
-      dataIndex: "vehicle_status",
+      dataIndex: "operation_status",
       title: "운행여부",
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
@@ -164,8 +170,13 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-        <Link legacyBehavior href={`/dashboard/vehicle-detail/${advertisementId}`}>
-          <a target="_blank" className='hover:no-underline'>{text}</a>
+        <Link
+          legacyBehavior
+          href={`/dashboard/vehicle-detail/${advertisementId}`}
+        >
+          <a target="_blank" className="hover:no-underline">
+            {text}
+          </a>
         </Link>
       ),
     },
@@ -183,7 +194,9 @@ function AdvertisementDetailScreen() {
           legacyBehavior
           href={`/dashboard/vehicle-location/${advertisementId}`}
         >
-          <a target="_blank" className='hover:no-underline'>{text}</a>
+          <a target="_blank" className="hover:no-underline">
+            {text}
+          </a>
         </Link>
       ),
     },
@@ -379,6 +392,7 @@ function AdvertisementDetailScreen() {
                         onChange={handleModelImageChange("left")}
                         className={styles.file_input}
                         type="file"
+                        placeholder="file"
                       />
                     </div>
                     <div className={styles.model_content}>
@@ -398,6 +412,7 @@ function AdvertisementDetailScreen() {
                         onChange={handleModelImageChange("right")}
                         className={styles.file_input}
                         type="file"
+                        placeholder="file"
                       />
                     </div>
                     <div className={styles.model_content}>
@@ -417,6 +432,7 @@ function AdvertisementDetailScreen() {
                             onChange={handleModelImageChange("doorLeft")}
                             className={styles.file_input}
                             type="file"
+                            placeholder="file"
                           />
                         </div>
                         <div className={styles.back_door_con}>
@@ -433,6 +449,7 @@ function AdvertisementDetailScreen() {
                             onChange={handleModelImageChange("doorRight")}
                             className={styles.file_input}
                             type="file"
+                            placeholder="file"
                           />
                         </div>
                       </div>
@@ -440,33 +457,29 @@ function AdvertisementDetailScreen() {
                   </div>
                 </div>
               </div>
-
+              {/* Table */}
               <div className={styles.ad_contents}>
-                {/* <div className={styles.tab_menu}>
+                <div className={styles.tab_menu}>
                   <div
                     className={`${styles.tab_01} ${styles.tab_title} ${styles.active}`}
+                    onClick={() => setFilterTableValue(null)}
                   >
                     전체
                   </div>
-                  <div className={`${styles.tab_02} ${styles.tab_title}`}>
+                  <div
+                    className={`${styles.tab_02} ${styles.tab_title}`}
+                    onClick={() => setFilterTableValue("proceeding")}
+                  >
                     운행중
                   </div>
-                  <div className={`${styles.tab_03} ${styles.tab_title}`}>
+                  <div
+                    className={`${styles.tab_03} ${styles.tab_title}`}
+                    onClick={() => setFilterTableValue("suspend")}
+                  >
                     운행정지
                   </div>
-                </div> */}
-
-                {/* <BootstrapTable
-                  keyField="id"
-                  data={vehiclesData}
-                  columns={columns}
-                  pagination={paginationFactory({
-                    hideSizePerPage: true,
-                    sizePerPage: 10,
-                  })}
-                  noDataIndication={"진행중인 광고가 없습니다."}
-                /> */}
-                <DataTable columns={columns} rows={vehiclesData} />
+                </div>
+                <DataTable columns={columns} rows={filterTable} />
               </div>
             </div>
           </div>

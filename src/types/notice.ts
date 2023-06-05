@@ -28,5 +28,5 @@ export interface INotification {
     id: number;
     title: string;
     content: string;
-    created_at: string | null;
+    created_at: Date;
 }

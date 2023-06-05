@@ -1,4 +1,8 @@
-const hostnames = ["upload.wikimedia.org", "dev-icarus.mufin.lol"];
+const hostnames = [
+  "upload.wikimedia.org",
+  "dev-icarus.mufin.lol",
+  "dev-backend.icarus.mufin.lol",
+];
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // reactStrictMode: true,

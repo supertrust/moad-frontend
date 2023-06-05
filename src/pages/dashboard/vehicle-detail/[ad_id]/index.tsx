@@ -65,7 +65,7 @@ export default function VehicleInfoScreen() {
                       className={styles.img}
                       src={
                         advertisementImages &&
-                        advertisementImages[0]?.image_path
+                        `https://dev-backend.icarus.mufin.lol${advertisementImages[0]?.image_path}`
                       }
                       alt={
                         advertisementImages &&
@@ -83,7 +83,7 @@ export default function VehicleInfoScreen() {
                     <Image
                       src={
                         advertisementImages &&
-                        advertisementImages[1]?.image_path
+                        `https://dev-backend.icarus.mufin.lol${advertisementImages[1]?.image_path}`
                       }
                       alt={
                         advertisementImages &&
@@ -102,7 +102,7 @@ export default function VehicleInfoScreen() {
                     <Image
                       src={
                         advertisementImages &&
-                        advertisementImages[2]?.image_path
+                        `https://dev-backend.icarus.mufin.lol${advertisementImages[2]?.image_path}`
                       }
                       alt={
                         advertisementImages &&
@@ -121,7 +121,7 @@ export default function VehicleInfoScreen() {
                     <Image
                       src={
                         advertisementImages &&
-                        advertisementImages[3]?.image_path
+                        `https://dev-backend.icarus.mufin.lol${advertisementImages[3]?.image_path}`
                       }
                       alt={
                         advertisementImages &&
@@ -146,7 +146,7 @@ export default function VehicleInfoScreen() {
                     <Image
                       src={
                         advertisementImages &&
-                        advertisementImages[0]?.image_path
+                        `https://dev-backend.icarus.mufin.lol${advertisementImages[0]?.image_path}`
                       }
                       alt={
                         advertisementImages &&
@@ -160,7 +160,7 @@ export default function VehicleInfoScreen() {
                     <Image
                       src={
                         advertisementImages &&
-                        advertisementImages[1]?.image_path
+                        `https://dev-backend.icarus.mufin.lol${advertisementImages[1]?.image_path}`
                       }
                       alt={
                         advertisementImages &&
@@ -174,7 +174,7 @@ export default function VehicleInfoScreen() {
                     <Image
                       src={
                         advertisementImages &&
-                        advertisementImages[2]?.image_path
+                        `https://dev-backend.icarus.mufin.lol${advertisementImages[2]?.image_path}`
                       }
                       alt={
                         advertisementImages &&
@@ -188,7 +188,7 @@ export default function VehicleInfoScreen() {
                     <Image
                       src={
                         advertisementImages &&
-                        advertisementImages[3]?.image_path
+                        `https://dev-backend.icarus.mufin.lol${advertisementImages[3]?.image_path}`
                       }
                       alt={
                         advertisementImages &&

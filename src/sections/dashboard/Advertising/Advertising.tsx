@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styles from "./style.module.css";
 import AdModel, { AdModelRef } from "../SaveAdModel";
+
 import {
   useDeleteAdvertisement,
-  useGetAdvertisements,
+  useGetAdvertisements, useGetAdvertiserVehiclesStats,
   useUpdateAdStatus,
 } from "@src/apis/advertisement";
 import { AdStatusesType, AdTypesType } from "@src/types/advertisement";
@@ -16,11 +17,13 @@ export default function Advertising() {
   const [selectedAds, setSelectedAds] = useState<number[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
+  const {data: advertiserVehiclesStats } = useGetAdvertiserVehiclesStats() as {data:any}
   const { data: advertisements } = useGetAdvertisements({
     status,
     type,
     for_admin: userRole?.role_name === "Admin",
   });
+
   return (
     <>
       <div className={styles.adStatus}>
@@ -49,7 +52,7 @@ export default function Advertising() {
             <span>total vehicle</span>
           </div>
           <div className={styles.value}>
-            <span>20s</span>
+            <span>{advertiserVehiclesStats?.total_vehicles}</span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -57,7 +60,7 @@ export default function Advertising() {
             <span> running</span>
           </div>
           <div className={styles.value}>
-            <span>15th</span>
+            <span>{advertiserVehiclesStats?.running}th</span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -65,7 +68,7 @@ export default function Advertising() {
             <span>Suspension</span>
           </div>
           <div className={styles.value}>
-            <span>5 generations</span>
+            <span>{advertiserVehiclesStats?.suspensions}</span>
           </div>
         </div>
       </div>

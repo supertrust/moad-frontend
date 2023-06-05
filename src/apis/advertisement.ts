@@ -44,6 +44,11 @@ export const useGetAdvertisementVehicles = ({ advertisement_id }: GetAdvertiseme
         enabled: !!advertisement_id
     })
 
+export const useGetAdvertiserVehiclesStats = () =>
+    useQuery<IAdvertisementVehicle[], string>({
+        queryKey: ["advertisement-vehicles-stats"],
+        queryFn: async () => (await axios.get("/api/get-advertiser-dashboard-stats")).data.data,
+    })
 export const useGetAdvertisementOperationArea = ({ advertisement_id }: GetAdvertisementOperationAreaPropsType) =>
     useQuery<IAdvertisementOperatingArea[], string>({
         queryKey: ["advertisement-operation-area", advertisement_id],

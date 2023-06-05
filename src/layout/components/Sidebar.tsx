@@ -55,6 +55,24 @@ function Sidebar({ msg }: SidebarProps) {
             </Link>
             <ul className="sub-wrap"></ul>
           </li>
+
+          <li
+            className={
+              tab === "cargo dashboard" ? "menu-list active" : "menu-list"
+            }
+          >
+            <Link
+              href={"/dashboard/cargo"}
+              className="link"
+              onClick={() => {
+                barStatus("cargo dashboard");
+              }}
+            >
+              <i className="icon home"></i>
+              <div className="name">Cargo</div>
+            </Link>
+            {/* <ul className="sub-wrap"></ul> */}
+          </li>
           {user?.role === "Admin" && (
             <li
               className={tab === "Inquiry" ? "menu-list active" : "menu-list "}

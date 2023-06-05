@@ -82,20 +82,23 @@ export const useGetAdvertisementVehicles = ({
     enabled: !!advertisement_id,
   });
 
-export const useGetAdvertisementOperationArea = ({
-  advertisement_id,
-}: GetAdvertisementOperationAreaPropsType) =>
-  useQuery<IAdvertisementOperatingArea[], string>({
-    queryKey: ["advertisement-operation-area", advertisement_id],
-    queryFn: async () =>
-      (
-        await axios.get(
-          `/api/get-advertisement-operating-area/${advertisement_id}`
-        )
-      ).data.data,
-    enabled: !!advertisement_id,
-  });
 
+export const useGetAdvertiserVehiclesStats = () =>
+    useQuery<IAdvertisementVehicle[], string>({
+        queryKey: ["advertisement-vehicles-stats"],
+        queryFn: async () => (await axios.get("/api/get-advertiser-dashboard-stats")).data.data,
+    })
+export const useGetAdvertisementOperationArea = ({advertisement_id,}: GetAdvertisementOperationAreaPropsType) =>
+    useQuery<IAdvertisementOperatingArea[], string>({
+        queryKey: ["advertisement-operation-area", advertisement_id],
+        queryFn: async () =>
+            (
+                await axios.get(
+                    `/api/get-advertisement-operating-area/${advertisement_id}`
+                )
+            ).data.data,
+        enabled: !!advertisement_id,
+    });
 export const useDeleteAdvertisement = () =>
   useMutation<void, string, { id: string }>({
     mutationFn: async ({ id }) =>

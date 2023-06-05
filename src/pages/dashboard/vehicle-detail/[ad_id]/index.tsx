@@ -63,21 +63,32 @@ export default function VehicleInfoScreen() {
                     </div>
                     <Image
                       className={styles.img}
-                      src={advertisementImages[0]?.image_path}
-                      alt={advertisementImages[0]?.image_title}
+                      src={
+                        advertisementImages &&
+                        advertisementImages[0]?.image_path
+                      }
+                      alt={
+                        advertisementImages &&
+                        advertisementImages[0]?.image_title
+                      }
                       width={500}
                       height={500}
                     />
                   </SwiperSlide>
-
                   <SwiperSlide>
                     <div className={styles.badge}>
                       <div className={styles.text}>옆면</div>
                       <div className={styles.text_sub}>(운전석)</div>
                     </div>
                     <Image
-                      src={advertisementImages[1]?.image_path}
-                      alt={advertisementImages[1]?.image_title}
+                      src={
+                        advertisementImages &&
+                        advertisementImages[1]?.image_path
+                      }
+                      alt={
+                        advertisementImages &&
+                        advertisementImages[1]?.image_title
+                      }
                       className={styles.img}
                       width={500}
                       height={500}
@@ -89,8 +100,14 @@ export default function VehicleInfoScreen() {
                       <div className={styles.text_sub}>(운전석)</div>
                     </div>
                     <Image
-                      src={advertisementImages[2]?.image_path}
-                      alt={advertisementImages[2]?.image_title}
+                      src={
+                        advertisementImages &&
+                        advertisementImages[2]?.image_path
+                      }
+                      alt={
+                        advertisementImages &&
+                        advertisementImages[2]?.image_title
+                      }
                       className={styles.img}
                       width={500}
                       height={500}
@@ -102,8 +119,14 @@ export default function VehicleInfoScreen() {
                       <div className={styles.text_sub}>(운전석)</div>
                     </div>
                     <Image
-                      src={advertisementImages[3]?.image_path}
-                      alt={advertisementImages[3]?.image_title}
+                      src={
+                        advertisementImages &&
+                        advertisementImages[3]?.image_path
+                      }
+                      alt={
+                        advertisementImages &&
+                        advertisementImages[3]?.image_title
+                      }
                       className={styles.img}
                       width={500}
                       height={500}
@@ -121,32 +144,56 @@ export default function VehicleInfoScreen() {
                 >
                   <SwiperSlide className={styles.swiperslide}>
                     <Image
-                      src={advertisementImages[0]?.image_path}
-                      alt={advertisementImages[0]?.image_title}
+                      src={
+                        advertisementImages &&
+                        advertisementImages[0]?.image_path
+                      }
+                      alt={
+                        advertisementImages &&
+                        advertisementImages[0]?.image_title
+                      }
                       width={500}
                       height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
                     <Image
-                      src={advertisementImages[1]?.image_path}
-                      alt={advertisementImages[1]?.image_title}
+                      src={
+                        advertisementImages &&
+                        advertisementImages[1]?.image_path
+                      }
+                      alt={
+                        advertisementImages &&
+                        advertisementImages[1]?.image_title
+                      }
                       width={500}
                       height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
                     <Image
-                      src={advertisementImages[2]?.image_path}
-                      alt={advertisementImages[2]?.image_title}
+                      src={
+                        advertisementImages &&
+                        advertisementImages[2]?.image_path
+                      }
+                      alt={
+                        advertisementImages &&
+                        advertisementImages[2]?.image_title
+                      }
                       width={500}
                       height={500}
                     />
                   </SwiperSlide>
                   <SwiperSlide className={styles.swiperslide}>
                     <Image
-                      src={advertisementImages[3]?.image_path}
-                      alt={advertisementImages[3]?.image_title}
+                      src={
+                        advertisementImages &&
+                        advertisementImages[3]?.image_path
+                      }
+                      alt={
+                        advertisementImages &&
+                        advertisementImages[3]?.image_title
+                      }
                       width={500}
                       height={500}
                     />

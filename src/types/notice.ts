@@ -23,3 +23,10 @@ export interface INoticeDetail {
     important: boolean;
     created_at: string | null;
 }
+
+export interface INotification {
+    id: number;
+    title: string;
+    content: string;
+    created_at: string | null;
+}

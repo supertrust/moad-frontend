@@ -44,3 +44,13 @@ export const downloadFile = (url: string, filename: string, newTab = true) => {
     document.body.appendChild(link);
     link.click();
 }
+
+export const getHoursAgoByDate = (serverDateTimeStamp: Date): string => {
+    console.log("this as the serverDateTimeStamp",serverDateTimeStamp)
+    const serverDate: Date = new Date(serverDateTimeStamp);
+    const currentDate: Date = new Date();
+    const timeDiff: number = currentDate.getTime() - serverDate.getTime();
+    console.log("here is the ",serverDate, currentDate)
+    const hoursDiff: number = Math.floor(timeDiff / (1000 * 60 * 60));
+    return hoursDiff + " hours ago";
+};

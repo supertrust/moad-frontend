@@ -270,7 +270,7 @@ export default function VehicleInfoScreen() {
                         <div className={`${styles.title} ${styles.text}`}>
                           {
                             advertisement?.cargo_vehicles?.[0]
-                              ?.fixed_destination
+                              ?.start_point
                           }
                         </div>
                         <div className={`${styles.value} ${styles.text}`}>
@@ -282,7 +282,7 @@ export default function VehicleInfoScreen() {
                           고정 도착지
                         </div>
                         <div className={`${styles.value} ${styles.text}`}>
-                          {advertisement?.cargo_vehicles?.[0]?.destination}
+                          {advertisement?.cargo_vehicles?.[0]?.end_point}
                         </div>
                       </li>
                     </>

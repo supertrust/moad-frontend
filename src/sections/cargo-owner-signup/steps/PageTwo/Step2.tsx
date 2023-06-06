@@ -9,13 +9,12 @@ import Row from 'react-bootstrap/Row';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { styles } from './index';
 
-const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
+const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  function BankModel({ name, ...props }:{name: any,placement: any}) {
-
+  function BankModel({ name, ...props }: { name: any, placement: any }) {
     return (
       <>
         <Offcanvas show={show} onHide={handleClose} {...props} className={styles.Offcanvas}>
@@ -33,7 +32,7 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                     alt="logo-pc"
                     width={30}
                     height={30}
-                />
+                  />
                 </div>
                 <div className={styles.iconwraptext}>
                   국민은행
@@ -170,7 +169,7 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
   });
 
   const handleModelImageChange =
-    (key:any) => (e:any) => {
+    (key: any) => (e: any) => {
       const file = e.target.files?.[0];
       if (file) {
         setModelImages((old) => ({ ...old, [key]: URL.createObjectURL(file) }));
@@ -273,12 +272,12 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                   <>
                     {/* <img className={styles.fitimage} src={modelImages.first} /> */}
                     <Image
-                    className={styles.fitimage}
-                    src={modelImages.first}
-                    alt="logo-pc"
-                    width={30}
-                    height={30}
-                />
+                      className={styles.fitimage}
+                      src={modelImages.first}
+                      alt="logo-pc"
+                      width={30}
+                      height={30}
+                    />
                     <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("first")} />
                   </>
                   :
@@ -304,12 +303,12 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                   <>
                     {/* <img className={styles.fitimage} src={modelImages.second} /> */}
                     <Image
-                    className={styles.fitimage}
-                    src={modelImages.second}
-                    alt="logo-pc"
-                    width={30}
-                    height={30}
-                />
+                      className={styles.fitimage}
+                      src={modelImages.second}
+                      alt="logo-pc"
+                      width={30}
+                      height={30}
+                    />
                     <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("second")} />
                   </>
                   :
@@ -337,23 +336,23 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                     <>
                       {/* <img className={styles.fitimage} src={modelImages.three} /> */}
                       <Image
-                    className={styles.fitimage}
-                    src={modelImages.three}
-                    alt="logo-pc"
-                    width={30}
-                    height={30}
-                />
+                        className={styles.fitimage}
+                        src={modelImages.three}
+                        alt="logo-pc"
+                        width={30}
+                        height={30}
+                      />
                       <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("three")} />
                     </>
                     :
                     <>
                       {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
                       <Image
-                      src="/images/cargo/camera_alt.svg"
-                      alt="logo-pc"
-                      width={30}
-                      height={30}
-                    />
+                        src="/images/cargo/camera_alt.svg"
+                        alt="logo-pc"
+                        width={30}
+                        height={30}
+                      />
                       <Form.Label>차량 옆면 (조수석) 사진을<br />
                         등록해주세요.</Form.Label>
                       <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("three")} />
@@ -366,23 +365,23 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
                     <>
                       {/* <img className={styles.fitimage} src={modelImages.four} /> */}
                       <Image
-                    className={styles.fitimage}
-                    src={modelImages.four}
-                    alt="logo-pc"
-                    width={30}
-                    height={30}
-                />
+                        className={styles.fitimage}
+                        src={modelImages.four}
+                        alt="logo-pc"
+                        width={30}
+                        height={30}
+                      />
                       <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("four")} />
                     </>
                     :
                     <>
                       {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
                       <Image
-                      src="/images/cargo/camera_alt.svg"
-                      alt="logo-pc"
-                      width={30}
-                      height={30}
-                    />
+                        src="/images/cargo/camera_alt.svg"
+                        alt="logo-pc"
+                        width={30}
+                        height={30}
+                      />
                       <Form.Label>차량 옆면 (조수석) 사진을<br />
                         등록해주세요.</Form.Label>
                       <Form.Control className={styles.fileuploadmain} type="file" onChange={handleModelImageChange("four")} />
@@ -397,11 +396,11 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
             <div className={styles.desc}>
               {/* <img src={'/images/cargo/truck.png'} /> */}
               <Image
-                      src="/images/cargo/truck.png"
-                      alt="logo-pc"
-                      width={240}
-                      height={100}
-                    />
+                src="/images/cargo/truck.png"
+                alt="logo-pc"
+                width={240}
+                height={100}
+              />
             </div>
           </Row>
           <Row className={styles.mbcustom}>
@@ -409,11 +408,11 @@ const PageTwo = ({ onButtonClick }:{onButtonClick: any}) => {
             <div className={styles.desc}>
               {/* <img src={'/images/cargo/truck.png'} /> */}
               <Image
-                      src="/images/cargo/truck.png"
-                      alt="logo-pc"
-                      width={240}
-                      height={100}
-                    />
+                src="/images/cargo/truck.png"
+                alt="logo-pc"
+                width={240}
+                height={100}
+              />
             </div>
           </Row>
           <Row className={styles.mbcustom}>

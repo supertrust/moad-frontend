@@ -6,6 +6,12 @@
     color: #373737;
     margin-bottom: 24px;
 }
+.measure label{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: #373737;
+}
 .formall input{
     border: 1px solid #EBEDF4;
     height: 40px;
@@ -25,7 +31,7 @@
 .leftphone{
     width: calc(100% - 102px);
 }
-.buttonblue button{
+.buttonblue .button{
     background-color: #0868FD;
     color: #fff;
     width: 100%;
@@ -34,7 +40,11 @@
     justify-content: center;
     padding: 10px 20px;
     border-radius: 7px;
+    height: 38px;
+    border-radius: 5px;
+
 }
+
 .buttonblue{
     width: 92px;
 }

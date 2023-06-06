@@ -27,7 +27,7 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
   
     return (
       <div className={styles.inputlable}>
-            <label>{label} *</label>
+            <label className={styles.label}>{label} *</label>
             <div className={styles.emailtag}>
               <input type={!isVisible ? "password" : "text"} placeholder={placeholder} name={name}></input>
               <div className={styles.eyeicon} onClick={toggle}>
@@ -102,7 +102,7 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
         </div>
         <form>
           <div className={styles.inputlable}>
-            <label>휴대폰 번호 *</label>
+            <label className={styles.label}>휴대폰 번호 *</label>
             <div className={styles.emailtag}>
               <input type="number" placeholder="“-”없이 입력"></input>
               <button type="button" onClick={verifyShow}>인증요청</button>

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetFaq = () => useQuery<IFaq[], string>({
     queryKey: ["faq"],
-    queryFn: async () => (await axios.get("/api/get-faq")).data.data,
+    queryFn: async () => (await axios.get("/api/get-faq/{filter}")).data.data,
 })
 
 export const useGetFaqUse = () => useQuery<IFaq[], string>({

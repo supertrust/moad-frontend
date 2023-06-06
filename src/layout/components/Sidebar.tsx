@@ -56,8 +56,7 @@ function Sidebar({ msg }: SidebarProps) {
             <ul className="sub-wrap"></ul>
           </li>
 
-          <li
-            className={
+          {user?.role === "Cargo" && ( <li className={
               tab === "cargo dashboard" ? "menu-list active" : "menu-list"
             }
           >
@@ -73,6 +72,7 @@ function Sidebar({ msg }: SidebarProps) {
             </Link>
             {/* <ul className="sub-wrap"></ul> */}
           </li>
+          )}
           {user?.role === "Admin" && (
             <li
               className={tab === "Inquiry" ? "menu-list active" : "menu-list "}

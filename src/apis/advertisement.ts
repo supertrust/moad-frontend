@@ -30,9 +30,7 @@ export const useGetAdvertisementDetail = (
       (await axios.get("/api/get-advertisement", { params: { id: props.id } }))
         .data.data?.[0],
   });
-export const useGetAdvertisementAllDetail = ({
-  advertisement_id,
-}: GetAdvertisementOperationAreaPropsType) => {
+export const useGetAdvertisementAllDetail = ({ advertisement_id }: GetAdvertisementOperationAreaPropsType) => {
   return useQuery<IAdvertisementOperatingArea[], string>({
     queryKey: ["advertisement-all-detail", advertisement_id],
     queryFn: async () =>
@@ -71,9 +69,7 @@ export const useSaveAdvertisement = () =>
       (await axios.post("/api/save-advertisement", props)).data.data,
   });
 
-export const useGetAdvertisementVehicles = ({
-  advertisement_id,
-}: GetAdvertisementVehiclesPropsType) =>
+export const useGetAdvertisementVehicles = ({ advertisement_id,}: GetAdvertisementVehiclesPropsType) =>
   useQuery<IAdvertisementVehicle[], string>({
     queryKey: ["advertisement-vehicles", advertisement_id],
     queryFn: async () =>

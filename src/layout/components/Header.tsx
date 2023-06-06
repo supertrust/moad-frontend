@@ -4,12 +4,13 @@ import MobileNav from "./MobileNav";
 import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@src/hooks/useAuth";
+import Button from "@src/components/Button";
 interface HeaderProps {
   text: string;
 }
 
 function Header(props: HeaderProps) {
-  const {logout, user} = useAuth();
+  const { logout, user } = useAuth();
   // console.log(props.text);
   const [showMobileNav, setShowMobileNav] = useState(false);
   function toggle() {
@@ -34,7 +35,6 @@ function Header(props: HeaderProps) {
             </div>
             <div className="my-info">
               <div className="info-wrap">
-
                 <Dropdown className="drop-btns">
                   <Dropdown.Toggle id="dropdown-basic">
                     <div className="my-photo">
@@ -54,12 +54,18 @@ function Header(props: HeaderProps) {
 
                   <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item onClick={handleLogout} className="logout-danger">Log Out</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
+                      Another action
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={handleLogout}
+                      className="logout-danger"
+                    >
+                      Log Out
+                    </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
-
             </div>
           </div>
         </div>
@@ -77,25 +83,23 @@ function Header(props: HeaderProps) {
             </h1>
             <div className="util-wrap">
               <Link href="/dashboard/my-info" className="info-btn"></Link>
-              <button
+              <Button
                 onClick={toggle}
                 type="button"
                 id="side_mb_btn"
                 className={showMobileNav ? "side-close" : "side-mb-btn"}
-              ></button>
+              />
             </div>
           </div>
         </div>
       </div>
 
-      <div id="side_mb" className="side-mb"
-        style={{
-          display: showMobileNav ? "block" : "none"
-        }}>
-
+      <div
+        id="side_mb"
+        className={`side-mb ${showMobileNav ? "block" : "hidden"}`}
+      >
         {showMobileNav ? <MobileNav /> : null}
       </div>
-
     </div>
   );
 }

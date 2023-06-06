@@ -5,8 +5,14 @@ import { toast } from "react-toastify";
 import useAuth from "@src/hooks/useAuth";
 import { useUpdateUserInfo } from "@src/apis/user";
 import Button from "@src/components/Button";
-import { FormProvider, RHFInput, Yup, useForm, yupResolver } from '@src/components/Form';
-import {styles} from "@src/sections/my-info";
+import {
+  FormProvider,
+  RHFInput,
+  Yup,
+  useForm,
+  yupResolver,
+} from "@src/components/Form";
+import { styles } from "@src/sections/my-info";
 import Image from "next/image";
 
 const defaultValues = {
@@ -17,7 +23,7 @@ const defaultValues = {
   employee_email: "",
   sector: "",
   business_license: null,
-}
+};
 
 const UpdateUserInfoSchema = Yup.object({
   company_name: Yup.string().required("Company Name is required"),
@@ -58,7 +64,7 @@ const UpdateUserInfoSchema = Yup.object({
       return true;
     }),
   sector: Yup.string().required("Sector is required"),
-})
+});
 
 export default function MyInfoScreen() {
   const { mutateAsync: updateUserInfo } = useUpdateUserInfo();
@@ -67,27 +73,29 @@ export default function MyInfoScreen() {
 
   const methods = useForm({
     defaultValues,
-    resolver: yupResolver(UpdateUserInfoSchema)
-  })
-  const { handleSubmit, formState: { isSubmitting }, setValue } = methods;
+    resolver: yupResolver(UpdateUserInfoSchema),
+  });
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+    setValue,
+  } = methods;
 
   const onSubmit = handleSubmit(async (values) => {
     await updateUserInfo(values, {
       onSuccess: () => {
         toast("Profile updated successfully!", { type: "success" });
-      }
+      },
     });
-  })
+  });
 
   useEffect(() => {
     if (user) {
       Object.entries(user).forEach(([key, value]) => {
-        setValue(key as keyof typeof defaultValues, value)
-      })
+        setValue(key as keyof typeof defaultValues, value);
+      });
     }
   }, [user]);
-
-
 
   return (
     <>
@@ -98,9 +106,7 @@ export default function MyInfoScreen() {
               <div className={styles.form_wrap}>
                 <div className={styles.profile}>
                   <div className={styles.title_wraps_1}>
-                    <div className={styles.title}>
-                      프로필
-                    </div>
+                    <div className={styles.title}>프로필</div>
                     <a href="#" className={styles.link}>
                       탈퇴하기
                     </a>
@@ -119,8 +125,13 @@ export default function MyInfoScreen() {
                           height={200}
                         />
                       </div>
-                      <input type="file" id="input_file" className={styles.input_file} />
-                      <button
+                      <input
+                        type="file"
+                        placeholder="#"
+                        id="input_file"
+                        className={styles.input_file}
+                      />
+                      <Button
                         type="button"
                         id="photo_btn"
                         className={styles.photo_btn}
@@ -134,25 +145,26 @@ export default function MyInfoScreen() {
                     </div>
                   </div>
                   <div className={styles.change_password}>
-                    <div className={styles.title}>
-                      비밀번호 변경
-                    </div>
-                      <Link href={"change-password"} className={styles.correction}>
-                        수정
-                      </Link>
+                    <div className={styles.title}>비밀번호 변경</div>
+                    <Link
+                      href={"change-password"}
+                      className={styles.correction}
+                    >
+                      수정
+                    </Link>
                   </div>
                   <div className={styles.my_information}>
-                    <div className={styles.title}>내 정보
-                    </div>
+                    <div className={styles.title}>내 정보</div>
                     <div className={styles.information_wrap}>
                       <ul className={styles.list_wrap}>
                         <li className={styles.lists}>
-                          <div className={styles.desc}>
-                            회사명
-                          </div>
-                          <div className={`${styles.company_name} ${styles.text}`}>
+                          <div className={styles.desc}>회사명</div>
+                          <div
+                            className={`${styles.company_name} ${styles.text}`}
+                          >
                             <input
                               type="text"
+                              title="company_name"
                               className={styles.company}
                               // onChange={handleChange}
                               // onBlur={handleBlur}
@@ -164,9 +176,10 @@ export default function MyInfoScreen() {
                         <li className={styles.lists}>
                           <div className={styles.desc}>
                             회사 전화번호
-                              <span className={styles.point}>*</span>
+                            <span className={styles.point}>*</span>
                           </div>
                           <input
+                            title="company_phone_number"
                             type="number"
                             name="company_phone_number"
                             className={styles.input}
@@ -184,6 +197,7 @@ export default function MyInfoScreen() {
                           <input
                             type="email"
                             id="employee_email"
+                            title="employee_email"
                             name="employee_email"
                             // onChange={handleChange}
                             // onBlur={handleBlur}
@@ -196,40 +210,43 @@ export default function MyInfoScreen() {
                             담당자 핸드폰
                             <span className={styles.point}>*</span>
                           </div>
-                            <input
-                              type="number"
-                              name="employee_phone_number"
-                              className={styles.input}
-                              id="employee_phone_number"
+                          <input
+                            type="number"
+                            name="employee_phone_number"
+                            title="employee_phone_number"
+                            className={styles.input}
+                            id="employee_phone_number"
                             value={user?.employee_phone_number}
                             // onChange={handleChange}
                             // onBlur={handleBlur}
-                            />
+                          />
                         </li>
                         <li className={styles.lists}>
                           <div className={styles.desc}>
                             담당자 이메일 (계산서 발행)
                             <span className={styles.point}>*</span>
                           </div>
-                          <div className={`${styles.company_name} ${styles.text}`}>
+                          <div
+                            className={`${styles.company_name} ${styles.text}`}
+                          >
                             <input
                               type="number"
                               name="business_registration_number"
+                              title="business_registration_number"
                               className={styles.input}
                               id="business_registration_number"
-                            value={user?.business_registration_number}
-                            // onChange={handleChange}
-                            // onBlur={handleBlur}
+                              value={user?.business_registration_number}
+                              // onChange={handleChange}
+                              // onBlur={handleBlur}
                             />
                           </div>
                         </li>
                         <li className={styles.lists}>
-                          <div className={styles.desc}>
-                            사업자 등록번호
-                          </div>
+                          <div className={styles.desc}>사업자 등록번호</div>
                           <input
                             type="file"
                             id="business_license"
+                            title="business_license"
                             name="business_license"
                             className={styles.input}
                             onChange={(event) => {
@@ -243,12 +260,11 @@ export default function MyInfoScreen() {
                           />
                         </li>
                         <li className={styles.lists}>
-                          <div className={styles.desc}>
-                            업종
-                          </div>
+                          <div className={styles.desc}>업종</div>
                           <input
                             type="text"
                             id="sector"
+                            title="sector"
                             name="sector"
                             value={user?.sector}
                             className={styles.input}

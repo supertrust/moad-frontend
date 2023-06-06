@@ -53,6 +53,7 @@ export interface IAdvertisement {
     start_date: string;
     status: "proceeding"
     total_cost: number;
+    approved: "yes" | "no",
     type: "fixed_ad" | "national_ad" | "spot_ad";
     number_of_vehicles: number;
     advertiser: {

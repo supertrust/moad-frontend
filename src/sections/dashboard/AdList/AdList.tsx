@@ -122,8 +122,11 @@ export default function AdListModule() {
               <div className={styles.gridBox}>ad name</div>
               <div className={styles.gridBox}>No of vehicles</div>
               <div className={styles.gridBox}>Period</div>
+              <div className={styles.gridBox}>Approved</div>
+
               <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div>
             </div>
+
             <RoleBasedGuard roles={["Admin"]}>
               <div className={`${styles.gridBox}`}>Action</div>
             </RoleBasedGuard>
@@ -148,6 +151,7 @@ export default function AdListModule() {
                       <div className={styles.gridBox}>{item.ad_name}</div>
                       <div className={styles.gridBox}>{`1/${item.number_of_vehicles}`}</div>
                       <div className={styles.gridBox}>{(item.start_date && item.start_date) ? `${item.start_date} ~ ${item.end_date}` : "--"}</div>
+                      <div className={styles.gridBox}>{item.approved}</div>
                       <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div>
                       <i className="only-mb ic-arrow-right"></i>
                     </a>

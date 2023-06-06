@@ -182,12 +182,13 @@
     }
 
     .grid {
-        grid-template-columns: 1fr 99px 235px;
+        grid-template-columns: 0.7fr 116px 219px 130px
     }
 
     .gridBox {
         line-height: 20px;
     }
+
 }
 
 @media screen and (max-width: 1024px) {
@@ -196,7 +197,7 @@
     }
 
     .grid {
-        grid-template-columns: 1fr 110px 185px;
+        grid-template-columns: 0.5fr 110px 185px 100px;
     }
 
     .gridBox {

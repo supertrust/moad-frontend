@@ -45,14 +45,14 @@ export default function CargOwnerAdList() {
   }
   return (
     <div className="bg-[#F5F7FB]">
-      <div className="container bg-[#fff] max -w-[600px] mx-auto py-6">
+      <div className="container bg-[#fff] max-w-[600px] mx-auto py-6">
         <div>
-          <Image className="w-full" src="/images/cargo-owner-ad-list/adapply.jpg" alt='event' width={150} height={50} />
+          <Image className="w-full" src="/images/cargo-owner-ad-list/adapply.jpg" alt='event' width={335} height={50} />
         </div>
       </div>
       <div className="container bg-[#fff] max-w-[600px] mx-auto mt-3">
         <div className="flex items-center justify-between pt-6 pb-3">
-          <button className="rounded-[100px] w-[auto] h-[30px] px-3.5 py-2.5 flex items-center justify-center border">
+        <button className="rounded-[100px] w-[auto] h-[30px] px-3.5 py-2.5 flex items-center justify-center border">
             {
             filter === "전체" 
             ? 
@@ -88,7 +88,7 @@ export default function CargOwnerAdList() {
           <h4 className="text-[#373737] mb-2.5 font-medium text-xs">산업융합 규제샌드박스 제도 홍보 캠페인 3_추가모집
             (2줄 자동 줄바뀜)</h4>
           <div className="w-[40px] h-[40px] border rounded-full flex items-center justify-center mb-3">
-            <Image className="w-full" src="/images/cargo-owner-ad-list/adapply.jpg" alt='adapply-pc' width={150} height={50} />
+          <Image className="w-full" src="/images/cargo-owner-ad-list/adapply.jpg" alt='adapply-pc' width={150} height={50} />
           </div>
           <div className="flex items-center gap-2 mb-24">
             <button className="bg-[#E1ECFF] text-[#0868FD] flex items-center justify-center w-[47px] h-[25px]">

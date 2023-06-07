@@ -2,8 +2,11 @@ import React from 'react'
 import { styles } from "@src/sections/statistics";
 import DataTable from '@src/components/DataGrid/DataGrid';
 import { rows, columns, rowData } from '@src/sections/statistics/tabelData';
+import { useGetShowAdvertisementStats } from '@src/apis/advertisement';
 
 export default function StatisticsScreen() {
+  const{data: advertisement_stats} = useGetShowAdvertisementStats()
+  console.log("🚀 ~ file: index.tsx:9 ~ StatisticsScreen ~ advertisement_stats:", advertisement_stats)
   const date_start = '2023. 03. 01';
   const date_end = '2023. 03. 08';
   const ad_amount = '123,456,789';

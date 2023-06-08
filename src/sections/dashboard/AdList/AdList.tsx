@@ -28,7 +28,6 @@ export default function AdListModule() {
     type,
     for_admin: userRole?.role_name === "Admin"
   });
-  console.log("🚀 ~ file: AdList.tsx:31 ~ AdListModule ~ advertisements:", advertisements)
   const { mutateAsync: updateAdStatus } = useUpdateAdStatus();
   const { mutateAsync: deleteAd } = useDeleteAdvertisement()
 

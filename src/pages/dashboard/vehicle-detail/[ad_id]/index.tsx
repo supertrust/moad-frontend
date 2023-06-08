@@ -13,7 +13,6 @@ import {
   useGetAdvertisementImages,
 } from "@src/apis/advertisement";
 import { API_BASE_URL } from "@src/config";
-console.log("🚀 ~ file: index.tsx:16 ~ API_BASE_URL:", API_BASE_URL);
 
 const imageStyle = {
   objectFit: "cover",

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { styles } from "@src/sections/cargo-owner-signup";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Image from "next/image";
+import {Button} from "antd";
 export default function CargOwnerAdList() {
   const [filter, setFilter] = useState("전체");
   function FilterModel({ name, ...props }: { name: any, placement: any }) {
@@ -19,7 +20,7 @@ export default function CargOwnerAdList() {
       };
     return (
       <>
-        <button onClick={handleShow} className="p-0">필터</button>
+        <p onClick={handleShow} className="p-0">필터</p>
         <Offcanvas show={show} onHide={handleClose} {...props} className={styles.Offcanvas}>
           <Offcanvas.Header closeButton className={styles.offcanvasheader}>
             <Offcanvas.Title>필터</Offcanvas.Title>
@@ -52,7 +53,7 @@ export default function CargOwnerAdList() {
       </div>
       <div className="container bg-[#fff] max-w-[600px] mx-auto mt-3">
         <div className="flex items-center justify-between pt-6 pb-3">
-        <button className="rounded-[100px] w-[auto] h-[30px] px-3.5 py-2.5 flex items-center justify-center border">
+        <p className="rounded-[100px] w-[auto] h-[30px] px-3.5 py-2.5 flex items-center justify-center border">
             {
             filter === "전체" 
             ? 
@@ -62,8 +63,8 @@ export default function CargOwnerAdList() {
               <Image onClick={() => {setFilter("전체")}} className="w-3.5" src="/images/cargo-owner-ad-list/close.svg" alt='close' width={150} height={50} />
                {filter}</span>
             }
-          </button>
-          <button className="bg-[#F5F7FB] border-[#F5F7FB] rounded-[4px] w-[61px] h-[30px] flex items-center justify-center text-[#0868FD] gap-1">
+          </p>
+          <div className="bg-[#F5F7FB] border-[#F5F7FB] rounded-[4px] w-[61px] h-[30px] flex items-center justify-center text-[#0868FD] gap-1">
             <span>
               <Image className="w-full" src="/images/cargo-owner-ad-list/filter.svg" alt='filter' width={150} height={50} />
             </span>
@@ -71,7 +72,7 @@ export default function CargOwnerAdList() {
               <FilterModel key={idx} placement={placement} name={placement} />
             ))}</span>
 
-          </button>
+          </div>
         </div>
       </div>
       <div className="container bg-[#fff] max-w-[600px] mx-auto">
@@ -91,15 +92,15 @@ export default function CargOwnerAdList() {
           <Image className="w-full" src="/images/cargo-owner-ad-list/adapply.jpg" alt='adapply-pc' width={150} height={50} />
           </div>
           <div className="flex items-center gap-2 mb-24">
-            <button className="bg-[#E1ECFF] text-[#0868FD] flex items-center justify-center w-[47px] h-[25px]">
+            <span className="bg-[#E1ECFF] text-[#0868FD] flex items-center justify-center w-[47px] h-[25px]">
               서울
-            </button>
-            <button className="bg-[#E1ECFF] text-[#0868FD] flex items-center justify-center w-[47px] h-[25px] rounded-[4px]">
+            </span>
+            <span className="bg-[#E1ECFF] text-[#0868FD] flex items-center justify-center w-[47px] h-[25px] rounded-[4px]">
               경기
-            </button>
+            </span>
           </div>
           <div className="flex items-center mb-4">
-            <button className="h-[48px] w-full bg-[#EFEEF0] text-[#C8C5CB] flex items-center justify-center">종료된 광고</button>
+            <Button type="primary" block size="large" className="h-[48px] rounded-none w-full bg-[#EFEEF0] text-[#C8C5CB] flex items-center justify-center">종료된 광고</Button>
           </div>
 
         </div>

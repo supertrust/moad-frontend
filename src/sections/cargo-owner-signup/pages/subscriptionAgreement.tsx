@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Button} from "antd";
 import { Accordion, Col, Row } from "react-bootstrap";
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
@@ -33,7 +34,7 @@ const SubscriptionAgreement = ({ onButtonClick }: { onButtonClick: any }) => {
         {/* <Button  variant="primary" onClick={handleShow} className="me-2">
           {name}
         </Button> */}
-        <button  onClick={handleShow} className="p-0">[선택] 광고성 정보 수신 동의</button>
+        <p  onClick={handleShow} className="p-0">[선택] 광고성 정보 수신 동의</p>
         <Offcanvas show={show} onHide={handleClose} {...props} className={styles.Offcanvas}>
           <Offcanvas.Header closeButton className={styles.offcanvasheader}>
             <Offcanvas.Title>이카루스 서비스 이용약관</Offcanvas.Title>
@@ -42,7 +43,7 @@ const SubscriptionAgreement = ({ onButtonClick }: { onButtonClick: any }) => {
             <h4>제 1조</h4>
             <p>약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.약관 내용이 들어갑니다.</p>
             <div className={styles.bluebutton}>
-              <button>확인</button>
+              <Button type="primary" block size="large">확인</Button>
             </div>
           </Offcanvas.Body>
         </Offcanvas>
@@ -132,7 +133,7 @@ const SubscriptionAgreement = ({ onButtonClick }: { onButtonClick: any }) => {
         </Accordion.Item>
       </Accordion>
       <div className={`${styles.bluebutton} ${styles.disable}`}>
-        <button onClick={() => onButtonClick("pagethree")}>확인</button>
+        <Button type="primary" block size="large" className="rounded" onClick={() => onButtonClick("pagethree")}>확인</Button>
       </div>
     </div>
   );

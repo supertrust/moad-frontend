@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { styles } from './index';
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import {Button} from 'antd';
 import Modal from 'react-bootstrap/Modal';
 
 const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
@@ -67,7 +67,7 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
           {/* <Button variant="primary" onClick={verifyClose}>
             확인
           </Button> */}
-          <button type="button" onClick={verifyClose}>확인</button>
+          <Button type="primary" block size="large" onClick={verifyClose}>확인</Button>
         </Modal.Footer>
       </Modal>
       <Modal className={styles.modalcheck} show={error} onHide={errorClose}>
@@ -88,7 +88,7 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
           {/* <Button variant="primary" onClick={errorClose}>
           확인
           </Button> */}
-          <button type="button" onClick={errorClose}>확인</button>
+          <Button type="primary" block size="large" onClick={errorClose}>확인</Button>
         </Modal.Footer>
       </Modal>
       <form className="measure">
@@ -105,13 +105,13 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
             <label className={styles.label}>휴대폰 번호 *</label>
             <div className={styles.emailtag}>
               <input type="number" placeholder="“-”없이 입력"></input>
-              <button type="button" onClick={verifyShow}>인증요청</button>
+              <Button className="p-2 text-center flex items-center" type="primary" size="large" onClick={verifyShow}>인증요청</Button>
             </div>
             {/* Add active class when OTP send */}
             <div className={`${styles.emailtag} ${styles.grayemailtag} ${otpSend ? styles.active : ''}` } > 
               <input type="number" placeholder="인증번호 4자리 입력"></input>
               <div className={styles.numbermode}>05:00</div>
-              <button type="button" onClick={errorShow}>인증확인</button>
+              <Button className="p-2 text-center flex items-center" type="primary" size="large" onClick={errorShow}>인증확인</Button>
             </div>
             <p>원활한 서비스 이용을 위채 최초 1회 인증이 필요합니다.</p>
           </div>
@@ -121,7 +121,7 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
         </form>
       </div>
       <div className={styles.bluebutton}>
-        <button onClick={() => onButtonClick("steptwo")}>확인</button>
+        <Button  type="primary" size="large" block onClick={() => onButtonClick("steptwo")}>확인</Button>
       </div>
     </main>
   );

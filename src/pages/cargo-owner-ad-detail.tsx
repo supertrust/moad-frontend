@@ -8,8 +8,8 @@ export default function CargOwnerAdDetail() {
   const nextPage = (page: any) => {
     setPage(page);
   };
-  return (
 
+  return (
     <div>
       {
         {

@@ -21,7 +21,6 @@ export default function SignUpModulePage() {
       business_license: File,
       verify_business_registration_number: false,
     });
-    console.log("🚀 ~ file: signup.tsx:9 ~ SignUpModulePage ~ membershipInformation:", membershipInformation)
 
   const nextFormStep = () => setFormStep((formStep) => formStep + 1);
   const prevFormStep = () => setFormStep((formStep) => formStep - 1);

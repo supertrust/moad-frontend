@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import {Button} from "antd";
 const Final = ({ onButtonClick }: { onButtonClick: any }) => {
   return (
     <>
     <div className="bg-[#F5F7FB] flex flex-col min-h-screen">
-      <div className="container h-full bg-white max-w-[600px] mx-auto px-[20px] min-h-screen">
+      <div className="container h-full bg-white max-w-[600px] mx-auto px-[20px] min-h-screen relative">
         <div className="ad-detail-image text-center flex items-center w-full justify-center my-4">
           <Image className="h-auto" src="/images/cargo-owner-ad-details/adapplyimg.png" alt='adapplyimg' width={150} height={50} />
         </div>
@@ -37,9 +38,9 @@ const Final = ({ onButtonClick }: { onButtonClick: any }) => {
             <span>경기, 서울</span>
           </div>
         </div>
-        <div className="fixed bottom-5  max-w-[560px] gap-2.5 flex flex-col left-0 right-0 w-[calc(100%-40px)]">
-          <button onClick={() => onButtonClick('pagethree')}
-            className="w-full h-12 bg-[#0868FD] flex items-center justify-center text-white border-[1px] border-blue-600">신청 진행하기</button>
+        <div className="fixed bottom-5 mx-auto  max-w-[560px] gap-2.5 flex flex-col left-0 right-0 w-[calc(100%-40px)]">
+          <Button onClick={() => onButtonClick('pagethree')} type="primary" block size="large"
+            className="w-full h-12 bg-[#0868FD] flex items-center rounded-none justify-center text-white border-[1px] border-blue-600">신청 진행하기</Button>
 
         </div>
       </div>

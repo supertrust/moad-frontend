@@ -1,7 +1,7 @@
 import React from "react";
 import Container from 'react-bootstrap/Container';
 import { styles } from './index';
-import Button from 'react-bootstrap/Button';
+import {Button} from 'antd';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -31,7 +31,7 @@ const PageThree = ({ onButtonClick }:{onButtonClick: any}) => {
               </Form.Group>
               <Form.Group className={styles.buttonblue} controlId="validationCustom02">
                 {/* <Button type="button" className={styles.button}>첨부</Button> */}
-                <button type="button" className={styles.button}>첨부</button>
+                <Button type="primary" size="large" className={`${styles.button} rounded`}>첨부</Button>
               </Form.Group>
             </div>
           </Row>
@@ -48,7 +48,7 @@ const PageThree = ({ onButtonClick }:{onButtonClick: any}) => {
               </Form.Group>
               <Form.Group className={styles.buttonblue} controlId="validationCustom02">
                 {/* <Button type="button" className={styles.button}>첨부</Button> */}
-                <button type="button" className={styles.button}>첨부</button>
+                <Button type="primary" size="large" className={`${styles.button} rounded `}>첨부</Button>
               </Form.Group>
             </div>
           </Row>
@@ -65,7 +65,7 @@ const PageThree = ({ onButtonClick }:{onButtonClick: any}) => {
               </Form.Group>
               <Form.Group className={styles.buttonblue} controlId="validationCustom02">
                 {/* <Button type="button" className={styles.button}>첨부</Button> */}
-                <button type="button" className={styles.button}>첨부</button>
+                <Button type="primary" size="large" className={`${styles.button} rounded`}>첨부</Button>
               </Form.Group>
             </div>
           </Row>
@@ -81,8 +81,8 @@ const PageThree = ({ onButtonClick }:{onButtonClick: any}) => {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group className={styles.buttonblue} controlId="validationCustom02">
-                {/* <Button type="button" className={styles.button}>첨부</Button> */}
-                <button type="button" className={styles.button}>첨부</button>
+                {/* <Button type="primary" size="large" className={`${styles.button} rounded`}>첨부</Button> */}
+                <Button type="primary" size="large" className={`${styles.button} rounded`}>첨부</Button>
               </Form.Group>
             </div>
           </Row>
@@ -98,8 +98,8 @@ const PageThree = ({ onButtonClick }:{onButtonClick: any}) => {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group className={styles.buttonblue} controlId="validationCustom02">
-                {/* <Button type="button" className={styles.button}>첨부</Button> */}
-                <button type="button" className={styles.button}>첨부</button>
+                {/* <Button type="primary" size="large" className={`${styles.button} rounded`}>첨부</Button> */}
+                <Button type="primary" size="large" className={`${styles.button} rounded`}>첨부</Button>
               </Form.Group>
             </div>
             <Row className={styles.mbcustom}>
@@ -107,7 +107,7 @@ const PageThree = ({ onButtonClick }:{onButtonClick: any}) => {
             </Row>
             <div className={styles.greywrap}>
               {/* <Button  onClick={() => onButtonClick("final")} type="button" className={styles.greybutton}>확인</Button> */}
-              <button onClick={() => onButtonClick("final")} type="button" className={styles.greybutton}>확인</button>
+              <Button  onClick={() => onButtonClick("final")} type="primary" block size="large" className={styles.greybutton}>확인</Button>
             </div>
           </Row>
           {/* Step 3

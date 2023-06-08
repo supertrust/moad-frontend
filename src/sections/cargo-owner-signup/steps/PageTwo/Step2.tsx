@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useMemo, useState } from "react";
 import Image from "next/image";
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import {Button} from 'antd';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -205,7 +205,7 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
               </Form.Group>
               <Form.Group className={`${styles.verificationButton} w-25`} controlId="validationCustom02">
                 {/* <Button type="button" className={styles.button}>계좌확인</Button> */}
-                <button type="button" className={`${styles.button} btn btn-primary w-100 justify-content-center`}>확인</button>
+                <Button  type="primary" size="large" className={`${styles.button} btn btn-primary w-100 justify-content-center`}>확인</Button>
               </Form.Group>
             </div>
           </Row>
@@ -246,11 +246,11 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
             </Form.Group>
           </Row>
           <Row className={styles.mbcustom}>
-            <Form.Group controlId="averageDriving" className={styles.twocolumnbtn}>
+            <Form.Group controlId="averageDriving" className={`${styles.twocolumnbtn} gap-3.5`}>
               {/* <Button type="button" className={styles.button}>있음</Button> */}
-              <button type="button" className={styles.button}>확인</button>
+              <Button className={`${styles.button} rounded min-h-[46px]`}  type="primary" size="large" >확인</Button>
               {/* <Button type="button" className={styles.buttonwhite}>없음</Button> */}
-              <button type="button" className={styles.buttonwhite}>확인</button>
+              <Button className={`rounded min-h-[46px]`}  size="large">확인</Button>
             </Form.Group>
           </Row>
           <Row className={styles.mbcustom}>
@@ -448,7 +448,7 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
 
           <div className={styles.bluebuttonnew}>
             {/* <Button type="button" className={styles.buttonfull} onClick={() => onButtonClick("stepthree")}>확인</Button> */}
-            <button type="button" className={styles.buttonfull} onClick={() => onButtonClick("stepthree")}>확인</button>
+            <Button type="primary" block size="large" className={`${styles.buttonfull} rounded`} onClick={() => onButtonClick("stepthree")}>확인</Button>
           </div>
         </Form>
         {['bottom'].map((placement, idx) => (

@@ -194,7 +194,7 @@
 .twocolumnbtn{
     display: flex;
     flex: 1;
-    gap: 24px;
+    gap: 14px;
 }
 .twocolumnbtn button{
     height: 46px;

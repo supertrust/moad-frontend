@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import Image from "next/image";
+import {Button} from "antd";
 
 const Info = ({ onButtonClick }:{onButtonClick: any}) => {
   return (
@@ -54,18 +55,19 @@ const Info = ({ onButtonClick }:{onButtonClick: any}) => {
                       <div className="min-w-[40px]"><strong className="text-[#999999]">2.5t</strong></div>
                       <div className="min-w-[60px] text-[#999999]">10/10</div>
                       <div className="ml-auto">
-                        <button className="bg-[#F5F7FB] min-w-[44px] w-full h-6 text-[12px] text-[#878787] flex items-center justify-center">
+                        <Button className="bg-[#F5F7FB] min-w-[44px] w-full h-6 text-[12px] text-[#878787] flex items-center justify-center">
+
                           마감
-                        </button>
+                        </Button>
                       </div>
-                    </div>
+                    </div>  
                     <div className="flex gap-1 mb-2 items-center">
                       <div className="min-w-[40px]"><strong className="text-[#999999]">5t</strong></div>
                       <div className="min-w-[60px] text-[#999999]">5/5</div>
                       <div className="ml-auto">
-                        <button className="bg-[#F5F7FB] min-w-[44px] w-full h-6 text-[12px] text-[#878787] flex items-center justify-center">
+                        <Button className="bg-[#F5F7FB] min-w-[44px] w-full h-6 text-[12px] text-[#878787] flex items-center justify-center">
                           마감
-                        </button>
+                        </Button>
                       </div>
                     </div>
                     <div className="flex gap-1 mb-2 items-center">
@@ -129,9 +131,9 @@ const Info = ({ onButtonClick }:{onButtonClick: any}) => {
         </div>
 
         <div className="container bg-[#fff] p-2.5 max-w-[600px] mx-auto btn_wrp mt-2.5 px-[20px]">
-          <button onClick={() => onButtonClick('pagetwo')} className="bg-white border-2 border-blue-600  text-blue-600 w-full py-3 px-11 text-center gap-0 flex justify-center">
+          <Button onClick={() => onButtonClick('pagetwo')} type="primary" block ghost size="large" className="text-center rounded-none justify-center">
             신청하기
-          </button>
+          </Button>
           <p>
             조수석 앞쪽/뒤쪽 도어에 30일간 부착하는
           </p>

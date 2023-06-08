@@ -1,5 +1,6 @@
 import React from "react";
 import { styles } from "@src/sections/cargo-owner-signup";
+import {Button} from "antd";
 const Info = ({ onButtonClick }:{onButtonClick: any}) => {
   
   return (
@@ -23,7 +24,7 @@ const Info = ({ onButtonClick }:{onButtonClick: any}) => {
             </ul>
           </div>
           <div className={styles.bluebutton}>
-            <button onClick={() => onButtonClick("pagetwo")}>확인</button>
+            <Button type="primary" block size="large" className="rounded" onClick={() => onButtonClick("pagetwo")}>확인</Button>
           </div>
         </div>
       </main>

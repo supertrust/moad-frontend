@@ -71,6 +71,22 @@ export default function Advertising() {
             <span>{advertiserVehiclesStats?.suspensions}</span>
           </div>
         </div>
+        <div className={styles.cards}>
+          <div className={styles.itemTitle}>
+            <span> Total travel distance</span>
+          </div>
+          <div className={styles.value}>
+            <span>15,000,000km</span>
+          </div>
+        </div>
+        <div className={styles.cards}>
+          <div className={styles.itemTitle}>
+            <span>Total running time</span>
+          </div>
+          <div className={styles.value}>
+            <span>1,460 hours</span>
+          </div>
+        </div>
       </div>
     </>
   );

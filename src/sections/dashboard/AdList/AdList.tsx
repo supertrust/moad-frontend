@@ -149,7 +149,7 @@ export default function AdListModule() {
                     <a href={`/dashboard/advertisement-detail/${item.id}`} className={styles.grid}>
                       <div className={`${styles.typeWrap} ${styles.gridBox}`}>{item.type}</div>
                       <div className={styles.gridBox}>{item.ad_name}</div>
-                      <div className={styles.gridBox}>{`${item.number_of_vehicles}/120`}</div>
+                      <div className={styles.gridBox}>{`${item.number_of_vehicles}`}</div>
                       <div className={styles.gridBox}>{(item.start_date && item.start_date) ? `${item.start_date} ~ ${item.end_date}` : "--"}</div>
                       <div className={styles.gridBox}>{item.status}</div>
                       <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div>

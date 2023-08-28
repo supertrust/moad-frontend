@@ -6,6 +6,7 @@ import { removeAxiosToken, setAxiosToken } from '@src/utils/axios';
 import { useGetUser, useGetUserRole } from '@src/apis/user';
 import { queryClient } from '@src/services/ReactQueryClient';
 import { parseJwt } from '@src/helpers';
+import { toast } from "react-toastify";
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -48,13 +49,15 @@ function AuthProvider({ children }: AuthProviderProps) {
     }, []);
 
     const register = useCallback(async (props: RegisterPropsType) => {
-        try {
-            await _register(props);
-            return true
-        } catch (error) {
-            return false
-            //
-        }
+            return  _register(props).then(res=>{
+                 return true
+             }).catch(error=> {
+                 toast(error, {
+                     type: "error",
+                 })
+                 return false
+             })
+
     }, []);
 
     const logout = useCallback(async () => {

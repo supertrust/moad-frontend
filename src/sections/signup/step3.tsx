@@ -122,7 +122,7 @@ const Step3 = ({
   const onSubmit = handleSubmit(async (props) => {
     try {
       const res = await register({ ...membershipInformation, ...props });
-      if (res !== null || res === true) {
+      if (res !== null && res === true) {
         toast("User registered successfully", { type: "success" });
         onNextStep();
       }

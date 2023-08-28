@@ -1,5 +1,4 @@
 import { IUser, IUserRole } from "./user";
-import { File } from "buffer";
 
 export type LoginPropsType = {
     email: string;
@@ -32,7 +31,7 @@ export type RegisterPropsType = {
 export type AuthContextType = {
     isAuthenticated: boolean;
     login: (props: LoginPropsType) => Promise<void>;
-    register: (props: RegisterPropsType) => Promise<void>;
+    register: (props: RegisterPropsType) => Promise<boolean>;
     logout: () => Promise<void>;
     token: string | null;
     user: IUser | null;

@@ -96,7 +96,7 @@ export default function AdListModule() {
             </button>
             <div className="select-box only-pc">
               <Form.Select onChange={e => setType(e.target.value as AdTypesType)} aria-label="Default select example" className="border-1 border-primary">
-                <option value={undefined}>캠페인 유형 선택</option>
+                <option value=''>캠페인 유형 선택</option>
                 <option value="fixed_ad">고정형</option>
                 <option value="national_ad">전국형</option>
                 <option value="spot_ad">스팟</option>

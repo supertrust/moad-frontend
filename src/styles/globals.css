@@ -1140,7 +1140,7 @@ label
 .right-wrap
 .right-content
 .user-info
-.input-wrap
+/* .input-wrap */
 .business-num-wrap {
     display: flex;
     justify-content: flex-start;
@@ -1148,13 +1148,13 @@ label
     column-gap: 10px;
 }
 
-#sign_up
+#sign_up 
 .step03
 .right
 .right-wrap
 .right-content
 .user-info
-.input-wrap
+/*.input-wrap  */
 .business-num-wrap
 .business-num-btn {
     flex: 0 0 auto;

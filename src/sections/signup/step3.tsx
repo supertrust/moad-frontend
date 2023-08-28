@@ -103,30 +103,38 @@ const Step3 = ({
     setValue,
   } = methods;
 
-  const _verifyInput = async (key: string, value: string) => {
-    await verifyInput(
-      { key, value },
-      {
-        onSuccess: () => {
-          setValue("verify_business_registration_number", true);
-          toast.success("국세청에 등록된 사업자등록번호입니다.");
-        },
-        onError: (error) => {
-          console.log(error);
-          ModalhandleShow();
-        },
-      }
-    );
+  const _verifyInput = async (key: string, value: string , cb?: VoidFunction) => {
+    try {
+      await verifyInput(
+        { key, value },
+        {
+          onSuccess:  () => {
+            setValue("verify_business_registration_number", true);
+            cb ? cb() : toast.success("국세청에 등록된 사업자등록번호입니다.");
+          },
+          onError: (error) => {
+            console.log("Error  _verifyInput =>", error);
+            ModalhandleShow();
+          },
+        }
+      );
+    } catch (error) {
+        
+    }
   };
 
   const onSubmit = handleSubmit(async (props) => {
+
     try {
-      const res = await register({ ...membershipInformation, ...props });
-      if (res !== null && res === true) {
-        toast("User registered successfully", { type: "success" });
-        onNextStep();
-      }
+        await _verifyInput("business_registration_number", props.business_registration_number, async() => {
+          const res = await register({ ...membershipInformation, ...props });
+          if (res !== null && res === true) {
+            toast("User registered successfully", { type: "success" });
+            onNextStep();
+          }
+        });
     } catch (error: any) {
+      console.log("ERROR => ", error)
       toast(error?.message || "Something went wrong Please try again later", {
         type: "error",
       });
@@ -250,7 +258,7 @@ const Step3 = ({
                 </div>
                 <div className="business-num-wrap">
                   <RHFInput
-                    wrapperClassName="business-num"
+                    wrapperClassName="business-num  flex-1"
                     required
                     label="사업자 등록번호 (10자리)"
                     type="number"

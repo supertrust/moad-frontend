@@ -55,7 +55,7 @@ const LoginFormModule = () => {
           label="비밀번호"
           className="user-input active"
         />
-        <div className="login-utile-wrap flex-column align-items-start gap-2">
+        {/*<div className="login-utile-wrap flex-column align-items-start gap-2">
           <div className="login-keep-wrap">
             <label htmlFor="login_keep">
               <input type="checkbox" id="login_keep" className="login-keep" />
@@ -65,7 +65,7 @@ const LoginFormModule = () => {
           <div className="login-error w-100">
             <div className="bg-danger rounded-2 p-2 text-white">아이디/비밀번호를 확인하세요</div>
           </div>
-        </div>
+        </div>*/}
         <Button
           id="login_btn"
           className="login-btn active"

@@ -1287,10 +1287,11 @@ a {
     color: #999999;
 }
 
-#sign_up .step02 .right .right-wrap .right-content .input-wrap .icon {
+/* #sign_up .step02 .right .right-wrap .right-content  */
+.input-wrap .icon {
     position: absolute;
     right: 16px;
-    top: 40px;
+    /* top: 40px; */
     display: block;
     width: 24px;
     height: 24px;
@@ -1298,7 +1299,8 @@ a {
     cursor: pointer;
 }
 
-#sign_up .step02 .right .right-wrap .right-content .input-wrap .icon.active {
+/* #sign_up .step02 .right .right-wrap .right-content  */
+.input-wrap .icon.active {
     background: url("/images/ic-show.png") no-repeat center center / cover;
 }
 
@@ -3027,5 +3029,5 @@ object-fit: contain;
     
 }
 button[disabled=disabled], button:disabled{
-    background: #B3B3B3 !important;
+    @apply opacity-60
 }

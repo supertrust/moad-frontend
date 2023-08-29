@@ -14,6 +14,7 @@ import { Modal } from "react-bootstrap";
 import Image from "next/image";
 import { RegisterPropsType } from "@src/types/auth";
 import { File } from "buffer";
+import clsx from "clsx";
 
 interface Step3Props {
   onPrevStep: () => void;
@@ -34,28 +35,29 @@ const defaultValues = {
   verify_business_registration_number: false,
 };
 
+
 const RegisterSchema = Yup.object({
-  company_name: Yup.string().required("Company Name is required"),
+  company_name: Yup.string().required("회사명은 필수 입력 사항입니다."),
   employee_name: Yup.string()
-    .required("Employee Name is required")
-    .max(10, "The employee name must not be greater than 10 characters."),
+    .required("직원 이름을 입력하세요.")
+    .max(10, "담당자 이름은 10자를 넘지 않아야 합니다."),
   company_phone_number: Yup.string()
-    .required("Company Phone is required")
-    .matches(/^[0-9]{11}$/, "Should be 11 digits"),
+    .required("핸드폰번호를 입력해주세요")
+    .matches(/^[0-9]{11}$/, "전화번호는 11자리여야 합니다."),
   employee_phone_number: Yup.string()
-    .required("Employee Phone is required")
-    .matches(/^[0-9]{11}$/, "Should be 11 digits"),
+    .required("직원 전화번호를 입력하세요.")
+    .matches(/^[0-9]{11}$/, "전화번호는 11자리여야 합니다."),
   business_registration_number: Yup.string()
-    .required("Business Registration Number is required")
+    .required("사업자 등록 번호를 입력하세요.")
     .matches(/^[0-9]{10}$/, "Should be 10 digits"),
   verify_business_registration_number: Yup.boolean().required(
-    "Please verify business registration number"
+    "사업자등록번호를 확인해 주세요."
   ),
   employee_email: Yup.string()
-    .email("Invalid email")
-    .required("Employee Email is required"),
+    .email("유효한 이메일을 입력하세요.")
+    .required("직원 이메일을 입력하세요."),
   business_license: Yup.mixed()
-    .required("Please upload your business license.")
+    .required("사업자 등록증을 업로드하세요.")
     .test(
       "fileFormat",
       "Only .doc, .docx, .pdf, .jpg, .jpeg, .png files are allowed",
@@ -72,7 +74,7 @@ const RegisterSchema = Yup.object({
         return true;
       }
     )
-    .test("fileSize", "File size should be less than 10MB", (value: any) => {
+    .test("fileSize", "파일 크기는 10MB 미만이어야 합니다.", (value: any) => {
       if (value) {
         return value.size <= 10 * 1024 * 1024;
       }
@@ -98,23 +100,26 @@ const Step3 = ({
   });
   const {
     handleSubmit,
-    formState: { isSubmitting, errors , isDirty },
+    formState: { isSubmitting, errors , isDirty},
     getValues,
     setValue,
+    setError,
+    trigger,
+
   } = methods;
 
-  const _verifyInput = async (key: string, value: string , cb?: VoidFunction) => {
+  const _verifyBusinessNumber = async (key: string, value: string , cb?: VoidFunction) => {
     try {
       await verifyInput(
         { key, value },
         {
           onSuccess:  () => {
             setValue("verify_business_registration_number", true);
-            cb ? cb() : toast.success("국세청에 등록된 사업자등록번호입니다.");
+            cb ? cb() :  ModalhandleShow();
           },
           onError: (error) => {
-            console.log("Error  _verifyInput =>", error);
-            ModalhandleShow();
+            console.log("Error  _verifyBusinessNumber =>", error);
+            setError('business_registration_number', { message: "이미 사용중인 사업자 번호입니다."})
           },
         }
       );
@@ -126,15 +131,14 @@ const Step3 = ({
   const onSubmit = handleSubmit(async (props) => {
 
     try {
-        await _verifyInput("business_registration_number", props.business_registration_number, async() => {
+        await _verifyBusinessNumber("business_registration_number", props.business_registration_number, async() => {
           const res = await register({ ...membershipInformation, ...props });
           if (res !== null && res === true) {
-            toast("User registered successfully", { type: "success" });
+            toast("사용자 등록 성공", { type: "success" });
             onNextStep();
           }
         });
     } catch (error: any) {
-      console.log("ERROR => ", error)
       toast(error?.message || "Something went wrong Please try again later", {
         type: "error",
       });
@@ -180,6 +184,16 @@ const Step3 = ({
                   caption={
                     <div className="error-text">이미 사용중인 회사명입니다</div>
                   }
+                  onBlur={(event) => {
+                      event.target.value && verifyInput( { key: 'company_name', value: event.target.value }, {
+                          onSuccess: () => {
+                              setError('company_name', { message : "" })
+                          },
+                          onError: (error) => {
+                            setError('company_name', { message: "이미 사용중인 회사명입니다." });
+                          },
+                      });
+                  }}
                 />
                 <RHFInput
                   wrapperClassName="company-tel"
@@ -198,6 +212,16 @@ const Step3 = ({
                       이미 사용중인 전화번호입니다
                     </div>
                   }
+                  onBlur={(event) => {
+                      event.target.value && verifyInput( { key: 'company_phone_number', value: event.target.value }, {
+                          onSuccess: () => {
+                              setError('company_phone_number', { message : "" })
+                          },
+                          onError: (error) => {
+                            setError('company_phone_number', { message: "이미 사용중인 회사명입니다." });
+                          },
+                      });
+                  }}
                 />
                 <RHFInput
                   wrapperClassName="manager-name"
@@ -277,19 +301,23 @@ const Step3 = ({
                         이미 사용중인 사업자 번호입니다.
                       </div>
                     }
+                    right={
+                      <button
+                        type="button"
+                        className="business-num-btn ml-2"
+                        onClick={() => {
+                          trigger('business_registration_number', { shouldFocus: true })
+                            .then(( isValid ) => {
+                              isValid && _verifyBusinessNumber(
+                                "business_registration_number",
+                                getValues().business_registration_number
+                              )
+                            })
+                        }}
+                      >
+                        확인
+                      </button>}
                   />
-                  <button
-                    type="button"
-                    className="business-num-btn"
-                    onClick={() =>
-                      _verifyInput(
-                        "business_registration_number",
-                        getValues().business_registration_number
-                      )
-                    }
-                  >
-                    확인
-                  </button>
                   {errors.verify_business_registration_number && (
                     <span className="text-danger">
                       {String(
@@ -299,14 +327,21 @@ const Step3 = ({
                   )}
                 </div>
                 <div className="input-wrap business-license">
-                  <div className="input-text">
-                    사업자 등록증 첨부<span className="essential">*</span>
+                  <div className="flex flex-row justify-between gap-3">
+                    <div className="input-text">
+                      사업자 등록증 첨부<span className="essential">*</span>
+                    </div>
+                    {errors?.business_license && (
+                      <span className="text-danger">
+                        {String(errors.business_license.message)}
+                      </span>
+                    )}
                   </div>
                   <div className="file-wrap">
                     <div className="error-text">
                       사업자 등록증을 첨부해주세요
                     </div>
-                    <div className="file-name">
+                    <div className={clsx("file-name", errors?.business_license && 'border-danger')}>
                       png, pdf, jpeg, jpg 확장자 가능
                     </div>
                     <label htmlFor="business_license" className="file-label">
@@ -325,11 +360,6 @@ const Step3 = ({
                       }}
                     />
                   </div>
-                  {errors?.business_license && (
-                    <span className="text-danger">
-                      {String(errors.business_license.message)}
-                    </span>
-                  )}
                   <div className="file-info">
                     추가 서류 필요시 추가 요청이 있을 수 있습니다.
                   </div>
@@ -357,10 +387,10 @@ const Step3 = ({
           <Modal.Title>확인사항</Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-center">
-          국세청에 등록되지 않은 사업자등록번호입니다.
+          존재하지 않는 사업자 번호입니다.
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={ModalhandleClose}>닫다</Button>
+          <Button className=' bg-primary text-white px-4' onClick={ModalhandleClose}>닫다</Button>
         </Modal.Footer>
       </Modal>
     </div>

@@ -1,10 +1,8 @@
-import React, {useState,useEffect} from "react";
+import React, {useState} from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import * as Yup from "yup";
 import styles from './style.module.css'
-import Input, { InputProps } from "../../components/Input";
-
 import useAuth from "@src/hooks/useAuth";
 import { RHFInput, FormProvider, useForm, yupResolver } from '@src/components/Form';
 import Button from "@src/components/Button";
@@ -27,6 +25,7 @@ const LoginFormModule = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [form, setform] = useState(true);
+  const [visiblePassword, setVisiblePassword ] = useState(false);
   
   const canBeSubmitted = () => {
     const isValid =
@@ -46,10 +45,9 @@ const LoginFormModule = () => {
     resolver: yupResolver(LoginSchema)
   })
 
-  const { handleSubmit, formState: { isSubmitting } } = methods;
+  const { handleSubmit, formState: { isSubmitting , isDirty } } = methods;
 
   const onSubmit = handleSubmit(async (props) => {
-    console.log('yesss')
     try {
       await login(props)
       setFormError(false)
@@ -75,13 +73,19 @@ const LoginFormModule = () => {
         />
         <i className="icon pw-show"></i>
         <RHFInput
-          type="password"
+          type={visiblePassword ? "text" : "password"}
           placeholder="비밀번호 입력"
           name="password"
           label="비밀번호"
           className={`user-input ${error ? 'error' : 'active'}`}
           // value={password}
           // onChange={(e) => setpassword(e.target.value)}
+          right={
+            <span 
+                className={`icon pw-show ${!visiblePassword && 'active'}`}
+                onClick={() => setVisiblePassword(!visiblePassword)}
+            />
+          }
         />
         {/*<div className="login-utile-wrap flex-column align-items-start gap-2">
           <div className="login-keep-wrap">
@@ -116,6 +120,7 @@ const LoginFormModule = () => {
           className={`${styles.login_btn} ${form ? styles.active : styles.disabled} `}
           onClick={onSubmit}
           loading={isSubmitting}
+          disabled={ !isDirty }
         >
           Login
         </Button>

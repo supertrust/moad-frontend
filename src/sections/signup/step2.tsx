@@ -16,26 +16,27 @@ interface Step2Props {
 
 
 const RegisterSchema = Yup.object({
-    email: Yup.string().email("Invalid email").required("Email is required"),
+    email: Yup.string().email("아이디(이메일)를 확인해주세요").required("아이디(이메일)를 확인해주세요"),
     password: Yup.string()
-        .required("Password is required")
+        .required("비밀번호가 필요합니다.")
         .matches(
             PASSWORD_REGEX,
-            "Password must be at least 8 characters with a combination of letters, numbers, and symbols"
+            "비밀번호는 문자, 숫자, 기호를 조합하여 8자 이상이어야 합니다."
         )
-        .min(8, "Password must be at least 8 characters"),
+        .min(8, "비밀번호는 8자 이상이어야 합니다."),
     confirm_password: Yup.string()
-        .required("Confirm Password is required")
+        .required("비밀번호 확인이 필요합니다.")
         .oneOf(
             // @ts-ignore
             [Yup.ref("password"), null],
-            "Passwords and Confirm password must match"
+            "비밀번호가 일치하지 않습니다."
         ),
 })
 
 const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props) => {
     const { mutateAsync: verifyInput } = useVerifyInput();
     const methods = useForm<RegisterPropsType>({
+        //@ts-ignore
         //@ts-ignore
         resolver: yupResolver(RegisterSchema)
     });
@@ -51,7 +52,7 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
             onNextStep();
           },
           onError: (error) => {
-            setError('email', { message: "이메일이 이미 존재합니다." });
+            setError('email', { message: "이미 사용중인 아이디입니다." });
             setFocus("email");
           },
         }
@@ -89,13 +90,15 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
                                     id="email"
                                     label="아이디 (이메일)"
                                     onBlur={(event) => {
-                                        verifyInput( { key: 'email', value: event.target.value }, {
-                                            onError: (error) => {
-                                              setError('email', { message: "이메일이 이미 존재합니다." });
-                                              setFocus("email");
+                                        event.target.value && verifyInput( { key: 'email', value: event.target.value }, {
+                                            onSuccess: () => {
+                                                setError('email', { message : "" })
                                             },
-                                          }
-                                        );
+                                            onError: (error) => {
+                                              setError('email', { message: "이미 사용중인 아이디입니다." });
+                                            //   setFocus("email");
+                                            },
+                                        });
                                     }}
                                 />
                                 <RHFInput
@@ -106,15 +109,15 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
                                     label="비밀번호"
                                     placeholder="비밀번호 입력"
                                     caption={
-                                        <>
+                                        <p className="pw-info-text">
+                                            문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요
+                                        </p>
+                                    }
+                                    right={
                                         <span 
                                             className={`icon pw-show ${!visiblePassword && 'active'}`}
                                             onClick={() => setVisiblePassword(!visiblePassword)}
                                         />
-                                        <p className="pw-info-text">
-                                            문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요
-                                        </p>
-                                        </>
                                     }
                                 />
                                 <RHFInput
@@ -124,7 +127,7 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
                                     name="confirm_password"
                                     placeholder="비밀번호 재입력"
                                     label="비밀번호 확인"
-                                    caption={
+                                    right={
                                         <span 
                                             className={`icon pw-show ${!visiblePasswordConfirmation && 'active'}`}
                                             onClick={() => setVisiblePasswordConfirmation(!visiblePasswordConfirmation)}

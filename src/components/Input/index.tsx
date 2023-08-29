@@ -13,9 +13,9 @@ function Input(props: InputProps, ref: Ref<any>) {
     return (
         <div className={`input-wrap ${wrapperClassName}`}>
             {label && (
-                <div className="desc">
-                    {label}
-                    {required && (<span className="essential">*</span>)}
+                <div className="desc mb-2">
+                    {label && (<span className="font-bold">{label}</span>)}
+                    {required && (<span className="essential text-danger">*</span>)}
                 </div>
             )}
             <input

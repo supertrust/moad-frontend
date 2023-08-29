@@ -116,7 +116,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
                             </ul>
                         </div>
                         <Button
-                            // disabled={!privacyPolicy || !termsAndConditions}
+                            disabled={!privacyPolicy || !termsAndConditions}
                             className="link link-step01"
                             onClick={()=>
                             {

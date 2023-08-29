@@ -98,7 +98,7 @@ const Step3 = ({
   });
   const {
     handleSubmit,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting, errors , isDirty },
     getValues,
     setValue,
   } = methods;
@@ -161,7 +161,8 @@ const Step3 = ({
             <div onClick={onPrevStep} className="back-btn"></div>
             <div className="step-title">회사 정보를 입력해주세요</div>
             <div className="step-text">
-              기입정보를 입력 후 완료버튼을 눌러주세요
+              기입정보를 입력 후 완료버튼을 눌러주세요<br/>
+              <span className="text-danger">*표시는 필수 입력값 입니다</span>
             </div>
             <div className="user-info">
               <FormProvider methods={methods}>
@@ -184,10 +185,11 @@ const Step3 = ({
                   wrapperClassName="company-tel"
                   label="회사 전화번호"
                   required
-                  type="text"
+                  type="number"
                   id="company_phone_number"
                   name="company_phone_number"
                   className="company-input"
+                  maxLength={30}
                   placeholder="회사 전화번호 입력"
                   spellCheck="false"
                   data-ms-editor="true"
@@ -336,6 +338,7 @@ const Step3 = ({
                   loading={isSubmitting}
                   className="link link-step01"
                   onClick={onSubmit}
+                  disabled={!isDirty}
                 >
                   다음
                 </Button>

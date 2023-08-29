@@ -1,10 +1,12 @@
 import { FormProvider, RHFInput, useForm, yupResolver } from "@src/components/Form";
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { PASSWORD_REGEX } from "@src/constants";
 import Image from "next/image";
 import Button from "@src/components/Button";
 import { RegisterPropsType } from "@src/types/auth";
+import { useVerifyInput } from "@src/apis/auth";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 interface Step2Props {
     onPrevStep: () => void;
@@ -32,14 +34,28 @@ const RegisterSchema = Yup.object({
 })
 
 const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props) => {
+    const { mutateAsync: verifyInput } = useVerifyInput();
     const methods = useForm<RegisterPropsType>({
+        //@ts-ignore
         resolver: yupResolver(RegisterSchema)
     });
-    const { handleSubmit } = methods;
+    const { handleSubmit ,  formState : { isDirty } , setError , setFocus} = methods;
+
+    const [visiblePassword, setVisiblePassword ] = useState(false);
+    const [visiblePasswordConfirmation, setVisiblePasswordConfirmation ] = useState(false);
 
     const onSubmit = handleSubmit(async (props) => {
-        setMembershipInformation(props);
-        onNextStep();
+      await verifyInput( { key: 'email', value: props.email }, {
+          onSuccess:  () => {
+            setMembershipInformation(props);
+            onNextStep();
+          },
+          onError: (error) => {
+            setError('email', { message: "이메일이 이미 존재합니다." });
+            setFocus("email");
+          },
+        }
+      );
     })
 
     return (
@@ -68,37 +84,57 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
                                 <RHFInput
                                     type="text"
                                     className="user-input"
-                                    placeholder="아이디"
+                                    placeholder="이메일 입력"
                                     name="email"
                                     id="email"
                                     label="아이디 (이메일)"
+                                    onBlur={(event) => {
+                                        verifyInput( { key: 'email', value: event.target.value }, {
+                                            onError: (error) => {
+                                              setError('email', { message: "이메일이 이미 존재합니다." });
+                                              setFocus("email");
+                                            },
+                                          }
+                                        );
+                                    }}
                                 />
                                 <RHFInput
-                                    type="password"
+                                    type={visiblePassword ? "text" : "password"}
                                     className="user-input"
                                     name="password"
                                     id="password"
                                     label="비밀번호"
+                                    placeholder="비밀번호 입력"
                                     caption={
+                                        <>
+                                        <span 
+                                            className={`icon pw-show ${!visiblePassword && 'active'}`}
+                                            onClick={() => setVisiblePassword(!visiblePassword)}
+                                        />
                                         <p className="pw-info-text">
                                             문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요
                                         </p>
+                                        </>
                                     }
                                 />
                                 <RHFInput
-                                    type="password"
+                                    type={visiblePasswordConfirmation ? "text" : "password"}
                                     id="confirm_password"
                                     className="user-input"
                                     name="confirm_password"
-                                    placeholder="비밀번호 확인"
+                                    placeholder="비밀번호 재입력"
                                     label="비밀번호 확인"
                                     caption={
-                                        <i className="icon pw-show"></i>
+                                        <span 
+                                            className={`icon pw-show ${!visiblePasswordConfirmation && 'active'}`}
+                                            onClick={() => setVisiblePasswordConfirmation(!visiblePasswordConfirmation)}
+                                        />
                                     }
                                 />
                                 <Button
                                     className="link link-step01"
                                     onClick={onSubmit}
+                                    disabled={ !isDirty }
                                 >
                                     다음
                                 </Button>

@@ -365,7 +365,7 @@ button#dropdown-basic {
 }
 
 .text {
-    width: 100%;
+    width: auto;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
@@ -496,6 +496,15 @@ a {
 }
 
 .tab-wrap {
+}
+
+.desc {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    color: #373737;
+    margin-bottom: 12px;
 }
 
 .list-hd {
@@ -661,8 +670,8 @@ a {
 }
 
 #login .right .right-wrap .title-wrap-login {
-    border-bottom: 1px solid #eeeeee;
-    margin-bottom: 100px;
+    /* border-bottom: 1px solid #eeeeee;
+    margin-bottom: 100px; */
 }
 
 #login .right .right-wrap .title-wrap-login .title {
@@ -708,13 +717,16 @@ a {
 }
 
 #login .right .right-wrap .login-form .input-wrap .user-input.active {
-    border: 1px solid #0868fd;
+    border: 1px solid #EEEEEE;
+}
+#login .right .right-wrap .login-form .input-wrap .user-input.error{
+    border: 1px solid red;
 }
 
 #login .right .right-wrap .login-form .input-wrap input {
     width: 100%;
     display: block;
-    padding: 13px 16px;
+    padding: 13px 12px;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
@@ -999,10 +1011,12 @@ label
 #sign_up .step-section .right .right-wrap .right-content .back-btn {
     width: 32px;
     height: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background: url("/images/ic-back.png") no-repeat center center / cover;
 }
-
+#sign_up .step-section .right .right-wrap .right-content .back-btn.step-two {
+    margin-bottom: 20px;
+}
 #sign_up .step-section .right .right-wrap .right-content .step-title {
     font-weight: 700;
     font-size: 24px;
@@ -1029,7 +1043,7 @@ label
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 #sign_up
@@ -1271,6 +1285,7 @@ label
     width: 100%;
     display: block;
     padding: 17px 0;
+    max-width: 380px;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -1280,7 +1295,9 @@ label
     background: #0563f6;
     color: #ffffff;
 }
-
+#sign_up .step-section .right .right-wrap .right-content .link.disabled {
+    background: #6191F2;
+}
 .more-content-modal .modal-dialog {
     max-width: 840px;
     width: 100%;

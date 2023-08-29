@@ -2,6 +2,7 @@ import React, { DetailedHTMLProps, InputHTMLAttributes, LegacyRef, ReactNode, Re
 
 export interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     error?: ReactNode;
+    error_txt?: ReactNode;
     label?: ReactNode;
     caption?: ReactNode;
     wrapperClassName?: string;
@@ -11,11 +12,12 @@ export interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLIn
 function Input(props: InputProps, ref: Ref<any>) {
     const { error, wrapperClassName, required, label, caption, ...rest } = props;
     return (
-        <div className={`input-wrap ${wrapperClassName}`}>
+        <div className={`input-wrap ${wrapperClassName} ${error !== undefined && 'error'}`}>
             {label && (
-                <div className="desc mb-2">
-                    {label && (<span className="font-bold">{label}</span>)}
-                    {required && (<span className="essential text-danger">*</span>)}
+                <div className="flex justify-between items-baseline	">
+                    <p className="desc">{label}</p>
+                    {error !== undefined && <p className='text-danger !mt-[0px]'>{error}</p>}
+                    {required && (<span className="essential">*</span>)}
                 </div>
             )}
             <input
@@ -23,7 +25,7 @@ function Input(props: InputProps, ref: Ref<any>) {
                 {...rest}
             />
             {caption && <span>{caption}</span>}
-            {error !== undefined && <span className="d-block bg-danger text-white mt-1 rounded-1 p-2">{error}</span>}
+            {/* {error !== undefined && <span className="d-block bg-danger text-white mt-1 rounded-1 p-2">{error}</span>} */}
         </div>
     )
 }

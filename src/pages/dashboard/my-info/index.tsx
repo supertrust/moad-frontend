@@ -73,6 +73,7 @@ export default function MyInfoScreen() {
 
   const methods = useForm({
     defaultValues,
+    //@ts-ignore
     resolver: yupResolver(UpdateUserInfoSchema),
   });
   const {

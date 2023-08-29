@@ -43,6 +43,7 @@ const Step3 = ({step, email, onClose, }: Step3Props) => {
 
     const methods = useForm<ResetPasswordProps>({
         defaultValues,
+        //@ts-ignore
         resolver: yupResolver(ResetPasswordSchema)
     });
     const { handleSubmit } = methods;

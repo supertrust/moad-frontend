@@ -274,7 +274,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="row mt-sec">
-            <div className="col-md-4 col-sm-12 mt-5">
+            <div className="col-md-6 col-sm-12 mt-5">
               <div className="track-content b">
                 <h1>
                   움직이는 광고판,
@@ -304,7 +304,7 @@ export default function LandingPage() {
               </div>
               </div>
             </div>
-            <div className="col-md-8 col-sm-12">
+            <div className="col-md-6 col-sm-12">
               <div className="track-img">
                 <img
                   src="/images/Landing-page/track-img.png" // Replace with the actual path to your image
@@ -317,8 +317,8 @@ export default function LandingPage() {
       </section>
       <section>
         <div className="container  forth-sec">
-          <div className="row mt-sec">
-            <div className="col-md-4 col-sm-12 chats-con-img">
+          <div className="row mt-sec align-items-center">
+            <div className="col-md-5 col-sm-12 chats-con-img">
               <div>
               <h1>
                 화물 랩핑광고 <br />
@@ -332,7 +332,7 @@ export default function LandingPage() {
                 <img src="/images/Landing-page/chats-img.png" alt="" />
               </div>
             </div>
-            <div className="col-md-8 col-sm-12">
+            <div className="col-md-7 col-sm-12">
               <div className="chats-div">
                 <div className="chats-send">
                   <p>
@@ -361,7 +361,7 @@ export default function LandingPage() {
       <footer>
         <section className="mt-sec footer-bg">
           <div className="container footer-sec mt-sec ">
-            <div className="row">
+            <div className="row ">
               <div className="col-md-12">
                 <h1 className="mt-5 mb-5">
                   차량광고 중개 플랫폼

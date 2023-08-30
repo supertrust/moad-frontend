@@ -45,7 +45,7 @@ const LoginFormModule = () => {
     resolver: yupResolver(LoginSchema)
   })
 
-  const { handleSubmit, formState: { isSubmitting , isDirty } } = methods;
+  const { handleSubmit, formState: { isSubmitting ,dirtyFields } } = methods;
 
   const onSubmit = handleSubmit(async (props) => {
     try {
@@ -120,7 +120,7 @@ const LoginFormModule = () => {
           className={`${styles.login_btn} ${form ? styles.active : styles.disabled} `}
           onClick={onSubmit}
           loading={isSubmitting}
-          disabled={ !isDirty }
+          disabled={ Object.keys(dirtyFields).length!==2 }
         >
           Login
         </Button>

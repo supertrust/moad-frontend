@@ -14,6 +14,12 @@ interface Step2Props {
     setMembershipInformation: (MembershipInformation: RegisterPropsType) => void;
 }
 
+const  defaultValues ={
+    confirm_password: "",
+    email: "",
+    password: "",
+}
+
 
 const RegisterSchema = Yup.object({
     email: Yup.string().email("아이디(이메일)를 확인해주세요").required("아이디(이메일)를 확인해주세요"),
@@ -36,11 +42,12 @@ const RegisterSchema = Yup.object({
 const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props) => {
     const { mutateAsync: verifyInput } = useVerifyInput();
     const methods = useForm<RegisterPropsType>({
+        defaultValues,
         //@ts-ignore
         //@ts-ignore
         resolver: yupResolver(RegisterSchema)
     });
-    const { handleSubmit ,  formState : { isDirty } , setError , setFocus} = methods;
+    const { handleSubmit ,  formState : { dirtyFields } , setError , setFocus} = methods;
 
     const [visiblePassword, setVisiblePassword ] = useState(false);
     const [visiblePasswordConfirmation, setVisiblePasswordConfirmation ] = useState(false);
@@ -58,6 +65,8 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
         }
       );
     })
+
+    console.log(dirtyFields,'ok')
 
     return (
         <div className="step02 step-section">
@@ -137,7 +146,7 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
                                 <Button
                                     className="link link-step01"
                                     onClick={onSubmit}
-                                    disabled={ !isDirty }
+                                    disabled={ Object.keys(dirtyFields).length!==3 }
                                 >
                                     다음
                                 </Button>

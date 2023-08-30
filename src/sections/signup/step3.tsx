@@ -93,6 +93,7 @@ const Step3 = ({
   const [showModal, setShowModal] = useState(false);
   const ModalhandleClose = () => setShowModal(false);
   const ModalhandleShow = () => setShowModal(true);
+  const [imageUploaded,setImageUploaded] = useState(false)
 
   const methods = useForm({
     defaultValues,
@@ -100,7 +101,7 @@ const Step3 = ({
   });
   const {
     handleSubmit,
-    formState: { isSubmitting, errors , isDirty},
+    formState: { isSubmitting, errors , dirtyFields},
     getValues,
     setValue,
     setError,
@@ -348,13 +349,15 @@ const Step3 = ({
                       찾아보기
                     </label>
                     <input
+                        required={true}
                       type="file"
-                      id="business_license"
+                      id={"business_license"}
                       className="company-file company-input"
-                      name="business_license"
+                      name={"business_license"}
                       onChange={(event) => {
                         const file = event?.target?.files?.[0];
                         if (file) {
+                          setImageUploaded(true)
                           setValue("business_license", file as unknown as typeof File);
                         }
                       }}
@@ -368,7 +371,7 @@ const Step3 = ({
                   loading={isSubmitting}
                   className="link link-step01"
                   onClick={onSubmit}
-                  disabled={!isDirty}
+                  disabled={ !(Object.keys(dirtyFields).length===6 && imageUploaded)}
                 >
                   다음
                 </Button>

@@ -49,7 +49,7 @@ const RegisterSchema = Yup.object({
     .matches(/^[0-9]{11}$/, "전화번호는 11자리여야 합니다."),
   business_registration_number: Yup.string()
     .required("사업자 등록 번호를 입력하세요.")
-    .matches(/^[0-9]{10}$/, "Should be 10 digits"),
+    .matches(/^[0-9]{10}$/, "10자리여야 합니다."),
   verify_business_registration_number: Yup.boolean().required(
     "사업자등록번호를 확인해 주세요."
   ),
@@ -91,8 +91,12 @@ const Step3 = ({
   const { mutateAsync: verifyInput } = useVerifyInput();
   const { register } = useAuth();
   const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState('');
   const ModalhandleClose = () => setShowModal(false);
-  const ModalhandleShow = () => setShowModal(true);
+  const ModalhandleShow = (error: string) => {
+    setShowModal(true);
+    setMessage(error);
+  }
   const [imageUploaded,setImageUploaded] = useState(false)
 
   const methods = useForm({
@@ -106,8 +110,10 @@ const Step3 = ({
     setValue,
     setError,
     trigger,
-
+    watch,
   } = methods;
+
+  const [file , setFile] = useState<File | undefined >();
 
   const _verifyBusinessNumber = async (key: string, value: string , cb?: VoidFunction) => {
     try {
@@ -116,11 +122,12 @@ const Step3 = ({
         {
           onSuccess:  () => {
             setValue("verify_business_registration_number", true);
-            cb ? cb() :  ModalhandleShow();
+            cb ? cb() : toast.success("국세청에 등록된 사업자등록번호입니다.");
           },
           onError: (error) => {
             console.log("Error  _verifyBusinessNumber =>", error);
-            setError('business_registration_number', { message: "이미 사용중인 사업자 번호입니다."})
+            ModalhandleShow(error);
+            setError('business_registration_number', { message: error})
           },
         }
       );
@@ -145,6 +152,7 @@ const Step3 = ({
       });
     }
   });
+
 
   return (
     <div className="step03 step-section">
@@ -219,7 +227,7 @@ const Step3 = ({
                               setError('company_phone_number', { message : "" })
                           },
                           onError: (error) => {
-                            setError('company_phone_number', { message: "이미 사용중인 회사명입니다." });
+                            setError('company_phone_number', { message: "이미 사용중인 전화번호입니다." });
                           },
                       });
                   }}
@@ -343,7 +351,7 @@ const Step3 = ({
                       사업자 등록증을 첨부해주세요
                     </div>
                     <div className={clsx("file-name", errors?.business_license && 'border-danger')}>
-                      png, pdf, jpeg, jpg 확장자 가능
+                      {file?.name || 'png, pdf, jpeg, jpg 확장자 가능'}
                     </div>
                     <label htmlFor="business_license" className="file-label">
                       찾아보기
@@ -359,6 +367,8 @@ const Step3 = ({
                         if (file) {
                           setImageUploaded(true)
                           setValue("business_license", file as unknown as typeof File);
+                          //@ts-ignore
+                          setFile(file);
                         }
                       }}
                     />
@@ -390,7 +400,7 @@ const Step3 = ({
           <Modal.Title>확인사항</Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-center">
-          존재하지 않는 사업자 번호입니다.
+          {message || '존재하지 않는 사업자 번호입니다.'}
         </Modal.Body>
         <Modal.Footer>
           <Button className=' bg-primary text-white px-4' onClick={ModalhandleClose}>닫다</Button>

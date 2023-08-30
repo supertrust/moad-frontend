@@ -59,6 +59,12 @@ const LoginFormModule = () => {
     }
   })
 
+  document.addEventListener("keydown", function(event) {
+    if (event.code === 'Enter') {
+      onSubmit()
+    }
+  });
+
   return (
     <FormProvider methods={methods}>
       <form action="" className="login-form">
@@ -122,7 +128,7 @@ const LoginFormModule = () => {
           loading={isSubmitting}
           disabled={ Object.keys(dirtyFields).length!==2 }
         >
-          Login
+          다음
         </Button>
       </form>
     </FormProvider>

@@ -41,7 +41,7 @@ const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
     resolver: yupResolver(CheckUserSchema),
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, formState : { dirtyFields} } = methods;
 
   const onSubmit = handleSubmit(async (props) => {
     await checkUser(
@@ -140,6 +140,7 @@ const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
             id="step01_confirm"
             loading={isLoading}
             onClick={onSubmit}
+            disabled={Object.keys(dirtyFields).length!==3}
             className={`${styles.confirm_btn} ${styles.btns} ${
               isLoading && styles.confirm_btn_loading
             }`}

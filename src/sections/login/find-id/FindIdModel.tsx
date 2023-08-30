@@ -28,7 +28,7 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
         resolver: yupResolver(LoginSchema)
     })
 
-    const { handleSubmit  } = methods;
+    const { handleSubmit, formState: { dirtyFields}  } = methods;
 
     const onSubmit = handleSubmit(async (props) => {
         try {
@@ -107,6 +107,7 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
                     type="button"
                     loading={isLoading}
                     onClick={onSubmit}
+                    disabled={Object.keys(dirtyFields).length!==2}
                     className={`${styles.id_model_find} ${styles.btns} ${isLoading && styles.btns_loading}`}>
                     찾기
                 </MyButton>

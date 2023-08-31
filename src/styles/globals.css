@@ -3721,6 +3721,22 @@ ul.pagination .page-item a:focus {
     margin: 25px 0 0;
   }
   
+button[disabled=disabled], button:disabled{
+    @apply opacity-60
+}
+
+.form-control {
+    padding: 10px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: -0.015em;
+    color: #373737;
+    background-color: #ffffff;
+    border: 1px solid #ebedf4;
+    border-radius: 5px;
+}
+  
   .mask-group-section {
     background-image: url('/images/Landing-page/Maskgroup.png');
     background-repeat: no-repeat;

@@ -3,8 +3,14 @@ import { Controller, FormProvider, Yup, yupResolver, useForm } from '@src/compon
 import { ThreeDots } from "react-loader-spinner";
 import { useGetOperatingAreas, useGetVehicles } from "@src/apis/advertisement";
 import styles from "./styles.module.css";
-import { Form } from "react-bootstrap";
+import { Form, Modal, Table} from "react-bootstrap";
 import { SaveAdvertisementType } from '@src/types/advertisement';
+import Image from 'next/image';
+import Truck01 from '@images/advertising/img-car01.png';
+import Truck02 from '@images/advertising/img-car02.png';
+import Truck03 from '@images/advertising/img-car03.png';
+import clsx from 'clsx';
+import Button from '@src/components/Button';
 
 
 type FormDataType = {
@@ -33,18 +39,21 @@ const adTypes = [
         title: "고정형 광고",
         subtitle_1: "특정 지역 화주들을 매칭하여",
         subtitle_2: "노출할 수 있는 고정형 광고",
+        faq: false,
     },
     {
         type: "national_ad",
         title: "전국형 광고",
         subtitle_1: "전국 모든 화주들을 매칭하여 적은 비용으로",
         subtitle_2: "광고효과를 최대화 할 수 있는 광고",
+        faq: true
     },
     {
         type: "spot_ad",
         title: "스팟광고",
         subtitle_1: "1시간 단위로 원하는 특정지역과 특정시간에",
         subtitle_2: "노출할 수 있는 광고",
+        faq: true
     }
 ];
 
@@ -54,13 +63,16 @@ const SaveAdvertisementSchema = Yup.object().shape({
     type: Yup.string().required("고유형을 선택해주세요."),
     start_date: Yup.string().required("시작일을 입력해주세요."),
     vehicle_details: Yup.object().required("화주 선택을 해주세요."),
-    operating_area: Yup.array().required("운영지역을 선택해주세요."),
+    operating_area: Yup.array().when('type', ([type],  schema) =>
+        type !== 'spot_ad' ? schema.min(1,"운영지역을 선택해주세요.") : schema,
+    )
 })
 
 
 const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubmitForm: (props: SaveAdvertisementType) => Promise<void> }) => {
     const methods = useForm<FormDataType>({
         defaultValues,
+        //@ts-ignore
         resolver: yupResolver(SaveAdvertisementSchema)
     });
 
@@ -72,8 +84,10 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
     const [period, setPeriod] = useState(defaultValues.ad_period);
     const [startDate, setStartDate] = useState(defaultValues.start_date);
     const [vehicleDetails, setVehicleDetails] = useState(defaultValues.vehicle_details);
+    const [isAreaVisible, setIsAreaVisible ] = useState(false);
+    const [showModal, setShowModal ] = useState(false);
 
-    const { handleSubmit, control, watch, formState: { isSubmitting, errors } } = methods;
+    const { handleSubmit, control, watch, formState: { isSubmitting, errors }, setValue, getValues} = methods;
 
     const totalPrice = useMemo(() => {
         let price = 0;
@@ -106,14 +120,16 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
     });
 
     useEffect(() => {
-        watch(({ ad_period, vehicle_details, start_date }) => {
+        watch(({ ad_period, vehicle_details, start_date, type }) => {
             ad_period && setPeriod(ad_period);
             start_date && setStartDate(start_date);
             // @ts-ignore
             vehicle_details && setVehicleDetails(vehicle_details);
+            setIsAreaVisible(type !== 'spot_ad')
         })
     }, [watch]);
 
+    const trucks = [Truck01, Truck02, Truck03]
     return (
         <FormProvider methods={methods}>
             <div className={styles.ad_modal_wrap}>
@@ -137,6 +153,18 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                     부착예시
                                 </div>
                             </div>
+                            <div className='sm:flex sm:flex-row justify-center sm:justify-between gap-3 text-center'>
+                                {trucks.map((truck , i) => 
+                                    <Image key={i} 
+                                        className={clsx(
+                                            'my-3 w-auto h-20 items-center',
+                                            "md:h-auto "
+                                        ) }
+                                        src={truck} 
+                                        alt=""  
+                                    />
+                                )}
+                            </div>
                         </div>
                     </div>
                     <div id={styles.more_btn} className={styles.more_btn}>
@@ -157,16 +185,24 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                 <div className={styles.ad_apply_content}>
                     <div className={styles.radio_wrap}>
                         <div className={`${styles.title} ${styles.only_pc}`}>광고 유형</div>
-                        <div className={styles.modal_select_wrap}>
-                            <Controller
-                                control={control}
-                                name="type"
-                                render={({ field: { value, onChange }, fieldState: { error } }) => (
-                                    <>
+                        <Controller
+                            control={control}
+                            name="type"
+                            render={({ field: { value, onChange }, fieldState: { error } }) => (
+                                <>
+                                    <div className={styles.modal_select_wrap}>
                                         {adTypes.map((item, index) => (
                                             <div
                                                 key={item.type}
-                                                onClick={() => onChange(item.type)}
+                                                onClick={() => {
+                                                    const selectedAreas = getValues('operating_area')
+                                                    item.type == 'spot_ad' && setValue('operating_area' , [])
+                                                    if( 'national_ad' && selectedAreas.length === areas?.length ){
+                                                        setValue('operating_area' , [])
+                                                        setShowModal(true);
+                                                    }
+                                                    onChange(item.type)
+                                                }}
                                                 className={`${value === item.type ? styles.active : ""} ${styles.modal_select}`}
                                             >
                                                 <label className={styles.select_box}>
@@ -177,7 +213,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                                         className={styles.hidden}
                                                     />
                                                     <i className={styles.ic_radio}></i>
-                                                    <a href="" className={styles.detail_desc}>상세설명</a>
+                                                    {item.faq && <a href=""  className={clsx(styles.detail_desc, 'md:mt-3 md:mr-5')} >상세설명</a>}
                                                     <div className={`${styles.box_icon} ${styles[`box_icon0${index + 1}`]}`}></div>
                                                     <div className={styles.text}>
                                                         <strong className={styles.text}>
@@ -190,11 +226,11 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                                 </label>
                                             </div>
                                         ))}
-                                        <span className="text-red-400">{error?.message}</span>
-                                    </>
-                                )}
-                            />
-                        </div>
+                                    </div>
+                                    <span className="text-danger">{error?.message}</span>
+                                </>
+                            )}
+                        />
                     </div>
 
                     <div className={styles.modal_step}>
@@ -291,62 +327,75 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
 
                         <div className={`${styles.input_section} ${styles.vehicles_section}`}>
                             <div className={styles.input_title}>운행차량</div>
-                            <ul className={styles.table_wrap}>
-                                <li className={`${styles.table_row} ${styles.list_hd}`}>
-                                    <div className={`${styles.text} ${styles.cell}`}>차량</div>
-                                    <div className={`${styles.text} ${styles.cell}`}>차량대수</div>
-                                    <div className={`${styles.text} ${styles.cell} ${styles.standard_wrap}`}>규격</div>
-                                    <div className={`${styles.text} ${styles.cell} ${styles.celprice_wrapl}`}>가격</div>
-                                </li>
-                                <Controller
-                                    name="vehicle_details"
-                                    control={control}
-                                    render={({ field: { value, onChange } }) => (
-                                        <>
-                                            {vehicles?.map(item => (
-                                                <li
-                                                    className={`${styles.table_row} ${styles.list}`}
-                                                    key={item.id}
-                                                >
-                                                    <div className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>{item.vehicle_type}</div>
-                                                    <div className={`${styles.vehicles_num_wrap} ${styles.cell}`}>
-                                                        <input
-                                                            type="number"
-                                                            name="vehicles_num"
-                                                            className={styles.input_num}
-                                                            onChange={e => onChange({ ...value, [item.id]: e.target.value })}
-                                                            id={item.vehicle_type}
-                                                            placeholder="직접입력"
-                                                        />
-                                                        <span className={styles.text}>대</span>
-                                                    </div>
-                                                    <div className={` ${styles.cell} ${styles.standard_wrap}`}>
-                                                        <span className={styles.text}>{item.vehicle_standard}</span>
-                                                    </div>
-                                                    <div className={`${styles.spot_add} ${styles.price_wrap}`}>
-                                                        <input
-                                                            type="text"
-                                                            name="1t_price"
-                                                            className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`}
-                                                            readOnly
-                                                            // @ts-ignore
-                                                            value={((value[item.id] && item.expenses[period]) && Number(value[item.id]) * (item.expenses[period])) || 0}
-                                                        />
-                                                        <span className={`${styles.text} ${styles.won}`}>원</span>
-                                                    </div>
-                                                </li>
-                                            ))}
-                                        </>
-                                    )}
-                                />
-                            </ul>
+                            <Table  bordered className='text-center rounded-sm border-gray-500' responsive>
+                                <thead className='rounded-sm'>
+                                    <tr  className='rounded-r-sm'>
+                                        <td width={'15%'}>차량</td>
+                                        <td width={'25%'}>차량대수</td>
+                                        <td width={'35%'}>규격</td>
+                                        <td width={'25%'}>가격</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <Controller
+                                        name="vehicle_details"
+                                        control={control}
+                                        render={({ field: { value, onChange } }) => (
+                                            <>
+                                                {vehicles?.map(item => (
+                                                    <tr key={item.id} >
+                                                        <td className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>{item.vehicle_type}</td>
+                                                        <td className={`${styles.vehicles_num_wrap} ${styles.cell}`}>
+                                                            <input
+                                                                type="number"
+                                                                name="vehicles_num"
+                                                                // className={styles.input_num}
+                                                                className={'!w-[74px] border border-[#ebedf4] text-gray-500 text-right'}
+                                                                onChange={e => onChange({ ...value, [item.id]: e.target.value })}
+                                                                id={item.vehicle_type}
+                                                                placeholder="직접입력"
+                                                            />
+                                                            <span className={styles.text}>대</span>
+                                                        </td>
+                                                        <td className={` ${styles.cell} ${styles.standard_wrap}`}>
+                                                            <span className={styles.text}>{item.vehicle_standard}</span>
+                                                        </td>
+                                                        <td className={`${styles.spot_add} ${styles.price_wrap}`}>
+                                                            <span
+                                                                // type="text"
+                                                                // name="1t_price"
+                                                                className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`}
+                                                                // readOnly
+                                                                // step={100}
+                                                                // // @ts-ignore
+                                                                // value=
+                                                            >
+                                                                {
+                                                                    Number((
+                                                                        (value[item.id] && item.expenses[period]) && Number(value[item.id]) * (item.expenses[period]))
+                                                                        || 0
+                                                                    ).toLocaleString()
+                                                                }
+                                                            </span>
+                                                            <span className={`${styles.text} ${styles.won}`}>원</span>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </>
+                                        )}
+                                    />
+                                </tbody>
+                            </Table>
                             <div className={`${styles.spot_add} ${styles.spot_info}`}>
                                 스팟광고의 광고 희망시간/기간등 차후 상담에 따라 결정됩니다.
                             </div>
                         </div>
                         <span className={styles.error}>{errors?.vehicle_details?.message}</span>
 
-                        <div className={`${styles.input_section} ${styles.area_section} ${styles.active}`}>
+                        <div className={clsx(
+                            styles.input_section, styles.area_section ,styles.active,
+                            [!isAreaVisible  &&  '!hidden']
+                        )}>
                             <div className={styles.input_title}>운행지역 (다중 선택 가능)</div>
                             <button type="button" id="reset_btn" className={styles.reset_btn}>
                                 <span className={styles.text}>초기화</span>
@@ -367,7 +416,13 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                                         if (selected) {
                                                             onChange(value.filter((v: number) => v !== item.id))
                                                         } else {
-                                                            onChange([...value, item.id])
+                                                            const newValues =  [...value, item.id];
+                                                            const type = getValues('type')
+                                                            if( type !== 'national_ad' && newValues.length === areas?.length ){
+                                                                !showModal && setShowModal(true);
+                                                                return;
+                                                            }
+                                                            onChange(newValues)
                                                         }
                                                     }}
                                                 >
@@ -408,7 +463,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                         <div className={styles.price_section}>
                             <div className={`${styles.price_box} ${styles.spot_add}`}>
                                 <div className={styles.price_text}>광고비용</div>
-                                <div id="total_price" className={`${styles.price_text} ${styles.total_price}`}>{totalPrice}</div>
+                                <div id="total_price" className={`${styles.price_text} ${styles.total_price}`}>{totalPrice.toLocaleString()}</div>
                                 <div className={`${styles.price_text} ${styles.text_won}`}>원</div>
                             </div>
                             <div className={styles.price_info}>
@@ -462,6 +517,24 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                         </div>
                     </div>
                 </div>
+
+                <Modal
+                    show={showModal}
+                    onHide={() => setShowModal(false)}
+                    centered
+                    className="bussiness-modal"
+                >
+                    <Modal.Header>
+                        <Modal.Title>확인사항</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="text-center">
+                        모든 운행 지역을 선택할 시<br/>
+                        광고 유형을 전국형으로 변경해주세요
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button className='bg-primary text-white px-4' onClick={() => setShowModal(false)}>닫다</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         </FormProvider>
     )

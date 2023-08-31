@@ -60,7 +60,7 @@ const RegisterSchema = Yup.object({
     .required("사업자 등록증을 업로드하세요.")
     .test(
       "fileFormat",
-      "Only .doc, .docx, .pdf, .jpg, .jpeg, .png files are allowed",
+      ".pdf, .jpg, .jpeg, .png 파일만 허용됩니다.",
       (value: any) => {
         if (value) {
           return [
@@ -91,6 +91,8 @@ const Step3 = ({
   const { mutateAsync: verifyInput } = useVerifyInput();
   const { register } = useAuth();
   const [showModal, setShowModal] = useState(false);
+  const [isReadonly, setReadonly] = useState(false);
+  const [verifybtnclick, setverifybtn] = useState(false);
   const [message, setMessage] = useState('');
   const ModalhandleClose = () => setShowModal(false);
   const ModalhandleShow = (error: string) => {
@@ -123,6 +125,7 @@ const Step3 = ({
           onSuccess:  () => {
             setValue("verify_business_registration_number", true);
             cb ? cb() : toast.success("국세청에 등록된 사업자등록번호입니다.");
+            setReadonly(true);
           },
           onError: (error) => {
             console.log("Error  _verifyBusinessNumber =>", error);
@@ -137,7 +140,10 @@ const Step3 = ({
   };
 
   const onSubmit = handleSubmit(async (props) => {
-
+    if(!verifybtnclick){
+      ModalhandleShow("사업자등록번호를 확인해주세요.");
+      return false;
+    }
     try {
         await _verifyBusinessNumber("business_registration_number", props.business_registration_number, async() => {
           const res = await register({ ...membershipInformation, ...props });
@@ -305,6 +311,7 @@ const Step3 = ({
                     placeholder="사업자 번호 입력 (-없이 입력)"
                     spellCheck={false}
                     data-ms-editor="true"
+                    readOnly={isReadonly}
                     caption={
                       <div className="error-text">
                         이미 사용중인 사업자 번호입니다.
@@ -313,8 +320,10 @@ const Step3 = ({
                     right={
                       <button
                         type="button"
+                        disabled={isReadonly}
                         className="business-num-btn ml-2"
                         onClick={() => {
+                          setverifybtn(true)
                           trigger('business_registration_number', { shouldFocus: true })
                             .then(( isValid ) => {
                               isValid && _verifyBusinessNumber(
@@ -396,14 +405,14 @@ const Step3 = ({
         centered
         className="bussiness-modal"
       >
-        <Modal.Header>
+        <Modal.Header className="!pb-[20px] p-0 ">
           <Modal.Title>확인사항</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="text-center">
+        <Modal.Body className="text-center py-[10px]">
           {message || '존재하지 않는 사업자 번호입니다.'}
         </Modal.Body>
         <Modal.Footer>
-          <Button className=' bg-primary text-white px-4' onClick={ModalhandleClose}>닫다</Button>
+          <Button className=' bg-primary text-white px-4' onClick={ModalhandleClose}>확인</Button>
         </Modal.Footer>
       </Modal>
     </div>

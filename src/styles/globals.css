@@ -508,6 +508,15 @@ a {
     margin-bottom: 12px;
 }
 
+.desc {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    color: #373737;
+    margin-bottom: 12px;
+}
+
 .list-hd {
     height: 60px;
     background: #f5f7fb;
@@ -1173,7 +1182,7 @@ a {
     font-size: 14px;
     line-height: 20px;
     border-radius: 4px;
-    cursor: pointer;
+    /* cursor: pointer; */
     background: #0563f6;
     color: #ffffff;
 }
@@ -1333,7 +1342,7 @@ a {
     display: none;
 }
 
-.bussiness-modal .modal-title {
+/* .bussiness-modal .modal-title {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
@@ -1351,6 +1360,10 @@ a {
     text-align: center;
     border-top: 1px solid #eeeeee;
     border-bottom: 1px solid #eeeeee;
+} */
+.bussiness-modal .modal-content {
+    max-width: 350px;
+    padding: 20px;
 }
 
 .bussiness-modal .btn.btn-primary {

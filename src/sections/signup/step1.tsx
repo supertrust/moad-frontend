@@ -35,7 +35,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
             <div className="left">
                 <div className="left-wrap">
                     <h1 className="logo-pc">
-                        <Image src="/images/logo-pc.svg" alt='logo-pc' width={150} height={50}/>
+                        <Image src="/images/logo-pc.svg" alt='logo-pc' width={150} height={50} />
 
                     </h1>
                 </div>
@@ -54,14 +54,14 @@ const Step1 = ({ onNextStep }: Step1Props) => {
                     <div className="right-content">
                         <div onClick={handleBackButton} className="back-btn"></div>
                         <div className="step-title">
-                            서비스 이용약관 및<br/>
+                            서비스 이용약관 및<br />
                             개인정보 이용약관 동의
                         </div>
                         <div className="step-text">
                             필수항목 및 선택항목 약관에 동의주해주세요
                         </div>
                         <div
-                            className={`text-red-600 mb-2 ${((!termsAndConditions || !privacyPolicy) && error)?"" : "hidden"}`}>
+                            className={`text-red-600 mb-2 ${((!termsAndConditions || !privacyPolicy) && error) ? "" : "hidden"}`}>
                             둘 다 확인해야합니다
                         </div>
                         <div className="agree-content">
@@ -118,10 +118,8 @@ const Step1 = ({ onNextStep }: Step1Props) => {
                         <Button
                             disabled={!privacyPolicy || !termsAndConditions}
                             className="link link-step01"
-                            onClick={()=>
-                            {
-                                if(!privacyPolicy || !termsAndConditions)
-                                {
+                            onClick={() => {
+                                if (!privacyPolicy || !termsAndConditions) {
                                     setError(true)
                                 }
                                 else {
@@ -137,25 +135,39 @@ const Step1 = ({ onNextStep }: Step1Props) => {
             </div>
             <Modal className="more-content-modal" show={show.open} onHide={handleClose}>
                 <Modal.Header>
-                    <Modal.Title className="text-center">개인정보처리방침</Modal.Title>
+                    <Modal.Title className="text-center">{show.name == "chk_2" ? '서비스 이용약관' : '개인정보처리방침'}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="h-auto">
                     <div className="terms-text">
-                        <div className="inner-title">개인정보처리방침</div>
-                        <div>
-                            제1조 (목적)
-                            표준약관 제10023호이 약관은 이카루스 (전자거래 사업자)가 운영하는 이카루스 사이버 몰(이하 "몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라
-                            한다)를 이용함에 있어 사이버몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
-                            ※ 「PC통신등을 이용하는 전자거래에 대해서도 그 성질에 반하지 않는한 이 약관을 준용합니다
-                            이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈
-                            예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용 약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이다이용약관이 들어갈 예정입니다이용약관이
-                            들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이
-                            들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어
-                        </div>
+                        <div className="inner-title">{show.name == "chk_2" ? '서비스 이용약관' : '개인정보처리방침'}</div>
+                        {
+                            show.name == "chk_2" ?
+                                <div>
+                                    <p>이카루스 관련 제반 서비스의 이용과 관련하여 필요한 사항을 규정합니다.</p>
+                                    <div className="mt-[24px]">
+                                        <a href="#">제1조 (목적)</a>
+                                        <p>표준약관 제10023호이 약관은 이카루스 (전자거래 사업자)가 운영하는 이카루스 사이버 몰(이하 "몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 사이버몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+                                        <p className="mb-[25px]">※ 「PC통신등을 이용하는 전자거래에 대해서도 그 성질에 반하지 않는한 이 약관을 준용합니다</p>
+
+                                        <p>이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어</p>
+                                    </div>
+                                </div> :
+                                <div>
+                                    제1조 (목적)
+                                    표준약관 제10023호이 약관은 이카루스 (전자거래 사업자)가 운영하는 이카루스 사이버 몰(이하 "몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라
+                                    한다)를 이용함에 있어 사이버몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
+                                    ※ 「PC통신등을 이용하는 전자거래에 대해서도 그 성질에 반하지 않는한 이 약관을 준용합니다
+                                    이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈
+                                    예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용 약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이다이용약관이 들어갈 예정입니다이용약관이
+                                    들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이
+                                    들어갈 예정입니다이용약관이 들어갈 예정입니다이용약관이 들어
+                                </div>
+                        }
+
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="outline-primary" onClick={() => {
+                    <Button className="outline-primary border-solid border-[1px] border-[#0868FD] text-[#0868FD] !py-[5px]" onClick={() => {
                         if (show.name === "chk_1")
                             setPrivacyPolicy(false)
 
@@ -165,7 +177,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
                     }}>
                         취소
                     </Button>
-                    <Button className="primary" onClick={() => {
+                    <Button className="primary border-solid border-[1px] border-[transparent] bg-[#0868FD] text-[#fff] !py-[5px]" onClick={() => {
                         if (show.name === "chk_1")
                             setPrivacyPolicy(true)
 

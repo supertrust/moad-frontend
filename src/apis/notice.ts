@@ -21,3 +21,4 @@ export const useGetAllNotification = () => useQuery<INotificationResponse, strin
   queryKey: ["notices-all"],
   queryFn: async () => (await axios.get("/api/notifications")).data.data
 })
+

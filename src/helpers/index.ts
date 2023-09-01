@@ -45,12 +45,24 @@ export const downloadFile = (url: string, filename: string, newTab = true) => {
     link.click();
 }
 
-export const getHoursAgoByDate = (serverDateTimeStamp: Date): string => {
-    console.log("this as the serverDateTimeStamp",serverDateTimeStamp)
-    const serverDate: Date = new Date(serverDateTimeStamp);
-    const currentDate: Date = new Date();
-    const timeDiff: number = currentDate.getTime() - serverDate.getTime();
-    console.log("here is the ",serverDate, currentDate)
-    const hoursDiff: number = Math.floor(timeDiff / (1000 * 60 * 60));
-    return hoursDiff + " hours ago";
+export const getHoursAgoByDate = (serverDateTimeStamp: Date) => {
+    const date = (serverDateTimeStamp instanceof Date) ? serverDateTimeStamp : new Date(serverDateTimeStamp);
+    const formatter = new Intl.RelativeTimeFormat('ko');
+    const ranges = {
+        years: 3600 * 24 * 365,
+        months: 3600 * 24 * 30,
+        weeks: 3600 * 24 * 7,
+        days: 3600 * 24,
+        hours: 3600,
+        minutes: 60,
+        seconds: 1
+    };
+    const secondsElapsed = (date.getTime() - Date.now()) / 1000;
+    for (let key in ranges) {
+        if (ranges[key] < Math.abs(secondsElapsed)) {
+            const delta = secondsElapsed / ranges[key];
+            //@ts-ignore
+            return formatter.format(Math.round(delta), key);
+        }
+    }
 };

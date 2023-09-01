@@ -3,11 +3,14 @@ import styles from "./style.module.css";
 import Link from "next/link";
 import { useGetAllNotification } from "@src/apis/notice";
 import { getHoursAgoByDate } from "@src/helpers/index";
+import { clsx } from "clsx";
+
+
 export default function NotificationCentre() {
-  const { data: notifications } = useGetAllNotification();
-  useEffect(() => {
-    console.log("here is the notifications api data", notifications);
-  }, [notifications]);
+  const { data: response } = useGetAllNotification();
+
+  const { data: notifications } = response || {} ;
+
   return (
     <>
       <div className={styles.titleWrap}>
@@ -26,8 +29,8 @@ export default function NotificationCentre() {
         <a href="src/sections/dashboard#">
           <ul className={styles.contentWrap}>
             {notifications &&
-              notifications.map((each, index) => (
-                <li className={styles.list} key={index}>
+              notifications.map((each, index) => index < 4 && (
+                <li className={clsx(styles.list, index == 3 && '!border-b-0')} key={index}>
                   <div className={styles.textWrap}>
                     <div className={`${styles.itemTitle} ${styles.text}`}>
                       <span>{each?.title}</span>

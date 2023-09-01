@@ -11,6 +11,8 @@ import Truck02 from '@images/advertising/img-car02.png';
 import Truck03 from '@images/advertising/img-car03.png';
 import clsx from 'clsx';
 import Button from '@src/components/Button';
+import { Loader } from 'rsuite';
+import Link from 'next/link';
 
 
 type FormDataType = {
@@ -58,9 +60,9 @@ const adTypes = [
 ];
 
 const SaveAdvertisementSchema = Yup.object().shape({
+    type: Yup.string().required("고유형을 선택해주세요."),
     ad_name: Yup.string().required("고명을 입력해주세요."),
     ad_period: Yup.number().required("고기간을 입력해주세요."),
-    type: Yup.string().required("고유형을 선택해주세요."),
     start_date: Yup.string().required("시작일을 입력해주세요."),
     vehicle_details: Yup.object().required("화주 선택을 해주세요."),
     operating_area: Yup.array().when('type', ([type],  schema) =>
@@ -76,8 +78,8 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
         resolver: yupResolver(SaveAdvertisementSchema)
     });
 
-    const { data: vehicles } = useGetVehicles();
-    const { data: areas } = useGetOperatingAreas();
+    const { data: vehicles, isLoading: isLoadingVehicles } = useGetVehicles();
+    const { data: areas, isLoading: isLoadingCars } = useGetOperatingAreas();
 
     const [isOpen, openPeriodList] = useState(false);
     const [isActive, setActive] = useState(false);
@@ -87,7 +89,10 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
     const [isAreaVisible, setIsAreaVisible ] = useState(false);
     const [showModal, setShowModal ] = useState(false);
 
-    const { handleSubmit, control, watch, formState: { isSubmitting, errors }, setValue, getValues} = methods;
+    const { handleSubmit, control, watch, formState: { isSubmitting, errors }, setValue, getValues } = methods;
+    
+    // console.log("Errors =>", errors); 
+    // Object.keys(errors).length && Object.values(errors)[0].ref; 
 
     const totalPrice = useMemo(() => {
         let price = 0;
@@ -117,6 +122,12 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
             status: "proceeding"
         };
         await onSubmitForm(values)
+    },(errors) => {
+        const names = Object.keys(errors);
+        if(names.length){
+            const element = document.getElementById(`input_${names[0]}`);
+            element?.scrollIntoView();
+        }
     });
 
     useEffect(() => {
@@ -125,7 +136,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
             start_date && setStartDate(start_date);
             // @ts-ignore
             vehicle_details && setVehicleDetails(vehicle_details);
-            setIsAreaVisible(type !== 'spot_ad')
+            type && setIsAreaVisible(type !== 'spot_ad')
         })
     }, [watch]);
 
@@ -190,7 +201,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                             name="type"
                             render={({ field: { value, onChange }, fieldState: { error } }) => (
                                 <>
-                                    <div className={styles.modal_select_wrap}>
+                                    <div id='imput_ad_type' className={styles.modal_select_wrap}>
                                         {adTypes.map((item, index) => (
                                             <div
                                                 key={item.type}
@@ -213,7 +224,12 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                                         className={styles.hidden}
                                                     />
                                                     <i className={styles.ic_radio}></i>
-                                                    {item.faq && <a href=""  className={clsx(styles.detail_desc, 'md:mt-3 md:mr-5')} >상세설명</a>}
+                                                    {item.faq && 
+                                                        <Link 
+                                                            href="/dashboard/customer-service/faq" 
+                                                            className={clsx(styles.detail_desc, 'md:mt-3 md:mr-5')} 
+                                                        >상세설명</Link>
+                                                    }
                                                     <div className={`${styles.box_icon} ${styles[`box_icon0${index + 1}`]}`}></div>
                                                     <div className={styles.text}>
                                                         <strong className={styles.text}>
@@ -242,14 +258,14 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                     <div className={styles.input_title}>광고이름</div>
                                     <input
                                         type="text"
-                                        id="input_ad_title"
+                                        id="input_ad_name"
                                         className={`${styles.box} ${styles.input_ad_title}`}
                                         maxLength={25}
                                         value={value}
                                         onChange={e => onChange(e.target.value)}
                                     />
                                     <div className="flex justify-between">
-                                        <span className={styles.error}>{error?.message}</span>
+                                        <span className='text-danger'>{error?.message}</span>
                                         <div className={styles.text_count}>
                                             {`${value.length}/25`}
                                         </div>
@@ -323,7 +339,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                 </div>
                             </div>
                         </div>
-                        <span className={styles.error}>{errors?.ad_period?.message || errors?.start_date?.message}</span>
+                        <span className='text-danger'>{errors?.ad_period?.message || errors?.start_date?.message}</span>
 
                         <div className={`${styles.input_section} ${styles.vehicles_section}`}>
                             <div className={styles.input_title}>운행차량</div>
@@ -337,6 +353,14 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {isLoadingVehicles &&   
+                                        <tr>
+                                            {/* @ts-ignore */}
+                                            <td colspan={4} className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>
+                                                <Loader size="sm" content="로드 중..." />
+                                            </td>
+                                        </tr>
+                                    }
                                     <Controller
                                         name="vehicle_details"
                                         control={control}
@@ -350,10 +374,11 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                                                 type="number"
                                                                 name="vehicles_num"
                                                                 // className={styles.input_num}
-                                                                className={'!w-[74px] border border-[#ebedf4] text-gray-500 text-right'}
+                                                                className={'!w-24 border border-[#ebedf4] text-gray-500 text-right mr-1'}
                                                                 onChange={e => onChange({ ...value, [item.id]: e.target.value })}
                                                                 id={item.vehicle_type}
                                                                 placeholder="직접입력"
+                                                                min={0}
                                                             />
                                                             <span className={styles.text}>대</span>
                                                         </td>
@@ -361,15 +386,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                                             <span className={styles.text}>{item.vehicle_standard}</span>
                                                         </td>
                                                         <td className={`${styles.spot_add} ${styles.price_wrap}`}>
-                                                            <span
-                                                                // type="text"
-                                                                // name="1t_price"
-                                                                className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`}
-                                                                // readOnly
-                                                                // step={100}
-                                                                // // @ts-ignore
-                                                                // value=
-                                                            >
+                                                            <span className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`}>
                                                                 {
                                                                     Number((
                                                                         (value[item.id] && item.expenses[period]) && Number(value[item.id]) * (item.expenses[period]))
@@ -390,7 +407,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                 스팟광고의 광고 희망시간/기간등 차후 상담에 따라 결정됩니다.
                             </div>
                         </div>
-                        <span className={styles.error}>{errors?.vehicle_details?.message}</span>
+                        <span className='text-danger'>{errors?.vehicle_details?.message}</span>
 
                         <div className={clsx(
                             styles.input_section, styles.area_section ,styles.active,
@@ -401,11 +418,12 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                 <span className={styles.text}>초기화</span>
                                 <i className={styles.ic_reset}></i>
                             </button>
+                            {isLoadingCars && <Loader size="sm" content="로드 중..." />}
                             <Controller
                                 name="operating_area"
                                 control={control}
                                 render={({ field: { value, onChange } }) => (
-                                    <div className={styles.chk_grid}>
+                                    <div id='input_operating_area' className={styles.chk_grid}>
                                         {areas?.map((item) => {
                                             const selected = (value as number[]).includes(item.id);
                                             return (
@@ -445,7 +463,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                     </div>
                                 )}
                             />
-                            <span className={styles.error}>{errors?.operating_area?.message}</span>
+                            <span className='text-danger'>{errors?.operating_area?.message}</span>
                             <div id="area_modal" className={`${styles.check_modal} ${styles.area_modal}`}>
                                 <div className={styles.check_modal_wrap}>
                                     <div className={styles.title}>확인사항</div>

@@ -3454,6 +3454,30 @@ ul.pagination .page-item a:focus {
     center/1em auto no-repeat !important;
 }
 
+button[disabled=disabled], button:disabled{
+  @apply opacity-60
+}
+
+.form-control {
+  padding: 10px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: -0.015em;
+  color: #373737;
+  background-color: #ffffff;
+  border: 1px solid #ebedf4;
+  border-radius: 5px;
+}
+
+.form-control:focus,
+input:focus ,
+input:focus-visible{
+  @apply border-primary border;
+  outline: 0;
+  box-shadow: 0 0 0 0;
+}
+
 /*Landing page css start*/
 
 #landing-page-header {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Form, Pagination, Modal } from "react-bootstrap";
 import AdModel, { AdModelRef } from "../SaveAdModel";
 import styles from './style.module.css'
@@ -9,12 +9,20 @@ import useAuth from "@src/hooks/useAuth";
 import Button from "@src/components/Button";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 import Image from "next/image";
+import { clsx } from "clsx";
+import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";
 const statuses = [
   { label: "전체", value: undefined },
   { label: "진행중", value: "proceeding" },
   { label: "신청중", value: "applying" },
   { label: "종료", value: "end" },
 ]
+
+const Types = {
+  "fixed_ad" : '고정',
+  "national_ad" : '국가',
+  "spot_ad" : "스팟"
+}
 
 export default function AdListModule() {
   const { userRole } = useAuth();
@@ -72,6 +80,27 @@ export default function AdListModule() {
       }
     })
   }
+
+
+  const  { confirm } = useConfirmDialog();
+  useEffect(() => {
+    if(selectedAds.length == 1 || selectedAds.length == advertisements?.length) {
+      confirm({
+        title: "확인사항",
+        description :  (
+          <p className="text-center py-3">
+              종료된 광고만 <br/> 
+              삭제하실 수 있습니다
+          </p>
+        ),
+        disableConfirmBtn: true,
+        cancelButtonProps : {
+          className: "bg-primary text-white"
+        }
+      })
+    }
+  }, [selectedAds])
+
 
   return (
     <>
@@ -171,11 +200,13 @@ export default function AdListModule() {
                         <label htmlFor={`item_${item.id}`}></label>
                         </div>
                     </div>
-                      <div className={`${styles.typeWrap} ${styles.gridBox}`}>{item.type}</div>
+                      <div className={clsx(styles.typeWrap, styles.gridBox)}>
+                        {Types[item.type]}
+                      </div>
                       <div className={styles.gridBox}>{item.ad_name}</div>
                       <div className={styles.gridBox}>{`${item.number_of_vehicles}`}</div>
                       <div className={styles.gridBox}>{(item.start_date && item.start_date) ? `${item.start_date} ~ ${item.end_date}` : "--"}</div>
-                      <div className={styles.gridBox}>{item.status}</div>
+                      <div className={styles.gridBox}>{statuses.find((status) => item.status ===  status.value)?.label}</div>
                       {/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div> */}
                       <i className="only-mb ic-arrow-right"></i>
                     </a>

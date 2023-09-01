@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import store from "@src/redux/store";
+import { ConfirmDialogProvider } from "@src/contexts/ConfirmDialogContext";
 const _App = ({ Component, pageProps }: AppProps) => {
   const { asPath } = useRouter();
 
@@ -28,7 +29,9 @@ export default function App(props: AppProps) {
     <ReactQueryClient>
       <AuthProvider>
         <Provider store={store}>
-          <_App {...props} />
+          <ConfirmDialogProvider>
+            <_App {...props} />
+          </ConfirmDialogProvider>
         </Provider>
       </AuthProvider>
       <ToastContainer />

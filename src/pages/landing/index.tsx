@@ -1,4 +1,7 @@
+import React, { useState } from "react";
+
 export default function LandingPage() {
+  const [show, setShow] = useState(false);
   return (
     <>
       <header id="landing-page-header">
@@ -181,10 +184,11 @@ export default function LandingPage() {
               aria-controls="navbarNav"
               aria-expanded="false"
               aria-label="Toggle navigation"
+              onClick={() => setShow(!show)}
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="navbar-collapse justify-content-end" id="navbarNav">
+            <div className={show ? "show navbar-collapse justify-content-end" : "navbar-collapse justify-content-end"} id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="#">

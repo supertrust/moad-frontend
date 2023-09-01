@@ -12,6 +12,8 @@ const DashboardScreen = () => {
         <Col md="6">
           <NotificationCentre />
         </Col>
+        </Row>
+        <Row className="adlist">
         <Col md="12">
           <AdList />
         </Col>

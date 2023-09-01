@@ -26,14 +26,14 @@ export default function Advertising() {
 
   return (
     <>
-      <div className={styles.adStatus}>
-        <div className={styles.titleWrap}>
+      <div className={`${styles.adStatus}`}>
+        <div className={`${styles.titleWrap} gap-[8px]`}>
           <div className={styles.title}>
-            <span>Advertising status</span>
+            <span>광고 현황</span>
           </div>
           <div className={styles.line}></div>
-          <div className={styles.text}>
-            <span>As of 12:00 am on March 10, 2023</span>
+          <div className={`${styles.text} !px-[0px]`}>
+            <span>2023. 03. 10 오전 12:00 기준</span>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default function Advertising() {
         <div className={styles.cards}>
           {/*    <div className={styles.title}>*/}
           <div className={styles.itemTitle}>
-            <span>registered advertisement</span>
+            <span>등록된 광고</span>
           </div>
           <div className={styles.value}>
             <span>{advertisements?.length}</span>
@@ -49,7 +49,7 @@ export default function Advertising() {
         </div>
         <div className={styles.cards}>
           <div className={styles.itemTitle}>
-            <span>total vehicle</span>
+            <span>총 운행차량</span>
           </div>
           <div className={styles.value}>
             <span>{advertiserVehiclesStats?.total_vehicles}</span>
@@ -57,7 +57,7 @@ export default function Advertising() {
         </div>
         <div className={styles.cards}>
           <div className={styles.itemTitle}>
-            <span> running</span>
+            <span>운행중</span>
           </div>
           <div className={styles.value}>
             <span>{advertiserVehiclesStats?.running}th</span>
@@ -65,7 +65,7 @@ export default function Advertising() {
         </div>
         <div className={styles.cards}>
           <div className={styles.itemTitle}>
-            <span>Suspension</span>
+            <span>운행정지</span>
           </div>
           <div className={styles.value}>
             <span>{advertiserVehiclesStats?.suspensions}</span>
@@ -73,7 +73,7 @@ export default function Advertising() {
         </div>
         <div className={styles.cards}>
           <div className={styles.itemTitle}>
-            <span> Total travel distance</span>
+            <span>총 진행거리</span>
           </div>
           <div className={styles.value}>
             <span>15,000,000km</span>
@@ -81,7 +81,7 @@ export default function Advertising() {
         </div>
         <div className={styles.cards}>
           <div className={styles.itemTitle}>
-            <span>Total running time</span>
+            <span>총 진행시간</span>
           </div>
           <div className={styles.value}>
             <span>1,460 hours</span>

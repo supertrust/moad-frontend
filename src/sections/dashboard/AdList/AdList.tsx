@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Form, Pagination } from "react-bootstrap";
+import { Form, Pagination, Modal } from "react-bootstrap";
 import AdModel, { AdModelRef } from "../SaveAdModel";
 import styles from './style.module.css'
 import { useDeleteAdvertisement, useGetAdvertisements, useUpdateAdStatus } from "@src/apis/advertisement";
@@ -10,10 +10,10 @@ import Button from "@src/components/Button";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 import Image from "next/image";
 const statuses = [
-  { label: "All", value: undefined },
-  { label: "Proceeding", value: "proceeding" },
-  { label: "Applying", value: "applying" },
-  { label: "End", value: "end" },
+  { label: "전체", value: undefined },
+  { label: "진행중", value: "proceeding" },
+  { label: "신청중", value: "applying" },
+  { label: "종료", value: "end" },
 ]
 
 export default function AdListModule() {
@@ -22,6 +22,9 @@ export default function AdListModule() {
   const [selectedAds, setSelectedAds] = useState<number[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   const { data: advertisements, refetch: refetchAdvertisements } = useGetAdvertisements({
     status,
@@ -59,6 +62,7 @@ export default function AdListModule() {
     } catch (error: any) {
       toast.error(error)
     }
+    handleClose()
   }
 
   const handleUpdateAdStatus = (status: "yes" | "no", id: number) => () => {
@@ -73,7 +77,7 @@ export default function AdListModule() {
     <>
       <div className={styles.titleWrap}>
         <div className={styles.title}>
-          <h4>ad list</h4>{" "}
+          <h4>광고 목록</h4>{" "}
         </div>
         <div className={styles.line} />
       </div>
@@ -91,7 +95,7 @@ export default function AdListModule() {
               <i className="ic-plus"></i>
                 광고등록
             </button>
-            <button disabled={!selectedAds.length} onClick={handleDeleteAds} className={styles.adDeleteBtn}>
+            <button disabled={!selectedAds.length} onClick={()=>handleShow()} className={styles.adDeleteBtn}>
               삭제
             </button>
             <div className="select-box only-pc">
@@ -106,24 +110,34 @@ export default function AdListModule() {
         </div>
         <div className={styles.tabWrap}>
           <div className={`${styles.listHd} ${styles.listFlex}`}>
+            
+            <div className={styles.grid}>
             <div className={styles.chkBox}>
-              <input
+              {/* <input
                 type="checkbox"
                 onChange={handleSelectAll}
                 checked={selectedAds.length === advertisements?.length}
                 name="all_chk"
                 id="all_chk"
                 className="all-chk"
-              />
+              /> */}
+              <div className={styles.form_group}>
+              <input type="checkbox"
+                onChange={handleSelectAll}
+                checked={selectedAds.length === advertisements?.length}
+                name="all_chk"
+                id="all_chk"
+                className="all-chk" />
+              <label htmlFor="all_chk"></label>
             </div>
-            <div className={styles.grid}>
-              <div className={`${styles.typeWrap} ${styles.gridBox}`}>ad type</div>
-              <div className={styles.gridBox}>ad name</div>
-              <div className={styles.gridBox}>No of vehicles</div>
-              <div className={styles.gridBox}>Period</div>
-              <div className={styles.gridBox}>Approved</div>
+            </div>
+              <div className={`${styles.typeWrap} ${styles.gridBox}`}>광고 유형</div>
+              <div className={styles.gridBox}>광고 유형</div>
+              <div className={styles.gridBox}>광고 이름</div>
+              <div className={styles.gridBox}>운행 차량수</div>
+              <div className={styles.gridBox}>기간</div>
 
-              <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div>
+              {/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
             </div>
 
             <RoleBasedGuard roles={["Admin"]}>
@@ -135,23 +149,34 @@ export default function AdListModule() {
               {advertisements?.map(item => {
                 const selected = selectedAds.includes(item.id);
                 return (
-                  <li key={item.id} className={styles.listFlex}>
+                  <li key={item.id} className={styles.listFlex }>
+                    
+                    <a href={`/dashboard/advertisement-detail/${item.id}`} className={styles.grid}>
                     <div className={styles.chkBox}>
-                      <input
+                      {/* <input
                         type="checkbox"
                         onChange={handleToggleSelect(item.id, selected)}
                         checked={selected}
                         className="list-chk"
                         name="list_chk"
-                      />
+                      /> */}
+                      <div className={styles.form_group}>
+                        <input 
+                          type="checkbox"
+                          onChange={handleToggleSelect(item.id, selected)}
+                          checked={selected}
+                          className="list-chk"
+                          name="list_chk"
+                          id={`item_${item.id}`}/>
+                        <label htmlFor={`item_${item.id}`}></label>
+                        </div>
                     </div>
-                    <a href={`/dashboard/advertisement-detail/${item.id}`} className={styles.grid}>
                       <div className={`${styles.typeWrap} ${styles.gridBox}`}>{item.type}</div>
                       <div className={styles.gridBox}>{item.ad_name}</div>
                       <div className={styles.gridBox}>{`${item.number_of_vehicles}`}</div>
                       <div className={styles.gridBox}>{(item.start_date && item.start_date) ? `${item.start_date} ~ ${item.end_date}` : "--"}</div>
                       <div className={styles.gridBox}>{item.status}</div>
-                      <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div>
+                      {/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div> */}
                       <i className="only-mb ic-arrow-right"></i>
                     </a>
                     <RoleBasedGuard roles={["Admin"]}>
@@ -173,6 +198,27 @@ export default function AdListModule() {
         </div>
       </div>
       <AdModel refetchAds={refetchAdvertisements} ref={adModel} />
+      <Modal show={show} onHide={handleClose} centered>
+                <Modal.Header>
+                    <Modal.Title className="text-center">확인사항</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="h-auto">
+                    <div className="terms-text">
+                       <div>
+                       종료된 광고만
+삭제하실 수 있습니다
+                       </div>
+
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className="outline-primary border-solid border-[1px] border-[#0868FD] text-[#0868FD] !py-[5px]" onClick={() => {
+                        handleDeleteAds()
+                    }}>
+                        취소
+                    </Button>
+                </Modal.Footer>
+            </Modal>
     </>
   );
 }

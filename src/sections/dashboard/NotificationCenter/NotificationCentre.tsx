@@ -13,14 +13,14 @@ export default function NotificationCentre() {
 
   return (
     <>
-      <div className={styles.titleWrap}>
-        <div className={styles.title}>
-          <span>notification center</span>
+      <div className={`${styles.titleWrap} gap-[8px]`}>
+        <div className={`${styles.title} p-0`}>
+          <span>알림 센터</span>
         </div>
         <div className={styles.line}></div>
         <Link
           href="dashboard/notification"
-          className={`${styles.text} ${styles.viewText}`}
+          className={`${styles.text} ${styles.viewText} p-0`}
         >
           view all
         </Link>

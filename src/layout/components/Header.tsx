@@ -31,7 +31,7 @@ function Header(props: HeaderProps) {
         <div className="only-pc">
           <div className="header-pc">
             <div className="header-title">
-              {!props.text ? "Advertising Management" : props.text}
+              {!props.text ? "광고관리" : props.text}
             </div>
             <div className="my-info">
               <div className="info-wrap">

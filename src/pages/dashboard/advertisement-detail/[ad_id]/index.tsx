@@ -22,6 +22,24 @@ import Link from "next/link";
 import Image from "next/image";
 import DataTable from "@src/components/DataGrid/DataGrid";
 
+const AdvertisementStatus = {
+  "proceeding": "진행중",
+  "applying": "신청중",
+  "end": "종료"
+}
+
+const Types = {
+  "fixed_ad" : '고정',
+  "national_ad" : '국가',
+  "spot_ad" : "스팟"
+}
+
+const OperationStatus = {
+  service: "서비스",
+  suspended: "운행정지",
+  active: "활동적인",
+};
+
 function AdvertisementDetailScreen() {
   const [filterTableValue, setFilterTableValue] = useState<null | string>(null);
   const { query } = useRouter();
@@ -72,11 +90,11 @@ function AdvertisementDetailScreen() {
     },
     {
       title: "광고유형",
-      value: advertisement?.type.replace("_", " ").toUpperCase(),
+      value: advertisement?.type ? Types[advertisement.type] : advertisement?.type,
     },
     {
       title: "광고상태",
-      value: advertisement?.status,
+      value: advertisement?.status ? AdvertisementStatus[advertisement?.status] : advertisement?.status,
     },
     {
       title: "광고지역",
@@ -107,8 +125,8 @@ function AdvertisementDetailScreen() {
                 operation_status: item.advertisement.advertisement_vehicles.find(
                     (_item) => _item.vehicle_id === item.vehicles.id
                 )?.status,
-                vehicle_information: 'Look',
-                vehicle_location: 'Look',
+                vehicle_information: '바라보다',
+                vehicle_location: '바라보다',
                 show_links:item.cargo_status == null ? false:true,
                 cargo_vehicle_id:item.cargo_status?.cargo_vehicle_id
               })),
@@ -116,7 +134,7 @@ function AdvertisementDetailScreen() {
   );
 
   const filterTable = filterTableValue
-      ? vehiclesData.filter((item) => item.vehicle_status === filterTableValue)
+      ? vehiclesData.filter((item) => item.operation_status === filterTableValue)
       : vehiclesData;
   const columns = [
     {
@@ -152,13 +170,15 @@ function AdvertisementDetailScreen() {
       },
     },
     {
-      dataIndex: "operation_status",
       title: "운행여부",
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
         paddingBottom: "20px",
       },
+      render: ({operation_status})=>{
+        return OperationStatus[operation_status]
+       }
     },
     {
       dataIndex: "vehicle_information",
@@ -171,7 +191,7 @@ function AdvertisementDetailScreen() {
       render: (text: any, record: any) => (
           record.show_links ? <Link legacyBehavior href={`/dashboard/vehicle-detail/${record.cargo_vehicle_id}`}>
             <a target="_blank" className='hover:no-underline'>{text}</a>
-          </Link>:"Not assigned yet"
+          </Link>:"아직 할당되지 않았습니다."
       ),
     },
     {
@@ -189,7 +209,7 @@ function AdvertisementDetailScreen() {
               href={`/dashboard/vehicle-location/${record.cargo_vehicle_id}`}
           >
             <a target="_blank" className='hover:no-underline'>{text}</a>
-          </Link>:"Not assigned yet"
+          </Link>:"아직 할당되지 않았습니다."
       ),
     },
   ];
@@ -249,7 +269,7 @@ function AdvertisementDetailScreen() {
                       <div className={styles.swiper_wrapper}>
                         <Carousel activeIndex={index} onSelect={handleSelect}>
                           {mockup_arr.map((item, index) => (
-                              <Carousel.Item key={index} interval={undefined}>
+                              <Carousel.Item key={index}>
                                 <Image
                                     src={item.img ? item.img : item.default_img}
                                     alt="slides"
@@ -369,83 +389,83 @@ function AdvertisementDetailScreen() {
                       ))}
                     </div>
                     <div className={styles.model_contents_container}>
-                      <div className={styles.model_content}>
-                        <p>Left</p>
-                        <div className={styles.model_side_image_con}>
-                          <Image
-                              className={styles.model_images}
-                              src={modelImages.left}
-                              alt="left"
-                              width={200}
-                              height={200}
-                          />
-                        </div>
-                        <input
-                            onChange={handleModelImageChange("left")}
-                            className={styles.file_input}
-                            type="file"
-                            placeholder="file"
-                        />
-                      </div>
-                      <div className={styles.model_content}>
-                        <p>Right</p>
-                        <div className={styles.model_side_image_con}>
-                          <Image
-                              className={styles.model_images}
-                              src={modelImages.right}
-                              alt="right"
-                              width={200}
-                              height={200}
-                          />
-                        </div>
-                        <input
-                            width={"200px"}
-                            height={"100px"}
-                            onChange={handleModelImageChange("right")}
-                            className={styles.file_input}
-                            type="file"
-                            placeholder="file"
-                        />
-                      </div>
-                      <div className={styles.model_content}>
-                        <p>Back</p>
-                        <div className={styles.back_doors_con}>
-                          <div className={styles.back_door_con}>
-                            <div className={styles.model_back_image_con}>
-                              <Image
-                                  className={styles.model_images}
-                                  width={50}
-                                  height={200}
-                                  src={modelImages.doorLeft}
-                                  alt="doorLeft"
-                              />
-                            </div>
-                            <input
-                                onChange={handleModelImageChange("doorLeft")}
-                                className={styles.file_input}
-                                type="file"
-                                placeholder="file"
-                            />
-                          </div>
-                          <div className={styles.back_door_con}>
-                            <div className={styles.model_back_image_con}>
-                              <Image
-                                  className={styles.model_images}
-                                  width={50}
-                                  height={200}
-                                  src={modelImages.doorRight}
-                                  alt="doorRight"
-                              />
-                            </div>
-                            <input
-                                onChange={handleModelImageChange("doorRight")}
-                                className={styles.file_input}
-                                type="file"
-                                placeholder="file"
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      {/*<div className={styles.model_content}>*/}
+                      {/*  <p>Left</p>*/}
+                      {/*  <div className={styles.model_side_image_con}>*/}
+                      {/*    <Image*/}
+                      {/*        className={styles.model_images}*/}
+                      {/*        src={modelImages.left}*/}
+                      {/*        alt="left"*/}
+                      {/*        width={200}*/}
+                      {/*        height={200}*/}
+                      {/*    />*/}
+                      {/*  </div>*/}
+                      {/*  <input*/}
+                      {/*      onChange={handleModelImageChange("left")}*/}
+                      {/*      className={styles.file_input}*/}
+                      {/*      type="file"*/}
+                      {/*      placeholder="file"*/}
+                      {/*  />*/}
+                      {/*</div>*/}
+                      {/*<div className={styles.model_content}>*/}
+                      {/*  <p>Right</p>*/}
+                      {/*  <div className={styles.model_side_image_con}>*/}
+                      {/*    <Image*/}
+                      {/*        className={styles.model_images}*/}
+                      {/*        src={modelImages.right}*/}
+                      {/*        alt="right"*/}
+                      {/*        width={200}*/}
+                      {/*        height={200}*/}
+                      {/*    />*/}
+                      {/*  </div>*/}
+                      {/*  <input*/}
+                      {/*      width={"200px"}*/}
+                      {/*      height={"100px"}*/}
+                      {/*      onChange={handleModelImageChange("right")}*/}
+                      {/*      className={styles.file_input}*/}
+                      {/*      type="file"*/}
+                      {/*      placeholder="file"*/}
+                      {/*  />*/}
+                      {/*</div>*/}
+                      {/*<div className={styles.model_content}>*/}
+                      {/*  <p>Back</p>*/}
+                      {/*  <div className={styles.back_doors_con}>*/}
+                      {/*    <div className={styles.back_door_con}>*/}
+                      {/*      <div className={styles.model_back_image_con}>*/}
+                      {/*        <Image*/}
+                      {/*            className={styles.model_images}*/}
+                      {/*            width={50}*/}
+                      {/*            height={200}*/}
+                      {/*            src={modelImages.doorLeft}*/}
+                      {/*            alt="doorLeft"*/}
+                      {/*        />*/}
+                      {/*      </div>*/}
+                      {/*      <input*/}
+                      {/*          onChange={handleModelImageChange("doorLeft")}*/}
+                      {/*          className={styles.file_input}*/}
+                      {/*          type="file"*/}
+                      {/*          placeholder="file"*/}
+                      {/*      />*/}
+                      {/*    </div>*/}
+                      {/*    <div className={styles.back_door_con}>*/}
+                      {/*      <div className={styles.model_back_image_con}>*/}
+                      {/*        <Image*/}
+                      {/*            className={styles.model_images}*/}
+                      {/*            width={50}*/}
+                      {/*            height={200}*/}
+                      {/*            src={modelImages.doorRight}*/}
+                      {/*            alt="doorRight"*/}
+                      {/*        />*/}
+                      {/*      </div>*/}
+                      {/*      <input*/}
+                      {/*          onChange={handleModelImageChange("doorRight")}*/}
+                      {/*          className={styles.file_input}*/}
+                      {/*          type="file"*/}
+                      {/*          placeholder="file"*/}
+                      {/*      />*/}
+                      {/*    </div>*/}
+                      {/*  </div>*/}
+                      {/*</div>*/}
                     </div>
                   </div>
                 </div>
@@ -462,17 +482,17 @@ function AdvertisementDetailScreen() {
                     </div>
                     <div
                         className={`${styles.tab_02} ${styles.tab_title} ${
-                            filterTableValue === "proceeding" && styles.active
+                            filterTableValue === "active" && styles.active
                         }`}
-                        onClick={() => setFilterTableValue("proceeding")}
+                        onClick={() => setFilterTableValue("active")}
                     >
                       운행중
                     </div>
                     <div
                         className={`${styles.tab_03} ${styles.tab_title} ${
-                            filterTableValue === "suspend" && styles.active
+                            filterTableValue === "suspended" && styles.active
                         }`}
-                        onClick={() => setFilterTableValue("suspend")}
+                        onClick={() => setFilterTableValue("suspended")}
                     >
                       운행정지
                     </div>

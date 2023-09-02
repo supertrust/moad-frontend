@@ -651,7 +651,7 @@ a {
   position: relative;
 }
 
-.change-password-content
+/* .change-password-content
   .form-wrap
   .change-password-wrap
   .list-wrap-11
@@ -665,7 +665,7 @@ a {
   height: 24px;
   background: url(/images/ic-hide.png) no-repeat center center / cover;
   cursor: pointer;
-}
+} */
 
 .change-password-content .form-wrap .btn-wrap {
   display: flex;

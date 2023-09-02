@@ -76,7 +76,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
                         <Button 
                             {...confirmButtonProps} 
                             className={clsx(
-                                "bg-primary text-white px-3", 
+                                "bg-primary text-white px-3 border-primary border", 
                                 confirmButtonStyle
                             )}
                             onClick={handleConfirm}

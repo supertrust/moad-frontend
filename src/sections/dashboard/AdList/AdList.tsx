@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Form, Pagination, Modal } from "react-bootstrap";
+import React, { useRef, useState } from "react";
+import { Form, Pagination } from "react-bootstrap";
 import AdModel, { AdModelRef } from "../SaveAdModel";
 import styles from './style.module.css'
 import { useDeleteAdvertisement, useGetAdvertisements, useUpdateAdStatus } from "@src/apis/advertisement";
-import { AdStatusesType, AdTypesType } from "@src/types/advertisement";
+import { AdStatusesType, AdTypesType, IAdvertisement } from "@src/types/advertisement";
 import { toast } from "react-toastify";
 import useAuth from "@src/hooks/useAuth";
 import Button from "@src/components/Button";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
-import Image from "next/image";
 import { clsx } from "clsx";
 import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";
 const statuses = [
@@ -27,12 +26,10 @@ const Types = {
 export default function AdListModule() {
   const { userRole } = useAuth();
   const adModel = useRef<AdModelRef>(null);
-  const [selectedAds, setSelectedAds] = useState<number[]>([]);
+  const [selectedAds, setSelectedAds] = useState<IAdvertisement[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
-  const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const { confirm } = useConfirmDialog();
 
   const { data: advertisements, refetch: refetchAdvertisements } = useGetAdvertisements({
     status,
@@ -44,33 +41,59 @@ export default function AdListModule() {
 
   const openModal = () => adModel.current?.open();
 
-  const handleToggleSelect = (id: number, selected: boolean) => () => {
+  const handleToggleSelect = (ad: IAdvertisement, selected: boolean) => () => {
     if (selected) {
-      setSelectedAds(old => old.filter(_id => _id !== id));
+      setSelectedAds(old => old.filter(_ad => _ad !== ad));
     } else {
-      setSelectedAds(old => ([...old, id]))
+      setSelectedAds(old => ([...old, ad]))
     }
   }
 
   const handleSelectAll = () => {
     if (selectedAds.length !== advertisements?.length) {
-      setSelectedAds(advertisements?.map(item => item.id) || []);
+      setSelectedAds(advertisements || []);
     } else {
       setSelectedAds([])
     }
   }
 
   const handleDeleteAds = async () => {
-    try {
-      await Promise.all(selectedAds.map(async (id) => {
-        await deleteAd({ id: `${id}` })
-      }))
-      setSelectedAds([]);
-      refetchAdvertisements()
+    try { 
+      let canDelete =  true;
+      selectedAds.map((ad) => {
+        if(!canDelete) return false;
+        if(ad.type !== 'spot_ad' && new Date(ad.end_date) > new Date()){
+          canDelete = false;
+        }
+      })
+      confirm({
+        title: canDelete ? "광고삭제" : "확인사항" ,
+        description :  (
+          <p className="text-center py-3">
+            {canDelete ? 
+              <>삭제하시면 통계에서도 확인하실 수 없습니다. <br/> 삭제하시겠습니까?</> : 
+              <>종료된 광고만 <br/> 삭제하실 수 있습니다</>
+            }
+          </p>
+        ),
+        disableConfirmBtn: !canDelete,
+        cancelButtonProps : {
+          className: clsx(!canDelete && "bg-primary text-white")
+        },
+        cancelText: canDelete ? "확인" : "취소",
+        confirmText: "삭제",
+        onConfirm: async () => {
+          await Promise.all(selectedAds.map(async (ad) => {
+            await deleteAd({ id: `${ad.id}` })
+          }))
+          setSelectedAds([]);
+          refetchAdvertisements()
+        } 
+      })
+
     } catch (error: any) {
       toast.error(error)
     }
-    handleClose()
   }
 
   const handleUpdateAdStatus = (status: "yes" | "no", id: number) => () => {
@@ -81,25 +104,6 @@ export default function AdListModule() {
     })
   }
 
-
-  const  { confirm } = useConfirmDialog();
-  useEffect(() => {
-    if(selectedAds.length == 1 || selectedAds.length == advertisements?.length) {
-      confirm({
-        title: "확인사항",
-        description :  (
-          <p className="text-center py-3">
-              종료된 광고만 <br/> 
-              삭제하실 수 있습니다
-          </p>
-        ),
-        disableConfirmBtn: true,
-        cancelButtonProps : {
-          className: "bg-primary text-white"
-        }
-      })
-    }
-  }, [selectedAds])
 
 
   return (
@@ -124,7 +128,7 @@ export default function AdListModule() {
               <i className="ic-plus"></i>
                 광고등록
             </button>
-            <button disabled={!selectedAds.length} onClick={()=>handleShow()} className={styles.adDeleteBtn}>
+            <button disabled={!selectedAds.length} onClick={handleDeleteAds} className={styles.adDeleteBtn}>
               삭제
             </button>
             <div className="select-box only-pc">
@@ -161,10 +165,10 @@ export default function AdListModule() {
             </div>
             </div>
               <div className={`${styles.typeWrap} ${styles.gridBox}`}>광고 유형</div>
-              <div className={styles.gridBox}>광고 유형</div>
               <div className={styles.gridBox}>광고 이름</div>
               <div className={styles.gridBox}>운행 차량수</div>
               <div className={styles.gridBox}>기간</div>
+              <div className={styles.gridBox}>상태</div>
 
               {/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
             </div>
@@ -176,7 +180,7 @@ export default function AdListModule() {
           <div className="tab-content all-wrap on">
             <ul className="list-wrap">
               {advertisements?.map(item => {
-                const selected = selectedAds.includes(item.id);
+                const selected = selectedAds.includes(item);
                 return (
                   <li key={item.id} className={styles.listFlex }>
                     
@@ -192,7 +196,7 @@ export default function AdListModule() {
                       <div className={styles.form_group}>
                         <input 
                           type="checkbox"
-                          onChange={handleToggleSelect(item.id, selected)}
+                          onChange={handleToggleSelect(item, selected)}
                           checked={selected}
                           className="list-chk"
                           name="list_chk"
@@ -229,27 +233,6 @@ export default function AdListModule() {
         </div>
       </div>
       <AdModel refetchAds={refetchAdvertisements} ref={adModel} />
-      <Modal show={show} onHide={handleClose} centered>
-                <Modal.Header>
-                    <Modal.Title className="text-center">확인사항</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="h-auto">
-                    <div className="terms-text">
-                       <div>
-                       종료된 광고만
-삭제하실 수 있습니다
-                       </div>
-
-                    </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button className="outline-primary border-solid border-[1px] border-[#0868FD] text-[#0868FD] !py-[5px]" onClick={() => {
-                        handleDeleteAds()
-                    }}>
-                        취소
-                    </Button>
-                </Modal.Footer>
-            </Modal>
     </>
   );
 }

@@ -149,7 +149,7 @@
 .grid {
     width: 100%;
     display: grid;
-    grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 60px 1fr 2fr 120px 1.5fr 1fr;
     text-decoration: none !important;
 }
 

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import * as Yup from "yup";
@@ -59,11 +59,18 @@ const LoginFormModule = () => {
     }
   })
 
-  document.addEventListener("keydown", function(event) {
-    if (event.code === 'Enter') {
-      onSubmit()
-    }
-  });
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter") {
+        event.preventDefault(); // Prevent form submission
+        onSubmit().then(() => {});
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   return (
     <FormProvider methods={methods}>
@@ -126,7 +133,7 @@ const LoginFormModule = () => {
           className={`${styles.login_btn} ${form ? styles.active : styles.disabled} `}
           onClick={onSubmit}
           loading={isSubmitting}
-          disabled={ Object.keys(dirtyFields).length!==2 }
+          disabled={ Object.keys(dirtyFields).length!==2 && !isSubmitting }
         >
           다음
         </Button>

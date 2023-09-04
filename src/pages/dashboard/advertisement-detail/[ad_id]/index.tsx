@@ -128,7 +128,8 @@ function AdvertisementDetailScreen() {
                 vehicle_information: '바라보다',
                 vehicle_location: '바라보다',
                 show_links:item.cargo_status == null ? false:true,
-                cargo_vehicle_id:item.cargo_status?.cargo_vehicle_id
+                cargo_vehicle_id:item.cargo_status?.cargo_vehicle_id,
+                advertisement_id:item.cargo_status?.advertisement_id
               })),
       [vehicles?.length]
   );
@@ -189,7 +190,7 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-          record.show_links ? <Link legacyBehavior href={`/dashboard/vehicle-detail/${record.cargo_vehicle_id}`}>
+          record.show_links ? <Link legacyBehavior href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}>
             <a target="_blank" className='hover:no-underline'>{text}</a>
           </Link>:"아직 할당되지 않았습니다."
       ),

@@ -1,3 +1,4 @@
+import { queryClient } from "@src/services/ReactQueryClient";
 import { ChangePasswordPropsType, GetUserPropsType, GetUserRolePropsType, IUser, IUserRole, UpdateUserInfoType } from "@src/types/user";
 import axios from "@src/utils/axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -19,5 +20,6 @@ export const useChangePassword = () => useMutation<void, string, ChangePasswordP
 })
 
 export const useUpdateUserInfo = () => useMutation<void, string, UpdateUserInfoType>({
-    mutationFn: (props) => axios.post("/api/update-myinfo", props)
+    mutationFn: (props) => axios.post("/api/update-myinfo", props),
+    onSuccess: () =>  queryClient.invalidateQueries(["user"])
 })

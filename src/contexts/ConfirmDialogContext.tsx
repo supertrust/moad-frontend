@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import React, { ReactNode, createContext, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 
-interface ConfirmPropsType {
+export interface ConfirmPropsType {
     title: string;
     description?: ReactNode;
     confirmText?: string;
@@ -14,6 +14,8 @@ interface ConfirmPropsType {
     confirmLoading?: boolean;
     confirmButtonProps?: ButtonProps;
     cancelButtonProps?: ButtonProps;
+    size?: "lg" | "xl" | "sm" ,
+    footerClassName?: string
 }
 
 type ConfirmDialogContextType = {
@@ -36,6 +38,8 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
         description,
         cancelText,
         cancelButtonProps,
+        size,
+        footerClassName
     } = confirmProps || {};
 
     const { className: confirmButtonStyle, ...restConfirmButtonProps } = confirmButtonProps || {};
@@ -56,12 +60,14 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
     return (
         <ConfirmDialogContext.Provider value={{ confirm }}>
             {children}
-            <Modal show={!!confirmProps} onHide={handelCancel} centered>
-                <Modal.Header>
-                    <Modal.Title className="text-center font-bold">{title}</Modal.Title>
-                </Modal.Header>
+            <Modal show={!!confirmProps} onHide={handelCancel} centered size={size}>
+                {title && 
+                    <Modal.Header>
+                        <Modal.Title className="text-center font-bold">{title}</Modal.Title>
+                    </Modal.Header>
+                }
                 <Modal.Body>{description}</Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer className={footerClassName}>
                     <Button 
                         {...cancelButtonProps}  
                         className={clsx(

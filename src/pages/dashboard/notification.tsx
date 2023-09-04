@@ -1,11 +1,12 @@
 import { CircularProgress } from "@mui/material";
 import { useGetAllNotification } from "@src/apis/notice";
+import { getHoursAgoByDate } from "@src/helpers";
 import { styles } from "@src/sections/notification";
 import { Pagination } from "antd";
 import React, { useState } from "react";
 
 
-export default function DashboardScreen() {
+export default function NotificationScreen() {
 
     const { data, isLoading } = useGetAllNotification();
     const { data :notifications } = data || {}
@@ -61,7 +62,7 @@ export default function DashboardScreen() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={styles.date}>{getNotificationCreatedTime(data.created_at)}</div>
+                                    <div className={styles.date}>{getHoursAgoByDate(data.created_at)}</div>
                                 </li>
                             ))}
                     </ul>

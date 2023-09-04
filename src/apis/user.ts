@@ -34,3 +34,8 @@ export const useUpdateUserProfileImage = () => useMutation<void, string, { profi
     },
     onSuccess: () =>  queryClient.invalidateQueries(["user"])
 })
+
+
+export const useMemberWithdrawal = () =>  useMutation<void, string>({
+    mutationFn: () => axios.get("/api/membership-withdrawal"),
+})

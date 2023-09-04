@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./style.module.css";
 import Link from "next/link";
 import { useGetAllNotification } from "@src/apis/notice";
@@ -26,7 +26,7 @@ export default function NotificationCentre() {
         </Link>
       </div>
       <div className={styles.notificationContent}>
-        <a href="src/sections/dashboard#">
+        <Link href="dashboard/notification">
           <ul className={styles.contentWrap}>
             {notifications &&
               notifications.map((each, index) => index < 4 && (
@@ -45,7 +45,7 @@ export default function NotificationCentre() {
                 </li>
               ))}
           </ul>
-        </a>
+        </Link>
       </div>
     </>
   );

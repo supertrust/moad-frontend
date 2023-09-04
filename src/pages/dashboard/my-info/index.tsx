@@ -121,9 +121,9 @@ export default function MyInfoScreen() {
                 <div className={styles.profile}>
                   <div className={styles.title_wraps_1}>
                     <div className={styles.title}>프로필</div>
-                    <a href="#" className={styles.link}>
+                    <Link href="/dashboard/membership-withdrawal" className={styles.link}>
                       탈퇴하기
-                    </a>
+                    </Link>
                   </div>
                   <div className={styles.profile_wrap}>
                     <div className={styles.profile_img}>

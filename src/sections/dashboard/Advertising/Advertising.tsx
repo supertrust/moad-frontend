@@ -25,7 +25,7 @@ export default function Advertising() {
   });
 
   const currentDate = new Date();
-  const formatDate = currentDate.toLocaleDateString('ko');
+  const formatDate = currentDate.toLocaleDateString('ko', { month: "2-digit", year:"numeric", day:"2-digit"});
   const formatTime = currentDate.toLocaleTimeString('ko', { hour12: true , timeStyle: 'short', });
 
   return (

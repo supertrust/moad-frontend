@@ -23,3 +23,14 @@ export const useUpdateUserInfo = () => useMutation<void, string, UpdateUserInfoT
     mutationFn: (props) => axios.post("/api/update-myinfo", props),
     onSuccess: () =>  queryClient.invalidateQueries(["user"])
 })
+
+export const useUpdateUserProfileImage = () => useMutation<void, string, { profile_img: File}>({
+    mutationFn: async ({ profile_img }) => {
+        const formData = new FormData();
+        formData.append('profile_img', profile_img);
+        return (await axios.post("/api/update-profile-image", formData, {
+            headers: { "Content-Type": "multipart/form-data"}
+        }))
+    },
+    onSuccess: () =>  queryClient.invalidateQueries(["user"])
+})

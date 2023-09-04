@@ -1,3 +1,5 @@
+import { API_BASE_URL } from "@src/config";
+
 export const parseJwt = (token: string) => {
     try {
         return JSON.parse(atob(token.split(".")[1]));
@@ -66,3 +68,8 @@ export const getHoursAgoByDate = (serverDateTimeStamp: Date) => {
         }
     }
 };
+
+
+export const getFileUrl = (path: string) => {
+    return API_BASE_URL + path;
+}

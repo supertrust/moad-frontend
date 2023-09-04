@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Modal, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import useAuth from "@src/hooks/useAuth";
-import { useUpdateUserInfo } from "@src/apis/user";
+import { useUpdateUserInfo, useUpdateUserProfileImage } from "@src/apis/user";
 import Button from "@src/components/Button";
 import {
   FormProvider,
@@ -14,6 +14,7 @@ import {
 } from "@src/components/Form";
 import { styles } from "@src/sections/my-info";
 import Image from "next/image";
+import { getFileUrl } from "@src/helpers";
 
 const defaultValues = {
   company_phone_number: "",
@@ -41,6 +42,7 @@ const UpdateUserInfoSchema = Yup.object({
 
 export default function MyInfoScreen() {
   const { mutateAsync: updateUserInfo , isLoading } = useUpdateUserInfo();
+  const { mutateAsync: updateUserProfileImage } = useUpdateUserProfileImage();
   const { user } = useAuth();
   const email = user?.email;
   const [showModal, setShowModal] = useState(false);
@@ -87,6 +89,28 @@ export default function MyInfoScreen() {
     }
   }, [user]);
 
+
+  const [profileImage, setProfileImage] = useState<File | undefined >();
+  useEffect(() => {
+    const updateProfile = async () => {
+      if(profileImage){
+        const toastId = toast.loading("프로필 이미지 업데이트");
+        const options = { isLoading: false, autoClose: 3000, closeButton: true}
+        await updateUserProfileImage({ profile_img: profileImage } , {
+          onSuccess: () => {
+            setProfileImage(undefined)
+            toast.update(toastId, { ...options, render: "프로필 이미지 변경 성공", type: "success" })
+          },
+          onError: (error) => {
+            setProfileImage(undefined)
+            toast.update(toastId, { ...options, render: error, type : "error" });
+          }
+        })
+      }
+    }
+    updateProfile();
+  },[profileImage])
+
   return (
     <>
       <Row>
@@ -109,7 +133,10 @@ export default function MyInfoScreen() {
                           alt=""
                         /> */}
                         <Image
-                          src="https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/my-info/img-default.png"
+                          src={user?.profile_img ? 
+                              getFileUrl(user.profile_img)  : 
+                              "https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/my-info/img-default.png"
+                          }
                           alt=""
                           width={200}
                           height={200}
@@ -120,11 +147,14 @@ export default function MyInfoScreen() {
                         placeholder="#"
                         id="input_file"
                         className={styles.input_file}
+                        onChange={(e) => setProfileImage(e.target.files ? e.target.files[0] : undefined)}
+                        accept="image/*"
                       />
                       <Button
                         type="button"
                         id="photo_btn"
                         className={styles.photo_btn}
+                        onClick={() => document.getElementById('input_file')?.click()}
                       />
                     </div>
                     <div className={styles.profile_text}>

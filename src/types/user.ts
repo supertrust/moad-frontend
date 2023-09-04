@@ -10,6 +10,7 @@ export interface IUser {
     id: number
     sector: string;
     role: "Advertiser" | "Admin" | "Cargo";
+    profile_img: string;
 }
 
 export type GetUserPropsType = {

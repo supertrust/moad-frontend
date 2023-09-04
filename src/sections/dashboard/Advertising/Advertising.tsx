@@ -24,6 +24,10 @@ export default function Advertising() {
     for_admin: userRole?.role_name === "Admin",
   });
 
+  const currentDate = new Date();
+  const formatDate = currentDate.toLocaleDateString('ko');
+  const formatTime = currentDate.toLocaleTimeString('ko', { hour12: true , timeStyle: 'short', });
+
   return (
     <>
       <div className={`${styles.adStatus}`}>
@@ -33,7 +37,7 @@ export default function Advertising() {
           </div>
           <div className={styles.line}></div>
           <div className={`${styles.text} !px-[0px]`}>
-            <span>2023. 03. 10 오전 12:00 기준</span>
+            <span>{formatDate} {formatTime} 기준</span>
           </div>
         </div>
       </div>

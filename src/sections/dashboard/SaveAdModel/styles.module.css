@@ -255,9 +255,13 @@ body .div {
   transform: rotate(180deg);
 }
 
+#ad_apply_modal .ad_modal_wrap .ad_apply_content{
+  padding: 30px;
+}
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step {
   padding: 0px 30px;
   margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap {
@@ -1529,6 +1533,14 @@ body .div {
 }
 
 .terms_text {
+  color: #999;
+font-family: Noto Sans KR;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.terms_text {
   overflow-y: auto;
   height: 260px;
   margin: 30px 0 40px;
@@ -1536,6 +1548,7 @@ body .div {
 
 .terms_company {
   padding-top: 35px;
+  margin-bottom: 135px;
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;

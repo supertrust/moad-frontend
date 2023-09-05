@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState, useRef, forwardRef } from 'react'
 import { Controller, FormProvider, Yup, yupResolver, useForm } from '@src/components/Form';
 import { ThreeDots } from "react-loader-spinner";
 import { useGetOperatingAreas, useGetVehicles } from "@src/apis/advertisement";
@@ -13,7 +13,7 @@ import clsx from 'clsx';
 import Button from '@src/components/Button';
 import { Loader } from 'rsuite';
 import Link from 'next/link';
-
+import DatePicker from "react-datepicker";
 
 type FormDataType = {
     ad_name: string;
@@ -151,7 +151,23 @@ const SaveAdForm = ({ onCancel, onSubmitForm,isLoadingSaveAdvertisement }: { onC
             type && setIsAreaVisible(type=="fixed_ad")
         })
     }, [watch]);
-
+    function CustomInput(props) {
+        return (
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              onClick={props.onClick}
+              value={startDate}
+              onChange={props.onChange}
+              readOnly
+            />
+            <svg  onClick={props.onClick} className='absolute right-[12px] top-[30%] z-[99]' width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.3335 1.99996H11.6668V1.33329C11.6668 0.966626 11.3668 0.666626 11.0002 0.666626C10.6335 0.666626 10.3335 0.966626 10.3335 1.33329V1.99996H3.66683V1.33329C3.66683 0.966626 3.36683 0.666626 3.00016 0.666626C2.6335 0.666626 2.3335 0.966626 2.3335 1.33329V1.99996H1.66683C0.933496 1.99996 0.333496 2.59996 0.333496 3.33329V14C0.333496 14.7333 0.933496 15.3333 1.66683 15.3333H12.3335C13.0668 15.3333 13.6668 14.7333 13.6668 14V3.33329C13.6668 2.59996 13.0668 1.99996 12.3335 1.99996ZM11.6668 14H2.3335C1.96683 14 1.66683 13.7 1.66683 13.3333V5.33329H12.3335V13.3333C12.3335 13.7 12.0335 14 11.6668 14Z" fill="#999999"/>
+            </svg>
+          </div>
+        );
+      }
     const trucks = [Truck01, Truck02, Truck03]
     return (
         <FormProvider methods={methods}>
@@ -330,21 +346,32 @@ const SaveAdForm = ({ onCancel, onSubmitForm,isLoadingSaveAdvertisement }: { onC
                                     )}
                                 />
                             </div>
-                            <div className={`${styles.ad_start_date} ${styles.input_wrap}`}>
+                            <div className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative`}>
                                 <div className={styles.sub_title}>시작일</div>
                                 <Controller
                                     name="start_date"
                                     control={control}
                                     render={({ field: { value, onChange } }) => (
-                                        <Form.Control
+                                        <>
+                                        {/* <Form.Control
                                             value={value}
                                             onChange={e => onChange(e.target.value)}
                                             type="date"
                                             name="doj"
                                             placeholder="Date of Joining"
+                                        /> */}
+                                        {/* {value} */}
+                                        <DatePicker
+                                         dateFormat="yyyy-mm-dd"
+                                        //  locale={locale}
+                                        selected={new Date(value)}
+                                        onChange={(date: string) => setStartDate(new Date(date).toISOString().split("T")[0])}
+                                        customInput={<CustomInput />}
                                         />
+                                        </>
                                     )}
                                 />
+                                
                             </div>
                             <div className={styles.input_wrap}>
                                 <div className={styles.sub_title}>총 광고기간</div>

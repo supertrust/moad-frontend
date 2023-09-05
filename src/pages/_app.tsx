@@ -3,6 +3,7 @@ import "@src/styles/globals.css";
 import "@src/styles/responsive.css";
 import "rsuite/dist/rsuite.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-datepicker/dist/react-datepicker.css";
 import ReactQueryClient from "@src/services/ReactQueryClient";
 import { AuthProvider } from "@src/contexts/AuthContext";
 import Layout from "@src/layout";

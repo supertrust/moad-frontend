@@ -3913,6 +3913,43 @@ input:focus-visible {
   padding: 80px 0;
   margin: 180px auto 280px;
 }
+.select-box .adlist{
+  background-image: url('/images/advertising/arrow.png');
+  background-size : auto;
+}
+.customdatepickerwidth .react-datepicker-wrapper{
+  width: 100% !important;
+}
+.customdatepickerwidth .react-datepicker,.customdatepickerwidth .react-datepicker__month-container,.react-datepicker-popper{
+  min-width: 100% !important;
+}
+.customdatepickerwidth .react-datepicker-popper[data-placement^=bottom]{
+  padding-top: 1px !important;
+}
+.customdatepickerwidth .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::after,.customdatepickerwidth .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before{
+  display: none;
+}
+.customdatepickerwidth .react-datepicker__header {
+  padding: 0 !important;
+  background: #FFFFFF !important;
+  border-bottom: none !important;
+}
+.customdatepickerwidth .react-datepicker__current-month {
+  padding: 14px 0 14px 0;
+  margin: 0 20px;
+  border-bottom:1px solid #efefef !important;
+}
+.customdatepickerwidth .react-datepicker__day-names {
+  margin-bottom:0px !important;
+  border-bottom: none !important;
+}
+.customdatepickerwidth .react-datepicker__navigation{
+  top: 16px;
+}
+.customdatepickerwidth .react-datepicker__day--selected,.react-datepicker__day--keyboard-selected:hover, .react-datepicker__month-text--keyboard-selected:hover, .react-datepicker__quarter-text--keyboard-selected:hover, .react-datepicker__year-text--keyboard-selected:hover,.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected{
+background-color: #EEEEEE !important;
+color: #000 !important;
+}
 
 @media screen and (max-width: 767px) {
   .navbar-toggler:focus {

@@ -93,7 +93,7 @@
 .adAddBtn {
     width: 149px;
     padding: 10px;
-    height: 43px;
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,15 +109,16 @@
 
 
 .adDeleteBtn {
-    padding: 2px 15px;
+    padding: 8px 24px;
     font-weight: 500;
     font-size: 14px;
-    line-height: 36px;
+    line-height: normal;
     text-align: center;
     color: #999999;
     border: 1px solid #eeeeee;
     border-radius: 5px;
     cursor: pointer;
+    height: 36px;
 }
 
 .listHd {

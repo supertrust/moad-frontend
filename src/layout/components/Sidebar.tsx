@@ -13,7 +13,7 @@ function Sidebar({ msg }: SidebarProps) {
 
   const barStatus = (status: string) => {
     setTab(status);
-    msg(status);
+    // msg(status);
   };
 
   const handleLogout = async () => {
@@ -22,6 +22,12 @@ function Sidebar({ msg }: SidebarProps) {
     } catch (error) {
       console.error("Error logging out:", error);
     }
+  };
+
+  const Tabs = {
+    "fixed_ad" : '고정',
+    "national_ad" : '국가',
+    "spot_ad" : "스팟"
   };
 
   return (
@@ -48,6 +54,7 @@ function Sidebar({ msg }: SidebarProps) {
               className="link"
               onClick={() => {
                 barStatus("Advertising Management");
+                msg("광고관리");
               }}
             >
               <i className="icon home"></i>
@@ -65,6 +72,7 @@ function Sidebar({ msg }: SidebarProps) {
               className="link"
               onClick={() => {
                 barStatus("cargo dashboard");
+                msg("cargo dashboard");
               }}
             >
               <i className="icon home"></i>
@@ -82,6 +90,7 @@ function Sidebar({ msg }: SidebarProps) {
                 className="link"
                 onClick={() => {
                   barStatus("Inquiry");
+                  msg("Inquiry");
                 }}
               >
                 <i className="icon center"></i>
@@ -101,6 +110,7 @@ function Sidebar({ msg }: SidebarProps) {
                   className="link"
                   onClick={() => {
                     barStatus("Ad Management");
+                    msg("Ad Management");
                   }}
                 >
                   <i className="icon home"></i>
@@ -118,6 +128,7 @@ function Sidebar({ msg }: SidebarProps) {
                   className="link"
                   onClick={() => {
                     barStatus("Statistics");
+                    msg("통계");
                   }}
                 >
                   <i className="icon statistics"></i>
@@ -133,6 +144,7 @@ function Sidebar({ msg }: SidebarProps) {
                   className="link"
                   onClick={() => {
                     barStatus("My Page");
+                    msg("내 정보");
                   }}
                 >
                   <i className="icon mypage"></i>
@@ -156,6 +168,7 @@ function Sidebar({ msg }: SidebarProps) {
                   href={"/dashboard/customer-service/notice"}
                   onClick={() => {
                     barStatus("Announcement");
+                    msg("공지사항");
                   }}
                 >
                   <i className="icon center"></i>
@@ -170,6 +183,7 @@ function Sidebar({ msg }: SidebarProps) {
                       }
                       onClick={() => {
                         barStatus("Announcement");
+                        msg("공지사항");
                       }}
                     >
                       고객센터
@@ -183,6 +197,7 @@ function Sidebar({ msg }: SidebarProps) {
                       }
                       onClick={() => {
                         barStatus("Guide");
+                        msg("가이드");
                       }}
                     >
                       가이드
@@ -196,6 +211,7 @@ function Sidebar({ msg }: SidebarProps) {
                       }
                       onClick={() => {
                         barStatus("FAQ");
+                        msg("FAQ");
                       }}
                     >
                       FAQ
@@ -209,6 +225,7 @@ function Sidebar({ msg }: SidebarProps) {
                       }
                       onClick={() => {
                         barStatus("Inquiry");
+                        msg("문의내역");
                       }}
                     >
                       1:1문의
@@ -224,6 +241,7 @@ function Sidebar({ msg }: SidebarProps) {
                       }
                       onClick={() => {
                         barStatus("Policies and Terms");
+                        msg("정책 및 약관");
                       }}
                     >
                       정책 및 약관

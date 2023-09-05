@@ -146,7 +146,7 @@ body .div {
   .slide_wrap
   .info_img_wrap
   .img_title {
-  margin: 14px 0 22px;
+  margin: 20px 0 22px;
   font-weight: 400;
   font-size: 13px;
   line-height: 19px;
@@ -255,8 +255,8 @@ body .div {
   transform: rotate(180deg);
 }
 
-#ad_apply_modal .ad_modal_wrap .ad_apply_content {
-  padding: 40px 30px;
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step {
+  padding: 0px 30px;
   margin: 0 auto;
 }
 
@@ -1021,7 +1021,7 @@ body .div {
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section {
   position: relative;
-  display: none;
+  /* display: none; */
 }
 
 #ad_apply_modal
@@ -1292,7 +1292,7 @@ body .div {
   .price_section
   .price_box {
   width: 343px;
-  padding: 17px 20px;
+  /* padding: 17px 20px; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -1311,10 +1311,10 @@ body .div {
   .price_text {
   display: block;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 26px;
   letter-spacing: -0.015em;
-  color: #2f48d1;
+  color: #999999;
 }
 
 #ad_apply_modal

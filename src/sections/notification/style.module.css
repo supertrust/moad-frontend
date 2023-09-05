@@ -166,7 +166,7 @@
 
 @media screen and (max-width:1400px) {
 	.notification_center_content .notification_wrap {
-		grid-template-columns: repeat(2, 1fr)
+		grid-template-columns: repeat(3, 1fr)
 	}
 
 	.only_pc {

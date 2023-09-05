@@ -15,7 +15,7 @@ function AdAgreementForm({
       <div className={styles.ad_apply_title}>
         <p>광고신청</p>
       </div>
-      <div className={styles.ad_apply_content}>
+      <div className={`${styles.agrement_content} ${styles.ad_apply_content}`}>
         <div className={styles.terms_title}>이카루스 광고 신청 약관 계약서</div>
         <div className={styles.terms_text}>
           <div className={styles.terms_content}>

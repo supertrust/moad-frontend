@@ -93,7 +93,12 @@ export default function MyInfoScreen() {
   const [profileImage, setProfileImage] = useState<File | undefined >();
   useEffect(() => {
     const updateProfile = async () => {
+      const allowedImages = ['image/jpeg', 'image/jpg'];
       if(profileImage){
+        if(!allowedImages.includes(profileImage.type)){
+          setProfileImage(undefined)
+          return toast(".jpg, .jpeg 파일만 허용됩니다.", { type: "error"} );
+        }
         const toastId = toast.loading("프로필 이미지 업데이트");
         const options = { isLoading: false, autoClose: 3000, closeButton: true}
         await updateUserProfileImage({ profile_img: profileImage } , {
@@ -133,8 +138,8 @@ export default function MyInfoScreen() {
                           alt=""
                         /> */}
                         <Image
-                          src={user?.profile_img ? 
-                              getFileUrl(user.profile_img)  : 
+                          src={user?.image ? 
+                              getFileUrl(user.image)  : 
                               "https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/my-info/img-default.png"
                           }
                           alt=""

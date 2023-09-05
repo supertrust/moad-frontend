@@ -19,7 +19,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
     const [open, setOpen] = useState(false);
     const [agreed, setAgreed] = useState(false);
 
-    const { mutateAsync: saveAdvertisement } = useSaveAdvertisement();
+    const { mutateAsync: saveAdvertisement,isLoading : isLoadingSaveAdvertisement } = useSaveAdvertisement();
     const { mutateAsync: deleteAdvertisement } = useDeleteAdvertisement();
 
     const onSubmitForm = async (props: SaveAdvertisementType) => {
@@ -61,7 +61,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
                 <SaveAdSuccessPopup onOk={onCancel} />
             ) : (
                 !id ? (
-                    <SaveAdForm onCancel={onCancel} onSubmitForm={onSubmitForm} />
+                    <SaveAdForm onCancel={onCancel} onSubmitForm={onSubmitForm} isLoadingSaveAdvertisement={isLoadingSaveAdvertisement} />
                 ) : (
                     <AdAgreementForm onDisagree={onDisagree} onAgree={onAgree} />
                 ))}

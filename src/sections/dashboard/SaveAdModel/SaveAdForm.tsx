@@ -61,17 +61,22 @@ const adTypes = [
 
 const SaveAdvertisementSchema = Yup.object().shape({
     type: Yup.string().required("고유형을 선택해주세요."),
-    ad_name: Yup.string().required("고명을 입력해주세요."),
-    ad_period: Yup.number().required("고기간을 입력해주세요."),
-    start_date: Yup.string().required("시작일을 입력해주세요."),
-    vehicle_details: Yup.object().required("화주 선택을 해주세요."),
+    ad_name: Yup.string().required("광고이름을 입력해주세요."),
+    ad_period: Yup.number().required("광고기간을 6개월 또는 12개월 선택해주세요."),
+    start_date: Yup.string().required("시작일을 선택해주세요. (등록 기준 1달 이후 선택)"),
+    vehicle_details: Yup.object().test(
+        'is-not-empty-object',
+        '운행차량을 입력해주세요.',
+        (value) => Object.keys(value).length > 0
+    ),
     operating_area: Yup.array().when('type', ([type], schema) =>
-        type !== 'spot_ad' ? schema.min(1, "운영지역을 선택해주세요.") : schema,
+        type == 'fixed_ad' ? schema.min(1, "운행지역을 선택해주세요.") : schema,
     )
 })
 
 
-const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubmitForm: (props: SaveAdvertisementType) => Promise<void> }) => {
+const SaveAdForm = ({ onCancel, onSubmitForm,isLoadingSaveAdvertisement }: { onCancel: VoidFunction, onSubmitForm: (props: SaveAdvertisementType) => Promise<void> ,
+    isLoadingSaveAdvertisement : boolean}) => {
     const methods = useForm<FormDataType>({
         defaultValues,
         //@ts-ignore
@@ -132,6 +137,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
         if (names.length) {
             const element = document.getElementById(`input_${names[0]}`);
             element?.scrollIntoView();
+            element?.focus();
         }
     });
 
@@ -141,7 +147,8 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
             start_date && setStartDate(start_date);
             // @ts-ignore
             vehicle_details && setVehicleDetails(vehicle_details);
-            type && setIsAreaVisible(type !== 'national_ad' ?? type !== 'spot_ad')
+            console.log('hello type o ',type)
+            type && setIsAreaVisible(type=="fixed_ad")
         })
     }, [watch]);
 
@@ -541,7 +548,7 @@ const SaveAdForm = ({ onCancel, onSubmitForm }: { onCancel: VoidFunction, onSubm
                                     className={`${styles.btns} ${styles.active} ${styles.ad_apply_btn}`}
                                     onClick={onSubmit}
                                 >
-                                    {isSubmitting ? (
+                                    {isLoadingSaveAdvertisement ? (
                                         <div className="d-flex justify-content-center">
                                             <ThreeDots
                                                 height="20"

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useAuth from "@src/hooks/useAuth";
 import Button from "@src/components/Button";
+import { getFileUrl } from "@src/helpers";
 interface HeaderProps {
   text: string;
 }
@@ -39,9 +40,9 @@ function Header(props: HeaderProps) {
                   <Dropdown.Toggle id="dropdown-basic">
                     <div className="my-photo">
                       <Image
-                        src="/images/img-my-pic.png"
+                        src={user?.image ? getFileUrl(user?.image) : "/images/account_circle.png"}
                         alt=""
-                        className="img"
+                        className="img rounded-full"
                         width={40}
                         height={40}
                       />
@@ -74,7 +75,7 @@ function Header(props: HeaderProps) {
             <h1 className="logo-wrap">
               <Link href="/dashboard" className="link">
                 <Image
-                  src="assets/images/icons/logo-mb.svg"
+                  src="/assets/images/icons/logo-mb.svg"
                   alt=""
                   width={120}
                   height={50}
@@ -82,7 +83,15 @@ function Header(props: HeaderProps) {
               </Link>
             </h1>
             <div className="util-wrap">
-              <Link href="/dashboard/my-info" className="info-btn"></Link>
+              <Link href="/dashboard/my-info" className="">
+                <Image
+                  src={user?.image ? getFileUrl(user?.image) : "/images/account_circle.png"}
+                  alt=""
+                  className="rounded-full"
+                  width={30}
+                  height={30}
+                />
+              </Link>
               <Button
                 onClick={toggle}
                 type="button"

@@ -13,7 +13,7 @@ const defaultValues = {
 }
 
 const LoginSchema = Yup.object({
-  email: Yup.string().required("아이디를 입력해주세요."),
+  email: Yup.string().email("유효한 이메일을 입력하세요.").required("아이디(이메일)를 확인해주세요."),
   password: Yup.string().required("비밀번호를 입력해주세요."),
 })
 
@@ -95,7 +95,7 @@ const LoginFormModule = () => {
           // onChange={(e) => setpassword(e.target.value)}
           right={
             <span 
-                className={`icon pw-show ${!visiblePassword && 'active'}`}
+                className={`icon pw-show ${visiblePassword && 'active'}`}
                 onClick={() => setVisiblePassword(!visiblePassword)}
             />
           }

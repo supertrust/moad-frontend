@@ -133,15 +133,8 @@ export default function MyInfoScreen() {
                   <div className={styles.profile_wrap}>
                     <div className={styles.profile_img}>
                       <div className={styles.user_photo}>
-                        {/* <img
-                          src="https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/my-info/img-default.png"
-                          alt=""
-                        /> */}
                         <Image
-                          src={user?.image ? 
-                              getFileUrl(user.image)  : 
-                              "https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/my-info/img-default.png"
-                          }
+                          src={user?.image ? getFileUrl(user?.image) : "/images/account_circle.png"}
                           alt=""
                           width={200}
                           height={200}

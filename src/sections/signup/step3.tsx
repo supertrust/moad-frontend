@@ -35,6 +35,13 @@ const defaultValues = {
   verify_business_registration_number: false,
 };
 
+const allowedFiles = [
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+];
 
 const RegisterSchema = Yup.object({
   company_name: Yup.string().required("회사명은 필수 입력 사항입니다."),
@@ -63,13 +70,7 @@ const RegisterSchema = Yup.object({
       ".pdf, .jpg, .jpeg, .png 파일만 허용됩니다.",
       (value: any) => {
         if (value) {
-          return [
-            "application/msword",
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            "application/pdf",
-            "image/jpeg",
-            "image/png",
-          ].includes(value.type);
+          return allowedFiles.includes(value.type);
         }
         return true;
       }
@@ -160,6 +161,7 @@ const Step3 = ({
   });
 
 
+
   return (
     <div className="step03 step-section">
       <div className="left">
@@ -194,6 +196,7 @@ const Step3 = ({
                   name="company_name"
                   className="company-input"
                   placeholder="회사명 입력"
+                  maxLength={30}
                   spellCheck="false"
                   data-ms-editor="true"
                   caption={
@@ -380,6 +383,8 @@ const Step3 = ({
                           setFile(file);
                         }
                       }}
+                      accept={allowedFiles.toString()}
+                      // accept="image/jpeg, image/jpg, image/png, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"
                     />
                   </div>
                   <div className="file-info">

@@ -88,7 +88,7 @@ export default function ChangePasswordScreen() {
                       placeholder="비밀번호 입력"
                       right={
                         <i
-                          className={clsx(`icon pw-show` , !showPassword.old_password && 'active')}
+                          className={clsx(`icon pw-show` , showPassword.old_password && 'active')}
                           onClick={() => toggleVisiblePassword('old_password')}
                         />
                       }
@@ -103,7 +103,7 @@ export default function ChangePasswordScreen() {
                       placeholder="새 비밀번호 입력"
                       right={
                         <i
-                          className={clsx(`icon pw-show` , !showPassword.new_password && 'active')}
+                          className={clsx(`icon pw-show` , showPassword.new_password && 'active')}
                           onClick={() => toggleVisiblePassword('new_password')}
                         />
                       }
@@ -118,7 +118,7 @@ export default function ChangePasswordScreen() {
                       placeholder="새 비밀번호 재입력"
                       right={
                         <i
-                          className={clsx(`icon pw-show` , !showPassword.confirm_password && 'active')}
+                          className={clsx(`icon pw-show` , showPassword.confirm_password && 'active')}
                           onClick={() => toggleVisiblePassword('confirm_password')}
                         />
                       }

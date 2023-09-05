@@ -27,7 +27,7 @@ const RegisterSchema = Yup.object({
         .required("비밀번호가 필요합니다.")
         .matches(
             PASSWORD_REGEX,
-            "비밀번호는 문자, 숫자, 기호를 조합하여 8자 이상이어야 합니다."
+            "비밀번호는 문자, 숫자, 특수 문자를 조합하여 8자 이상이어야 합니다."
         )
         .min(8, "비밀번호는 8자 이상이어야 합니다."),
     confirm_password: Yup.string()
@@ -44,10 +44,9 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
     const methods = useForm<RegisterPropsType>({
         defaultValues,
         //@ts-ignore
-        //@ts-ignore
         resolver: yupResolver(RegisterSchema)
     });
-    const { handleSubmit ,  formState : { dirtyFields } , setError , setFocus} = methods;
+    const { handleSubmit ,  formState : { dirtyFields , errors } , setError , setFocus} = methods;
 
     const [visiblePassword, setVisiblePassword ] = useState(false);
     const [visiblePasswordConfirmation, setVisiblePasswordConfirmation ] = useState(false);
@@ -66,7 +65,6 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
       );
     })
 
-    console.log(dirtyFields,'ok')
 
     return (
         <div className="step02 step-section">
@@ -99,6 +97,7 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
                                     id="email"
                                     label="아이디 (이메일)"
                                     onBlur={(event) => {
+                                        if(errors.email) return
                                         event.target.value && verifyInput( { key: 'email', value: event.target.value }, {
                                             onSuccess: () => {
                                                 setError('email', { message : "" })
@@ -138,7 +137,7 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
                                     label="비밀번호 확인"
                                     right={
                                         <span 
-                                            className={`icon pw-show ${!visiblePasswordConfirmation && 'active'}`}
+                                            className={`icon pw-show ${visiblePasswordConfirmation && 'active'}`}
                                             onClick={() => setVisiblePasswordConfirmation(!visiblePasswordConfirmation)}
                                         />
                                     }

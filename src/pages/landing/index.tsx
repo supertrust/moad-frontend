@@ -188,7 +188,14 @@ export default function LandingPage() {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className={show ? "show navbar-collapse justify-content-end" : "navbar-collapse justify-content-end"} id="navbarNav">
+            <div
+              className={
+                show
+                  ? "show navbar-collapse justify-content-end"
+                  : "navbar-collapse justify-content-end"
+              }
+              id="navbarNav"
+            >
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="#">
@@ -212,118 +219,128 @@ export default function LandingPage() {
       </header>
 
       <main>
-        <section className="hero-section">
-          <div className="container my-3">
-            <div className="row h-100">
-              <div className="col-md-5 col-sm-12">
-                <div className="hero-content">
-                  <h1>이카루스</h1>
-                  <p>
-                    움직이는 광고판,
-                    <br />
-                    전국광고의 시작
-                  </p>
-                  <a href="#">서비스 문의하기</a>
+        <section>
+          <div className="hero-section max_w_screen">
+            <div className="container my-3">
+              <div className="row h-100">
+                <div className="col-md-5 col-sm-12">
+                  <div className="hero-content">
+                    <h1>이카루스</h1>
+                    <p>
+                      움직이는 광고판,
+                      <br />
+                      전국광고의 시작
+                    </p>
+                    <a href="#">서비스 문의하기</a>
+                  </div>
                 </div>
+                <div className="col-md-7 col-sm-12"></div>
               </div>
-              <div className="col-md-7 col-sm-12"></div>
             </div>
           </div>
         </section>
         <section>
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="thired-sec">
-                  <h1>
-                    최고를 지향하며 사명감과 신념으로
-                    <br />
-                    <b>차량광고</b>의 선두주자로 여러분의 곁에 서고자 하는
-                    <br />
-                    <b>우리는</b> <b className="bold-font">이카루스</b>
-                    <b>입니다.</b>
-                  </h1>
-                  <p>
-                    시인성, 이동성, 경제성 모든 것을 만족시키고, 효율과 능률적인
-                    면에서 최고를 지향합니다.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="mask-group-section">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-7 col-sm-12">
-                <div className="track-content b">
-                  <h1>
-                    움직이는 광고판,
-                    <br />
-                    차량 랩핑광고를 소개합니다.
-                  </h1>
-                  <div className="track-sub-headings mt-5">
-                    <h2>기업의 가치와 품위</h2>
-                    <p>브랜드 광고를 통한 기업의 가치와 품위를 높여줍니다..</p>
-                  </div>
-
-                  <div className="track-sub-headings mt-5">
-                    <h2>좋은 시인성과 이동성</h2>
+          <div className="max_w_screen">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <div className="thired-sec">
+                    <h1>
+                      최고를 지향하며 사명감과 신념으로
+                      <br />
+                      <b>차량광고</b>의 선두주자로 여러분의 곁에 서고자 하는
+                      <br />
+                      <b>우리는</b> <b className="bold-font">이카루스</b>
+                      <b>입니다.</b>
+                    </h1>
                     <p>
-                      뛰어난 시인성으로 고객을 사로잡아 강하게 인식시킵니다.
-                    </p>
-                  </div>
-
-                  <div className="mt-5 track-sub-headings">
-                    <h2>적은 비용으로 최대의 효과</h2>
-                    <p>
-                      면적 대비 저렴한 비용과 뛰어난 노출 효과로 최대의 효율을
-                      발휘합니다
+                      시인성, 이동성, 경제성 모든 것을 만족시키고, 효율과
+                      능률적인 면에서 최고를 지향합니다.
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="col-md-5 col-sm-12"></div>
             </div>
           </div>
         </section>
         <section>
-          <div className="container forth-sec">
-            <div className="row align-items-start">
-              <div className="col-md-6 col-sm-12 chats-con-img">
-                <div className="fourth-inner-text">
-                  <h1>
-                    화물 랩핑광고 <br />
-                    어디서 어떻게 <br />
-                    시작해야 할까요?
-                  </h1>
-                  <p>원하는 차량 선택부터 광고리포트까지 모두 이카루스에서!</p>
-                </div>
+          <div className="mask-group-section max_w_screen">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-8 col-sm-12">
+                  <div className="track-content b">
+                    <h1>
+                      움직이는 광고판,
+                      <br />
+                      차량 랩핑광고를 소개합니다.
+                    </h1>
+                    <div className="track-sub-headings mt-5">
+                      <h2>기업의 가치와 품위</h2>
+                      <p>브랜드 광고를 통한 기업의 가치와 품위를 높여줍니다.</p>
+                    </div>
 
-                <div>
-                  <img src="/images/Landing-page/chats-img.png" alt="" />
+                    <div className="track-sub-headings mt-5">
+                      <h2>좋은 시인성과 이동성</h2>
+                      <p>
+                        뛰어난 시인성으로 고객을 사로잡아 강하게 인식시킵니다.
+                      </p>
+                    </div>
+
+                    <div className="mt-5 track-sub-headings">
+                      <h2>적은 비용으로 최대의 효과</h2>
+                      <p>
+                        면적 대비 저렴한 비용과 뛰어난 노출 효과로 최대의 효율을
+                        발휘합니다
+                      </p>
+                    </div>
+                  </div>
                 </div>
+                <div className="col-md-4 col-sm-12"></div>
               </div>
-              <div className="col-md-6 col-sm-12">
-                <div className="chats-div mt-5">
-                  <div className="chats-send">
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="max_w_screen">
+            <div className="container forth-sec">
+              <div className="row align-items-start">
+                <div className="col-md-6 col-sm-12 chats-con-img">
+                  <div className="fourth-inner-text">
+                    <h1>
+                      화물 랩핑광고 <br />
+                      어디서 어떻게 <br />
+                      시작해야 할까요?
+                    </h1>
                     <p>
-                      내가 원하는 차량을 직접 선택할 수 있으며, <br />
-                      차량과의 계약부터 정산 진행까지
-                      <br /> 이카루스에서 도와드립니다.
+                      원하는 차량 선택부터 광고리포트까지 모두 이카루스에서!
                     </p>
                   </div>
-                  <div className="chats-rcv">
-                    <p>
-                      디자인 시안이 없어도 OK, 걱정하지 마세요!
-                      <br /> 직종에 맞는 최상의 디자인을 제작해드립니다.
-                    </p>
+
+                  <div>
+                    <img src="/images/Landing-page/chats-img.png" alt="" />
                   </div>
-                  <div className="chats-send">
-                    <p>
-                      실시간 광고 현황은 물론
-                      <br /> 광고 리포트까지 확인하실 수 있어요.
-                    </p>
+                </div>
+                <div className="col-md-6 col-sm-12">
+                  <div className="chats-div mt-5">
+                    <div className="chats-send">
+                      <p>
+                        내가 원하는 차량을 직접 선택할 수 있으며, <br />
+                        차량과의 계약부터 정산 진행까지
+                        <br /> 이카루스에서 도와드립니다.
+                      </p>
+                    </div>
+                    <div className="chats-rcv">
+                      <p>
+                        디자인 시안이 없어도 OK, 걱정하지 마세요!
+                        <br /> 직종에 맞는 최상의 디자인을 제작해드립니다.
+                      </p>
+                    </div>
+                    <div className="chats-send">
+                      <p>
+                        실시간 광고 현황은 물론
+                        <br /> 광고 리포트까지 확인하실 수 있어요.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -333,37 +350,39 @@ export default function LandingPage() {
       </main>
 
       <footer>
-        <section className="footer-bg">
-          <div className="container footer-sec mt-sec ">
-            <div className="row ">
-              <div className="col-md-12">
-                <h1 className="mb-5">
-                  차량광고 중개 플랫폼
-                  <br />
-                  이카루스와 함께 하세요
-                </h1>
-              </div>
-              <div className="col-md-12">
-                <div className="icons-content">
-                  <div className="stors-icons d-flex">
-                    <img src="/images/Landing-page/play-store.png" alt="" />
-                    <div>
-                      <h4>화물주 전용</h4>
-                      <p>다운로드</p>
+        <section>
+          <div className="footer-bg max_w_screen">
+            <div className="container footer-sec mt-sec ">
+              <div className="row ">
+                <div className="col-md-12">
+                  <h1 className="mb-5">
+                    차량광고 중개 플랫폼
+                    <br />
+                    이카루스와 함께 하세요
+                  </h1>
+                </div>
+                <div className="col-md-12">
+                  <div className="icons-content">
+                    <div className="stors-icons d-flex">
+                      <img src="/images/Landing-page/play-store.png" alt="" />
+                      <div>
+                        <h4>화물주 전용</h4>
+                        <p>다운로드</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="stors-icons d-flex">
-                    <img src="/images/Landing-page/apple.png" alt="" />
-                    <div>
-                      <h4>화물주 전용</h4>
-                      <p>다운로드</p>
+                    <div className="stors-icons d-flex">
+                      <img src="/images/Landing-page/apple.png" alt="" />
+                      <div>
+                        <h4>화물주 전용</h4>
+                        <p>다운로드</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="stors-icons d-flex">
-                    <img src="/images/Landing-page/logo-link.png" alt="" />
-                    <div>
-                      <h4>화물주 전용</h4>
-                      <p>다운로드</p>
+                    <div className="stors-icons d-flex">
+                      <img src="/images/Landing-page/logo-link.png" alt="" />
+                      <div>
+                        <h4>화물주 전용</h4>
+                        <p>다운로드</p>
+                      </div>
                     </div>
                   </div>
                 </div>

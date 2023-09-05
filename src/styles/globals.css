@@ -2812,7 +2812,8 @@ div#slide_wrap .list {
 .faq-content {
   padding: 20px 30px 43px 30px;
 }
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
   background: transparent !important;
 }
 .tab-section {
@@ -2894,8 +2895,8 @@ ul.pagination {
   justify-content: center !important;
   transform: unset !important;
 }
-.faq-content  .collapse.show {
-  visibility: UNSET;
+.faq-content .collapse.show {
+  visibility: unset;
 }
 
 ul.pagination .page-item.prev-btn a {
@@ -3463,8 +3464,9 @@ ul.pagination .page-item a:focus {
     center/1em auto no-repeat !important;
 }
 
-button[disabled=disabled], button:disabled{
-  @apply opacity-60
+button[disabled="disabled"],
+button:disabled {
+  @apply opacity-60;
 }
 
 .form-control {
@@ -3480,14 +3482,19 @@ button[disabled=disabled], button:disabled{
 }
 
 .form-control:focus,
-input:focus ,
-input:focus-visible{
+input:focus,
+input:focus-visible {
   @apply border-primary border;
   outline: 0;
   box-shadow: 0 0 0 0;
 }
 
 /*Landing page css start*/
+
+.max_w_screen {
+  max-width: 1600px;
+  margin: auto;
+}
 
 #landing-page-header {
   position: sticky;
@@ -3524,7 +3531,7 @@ input:focus-visible{
   background-position: right;
   background-size: contain;
   padding: 250px 0;
-  margin: 0 0 210px;
+  margin: 0 auto 210px;
 }
 
 .hero-banner {
@@ -3678,6 +3685,26 @@ input:focus-visible{
   box-shadow: 17px 0px 50px 0px rgba(8, 104, 253, 0.35);
   transition: 0.5s;
   cursor: pointer;
+  -webkit-animation: mover 1s infinite alternate;
+  animation: mover 1s infinite alternate;
+}
+
+@-webkit-keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes mover {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
 }
 
 .track-sub-headings:hover h2,
@@ -3766,7 +3793,7 @@ input:focus-visible{
 }
 
 .footer-bg {
-  margin: 270px 0 0;
+  margin: 270px auto 0;
   background-image: url("/images/Landing-page/footer-bg.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -3884,18 +3911,18 @@ input:focus-visible{
   background-position: right;
   background-size: contain;
   padding: 80px 0;
-  margin: 180px 0 280px;
+  margin: 180px auto 280px;
 }
 
 @media screen and (max-width: 767px) {
-  .navbar-toggler:focus{
+  .navbar-toggler:focus {
     outline: none !important;
     box-shadow: none !important;
   }
 
   #navbarNav {
     transform: translateX(-100%);
-    transition: .5s;
+    transition: 0.5s;
     position: fixed;
     background: #fff;
     width: 100%;
@@ -3908,7 +3935,7 @@ input:focus-visible{
 
   #navbarNav.show {
     transform: translateX(0);
-    transition: .5s;
+    transition: 0.5s;
   }
 
   .icons-content {
@@ -3919,7 +3946,7 @@ input:focus-visible{
 
   .footer-bg {
     padding: 50px 0 !important;
-    margin: 20px 0 0 !important;
+    margin: 20px auto 0 !important;
   }
 
   .chats-div {
@@ -3989,33 +4016,33 @@ input:focus-visible{
   .hero-section {
     background-position: right 100% !important;
     padding: 0 0 100% !important;
-    margin: 0 0 50px !important;
+    margin: 0 auto 50px !important;
   }
 
   .mask-group-section {
     background-position: right 100% !important;
     padding: 0 0 100% !important;
-    margin: 50px 0 !important;
+    margin: 50px auto !important;
   }
 
   .track-sub-headings {
     margin: 20px 0 0 !important;
   }
 
-  .forth-sec .fourth-inner-text p{
+  .forth-sec .fourth-inner-text p {
     margin: 20px 0 !important;
   }
 }
 
 @media (max-width: 1024px) and (min-width: 768px) {
-  .navbar-toggler:focus{
+  .navbar-toggler:focus {
     outline: none !important;
     box-shadow: none !important;
   }
 
   #navbarNav {
     transform: translateX(-100%);
-    transition: .5s;
+    transition: 0.5s;
     position: fixed;
     background: #fff;
     width: 100%;
@@ -4028,12 +4055,12 @@ input:focus-visible{
 
   #navbarNav.show {
     transform: translateX(0);
-    transition: .5s;
+    transition: 0.5s;
   }
 
   .footer-bg {
     padding: 50px 0 !important;
-    margin: 20px 0 0 !important;
+    margin: 20px auto 0 !important;
   }
 
   .chats-div {
@@ -4103,23 +4130,22 @@ input:focus-visible{
   .hero-section {
     background-position: right 100% !important;
     padding: 15% 0 !important;
-    margin: 0 0 50px !important;
+    margin: 0 auto 50px !important;
   }
 
   .mask-group-section {
     background-position: right 100% !important;
     padding: 0 !important;
-    margin: 50px 0 !important;
+    margin: 50px auto !important;
   }
 
   .track-sub-headings {
     margin: 20px 0 0 !important;
   }
 
-  .forth-sec .fourth-inner-text p{
+  .forth-sec .fourth-inner-text p {
     margin: 20px 0 !important;
   }
 }
-
 
 /*Landing page css end*/

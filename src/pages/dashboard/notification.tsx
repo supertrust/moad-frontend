@@ -12,11 +12,13 @@ export default function NotificationScreen() {
     const { data :notifications } = data || {}
 
     // pagination
-    const itemsPerPage = 8;
-    const [currentPage, setCurrentPage] = useState(1); // Current page number
-    const totalItems = 8; // Total number of items
-    const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
+    const itemsPerPage = (window.innerWidth > 767) ? 12 : 5;
 
+    const [currentPage, setCurrentPage] = useState(1); // Current page number
+    const totalItems = notifications?.length?? 0; // Total number of items
+    const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
+    const prevItems = (currentPage - 1) * itemsPerPage;
+    const currentItems = currentPage * itemsPerPage;
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
@@ -47,7 +49,7 @@ export default function NotificationScreen() {
                 <div className={styles.only_pc}>
                     <ul className={styles.notification_wrap}>
                         {notifications
-                            ?.map((data, index) => (
+                            ?.map((data, index) => index >= prevItems && index < currentItems && (
                                 <li key={index} className={styles.list}>
                                     <div className={styles.info}>
                                         <div className={styles.title}>{data.title}</div>
@@ -71,7 +73,7 @@ export default function NotificationScreen() {
                 <div className={styles.only_mb}>
                     <ul className={styles.notification_wrap}>
                         {notifications
-                            ?.map((data, index) => (
+                            ?.map((data, index) => index >= prevItems && index < currentItems && (
                                 <li key={index} className={styles.list}>
                                     <div className={styles.info}>
                                         <div className={styles.title}>{data.title}</div>
@@ -86,14 +88,14 @@ export default function NotificationScreen() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={styles.date}>{getNotificationCreatedTime(data.created_at)}</div>
+                                    <div className={styles.date}>{getHoursAgoByDate(data.created_at)}</div>
                                 </li>
                             ))}
                     </ul>
                 </div>
 
                 {/* Render the Pagination component */}
-                <div className="flex justify-center">
+                <div className="flex justify-center mt-[40px] notification_pagination">
                     <Pagination
                         current={currentPage}
                         total={totalItems}

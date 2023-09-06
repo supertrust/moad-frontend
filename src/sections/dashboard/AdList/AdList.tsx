@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Form, Pagination } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { Pagination } from "antd";
 import AdModel, { AdModelRef } from "../SaveAdModel";
 import styles from './style.module.css'
 import { useDeleteAdvertisement, useGetAdvertisements, useUpdateAdStatus } from "@src/apis/advertisement";
@@ -104,7 +105,17 @@ export default function AdListModule() {
     })
   }
 
+  // Pagination
+  const itemsPerPage = 6;
 
+    const [currentPage, setCurrentPage] = useState(1); // Current page number
+    const totalItems = advertisements?.length?? 0; // Total number of items
+    const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
+    const prevItems = (currentPage - 1) * itemsPerPage;
+    const currentItems = currentPage * itemsPerPage;
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
   return (
     <>
@@ -177,9 +188,10 @@ export default function AdListModule() {
               <div className={`${styles.gridBox}`}>Action</div>
             </RoleBasedGuard>
           </div>
-          <div className="tab-content all-wrap on">
+          <div className="tab-content all-wrap on min-h-[370px] h-full">
             <ul className="list-wrap">
-              {advertisements?.map(item => {
+              {advertisements?.slice(prevItems,currentItems).map((item,index) => 
+               {
                 const selected = selectedAds.includes(item);
                 return (
                   <li key={item.id} className={styles.listFlex }>
@@ -222,14 +234,24 @@ export default function AdListModule() {
                     </RoleBasedGuard>
                   </li>
                 )
-              })}
+              }
+              )}
             </ul>
           </div>
-          <Pagination className={styles.adlistPagination}>
+          {/* <Pagination className={styles.adlistPagination}>
             <Pagination.Prev className="prev-btn" />
             <Pagination.Item>{1}</Pagination.Item>
             <Pagination.Next className="next-btn" />
-          </Pagination>
+          </Pagination> */}
+          {/* Render the Pagination component */}
+          <div className="flex justify-center py-[30px] notification_pagination">
+                    <Pagination
+                        current={currentPage}
+                        total={totalItems}
+                        pageSize={itemsPerPage}
+                        onChange={handlePageChange}
+                    />
+                </div>
         </div>
       </div>
       <AdModel refetchAds={refetchAdvertisements} ref={adModel} />

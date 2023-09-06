@@ -3953,7 +3953,27 @@ input:focus-visible {
 background-color: #EEEEEE !important;
 color: #000 !important;
 }
-
+.notification_pagination .ant-pagination-item-link{
+  background: #EBEDF4 !important;
+}
+.notification_pagination .ant-pagination-item{
+  background: #EBEDF4 !important;
+}
+.notification_pagination .ant-pagination-item-active{
+  background: #4D5E80 !important;
+  color: #fff;
+  border-color: unset !important;
+}
+.notification_pagination .ant-pagination-options{
+  display: none;
+}
+.notification_pagination .anticon{
+    display: block !important;
+    vertical-align : 0 !important;
+}
+.notification_pagination svg path{
+    fill: #2C324C;
+}
 @media screen and (max-width: 767px) {
   .navbar-toggler:focus {
     outline: none !important;

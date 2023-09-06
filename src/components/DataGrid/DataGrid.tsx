@@ -1,19 +1,28 @@
 import React, { useState } from "react";
-import { Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
+import { Pagination, Table } from "antd";
 import type { TableRowSelection } from "antd/es/table/interface";
 // import { rows, columns, rowData } from '@src/sections/statistics/tabelData';
-import { useRouter } from "next/router";
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
 
 interface TableProps {
   columns: any;
   rows: any;
+  selection?: boolean
+  loading? : boolean
+  showPagination?: boolean,
+  currentPage?: number,
+  totalItems?: number
+  itemsPerPage?: number
+  onChangePage?: (page: number) => void
 }
-const App: React.FC<TableProps> = ({ columns, rows }) => {
-  const router = useRouter();
+const App: React.FC<TableProps> = ({ 
+  columns, rows, selection, loading, 
+  showPagination, currentPage , totalItems, itemsPerPage, onChangePage
+}) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [top, setTop] = useState("topLeft");
-  const [bottom, setBottom] = useState("bottomRight");
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
@@ -59,40 +68,25 @@ const App: React.FC<TableProps> = ({ columns, rows }) => {
   };
 
   return (
-    <Table
-      rowSelection={rowSelection}
-      pagination={{
-        position: ["bottomCenter"],
-        pageSize: 5,
-        itemRender: renderPaginationItem,
-        className: "flex justify-end",
-      }}
-      columns={columns}
-      dataSource={rows}
-    />
+    <>
+      <Table
+        rowSelection={ selection ? rowSelection :  undefined}
+        pagination={false}
+        columns={columns}
+        dataSource={rows}
+        bordered
+        loading={ loading ? { indicator: antIcon } : undefined}
+      />
+      {showPagination && <div className="flex justify-center py-[30px] notification_pagination">
+          <Pagination
+              current={currentPage || 1}
+              total={totalItems || 1}
+              pageSize={itemsPerPage || 1}
+              onChange={onChangePage}
+          />
+      </div>}
+    </>
   );
 };
 
 export default App;
-
-const renderPaginationItem = (page: number, type: any, element: any) => {
-  if (type === "page") {
-    const isActive = page === (element as any).props.current;
-    const activeStyles: React.CSSProperties = isActive
-      ? { backgroundColor: "red", color: "#ffffff" }
-      : {};
-
-    return (
-      <button
-        className={`bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-gray-800 px-3 rounded`}
-        style={activeStyles}
-      >
-        {page}
-      </button>
-    );
-  }
-
-  return element;
-};
-
-// className="active:border-2 active:bg-red-600 bg-gray-200 active:text-white text-[18px] font-semibold hover:text-pink-800 py-1 px-3 rounded"

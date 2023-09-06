@@ -87,7 +87,7 @@ function Header(props: HeaderProps) {
                 <Image
                   src={user?.image ? getFileUrl(user?.image) : "/images/account_circle.png"}
                   alt=""
-                  className="rounded-full"
+                  className="rounded-full object-cover w-[30px] h-[30px]"
                   width={30}
                   height={30}
                 />

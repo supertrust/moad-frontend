@@ -1,13 +1,16 @@
 import { GetVehicleDetailsPropsType, GetVehicleDetailsResponseType } from "@src/types/vehicle";
 import axios from "@src/utils/axios";
 import {
+    GetAdvertisementCargoPropsType,
     GetAdvertisementDetailPropType,
     GetAdvertisementOperationAreaPropsType,
     GetAdvertisementVehiclesPropsType,
     GetAdvertisementsPropType,
     IAdvertisement,
+    IAdvertisementCargo,
     IAdvertisementOperatingArea,
     IAdvertisementVehicle,
+    IAdvertissementCargoResponse,
     IOperatingArea,
     IVehicle,
     SaveAdvertisementType,
@@ -140,3 +143,11 @@ export const useUpdateAdStatus = () =>
     mutationFn: (props) =>
       axios.post("/api/update-advertisement-status", props),
   });
+
+
+export const useGetAdvertisementCargoList = (props: GetAdvertisementCargoPropsType) => 
+useQuery<IAdvertissementCargoResponse, string>({
+    queryKey: ["advertisement-cargo-list", {...Object.values(props)}],
+    queryFn: async () => (await axios.get("/api/get-advehicles-list", { params: props })).data,
+    enabled: !!props.advertisement_id,
+});

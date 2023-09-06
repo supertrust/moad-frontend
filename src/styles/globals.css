@@ -4212,3 +4212,10 @@ color: #000 !important;
 }
 
 /*Landing page css end*/
+
+.ant-table-wrapper .ant-table-container table>thead>tr:first-child >*:last-child {
+  border-start-end-radius: 0px !important;
+}
+.ant-table-wrapper .ant-table-container table>thead>tr:first-child >*:first-child {
+  border-start-start-radius: 0px !important;
+}

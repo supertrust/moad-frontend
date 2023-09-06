@@ -13,6 +13,7 @@ import { OrbitControls, Center } from "@react-three/drei";
 import TruckModel from "@src/models/truck";
 import { useRouter } from "next/router";
 import {
+  useGetAdvertisementCargoList,
   useGetAdvertisementDetail,
   useGetAdvertisementOperationArea,
   useGetAdvertisementVehicles,
@@ -21,6 +22,15 @@ import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 import Link from "next/link";
 import Image from "next/image";
 import DataTable from "@src/components/DataGrid/DataGrid";
+import { clsx } from "clsx";
+import { ColumnsType } from "antd/es/table";
+import { IAdvertisementCargo } from "@src/types/advertisement";
+
+
+interface ICargoColumns extends IAdvertisementCargo { 
+  vehicle_information: '바라보다',
+  vehicle_location: '바라보다',
+}
 
 const AdvertisementStatus = {
   "proceeding": "진행중",
@@ -35,13 +45,15 @@ const Types = {
 }
 
 const OperationStatus = {
-  service: "서비스",
-  suspended: "운행정지",
-  active: "활동적인",
+  service: "서비스 중",
+  suspended: "운행종료",
+  running: "운행중",
 };
 
 function AdvertisementDetailScreen() {
-  const [filterTableValue, setFilterTableValue] = useState<null | string>(null);
+  const [filters, setFilters] = useState<{ page: number , status: string}>({ 
+    page: 1, status: ""
+  });
   const { query } = useRouter();
   const advertisementId = query.ad_id as string;
   const { data: advertisement } = useGetAdvertisementDetail({
@@ -53,6 +65,12 @@ function AdvertisementDetailScreen() {
   const { data: operationAreas } = useGetAdvertisementOperationArea({
     advertisement_id: advertisementId,
   });
+
+  const { data: cargoList , isLoading } = useGetAdvertisementCargoList({ 
+    advertisement_id: advertisementId,
+    ...filters,
+  })
+  const { data: cargoItems, currentPage, per_page , totalRecords } = cargoList || {};
 
   const title = "신제품 홍보 출시기념";
 
@@ -111,32 +129,22 @@ function AdvertisementDetailScreen() {
     setIndex(selectedIndex);
   };
 
-  const vehiclesData = useMemo(
-      () =>
-          !vehicles?.length
-              ? []
-              : vehicles?.map((item) => ({
-                key: item.id,
-                no: item.id,
-                registration_number:
-                item.advertisement.advertiser.business_registration_number,
-                vehicle_type: item.vehicles.vehicle_type,
-                vehicle_status: item.advertisement.status,
-                operation_status: item.advertisement.advertisement_vehicles.find(
-                    (_item) => _item.vehicle_id === item.vehicles.id
-                )?.status,
-                vehicle_information: '바라보다',
-                vehicle_location: '바라보다',
-                show_links:item.cargo_status == null ? false:true,
-                cargo_vehicle_id:item.cargo_status?.cargo_vehicle_id,
-                advertisement_id:item.cargo_status?.advertisement_id
-              })),
-      [vehicles?.length]
+  const vehiclesData = useMemo(() =>
+    !cargoItems?.length ? []
+      : cargoItems?.map((item) => ({
+        key: item.id,
+        no: item.id,
+        registration_number: item.registration_number,
+        vehicle_type: item.vehicle?.vehicle_type,
+        vehicle_status: item.status,
+        vehicle_information: '바라보다',
+        vehicle_location: '바라보다',
+        show_links: item.status == null ? false:true,
+        cargo_vehicle_id: item.cargo_vehicle_id ,
+        advertisement_id: item.advertisement_id
+      })), [cargoItems?.length]
   );
 
-  const filterTable = filterTableValue
-      ? vehiclesData.filter((item) => item.operation_status === filterTableValue)
-      : vehiclesData;
   const columns = [
     {
       dataIndex: "no",
@@ -149,6 +157,7 @@ function AdvertisementDetailScreen() {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
         paddingBottom: "20px",
+        borderStartStartRadius: "0px",
       },
     },
     {
@@ -177,8 +186,8 @@ function AdvertisementDetailScreen() {
         paddingTop: "20px",
         paddingBottom: "20px",
       },
-      render: ({operation_status})=>{
-        return OperationStatus[operation_status]
+      render: ({ vehicle_status })=>{
+        return OperationStatus[vehicle_status]
        }
     },
     {
@@ -190,9 +199,11 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-          record.show_links ? <Link legacyBehavior href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}>
+          // record.show_links ? 
+          <Link legacyBehavior href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}>
             <a target="_blank" className='hover:no-underline'>{text}</a>
-          </Link>:"아직 할당되지 않았습니다."
+          </Link>
+          // :"아직 할당되지 않았습니다."
       ),
     },
     {
@@ -203,14 +214,15 @@ function AdvertisementDetailScreen() {
         paddingTop: "20px",
         paddingBottom: "20px",
       },
-
       render: (text: any, record: any) => (
-          record.show_links ? <Link
+          // record.show_links ? 
+          <Link
               legacyBehavior
               href={`/dashboard/vehicle-location/${record.cargo_vehicle_id}`}
           >
             <a target="_blank" className='hover:no-underline'>{text}</a>
-          </Link>:"아직 할당되지 않았습니다."
+          </Link>
+          // :"아직 할당되지 않았습니다."
       ),
     },
   ];
@@ -241,6 +253,8 @@ function AdvertisementDetailScreen() {
           setModelImages((old) => ({ ...old, [key]: URL.createObjectURL(file) }));
         }
       };
+
+  console.log("Loading =>", isLoading);
 
   return (
       <>
@@ -474,31 +488,27 @@ function AdvertisementDetailScreen() {
                 <div className={styles.ad_contents}>
                   <div className={styles.tab_menu}>
                     <div
-                        className={`${styles.tab_01} ${styles.tab_title} ${
-                            !filterTableValue && styles.active
-                        }`}
-                        onClick={() => setFilterTableValue(null)}
-                    >
-                      전체
-                    </div>
+                      className={clsx(styles.tab_01, styles.tab_title, !filters.status && styles.active)}
+                      onClick={() => setFilters({...filters, status: ""})}
+                    >전체</div>
+                    <div 
+                      className={clsx(styles.tab_01, styles.tab_title, filters.status == 'running' && styles.active)}                      
+                      onClick={() => setFilters({...filters, status: "running"})}
+                    >운행중</div>
                     <div
-                        className={`${styles.tab_02} ${styles.tab_title} ${
-                            filterTableValue === "active" && styles.active
-                        }`}
-                        onClick={() => setFilterTableValue("active")}
-                    >
-                      운행중
-                    </div>
-                    <div
-                        className={`${styles.tab_03} ${styles.tab_title} ${
-                            filterTableValue === "suspended" && styles.active
-                        }`}
-                        onClick={() => setFilterTableValue("suspended")}
-                    >
-                      운행정지
-                    </div>
+                      className={clsx(styles.tab_01, styles.tab_title, filters.status == 'suspended' && styles.active)}       
+                      onClick={() => setFilters({...filters, status: "suspended"})}
+                    >운행정지</div>
                   </div>
-                  <DataTable columns={columns} rows={filterTable} />
+                  <DataTable 
+                    columns={columns} 
+                    rows={vehiclesData} loading={isLoading} 
+                    showPagination
+                    currentPage={currentPage}
+                    itemsPerPage={per_page}
+                    totalItems={totalRecords}
+                    onChangePage={(page) => setFilters({...filters, page })}
+                  />
                 </div>
               </div>
             </div>

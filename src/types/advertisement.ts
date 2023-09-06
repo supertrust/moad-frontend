@@ -1,3 +1,5 @@
+import { number } from "yup";
+
 export type AdTypesType = "national_ad" | "spot_ad" | "fixed_ad";
 export type AdStatusesType = "proceeding" | "applying" | "end";
 
@@ -123,4 +125,41 @@ export interface IAdvertisementOperatingArea {
 export type UpdateAdvertisementStatusType = {
     id: number;
     status: "yes" | "no"
+}
+
+export type GetAdvertisementCargoPropsType = {
+    advertisement_id: string;
+    status?: string,
+    page?: number
+}
+
+export type IAdvertisementCargo =  {
+    id: number,
+    registration_number: string,
+    cargo_vehicle_id: number,
+    advertisement_id: number,
+    type: string,
+    status: string,
+    deleted_at: string,
+    created_at: string,
+    updated_at: string,
+    vehicle: {
+      id: number,
+      vehicle_type: string,
+      vehicle_standard: string,
+      expenses: Object,
+      created_at: string,
+      updated_at: string,
+      deleted_at: string
+    }
+}
+
+export type IAdvertissementCargoResponse = {
+    message: string
+    per_page: number
+    status: string
+    currentPage: number
+    totalPages: number
+    totalRecords: number
+    data: IAdvertisementCargo[]
 }

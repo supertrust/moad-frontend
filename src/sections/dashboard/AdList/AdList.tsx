@@ -130,7 +130,7 @@ export default function AdListModule() {
           <div className={styles.tabMenu}>
             {statuses.map(item => (
               <div onClick={() => setStatus(item.value as AdStatusesType)} key={item.label} className={styles.tabTitle}>
-                <span style={{ color: item.value === status ? "blue" : "" }}>{item.label}</span>
+                <span className={clsx(item.value === status && "text-secondary font-bold" )}>{item.label}</span>
               </div>
             ))}
           </div>
@@ -143,7 +143,7 @@ export default function AdListModule() {
               삭제
             </button>
             <div className="select-box only-pc">
-              <Form.Select onChange={e => setType(e.target.value as AdTypesType)} aria-label="Default select example" className="adlist  border-1 border-[#2F48D1] text-[#2F48D1] h-[36px]">
+              <Form.Select onChange={e => setType(e.target.value as AdTypesType)} aria-label="Default select example" className="font-medium adlist  border-1 border-[#2F48D1] text-[#2F48D1] h-[36px]">
                 <option value=''>캠페인 유형 선택</option>
                 <option value="fixed_ad">고정형</option>
                 <option value="national_ad">전국형</option>

@@ -1293,7 +1293,7 @@ span.carousel-control-prev-icon {
 
 .ad_contents td,
 .ad_contents th {
-  text-align: center;
+  text-align: center !important;
 }
 
 .model_contents_container {

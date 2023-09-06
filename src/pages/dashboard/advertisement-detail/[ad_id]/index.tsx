@@ -25,6 +25,7 @@ import DataTable from "@src/components/DataGrid/DataGrid";
 import { clsx } from "clsx";
 import { ColumnsType } from "antd/es/table";
 import { IAdvertisementCargo } from "@src/types/advertisement";
+import { Breadcrumb } from "antd";
 
 
 interface ICargoColumns extends IAdvertisementCargo { 
@@ -254,24 +255,23 @@ function AdvertisementDetailScreen() {
         }
       };
 
-  console.log("Loading =>", isLoading);
-
   return (
       <>
         <div id={styles.ad_detail_list} className="ad-detail-list page">
           <div className={styles.container}>
             <div className={styles.board_content}>
               <div className={styles.ad_detail_list_content}>
-                <div className="page-link">
-                  <a href="/ad-management" className="link">
-                    광고관리
-                  </a>
-                  <span className="link"></span>
-                  <span className="link"></span>
-                  <a href="/ad-detail-list" className="link">
-                    {title}
-                  </a>
-                </div>
+                <Breadcrumb 
+                  separator='>'
+                  items={[{
+                    href: "/dashboard/ad-management",
+                    title: "광고관리",
+                  },  {
+                    href: "/dashboard/ad-details-list",
+                    title: "신제품 홍보 출시기념",
+                  }]}
+                  className="text-[#2c324c] "
+                />
 
                 <div className={styles.detail_content}>
                   <div className={styles.slide_box}>

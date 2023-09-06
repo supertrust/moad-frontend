@@ -4220,3 +4220,10 @@ color: #000 !important;
   border-start-start-radius: 0px !important;
 } 
 
+.ant-breadcrumb a {
+  color: #2C324C;
+}
+
+.ant-breadcrumb a:hover {
+  text-decoration: none;
+}

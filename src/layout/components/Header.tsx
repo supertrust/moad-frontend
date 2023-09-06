@@ -37,12 +37,12 @@ function Header(props: HeaderProps) {
             <div className="my-info">
               <div className="info-wrap">
                 <Dropdown className="drop-btns">
-                  <Dropdown.Toggle id="dropdown-basic">
+                  <Dropdown.Toggle id="dropdown-basic" className="d-flex items-center	">
                     <div className="my-photo">
                       <Image
                         src={user?.image ? getFileUrl(user?.image) : "/images/account_circle.png"}
                         alt=""
-                        className="img rounded-full"
+                        className="img rounded-full w-[36px] h-[36px]"
                         width={40}
                         height={40}
                       />

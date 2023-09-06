@@ -311,13 +311,13 @@
         -webkit-overflow-scrolling: touch;
     }
 
-    .listHd {
+    .listHd,.listFlex {
         width: 125% !important;
     }
 }
 
 @media screen and (max-width: 575px) {
-    .listHd {
+    .listHd,.listFlex {
         width: 47em !important;
     }
 }
@@ -325,7 +325,7 @@
 
 
 @media screen and (max-width: 480px) {
-    .listHd {
+    .listHd,.listFlex {
         width: 46em !important;
     }
 }

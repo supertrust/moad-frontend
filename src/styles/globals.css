@@ -3974,6 +3974,9 @@ color: #000 !important;
 .notification_pagination svg path{
     fill: #2C324C;
 }
+.table-head-notice {
+  border-bottom: 56px solid #fff;
+}
 @media screen and (max-width: 767px) {
   .navbar-toggler:focus {
     outline: none !important;

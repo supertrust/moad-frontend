@@ -1,5 +1,5 @@
 import { FormProvider, RHFInput, useForm, yupResolver } from "@src/components/Form";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { PASSWORD_REGEX } from "@src/constants";
 import Image from "next/image";
@@ -64,6 +64,19 @@ const Step2 = ({ onPrevStep, onNextStep, setMembershipInformation }: Step2Props)
         }
       );
     })
+
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.code === "Enter" && Object.keys(dirtyFields).length===3) {
+                event.preventDefault(); // Prevent form submission
+                onSubmit().then(() => {});
+            }
+        };
+        document.addEventListener("keydown", handleKeyPress);
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, [Object.keys(dirtyFields).length!==3]);
 
 
     return (

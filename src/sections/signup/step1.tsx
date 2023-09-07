@@ -1,5 +1,5 @@
 import { Modal } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Button from "@src/components/Button";
@@ -29,6 +29,20 @@ const Step1 = ({ onNextStep }: Step1Props) => {
     const handleBackButton = () => {
         router.push("/login");
     }
+
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.code === "Enter" && privacyPolicy && termsAndConditions) {
+                event.preventDefault(); // Prevent form submission
+                setError(false);
+                onNextStep()
+            }
+        };
+        document.addEventListener("keydown", handleKeyPress);
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, [privacyPolicy,termsAndConditions]);
 
     return (
         <div className="step01 step-section">

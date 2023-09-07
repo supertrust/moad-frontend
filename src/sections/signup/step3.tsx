@@ -5,7 +5,7 @@ import {
   yupResolver,
 } from "@src/components/Form";
 import Button from "@src/components/Button";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useVerifyInput } from "@src/apis/auth";
@@ -160,6 +160,18 @@ const Step3 = ({
     }
   });
 
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter" && Object.keys(dirtyFields).length===6 && imageUploaded) {
+        event.preventDefault(); // Prevent form submission
+        onSubmit().then(() => {});
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [Object.keys(dirtyFields).length , imageUploaded]);
 
 
   return (

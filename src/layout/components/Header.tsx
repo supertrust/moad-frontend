@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
 import MobileNav from "./MobileNav";
@@ -14,6 +15,7 @@ function Header(props: HeaderProps) {
   const { logout, user } = useAuth();
   // console.log(props.text);
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const router = useRouter()
   function toggle() {
     setShowMobileNav(!showMobileNav);
   }
@@ -54,10 +56,7 @@ function Header(props: HeaderProps) {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
-                      Another action
-                    </Dropdown.Item>
+                    <Dropdown.Item onClick={()=>router.push("/dashboard/my-info")}>Edit Profile</Dropdown.Item>
                     <Dropdown.Item
                       onClick={handleLogout}
                       className="logout-danger"
@@ -112,6 +111,5 @@ function Header(props: HeaderProps) {
     </div>
   );
 }
-const Text = () => <div>You clicked the button!</div>;
 
 export default Header;

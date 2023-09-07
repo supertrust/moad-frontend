@@ -1,15 +1,22 @@
 import useAuth from "@src/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 interface SidebarProps {
   msg: (msg: string) => void;
 }
 
+const sideBarPath = {
+  "/dashboard" : "dashboard",
+  "/dashboard/my-info" : "My Page"
+}
+
 function Sidebar({ msg }: SidebarProps) {
   const { logout, user } = useAuth();
   const [tab, setTab] = useState("Advertising Management");
+  const router = useRouter();
 
   const barStatus = (status: string) => {
     setTab(status);
@@ -30,9 +37,15 @@ function Sidebar({ msg }: SidebarProps) {
     "spot_ad" : "스팟"
   };
 
+  useEffect(()=>
+  {
+    if(router.pathname && sideBarPath[router.pathname])
+     setTab(sideBarPath[router.pathname])
+  },[router.pathname])
+
   return (
     <div className="content">
-      <h1 className="side-logo">
+      <h1 className="side-logo cursor-pointer" onClick = {()=>router.push("/dashboard")}>
         <Image
           src="/images/logo-pc.svg"
           alt="logo-pc"
@@ -42,26 +55,26 @@ function Sidebar({ msg }: SidebarProps) {
       </h1>
       <div className="sidemenu-wrap">
         <ul className="menu-wrap">
-          <li
-            className={
-              tab === "Advertising Management"
-                ? "menu-list active"
-                : "menu-list"
-            }
-          >
-            <Link
-              href={"/dashboard"}
-              className="link"
-              onClick={() => {
-                barStatus("Advertising Management");
-                msg("광고관리");
-              }}
-            >
-              <i className="icon home"></i>
-              <div className="name">광고관리</div>
-            </Link>
-            <ul className="sub-wrap"></ul>
-          </li>
+          {/*<li*/}
+          {/*  className={*/}
+          {/*    tab === "Advertising Management"*/}
+          {/*      ? "menu-list active"*/}
+          {/*      : "menu-list"*/}
+          {/*  }*/}
+          {/*>*/}
+          {/*  <Link*/}
+          {/*    href={"/dashboard"}*/}
+          {/*    className="link"*/}
+          {/*    onClick={() => {*/}
+          {/*      barStatus("Advertising Management");*/}
+          {/*      msg("광고관리");*/}
+          {/*    }}*/}
+          {/*  >*/}
+          {/*    <i className="icon home"></i>*/}
+          {/*    <div className="name">광고관리</div>*/}
+          {/*  </Link>*/}
+          {/*  <ul className="sub-wrap"></ul>*/}
+          {/*</li>*/}
 
           {user?.role === "Cargo" && ( <li className={
               tab === "cargo dashboard" ? "menu-list active" : "menu-list"
@@ -114,7 +127,7 @@ function Sidebar({ msg }: SidebarProps) {
                   }}
                 >
                   <i className="icon home"></i>
-                  <div className="name">Ad Management</div>
+                  <div className="name">광고관리</div>
                 </Link>
                 <ul className="sub-wrap"></ul>
               </li>

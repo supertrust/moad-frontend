@@ -15,6 +15,8 @@ import {
 import { styles } from "@src/sections/my-info";
 import Image from "next/image";
 import { getFileUrl } from "@src/helpers";
+import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";
+import { ConfirmPropsType } from "@src/contexts/ConfirmDialogContext";
 
 const defaultValues = {
   company_phone_number: "",
@@ -46,6 +48,7 @@ export default function MyInfoScreen() {
   const { user } = useAuth();
   const email = user?.email;
   const [showModal, setShowModal] = useState(false);
+  const { confirm } = useConfirmDialog();
 
   const methods = useForm({
     defaultValues,
@@ -91,24 +94,46 @@ export default function MyInfoScreen() {
 
 
   const [profileImage, setProfileImage] = useState<File | undefined >();
+
   useEffect(() => {
     const updateProfile = async () => {
-      const allowedImages = ['image/jpeg', 'image/jpg'];
+      const allowedImages = ['image/jpeg', 'image/jpg' , 'image/png'];
+      const options: ConfirmPropsType  = {
+        title : "",
+        size: "sm",
+        cancelText:"확인",
+        disableConfirmBtn : true,
+        cancelButtonProps : { className: "border-secondary bg-secondary text-white" },
+        footerClassName: "border-none flex flex-row justify-center mb-3",
+      };
+
       if(profileImage){
         if(!allowedImages.includes(profileImage.type)){
           setProfileImage(undefined)
-          return toast(".jpg, .jpeg 파일만 허용됩니다.", { type: "error"} );
+          return confirm({ ...options, description :( <div className='mt-3 text-secondary text-center'>JPG, JPEG, PNG 파일만 가능합니다.</div> )})
         }
-        const toastId = toast.loading("프로필 이미지 업데이트");
-        const options = { isLoading: false, autoClose: 3000, closeButton: true}
+
+        if(profileImage.size > 3 * 1024 *1024){ // 3 MB
+          setProfileImage(undefined)
+          return confirm({ ...options, description: ( <div className='mt-3 text-secondary text-center'>최대 3MB까지만 가능합니다.</div> ) })
+        }
+
         await updateUserProfileImage({ profile_img: profileImage } , {
           onSuccess: () => {
             setProfileImage(undefined)
-            toast.update(toastId, { ...options, render: "프로필 이미지 변경 성공", type: "success" })
+            confirm({
+              ...options,
+              description :(
+                <div className='mt-3'>
+                  <div className='text-secondary text-center mb-2 font-bold'>내  정보 수정 완료</div>
+                  <div className='text-center'>정보 수정이 완료되었습니다.</div>
+                </div>
+              )
+            })
           },
           onError: (error) => {
             setProfileImage(undefined)
-            toast.update(toastId, { ...options, render: error, type : "error" });
+            confirm({  ...options,  description :( <div className='mt-3 text-secondary text-center'>{error}</div> ) })
           }
         })
       }
@@ -136,8 +161,9 @@ export default function MyInfoScreen() {
                         <Image
                           src={user?.image ? getFileUrl(user?.image) : "/images/account_circle.png"}
                           alt=""
-                          width={200}
-                          height={200}
+                          width={72}
+                          height={72}
+                          className="img w-[72px] h-[72px] object-cover "
                         />
                       </div>
                       <input

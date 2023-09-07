@@ -23,6 +23,18 @@ export default function InquireScreen() {
   const inquiries = data?.data;
   const router = useRouter();
 
+  const paginationStyles = {
+    '.MuiButtonBase-root':{
+      backgroundColor: '#EEEEEE',
+      color : '#000',
+      border: 'transparent',
+      "border-radius" : '5px',
+    },
+    '.Mui-selected': {
+      backgroundColor: '#4D5E80 !important',
+      color : '#fff'
+    },
+  };
   const getDetail = (id: number) => {
     router.push(`inquire/${id}`);
   };
@@ -32,7 +44,7 @@ export default function InquireScreen() {
       <Head>
         <title>Inquiry</title>
       </Head>
-      <div className="p-8 text-gray-700 flex flex-col gap-5">
+      <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px]">
         <div className="flex gap-5 items-center">
           <Link href={`/dashboard/customer-service/inquire`}>
             <button className="font-bold text-lg text-blue-700">
@@ -45,20 +57,20 @@ export default function InquireScreen() {
             </Link>
           )}
         </div>
-        <Card variant="elevation" elevation={1} className="flex flex-col gap-2">
+        <Card variant="elevation" elevation={1} className="flex flex-col gap-2 sm:min-h-[560px] h-full justify-between">
           {isLoading ? (
             <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
               <CircularProgress color="primary" />
             </div>
           ) : inquiries?.length ? (
-            <Table width={`100%`}>
-              <TableHead className="bg-blue-100">
+            <Table width={`100%`} className="m-0 !text-[16px]">
+              <TableHead className="bg-[#E1ECFF]">
                 <TableRow>
-                  <TableCell className="!text-center !py-3">No</TableCell>
-                  <TableCell className="!text-center !py-3">분류</TableCell>
-                  <TableCell className="!text-center !py-3">제목</TableCell>
-                  <TableCell className="!text-center !py-3">작성일</TableCell>
-                  <TableCell className="!text-center !py-3">상태</TableCell>
+                  <TableCell className="!text-center !py-[14px]">no</TableCell>
+                  <TableCell className="!text-center !py-[14px]">분류</TableCell>
+                  <TableCell className="!text-center !py-[14px]">제목</TableCell>
+                  <TableCell className="!text-center !py-[14px]">작성일</TableCell>
+                  <TableCell className="!text-center !py-[14px]">상태</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody className="divide-y">
@@ -69,22 +81,22 @@ export default function InquireScreen() {
                       onClick={() => getDetail(inq.id)}
                       className="cursor-pointer hover:bg-blue-50 transform transition-all duration-200"
                     >
-                      <TableCell className="!text-center">
+                      <TableCell className="!text-center !text-[16px] !py-[14px]">
                         {index + 1 + (page - 1) * 10}
                       </TableCell>
-                      <TableCell className="!text-center">
+                      <TableCell className="!text-center !text-[16px] !py-[14px]">
                         {inq.inquiry_type}
                       </TableCell>
-                      <TableCell>{inq.inquiry_title}</TableCell>
-                      <TableCell className="!text-center">
-                        {dateFormat(inq.created_at as string, "Y-m-d H:i") ??
+                      <TableCell className="!py-[14px] !text-[16px]">{inq.inquiry_title}</TableCell>
+                      <TableCell className="!text-center !text-[16px] !py-[14px] !text-[#999999]">
+                        {dateFormat(inq.created_at as string, "Y-m-d") ??
                           "2023-04-19"}
                       </TableCell>
-                      <TableCell className="!text-center">
+                      <TableCell className="!text-center !text-[16px] !py-[14px]">
                         {inq.inquiry_answer ? (
-                          <span className="text-blue-700">답변완료</span>
+                          <span className="text-[#2F48D1]">답변완료</span>
                         ) : (
-                          <span className="text-red-700">답변전</span>
+                          <span className="!text-[#D12953]">답변전</span>
                         )}
                       </TableCell>
                     </TableRow>
@@ -98,12 +110,14 @@ export default function InquireScreen() {
             </div>
           )}
           {inquiries?.length ? (
-            <div className="p-3 pb-10 flex justify-center">
+            <div className="py-[50px] flex justify-center">
               <Pagination
                 count={data?.last_page}
+                page={page}
                 variant="outlined"
                 shape="rounded"
                 onChange={(e, val) => setPage(val)}
+                sx={paginationStyles}
               />
             </div>
           ) : null}

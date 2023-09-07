@@ -11,3 +11,11 @@ export const useGetFaqUse = () => useQuery<IFaq[], string>({
     queryKey: ["faq-use"],
     queryFn: async () => (await axios.get("/api/get-faq/service_use")).data.data,
 })
+export const useGetFaqRefund = () => useQuery<IFaq[], string>({
+    queryKey: ["faq-refund"],
+    queryFn: async () => (await axios.get("/api/get-faq/payment_refund")).data.data,
+})
+export const useGetFaqEtc = () => useQuery<IFaq[], string>({
+    queryKey: ["faq-etc"],
+    queryFn: async () => (await axios.get("/api/get-faq/etc")).data.data,
+})

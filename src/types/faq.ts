@@ -3,3 +3,6 @@ export interface IFaq {
     answer: string;
     type:string;
 }
+export type GetFaqPropsType = {
+    type: string
+}

@@ -83,19 +83,19 @@ export default function InquireDetailScreen() {
             </div>
           ) : data !== null ? (
             <>
-              <div className="px-7 py-3 border-b flex gap-2 justify-between items-center">
-                <span>
+              <div className="sm:px-7 sm:py-3 sm:!border-b-[1px] flex flex-wrap	 sm:gap-2 justify-between items-center">
+                <span className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[20px] sm:px-[0px]">
                   [{data?.inquiry_type}] {data?.inquiry_title}
                 </span>
-                <div className="flex gap-3 justify-end text-sm">
-                  <span>
+                <div className="flex justify-end text-sm w-full lg:w-auto sm:w-auto py-[12px] sm:py-[0px] px-[10px] sm:px-[0px]">
+                  <span className="text-sm text-[#999999]">
                     {dateFormat(data?.created_at as string, "Y-m-d H:i")}
                   </span>
                 </div>
               </div>
-              <div className="px-7 py-3 max-h-96 overflow-y-auto flex flex-col gap-3">
+              <div className="px-7 py-3 max-h-96 overflow-y-auto flex flex-col sm:gap-3">
                 <div className="flex flex-col gap-2">
-                  <span>
+                  <span className="font-medium">
                     첨부파일 총 {data?.documents?.question?.length ?? 0} 건
                   </span>
                   <div className="flex gap-2">

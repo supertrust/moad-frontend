@@ -922,7 +922,7 @@ a {
 /* <------guide-Page-style-start-------> */
 
 .guide-content {
-  padding: 20px 29px;
+  padding: 20px 18px;
 }
 
 .guide-content .title-wrap {
@@ -1004,7 +1004,7 @@ a {
   display: block;
   width: 20px;
   height: 20px;
-  background: url(https://dev-icarus.mufin.lol/wp-content/themes/icarus/assets/images/guide/ic-arrow-right.png)
+  background: url("/images/statistics/ic-arrow-right.png")
     no-repeat center center / cover;
 }
 
@@ -3977,7 +3977,30 @@ color: #000 !important;
 .table-head-notice {
   border-bottom: 56px solid #fff;
 }
+.MuiTableCell-root{
+  font-family: "Noto Sans KR" !important;
+}
 @media screen and (max-width: 767px) {
+  .faq-content{
+    padding: 20px;
+  }
+  .accordion-section .accordion-item button {
+    padding: 15px 15px;
+}
+  .guide-content {
+    padding: 20px 8px;
+}
+.guide-content .guide-box-wrap {
+  background-color: transparent;
+  padding: 0px;
+}
+.guide-content .box-list {
+  margin-bottom: 30px;
+}
+  .guide-content .box-list .box-link-wrap{
+    flex-direction:column;
+    row-gap: 10px;
+  }
   .navbar-toggler:focus {
     outline: none !important;
     box-shadow: none !important;

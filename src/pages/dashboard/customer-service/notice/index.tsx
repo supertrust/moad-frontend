@@ -54,22 +54,20 @@ export default function NoticeScreen() {
                 </TableRow>
               </TableHead>
               <TableBody className="divide-y">
-                {data?.length ? data.slice(prevItems,currentItems).map((v, i) => {
+                {data?.length ? data.slice(prevItems,currentItems).map((notice, index) => {
                   return (
-                    <>
-                    {/* <TableRow key={i} className={v.id === pin? 'absolute top-[44px] w-full !table pin-row' : ''}> */}
-                    <TableRow key={i} >
+                    <TableRow key={index} >
                       <TableCell className="!text-center !py-[14px]">
                         <div
                           className="flex items-center cursor-pointer justify-center"
-                          onClick={() => setImportant(v.id)}
+                          onClick={() => setImportant(notice.id)}
                         >
-                          {v.id === pin? (
+                          {notice.id === pin? (
                             <PushPin className="!w-4" />
                           ) : (
                             // data.slice(prevItems,currentItems).length - i 
-                            totalItems - i - (currentPage - 1) * itemsPerPage 
-                            //- data?.filter((v) => v.important == true)
+                            totalItems - index - (currentPage - 1) * itemsPerPage 
+                            //- data?.filter((v) => notice.important == true)
                             //   .length +
                             // (page - 1) * 10
                           )}
@@ -77,15 +75,14 @@ export default function NoticeScreen() {
                       </TableCell>
                       <TableCell className="!py-[14px]">
                         <Link
-                          href={`notice/${v.id}`}
+                          href={`notice/${notice.id}`}
                           className="text-[#2C324C] hover:no-underline transition-colors duration-200"
                         >
-                          {v.title}
+                          {notice.title}
                         </Link>
                       </TableCell>
-                      <TableCell className="!text-center !py-[14px] !text-[#999999]">{v.created_at?.split('T')[0]}</TableCell>
+                      <TableCell className="!text-center !py-[14px] !text-[#999999]">{notice.created_at?.split('T')[0]}</TableCell>
                     </TableRow>
-                    </>
                   );
                 }) 
                 : 

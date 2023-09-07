@@ -137,7 +137,7 @@ export default function AdListModule() {
           <div className={styles.rightMenu}>
             <button onClick={openModal} className={`${styles.adAddBtn} font-[Inter]`}>
               <i className="ic-plus"></i>
-                광고등록
+              광고 신청
             </button>
             <button disabled={!selectedAds.length} onClick={handleDeleteAds} className={styles.adDeleteBtn}>
               삭제

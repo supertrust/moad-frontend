@@ -28,9 +28,9 @@ export default function NoticeDetailScreen() {
             </div>
           ) : (
             <>
-              <div className="lg:px-7 lg:py-3 px-[20px] py-[13px] border-b flex gap-2 justify-between items-center">
-                <span className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto">[공지] {data?.title}</span>
-                <div className="flex justify-end text-sm w-full lg:w-auto sm:w-auto">
+              <div className="sm:px-7 sm:py-3 sm:!border-b-[1px] flex flex-wrap	 sm:gap-2 justify-between items-center">
+                <span className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[20px] sm:px-[0px]">[공지] {data?.title}</span>
+                <div className="flex justify-end text-sm w-full lg:w-auto sm:w-auto py-[8px] sm:py-[0px] px-[10px] sm:px-[0px]">
                   <span className="font-medium pr-[24px]">By. 이카루스</span>
                   <span className="text-[#999999] pr-[10px] font-medium	">{data?.created_at?.split('T')[0]}</span>
                   <span className="text-[#999999] font-medium	">{data?.created_at? (new Date(data?.created_at?.split('.')[0]).getHours()) : null}:{data?.created_at? (new Date(data?.created_at?.split('.')[0]).getMinutes()) : null} </span>
@@ -48,7 +48,7 @@ export default function NoticeDetailScreen() {
                 )}
                 <div>{data?.content}</div>
               </div>
-              <div className="py-[25px] flex justify-around items-center gap-5 border-t border-[#EBEDF4]">
+              <div className="sm:py-[25px] p-[20px] flex justify-between sm:justify-around items-center gap-5 border-t border-[#EBEDF4]">
                 <Link
                   href={"#"}
                   // href={data?.prev !== null ? `/notice/${data?.prev}` : "#"}
@@ -61,7 +61,7 @@ export default function NoticeDetailScreen() {
                     <ChevronLeftIcon className="w-7 h-7" /> 이전글
                   </button>
                 </Link>
-                <Link href={`/customer-service/notice`}>
+                <Link href={`/customer-service/notice`} className="hidden sm:block">
                   <button
                     type="button"
                     className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-[#2F48D1] !border-solid w-24 h-9 flex justify-center text-[#2F48D1]"

@@ -1,3 +1,4 @@
+import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Col, Modal, Row } from "react-bootstrap";
@@ -45,6 +46,7 @@ const UpdateUserInfoSchema = Yup.object({
 export default function MyInfoScreen() {
   const { mutateAsync: updateUserInfo , isLoading } = useUpdateUserInfo();
   const { mutateAsync: updateUserProfileImage } = useUpdateUserProfileImage();
+  const { setPageTitle} = useIcarusContext()
   const { user } = useAuth();
   const email = user?.email;
   const [showModal, setShowModal] = useState(false);
@@ -83,6 +85,10 @@ export default function MyInfoScreen() {
       onError: (error) => toast(error, { type : "error" })
     });
   });
+
+  useEffect(()=>{
+    setPageTitle("내 정보");
+  },[])
 
   useEffect(() => {
     if (user) {

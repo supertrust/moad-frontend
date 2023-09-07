@@ -1,31 +1,29 @@
-import React, { Suspense, ChangeEvent, useMemo, useState } from "react";
-import { Carousel } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-import { styles } from "@src/sections/advertisement-detail";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/autoplay";
+import { Center, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Center } from "@react-three/drei";
-import TruckModel from "@src/models/truck";
-import { useRouter } from "next/router";
 import {
   useGetAdvertisementCargoList,
   useGetAdvertisementDetail,
   useGetAdvertisementOperationArea,
   useGetAdvertisementVehicles,
 } from "@src/apis/advertisement";
-import RoleBasedGuard from "@src/guards/RoleBasedGuard";
-import Link from "next/link";
-import Image from "next/image";
 import DataTable from "@src/components/DataGrid/DataGrid";
-import { clsx } from "clsx";
-import { ColumnsType } from "antd/es/table";
+import RoleBasedGuard from "@src/guards/RoleBasedGuard";
+import { useIcarusContext } from "@src/hooks/useIcarusContext";
+import TruckModel from "@src/models/truck";
+import { styles } from "@src/sections/advertisement-detail";
 import { IAdvertisementCargo } from "@src/types/advertisement";
 import { Breadcrumb } from "antd";
+import { clsx } from "clsx";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { ChangeEvent, Suspense, useEffect, useMemo, useState } from "react";
+import { Carousel } from "react-bootstrap";
+import { Autoplay } from "swiper";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 
 interface ICargoColumns extends IAdvertisementCargo { 
@@ -56,6 +54,7 @@ function AdvertisementDetailScreen() {
     page: 1, status: ""
   });
   const { query } = useRouter();
+  const {setPageTitle} = useIcarusContext()
   const advertisementId = query.ad_id as string;
   const { data: advertisement } = useGetAdvertisementDetail({
     id: advertisementId,
@@ -73,7 +72,13 @@ function AdvertisementDetailScreen() {
   })
   const { data: cargoItems, currentPage, per_page , totalRecords } = cargoList || {};
 
-  const title = "신제품 홍보 출시기념";
+  useEffect(()=>
+  {
+    if(advertisement?.ad_name)
+    setPageTitle(advertisement?.ad_name)
+
+    else setPageTitle('...')
+  },[advertisement?.ad_name])
 
   const mockup_arr = [
     {

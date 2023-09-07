@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useState } from "react";
 import { Footer, Header, Sidebar } from "./components";
 import AuthGuard from "@src/guards/AuthGuard";
 
@@ -6,21 +6,28 @@ interface LayoutProps {
   children: ReactNode
 }
 
-function Layout(props: LayoutProps) {
-  const [text, setText] = useState("");
+interface IcarusContextType {
+   pageTitle : string,
+   setPageTitle :  (prevState: string) => void
+}
 
-  const setMsg = (msgTxt: string) => {
-    console.log(setText(msgTxt), "yes, I am calling");
-  }
+export const IcarusContext = createContext<IcarusContextType | undefined>(undefined);
+
+function Layout(props: LayoutProps) {
+  const [pageTitle, setPageTitle] = useState<string>("");
 
   return (
     <div id="dashboard" className="dashboard page">
       <div className="sidebar_menu only-pc">
-        <Sidebar msg={setMsg} />
+        <Sidebar msg={setPageTitle} />
       </div>
       <div className="main_content flex flex-col min-h-screen">
-        <Header text={text} />
-        <main className="flex-grow">{props.children}</main>
+        <Header text={pageTitle} />
+        <main className="flex-grow">
+            <IcarusContext.Provider value={{ pageTitle,setPageTitle}}>
+                {props.children}
+            </IcarusContext.Provider>
+        </main>
         <Footer />
       </div>
     </div>

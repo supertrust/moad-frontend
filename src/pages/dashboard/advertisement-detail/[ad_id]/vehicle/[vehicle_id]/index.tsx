@@ -1,9 +1,10 @@
 import { useGetAdvertisementImages, useGetVehicleDetail, } from "@src/apis/advertisement";
 import { API_BASE_URL } from "@src/config";
+import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { styles } from "@src/sections/vehicle-info";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -20,6 +21,7 @@ const imageStyle = {
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  const {pageTitle,setPageTitle} = useIcarusContext()
   const advertisementId = query.ad_id as string;
   const vehicleId   = query.vehicle_id as string;
   const { data: advertisement } = useGetVehicleDetail({
@@ -30,10 +32,14 @@ export default function VehicleInfoScreen() {
     advertisement_id: advertisementId,
   }) as { data: any };
 
-  console.log("res",advertisement)
+  useEffect(()=>
+  {
+    setPageTitle("차량정보")
+  },[])
+
 
   return (
-      <div id={styles.vehicle_information}>
+      <div>
         <div className={styles.container}>
           <div className={styles.board_content}>
             <div className={styles.vehicle_information_content}>

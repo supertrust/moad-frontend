@@ -1,3 +1,4 @@
+import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import React, { useEffect, useRef, useState } from "react";
 import { getMapScriptTag, registerEvents } from "@src/helpers/map";
 import { useSaveLocation } from "@src/apis/map";
@@ -13,6 +14,7 @@ import Button from "@src/components/Button";
 const Map = () => {
   const { query } = useRouter();
   const { ad_id, vehicle_id } = query;
+  const {setPageTitle} = useIcarusContext();
 
   const mapRef = useRef(null);
   const startInputRef = useRef<HTMLInputElement | null>(null);
@@ -42,6 +44,7 @@ const Map = () => {
     }
   };
   useEffect(() => {
+    setPageTitle("차량위치");
     const mapScript = getMapScriptTag(mapRef.current);
     registerEvents(mapScript, mapRef, startInputRef, endInputRef);
     document.head.appendChild(mapScript);

@@ -40,7 +40,7 @@ export default function VehicleInfoScreen() {
   }) ;
 
   const [fullSize, showFullSize ] = useState(false);
-  const images =  advertisementImages || [];
+  const images =  advertisementImages || [undefined, undefined, undefined, undefined];
 
   useEffect(()=>{
     setPageTitle("차량정보")
@@ -49,17 +49,13 @@ export default function VehicleInfoScreen() {
   const showImage = (image?:  ICargoImage) => {
     const size = 500;
     return (
-      <>
-        { image && 
-          <Image
-            className={clsx(styles.img, 'rounded-md')}
-            src={image.image_path}
-            alt={image.image_title}
-            width={500}
-            height={500}
-          />
-      }
-      </>
+      <Image
+        className={clsx(styles.img, 'rounded-md object-center')}
+        src={image?.image_path || '/images/ad-detail-list/no-image.png'}
+        alt={image?.image_title || ''}
+        width={size}
+        height={size}
+      />
     )
   }
 
@@ -91,7 +87,7 @@ export default function VehicleInfoScreen() {
                   <div  className={styles.slider}>
                     <Image
                       className={styles.img}
-                      src={!isImagesLoading && images?.length && images[0]?.image_path || ''}
+                      src={!isImagesLoading && images?.length && images[0]?.image_path || '/images/ad-detail-list/no-image.png'}
                       alt={!isImagesLoading  && images?.length && images[0]?.image_title || ''}
                       width={500}
                       height={500}
@@ -107,9 +103,9 @@ export default function VehicleInfoScreen() {
                     modules={[FreeMode, Navigation, Thumbs]}
                     className={styles.thumbs_slider}
                   >
-                    {images.map( (image) => 
+                    {images.map( (image, index) => 
                       <SwiperSlide className={styles.swiperslide}  
-                        key={image.id}
+                        key={index}
                         onClick={(e) => {
                           e.preventDefault();
                           showFullSize(true)

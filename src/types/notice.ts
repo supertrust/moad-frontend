@@ -22,6 +22,8 @@ export interface INoticeDetail {
     image: string | null;
     important: boolean;
     created_at: string | null;
+    prev: number | null;
+    next: number | null;
 }
 
 export interface INotification {

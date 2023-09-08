@@ -40,6 +40,7 @@ header nav {
 
 #dashboard {
   display: flex;
+  background: #f5f7fb;
 }
 
 .sidebar_menu {
@@ -3262,6 +3263,7 @@ ul.pagination .page-item a:focus {
 }
 
 .policy-container .privacy-content ul li {
+  font-size: 13px;
   list-style: none;
   margin-left: 0;
   margin-right: 20px;
@@ -3269,6 +3271,18 @@ ul.pagination .page-item a:focus {
 
 .policy-container .privacy-content ul li button.nav-link.active {
   background: transparent;
+}
+.policy-container .privacy-content ul li{
+  margin: 0;
+}
+.policy-container .terms-section .content-terms{
+  padding: 30px;
+  background: #FFFFFF;
+}
+.policy-container .terms-section .content-terms .terms-details .card-body{
+    padding: 0;
+    padding: 30px 0px;
+    border-bottom: 1px solid #DFDFDF;
 }
 
 .policy-container .policy-title span {
@@ -3281,8 +3295,11 @@ ul.pagination .page-item a:focus {
 .policy-container .content {
   background-color: #e1ecff;
   border-top: solid 1px #a2a3a6;
-  padding: 40px 15px;
+  padding: 40px 20px;
   text-align: center;
+  color: #373737;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .policy-container .content-table {
@@ -3309,8 +3326,34 @@ ul.pagination .page-item a:focus {
   margin-bottom: 0;
   font-size: 15px;
   padding: 5px 0;
+  color: #222222 Im !important;
 }
-
+.policy-container .card-body .card-text,.policy-container .card-body li{
+  color: #222222;
+  font-size: 13px;
+}
+.policy-container .card-body .text-end{
+  font-size: 14px;
+  font-weight: 500;
+}
+.policy-container .card-body .card-title strong{
+    font-size: 16px;
+    font-weight: 500;
+    color: #222222;
+}
+.content-table .card-body:hover .card-title a {
+  color: #fff !important;
+  text-decoration: none;
+}
+.policy-container .content-table .card .card-title a {
+  color: #222222;
+  font-size: 14px;
+}
+.policy-container .card-details .card-body{
+  padding: 30px 0px;
+  margin: 0 20px;
+  border-bottom: 1px solid #DFDFDF;
+}
 .privacy-content ul {
   margin-top: 15px;
   float: left;
@@ -3321,6 +3364,9 @@ ul.pagination .page-item a:focus {
   margin-bottom: 12px;
   list-style: circle;
   margin-left: 30px;
+}
+.privacy-content ul li:last-child{
+  margin-bottom: 0px;
 }
 
 .privacy-content ul li ol li {
@@ -3917,6 +3963,10 @@ input:focus-visible {
   background-image: url('/images/advertising/arrow.png');
   background-size : auto;
 }
+.select-option{
+  background-image: url('/images/gray-arrow.png');
+  background-size : auto;
+}
 .customdatepickerwidth .react-datepicker-wrapper{
   width: 100% !important;
 }
@@ -3980,7 +4030,57 @@ color: #000 !important;
 .MuiTableCell-root{
   font-family: "Noto Sans KR" !important;
 }
+
+.dropdown {
+  z-index: 10000;
+}
+.dropdown,
+.dropdown * {
+  z-index: 10;
+}
+.dropdown .dropdown-btn {
+  cursor: pointer;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #777;
+  font-weight: 500;
+}
+.dropdown-content {
+  position: absolute;
+  /* top: 110%; */
+  left: 0;
+  width: 100%;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+}
+.dropdown-content .item {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #EBEDF4;
+  border-right: 0px;
+  border-left: 0px;
+}
+.dropdown-content .item:hover {
+  background: #fcfcfc;
+}
+
+
 @media screen and (max-width: 767px) {
+  .policy-container .terms-section .content-terms{
+    padding: 20px;
+  }
+  .policy-container .content-table .card {
+    border-width: 1px 1px 0px 1px;
+  }
+  .policy-container .content-table .col:last-child .card{
+    border-width: 1px 1px 1px 1px;
+  }
   .faq-content{
     padding: 20px;
   }

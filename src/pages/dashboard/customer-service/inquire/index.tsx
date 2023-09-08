@@ -38,22 +38,27 @@ export default function InquireScreen() {
   const getDetail = (id: number) => {
     router.push(`inquire/${id}`);
   };
-
+  const InquiryType = {
+    classification_of_payments: "결제",
+    error: "오류",
+    usage_inquiry: "이용문의",
+    member_related: "회원관련",
+  };
   return (
     <>
       <Head>
         <title>Inquiry</title>
       </Head>
       <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px]">
-        <div className="flex gap-5 items-center">
+        <div className="flex gap-[20px] items-center p-[20px] sm:p-[0]">
           <Link href={`/dashboard/customer-service/inquire`}>
-            <button className="font-bold text-lg text-blue-700">
+            <button className="font-bold text-[20px] text-blue-700">
               문의내역확인
             </button>
           </Link>
           {user?.role === "Advertiser" && (
             <Link href={`inquire/form`}>
-              <button>문의하기</button>
+              <button className="text-[16px]">문의하기</button>
             </Link>
           )}
         </div>
@@ -85,7 +90,7 @@ export default function InquireScreen() {
                         {index + 1 + (page - 1) * 10}
                       </TableCell>
                       <TableCell className="!text-center !text-[16px] !py-[14px]">
-                        {inq.inquiry_type}
+                        {InquiryType[inq.inquiry_type]}
                       </TableCell>
                       <TableCell className="!py-[14px] !text-[16px]">{inq.inquiry_title}</TableCell>
                       <TableCell className="!text-center !text-[16px] !py-[14px] !text-[#999999]">

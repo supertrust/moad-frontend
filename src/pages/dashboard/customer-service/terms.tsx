@@ -5,7 +5,7 @@ export default function PolicyModulePage() {
     <>
       <div className="policy-container">
         <div className="privacy-content">
-          <Tabs defaultActiveKey="개인정보처리방침" className="mb-4 tab-section">
+          <Tabs defaultActiveKey="개인정보처리방침" className="mb-[30px] tab-section">
             <Tab eventKey="개인정보처리방침" title="개인정보처리방침">
               <Accordion className="accordion-section">
                 <div className="content-terms">
@@ -14,7 +14,7 @@ export default function PolicyModulePage() {
                     정책의 변화에 따라 달라질 수 있으니 이용자께서는 이카루스 마케팅 플랫폼 사이트를 방문 시 수시로 확인하여 주시기 바랍니다.
                     이카루스 마케팅 플랫폼의 개인정보처리방침은 다음과 같은 내용을 담고 있습니다.
                   </div>
-                  <div className='content-table ps-4 pe-4 pt-5 pb-5'>
+                  <div className='content-table px-[20px] py-[30px]'>
                     <div className="row row-cols-1 row-cols-md-3 g-0">
                       <div className="col">
                         <div className="card h-100">
@@ -95,7 +95,7 @@ export default function PolicyModulePage() {
                       </div>  
                     </div>  
                   </div>
-                  <div className="card border-0 rounded-0">
+                  <div className="card border-0 rounded-0 card-details">
                     <div className="card-body" id="제1조">
                       <h5 className="card-title"><strong>제1조. 개인정보의 수집•이용</strong></h5>
                       <ul>
@@ -148,7 +148,7 @@ export default function PolicyModulePage() {
                           마련합니다. 회사는 이용자가 필요한 최소한의 개인정보 이외의 개인정보를 제공하지 아니한다는 이유로 그 서비스의 제공을 거부하지 않습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제2조">
                       <h5 className="card-title"><strong>제2조. 개인정보 제3자 제공</strong></h5>
                       <ul>
@@ -166,7 +166,7 @@ export default function PolicyModulePage() {
                         </li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제3조">
                       <h5 className="card-title"><strong>제3조. 개인정보 처리 위탁</strong></h5>
                       <ul>
@@ -185,7 +185,7 @@ export default function PolicyModulePage() {
                           최소한의 정보에 국한됩니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제4조">
                       <h5 className="card-title"><strong>제4조. 이용자 개인정보의 보유: 이용기간 및 파기</strong></h5>
                       <ul>
@@ -282,7 +282,7 @@ export default function PolicyModulePage() {
                         </ul> 
                       </div> 
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제5조">
                       <h5 className="card-title"><strong>제5조. 쿠키(Cookie)의 운용 및 거부</strong></h5>
                       <ul>
@@ -303,7 +303,7 @@ export default function PolicyModulePage() {
                         </li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제6조">
                       <h5 className="card-title"><strong>제6조. 이용자의 권리</strong></h5>
                       <ul>
@@ -326,7 +326,7 @@ export default function PolicyModulePage() {
                           이 경우 회원님은 본인 식별을 위하여 반드시 회원아이디(ID)와 본인확인 식별정보를 밝히셔야 하며, 철회로 인해 서비스에 다소 제약이 있거나 일부 서비스를 이용하지 못하실 수 있습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제7조">
                       <h5 className="card-title"><strong>제7조. 이용자의 의무</strong></h5>
                       <p className="card-text">이용자는 자신의 개인정보를 보호할 의무가 있으며, 회사의 귀책사유가 없이 ID, 비밀번호, 접근매체 등의 양도•대여•분실이나 로그인 상태에서 이석 등 이용자 본인의 부주의나 관계법령에 의한
@@ -344,14 +344,14 @@ export default function PolicyModulePage() {
                           이 경우 회원님은 본인 식별을 위하여 반드시 회원아이디(ID)와 본인확인 식별정보를 밝히셔야 하며, 철회로 인해 서비스에 다소 제약이 있거나 일부 서비스를 이용하지 못하실 수 있습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제8조">
                       <h5 className="card-title"><strong>제8조. 이용자의 의무</strong></h5>
                       <ul>
                         <li>회사는 이용자에게 다른 웹사이트에 대한 링크를 제공할 수 있습니다. 다만, 링크되어 있는 웹사이트들이 개인정보를 수집하는 행위에 대해서는 본 "개인정보처리방침"이 적용되지 않습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제9조">
                       <h5 className="card-title"><strong>제9조. 개인정보의 기술적/관리적 보호 대책</strong></h5>
                       <p className="card-text">회사는 이용자들의 개인정보를 처리함에 있어 개인정보가 분실, 도난, 유출, 변조 또는 훼손되지 않도록 안전성 확보를 위하여 다음과 같은 기술적/관리적 보호대책을 강구하고 있습니다.</p>
@@ -375,7 +375,7 @@ export default function PolicyModulePage() {
                         </li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제10조">
                       <h5 className="card-title"><strong>제10조. 개인정보 보호책임자</strong></h5>
                       <p className="card-text">회사는 이용자가 회사의 서비스를 안전하게 이용할 수 있도록 최선을 다하고 있습니다. 이용자는 회사의 서비스 이용과 관련한 모든 개인정보보호 민원을 전담부서로 신고하실 수 있으며,
@@ -396,15 +396,15 @@ export default function PolicyModulePage() {
                         경찰청 사이버안전국 / cyberbureau.police.go.kr / (국번없이) 182<br />
                       </p>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제11조">
                       <h5 className="card-title"><strong>제11조. 고지의 의무</strong></h5>
                       <p className="card-text">본 개인정보처리방침은 관계법령 및 지침의 변경 또는 회사의 필요 등에 의하여 내용의 추가, 삭제 및 수정이 생길 수 있습니다. 이 경우 최소 7일 전에 홈페이지 또는 이메일을 통해 사전 공지하고
                         사전 공지가 곤란한 경우 지체 없이 공지하며, 별도 공지가 없는 한 7일이 경과된 후에 시행됩니다. 다만, 중대한 내용이 변경되는 경우에는 최소 30일 전에 공지하고, 별도 공지가 없는 한 30일이
                         경과된 후에 시행됩니다. 또한 당사는 관계법령에 따라 필요한 경우 고객의 별도 동의를 받을 수 있습니다.</p>
                     </div>
-                    <hr className='mt-3 mb-3' />
-                    <div className="card-body">
+                    
+                    <div className="card-body !py-[30px] sm:!py-[60px] border-bottom-0">
                       <p className="card-text text-end">공고 일자: 0000년 00월 00일</p>
                       <p className="card-text text-end">시행 일자: 0000년 00월 00일s</p>
                     </div>
@@ -413,7 +413,7 @@ export default function PolicyModulePage() {
               </Accordion>
             </Tab>
             <Tab eventKey="결제/환불" title="이용약관">
-              <Accordion className="accordion-section">
+              <Accordion className="accordion-section terms-section">
               <div className="content-terms"> 
                   <div className='content-table'>
                     <div className="row row-cols-1 row-cols-md-3 g-0">
@@ -524,13 +524,14 @@ export default function PolicyModulePage() {
                       </div>
                     </div>  
                   </div>
-                  <div className="card border-0 mt-4 rounded-0">
+                  <div className="card border-0 mt-[20px] rounded-0 terms-details ">
                     <div className="card-body" id="제1조."> 
+                    <h5 className="card-title"><strong>제1조. 목적</strong></h5>
                       <ul>
                         <li> 본 약관은 ㈜이카루스(이하 "회사")가 제공하는 광고 서비스(아래 정의)를 "광고주"(아래 정의)에게 제공함에 있어 "회사"와 "광고주"의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다. </li>
                       </ul>
                      </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제2조.">
                       <h5 className="card-title"><strong>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</strong></h5>
                       <ul>
@@ -546,7 +547,7 @@ export default function PolicyModulePage() {
                         <li>⑬ &#34;광고성 이머니&#34;라 함은 “회사&#34;가 프로모션 혜택으로 또는 보상 및 환불을 위하여 “광고주&#34;에게 발급하는 전자적 지급수단을 말합니다. “광고성 이머니&#34;는 별도 정함이 없는 한 발급일부터 3개월 간 유효하며, “광고 상품&#34;의 결제시에만 사용할 수 있습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제3조.">
                       <h5 className="card-title"><strong>제3조. 약관의 게시 및 구성</strong></h5>
                       <ul>
@@ -557,7 +558,7 @@ export default function PolicyModulePage() {
                         "광고주"가 명시적으로 거부의 의사표시를 하지 아니한 경우 "광고주"가 개정약관에 동의한 것으로 봅니다</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제4조.">
                       <h5 className="card-title"><strong>제4조. 이용 계약 성립 등</strong></h5>
                       <ul>
@@ -578,7 +579,7 @@ export default function PolicyModulePage() {
                         </li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제5조.">
                       <h5 className="card-title"><strong>제5조. 광고의 등록, 제한 및 관리</strong></h5>
                       <ul>
@@ -603,7 +604,7 @@ export default function PolicyModulePage() {
                         <li>6) 기타 "광고 서비스"의 정상적인 운영을 방해하는 행위</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제6조.">
                       <h5 className="card-title"><strong>제6조. 광고 서비스의 변경 및 중단</strong></h5>
                       <ul>
@@ -620,7 +621,7 @@ export default function PolicyModulePage() {
                         터 메인, 공지사항 게시판이나 전자우편, 전화 등의 방법으로 즉시 중단 사실을 "광고주"에게 통지합니다. 단, "회사"가 미리 예측할 수 없는 사정에 의한 서비스의 중단의 경우에는 예외로 합니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제7조.">
                       <h5 className="card-title"><strong>제7조. 광고 서비스 이용료 정산 등</strong></h5>
                       <ul>
@@ -631,7 +632,7 @@ export default function PolicyModulePage() {
                         <li>⑤ “광고 서비스&#34; 이용 중 보상 또는 환불 사유가 발생하는 경우 “회사&#34;는 “광고성 이머니&#34;로 지급할 수 있습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제8조.">
                       <h5 className="card-title"><strong>제8조. "광고주"에 대한 통지</strong></h5>
                       <ul>
@@ -640,7 +641,7 @@ export default function PolicyModulePage() {
                         <li>③ "회사"는 "광고주"가 전항의 의무를 소홀히 하여 발생한 불이익에 대한 책임을 지지 않습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제9조.">
                       <h5 className="card-title"><strong>제9조. 이용 계약 해지, 종료 및 환불</strong></h5>
                       <ul>
@@ -657,7 +658,7 @@ export default function PolicyModulePage() {
                         <li>③ "회사"가 이용계약을 해지하는 경우 "광고주"가 신청한 서비스 이용신청은 자동으로 취소되고,"회사"는 광고 해지 이후 광고성 이머니(무상으로 발급한 경우를 제외합니다)를 포함한 잔여 금액은 판매예치금 형태로 "광고주"에게 환급합니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제10조.">
                       <h5 className="card-title"><strong>제10조. "회사"의 의무</strong></h5>
                       <ul>
@@ -667,7 +668,7 @@ export default function PolicyModulePage() {
                         <li>④ "회사"는 광고 효과 향상을 위해 "광고주"에게 광고 설정기능을 제공할 수 있으며, "광고주"가 설정한 조건에 따라 광고가 노출될 수 있도록 최선을 다합니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제11조.">
                       <h5 className="card-title"><strong>제11조. "광고주"의 의무</strong></h5>
                       <ul>
@@ -690,7 +691,7 @@ export default function PolicyModulePage() {
      이내에 "광고주"가 해당 "광고대행사"를 통해서 "로그인"과 "서비스 이용료"를 지급한 이력이 있을 경우 재이용이 가능합니다.</li> 
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제12조.">
                       <h5 className="card-title"><strong>제12조. "회사"의 면책</strong></h5>
                       <ul>
@@ -703,7 +704,7 @@ export default function PolicyModulePage() {
                         "광고주"가 관련 법령 또는 회사의 광고정책을 위반하는 경우 "회사"는 광고를 게재하지 않을 수 있으며, 광고 게재 또는 중단과 관련하여 "회사"는 책임을 지지 않습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제13조.">
                       <h5 className="card-title"><strong>제13 조. 개인정보보호의무 및 비밀유지</strong></h5>
                       <ul>
@@ -713,14 +714,14 @@ export default function PolicyModulePage() {
                         이용계약의 이행 이외의 목적으로 이용하지 않습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제14조.">
                       <h5 className="card-title"><strong>제14조. 분쟁의 해결</strong></h5>
                       <ul>
                         <li>본 약관은 대한민국법령에 의하여 규정되고 이행되며, 본 서비스 이용과 관련하여 발생한 분쟁에 대해서는 민사소송법상의 주소지를 관할하는 법원을 합의관할로 합니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body" id="제15조.">
                       <h5 className="card-title"><strong>제15조. 개인정보보호의무 및 비밀유지</strong></h5>
                       <ul>
@@ -734,15 +735,15 @@ export default function PolicyModulePage() {
                         "광고주"는 위 (3)항의 측정결과에 대하여 "회사"에 대하여 이의를 제기할 수 없습니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
+                    
                     <div className="card-body">
                       <h5 className="card-title"><strong>부칙 제1조. 적용일자</strong></h5>
                       <ul>
                         <li>본 약관은 0000년 00월 00일 부터 적용됩니다.</li>
                       </ul>
                     </div>
-                    <hr className='mt-3 mb-3' />
-                    <div className="card-body"> 
+                    
+                    <div className="card-body border-bottom-0"> 
                       <ul>
                         <li className='text-danger text-end'>별첨1. 광고 상품 및 서비스 이용료 과금 기준<br />
                         별첨2. 광고 운영 가이드</li>

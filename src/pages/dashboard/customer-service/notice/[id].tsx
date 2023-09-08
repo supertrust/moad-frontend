@@ -50,11 +50,10 @@ export default function NoticeDetailScreen() {
               </div>
               <div className="sm:py-[25px] p-[20px] flex justify-between sm:justify-around items-center gap-5 border-t border-[#EBEDF4]">
                 <Link
-                  href={"#"}
-                  // href={data?.prev !== null ? `/notice/${data?.prev}` : "#"}
+                  href={data?.prev !== null ? `${data?.prev}` : "#"}
                   className="hover:no-underline" >
                   <button
-                    // disabled={data?.prev === null}
+                    disabled={data?.prev === null}
                     type="button"
                     className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
                   >
@@ -70,11 +69,10 @@ export default function NoticeDetailScreen() {
                   </button>
                 </Link>
                 <Link
-                  // href={data?.next !== null ? `/notice/${data?.next}` : "#"} className="hover:no-underline"
-                  href={"#"} className="hover:no-underline"
+                  href={data?.next !== null ? `${data?.next}` : "#"} className="hover:no-underline"
                 >
                   <button
-                    // disabled={data?.next === null}
+                    disabled={data?.next === null}
                     type="button"
                   className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
                   >

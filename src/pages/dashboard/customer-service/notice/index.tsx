@@ -57,7 +57,7 @@ export default function NoticeScreen() {
                 {data?.length ? data.slice(prevItems,currentItems).map((notice, index) => {
                   return (
                     <TableRow key={index} >
-                      <TableCell className="!text-center !py-[14px]">
+                      <TableCell className="!text-center !text-[16px] !py-[14px]">
                         <div
                           className="flex items-center cursor-pointer justify-center"
                           onClick={() => setImportant(notice.id)}
@@ -73,7 +73,7 @@ export default function NoticeScreen() {
                           )}
                         </div>
                       </TableCell>
-                      <TableCell className="!py-[14px]">
+                      <TableCell className="!text-[16px] !py-[14px]">
                         <Link
                           href={`notice/${notice.id}`}
                           className="text-[#2C324C] hover:no-underline transition-colors duration-200"
@@ -81,7 +81,7 @@ export default function NoticeScreen() {
                           {notice.title}
                         </Link>
                       </TableCell>
-                      <TableCell className="!text-center !py-[14px] !text-[#999999]">{notice.created_at?.split('T')[0]}</TableCell>
+                      <TableCell className="!text-center !text-[16px] !py-[14px] !text-[#999999]">{notice.created_at?.split('T')[0]}</TableCell>
                     </TableRow>
                   );
                 }) 

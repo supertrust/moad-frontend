@@ -272,7 +272,6 @@ function AdvertisementDetailScreen() {
                     href: "/dashboard/ad-management",
                     title: "광고관리",
                   },  {
-                    href: "/dashboard/ad-details-list",
                     title: "신제품 홍보 출시기념",
                   }]}
                   className="text-[#2c324c] "

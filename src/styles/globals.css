@@ -220,7 +220,7 @@ button#dropdown-basic {
   top: 0;
   right: 0;
   padding: 30px;
-  background-color: #e7e7e7;
+  background-color: #F5F7FB;
   z-index: 100;
   border-bottom: 1px solid #e7e7e7;
 }
@@ -4349,4 +4349,17 @@ color: #000 !important;
 
 .ant-breadcrumb a:hover {
   text-decoration: none;
+}
+
+.gallery .carousel-indicators {
+  @apply  !hidden
+}
+
+.gallery .carousel-control-prev-icon,
+.gallery .carousel-control-next-icon {
+  @apply p-1 bg-[#000]  rounded-sm 
+}
+.gallery .carousel-control-prev,
+.gallery .carousel-control-next {
+  width: 7%
 }

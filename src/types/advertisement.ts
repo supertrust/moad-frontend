@@ -163,3 +163,19 @@ export type IAdvertissementCargoResponse = {
     totalRecords: number
     data: IAdvertisementCargo[]
 }
+
+export type GetCargoImageListProps = { 
+    advertisement_id: number
+    cargo_vehicle_id: number
+}
+
+export type ICargoImage = {
+    id: number,
+    advertisement_id: number,
+    cargo_vehicle_id: number,
+    image_title: string,
+    image_thumbnail: string,
+    image_path: string,
+    created_at: string,
+    updated_at: string
+  }

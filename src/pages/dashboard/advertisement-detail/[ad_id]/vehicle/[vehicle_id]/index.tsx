@@ -1,16 +1,21 @@
-import { useGetAdvertisementImages, useGetVehicleDetail, } from "@src/apis/advertisement";
-import { API_BASE_URL } from "@src/config";
+import { useGetCargoImage, useGetVehicleDetail, } from "@src/apis/advertisement";
+import Loader from "@src/components/Loader";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { styles } from "@src/sections/vehicle-info";
+import { ICargoImage } from "@src/types/advertisement";
+import { Breadcrumb, Skeleton } from "antd";
+import { clsx } from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { Carousel, Modal } from "react-bootstrap";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { XMarkIcon } from '@heroicons/react/24/solid'
 
 const imageStyle = {
   objectFit: "cover",
@@ -18,194 +23,101 @@ const imageStyle = {
   height: "100%",
 };
 
+
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const {pageTitle,setPageTitle} = useIcarusContext()
   const advertisementId = query.ad_id as string;
   const vehicleId   = query.vehicle_id as string;
-  const { data: advertisement } = useGetVehicleDetail({
+  const { data: advertisement , isLoading } = useGetVehicleDetail({
     advertisement_id: advertisementId,
     cargo_vehicle_id: vehicleId
-  }) as { data: any };
-  const { data: advertisementImages } = useGetAdvertisementImages({
-    advertisement_id: advertisementId,
-  }) as { data: any };
+  }) ;
+  const { data: advertisementImages, isLoading: isImagesLoading } = useGetCargoImage({
+    advertisement_id: Number(advertisementId),
+    cargo_vehicle_id: Number(vehicleId)
+  }) ;
 
-  useEffect(()=>
-  {
+  const [fullSize, showFullSize ] = useState(false);
+  const images =  advertisementImages || [];
+
+  useEffect(()=>{
     setPageTitle("차량정보")
   },[])
 
+  const showImage = (image?:  ICargoImage) => {
+    const size = 500;
+    return (
+      <>
+        { image && 
+          <Image
+            className={clsx(styles.img, 'rounded-md')}
+            src={image.image_path}
+            alt={image.image_title}
+            width={500}
+            height={500}
+          />
+      }
+      </>
+    )
+  }
 
   return (
-      <div>
-        <div className={styles.container}>
-          <div className={styles.board_content}>
-            <div className={styles.vehicle_information_content}>
-              <div className={styles.page_link}>
-                <a href="/ad-management" className={styles.link}>
-                  광고관리
-                </a>
-                <span className={styles.link}>&gt;</span>
-                <a href="/ad-detail-list" className={styles.link}>
-                  신제품 홍보 출시기념
-                </a>
-                <span className={styles.link}>&gt;</span>
-                <div className={styles.link}>차량정보</div>
-              </div>
+    <div className="vehicle_information page" id={styles.vehicle_information}>
+      <div className={styles.container}>
+        <div className={styles.board_content}>
+          <div className={styles.vehicle_information_content}>
+            <Breadcrumb 
+              separator='>'
+              items={[
+                {
+                  href: "/dashboard/ad-management",
+                  title: "광고관리",
+                },  {
+                  href: `/dashboard/advertisement-detail/${advertisementId}`,
+                  title: "이카루스 신제품 출시",
+                },{
+                  title: "차량정보",
+                }
+              ]}
+              className="text-[#2c324c] mb-3"
+            />
 
+            {isLoading ? 
+              <Loader size="lg" className="flex flex-row"/> :
               <div className={styles.content_inner}>
                 <div className={`${styles.slide_box} ${styles.content_body}`}>
+                  <div  className={styles.slider}>
+                    <Image
+                      className={styles.img}
+                      src={!isImagesLoading && images?.length && images[0]?.image_path || ''}
+                      alt={!isImagesLoading  && images?.length && images[0]?.image_title || ''}
+                      width={500}
+                      height={500}
+                      onClick={() => showFullSize(true)}
+                    />
+                  </div>
                   <Swiper
-                      spaceBetween={10}
-                      navigation={true}
-                      thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
-                      modules={[FreeMode, Navigation, Thumbs]}
-                      className={styles.slider}
+                    onSwiper={setThumbsSwiper}
+                    spaceBetween={10}
+                    slidesPerView={4}
+                    freeMode={true}
+                    watchSlidesProgress={true}
+                    modules={[FreeMode, Navigation, Thumbs]}
+                    className={styles.thumbs_slider}
                   >
-                    <SwiperSlide>
-                      <div className={styles.badge}>
-                        <div className={styles.text}>옆면</div>
-                        <div className={styles.text_sub}>(운전석)</div>
-                      </div>
-                      <Image
-                          className={styles.img}
-                          src={
-                              advertisementImages &&
-                              `${API_BASE_URL}${advertisementImages[0]?.image_path}`
-                          }
-                          alt={
-                              advertisementImages &&
-                              advertisementImages[0]?.image_title
-                          }
-                          width={500}
-                          height={500}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className={styles.badge}>
-                        <div className={styles.text}>옆면</div>
-                        <div className={styles.text_sub}>(운전석)</div>
-                      </div>
-                      <Image
-                          src={
-                              advertisementImages &&
-                              `${API_BASE_URL}${advertisementImages[1]?.image_path}`
-                          }
-                          alt={
-                              advertisementImages &&
-                              advertisementImages[1]?.image_title
-                          }
-                          className={styles.img}
-                          width={500}
-                          height={500}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className={styles.badge}>
-                        <div className={styles.text}>옆면</div>
-                        <div className={styles.text_sub}>(운전석)</div>
-                      </div>
-                      <Image
-                          src={
-                              advertisementImages &&
-                              `${API_BASE_URL}${advertisementImages[2]?.image_path}`
-                          }
-                          alt={
-                              advertisementImages &&
-                              advertisementImages[2]?.image_title
-                          }
-                          className={styles.img}
-                          width={500}
-                          height={500}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                      <div className={styles.badge}>
-                        <div className={styles.text}>옆면</div>
-                        <div className={styles.text_sub}>(운전석)</div>
-                      </div>
-                      <Image
-                          src={
-                              advertisementImages &&
-                              `${API_BASE_URL}${advertisementImages[3]?.image_path}`
-                          }
-                          alt={
-                              advertisementImages &&
-                              advertisementImages[3]?.image_title
-                          }
-                          className={styles.img}
-                          width={500}
-                          height={500}
-                      />
-                    </SwiperSlide>
-                  </Swiper>
-                  <Swiper
-                      onSwiper={setThumbsSwiper}
-                      spaceBetween={10}
-                      slidesPerView={4}
-                      freeMode={true}
-                      watchSlidesProgress={true}
-                      modules={[FreeMode, Navigation, Thumbs]}
-                      className={styles.thumbs_slider}
-                  >
-                    <SwiperSlide className={styles.swiperslide}>
-                      <Image
-                          src={
-                              advertisementImages &&
-                              `${API_BASE_URL}${advertisementImages[0]?.image_path}`
-                          }
-                          alt={
-                              advertisementImages &&
-                              advertisementImages[0]?.image_title
-                          }
-                          width={500}
-                          height={500}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide className={styles.swiperslide}>
-                      <Image
-                          src={
-                              advertisementImages &&
-                              `${API_BASE_URL}${advertisementImages[1]?.image_path}`
-                          }
-                          alt={
-                              advertisementImages &&
-                              advertisementImages[1]?.image_title
-                          }
-                          width={500}
-                          height={500}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide className={styles.swiperslide}>
-                      <Image
-                          src={
-                              advertisementImages &&
-                              `${API_BASE_URL}${advertisementImages[2]?.image_path}`
-                          }
-                          alt={
-                              advertisementImages &&
-                              advertisementImages[2]?.image_title
-                          }
-                          width={500}
-                          height={500}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide className={styles.swiperslide}>
-                      <Image
-                          src={
-                              advertisementImages &&
-                              `${API_BASE_URL}${advertisementImages[3]?.image_path}`
-                          }
-                          alt={
-                              advertisementImages &&
-                              advertisementImages[3]?.image_title
-                          }
-                          width={500}
-                          height={500}
-                      />
-                    </SwiperSlide>
+                    {images.map( (image) => 
+                      <SwiperSlide className={styles.swiperslide}  
+                        key={image.id}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          showFullSize(true)
+                        }}
+                      >
+                        {showImage(image)}
+                      </SwiperSlide>
+                    )}
                   </Swiper>
                 </div>
 
@@ -273,14 +185,11 @@ export default function VehicleInfoScreen() {
                                 <div className={`${styles.title} ${styles.text}`}>
                                   고정 출발지
                                 </div>
-                                <div className={`${styles.title} ${styles.text}`}>
+                                <div className={`${styles.value} ${styles.text}`}>
                                   {
                                     advertisement
                                         ?.start_point
                                   }
-                                </div>
-                                <div className={`${styles.value} ${styles.text}`}>
-                                  -
                                 </div>
                               </li>
                               <li className={styles.list}>
@@ -296,9 +205,35 @@ export default function VehicleInfoScreen() {
                   </ul>
                 </div>
               </div>
-            </div>
+            }
           </div>
         </div>
       </div>
+        <Modal 
+          show={fullSize && !!advertisementImages?.length} 
+          centered size="lg" 
+          className="gallery"
+          contentClassName="bg-transparent m-0 border-none"
+        >
+          <Modal.Body className="m-0 flex-1">
+            <XMarkIcon 
+              width={25} 
+              className="p-1 bg-[#000] bg-opacity-70 text-white absolute right-6 top-6 z-50 rounded-sm cursor-pointer"
+              onClick={() => showFullSize(false)} 
+            />
+            <Carousel>
+              {images.map((item, index) => (
+                  <Carousel.Item key={index}>
+                    <div className={styles.badge}>
+                      <div className={styles.text}>옆면</div>
+                      <div className={styles.text_sub}>(운전석)</div>
+                    </div>
+                    {showImage(item)}
+                  </Carousel.Item>
+              ))}
+            </Carousel>
+          </Modal.Body>
+        </Modal>
+    </div>
   );
 }

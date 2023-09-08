@@ -6,11 +6,12 @@ import {
     GetAdvertisementOperationAreaPropsType,
     GetAdvertisementVehiclesPropsType,
     GetAdvertisementsPropType,
+    GetCargoImageListProps,
     IAdvertisement,
-    IAdvertisementCargo,
     IAdvertisementOperatingArea,
     IAdvertisementVehicle,
     IAdvertissementCargoResponse,
+    ICargoImage,
     IOperatingArea,
     IVehicle,
     SaveAdvertisementType,
@@ -150,4 +151,11 @@ useQuery<IAdvertissementCargoResponse, string>({
     queryKey: ["advertisement-cargo-list", {...Object.values(props)}],
     queryFn: async () => (await axios.get("/api/get-advehicles-list", { params: props })).data,
     enabled: !!props.advertisement_id,
+});
+
+
+export const useGetCargoImage = (props: GetCargoImageListProps) => useQuery<ICargoImage[], string>({
+    queryKey: ["advertisement-cargo-image", {...Object.values(props)}],
+    queryFn: async () => (await axios.get("/api/get-cargo-images", { params: props })).data.data,
+    enabled: !!props.cargo_vehicle_id && !!props.advertisement_id,
 });

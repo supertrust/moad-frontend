@@ -1,3 +1,4 @@
+import { isAuthenticateRoute } from "@src/utils/route";
 import Axios from 'axios';
 
 import { API_BASE_URL } from '@src/config';
@@ -34,7 +35,7 @@ axios.interceptors.response.use(
     (err) => {
         if (err.response && err.response.status === 401) {
             // Check if the current path is not the login page
-            if (window.location.pathname !== '/login') {
+            if (isAuthenticateRoute(window.location.pathname)) {
                 // Redirect to the login page
                 localStorage.removeItem('token');
                 window.location.href = '/login';

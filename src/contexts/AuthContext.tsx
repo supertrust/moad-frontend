@@ -1,3 +1,4 @@
+import { isAuthenticateRoute } from "@src/utils/route";
 import { useRouter } from "next/router";
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -37,7 +38,7 @@ function AuthProvider({ children }: AuthProviderProps) {
             token && setAxiosToken(token);
             setIsAuthenticated(isTokenValid);
         }
-        else router.push("/login")
+        else if(isAuthenticateRoute(router.pathname)) router.push("/login")
         setLoading(false);
     }, []);
 

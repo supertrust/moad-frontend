@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AuthContextType, LoginPropsType, RegisterPropsType } from '@src/types/auth';
@@ -18,6 +19,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     const { mutateAsync: _login } = useLogin();
     const { mutateAsync: _register } = useRegister();
     const { mutateAsync: _logout } = useLogout();
+    const router = useRouter();
 
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,6 +37,7 @@ function AuthProvider({ children }: AuthProviderProps) {
             token && setAxiosToken(token);
             setIsAuthenticated(isTokenValid);
         }
+        else router.push("/login")
         setLoading(false);
     }, []);
 
@@ -61,7 +64,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     }, []);
 
     const logout = useCallback(async () => {
-        _logout();
+        router.push("/login")
+        await _logout();
         queryClient.clear();
         removeAxiosToken();
         localStorage.removeItem('token');

@@ -267,7 +267,7 @@ function Sidebar({ msg }: SidebarProps) {
         </ul>
       </div>
       <div className="side-logout d-flex align-items-center">
-        <a href="#" onClick={handleLogout} className="logout-btn">
+        <a  onClick={handleLogout} className="logout-btn">
           <i className="ic-logout"></i>
           <div className="text-white">로그아웃</div>
         </a>

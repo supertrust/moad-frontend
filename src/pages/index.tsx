@@ -1,13 +1,18 @@
+import useAuth from "@src/hooks/useAuth";
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 export default function Home() {
   const { push } = useRouter();
+  const { isAuthenticated,loading } = useAuth()
   
   useEffect(() => {
-    push("/dashboard")
-  }, [])
+      if(loading)
+          return;
+    if(isAuthenticated)push("/dashboard")
+      else push("/login")
+  }, [isAuthenticated,loading])
 
   return (
     <>

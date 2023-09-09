@@ -31,7 +31,18 @@ axios.interceptors.response.use(
         }
         return res;
     },
-    (err) => handleError(err),
+    (err) => {
+        if (err.response && err.response.status === 401) {
+            // Check if the current path is not the login page
+            if (window.location.pathname !== '/login') {
+                // Redirect to the login page
+                localStorage.removeItem('token');
+                window.location.href = '/login';
+            }
+        } else {
+            return handleError(err);
+        }
+    }
 );
 
 export const setAxiosToken = (token: string) => {

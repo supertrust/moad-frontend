@@ -147,6 +147,32 @@ export default function MyInfoScreen() {
     updateProfile();
   },[profileImage])
 
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter" && !disabledSubmit && !showModal) {
+        event.preventDefault(); // Prevent form submission
+        onSubmit().then(() => {});
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [disabledSubmit,showModal]);
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter" && showModal) {
+        event.preventDefault(); // Prevent form submission
+        setShowModal(false)
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [showModal]);
+
   return (
     <>
       <Row>

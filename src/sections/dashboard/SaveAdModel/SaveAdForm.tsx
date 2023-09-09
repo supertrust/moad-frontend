@@ -151,6 +151,20 @@ const SaveAdForm = ({ onCancel, onSubmitForm,isLoadingSaveAdvertisement }: { onC
             type && setIsAreaVisible(type=="fixed_ad")
         })
     }, [watch]);
+
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.code === "Enter") {
+                event.preventDefault(); // Prevent form submission
+                onSubmit().then(() => {});
+            }
+        };
+        document.addEventListener("keydown", handleKeyPress);
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, []);
+
     function CustomInput(props) {
         return (
           <div className="input-group">

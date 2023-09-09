@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { Col, Modal, Row } from "react-bootstrap";
@@ -61,6 +61,32 @@ export default function ChangePasswordScreen() {
       }
     });
   })
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter" && !showModal) {
+        event.preventDefault(); // Prevent form submission
+        onSubmit().then(() => {});
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [showModal]);
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter") {
+        event.preventDefault(); // Prevent form submission
+        setShowModal(false)
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   return (
     <>

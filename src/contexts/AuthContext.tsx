@@ -1,4 +1,4 @@
-import { isAuthenticateRoute } from "@src/utils/route";
+import { isAuthenticateRoute, isWithoutAuthenticateRoute } from "@src/utils/route";
 import { useRouter } from "next/router";
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -37,8 +37,11 @@ function AuthProvider({ children }: AuthProviderProps) {
             const isTokenValid = decodedJwt && decodedJwt?.exp * 1000 > Date.now();
             token && setAxiosToken(token);
             setIsAuthenticated(isTokenValid);
-        }
-        else if(isAuthenticateRoute(router.pathname)) router.push("/login")
+
+            if (isTokenValid && isWithoutAuthenticateRoute())
+                router.push("/dashboard")
+
+        } else if (isAuthenticateRoute(router.pathname)) router.push("/login")
         setLoading(false);
     }, []);
 
@@ -53,14 +56,14 @@ function AuthProvider({ children }: AuthProviderProps) {
     }, []);
 
     const register = useCallback(async (props: RegisterPropsType) => {
-            return  _register(props).then(res=>{
-                 return true
-             }).catch(error=> {
-                 toast(error, {
-                     type: "error",
-                 })
-                 return false
-             })
+        return _register(props).then(res => {
+            return true
+        }).catch(error => {
+            toast(error, {
+                type: "error",
+            })
+            return false
+        })
 
     }, []);
 

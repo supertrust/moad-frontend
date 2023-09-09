@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "./index";
 import {useFindId} from "@src/apis/auth";
 import {FormProvider, RHFInput, useForm, yupResolver} from "@src/components/Form";
@@ -46,6 +46,19 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
             toast("로그인에 실패했습니다. 자격 증명을 확인하십시오.", { type: "error" });
         }
     })
+
+    useEffect(() => {
+        const handleKeyPress = (event) => {
+            if (event.code === "Enter") {
+                event.preventDefault(); // Prevent form submission
+                onSubmit().then(() => {});
+            }
+        };
+        document.addEventListener("keydown", handleKeyPress);
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, []);
 
 
 

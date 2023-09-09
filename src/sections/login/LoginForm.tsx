@@ -17,7 +17,7 @@ const LoginSchema = Yup.object({
   password: Yup.string().required("비밀번호를 입력해주세요."),
 })
 
-const LoginFormModule = () => {
+const LoginFormModule = ({enabledSubmit} : {enabledSubmit : boolean}) => {
   const { login } = useAuth();
   const router = useRouter();
   const [remeberId, setRemeberId] = useState<boolean>(false);
@@ -48,6 +48,8 @@ const LoginFormModule = () => {
   const { handleSubmit, formState: { isSubmitting ,dirtyFields } } = methods;
 
   const onSubmit = handleSubmit(async (props) => {
+    if(!enabledSubmit)
+      return;
     try {
       await login(props)
       setFormError(false)
@@ -70,7 +72,7 @@ const LoginFormModule = () => {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [enabledSubmit]);
 
   return (
     <FormProvider methods={methods}>
@@ -133,7 +135,7 @@ const LoginFormModule = () => {
           className={`${styles.login_btn} ${form ? styles.active : styles.disabled} `}
           onClick={onSubmit}
           loading={isSubmitting}
-          disabled={ Object.keys(dirtyFields).length!==2 && !isSubmitting }
+          disabled={ Object.keys(dirtyFields).length!==2 && !isSubmitting && !enabledSubmit }
         >
           다음
         </Button>

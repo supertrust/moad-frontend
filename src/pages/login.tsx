@@ -1,7 +1,7 @@
-import { LoginForm, styles, FindIdModel, FindPassModel } from "@src/sections/login";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { FindIdModel, FindPassModel, LoginForm } from "@src/sections/login";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Login() {
   const [findId, SetFindId] = useState(false);
@@ -36,7 +36,7 @@ export default function Login() {
               </div>
               <div className="max-w-[380px] w-full h-[1px] bg-[#EEEEEE] mt-[16px]"></div>
             </div>
-            <LoginForm />
+            <LoginForm enabledSubmit = {!findPass && !findId}/>
             <div className="link-wrap gap-[10px]">
               <a href={'#'} className="link text" onClick={handleSignup}>회원가입</a>
               <span className="bar text">|</span>

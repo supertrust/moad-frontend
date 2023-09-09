@@ -1,5 +1,5 @@
 import { styles } from "@src/sections/login/find-password/index";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FormProvider,
   RHFInput,
@@ -60,6 +60,19 @@ const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
       }
     );
   });
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter") {
+        event.preventDefault(); // Prevent form submission
+        onSubmit().then(() => {});
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   return (
     <div

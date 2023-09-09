@@ -1,4 +1,6 @@
-export const PublicRoute = ["login", "landing", "signup"]
+export const WithoutAuthenticationRoute = ["signup","login"]
+
+export const PublicRoute = [...WithoutAuthenticationRoute,"landing"];
 
 export const isAuthenticateRoute=(pathName)=>{
 
@@ -9,3 +11,15 @@ export const isAuthenticateRoute=(pathName)=>{
     }
     return true;
 }
+
+export const isWithoutAuthenticateRoute=()=>{
+
+    const pathName = window.location.pathname;
+    for (const substring of WithoutAuthenticationRoute) {
+        if (pathName.includes(substring)) {
+            return true;
+        }
+    }
+    return false;
+}
+

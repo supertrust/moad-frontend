@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import useAuth from "@src/hooks/useAuth";
 
@@ -10,6 +10,19 @@ function AdAgreementForm({
   onAgree: VoidFunction;
 }) {
   const { user } = useAuth();
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter") {
+        event.preventDefault(); // Prevent form submission
+        onAgree();
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
   return (
     <div className={styles.ad_modal_wrap}>
       <div className={styles.ad_apply_title}>

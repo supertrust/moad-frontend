@@ -112,10 +112,10 @@ export default function Index({ id }: { id: string }) {
     }
   };
 
-  const handleFormSubmit = async (event: any) => {
+  const handleFormSubmit = async (event : any) => {
     event.preventDefault();
-    setSubmitting(true);
     const formData = new FormData();
+    setSubmitting(true);
     formData.append("inquiry_type", form.inquiry_type as string);
     formData.append("inquiry_title", form.inquiry_title as string);
     formData.append("inquiry_question", form.inquiry_question as string);
@@ -224,6 +224,20 @@ export default function Index({ id }: { id: string }) {
                       </div>
                     </div> ;
   }
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.code === "Enter" && form?.inquiry_type?.length &&
+          form?.inquiry_title?.length && form?.inquiry_question.length) {
+        event.preventDefault(); // Prevent form submission
+        handleFormSubmit(event).then(r => {});
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [form]);
   return (
     <>
       <Head>

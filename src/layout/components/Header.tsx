@@ -42,7 +42,7 @@ function Header(props: HeaderProps) {
                   <Dropdown.Toggle id="dropdown-basic" className="d-flex items-center	">
                     <div className="my-photo">
                       <Image
-                        src={user?.image ? getFileUrl(user?.image) : "/images/account_circle.png"}
+                        src={user?.image || "/images/account_circle.png"}
                         alt=""
                         className="img rounded-full w-[36px] h-[36px]"
                         width={40}

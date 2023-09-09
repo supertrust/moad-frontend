@@ -165,7 +165,7 @@ export default function MyInfoScreen() {
                     <div className={styles.profile_img}>
                       <div className={styles.user_photo}>
                         <Image
-                          src={user?.image ? getFileUrl(user?.image) : "/images/account_circle.png"}
+                          src={user?.image || "/images/account_circle.png"}
                           alt=""
                           width={72}
                           height={72}

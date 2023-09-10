@@ -39,6 +39,7 @@
   right: 0 !important;
   display: block !important;
   transform: rotate(180deg) !important;
+  border-radius: 0px 5px 5px 0px!important;
 }
 
 .btn_open {

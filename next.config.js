@@ -9,6 +9,8 @@ const nextConfig = {
   env: {
     API_BASE_URL: process.env.API_URL,
     KOKAO_MAP_URL: process.env.KOKAO_MAP_URL,
+    GOOGLE_MAP_API_KEY: process.env.GOOGLE_MAP_API_KEY,
+    GOOGLE_MAP_SECART_KEY: process.env.GOOGLE_MAP_SECART_KEY,
   },
   images: {
     remotePatterns: hostnames.map((hostname) => ({

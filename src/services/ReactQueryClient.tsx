@@ -4,7 +4,9 @@ import {
 } from '@tanstack/react-query'
 import { ReactNode } from 'react'
 
-export const queryClient = new QueryClient()
+export const queryClient = new QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } }
+})
 
 interface ReactQueryClientProps {
     children: ReactNode

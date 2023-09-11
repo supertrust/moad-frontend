@@ -3683,7 +3683,9 @@ input:focus-visible {
 .MuiTableCell-root {
 	font-family: 'Noto Sans KR' !important;
 }
-
+.MuiSelect-select{
+  padding: 8px 16px !important;
+}
 .dropdown {
 	z-index: 10000;
 }
@@ -3721,6 +3723,16 @@ input:focus-visible {
 }
 .dropdown-content .item:hover {
 	background: #fcfcfc;
+}
+.MuiFilledInput-underline:before,
+.MuiFilledInput-underline:after {
+  border: 0 !important;
+}
+.css-oxbflk-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root:hover:not(.Mui-disabled, .Mui-error):before{
+  border: 0 !important;
+}
+.MuiInputBase-root{
+  background-color: #fff !important;
 }
 
 @media screen and (max-width: 767px) {

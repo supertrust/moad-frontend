@@ -62,7 +62,7 @@ export default function FaqScreen() {
                         <Accordion.Header>
                           <div className="list-title">
                             {
-                              selectedTab == "all" ?<div className="category font-semibold">{Types[item.type]}</div> : null
+                              selectedTab == "all" ?<div className=" w-[80px]">{Types[item.type]}</div> : null
                             }
                             <div className="title">{item.question}</div>
                           </div>

@@ -1,4 +1,4 @@
-import { Button, Card, CircularProgress } from "@mui/material";
+import { Button, Card } from "@mui/material";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -12,9 +12,9 @@ import {
 import Image from "next/image";
 import FormData from "form-data";
 import useAuth from "@src/hooks/useAuth";
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Controller, FormProvider, Yup, yupResolver, useForm } from '@src/components/Form';
+import MenuItem from '@mui/material/MenuItem';
 export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
   const { mutateAsync: saveInquiry } = useSaveInquiry();
@@ -37,6 +37,13 @@ export default function Index({ id }: { id: string }) {
       setData(data);
     }
   }, [data]);
+
+  const SaveInquirySchema = Yup.object().shape({
+    inquiry_type: Yup.string().required("고유형을 선택해주세요."),
+    inquiry_title: Yup.string().required("광고이름을 입력해주세요."),
+    inquiry_question: Yup.number().required("광고기간을 6개월 또는 12개월 선택해주세요."),
+    inquiry_answer: Yup.string().required("시작일을 선택해주세요. (등록 기준 1달 이후 선택)"),
+})
 
   const setData = async (_data: any) => {
     if (!data?.inquiry_answer) {
@@ -111,8 +118,33 @@ export default function Index({ id }: { id: string }) {
       setFileNames([...fileNames]);
     }
   };
-
+  type FormDataType = {
+    inquiry_title: string;
+};
+  const defaultValues: FormDataType = {
+    inquiry_title: "",
+};
+const SaveAdvertisementSchema = Yup.object().shape({
+  inquiry_title: Yup.string().required("Error"),
+  ad_name: Yup.string().required("광고이름을 입력해주세요."),
+  ad_period: Yup.number().required("광고기간을 6개월 또는 12개월 선택해주세요."),
+  start_date: Yup.string().required("시작일을 선택해주세요. (등록 기준 1달 이후 선택)"),
+  vehicle_details: Yup.object().test(
+      'is-not-empty-object',
+      '운행차량을 입력해주세요.',
+      (value) => Object.keys(value).length > 0
+  ),
+  operating_area: Yup.array().when('type', ([type], schema) =>
+      type == 'fixed_ad' ? schema.min(1, "운행지역을 선택해주세요.") : schema,
+  )
+})
+  const methods = useForm<FormDataType>({
+    defaultValues,
+    //@ts-ignore
+    resolver: yupResolver(SaveAdvertisementSchema)
+});
   const handleFormSubmit = async (event : any) => {
+    console.log('working')
     event.preventDefault();
     const formData = new FormData();
     setSubmitting(true);
@@ -142,102 +174,18 @@ export default function Index({ id }: { id: string }) {
   };
   const [isActive, setIsActive] = useState(false);
   const [selected, setIsSelected] = useState("선택");
-  function handleSelect(e) {
-    const updatedForm = { ...form, ['inquiry_type']: e.target.id };
+  const handleChange = (event: SelectChangeEvent) => {
+    const updatedForm = { ...form, ['inquiry_type']: event.target.value };
     setForm(updatedForm);
-    setIsSelected(e.target.textContent);
-    console.log(isActive)
-    setIsActive(!isActive)
-    console.log(isActive)
-  }
-  function useOutsideClick(ref) {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if(isActive){
-          if (ref.current && !ref.current.contains(event.target)) {
-            setIsActive(false)
-          }
-        }
-      }
-      document.addEventListener("mousedown", handleClickOutside);
-    }, [ref]);
-  }
-  const InquryTypeComponent = () => {
-    const wrapperRef = useRef(null);
-    useOutsideClick(wrapperRef);
-  
-    return <div ref={wrapperRef} className="dropdown">
-                      <div
-                        onClick={(e) => {
-                          setIsActive(!isActive);
-                        }}
-                        id=""
-                        className="dropdown-btn"
-                      >
-                        {selected}
-                        {isActive ?
-                            <KeyboardArrowUpIcon/>
-                            : 
-                            <KeyboardArrowDownIcon/>
-                            }
-                      </div>
-                      <div
-                        className="dropdown-content bg-[#fff]"
-                        style={{ display: isActive ? "block" : "none" }}
-                      >
-                        <div
-                          onClick={(e) => {
-                            handleSelect(e);
-                          }}
-                          className="item"
-                          id="classification_of_payments"
-                        >
-                          결제
-                        </div>
-                        <div
-                          id="error"
-                          className="item"
-                          onClick={(e) => {
-                            handleSelect(e);
-                          }}
-                        >
-                          오류
-                        </div>
-                        <div
-                          id="usage_inquiry"
-                          className="item"
-                          onClick={(e) => {
-                            handleSelect(e);
-                          }}
-                        >
-                          이용문의
-                        </div>
-                        <div
-                          id="member_related"
-                          className="item"
-                          onClick={(e) => {
-                            handleSelect(e);
-                          }}
-                        >
-                          회원관련
-                        </div>
-                      </div>
-                    </div> ;
-  }
-
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.code === "Enter" && form?.inquiry_type?.length &&
-          form?.inquiry_title?.length && form?.inquiry_question.length) {
-        event.preventDefault(); // Prevent form submission
-        handleFormSubmit(event).then(r => {});
-      }
-    };
-    document.addEventListener("keydown", handleKeyPress);
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [form]);
+    setIsSelected(event.target.value as string);
+  };
+ 
+  const MenuItemStyles = {
+    border: "0px solid", 
+    "border-width" : "0px 0px 1px 0px",
+    color: "#999999",
+    padding : "10px 12px",
+  };
   return (
     <>
       <Head>
@@ -287,7 +235,36 @@ export default function Index({ id }: { id: string }) {
                         : "")
                     }
                   > 
-                    <InquryTypeComponent/>
+                    {/* <InquryTypeComponent/> */}
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={selected}
+                      variant="filled"
+                      label="type"
+                      displayEmpty
+                      onChange={handleChange}
+                      sx={{ width: "100%", background: "#fff", }}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            '.MuiSelect-select': {
+                              padding: "8px 16px",
+                            },
+                            '.MuiList-root': {
+                              padding: "0"
+                            },
+                          },
+                        },
+                      }}
+                    >
+                      <MenuItem sx={[MenuItemStyles, { "border-top": "1px solid" }]} selected value="선택"><em>선택</em></MenuItem>
+                      <MenuItem sx={MenuItemStyles} value={"classification_of_payments"}>결제</MenuItem>
+                      <MenuItem sx={MenuItemStyles} value={"error"}>오류</MenuItem>
+                      <MenuItem sx={MenuItemStyles} value={"usage_inquiry"}>이용문의</MenuItem>
+                      <MenuItem sx={MenuItemStyles} value={"member_related"}>회원관련</MenuItem>
+                    </Select>
+      
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">

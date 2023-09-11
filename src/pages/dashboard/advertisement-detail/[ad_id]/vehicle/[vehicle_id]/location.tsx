@@ -1,14 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getMapScriptTag, registerEvents } from "@src/helpers/map";
 import { useSaveLocation } from "@src/apis/map";
-import { toast } from "react-toastify";
 import { dateFormat } from "@src/helpers";
-import useDebouncedState from "@restart/hooks/useDebouncedState";
-import { Drawer, Paper } from "@mui/material";
 import { useRouter } from "next/router";
 import { styles } from "@src/sections/vehicle-location";
 import Image from "next/image";
-import Button from "@src/components/Button";
+import { Button } from "@src/components/common";
 
 const Map = () => {
   const { query } = useRouter();

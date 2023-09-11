@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import LoadingScreen from '@src/components/loading-screen';
 import Login from '../pages/login';
 import useAuth from '@src/hooks/useAuth';
+import { LoadingPage } from '@src/components/pages';
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
   }, [isAuthenticated, pathname, push, requestedLocation]);
 
   if (loading) {
-    return <LoadingScreen />;
+    return <LoadingPage />;
   }
 
   if (!isAuthenticated) {

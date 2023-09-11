@@ -1,4 +1,4 @@
-import Button, { ButtonProps } from '@src/components/Button';
+import { ButtonProps, Button } from '@src/components/common';
 import { clsx } from 'clsx';
 import React, { ReactNode, createContext, useState } from 'react';
 import { Modal } from 'react-bootstrap';

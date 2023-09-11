@@ -2,7 +2,7 @@ import { styles } from "@src/sections/login/find-password/index";
 import React, { useEffect, useState } from "react";
 import { useSendOTP, useVerifyOTP } from "@src/apis/auth";
 import { toast } from "react-toastify";
-import MyButton from "@src/components/Button";
+import { Button } from "@src/components/common";
 
 type Step2Props = {
   step: number;
@@ -102,7 +102,7 @@ const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
           <div className={styles.input_text}>인증 번호를 받을 이메일주소</div>
           <div className={styles.certification_wrap}>
             <div className={styles.certification_email}>{email}</div>
-            <MyButton
+            <Button
               type="button"
               loading={isLoadingSendOTP}
               onClick={handleSendOTP}
@@ -111,7 +111,7 @@ const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
               }`}
             >
               인증번호받기
-            </MyButton>
+            </Button>
           </div>
         </div>
         <div className={styles.input_wrap}>
@@ -140,7 +140,7 @@ const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
         </div>
       </div>
       <div className={styles.btn_wrap}>
-        <MyButton
+        <Button
           type="button"
           disabled={otp?.length === 0 || !otp}
           id="step02_confirm"
@@ -151,7 +151,7 @@ const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
           }`}
         >
           인증번호 확인
-        </MyButton>
+        </Button>
         <button
           type="button"
           onClick={onClose}

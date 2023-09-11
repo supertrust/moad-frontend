@@ -51,5 +51,8 @@
     "three": "^0.152.2",
     "typescript": "^5.0.4",
     "yup": "^1.1.1"
+  },
+  "devDependencies": {
+    "sass": "^1.66.1"
   }
 }

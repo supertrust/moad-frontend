@@ -102,6 +102,33 @@ $border-color_1: unset;
 		}
 	}
 }
+.thired-sec {
+	h1 {
+		color: $color_1 !important;
+		text-align: center;
+		font-family: $font-family_1;
+		font-size: 40px;
+		line-height: 60px;
+		font-style: normal;
+		font-weight: 400;
+		letter-spacing: -1.2px;
+	}
+	.bold-font {
+		color: $color_4;
+	}
+	p {
+		font-size: 22px;
+		text-align: center;
+		margin-top: 20px;
+		text-align: center;
+		font-family: $font-family_1;
+		font-size: 22px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		letter-spacing: -0.66px;
+	}
+}
 .mt-sec {
 	margin-top: 100px;
 }
@@ -377,6 +404,13 @@ $border-color_1: unset;
 		padding: 0 0 100% !important;
 		margin: 0 auto 50px !important;
 	}
+	.thired-sec {
+		padding: 20px;
+		h1 {
+			font-size: 25px;
+			line-height: normal;
+		}
+	}
 	.track-content {
 		h1 {
 			font-size: 25px;
@@ -467,6 +501,13 @@ $border-color_1: unset;
 		background-position: right 100% !important;
 		padding: 15% 0 !important;
 		margin: 0 auto 50px !important;
+	}
+	.thired-sec {
+		padding: 20px;
+		h1 {
+			font-size: 25px;
+			line-height: normal;
+		}
 	}
 	.track-content {
 		h1 {

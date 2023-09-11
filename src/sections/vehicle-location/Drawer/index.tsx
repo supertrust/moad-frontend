@@ -2,26 +2,38 @@ import React from 'react';
 import styles from '../style.module.css';
 import Image from 'next/image';
 import { clsx } from 'clsx';
+import CaretUp from '@images/vehicle_location/ic-arrow-up.png'
 
 interface DrawerProps {
   open: boolean
   handleClose: VoidFunction
 }
 
+
 function Drawer({ open, handleClose}: DrawerProps) {
+
   return (
     <div>
       <div className={styles.button_wrap}>
         <button
           type="button"
           id="location_detail_btn"
-          // className={`${styles.arrow_wrap} ${open ? styles.btn_closed : styles.btn_open
-          //   }`} 
-          className={clsx(styles.arrow_wrap, open ? styles.btn_closed : styles.btn_open)} 
+          className={clsx(styles.arrow_wrap, open ? styles.btn_closed : styles.btn_open )} 
           onClick={handleClose}
         >
           <i className={styles.ic_arrrow}></i>
         </button>
+      </div>
+
+      <div className='block sm:hidden mt-[-20px]'>
+        <div className='flex flex-row justify-center bg-transparent z-[200] relative'>
+            <div className='bg-white rounded-t-md px-3 py-[8px] cursor-pointer' onClick={handleClose}>
+              <Image  src={CaretUp} width={13} alt='' />
+            </div>
+        </div>
+        <div className='px-2 py-3 text-secondary font-bold bg-white'>
+          안산시 상록구 월피동
+        </div>
       </div>
       <div className={styles.vehicle_location_content}>
         <div className={clsx(styles.location_detail_wrap, open ? styles.closed : styles.open)} >

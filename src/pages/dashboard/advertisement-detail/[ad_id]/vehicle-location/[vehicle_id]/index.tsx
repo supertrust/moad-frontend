@@ -75,11 +75,15 @@ const VehicleLocationScreen = () => {
 		destination: { lat: 35.92663028655646, lng: 127.9180186752741 },
 	};
 
-	return (
-		<div>
-			<Map zoom={13} className='md:!h-[85vh]' location={locations.departure}>
-				<Tooltip
-					title={
+  return (
+    <div>
+      <Map 
+        zoom={13}
+        className="!h-[85vh]"
+        location={locations.departure}
+      >
+        <Tooltip 
+          title={
 						<div className='text-grey-500'>
 							<div>
 								Distance:{' '}
@@ -89,21 +93,27 @@ const VehicleLocationScreen = () => {
 							<div>Duration: 2h 15m</div>
 						</div>
 					}
-					trigger='click'
-					color='#2f48d1'
-					defaultOpen
-					//@ts-ignore
-					lat={locations.destination.lat}
-					lng={locations.destination.lng}>
-					<Image src={Marker} className='w-auto h-10 cursor-pointer' alt='' />
-				</Tooltip>
-			</Map>
-			<div className='absolute bottom-20 left-[50%] sm:left-[50%] md:left-[60%] '>
-				<Button className='bg-[#2C324C] text-white w-20'>새로고침</Button>
-			</div>
-			<Drawer open={showDrawer} handleClose={toggleDrawer} />
-		</div>
-	);
+          trigger="click" 
+          color="#2f48d1"
+          defaultOpen
+          //@ts-ignore
+          lat={locations.destination.lat} 
+          lng={locations.destination.lng}
+        >
+          <Image src={Marker} className='w-auto h-10 cursor-pointer' alt='' />
+        </Tooltip>
+      </Map>
+      <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] ">
+        <Button className="bg-[#2C324C] text-white w-20">
+          새로고침
+        </Button>
+      </div>
+      <Drawer 
+        open={showDrawer}
+        handleClose={toggleDrawer}
+      />
+    </div>
+  );
 };
 
 export default VehicleLocationScreen;

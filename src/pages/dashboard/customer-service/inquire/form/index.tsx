@@ -13,7 +13,7 @@ import Image from "next/image";
 import FormData from "form-data";
 import useAuth from "@src/hooks/useAuth";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Controller, FormProvider, Yup, yupResolver, useForm } from '@src/components/Form';
+import { Controller, FormProvider, Yup, yupResolver, useForm } from '@src/components/common/Form';
 import MenuItem from '@mui/material/MenuItem';
 export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();

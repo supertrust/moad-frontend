@@ -243,7 +243,7 @@ function AdvertisementDetailScreen() {
 				// record.show_links ?
 				<Link
 					legacyBehavior
-					href={`/dashboard/vehicle-location/${record.cargo_vehicle_id}`}>
+					href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle-location/${record.cargo_vehicle_id}`}>
 					<a target='_blank' className='hover:no-underline'>
 						{text}
 					</a>

@@ -430,7 +430,8 @@
 @media (max-width: 768px) {
   .vehicle_location_content .location_detail_wrap {
     width: 100%;
-    top: 70px;
+    z-index: 999;
+    /* top: 70px; */
   }
 
   .vehicle_location_content .location_detail_wrap.active {
@@ -454,27 +455,34 @@
     position: relative;
   }
 
-  .vehicle_location_content .location_detail_wrap .button_wrap .arrow_wrap {
+  .button_wrap .arrow_wrap {
     width: 48px;
     height: 22px;
-    top: -69px;
-    right: 50%;
+    top: 10%!important ; 
+    bottom: auto !important;
+    z-index: 999;
+    border-radius: 5px 5px 0px 0px !important ;
+    right: 50%; 
     transform: translateX(50%);
     border-color: #eeeeee;
-    border-radius: 5px 5px 0px 0px;
     background: url("../../../public/images/vehicle_location/ic-arrow-down.png")
       no-repeat center center / auto #ffffff;
     border-bottom: 0;
   }
 
-  .vehicle_location_content
-    .location_detail_wrap
-    .button_wrap
-    .arrow_wrap.active {
+  .button_wrap .arrow_wrap.active {
     top: inherit;
-    bottom: 46px;
+    right: 50%;
     background: url("../../../public/images/vehicle_location/ic-arrow-up.png")
       no-repeat center center / auto #ffffff;
+  }
+
+  .btn_closed {
+    display: none !important;
+  }
+
+  .btn_open {
+    display: block;
   }
 
   .vehicle_location_content .location_detail_wrap .content_inner {

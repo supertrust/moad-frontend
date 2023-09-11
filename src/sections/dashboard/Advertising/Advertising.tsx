@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import React, {useEffect, useRef, useState} from "react";
 import styles from "./style.module.css";
 import AdModel, { AdModelRef } from "../SaveAdModel";
@@ -17,8 +18,8 @@ export default function Advertising() {
   const [selectedAds, setSelectedAds] = useState<number[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
-  const {data: advertiserVehiclesStats } = useGetAdvertiserVehiclesStats() as {data:any}
-  const { data: advertisements } = useGetAdvertisements({
+  const {data: advertiserVehiclesStats, isLoading : isAdvertiserVehiclesStats  } = useGetAdvertiserVehiclesStats() as {data:any, isLoading : boolean}
+  const { data: advertisements, isLoading : isAdvertisementLoading } = useGetAdvertisements({
     status,
     type,
     for_admin: userRole?.role_name === "Admin",
@@ -48,7 +49,11 @@ export default function Advertising() {
             <span>등록된 광고</span>
           </div>
           <div className={styles.value}>
-            <span>{advertisements?.length}</span>
+            <span>{
+              (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
+              width={20} height ={28}/> : advertisements?.length
+            }
+            </span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -56,7 +61,9 @@ export default function Advertising() {
             <span>총 운행차량</span>
           </div>
           <div className={styles.value}>
-            <span>{advertiserVehiclesStats?.total_vehicles}</span>
+            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading)  ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
+                                                          width={20} height ={28}/> :
+                advertiserVehiclesStats?.total_vehicles}</span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -64,7 +71,9 @@ export default function Advertising() {
             <span>운행중</span>
           </div>
           <div className={styles.value}>
-            <span>{advertiserVehiclesStats?.running}th</span>
+            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
+                                                         width={20} height ={28}/>
+                : `${advertiserVehiclesStats?.running}th`}</span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -72,7 +81,9 @@ export default function Advertising() {
             <span>운행정지</span>
           </div>
           <div className={styles.value}>
-            <span>{advertiserVehiclesStats?.suspensions}</span>
+            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
+                                                         width={20} height ={28}/>:
+                advertiserVehiclesStats?.suspensions}</span>
           </div>
         </div>
         <div className={styles.cards}>

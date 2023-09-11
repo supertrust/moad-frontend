@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import React, { useState, useMemo, useEffect } from "react";
 import { Accordion, Tab, Tabs } from "react-bootstrap";
 import { Pagination } from "antd";
@@ -7,10 +8,10 @@ import { IFaq } from "@src/types/faq";
 export default function FaqScreen() {
   const [selectedTab, setSelectedTab] = useState<string>('all');
   const [selectedData, setSelectedData] = useState<IFaq[]>([]);
-  const { data: faq } = useGetFaq();
-  const { data: faqUse } = useGetFaqUse();
-  const { data: faqRefund } = useGetFaqRefund();
-  const { data: faqEtc } = useGetFaqEtc();
+  const { data: faq,isLoading : isFaqLoading } = useGetFaq();
+  const { data: faqUse, isLoading : isFaqUseLoading } = useGetFaqUse();
+  const { data: faqRefund, isLoading : isFaqRefundLoading } = useGetFaqRefund();
+  const { data: faqEtc, isLoading : isFaqEtcLoading } = useGetFaqEtc();
 
   useEffect(() => {
     switch (selectedTab) {
@@ -32,6 +33,13 @@ export default function FaqScreen() {
     "service_use": '서비스이용',
     "payment_refund": '결제/환불',
     "etc": '기타'
+  }
+
+  const Loading = {
+    "all": isFaqLoading,
+    "service_use": isFaqUseLoading,
+    "payment_refund": isFaqRefundLoading,
+    "etc": isFaqEtcLoading
   }
   // Pagination
   const itemsPerPage = 10;
@@ -56,6 +64,11 @@ export default function FaqScreen() {
             return (
               <Tab key={index} eventKey={key} title={Types[key]} >
                 <Accordion className="accordion-section min-h-[500px] sm:min-h-[600px] h-full">
+                  {
+                    Loading[key] &&  <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
+                        <CircularProgress color="primary" />
+                      </div>
+                  }
                   {selectedData? selectedData.slice(prevItems, currentItems).map((item, i) => {
                     return (
                       <Accordion.Item eventKey={`${i}`} key={i}>

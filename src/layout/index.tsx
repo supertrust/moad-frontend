@@ -1,3 +1,5 @@
+import { CircularProgress } from "@mui/material";
+import useAuth from "@src/hooks/useAuth";
 import React, { createContext, ReactNode, useState } from "react";
 import { Footer, Header, Sidebar } from "./components";
 import AuthGuard from "@src/guards/AuthGuard";
@@ -15,6 +17,7 @@ export const IcarusContext = createContext<IcarusContextType | undefined>(undefi
 
 function Layout(props: LayoutProps) {
   const [pageTitle, setPageTitle] = useState<string>("");
+  const {isUserLoading} = useAuth();
 
   return (
     <div id="dashboard" className="dashboard page">
@@ -25,7 +28,11 @@ function Layout(props: LayoutProps) {
         <Header text={pageTitle} />
         <main className="flex-grow">
             <IcarusContext.Provider value={{ pageTitle,setPageTitle}}>
-                {props.children}
+                {
+                    isUserLoading ?  <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
+                        <CircularProgress color="primary" />
+                    </div> :  props.children
+                }
             </IcarusContext.Provider>
         </main>
         <Footer />

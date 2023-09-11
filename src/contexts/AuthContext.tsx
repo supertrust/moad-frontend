@@ -26,8 +26,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [token, setToken] = useState<string | null>(null);
 
-    const { data: user } = useGetUser({ isAuthenticated });
-    const { data: userRole } = useGetUserRole({ isAuthenticated });
+    const { data: user, isLoading : isUserLoading } = useGetUser({ isAuthenticated });
+    const { data: userRole, isLoading : isRoleLoading } = useGetUserRole({ isAuthenticated });
 
     const checkAuth = useCallback(() => {
         const token = localStorage.getItem('token');
@@ -89,13 +89,17 @@ function AuthProvider({ children }: AuthProviderProps) {
         login,
         register,
         logout,
-        loading
+        loading,
+        isUserLoading,
+        isRoleLoading
     }), [
         isAuthenticated,
         user,
         token,
         loading,
-        userRole
+        userRole,
+        isUserLoading,
+        isRoleLoading
     ]);
 
     return (

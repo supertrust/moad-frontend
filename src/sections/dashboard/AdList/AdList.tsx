@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import React, { useRef, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Pagination } from 'antd';
@@ -41,7 +42,7 @@ export default function AdListModule() {
 	const [type, setType] = useState<AdTypesType | undefined>();
 	const { confirm } = useConfirmDialog();
 
-	const { data: advertisements, refetch: refetchAdvertisements } =
+	const { data: advertisements, refetch: refetchAdvertisements, isLoading } =
 		useGetAdvertisements({
 			status,
 			type,
@@ -229,6 +230,9 @@ export default function AdListModule() {
 					</div>
 					<div className='tab-content all-wrap on min-h-[370px] h-full'>
 						<ul className='list-wrap'>
+							{isLoading &&  <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
+								<CircularProgress color="primary" />
+							</div>}
 							{advertisements
 								?.slice(prevItems, currentItems)
 								.map((item, index) => {

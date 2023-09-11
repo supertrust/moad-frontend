@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { Center, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import {
@@ -62,13 +63,13 @@ function AdvertisementDetailScreen() {
 	const { query } = useRouter();
 	const { setPageTitle } = useIcarusContext();
 	const advertisementId = query.ad_id as string;
-	const { data: advertisement } = useGetAdvertisementDetail({
+	const { data: advertisement, isLoading : isAdvertisementLoading  } = useGetAdvertisementDetail({
 		id: advertisementId,
 	});
-	const { data: vehicles } = useGetAdvertisementVehicles({
-		advertisement_id: advertisementId,
-	});
-	const { data: operationAreas } = useGetAdvertisementOperationArea({
+	// const { data: vehicles } = useGetAdvertisementVehicles({
+	// 	advertisement_id: advertisementId,
+	// });
+	const { data: operationAreas, isLoading : isOperationAreasLoading } = useGetAdvertisementOperationArea({
 		advertisement_id: advertisementId,
 	});
 
@@ -85,7 +86,7 @@ function AdvertisementDetailScreen() {
 
 	useEffect(() => {
 		if (advertisement?.ad_name) setPageTitle(advertisement?.ad_name);
-		else setPageTitle('...');
+		else setPageTitle('');
 	}, [advertisement?.ad_name]);
 
 	const mockup_arr = [
@@ -279,6 +280,12 @@ function AdvertisementDetailScreen() {
 				setModelImages((old) => ({ ...old, [key]: URL.createObjectURL(file) }));
 			}
 		};
+
+	if(isAdvertisementLoading && isOperationAreasLoading)
+		return  <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
+			<CircularProgress color="primary" />
+		</div>
+
 
 	return (
 		<>

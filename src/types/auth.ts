@@ -36,7 +36,9 @@ export type AuthContextType = {
     token: string | null;
     user: IUser | null;
     userRole: IUserRole | null;
-    loading: boolean
+    loading: boolean,
+    isUserLoading : boolean,
+    isRoleLoading : boolean
 }
 
 export type VerifyInputPropsType = {

@@ -5,7 +5,7 @@ import { columns } from '@src/sections/statistics/tabelData';
 import { useGetShowAdvertisementStats } from '@src/apis/advertisement';
 
 export default function StatisticsScreen() {
-	const { data: advertisement_stats } = useGetShowAdvertisementStats();
+	const { data: advertisement_stats, isLoading : isLoading } = useGetShowAdvertisementStats();
 	const date_start = '2023. 03. 01';
 	const date_end = '2023. 03. 08';
 	const ad_amount = '123,456,789';
@@ -100,7 +100,7 @@ export default function StatisticsScreen() {
 										<div className={styles.title}>운행거리/운행시간</div>
 										<div className={styles.line}></div>
 									</div>
-									<DataGrid columns={columns} rows={stats} />
+									<DataGrid columns={columns} rows={stats} loading={isLoading} />
 									{/* <BootstrapTable
                     keyField="id"
                     data={data}

@@ -31,6 +31,8 @@ function Header(props: HeaderProps) {
         }
     };
 
+    console.log('user',user);
+
     return (
         <div className='inner-header-wrap'>
             <div id='inner_header' className='inner-header'>
@@ -58,9 +60,15 @@ function Header(props: HeaderProps) {
                                             }
                                         </div>
                                         <div className='my-company'>
-                                            <div className='company-name'>Must FinTech</div>
+                                            <div className='company-name'>
+                                                {user?.company_name ? user?.company_name :
+                                                <Skeleton variant={"text"} width = {110}  sx={{ fontSize: "1rem",
+                                                margin : "auto"}}
+                                                />}
+
+                                            </div>
                                             <div className='email'>
-                                                {isUserLoading ? <Skeleton variant="text" width={120}
+                                                {isUserLoading ? <Skeleton variant="text" width={135}
                                                                            sx={{ fontSize: '12px' }}/> : user?.email}
                                             </div>
                                         </div>

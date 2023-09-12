@@ -261,7 +261,7 @@ export default function MyInfoScreen() {
 										</div>
 										<div className={styles.profile_text}>
 											<div className={styles.company_name}>
-												<span>Must Fintech</span>
+												<span>{user?.company_name}</span>
 											</div>
 											<div className={styles.email}>{email}</div>
 										</div>

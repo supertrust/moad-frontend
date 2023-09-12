@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material";
 import useAuth from "@src/hooks/useAuth";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +11,14 @@ interface SidebarProps {
 
 const sideBarPath = {
   "/dashboard" : "dashboard",
-  "/dashboard/my-info" : "My Page"
+  "/dashboard/my-info" : "My Page",
+  "/dashboard/ad-management" : "Ad Management",
+  "/dashboard/statistics" : "Statistics",
+  "/dashboard/customer-service/notice" : "Announcement",
+  "/dashboard/customer-service/guide" : "Guide",
+  "/dashboard/customer-service/faq" : "FAQ",
+  "/dashboard/customer-service/inquire" : "Inquiry",
+  "/dashboard/customer-service/terms" : "Policies and Terms"
 }
 
 function Sidebar({ msg }: SidebarProps) {
@@ -43,6 +51,8 @@ function Sidebar({ msg }: SidebarProps) {
      setTab(sideBarPath[router.pathname])
   },[router.pathname])
 
+
+
   return (
     <div className="content">
       <h1 className="side-logo cursor-pointer" onClick = {()=>router.push("/dashboard")}>
@@ -55,26 +65,16 @@ function Sidebar({ msg }: SidebarProps) {
       </h1>
       <div className="sidemenu-wrap">
         <ul className="menu-wrap">
-          {/*<li*/}
-          {/*  className={*/}
-          {/*    tab === "Advertising Management"*/}
-          {/*      ? "menu-list active"*/}
-          {/*      : "menu-list"*/}
-          {/*  }*/}
-          {/*>*/}
-          {/*  <Link*/}
-          {/*    href={"/dashboard"}*/}
-          {/*    className="link"*/}
-          {/*    onClick={() => {*/}
-          {/*      barStatus("Advertising Management");*/}
-          {/*      msg("광고관리");*/}
-          {/*    }}*/}
-          {/*  >*/}
-          {/*    <i className="icon home"></i>*/}
-          {/*    <div className="name">광고관리</div>*/}
-          {/*  </Link>*/}
-          {/*  <ul className="sub-wrap"></ul>*/}
-          {/*</li>*/}
+          {
+              !user &&    [1,2,3,4].map((each, index) =>{
+                return <li key={index} className={"menu-list"}>
+                  <p className="link">
+                    <Skeleton className={'icon'} variant={"rectangular"} width={25} height={25}></Skeleton>
+                    <Skeleton variant={"text"} sx={{fontSize : "14px"}} width={80} height={25}></Skeleton>
+                  </p>
+                </li>
+              })
+          }
 
           {user?.role === "Cargo" && ( <li className={
               tab === "cargo dashboard" ? "menu-list active" : "menu-list"

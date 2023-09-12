@@ -1,4 +1,4 @@
-import { Button, Card } from "@mui/material";
+import {  Card } from "@mui/material";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -13,14 +13,31 @@ import Image from "next/image";
 import FormData from "form-data";
 import useAuth from "@src/hooks/useAuth";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Controller, FormProvider, Yup, yupResolver, useForm } from '@src/components/common/Form';
+import { Controller, FormProvider, yupResolver, useForm,Button } from '@src/components/common';
+
+import * as Yup from 'yup';
 import MenuItem from '@mui/material/MenuItem';
+
+const defaultValues = {
+  inquiry_type: "",
+  inquiry_title: "",
+  inquiry_question: "",
+  inquiry_answer: "",
+};
+
+const SaveInquirySchema = Yup.object({
+  inquiry_type: Yup.string().required("고유형을 선택해주세요."),
+  inquiry_title: Yup.string().required("광고이름을 입력해주세요."),
+  inquiry_question: Yup.string().required("광고기간을 6개월 또는 12개월 선택해주세요."),
+  inquiry_answer: Yup.string().optional(),
+})
 export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
   const { mutateAsync: saveInquiry } = useSaveInquiry();
   const { data } = useGetInquiryDetail({ id });
   const { user } = useAuth();
   const [submitting, setSubmitting] = useState(false);
+  const [allError, setErrors] = useState<string | undefined>('')
   const [form, setForm] = useState({
     id: "",
     inquiry_type: "",
@@ -37,13 +54,6 @@ export default function Index({ id }: { id: string }) {
       setData(data);
     }
   }, [data]);
-
-  const SaveInquirySchema = Yup.object().shape({
-    inquiry_type: Yup.string().required("고유형을 선택해주세요."),
-    inquiry_title: Yup.string().required("광고이름을 입력해주세요."),
-    inquiry_question: Yup.number().required("광고기간을 6개월 또는 12개월 선택해주세요."),
-    inquiry_answer: Yup.string().required("시작일을 선택해주세요. (등록 기준 1달 이후 선택)"),
-})
 
   const setData = async (_data: any) => {
     if (!data?.inquiry_answer) {
@@ -63,9 +73,15 @@ export default function Index({ id }: { id: string }) {
   };
 
   const handleInput = (e: any) => {
-    const { name, value } = e.target;
-    const updatedForm = { ...form, [name]: value };
-    setForm(updatedForm);
+    if (e) {
+      const { name, value } = e.target;
+      const updatedForm = { ...form, [name]: value };
+      setForm(updatedForm);
+    }
+    else {
+      const { name } = e.target;
+      setErrors(`${name} is Required`)
+    }
   };
 
   const renderFileInputs = () => {
@@ -118,42 +134,25 @@ export default function Index({ id }: { id: string }) {
       setFileNames([...fileNames]);
     }
   };
-  type FormDataType = {
-    inquiry_title: string;
-};
-  const defaultValues: FormDataType = {
-    inquiry_title: "",
-};
-const SaveAdvertisementSchema = Yup.object().shape({
-  inquiry_title: Yup.string().required("Error"),
-  ad_name: Yup.string().required("광고이름을 입력해주세요."),
-  ad_period: Yup.number().required("광고기간을 6개월 또는 12개월 선택해주세요."),
-  start_date: Yup.string().required("시작일을 선택해주세요. (등록 기준 1달 이후 선택)"),
-  vehicle_details: Yup.object().test(
-      'is-not-empty-object',
-      '운행차량을 입력해주세요.',
-      (value) => Object.keys(value).length > 0
-  ),
-  operating_area: Yup.array().when('type', ([type], schema) =>
-      type == 'fixed_ad' ? schema.min(1, "운행지역을 선택해주세요.") : schema,
-  )
-})
-  const methods = useForm<FormDataType>({
+  
+  const methods = useForm({
     defaultValues,
-    //@ts-ignore
-    resolver: yupResolver(SaveAdvertisementSchema)
-});
-  const handleFormSubmit = async (event : any) => {
-    console.log('working')
-    event.preventDefault();
+    resolver: yupResolver(SaveInquirySchema),
+  });
+
+
+  const { handleSubmit, control, formState} = methods;
+  const { errors } = formState;
+
+  const onSubmit = handleSubmit(async (event: any) => {
     const formData = new FormData();
     setSubmitting(true);
-    formData.append("inquiry_type", form.inquiry_type as string);
-    formData.append("inquiry_title", form.inquiry_title as string);
-    formData.append("inquiry_question", form.inquiry_question as string);
+    formData.append("inquiry_type", event.inquiry_type as string);
+    formData.append("inquiry_title", event.inquiry_title as string);
+    formData.append("inquiry_question", event.inquiry_question as string);
     if (id !== null && id !== undefined) {
       formData.append("id", form.id);
-      formData.append("inquiry_answer", form.inquiry_answer as string);
+      formData.append("inquiry_answer", event.inquiry_answer as string);
     }
     files.forEach((file, index) => {
       formData.append(`inquiry_documents[]`, file as File);
@@ -171,20 +170,13 @@ const SaveAdvertisementSchema = Yup.object().shape({
       toast(error?.response?.data?.message, { type: "error" });
       setSubmitting(false);
     }
-  };
-  const [isActive, setIsActive] = useState(false);
-  const [selected, setIsSelected] = useState("선택");
-  const handleChange = (event: SelectChangeEvent) => {
-    const updatedForm = { ...form, ['inquiry_type']: event.target.value };
-    setForm(updatedForm);
-    setIsSelected(event.target.value as string);
-  };
- 
+  });
+
   const MenuItemStyles = {
-    border: "0px solid", 
-    "border-width" : "0px 0px 1px 0px",
+    border: "0px solid",
+    "border-width": "0px 0px 1px 0px",
     color: "#999999",
-    padding : "10px 12px",
+    padding: "10px 12px",
   };
   return (
     <>
@@ -219,32 +211,37 @@ const SaveAdvertisementSchema = Yup.object().shape({
               />
             </div>
             <div className="flex w-full">
+            <FormProvider methods={methods}>
               <form
+                // onSubmit={formik.handleSubmit}
+                method=""
                 className="flex flex-col gap-4 w-full text-[16px]"
-                onSubmit={handleFormSubmit}
               >
+                <Controller
+                            control={control}
+                            name="inquiry_type"
+                            render={({ field: { value, onChange }, fieldState: { error } }) => (
                 <div className="flex flex-col gap-1">
                   <label className="font-bold" htmlFor="inquiry_type">
                     문의유형<span className="text-[#D12953] font-medium">*</span>
                   </label>
                   <div
-                    className={
-                      "border border-gray-300 rounded " +
-                      (submitting || (id !== null && id !== undefined)
-                        ? "opacity-70"
-                        : "")
+                    className={(submitting || (id !== null && id !== undefined) ? "opacity-70" : "")
                     }
-                  > 
+                  >
                     {/* <InquryTypeComponent/> */}
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={selected}
+                      value={value}
+                      // onChange={handleInput}
+                      onChange={e => onChange(e.target.value)}
+                      name="inquiry_type"
                       variant="filled"
                       label="type"
                       displayEmpty
-                      onChange={handleChange}
-                      sx={{ width: "100%", background: "#fff", }}
+                      className={`border border-gray-300 rounded ${errors?.inquiry_type? "!border-[#F24747]" : ''}`}
+                      sx={{ width: "100%", background: "#fff", border: "1px solid #EBEDF4", "border-radius": "5px" }}
                       MenuProps={{
                         PaperProps: {
                           sx: {
@@ -258,66 +255,78 @@ const SaveAdvertisementSchema = Yup.object().shape({
                         },
                       }}
                     >
-                      <MenuItem sx={[MenuItemStyles, { "border-top": "1px solid" }]} selected value="선택"><em>선택</em></MenuItem>
+                      <MenuItem sx={[MenuItemStyles, { "border-top": "1px solid" }]} selected value=""><em>선택</em></MenuItem>
                       <MenuItem sx={MenuItemStyles} value={"classification_of_payments"}>결제</MenuItem>
                       <MenuItem sx={MenuItemStyles} value={"error"}>오류</MenuItem>
                       <MenuItem sx={MenuItemStyles} value={"usage_inquiry"}>이용문의</MenuItem>
                       <MenuItem sx={MenuItemStyles} value={"member_related"}>회원관련</MenuItem>
                     </Select>
-      
+
                   </div>
                 </div>
+                )}
+                />
+                <Controller
+                            control={control}
+                            name="inquiry_title"
+                            render={({ field: { value, onChange }, fieldState: { error } }) => (
                 <div className="flex flex-col gap-1">
                   <label className="font-bold" htmlFor="inquiry_title">
                     문의제목<span className="text-[#D12953] font-medium">*</span>
                   </label>
                   <div
-                    className={
-                      "border border-gray-300 rounded " +
-                      (submitting || (id !== null && id !== undefined)
+                    className={`
+                        ${(submitting || (id !== null && id !== undefined)
                         ? "opacity-70"
-                        : "")
-                    }
+                        : "")}`}
                   >
                     <input
                       type="text"
                       id="inquiry_title"
                       name="inquiry_title"
-                      className="w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 rounded "
+                      className=
+                      {`w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded ${errors?.inquiry_title? "!border-[#F24747]" : ''}`}
                       placeholder="(필수) 문의 제목을 입력해주세요"
-                      value={form.inquiry_title}
-                      onChange={handleInput}
-                      required
+                      value={value}
+                      // onChange={handleInput}
+                      onChange={e => onChange(e.target.value)}
                       disabled={submitting || (id !== null && id !== undefined)}
                     />
                   </div>
                 </div>
+                )}
+                />
+                <Controller
+                            control={control}
+                            name="inquiry_question"
+                            render={({ field: { value, onChange }, fieldState: { error } }) => (
                 <div className="flex flex-col gap-1">
                   <label className="font-bold" htmlFor="inquiry_question">
                     문의사항<span className="text-[#D12953] font-medium">*</span>
                   </label>
                   <div
-                    className={
-                      "border border-gray-300 rounded " +
-                      (submitting || (id !== null && id !== undefined)
-                        ? "opacity-70"
-                        : "")
-                    }
+                    className={`${(submitting || (id !== null && id !== undefined) ? "opacity-70" : "")}`}
                   >
                     <textarea
                       rows={9}
                       id="inquiry_question"
                       name="inquiry_question"
-                      className="w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 rounded"
+                      className={`w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded ${errors.inquiry_question? "!border-[#F24747]" : ''} `}
                       placeholder="(필수) 문의 제목을 입력해주세요"
-                      value={form.inquiry_question}
-                      onChange={handleInput}
-                      required
+                      value={value}
+                      // onChange={handleInput}
+                      onChange={e => onChange(e.target.value)}
                       disabled={submitting || (id !== null && id !== undefined)}
                     />
                   </div>
                 </div>
+                )}
+                />
                 {id !== null && id !== undefined && (
+                  <Controller
+                  control={control}
+                  name="inquiry_answer"
+                  render={({ field: { value, onChange }, fieldState: { error } }) => (
                   <div className="flex flex-col gap-1">
                     <label className="font-bold" htmlFor="inquiry_answer">
                       문의 답변<span className="text-[#D12953] font-medium">*</span>
@@ -328,19 +337,22 @@ const SaveAdvertisementSchema = Yup.object().shape({
                         (submitting ? "opacity-70" : "")
                       }
                     >
+
                       <textarea
                         rows={9}
                         id="inquiry_answer"
                         name="inquiry_answer"
                         className="w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 rounded"
                         placeholder="(필수) 문의 제목을 입력해주세요"
-                        value={form.inquiry_answer}
-                        onChange={handleInput}
+                        value={value}
+                        onChange={e => onChange(e.target.value)}
                         required
                         disabled={submitting}
                       />
                     </div>
                   </div>
+                  )}
+                  />
                 )}
                 <div className="flex flex-col gap-1">
                   <label className="font-bold">
@@ -354,15 +366,14 @@ const SaveAdvertisementSchema = Yup.object().shape({
                   </div>
                 </div>
                 <Button
-                  type="submit"
-                  size="large"
-                  variant="contained"
-                  sx={{ bgcolor: "#2F48D1", padding: "12px" }}
-                  disabled={submitting}
+                disabled={submitting}
+                className="w-full bg-[#2F48D1] text-[#fff] p-[13px] h-[50px] items-center	justify-center"
+                  onClick={onSubmit}
                 >
                   문의 등록
                 </Button>
               </form>
+            </FormProvider>
             </div>
           </div>
         </Card>

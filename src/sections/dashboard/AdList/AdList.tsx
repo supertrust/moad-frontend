@@ -230,7 +230,7 @@ export default function AdListModule() {
 					</div>
 					<div className='tab-content all-wrap on min-h-[370px] h-full'>
 						<ul className='list-wrap'>
-							{isLoading &&  <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
+							{isLoading && <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
 								<CircularProgress color="primary" />
 							</div>}
 							{advertisements
@@ -301,20 +301,18 @@ export default function AdListModule() {
 								})}
 						</ul>
 					</div>
-					{/* <Pagination className={styles.adlistPagination}>
-            <Pagination.Prev className="prev-btn" />
-            <Pagination.Item>{1}</Pagination.Item>
-            <Pagination.Next className="next-btn" />
-          </Pagination> */}
 					{/* Render the Pagination component */}
-					<div className='flex justify-center py-[30px] notification_pagination'>
-						<Pagination
-							current={currentPage}
-							total={totalItems}
-							pageSize={itemsPerPage}
-							onChange={handlePageChange}
-						/>
-					</div>
+					{
+						advertisements?.length &&
+						<div className='flex justify-center py-[30px] notification_pagination'>
+							<Pagination
+								current={currentPage}
+								total={totalItems}
+								pageSize={itemsPerPage}
+								onChange={handlePageChange}
+							/>
+						</div>
+					}
 				</div>
 			</div>
 			<AdModel refetchAds={refetchAdvertisements} ref={adModel} />

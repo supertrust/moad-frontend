@@ -3,13 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSaveLocation } from '@src/apis/map';
 import { dateFormat } from '@src/helpers';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { Button } from '@src/components/common';
-import Map, { ILocation } from '@src/components/Map';
-import { clsx } from 'clsx';
-import Marker from '@images/vehicle_location/marker.png';
-import { Tooltip } from 'antd';
+import { Map , Marker } from '@src/components/Map';
 import Drawer from '@src/sections/vehicle-location/Drawer';
+import { ILocation } from '@src/components/Map/Map';
+import { InfoBox } from '@react-google-maps/api';
 
 const VehicleLocationScreen = () => {
 	const { query } = useRouter();
@@ -82,26 +80,18 @@ const VehicleLocationScreen = () => {
         className="!h-[85vh]"
         location={locations.departure}
       >
-        <Tooltip 
-          title={
-						<div className='text-grey-500'>
-							<div>
-								Distance:{' '}
-								{calculateDistance(locations.departure, locations.destination)}
-								km{' '}
-							</div>
-							<div>Duration: 2h 15m</div>
-						</div>
-					}
-          trigger="click" 
-          color="#2f48d1"
-          defaultOpen
-          //@ts-ignore
-          lat={locations.destination.lat} 
-          lng={locations.destination.lng}
-        >
-          <Image src={Marker} className='w-auto h-10 cursor-pointer' alt='' />
-        </Tooltip>
+		<Marker position={locations.destination}>
+			<InfoBox >
+				<div>
+					<div>
+						Distance:{' '}
+						{calculateDistance(locations.departure, locations.destination)}
+						km{' '}
+					</div>
+					<div>Duration: 2h 15m</div>
+				</div>
+			</InfoBox>
+		</Marker>
       </Map>
       <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] ">
         <Button className="bg-[#2C324C] text-white w-20">

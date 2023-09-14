@@ -27,15 +27,15 @@ const VehicleLocationScreen = () => {
 			setSavingRide(true);
 			event.preventDefault();
 			const currentDate = new Date();
-			const data = {
-				cargo_vehicle_id: 1,
-				starting_point: startInputRef.current?.value || '',
-				end_point: endInputRef.current?.value || '',
-				start_time: dateFormat(currentDate.toLocaleDateString()),
-				end_time: dateFormat(currentDate.toLocaleDateString()),
-				route_no: Date.now(),
-			};
-			await saveLocation(data);
+			// const data = {
+			// 	cargo_vehicle_id: 1,
+			// 	starting_point: startInputRef.current?.value || '',
+			// 	end_point: endInputRef.current?.value || '',
+			// 	start_time: dateFormat(currentDate.toLocaleDateString()),
+			// 	end_time: dateFormat(currentDate.toLocaleDateString()),
+			// 	route_no: Date.now(),
+			// };
+			// await saveLocation(data);
 		} catch {
 			setSavingRide(false);
 		}

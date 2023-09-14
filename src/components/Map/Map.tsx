@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useState } from 'react';
+import React, { ReactNode, forwardRef, useRef, useState } from 'react';
 import { GOOGLE_MAP_API_KEY } from '@src/config';
 import { clsx } from 'clsx';
 import { 
@@ -18,7 +18,7 @@ interface MapProps {
   children?: ReactNode
   className?: string
   showMarker?:boolean
-  onLoad?: VoidFunction
+  onLoad?: (map: google.maps.Map) => void
   onClick?: (location: google.maps.LatLng | null) => void
 }
 
@@ -61,7 +61,7 @@ const Map = ({
               fullscreenControl: true,
 
             }}
-            onLoad={map => onLoad && onLoad()}
+            onLoad={map => onLoad && onLoad(map)}
             onClick={(e) => onClick && onClick(e.latLng)}
           >
             {showMarker && <Marker 

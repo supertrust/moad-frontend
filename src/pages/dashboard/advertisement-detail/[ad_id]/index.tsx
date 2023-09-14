@@ -139,7 +139,7 @@ function AdvertisementDetailScreen() {
 		},
 		{
 			title: '광고금액',
-			value: `${advertisement?.amount}원`,
+			value: `${advertisement?.amount.toLocaleString()}원`,
 		},
 	];
 

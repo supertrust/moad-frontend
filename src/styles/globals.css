@@ -103,7 +103,7 @@ header nav {
 	align-items: center;
 	column-gap: 8px;
 	margin-bottom: 10px;
-	padding: 15px 0 15px 40px;
+	padding: 15px 0 15px 53px;
 }
 
 .sidebar_menu .content .sidemenu-wrap .menu-wrap .menu-list .sub-wrap {
@@ -3734,7 +3734,18 @@ input:focus-visible {
 .MuiInputBase-root{
   background-color: #fff !important;
 }
-
+.notification_pagination .ant-pagination li{
+	min-width: 25px !important;
+    height: 25px !important;
+	line-height: 22px !important;
+}
+.notification_pagination .ant-pagination li a{
+	font-size: 12px;
+}
+.notification_pagination .ant-pagination-item-link svg {
+    width: 0.9em;
+    height: 0.9em;
+}
 @media screen and (max-width: 767px) {
 	.policy-container .terms-section .content-terms {
 		padding: 20px;

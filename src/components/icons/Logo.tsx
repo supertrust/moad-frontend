@@ -5,6 +5,7 @@ const Logo: React.FC<CustomIcon> = ({
 	width = 200,
 	height = 56,
 	viewBox = '0 0 200 56',
+  className,
 }) => {
 	return (
 		<svg
@@ -12,6 +13,7 @@ const Logo: React.FC<CustomIcon> = ({
 			width={width}
 			height={height}
 			viewBox={viewBox}
+      className={className}
 			fill='none'>
 			<g clipPath='url(#clip0_926_21909)'>
 				<rect width={width} height={height} fill='white' />

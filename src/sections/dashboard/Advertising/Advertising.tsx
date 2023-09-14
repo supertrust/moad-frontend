@@ -91,7 +91,7 @@ export default function Advertising() {
             <span>총 진행거리</span>
           </div>
           <div className={styles.value}>
-            <span>15,000,000km</span>
+            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}} width={20} height ={28}/>: advertiserVehiclesStats?.total_distance.toLocaleString()} km</span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -99,7 +99,7 @@ export default function Advertising() {
             <span>총 진행시간</span>
           </div>
           <div className={styles.value}>
-            <span>1,460 hours</span>
+            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}} width={20} height ={28}/>: advertiserVehiclesStats?.total_hours.toLocaleString()} 분</span>
           </div>
         </div>
       </div>

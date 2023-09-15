@@ -921,92 +921,93 @@ a {
 
 /* <------guide-Page-style-start-------> */
 
-.guide-content {
-	padding: 20px 18px;
-}
+/*.guide-content {*/
+/*	padding: 20px 18px;*/
+/*	font-family: "Noto Sans KR", sans-serif;*/
+/*}*/
 
-.guide-content .title-wrap {
-	display: block;
-}
+/*.guide-content .title-wrap {*/
+/*	display: block;*/
+/*}*/
 
-.guide-content .title {
-	margin-bottom: 8px;
-	font-weight: 700;
-	font-size: 20px;
-	line-height: 29px;
-	color: #2c324c;
-}
+/*.guide-content .title {*/
+/*	margin-bottom: 8px;*/
+/*	font-weight: 700;*/
+/*	font-size: 20px;*/
+/*	line-height: 29px;*/
+/*	color: #2c324c;*/
+/*}*/
 
-.guide-content .sub-text {
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 20px;
-	color: #2c324c;
-}
+/*.guide-content .sub-text {*/
+/*	font-weight: 400;*/
+/*	font-size: 14px;*/
+/*	line-height: 20px;*/
+/*	color: #2c324c;*/
+/*}*/
 
-.guide-content .guide-box-wrap {
-	width: 100%;
-	height: 658px;
-	margin-top: 22px;
-	padding: 50px;
-	background-color: #ffffff;
-}
+/*.guide-content .guide-box-wrap {*/
+/*	width: 100%;*/
+/*	height: 658px;*/
+/*	margin-top: 22px;*/
+/*	padding: 50px;*/
+/*	background-color: #ffffff;*/
+/*}*/
 
-.guide-content .box-wrap {
-}
+/*.guide-content .box-wrap {*/
+/*}*/
 
-.guide-content .box-list {
-	margin-bottom: 40px;
-}
+/*.guide-content .box-list {*/
+/*	margin-bottom: 40px;*/
+/*}*/
 
-.guide-content .box-list .box-title {
-	margin-bottom: 8px;
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 26px;
-	color: #2c324c;
-}
+/*.guide-content .box-list .box-title {*/
+/*	margin-bottom: 8px;*/
+/*	font-weight: 500;*/
+/*	font-size: 18px;*/
+/*	line-height: 26px;*/
+/*	color: #2c324c;*/
+/*}*/
 
-.guide-content .box-list .box-sub-text {
-	margin-bottom: 20px;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 20px;
-	color: #2c324c;
-}
+/*.guide-content .box-list .box-sub-text {*/
+/*	margin-bottom: 20px;*/
+/*	font-weight: 400;*/
+/*	font-size: 14px;*/
+/*	line-height: 20px;*/
+/*	color: #2c324c;*/
+/*}*/
 
-.guide-content .box-list .box-link-wrap {
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	column-gap: 15px;
-}
+/*.guide-content .box-list .box-link-wrap {*/
+/*	display: flex;*/
+/*	justify-content: flex-start;*/
+/*	align-items: flex-start;*/
+/*	column-gap: 15px;*/
+/*}*/
 
-.guide-content .box-list .box-link-wrap .box-link {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	max-width: 335px;
-	height: 55px;
-	padding: 0 20px;
-	background-color: #456192;
-}
+/*.guide-content .box-list .box-link-wrap .box-link {*/
+/*	display: flex;*/
+/*	justify-content: space-between;*/
+/*	align-items: center;*/
+/*	width: 100%;*/
+/*	max-width: 335px;*/
+/*	height: 55px;*/
+/*	padding: 0 20px;*/
+/*	background-color: #456192;*/
+/*}*/
 
-.guide-content .box-link .box-text {
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 20px;
-	color: #ffffff;
-}
+/*.guide-content .box-link .box-text {*/
+/*	font-weight: 500;*/
+/*	font-size: 14px;*/
+/*	line-height: 20px;*/
+/*	color: #ffffff;*/
+/*}*/
 
-.guide-content .ic-arrow-right {
-	display: block;
-	width: 20px;
-	height: 20px;
-	background: url('/images/statistics/ic-arrow-right.png') no-repeat center
-		center / cover;
-}
+/*.guide-content .ic-arrow-right {*/
+/*	display: block;*/
+/*	width: 20px;*/
+/*	height: 20px;*/
+/*	background: url('/images/statistics/ic-arrow-right.png') no-repeat center*/
+/*		center / cover;*/
+/*}*/
 
 .logout-danger {
 	color: red;
@@ -3427,7 +3428,7 @@ ul.pagination .page-item a:focus {
 	color: #fff;
 }
 
-/* 
+/*
  */
 
 .indexedStep {
@@ -3591,6 +3592,28 @@ input:focus-visible {
 	100% {
 		transform: translateY(-15px);
 	}
+}
+
+
+/* Define the scrollbar width */
+::-webkit-scrollbar {
+	width: 3px; /* You can adjust the width to your preference */
+}
+
+/* Define the scrollbar track (the background of the scrollbar) */
+::-webkit-scrollbar-track {
+	background: #f1f1f1; /* Change the background color as needed */
+}
+
+/* Define the scrollbar thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+	background: #888; /* Change the color of the scrollbar thumb */
+	border-radius: 3px; /* Add rounded corners to the scrollbar thumb */
+}
+
+/* Define the scrollbar thumb when hovered over */
+::-webkit-scrollbar-thumb:hover {
+	background: #555; /* Change the color when the scrollbar is hovered over */
 }
 
 .select-box .adlist {

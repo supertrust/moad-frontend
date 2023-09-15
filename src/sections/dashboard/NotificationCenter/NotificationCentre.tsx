@@ -13,7 +13,7 @@ export default function NotificationCentre() {
 
   return (
       <>
-        <div className={`${styles.titleWrap} gap-[8px]`}>
+        <div className={`${styles.titleWrap} pb-[12px] lg:pb-[20px] gap-[8px]`}>
           <div className={`${styles.title} p-0`}>
             <span>알림 센터</span>
           </div>
@@ -25,7 +25,7 @@ export default function NotificationCentre() {
             view all
           </Link>
         </div>
-        <div className={styles.notificationContent}>
+        <div className={`${styles.notificationContent} mb-[20px] sm:mb-0`}>
           <Link href="dashboard/notification">
             <ul className={styles.contentWrap}>
               {notifications ?

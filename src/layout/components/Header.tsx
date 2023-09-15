@@ -104,17 +104,16 @@ function Header(props: HeaderProps) {
                         </h1>
                         <div className='util-wrap'>
                             <Link href='/dashboard/my-info' className=''>
-                                <Image
-                                    src={
-                                        user?.image
-                                            ? getFileUrl(user?.image)
-                                            : '/images/account_circle.png'
-                                    }
-                                    alt=''
-                                    className='rounded-full object-cover w-[30px] h-[30px]'
-                                    width={30}
-                                    height={30}
-                                />
+                            {
+                                                isUserLoading ? <Skeleton variant="circular" width={40} height={40}/> :
+                                                    <Image
+                                                        src={user?.image || '/images/account_circle.png'}
+                                                        alt=''
+                                                        className='img rounded-full w-[30px] h-[30px]'
+                                                        width={30}
+                                                        height={30}
+                                                    />
+                                            }
                             </Link>
                             <Button
                                 onClick={toggle}

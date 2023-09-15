@@ -4,17 +4,17 @@ import { AdList, Advertising, NotificationCentre } from '@src/sections/dashboard
 
 const DashboardScreen = () => {
   return (
-    <main className="p-10">
+    <main className="py-[30px] px-[20px] sm:py-[20px] sm:px-[30px]">
       <Row className="ad-page">
-        <Col md="6">
+        <Col md="6" className="lg:pr-0 lg:w-[51%]">
           <Advertising />
         </Col>
-        <Col md="6">
+        <Col md="6" className="lg:pl-[30px] lg:pr-0 lg:w-[49%]">
           <NotificationCentre />
         </Col>
       </Row>
       <Row className="">
-        <Col md="12">
+        <Col md="12" className="lg:pr-0">
           <AdList />
         </Col>
       </Row>

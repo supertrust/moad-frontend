@@ -26,18 +26,21 @@ export default function Advertising() {
   });
 
   const currentDate = new Date();
-  const formatDate = currentDate.toLocaleDateString('ko', { month: "2-digit", year:"numeric", day:"2-digit"});
+  const formatDate = currentDate.toLocaleDateString('ko', { month: "2-digit", year:"numeric", day:"2-digit"}).replace(' ','');
   const formatTime = currentDate.toLocaleTimeString('ko', { hour12: true , timeStyle: 'short', });
 
   return (
     <>
       <div className={`${styles.adStatus}`}>
-        <div className={`${styles.titleWrap} gap-[8px]`}>
+      <div className={styles.title_wrap_top}>
+      광고관리
+									</div>
+        <div className={`${styles.titleWrap} pb-[11px] sm:pb-[20px] gap-[8px]`}>
           <div className={styles.title}>
             <span>광고 현황</span>
           </div>
           <div className={styles.line}></div>
-          <div className={`${styles.text} !px-[0px]`}>
+          <div className={`${styles.text} !p-[0px]`}>
             <span>{formatDate} {formatTime} 기준</span>
           </div>
         </div>
@@ -52,7 +55,7 @@ export default function Advertising() {
             <span>{
               (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
               width={20} height ={28}/> : advertisements?.length
-            }
+            }건
             </span>
           </div>
         </div>
@@ -63,7 +66,7 @@ export default function Advertising() {
           <div className={styles.value}>
             <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading)  ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
                                                           width={20} height ={28}/> :
-                advertiserVehiclesStats?.total_vehicles}</span>
+                advertiserVehiclesStats?.total_vehicles}대</span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -73,7 +76,7 @@ export default function Advertising() {
           <div className={styles.value}>
             <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
                                                          width={20} height ={28}/>
-                : `${advertiserVehiclesStats?.running}th`}</span>
+                : `${advertiserVehiclesStats?.running}대`}</span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -83,7 +86,7 @@ export default function Advertising() {
           <div className={styles.value}>
             <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
                                                          width={20} height ={28}/>:
-                advertiserVehiclesStats?.suspensions}</span>
+                advertiserVehiclesStats?.suspensions}대</span>
           </div>
         </div>
         <div className={styles.cards}>

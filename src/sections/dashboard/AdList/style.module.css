@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0px 18px 0px;
 }
 
 .title {
@@ -54,7 +54,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 19px 16px 19px 30px;
+    padding: 17px 14px 18px 30px;
     flex-wrap: wrap;
 }
 
@@ -138,7 +138,7 @@
 }
 
 .chkBox {
-    width: 60px;
+    width: 80px;
     flex: 0 0 auto;
     display: flex;
     justify-content: center;
@@ -150,8 +150,13 @@
 .grid {
     width: 100%;
     display: grid;
-    grid-template-columns: 60px 1fr 2fr 120px 1.5fr 1fr;
+    grid-template-columns:  60px 1fr 2fr 120px 1.5fr 1fr;
     text-decoration: none !important;
+}
+@media screen and (min-width: 1401px){
+.grid {
+    grid-template-columns: 80px 114px 304px 126px 275px 173px;
+}
 }
 
 .grid:hover {
@@ -162,10 +167,11 @@
     font-weight: 500;
     font-size: 14px;
     letter-spacing: -0.01em;
-    line-height: 60px;
+    line-height: 50px;
     color: #2c324c;
     padding: 0px 20px;
     border-right: 1px solid #ebedf4;
+    text-align: center;
 }
 
 .listGrid {
@@ -184,6 +190,13 @@
 .adlistPagination {
     justify-content: center !important;
     transform: none !important;
+}
+.adDeleteBtn{
+    width: 74px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    display: inline-block;
 }
 
 .form_group input {
@@ -252,11 +265,11 @@
 }
 
 @media screen and (max-width: 1024px) {
-
-    .adDeleteBtn,
-    .chkBox {
-        display: none;
+    
+    .menuHd {
+        background: #f4f7fb;
     }
+   
 
     /* .grid {
         grid-template-columns: repeat(2, 50%);
@@ -278,54 +291,65 @@
     }
 
     .tabMenu {
-        column-gap: 8px;
+        column-gap: 16px;
     }
 
     .menuHd {
-        padding: 12px;
+        padding: 0;
+        padding-bottom: 12px;
     }
 
     .tabTitle {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 140%;
     }
+
 }
 
-
-@media screen and (max-width: 991px) {
-    .grid {
-
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
+@media screen and (max-width: 767px) {
+    .adAddBtn{
+        gap: 4px;
+        padding: 5px 2px;
+        font-size: 13px;
+        height: 26px;
     }
-}
-
-@media screen and (max-width: 600px) {
+    .adAddBtn i{
+        background-size: contain;
+        width: 16px;
+       height: 16px;
+    }
+    .adDeleteBtn,
+    .chkBox,.only_pc {
+        display: none;
+    }
     .grid {
-        grid-template-columns: 130px 130px 130px 130px 130px !important;
+        grid-template-columns: 128px 86px 1fr !important;
+        height: 58px;
+        align-items: center;
+        position: relative;
+    }
+    .listHd{
+        background: #E1ECFF;
+        height: 50px;
     }
 
     .tabWrap {
         display: block;
         width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
-
-    .listHd,.listFlex {
-        width: 125% !important;
+    .gridBox{
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 19.5px;
+        letter-spacing: -0.13px;
+        padding-left: 12px;
+        padding-right: 12px;
+        border-right: 0;
     }
-}
-
-@media screen and (max-width: 575px) {
-    .listHd,.listFlex {
-        width: 47em !important;
-    }
-}
-
-
-
-@media screen and (max-width: 480px) {
-    .listHd,.listFlex {
-        width: 46em !important;
+    .chkBox .gridBox{
+        height: 60px;
     }
 }
+
+

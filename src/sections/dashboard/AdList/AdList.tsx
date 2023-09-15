@@ -20,6 +20,7 @@ import RoleBasedGuard from '@src/guards/RoleBasedGuard';
 import { clsx } from 'clsx';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { Button } from '@src/components/common';
+import { Arrow } from '@src/components/icons';
 
 const statuses = [
 	{ label: '전체', value: undefined },
@@ -127,7 +128,7 @@ export default function AdListModule() {
 	};
 
 	// Pagination
-	const itemsPerPage = 6;
+	const itemsPerPage = (window.innerWidth > 767) ? 6 : 5;
 
 	const [currentPage, setCurrentPage] = useState(1); // Current page number
 	const totalItems = advertisements?.length ?? 0; // Total number of items
@@ -142,7 +143,7 @@ export default function AdListModule() {
 		<>
 			<div className={styles.titleWrap}>
 				<div className={styles.title}>
-					<h4>광고 목록</h4>{' '}
+					<h4 className="text-[16px] lg:text-[20px] leading-normal">광고 목록</h4>{' '}
 				</div>
 				<div className={styles.line} />
 			</div>
@@ -156,7 +157,7 @@ export default function AdListModule() {
 								className={styles.tabTitle}>
 								<span
 									className={clsx(
-										item.value === status && 'text-secondary font-bold',
+										item.value === status && 'text-[16px] sm:text-[20px] text-[#2F48D1] font-bold',
 									)}>
 									{item.label}
 								</span>
@@ -166,7 +167,7 @@ export default function AdListModule() {
 					<div className={styles.rightMenu}>
 						<button
 							onClick={openModal}
-							className={`${styles.adAddBtn} font-[Inter]`}>
+							className={`${styles.adAddBtn} font-[Inter] !w-[90px] md:!w-[138px]`}>
 							<i className='ic-plus'></i>
 							광고 신청
 						</button>
@@ -176,7 +177,7 @@ export default function AdListModule() {
 							className={styles.adDeleteBtn}>
 							삭제
 						</button>
-						<div className='select-box only-pc'>
+						<div className='select-box only-pc md:w-[149px]'>
 							<Form.Select
 								onChange={(e) => setType(e.target.value as AdTypesType)}
 								aria-label='Default select example'
@@ -213,13 +214,13 @@ export default function AdListModule() {
 									<label htmlFor='all_chk'></label>
 								</div>
 							</div>
-							<div className={`${styles.typeWrap} ${styles.gridBox}`}>
+							<div className={`${styles.typeWrap} ${styles.gridBox} ${styles.only_pc}`}>
 								광고 유형
 							</div>
-							<div className={styles.gridBox}>광고 이름</div>
-							<div className={styles.gridBox}>운행 차량수</div>
-							<div className={styles.gridBox}>기간</div>
-							<div className={styles.gridBox}>상태</div>
+							<div className={`${styles.typeWrapsecond} ${styles.gridBox} `}>광고 이름</div>
+							<div className={`${styles.typeWrapthird} ${styles.gridBox}`}>운행 차량수</div>
+							<div className={`${styles.typeWrapfourth} ${styles.gridBox}`}>기간</div>
+							<div className={`${styles.gridBox} ${styles.only_pc}`}>상태</div>
 
 							{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
 						</div>
@@ -228,8 +229,8 @@ export default function AdListModule() {
 							<div className={`${styles.gridBox}`}>Action</div>
 						</RoleBasedGuard>
 					</div>
-					<div className='tab-content all-wrap on min-h-[370px] h-full'>
-						<ul className='list-wrap'>
+					<div className='tab-content all-wrap on min-h-[297px] h-full'>
+						<ul className='list-wrap mb-0'>
 							{isLoading && <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
 								<CircularProgress color="primary" />
 							</div>}
@@ -262,28 +263,29 @@ export default function AdListModule() {
 														<label htmlFor={`item_${item.id}`}></label>
 													</div>
 												</div>
-												<div className={clsx(styles.typeWrap, styles.gridBox)}>
+												<div className={clsx(styles.typeWrap, styles.gridBox,styles.only_pc)}>
 													{Types[item.type]}
 												</div>
-												<div className={styles.gridBox}>{item.ad_name}</div>
+												<div className={`${styles.gridBox} !text-left`}>{item.ad_name}</div>
 												<div
 													className={
 														styles.gridBox
 													}>{`${item.number_of_vehicles}`}</div>
-												<div className={styles.gridBox}>
+												<div className={`${styles.gridBox} !text-left sm:!text-center`}>
 													{item.start_date && item.start_date
 														? `${item.start_date} ~ ${item.end_date}`
 														: '--'}
+														<Arrow fill={'#999999'} className='block sm:hidden absolute right-[10px] top-[24px] rotate-[-90deg]'/>
 												</div>
-												<div className={styles.gridBox}>
+												<div className={`${styles.gridBox} ${styles.only_pc}`}>
 													{
 														statuses.find(
 															(status) => item.status === status.value,
 														)?.label
 													}
+													
 												</div>
-												{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div> */}
-												<i className='only-mb ic-arrow-right'></i>
+												
 											</a>
 											<RoleBasedGuard roles={['Admin']}>
 												<div className={styles.gridBox}>

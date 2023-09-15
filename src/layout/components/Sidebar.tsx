@@ -119,11 +119,11 @@ function Sidebar({ msg }: SidebarProps) {
                 }
               >
                 <Link
-                  href={"/dashboard/ad-management"}
+                  href={"/dashboard"}
                   className="link"
                   onClick={() => {
                     barStatus("Ad Management");
-                    msg("Ad Management");
+                    msg("광고관리");
                   }}
                 >
                   <i className="icon home"></i>

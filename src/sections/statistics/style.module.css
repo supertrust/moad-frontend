@@ -50,7 +50,7 @@
     text-decoration: none !important;
 }
 .chkBox {
-    width: 80px;
+    width: 60px;
     flex: 0 0 auto;
     display: flex;
     justify-content: center;
@@ -77,13 +77,14 @@
     -webkit-appearance: none;
     background-color: transparent;
     border: 2px solid #CDCDCD;
+    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); */
+    padding: 7px;
     display: inline-block;
     position: relative;
     vertical-align: middle;
     cursor: pointer;
+    /* margin-right: 5px; */
     border-radius: 2px;
-	width: 15px;
-    height: 15px;
 }
 
 .form_group input:checked+label:before {
@@ -106,15 +107,11 @@
     font-weight: 400;
     font-size: 14px;
     letter-spacing: -0.01em;
-	line-height: normal;
+    line-height: 60px;
     color: #2c324c;
-    padding: 4px 20px;
+    padding: 0px 20px;
     border-right: 1px solid #ebedf4;
 	text-align: center;
-	height: 48px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
 #statistics .container .board_content  td {
     background: #fff !important;
@@ -150,38 +147,6 @@
     -webkit-appearance:none; /* Safari and Chrome */
     appearance:none;
 	height: 36px;
-	max-width: 149px;
-}
-.title_wrap_top{
-	display: none;
-}
-@media screen and (max-width:1024px) {
-.title_wrap_top{
-	font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.2px;
-    padding-top: 30px;
-	display: block;
-}
-.listHd {
-    height: 50px;
-}
-.tabMenu {
-    column-gap: 8px;
-}
-.gridBox {
-	height: 58px;
-}
-}
-@media screen and (min-width:1440px) {
-	.grid{
-		grid-template-columns: 80px 115px 304px 127px 224px 225px;
-	}
-	#statistics .container .board_content .statistics_content .step_01 .driving_vehicle .driving_vehicle_box .list_wrap {
-		gap: 80px;
-	}
 }
 @media screen and (max-width:1024px) {
 	#statistics {
@@ -212,7 +177,7 @@
 	border-radius: 5px;
   }
 #statistics .container .board_content .statistics_content {
-	padding: 0 20px 39px 25px;
+	padding: 0 20px 39px 20px
 }
 
 #statistics .container .board_content .statistics_content .title_wrap {
@@ -236,8 +201,7 @@
 #statistics .container .board_content .statistics_content .title_wrap .line {
 	height: 1px;
 	background-color: #EBEDF4;
-	width: 100%;
-	max-width: 210px;
+	width: 100%
 }
 
 #statistics .container .board_content .statistics_content .title_wrap .text {
@@ -257,7 +221,7 @@
 }
 
 #statistics .container .board_content .statistics_content .step_01 .ad_amount {
-	width: 32%;
+	width: 35%
 }
 
 #statistics .container .board_content .statistics_content .step_01 .ad_amount .ad_amount_box {
@@ -299,7 +263,6 @@
 
 #statistics .container .board_content .statistics_content .step_01 .driving_vehicle .driving_vehicle_box .list_wrap {
 	height: 171px;
-	padding: 0 57px;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
@@ -834,20 +797,12 @@
 	}
 
 	#statistics .container .board_content .statistics_content .step_01 .ad_amount .ad_amount_box .box_wrap .date {
-		font-size: 14px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		letter-spacing: -0.14px;
-		margin-bottom: 17px;
+		margin-bottom: 20px
 	}
 
 	#statistics .container .board_content .statistics_content .step_01 .ad_amount .ad_amount_box .box_wrap .amount {
-		font-size: 20px;
-		font-style: normal;
-		font-weight: 500;
-		line-height: 140%;
-		letter-spacing: -0.2px;
+		font-size: 16px;
+		line-height: 140%
 	}
 
 	#statistics .container .board_content .statistics_content .step_01 .driving_vehicle {
@@ -862,8 +817,7 @@
 	#statistics .container .board_content .statistics_content .step_01 .driving_vehicle .driving_vehicle_box .list_wrap {
 		height: auto;
 		flex-direction: column;
-		padding: 20px 30px;
-		gap : 0;
+		padding: 20px 30px
 	}
 
 	#statistics .container .board_content .statistics_content .step_01 .driving_vehicle .driving_vehicle_box .list_wrap .list {
@@ -871,7 +825,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 9.5px 0;
+		padding: 10px 0;
 		border-bottom: 1px solid #EBEDF4
 	}
 
@@ -1030,14 +984,9 @@
 	}
 	#statistics .container .board_content .statistics_content .title_wrap {
 		padding-bottom: 12px;
-		padding-top: 24px;
-		justify-content: space-between;
-	}
-	#statistics .container .board_content .statistics_content .driving_vehicle .title_wrap{
-		padding-top: 20px;
 	}
 	.menuHd{
-		padding: 9px 0 12px 0;
+		padding: 8px 0 12px 0;
 		background:#f5f7fb;
 	}
 	.listHd {

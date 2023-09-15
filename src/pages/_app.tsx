@@ -1,9 +1,11 @@
 import type { AppProps } from 'next/app';
 import '@src/styles/globals.css';
 import '@src/styles/responsive.css';
+
 import 'rsuite/dist/rsuite.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-datepicker/dist/react-datepicker.css';
+
 import ReactQueryClient from '@src/services/ReactQueryClient';
 import { AuthProvider } from '@src/contexts/AuthContext';
 import Layout from '@src/layout';
@@ -13,6 +15,8 @@ import { Provider } from 'react-redux';
 import store from '@src/redux/store';
 import { ConfirmDialogProvider } from '@src/contexts/ConfirmDialogContext';
 import { Noto_Sans_KR } from 'next/font/google';
+
+import "../components/pages/Landing/styles.scss"
 
 const notoSansKR = Noto_Sans_KR({
 	weight: '400',

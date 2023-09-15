@@ -1,11 +1,11 @@
 import { useIcarusContext } from '@src/hooks/useIcarusContext';
 import React, { useEffect, useRef, useState } from 'react';
-import { useSaveLocation, useVehicleLocationDetails } from '@src/apis/map';
+import { useLogVehicleLocation, useSaveLocation, useVehicleLocationDetails } from '@src/apis/map';
 import { dateFormat } from '@src/helpers';
 import { useRouter } from 'next/router';
 import { Button, FormProvider, useForm, Yup, yupResolver} from '@src/components/common';
 import { Map , Marker } from '@src/components/Map';
-import { Autocomplete, DirectionsRenderer, InfoWindow } from '@react-google-maps/api';
+import { Autocomplete, DirectionsRenderer, InfoWindow, Polyline } from '@react-google-maps/api';
 import Input from '@src/components/common/Input';
 import { clsx } from 'clsx';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
@@ -33,6 +33,7 @@ const CargoLocationPage = () => {
 	const { vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
 	const { mutateAsync: saveLocation, isLoading: isSaving } = useSaveLocation();
+	const { mutateAsync: logVehicleLocation } = useLogVehicleLocation();
 	const { confirm } = useConfirmDialog();
 
 	const originRef = useRef<typeof Input>();
@@ -143,6 +144,29 @@ const CargoLocationPage = () => {
 
 	useEffect(() => {
 		setPageTitle('차량위치');
+
+		if(cargoLocation) {
+			// Log cargo current location every 5 min
+			setInterval(() => {
+				const geolocation = navigator.geolocation;
+				geolocation.getCurrentPosition(async (position) => {
+					const { coords } = position;
+					const geocodingService = new google.maps.Geocoder();
+					const { results } = await geocodingService.geocode({ location: ride.origin });
+
+					await logVehicleLocation({
+						cargo_vehicle_id: Number(vehicle_id),
+						current_point: `${coords.latitude},${coords.longitude}`,
+						current_point_name: results?.length && results[0] ? results[0].formatted_address : '',
+						passing_vehicle_descent: '0',
+						passing_vehicle_up: "0",
+					},{
+						onSuccess: () => console.log("Log Position =>", coords)
+					})
+				});
+
+			}, 60*1000); //5 * 60 * 1000
+		}
 	}, []);
 
 	const calculateRoute = async () => {
@@ -190,7 +214,7 @@ const CargoLocationPage = () => {
 			<>
 				<Marker 
 					position={position}
-					draggable={true}
+					draggable={!cargoLocation}
 					onDragEnd={(e) => {
 						setRide({
 							...ride, 
@@ -261,6 +285,12 @@ const CargoLocationPage = () => {
 							
 						}} 
 					/>
+					// <Polyline 
+					// 	path={ride.directions.routes.flatMap((route) => {
+					// 		return route.overview_path
+					// 	})}
+					// 	options={{ strokeColor: "#2183FE" }}
+					// />
 				)}
 				{ride.origin && renderMarker(ride.origin, 'origin')}
 				{ride.destination && renderMarker(ride.destination, 'destination')}

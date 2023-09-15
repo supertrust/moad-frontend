@@ -34,4 +34,12 @@ export type IVehicleLocationDetails = {
     todayDistance: number,
     totalDistance: number,
     avarageMonthlyDistane: number
-  }
+}
+
+export type LogVehiclLocationProps = {
+    cargo_vehicle_id: number,
+    current_point: string,
+    current_point_name: string,
+    passing_vehicle_up: string,
+    passing_vehicle_descent: string
+}

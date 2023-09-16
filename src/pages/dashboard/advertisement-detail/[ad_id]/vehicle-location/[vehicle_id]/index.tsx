@@ -29,14 +29,6 @@ const VehicleLocationScreen = () => {
 		setPageTitle('차량위치');
 	}, []);
 
-	const {
-		// current_point, 
-		current_point_name,
-		// starting_point,
-		start_time,
-		// end_point,
-		end_time,
-	} = cargoLocation || {};
 
 	const starting_point = cargoLocation?.starting_point?.split(',');
 	const end_point = cargoLocation?.end_point.split(',') ; 
@@ -67,8 +59,7 @@ const VehicleLocationScreen = () => {
 			{isLoading && 
 				<div className='absolute z-50 left-0 w-full top-[50%]'>
 					<div className='flex flex-row justify-center items-center'>
-
-					<Loader size='lg' />
+						<Loader size='lg' />
 					</div>
 				</div>
 			}
@@ -126,6 +117,8 @@ const VehicleLocationScreen = () => {
       <Drawer 
         open={showDrawer}
         handleClose={toggleDrawer}
+				vehicle={cargoLocation}
+				isLoading={isLoading}
       />
     </div>
   );

@@ -7,11 +7,7 @@ import {
   Marker,
 } from '@react-google-maps/api';
 
-export interface ILocation{
-  address?: string,
-  lat : number,
-  lng: number,
-}
+export type ILocation = google.maps.LatLng | google.maps.LatLngLiteral
 interface MapProps {
   location?: google.maps.LatLng | google.maps.LatLngLiteral
   zoom?: number

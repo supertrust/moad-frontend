@@ -256,7 +256,7 @@ const Landing = () => {
                   <div className='_text'>
                     <strong className='_text'>
                       디자인 시안이 없어도 OK, 걱정하지
-                      <br className='.d-none-desktop' />
+                      <br className='d-none-desktop' />
                       마세요!
                     </strong>
                     <br className='d-none-mobile' />

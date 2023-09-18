@@ -1,6 +1,6 @@
 import { useIcarusContext } from '@src/hooks/useIcarusContext';
 import React, { useEffect, useRef, useState } from 'react';
-import { useLogVehicleLocation, useSaveLocation, useVehicleLocationDetails } from '@src/apis/map';
+import { useFinishVehicleRide, useLogVehicleLocation, useSaveLocation, useVehicleLocationDetails } from '@src/apis/map';
 import { dateFormat } from '@src/helpers';
 import { useRouter } from 'next/router';
 import { Button, FormProvider, useForm, Yup, yupResolver} from '@src/components/common';
@@ -11,9 +11,11 @@ import { clsx } from 'clsx';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
 import { ILocation } from '@src/components/Map/Map';
+import { VehicleLocationState } from '@src/types/map';
 
 interface IRide {
-	started: boolean,
+	// started: boolean,
+	status?: VehicleLocationState
 	origin?: ILocation,
 	destination?: ILocation,
 	current?: ILocation,
@@ -21,8 +23,6 @@ interface IRide {
 	duration?: string,
 	directions?:google.maps.DirectionsResult,
 	currentIndex?: number
-	progress?: number[];
-	currentLoc?: string
 }
 
 type PointType = 'origin' | 'destination' | 'current'
@@ -35,18 +35,30 @@ const RideSchema = Yup.object({
 
 const CargoLocationPage = () => {
 	const { query } = useRouter();
-	const { vehicle_id } = query;
+	const { ad_id, vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
 	const { mutateAsync: saveLocation, isLoading: isSaving } = useSaveLocation();
 	const { mutateAsync: logVehicleLocation } = useLogVehicleLocation();
+	const { mutateAsync: finishVehicleRide, isLoading: isEnding } = useFinishVehicleRide();
 	const { confirm } = useConfirmDialog();
 
 	const originRef = useRef<typeof Input>();
 	const destinationRef = useRef<typeof Input>();
 	const [map, setMap] = useState<google.maps.Map>();
 	const [center, setCenter] = useState<ILocation | undefined>()
-	const [ride , setRide] = useState<IRide>({started : false });
+	const [ride , setRide] = useState<IRide>({ });
 	let timer ;
+
+	const confirmOptions: ConfirmPropsType = {
+		title: '',
+		size: 'sm',
+		cancelText: '확인',
+		disableConfirmBtn: true,
+		cancelButtonProps: {
+			className: 'border-secondary bg-secondary text-white',
+		},
+		footerClassName: 'border-none flex flex-row justify-center mb-3',
+	};
 
 	useEffect(() => { 
 		calculateRoute() ;
@@ -57,11 +69,12 @@ const CargoLocationPage = () => {
 	useEffect(() => {
 		if(isReady && !center){
 			const geolocation = navigator.geolocation;
-			geolocation.getCurrentPosition(position => {
+			geolocation.getCurrentPosition(async position => {
 				const { coords } = position;
 				const gPosition =  new google.maps.LatLng(coords.latitude , coords.longitude);
-				// setRide({ ...ride , origin: gPosition })
+				setRide({ ...ride , origin: gPosition })
 				setCenter(gPosition);
+				await changeInputLocationName(gPosition, 'origin');
 			});
 		}
 	},[isReady])
@@ -78,26 +91,18 @@ const CargoLocationPage = () => {
 
 	const handleStartRide = handleSubmit(async (props) => {
 		try {
+			if(ride.status === 'stopped'){
+				return handleUpdateRide('running');
+			}
 			const origin = ride.origin as google.maps.LatLng;
 			const destination = ride.destination as google.maps.LatLng;
 			const currentDate = new Date();
 			const geocodingService = new google.maps.Geocoder();
 			const { results } = await geocodingService.geocode({ location: ride.origin });
 
-			const options: ConfirmPropsType = {
-				title: '',
-				size: 'sm',
-				cancelText: '확인',
-				disableConfirmBtn: true,
-				cancelButtonProps: {
-					className: 'border-secondary bg-secondary text-white',
-				},
-				footerClassName: 'border-none flex flex-row justify-center mb-3',
-			};
-
 			await saveLocation({
-				cargo_vehicle_id: 5,
-				cargo_to_advertisement_id: 12,
+				cargo_vehicle_id: Number(vehicle_id),
+				cargo_to_advertisement_id: Number(ad_id),
 				starting_point: `${origin?.lat()},${origin?.lng()}`,
 				end_point: `${destination?.lat()},${destination?.lng()}`,
 				start_time: dateFormat(currentDate.toISOString()),
@@ -105,12 +110,12 @@ const CargoLocationPage = () => {
 				current_point: `${origin?.lat()},${origin?.lng()}`,
 				is_active: 'running',
 				current_point_name: results?.length && results[0] ? results[0].formatted_address : '',
-				passing_vehicle_descent: "low",
-				passing_vehicle_up: "low",
+				passing_vehicle_descent: "0",
+				passing_vehicle_up: "0",
 			},{
 				onSuccess: () =>  {
 					confirm({
-						...options,
+						...confirmOptions,
 						description: (
 							<div className='mt-3'>
 								<div className='text-secondary text-center mb-2 font-bold'>
@@ -122,11 +127,11 @@ const CargoLocationPage = () => {
 							</div>
 						),
 					});
+					setRide({ ...ride, status: 'running'})
 					logCurrentLocation()
-					setRide({ ...ride, started: true})
 				},
 				onError: (error) => confirm({
-					...options,
+					...confirmOptions,
 					description: (
 						<div className='mt-3 text-secondary text-center'>{error}</div>
 					),
@@ -134,13 +139,40 @@ const CargoLocationPage = () => {
 			});
 		} catch(e) {
 			// setSavingRide(false);
-			console.log("Error =>", e);
 		}
 	});
 
+	const handleUpdateRide = async (status : VehicleLocationState) => {
+		const current = ride.current as google.maps.LatLng;
+		const currentDate = new Date();
+		await finishVehicleRide({
+			cargo_vehicle_id: Number(vehicle_id),
+			end_point: `${current?.lat()},${current?.lng()}`,
+			end_time:  dateFormat(currentDate.toISOString()),
+			is_active: status
+		}, {
+			onSuccess: () => { 
+				status !== 'running' && confirm({
+					...confirmOptions,
+					description: (
+						<div className='mt-3'>
+							<div className='text-secondary text-center mb-2 font-bold'>
+								차량 위치
+							</div>
+							<div className='text-center'>
+								{ status == 'stopped' ? '승차 중지' : '라이드 종료'}.
+							</div>
+						</div>
+					),
+				});
+				setRide( { ...ride, status })
+			},
+		})
+	}
+
 	const getLocationName = async (location: ILocation) => {
 		const geocodingService = new google.maps.Geocoder();
-		const { results } = await geocodingService.geocode({ location: ride.origin });
+		const { results } = await geocodingService.geocode({ location });
 		return results?.length && results[0] ? results[0].formatted_address : ""
 	}
 
@@ -249,10 +281,10 @@ const CargoLocationPage = () => {
 		const ref = refs[type];
 		if(ref){
 			const locationName = await getLocationName(location) ;
-			if(ref.current?.value !== locationName){
+			// if(ref.current?.value && ref.current?.value !== locationName){
 				ref.current.value = locationName;
 				setValue(type, locationName)
-			}
+			// }
 		}
 	} 
 
@@ -260,13 +292,13 @@ const CargoLocationPage = () => {
 		timer = !timer && setInterval(async () => {
 			setRide(prevRide => {
 				
-				const { directions, currentIndex,  started } = prevRide;
-				if(!directions || !started ) return prevRide
+				const { directions, currentIndex,  status } = prevRide;
+				if(!directions || !status || ['stopped', 'finish'].includes(status)  ) return prevRide
 				const { overview_path } = directions.routes[0];
 				
 				if(currentIndex == overview_path.length - 1) {
 					timer && clearInterval(timer);
-					return { ...prevRide, started: false, current: undefined }
+					return { ...prevRide, status: 'finish', current: undefined }
 				}
 
 				const progress =  Math.floor(Math.random() * 10);
@@ -288,7 +320,7 @@ const CargoLocationPage = () => {
 						passing_vehicle_descent: '0',
 						passing_vehicle_up: "0",
 					},{
-						onSuccess: () => console.log("Log Position =>", nextLocation.toString())
+						// onSuccess: () => console.log("Log Position =>", nextLocation.toString())
 					})
 				});
 				
@@ -326,7 +358,6 @@ const CargoLocationPage = () => {
 									scaledSize: new window.google.maps.Size(0, 0),
 								}
 							}
-							
 						}} 
 					/>
 					// <PolylineF 
@@ -367,7 +398,7 @@ const CargoLocationPage = () => {
 											className={clsx("border rounded-md p-2" , errors.origin && 'border-danger')}
 											placeholder='위치 입력'
 											type='text'
-											readOnly={ride.started}
+											readOnly={!!ride.status}
 											onBlur={() => handleChangePlace('origin')}
 										/>
 										{errors.origin && 
@@ -382,7 +413,7 @@ const CargoLocationPage = () => {
 											type='text' 
 											placeholder='위치 입력'  
 											className={clsx("border rounded-md p-2" , errors.destination && 'borde-danger')}
-											readOnly={ride.started}
+											readOnly={!!ride.status}
 											onBlur={() => handleChangePlace('destination')}
 										/>
 										{errors.destination && 
@@ -396,15 +427,22 @@ const CargoLocationPage = () => {
 								onClick={handleStartRide} 
 								className="bg-secondary text-white px-4"
 								loading={isSaving}
-								disabled={ ride.started ? true : (!ride.origin || !ride.destination)  }
+								disabled={ ride.status ? 
+										ride.status !== 'stopped' : 
+										(!ride.origin || !ride.destination)  
+								}
 							>시작</Button>
 							<Button 
 								className="bg-danger text-white px-4" 
-								disabled
+								disabled ={ ride.status !== 'running' }
+								onClick={() =>  handleUpdateRide('stopped')}
+								loading={ ride.status == 'running' && isEnding }
 							>중지 </Button>
 							<Button 
 								className="bg-primary text-white px-4" 
-								disabled //={ !['running', 'stopped'].includes(cargoLocation?.is_active || '') }
+								disabled ={ !ride.status && ride.status !== 'finish' }
+								onClick={() =>  handleUpdateRide('finish')}
+								loading={ !!ride.status && isEnding }
 							> 완료 </Button>
 						</div>
 					</div>

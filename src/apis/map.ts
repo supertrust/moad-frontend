@@ -1,5 +1,5 @@
 import axios from "@src/utils/axios";
-import {IVehicleLocationDetails, LogVehiclLocationProps, SaveLocationType} from "@src/types/map";
+import {FinishRideProps, IVehicleLocationDetails, LogVehiclLocationProps, SaveLocationType} from "@src/types/map";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@src/services/ReactQueryClient";
 
@@ -17,5 +17,10 @@ export const useVehicleLocationDetails = (cargo_vehicle_id: string)  => useQuery
 
 export const useLogVehicleLocation = () => useMutation<void, string, LogVehiclLocationProps>({
     mutationFn: async (props) => axios.post("/api/log-vehicle-location", props),
-    onSuccess: () => queryClient.invalidateQueries(['vehicle-location'])
+    onSuccess: (_, { cargo_vehicle_id }) => queryClient.invalidateQueries(['vehicle-location', cargo_vehicle_id])
+})
+
+export const useFinishVehicleRide = () => useMutation<void, string, FinishRideProps>({
+    mutationFn: async (props) => axios.post("/api/vehicle-finish-ride", props),
+    onSuccess: (_, { cargo_vehicle_id }) => queryClient.invalidateQueries(['vehicle-location', cargo_vehicle_id])
 })

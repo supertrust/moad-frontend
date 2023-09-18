@@ -18,6 +18,7 @@ import {
     UpdateAdvertisementStatusType,
 } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { queryClient } from "@src/services/ReactQueryClient";
 
 export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) =>
     useQuery<IAdvertisement[], string>({
@@ -88,11 +89,14 @@ export const useGetOperatingAreas = () =>
         queryFn: async () => (await axios.get("/api/get-operatingArea")).data.data,
     });
 
-export const useSaveAdvertisement = () =>
-    useMutation<IAdvertisement, string, SaveAdvertisementType>({
-        mutationFn: async (props) =>
-            (await axios.post("/api/save-advertisement", props)).data.data,
-    });
+export const useSaveAdvertisement = () =>   useMutation<IAdvertisement, string, SaveAdvertisementType>({
+    mutationFn: async (props) =>
+        (await axios.post("/api/save-advertisement", props)).data.data,
+    onSuccess: () => { 
+        queryClient.invalidateQueries(["advertisements"] , {exact : false})
+        queryClient.invalidateQueries(["advertisement-vehicles-stats"])
+    }
+});
 
 export const useGetAdvertisementVehicles = ({
                                                 advertisement_id,

@@ -60,7 +60,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
     return (
         <ConfirmDialogContext.Provider value={{ confirm }}>
             {children}
-            <Modal show={!!confirmProps} onHide={handelCancel} centered size={size}>
+            {confirmProps && <Modal show={!!confirmProps} onHide={handelCancel} centered size={size}>
                 {title && 
                     <Modal.Header>
                         <Modal.Title className="text-center font-bold">{title}</Modal.Title>
@@ -92,7 +92,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
                         </Button>
                     }
                 </Modal.Footer>
-            </Modal>
+            </Modal>}
         </ConfirmDialogContext.Provider>
     );
 };

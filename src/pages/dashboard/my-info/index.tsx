@@ -79,21 +79,24 @@ export default function MyInfoScreen() {
 	}, [watch]);
 
 	const onSubmit = handleSubmit(async (values) => {
-		await updateUserInfo(
-			{
-				...values,
-				sector: values?.sector || '',
-				company_name: user?.company_name || '',
-				business_registration_number: user?.business_registration_number || '',
-				business_license: null,
+
+		if(profileImage){
+			updateUserProfileImage({ profile_img: profileImage })
+			setProfileImage(undefined)
+		}
+
+		await updateUserInfo({
+			...values,
+			sector: values?.sector || '',
+			company_name: user?.company_name || '',
+			business_registration_number: user?.business_registration_number || '',
+			business_license: null,
+		},{
+			onSuccess: () => {
+				setShowModal(true);
 			},
-			{
-				onSuccess: () => {
-					setShowModal(true);
-				},
-				onError: (error) => toast(error, { type: 'error' }),
-			},
-		);
+			onError: (error) => toast(error, { type: 'error' }),
+		});
 	});
 
 	useEffect(() => {
@@ -150,36 +153,6 @@ export default function MyInfoScreen() {
 					});
 				}
 
-				await updateUserProfileImage(
-					{ profile_img: profileImage },
-					{
-						onSuccess: () => {
-							setProfileImage(undefined);
-							confirm({
-								...options,
-								description: (
-									<div className='mt-3'>
-										<div className='text-secondary text-center mb-2 font-bold'>
-											내 정보 수정 완료
-										</div>
-										<div className='text-center'>
-											정보 수정이 완료되었습니다.
-										</div>
-									</div>
-								),
-							});
-						},
-						onError: (error) => {
-							setProfileImage(undefined);
-							confirm({
-								...options,
-								description: (
-									<div className='mt-3 text-secondary text-center'>{error}</div>
-								),
-							});
-						},
-					},
-				);
 			}
 		};
 		updateProfile();
@@ -231,7 +204,10 @@ export default function MyInfoScreen() {
 										<div className={styles.profile_img}>
 											<div className={styles.user_photo}>
 												<Image
-													src={user?.image || '/images/account_circle.png'}
+													src={ profileImage ? 
+															URL.createObjectURL(profileImage) : 
+															user?.image || '/images/account_circle.png'
+													}
 													alt=''
 													width={72}
 													height={72}

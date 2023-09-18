@@ -166,7 +166,6 @@ export default function Index({ id }: { id: string }) {
         router.push(`/dashboard/customer-service/inquire/${id}`);
       }
     } catch (error: any) {
-      console.log(error);
       toast(error?.response?.data?.message, { type: "error" });
       setSubmitting(false);
     }

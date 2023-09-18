@@ -221,7 +221,6 @@ export default function StatisticsScreen() {
 													?.slice(prevItems, currentItems)
 													.map((item, index) => {
 														const selected = selectedAds.includes(item);
-														console.log('advertisement_stats', advertisement_stats)
 														return (
 															<li key={item.id} className={`${styles.listFlex} relative`}>
 																<a

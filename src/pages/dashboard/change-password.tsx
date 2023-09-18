@@ -71,7 +71,7 @@ export default function ChangePasswordScreen() {
 				reset();
 			},
 			onError: (error: string) => {
-				console.log('Error =>', error);
+				// console.log('Error =>', error);
 				toast(error, { type: 'error' });
 			},
 		});

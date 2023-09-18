@@ -15,7 +15,6 @@ interface HeaderProps {
 
 function Header(props: HeaderProps) {
     const { logout, user, isUserLoading } = useAuth();
-    // console.log(props.text);
     const [showMobileNav, setShowMobileNav] = useState(false);
     const router = useRouter();
 
@@ -27,11 +26,10 @@ function Header(props: HeaderProps) {
         try {
             await logout();
         } catch (error) {
-            console.error('Error logging out:', error);
+            // console.error('Error logging out:', error);
         }
     };
 
-    console.log('user',user);
 
     return (
         <div className='inner-header-wrap'>

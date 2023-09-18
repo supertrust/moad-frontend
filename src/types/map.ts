@@ -41,5 +41,12 @@ export type LogVehiclLocationProps = {
     current_point: string,
     current_point_name: string,
     passing_vehicle_up: string,
-    passing_vehicle_descent: string
+    passing_vehicle_descent: string,
+}
+
+export type FinishRideProps = {
+    cargo_vehicle_id: number,
+    end_point: string,
+    end_time: string,
+    is_active: VehicleLocationState
 }

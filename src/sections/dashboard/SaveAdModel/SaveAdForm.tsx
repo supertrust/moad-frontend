@@ -158,7 +158,6 @@ const SaveAdForm = ({
 			await onSubmitForm(values);
 		},
 		(errors) => {
-			console.log(errors);
 			const error = Object.values(errors)[0].message;
 			setErrors(error);
 
@@ -177,7 +176,6 @@ const SaveAdForm = ({
 			start_date && setStartDate(start_date);
 			// @ts-ignore
 			vehicle_details && setVehicleDetails(vehicle_details);
-			console.log('hello type o ', type);
 			type && setIsAreaVisible(type == 'fixed_ad');
 		});
 	}, [watch]);

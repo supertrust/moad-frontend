@@ -236,14 +236,14 @@ const SaveAdForm = ({
 					</div>
 
 				</div>
-				<div className={`hidden sm:block${styles.ad_apply_title}`}>
+				<div className={`hidden sm:block ${styles.ad_apply_title}`}>
 					<p>광고신청</p>
 				</div>
 				<div
 					id={styles.ad_apply_info}
 					className={`${isActive ? styles.active : ''} ${styles.ad_apply_info
-						} ${styles.only_pc}`}>
-					<div className={`${styles.info_content} bg-[#FFFFFF]`}>
+						} ${styles.only_pc} bg-[#FFFFFF]`}>
+					<div className={`${styles.info_content}`}>
 						<div className={styles.info_text}>
 							광고가 노출되는 지역을 선택해 광고를 생성하세요.
 							<br />

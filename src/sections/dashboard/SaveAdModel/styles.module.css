@@ -79,8 +79,8 @@ body .div {
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info {
   margin: 30px 30px 40px;
-  /* border: 1px solid #2f48d1;
-  border-radius: 5px; */
+  border: 1px solid #2f48d1;
+  border-radius: 5px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -88,8 +88,9 @@ body .div {
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content {
   width: 100%;
-  padding: 20px 20px 36px 20px;
-  /* border-right: 1px solid #2f48d1; */
+  padding: 20px 20px 20px 20px;
+  border-right: 1px solid #2f48d1;
+  border-radius: 5px 0px 0 5px;
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .info_text {
@@ -194,10 +195,10 @@ body .div {
   transform: rotate(0);
 }
 
-#ad_apply_modal .ad_modal_wrap .ad_apply_info.active .info_content {
+/* #ad_apply_modal .ad_modal_wrap .ad_apply_info.active .info_content {
   border: 1px solid #2f48d1;
   border-radius: 5px;
-}
+} */
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info.active .more_btn .ic_down_blue {
   transform: rotate(180deg);

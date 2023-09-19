@@ -304,7 +304,7 @@ function AdvertisementDetailScreen() {
 										title: '신제품 홍보 출시기념',
 									},
 								]}
-								className='text-[#2c324c] '
+								className='text-[#2c324c] mb-[20px]'
 							/>
 
 							<div className={styles.detail_content}>

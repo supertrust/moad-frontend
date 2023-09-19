@@ -1,6 +1,8 @@
 
 .my_info_content {
-    padding: 30px 20px;
+    padding: 31px 50px;
+    position: relative;
+    left: 10px;
 }
 
 .my_info_content .profile_wrap, .my_info_content .title_wraps_1 {
@@ -68,6 +70,9 @@
     letter-spacing: -0.01em;
     color: #2c324c;
     width: 100%;
+    position: relative;
+    left: -2px;
+    top: -17px;
 }
 
 .correction {
@@ -99,6 +104,9 @@
     line-height: 29px;
     letter-spacing: -0.01em;
     color: #2C324C;
+    position: relative;
+    left: -4px;
+    top: 2px;
 }
 
 .link {
@@ -160,13 +168,16 @@
 }
 
 .desc {
-    width: 231px;
+    width: 215px;
     margin: 20px 0;
     flex: 0 0 auto;
     font-weight: 700;
     font-size: 14px;
     line-height: 20px;
     color: #2c324c;
+    position: relative;
+    left: -4px;
+    top: -16px;
 }
 
 .point {
@@ -197,7 +208,7 @@
 
 .modify_btn {
     width: 92px;
-    margin: 37px auto 0;
+    margin: 15px 343px 1px;
     font-weight: 400;
     font-size: 14px;
     line-height: 35px;
@@ -206,6 +217,7 @@
     border-radius: 5px;
     display: inherit;
     cursor: pointer;
+
 }
 
 .change_password-content {
@@ -304,4 +316,15 @@
     font-size: 14px;
     line-height: 35px;
     text-align: center;
+}
+
+#comoany-name{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.01em;
+    color: #2c324c;
+    width: 100%;
+    position: relative;
+    top: 14px;
 }

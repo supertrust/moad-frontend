@@ -105,7 +105,7 @@ export default function ChangePasswordScreen() {
 
 	return (
 		<>
-			<Row>
+			<Row style={{backgroundColor : "#F5F7FB"}}>
 				<Col md='12'>
 					<div className='change-password-content p-10'>
 						<FormProvider methods={methods}>

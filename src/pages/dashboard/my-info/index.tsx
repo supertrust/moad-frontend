@@ -236,8 +236,8 @@ export default function MyInfoScreen() {
 											/>
 										</div>
 										<div className={styles.profile_text}>
-											<div className={styles.company_name}>
-												<span>{user?.company_name}</span>
+											<div>
+												<span id='comoany-name' >{user?.company_name}</span>
 											</div>
 											<div className={styles.email}>{email}</div>
 										</div>
@@ -256,7 +256,16 @@ export default function MyInfoScreen() {
 											<ul className={styles.list_wrap}>
 												<li className={styles.lists}>
 													<div className={styles.desc}>회사명</div>
-													<div>{user?.company_name}</div>
+													<RHFInput
+														title='company_name'
+														type='input'
+														name='company_name'
+														className={styles.input}
+														errorPosition='top'
+														wrapperClassName={`${styles.company_name} ${styles.text}`}
+														id='company_phone_number'
+														value={user?.company_name}
+													/>
 												</li>
 												<li className={styles.lists}>
 													<div className={styles.desc}>
@@ -322,7 +331,16 @@ export default function MyInfoScreen() {
 												</li>
 												<li className={styles.lists}>
 													<div className={styles.desc}>사업자 등록번호</div>
-													<div>{user?.business_registration_number}</div>
+													<RHFInput
+														title='business_registration_number'
+														type='number'
+														name='business_registration_number'
+														className={styles.input}
+														errorPosition='top'
+														wrapperClassName={`${styles.company_name} ${styles.text}`}
+														id='company_phone_number'
+														value={user?.business_registration_number}
+													/>
 												</li>
 												<li className={styles.lists}>
 													<div className={styles.desc}>업종</div>

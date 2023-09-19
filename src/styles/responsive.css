@@ -76,6 +76,7 @@
     padding: 15px 20px;
     background: #ffffff;
     border-bottom: 1px solid #EBEDF4;
+    z-index: 999;
   }
 
   #inner_header .only-mb .header-mb .util-wrap .side-mb-btn {

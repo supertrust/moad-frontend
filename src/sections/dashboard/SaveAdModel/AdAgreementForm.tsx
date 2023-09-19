@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import useAuth from "@src/hooks/useAuth";
+import ArrowBack from "@src/components/icons/ArrowBack";
 
 function AdAgreementForm({
   onDisagree,
@@ -24,11 +25,21 @@ function AdAgreementForm({
     };
   }, []);
   return (
-    <div className={styles.ad_modal_wrap}>
+    <div className={`${styles.ad_modal_wrap} ${styles.aggreement_section}`}>
+      <div className={`only-mb`}>
+					<div className={`${styles["mobile-top-header"]} ${styles["aggreement-header"]}`}>
+						<ArrowBack handleAction={onDisagree} />
+						<div className={styles['header']}>
+							가이드
+						</div>
+            <div></div>
+					</div>
+
+				</div>
       <div className={styles.ad_apply_title}>
         <p>광고신청</p>
       </div>
-      <div className={`${styles.agrement_content} ${styles.ad_apply_content}`}>
+      <div className={`${styles.agrement_content} ${styles.ad_apply_content} pb-[20px]` }>
         <div className={styles.terms_title}>이카루스 광고 신청 약관 계약서</div>
         <div className={styles.terms_text}>
           <div className={styles.terms_content}>

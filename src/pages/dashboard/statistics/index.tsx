@@ -104,6 +104,9 @@ export default function StatisticsScreen() {
 						<div className={styles.statistics_content}>
 							<div className={styles.step_01}>
 								<div className={styles.ad_amount}>
+								    <div className={styles.title_wrap_top}>
+									통계
+									</div>
 									<div className={styles.title_wrap}>
 										<div className={styles.title}>광고 금액</div>
 										<div className={styles.line}></div>
@@ -117,7 +120,7 @@ export default function StatisticsScreen() {
 												{date_start} ~ {date_end}
 											</div>
 											<div className={styles.amount}>
-												{ad_amount ? ad_amount : '-'}
+												{ad_amount ? ad_amount+'원' : '-'}
 											</div>
 										</div>
 									</div>
@@ -144,8 +147,8 @@ export default function StatisticsScreen() {
 							</div>
 							<div className='ad-contents !h-full shadow-none	'>
 								<div className={styles.step_02}>
-									<div className={styles.title_wrap}>
-										<div className={styles.title}>운행거리/운행시간</div>
+									<div className={`${styles.title_wrap} !pb-[9px]`}>
+										<div className={`${styles.title} ml-0 sm:ml-[5px]`}>운행거리/운행시간</div>
 										<div className={styles.line}></div>
 									</div>
 									<div className={styles.menuHd}>
@@ -167,7 +170,7 @@ export default function StatisticsScreen() {
 										<div className={styles.rightMenu}>
 											<div className={styles.selectDropdown}>
 
-											<select id="countries" className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-lg block w-full py-[8px] px-[12px] pr-[40px]  ${styles.selectOption} ${styles.only_pc}`}>
+											<select id="countries" className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]  ${styles.selectOption} ${styles.only_pc}`}>
 												<option selected>캠페인 유형 선택</option>
 												<option value="1">1st Option</option>
 												<option value="2">2nd Option</option>
@@ -196,7 +199,7 @@ export default function StatisticsScreen() {
 															checked={selectedAds.length === advertisement_stats?.length}
 															name='all_chk'
 															id='all_chk'
-															className='all-chk'
+															className='all-chk w-[15px] h-[15px]'
 														/>
 														<label htmlFor='all_chk'></label>
 													</div>
@@ -204,7 +207,7 @@ export default function StatisticsScreen() {
 												<div className={`${styles.typeWrap} ${styles.gridBox} !font-medium`}>
 													광고 유형
 												</div>
-												<div className={`${styles.gridBox} !font-medium`}>광고 유형</div>
+												<div className={`${styles.gridBox} !font-medium`}>광고 이름</div>
 												<div className={`${styles.gridBox} !font-medium`}>운행 차량수</div>
 												<div className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>총 운행거리</div>
 												<div className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>총 운행시간</div>
@@ -212,7 +215,7 @@ export default function StatisticsScreen() {
 												{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
 											</div>
 										</div>
-										<div className='tab-content all-wrap on min-h-[366px] h-full'>
+										<div className='tab-content all-wrap on min-h-[288px] sm:min-h-[298px] h-full'>
 											<ul className='list-wrap mb-0'>
 												{isLoading && <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
 													<CircularProgress color="primary" />
@@ -236,13 +239,13 @@ export default function StatisticsScreen() {
 																				name='list_chk'
 																				id={`item_${index}`}
 																			/>
-																			<label htmlFor={`item_${index}`}></label>
+																			<label htmlFor={`item_${index}  w-[15px] h-[15px]`}></label>
 																		</div>
 																	</div>
 																	<div className={clsx(styles.typeWrap, styles.gridBox)}>
 																		{Types[item.ad_type]}
 																	</div>
-																	<div className={`${styles.gridBox} !text-left`}>{item.ad_name}</div>
+																	<div className={`${styles.gridBox} !text-left !justify-start`}>{item.ad_name}</div>
 																	<div className={`${styles.gridBox} ${styles.only_pc}`}>{`${item.vehicles_in_operation}`}대</div>
 																	<div className={styles.gridBox}>
 																		{item.period}

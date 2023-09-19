@@ -56,7 +56,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
     }), [])
 
     return open ? (
-        <div id={styles.ad_apply_modal} className="ad-apply-modal">
+        <div id={styles.ad_apply_modal} className={`ad-apply-modal ${agreed && styles.aggred}`}>
             {agreed ? (
                 <SaveAdSuccessPopup onOk={onCancel} />
             ) : (

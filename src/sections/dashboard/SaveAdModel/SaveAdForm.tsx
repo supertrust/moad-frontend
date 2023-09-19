@@ -7,6 +7,7 @@ import {
 	useForm,
 	Button,
 } from '@src/components/common';
+import ArrowBack from "@src/components/icons/ArrowBack";
 import { ThreeDots } from 'react-loader-spinner';
 import { useGetOperatingAreas, useGetVehicles } from '@src/apis/advertisement';
 import styles from './styles.module.css';
@@ -52,15 +53,15 @@ const adTypes = [
 	{
 		type: 'national_ad',
 		title: '전국형 광고',
-		subtitle_1: '전국 모든 화주들을 매칭하여 적은 비용으로',
-		subtitle_2: '광고효과를 최대화 할 수 있는 광고',
+		subtitle_1: '전국 모든 화주들을 매칭하여 적은 비용',
+		subtitle_2: '으로 광고효과를 최대화 할 수 있는 광고',
 		faq: true,
 	},
 	{
 		type: 'spot_ad',
 		title: '스팟광고',
-		subtitle_1: '1시간 단위로 원하는 특정지역과 특정시간에',
-		subtitle_2: '노출할 수 있는 광고',
+		subtitle_1: '특정 지역 화주들을 매칭하여',
+		subtitle_2: '노출할 수 있는 고정형 광고',
 		faq: true,
 	},
 ];
@@ -103,7 +104,8 @@ const SaveAdForm = ({
 	const { data: areas, isLoading: isLoadingCars } = useGetOperatingAreas();
 
 	const [isOpen, openPeriodList] = useState(false);
-	const [isActive, setActive] = useState(false);
+	const active_model = (window.innerWidth > 767) ? false : true;
+	const [isActive, setActive] = useState(active_model);
 	const [period, setPeriod] = useState(defaultValues.ad_period);
 	const [startDate, setStartDate] = useState(defaultValues.start_date);
 	const [vehicleDetails, setVehicleDetails] = useState(
@@ -184,7 +186,7 @@ const SaveAdForm = ({
 		const handleKeyPress = (event) => {
 			if (event.code === 'Enter') {
 				event.preventDefault(); // Prevent form submission
-				onSubmit().then(() => {});
+				onSubmit().then(() => { });
 			}
 		};
 		document.addEventListener('keydown', handleKeyPress);
@@ -224,15 +226,24 @@ const SaveAdForm = ({
 	return (
 		<FormProvider methods={methods}>
 			<div className={styles.ad_modal_wrap}>
-				<div className={styles.ad_apply_title}>
-					<p>새 광고 등록</p>
+				<div className={`only-mb`}>
+					<div className={`${styles["mobile-top-header"]}`}>
+						<ArrowBack handleAction={onCancel} />
+						<div className={styles['header']}>
+							가이드
+						</div>
+						<div></div>
+					</div>
+
+				</div>
+				<div className={`hidden sm:block${styles.ad_apply_title}`}>
+					<p>광고신청</p>
 				</div>
 				<div
 					id={styles.ad_apply_info}
-					className={`${isActive ? styles.active : ''} ${
-						styles.ad_apply_info
-					} ${styles.only_pc}`}>
-					<div className={styles.info_content}>
+					className={`${isActive ? styles.active : ''} ${styles.ad_apply_info
+						} ${styles.only_pc}`}>
+					<div className={`${styles.info_content} bg-[#FFFFFF]`}>
 						<div className={styles.info_text}>
 							광고가 노출되는 지역을 선택해 광고를 생성하세요.
 							<br />
@@ -250,21 +261,21 @@ const SaveAdForm = ({
 									진행할지 검토 후 선택하세요.
 								</li>
 								<li className={styles.list}>
-									광고 등록시 1~2일 정도 검수시간이 소요됩니다. (담당자
+									광고 등록시 1~2일 정도 검수시간이 소요됩니다.<br className='block sm:!hidden' /> (담당자
 									전화번호로 연락드립니다.)
 								</li>
 							</ul>
-							<div className={styles.info_img_wrap}>
+							<div className={`${styles.info_img_wrap} ${active_model && 'hidden'}`}>
 								<div className={styles.img_title}>부착예시</div>
 							</div>
-							<div className='sm:flex sm:flex-row justify-center sm:justify-between gap-3 text-center px-[10px]'>
+							<div className={`${active_model && 'hidden'} sm:flex sm:flex-row justify-center items-center sm:justify-between gap-3 text-center px-[10px]`}>
 								{trucks.map((truck, i) => (
 									<Image
 										key={i}
 										className={clsx(
-											'my-3 w-auto h-20 items-center',
-											'md:h-full ',
-											i == 2 && '!mt-[0px]',
+											'w-auto h-20 items-center',
+											'md:h-full !min-h-[102px]',
+											i == 2 && '!h-[136px]',
 										)}
 										src={truck}
 										alt=''
@@ -273,7 +284,7 @@ const SaveAdForm = ({
 							</div>
 						</div>
 					</div>
-					<div id={styles.more_btn} className={styles.more_btn}>
+					<div id={styles.more_btn} className={`${styles.more_btn} hidden sm:block`}>
 						<div
 							className={styles.text_wrap}
 							onClick={() => setActive(!isActive)}>
@@ -307,7 +318,7 @@ const SaveAdForm = ({
 				<div className={styles.ad_apply_content}>
 					<div className={styles.modal_step}>
 						<div className={styles.radio_wrap}>
-							<div className={`${styles.title} ${styles.only_pc}`}>
+							<div className={`${styles.title} ${styles.only_pc} !mb-[16px]`}>
 								광고 유형
 							</div>
 							<Controller
@@ -338,9 +349,8 @@ const SaveAdForm = ({
 														}
 														onChange(item.type);
 													}}
-													className={`${
-														value === item.type ? styles.active : ''
-													} ${styles.modal_select}`}>
+													className={`${value === item.type ? styles.active : ''
+														} ${styles.modal_select} h-auto sm:h-[204px]`}>
 													<label className={styles.select_box}>
 														<input
 															type='radio'
@@ -354,15 +364,14 @@ const SaveAdForm = ({
 																href='/dashboard/customer-service/faq'
 																className={clsx(
 																	styles.detail_desc,
-																	'md:mt-3 md:mr-5',
+																	'md:mt-[10px] md:mr-[10px]',
 																)}>
 																상세설명
 															</Link>
 														)}
 														<div
-															className={`${styles.box_icon} ${
-																styles[`box_icon0${index + 1}`]
-															}`}></div>
+															className={`${styles.box_icon} ${styles[`box_icon0${index + 1}`]
+																}`}></div>
 														<div className={styles.text}>
 															<strong className={styles.text}>
 																{item.title}
@@ -391,7 +400,7 @@ const SaveAdForm = ({
 								fieldState: { error },
 							}) => (
 								<div
-									className={`${styles.input_section} ${styles.title_section}`}>
+									className={`${styles.input_section} ${styles.title_section} ${styles.input_ad_name}`}>
 									<div className={styles.input_title}>광고이름</div>
 									<input
 										type='text'
@@ -414,92 +423,93 @@ const SaveAdForm = ({
 							)}
 						/>
 
-						<div className={`${styles.input_section} ${styles.date_section}`}>
-							<div className={styles.input_wrap}>
-								<div className={styles.input_title}>광고기간</div>
-								<Controller
-									name='ad_period'
-									control={control}
-									render={({ field: { value, onChange } }) => (
-										<div
-											className={`${isOpen ? styles.active : ''} ${
-												styles.select_wrap
-											} ${styles.spot_add}`}>
-											<div className={styles.select_text}>
-												<input
-													type='text'
-													onClick={() => {
-														openPeriodList(!isOpen);
-													}}
-													value={
-														value ? (value === 6 ? '6개월' : '12개월') : ''
-													}
-													className={`${styles.box} ${styles.select_input} ${styles.spot_input_add}`}
-													id='select_input'
-													placeholder='기간 선택'
-													readOnly
-												/>
-												<div id='calender_area'></div>
-											</div>
-											<ul className={styles.date_select_box}>
-												{[6, 12].map((period) => (
-													<li
-														key={period}
-														className={styles.date_list}
+						<div className={`${styles.input_section} ${styles.date_section} !mb-[20px]`}>
+							<div className='flex gap-[13px]'>
+								<div className={`${styles.input_wrap} w-[50%] sm:w-full`}>
+									<div className={styles.input_title}>광고기간</div>
+									<Controller
+										name='ad_period'
+										control={control}
+										render={({ field: { value, onChange } }) => (
+											<div
+												className={`${isOpen ? styles.active : ''} ${styles.select_wrap
+													} ${styles.spot_add}`}>
+												<div className={styles.select_text}>
+													<input
+														type='text'
 														onClick={() => {
-															onChange(period);
-															openPeriodList(false);
+															openPeriodList(!isOpen);
 														}}
-														data-months={`${period}_months`}>
-														<label
-															htmlFor={`${period}_months`}
-															className={
-																styles.period_label
-															}>{`${period}개월`}</label>
-														<input
-															type='radio'
-															value={period}
-															name='date_period'
-															id={`${period}_months`}
-															className={styles.period_input}
-														/>
-													</li>
-												))}
-											</ul>
-										</div>
-									)}
-								/>
-							</div>
-							<div
-								className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative`}>
-								<div className={styles.sub_title}>시작일</div>
-								<Controller
-									name='start_date'
-									control={control}
-									render={({ field: { value, onChange } }) => (
-										<>
-											{/* <Form.Control
+														value={
+															value ? (value === 6 ? '6개월' : '12개월') : ''
+														}
+														className={`${styles.box} ${styles.select_input} ${styles.spot_input_add}`}
+														id='select_input'
+														placeholder='기간 선택'
+														readOnly
+													/>
+													<div id='calender_area'></div>
+												</div>
+												<ul className={styles.date_select_box}>
+													{[6, 12].map((period) => (
+														<li
+															key={period}
+															className={styles.date_list}
+															onClick={() => {
+																onChange(period);
+																openPeriodList(false);
+															}}
+															data-months={`${period}_months`}>
+															<label
+																htmlFor={`${period}_months`}
+																className={
+																	styles.period_label
+																}>{`${period}개월`}</label>
+															<input
+																type='radio'
+																value={period}
+																name='date_period'
+																id={`${period}_months`}
+																className={styles.period_input}
+															/>
+														</li>
+													))}
+												</ul>
+											</div>
+										)}
+									/>
+								</div>
+								<div
+									className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative w-[50%] sm:w-full`}>
+									<div className={styles.sub_title}>시작일</div>
+									<Controller
+										name='start_date'
+										control={control}
+										render={({ field: { value, onChange } }) => (
+											<>
+												{/* <Form.Control
                                             value={value}
                                             onChange={e => onChange(e.target.value)}
                                             type="date"
                                             name="doj"
                                             placeholder="Date of Joining"
                                         /> */}
-											{/* {value} */}
-											<DatePicker
-												dateFormat='yyyy-mm-dd'
-												//  locale={locale}
-												selected={new Date(value)}
-												onChange={(date: string) =>
-													setStartDate(
-														new Date(date).toISOString().split('T')[0],
-													)
-												}
-												customInput={<CustomInput />}
-											/>
-										</>
-									)}
-								/>
+												{/* {value} */}
+												<DatePicker
+													dateFormat='yyyy-mm-dd'
+													//  locale={locale}
+													selected={new Date(value)}
+													onChange={(date: string) =>
+														setStartDate(
+															new Date(date).toISOString().split('T')[0],
+														)
+													}
+													customInput={<CustomInput />}
+												/>
+											</>
+										)}
+									/>
+								</div>
 							</div>
 							<div className={styles.input_wrap}>
 								<div className={styles.sub_title}>총 광고기간</div>
@@ -512,7 +522,8 @@ const SaveAdForm = ({
 										className={`${styles.box} ${styles.input_date_start}`}
 										readOnly
 									/>{' '}
-									~
+									<span className={styles.input_line}>~</span>
+									
 									<input
 										type='text'
 										value={endDate}
@@ -531,14 +542,14 @@ const SaveAdForm = ({
 							<div className={styles.input_title}>운행차량</div>
 							<Table
 								bordered
-								className='text-center rounded-sm border-gray-500'
+								className='text-center rounded-sm border-gray-500 bg-[#FFFFFF] !m-0'
 								responsive>
 								<thead className='rounded-sm'>
-									<tr className='rounded-r-sm'>
-										<td width={'15%'}>차량</td>
-										<td width={'25%'}>차량대수</td>
-										<td width={'35%'}>규격</td>
-										<td width={'25%'}>가격</td>
+									<tr className='rounded-r-sm text-[#2C324C]'>
+										<td width={'18%'} className='!font-medium !p-[7px]'>차량</td>
+										<td width={'21%'} className='!font-medium !p-[7px]'>차량대수</td>
+										<td width={'34%'} className='!font-medium !p-[7px] hidden sm:block sm:w-full'>규격</td>
+										<td width={'27%'} className='!font-medium !p-[7px]'>가격</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -546,7 +557,7 @@ const SaveAdForm = ({
 										<tr>
 											<td
 												colSpan={4}
-												className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>
+												className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap} !p-[7px]`}>
 												<Loader size='sm' content='로드 중...' />
 											</td>
 										</tr>
@@ -562,17 +573,17 @@ const SaveAdForm = ({
 												{vehicles?.map((item) => (
 													<tr key={item.id}>
 														<td
-															className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap}`}>
+															className={`${styles.text} ${styles.cell} ${styles.vehicles_wrap} !p-[7px]`}>
 															{item.vehicle_type}
 														</td>
 														<td
-															className={`${styles.vehicles_num_wrap} ${styles.cell}`}>
+															className={`${styles.vehicles_num_wrap} ${styles.cell} !p-[7px]`}>
 															<input
 																type='number'
 																name='vehicles_num'
 																// className={styles.input_num}
 																className={
-																	'!w-24 border border-[#ebedf4] text-gray-500 text-right mr-1'
+																	'!w-[78px] h-[20px] border border-[#ebedf4] text-gray-500 text-right mr-[3px] text-[12px] p-[3px]'
 																}
 																onChange={(e) =>
 																	onChange({
@@ -587,23 +598,23 @@ const SaveAdForm = ({
 															<span className={styles.text}>대</span>
 														</td>
 														<td
-															className={` ${styles.cell} ${styles.standard_wrap}`}>
+															className={` ${styles.cell} ${styles.standard_wrap} !p-[7px] hidden sm:block`}>
 															<span className={styles.text}>
 																{item.vehicle_standard}
 															</span>
 														</td>
 														<td
-															className={`${styles.spot_add} ${styles.price_wrap}`}>
+															className={`${styles.spot_add} ${styles.price_wrap} !p-[7px]`}>
 															<span
 																className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`}>
 																{value[item.id] && item.expenses[period]
 																	? Number(
-																			(value[item.id] &&
-																				item.expenses[period] &&
-																				Number(value[item.id]) *
-																					item.expenses[period]) ||
-																				0,
-																	  ).toLocaleString()
+																		(value[item.id] &&
+																			item.expenses[period] &&
+																			Number(value[item.id]) *
+																			item.expenses[period]) ||
+																		0,
+																	).toLocaleString()
 																	: null}
 															</span>
 															<span className={`${styles.text} ${styles.won}`}>
@@ -628,7 +639,7 @@ const SaveAdForm = ({
 								styles.input_section,
 								styles.area_section,
 								styles.active,
-								[!isAreaVisible && '!hidden'],
+								[!isAreaVisible && '!hidden'], 'pt-[7px]',
 							)}>
 							<div className={styles.input_title}>
 								운행지역 (다중 선택 가능)
@@ -716,13 +727,15 @@ const SaveAdForm = ({
 								</div>
 								<div
 									id='total_price'
-									className={`${styles.price_text} ${styles.total_price} !text-[#2F48D1]`}>
-									{totalPrice ? totalPrice.toLocaleString() : null}
+									className={`${styles.price_text} ${styles.total_price} ${styles.total_price} !text-[#2F48D1]`}>
+
+										<p>{totalPrice ? totalPrice.toLocaleString() : null}</p>
+										<p className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>원</p>
 								</div>
-								<div
+								{/* <div
 									className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>
 									원
-								</div>
+								</div> */}
 							</div>
 							<div className={styles.price_info}>
 								광고비용은 차후 상담에 따라 변경 될 수 있습니다.

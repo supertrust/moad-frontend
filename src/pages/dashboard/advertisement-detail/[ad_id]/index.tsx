@@ -297,7 +297,7 @@ function AdvertisementDetailScreen() {
 								separator='>'
 								items={[
 									{
-										href: '/dashboard/ad-management',
+										href: '/dashboard',
 										title: '광고관리',
 									},
 									{

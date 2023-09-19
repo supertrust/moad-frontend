@@ -153,10 +153,18 @@
     grid-template-columns:  60px 1fr 2fr 120px 1.5fr 1fr;
     text-decoration: none !important;
 }
+
+
 @media screen and (min-width: 1401px){
 .grid {
     grid-template-columns: 80px 114px 304px 126px 275px 173px;
 }
+}
+
+@media screen and (min-width: 1450px){
+    .grid {
+        grid-template-columns: 5% 12% 38% 15% 20% 10%;
+    }
 }
 
 .grid:hover {

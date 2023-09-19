@@ -46,7 +46,7 @@ const UpdateUserInfoSchema = Yup.object({
 export default function MyInfoScreen() {
 	const { mutateAsync: updateUserInfo, isLoading } = useUpdateUserInfo();
 	const { mutateAsync: updateUserProfileImage } = useUpdateUserProfileImage();
-	const { setPageTitle } = useIcarusContext();
+	const { setPageTitle , setProfileImage : setTopBarImage } = useIcarusContext();
 	const { user } = useAuth();
 	const email = user?.email;
 	const [showModal, setShowModal] = useState(false);
@@ -81,8 +81,10 @@ export default function MyInfoScreen() {
 	const onSubmit = handleSubmit(async (values) => {
 
 		if(profileImage){
-			updateUserProfileImage({ profile_img: profileImage })
-			setProfileImage(undefined)
+			setTopBarImage(profileImage)
+			updateUserProfileImage({ profile_img: profileImage } , {
+				onError: () => setTopBarImage(undefined)
+			})
 		}
 
 		await updateUserInfo({
@@ -113,50 +115,46 @@ export default function MyInfoScreen() {
 
 	const [profileImage, setProfileImage] = useState<File | undefined>();
 
-	useEffect(() => {
-		const updateProfile = async () => {
-			const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
-			const options: ConfirmPropsType = {
-				title: '',
-				size: 'sm',
-				cancelText: '확인',
-				disableConfirmBtn: true,
-				cancelButtonProps: {
-					className: 'border-secondary bg-secondary text-white',
-				},
-				footerClassName: 'border-none flex flex-row justify-center mb-3',
-			};
-
-			if (profileImage) {
-				if (!allowedImages.includes(profileImage.type)) {
-					setProfileImage(undefined);
-					return confirm({
-						...options,
-						description: (
-							<div className='mt-3 text-secondary text-center'>
-								JPG, JPEG, PNG 파일만 가능합니다.
-							</div>
-						),
-					});
-				}
-
-				if (profileImage.size > 3 * 1024 * 1024) {
-					// 3 MB
-					setProfileImage(undefined);
-					return confirm({
-						...options,
-						description: (
-							<div className='mt-3 text-secondary text-center'>
-								최대 3MB까지만 가능합니다.
-							</div>
-						),
-					});
-				}
-
-			}
+	const handleUpdateProfileImage = ( profileImage:  File) => {
+		const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
+		const options: ConfirmPropsType = {
+			title: '',
+			size: 'sm',
+			cancelText: '확인',
+			disableConfirmBtn: true,
+			cancelButtonProps: {
+				className: 'border-secondary bg-secondary text-white',
+			},
+			footerClassName: 'border-none flex flex-row justify-center mb-3',
 		};
-		updateProfile();
-	}, [profileImage]);
+
+		if (!profileImage) return;
+
+		if (!allowedImages.includes(profileImage.type)) {
+			return confirm({
+				...options,
+				description: (
+					<div className='mt-3 text-secondary text-center'>
+						JPG, JPEG, PNG 파일만 가능합니다.
+					</div>
+				),
+			});
+		}
+
+			// 3 MB
+		if (profileImage.size > 3 * 1024 * 1024) {
+			return confirm({
+				...options,
+				description: (
+					<div className='mt-3 text-secondary text-center'>
+						최대 3MB까지만 가능합니다.
+					</div>
+				),
+			});
+		}
+
+		setProfileImage(profileImage);
+	};
 
 	useEffect(() => {
 		const handleKeyPress = (event) => {
@@ -219,11 +217,7 @@ export default function MyInfoScreen() {
 												placeholder='#'
 												id='input_file'
 												className={styles.input_file}
-												onChange={(e) =>
-													setProfileImage(
-														e.target.files ? e.target.files[0] : undefined,
-													)
-												}
+												onChange={(e) => e.target.files && handleUpdateProfileImage( e.target.files[0] )}
 												accept='image/*'
 											/>
 											<Button

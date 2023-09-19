@@ -1,7 +1,7 @@
 import { Skeleton } from "@mui/material";
 import { useRouter } from 'next/router';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MobileNav from './MobileNav';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ import { getFileUrl } from '@src/helpers';
 
 interface HeaderProps {
     text: string;
+    profileImage?: File
 }
 
 function Header(props: HeaderProps) {
@@ -49,7 +50,10 @@ function Header(props: HeaderProps) {
                                             {
                                                 isUserLoading ? <Skeleton variant="circular" width={40} height={40}/> :
                                                     <Image
-                                                        src={user?.image || '/images/account_circle.png'}
+                                                        src={props.profileImage ? 
+															URL.createObjectURL(props.profileImage) : 
+															user?.image || '/images/account_circle.png'
+                                                        }
                                                         alt=''
                                                         className='img rounded-full w-[36px] h-[36px]'
                                                         width={40}

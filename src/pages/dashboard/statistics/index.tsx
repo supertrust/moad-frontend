@@ -224,7 +224,7 @@ export default function StatisticsScreen() {
 														return (
 															<li key={item.id} className={`${styles.listFlex} relative`}>
 																<a
-																	href={`/dashboard/advertisement-detail/${item.id}`}
+																	href={`/dashboard/statistics/1`}
 																	className={styles.grid}>
 																	<div className={styles.chkBox}>
 																		<div className={styles.form_group}>

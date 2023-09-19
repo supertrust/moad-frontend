@@ -2972,6 +2972,7 @@ ul.pagination .page-item a:focus {
 	border-radius: 50%;
 	width: 26px;
 	height: 26px;
+	background-size: 18px;
 }
 
 .only-mb {

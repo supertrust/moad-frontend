@@ -45,6 +45,10 @@ function Sidebar({ msg }: SidebarProps) {
     "spot_ad" : "스팟"
   };
 
+  useEffect(()=>{
+    setTab(sideBarPath["/dashboard"])
+  },[])
+
   useEffect(()=>
   {
     if(router.pathname && sideBarPath[router.pathname])
@@ -115,7 +119,7 @@ function Sidebar({ msg }: SidebarProps) {
             <>
               <li
                 className={
-                  tab === "Ad Management" ? "menu-list active" : "menu-list"
+                  tab === "Ad Management" || tab === "dashboard" ? "menu-list active" : "menu-list"
                 }
               >
                 <Link

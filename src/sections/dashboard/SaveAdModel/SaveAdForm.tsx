@@ -197,10 +197,10 @@ const SaveAdForm = ({
 
 	function CustomInput(props) {
 		return (
-			<div className='input-group'>
+			<div className={`input-group ${styles.datepicker}`}>
 				<input
 					type='text'
-					className='form-control'
+					className={`form-control h-[36px] ${styles.input_date}`}
 					onClick={props.onClick}
 					value={startDate}
 					onChange={props.onChange}
@@ -273,9 +273,9 @@ const SaveAdForm = ({
 									<Image
 										key={i}
 										className={clsx(
-											'w-auto h-20 items-center',
-											'md:h-full !min-h-[102px]',
-											i == 2 && '!h-[136px]',
+											'md:w-auto h-20 items-center',
+											`truck_image md:h-full !min-h-[102px] ${styles.truck_image}`,
+											i == 2 && `!h-[136px] ${styles.third_image}`,
 										)}
 										src={truck}
 										alt=''
@@ -405,7 +405,7 @@ const SaveAdForm = ({
 									<input
 										type='text'
 										id='input_ad_name'
-										className={`${styles.box} ${styles.input_ad_title}`}
+										className={`${styles.box} ${styles.input_ad_title} h-[36px]`}
 										maxLength={25}
 										value={value}
 										onChange={(e) => {
@@ -422,10 +422,14 @@ const SaveAdForm = ({
 								</div>
 							)}
 						/>
+						<div className='from-selct'>
+
+
+						</div>
 
 						<div className={`${styles.input_section} ${styles.date_section} !mb-[20px]`}>
-							<div className='flex gap-[13px]'>
-								<div className={`${styles.input_wrap} w-[50%] sm:w-full`}>
+							<div className='flex gap-[13px] w-full sm:!w-[100%] md:w-[60%]'>
+								<div className={`${styles.input_wrap} ${styles.ad_period_section} w-[50%] sm:w-full`}>
 									<div className={styles.input_title}>광고기간</div>
 									<Controller
 										name='ad_period'
@@ -443,7 +447,7 @@ const SaveAdForm = ({
 														value={
 															value ? (value === 6 ? '6개월' : '12개월') : ''
 														}
-														className={`${styles.box} ${styles.select_input} ${styles.spot_input_add}`}
+														className={`${styles.box} ${styles.select_input} ${styles.spot_input_add} h-[36px]`}
 														id='select_input'
 														placeholder='기간 선택'
 														readOnly
@@ -470,7 +474,7 @@ const SaveAdForm = ({
 																value={period}
 																name='date_period'
 																id={`${period}_months`}
-																className={styles.period_input}
+																className={`${styles.period_input} h-[36px]`}
 															/>
 														</li>
 													))}
@@ -511,15 +515,19 @@ const SaveAdForm = ({
 									/>
 								</div>
 							</div>
-							<div className={styles.input_wrap}>
+
+							
+							<div className={`${styles.input_wrap} ${styles.date_selector} w-full sm:!w-[100%] md:w-[40%]`}>
 								<div className={styles.sub_title}>총 광고기간</div>
+
+
 								<div className={styles.date_content}>
 									<input
 										type='text'
 										value={startDate}
 										name='date_start'
 										id='input_date_start'
-										className={`${styles.box} ${styles.input_date_start}`}
+										className={`${styles.box} ${styles.input_date_start} ${styles.input_section} ${styles.input_date_selector}`}
 										readOnly
 									/>{' '}
 									<span className={styles.input_line}>~</span>

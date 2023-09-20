@@ -33,10 +33,11 @@
   #vehicle_information .only_mb {
     display: block;
   }
+
 }
 
 #vehicle_information .container .board_content .vehicle_information_content {
-  padding: 20px 25px 56px;
+  padding: 20px 30px 56px;
 }
 
 #vehicle_information
@@ -70,7 +71,6 @@
   .content_inner {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
   column-gap: 20px;
 }
 
@@ -94,6 +94,7 @@
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
+  position: relative;
 }
 
 #vehicle_information
@@ -286,8 +287,8 @@
 
 .badge {
   position: absolute;
-  top: 22px;
-  left: 27px;
+  top: 20px;
+  left: 20px;
   width: auto;
   display: flex;
   justify-content: center;
@@ -512,13 +513,50 @@
   border-left: 1px solid #ebedf4;
 }
 
+.main_img {
+  height: 432px;
+  width: 100%;
+  object-fit: cover;
+}
+.content_inner {
+  height: 588px;
+      overflow: hidden;
+
+}
+.mobile-top-header {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px 36px 20px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: #2c324c;
+}
+
+
+.mobile-top-header {
+  display: none !important;
+}
+
+.mobile_slider {
+  display: none;
+}
 @media screen and (max-width: 1400px) {
   #vehicle_information
     .container
     .board_content
     .vehicle_information_content
     .content_inner {
-    display: block;
+    display: flex;
   }
 
   #vehicle_information
@@ -527,7 +565,7 @@
     .vehicle_information_content
     .content_inner
     .content_body {
-    width: 100%;
+    width: 50%;
   }
 
   #vehicle_information
@@ -578,14 +616,14 @@
     height: auto;
   }
 
-  #vehicle_information
+  /* #vehicle_information
     .container
     .board_content
     .vehicle_information_content
     .content_inner
     .table_box {
     margin-top: 20px;
-  }
+  } */
 
   .only_pc {
     display: block;
@@ -594,6 +632,13 @@
   .only_mb {
     display: none;
   }
+}
+
+@media (max-width: 1399px) {
+  .content_inner {
+    height: 588px;
+  }
+  
 }
 
 @media screen and (max-width: 1024px) {
@@ -712,15 +757,6 @@
     overflow: inherit;
   }
 
-  #vehicle_information
-    .container
-    .board_content
-    .vehicle_information_content
-    .content_inner
-    .slide_box
-    .thumbs_slider {
-    display: none;
-  }
 
   .only_pc {
     display: none;
@@ -729,4 +765,77 @@
   .only_mb {
     display: block;
   }
+  #vehicle_information
+  .container
+  .board_content
+  .vehicle_information_content
+  .content_inner {
+  display: flex;
+  flex-direction: column;
+    width: 100%;
 }
+#vehicle_information
+.container
+.board_content
+.vehicle_information_content
+.content_inner
+.content_body {
+width: 100%;
+}
+
+
+#vehicle_information
+.container
+.board_content
+.vehicle_information_content
+.content_inner
+.slide_box
+.thumbs_slider {
+height: 240px;
+}
+
+.swiperslide,.swiperslide img {
+  height: 240px !important;
+  width: 322px !important;
+}
+
+#vehicle_information .container .board_content {
+  padding-top: 0px;
+}
+
+#vehicle_information .container .board_content .vehicle_information_content {
+  padding: 0px 20px 59px 20px;
+}
+.mobile-top-header {
+  display: flex !important;
+}
+#vehicle_information
+.container
+.board_content
+.vehicle_information_content
+.content_inner
+.slide_box
+.thumbs_slider {
+margin-top: 0px;
+}
+
+.content_inner {
+height: auto !important;
+gap: 20px;
+}
+
+.mobile_slider {
+  display: block;
+  padding: 0 0 20px 20px;
+}
+
+.pc_slider {
+  display: none;
+}
+
+.breadcrumb {
+  display: none !important;
+}
+
+}
+

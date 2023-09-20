@@ -3872,7 +3872,7 @@ input:focus-visible {
 	border-start-end-radius: 0px !important;
 }
 .ant-table-wrapper
-	.ant-table-container
+.ant-table-container
 	table
 	> thead
 	> tr:first-child
@@ -3900,3 +3900,42 @@ input:focus-visible {
 .gallery .carousel-control-next {
 	width: 7%;
 }
+
+@media only screen and (max-width: 768px) {
+	.breadcrumb {
+		display: none !important;
+	}
+}
+
+@media only screen and (max-width: 575px) {
+	.vehicle_number {
+		padding: 20px 20px !important;
+		font-size: 16px !important;
+	  }
+	.ant-breadcrumb {
+		display: none;
+	  }
+	.ad-detail-list th.ant-table-cell {
+		font-size: 14px !important;
+		background: #E1ECFF !important;
+		padding: 16px 0 !important;
+	}
+
+	.ad-detail-list .notification_pagination {
+		background: #fff !important;
+		padding: 24px 0 24px 0;
+	  }
+
+	  .ad-detail-list .valu-text.carousel-caption h3 {
+		border-radius: 15px;
+	}
+
+	.ad-detail-list .valu-text.carousel-caption {
+		top: 12px;
+		left: 12px;
+	}
+
+  }
+
+
+

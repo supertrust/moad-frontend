@@ -350,6 +350,7 @@ body .div {
   background-color: #ffffff;
   border: 1px solid #ebedf4;
   border-radius: 5px;
+  margin-bottom: 0;
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .input_title {
@@ -490,11 +491,11 @@ body .div {
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content .input_date_start {
-  width: 169px;
+  width: 50%;
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content .input_date_end {
-  width: 169px;
+  width: 50%;
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .vehicles_section .table_wrap {
@@ -1011,6 +1012,147 @@ body .div {
   color: #2c324c;
 }
 
+.date_selector {
+  position: relative;
+}
+
+.input_date{
+    left: 0 !important;
+    border-radius: 5px ;
+}
+@media only screen and (max-width: 1024px) {
+  .mobile-top-header {
+    display: none !important;
+    }
+
+    #ad_apply_modal {
+      padding-top: 80px !important;
+    }
+}
+
+
+@media only screen and (max-width: 991px){
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .select_text .select_input,
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .select_wrap .advertising_period {
+    width: 100%;
+  }
+
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section {
+    flex-direction: column;
+  }
+
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap {
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select .select_box .detail_desc {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap.ad_start_date {
+    max-width: 100%;
+  }
+  
+  .date_content span {
+    display: none;
+  }
+  .datepicker input{
+    left: 0;
+  }
+
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content {
+    column-gap: 13px;
+  }
+
+  .date_selector {
+    position: relative;
+    margin-top: 27px;
+  }
+
+  .input_date_selector {
+    margin: 0px !important;
+  }
+  /* .spot_input_add {
+    position: relative !important;
+  }
+
+  
+  .spot_input_add::after {
+    content: "~" !important;
+  position: absolute !important;
+  top: 0 !important;
+  font-size: 18px !important;
+  width: 100px !important;
+height: 100px !important;
+  } */
+}
+
+
+
+
+
+
+@media only screen and (max-width: 768px){
+  .date_section .input_wrap{
+    width: 100%;
+  }
+  .input_date{
+    left: 0px !important;
+    top: 0px !important;
+  }
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select {
+    width: 100%;
+  }
+
+  .truck_image {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.third_image {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: contain !important;
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap {
+  flex-direction: column;
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap.ad_start_date {
+  max-width: 100%;
+  width: 100%;
+}
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content {
+  column-gap: 13px;
+}
+.mobile-top-header {
+display: none !important;
+}
+
+#ad_apply_modal .ad_modal_wrap {
+  margin-top: 55px;
+}
+
+#ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap {
+  width: 155px;
+}
+}
+
+@media only screen and (max-width: 767px) {
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap {
+    width: 24%;
+  }
+}
+
+
+
+
 @media only screen and (max-width: 575px) {
   #ad_apply_modal {
     padding: 62px 0px 0px 0px !important;
@@ -1086,16 +1228,18 @@ body .div {
     display: block;
   }
 
-  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap.ad_start_date {
+  /* #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap.ad_start_date {
     width: 50% !important;
+  } */
+  .ad_period_section,.ad_start_date{
+    width: 100% !important;
   }
-
   #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content .input_date_start {
     width: 50%;
   }
 
   #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap {
-    width: 74px;
+    width: 22%;
   }
 
   #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid {
@@ -1236,4 +1380,25 @@ body .div {
     width: 30px;
     height: 30px;
 }
+#ad_apply_modal .ad_modal_wrap {
+  margin-top: 0px;
+  padding-top: 15px;
+}
+.mobile-top-header {
+  display: flex !important;
+  }
+}
+
+
+@media only screen and (max-width: 320px) {
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap {
+    width: 30%;
+  }
+  
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.active {
+    padding: 9px 23px;
+  }
+  #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .cancel_btn {
+    padding: 9px 37px;
+  }
 }

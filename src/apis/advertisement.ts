@@ -9,10 +9,12 @@ import {
     GetCargoImageListProps,
     IAdvertisement,
     IAdvertisementOperatingArea,
+    IAdvertisementStat,
     IAdvertisementVehicle,
     IAdvertissementCargoResponse,
     ICargoImage,
     IOperatingArea,
+    ITotalAdvertisementStat,
     IVehicle,
     SaveAdvertisementType,
     UpdateAdvertisementStatusType,
@@ -117,12 +119,10 @@ export const useGetAdvertiserVehiclesStats = () =>
     });
 
 
-export const useGetShowAdvertisementStats = () =>
-    useQuery<any>({
-        queryKey: ["show-advertisement-stats"],
-        queryFn: async () =>
-            (await axios.get("/api/show-advertisement-stats")).data.data,
-    });
+export const useGetShowAdvertisementStats = (page: number) => useQuery<IAdvertisementStat[], string>({
+    queryKey: ["show-advertisement-stats", page],
+    queryFn: async () => (await axios.get("/api/show-advertisement-stats", { params: { page } })).data.data
+});
 
 export const useGetAdvertisementOperationArea = ({
                                                      advertisement_id,
@@ -162,4 +162,10 @@ export const useGetCargoImage = (props: GetCargoImageListProps) => useQuery<ICar
     queryKey: ["advertisement-cargo-image", {...Object.values(props)}],
     queryFn: async () => (await axios.get("/api/get-cargo-images", { params: props })).data.data,
     enabled: !!props.cargo_vehicle_id && !!props.advertisement_id,
+});
+
+
+export const useGetStatBasedAdvertisment = () => useQuery<ITotalAdvertisementStat, string>({
+    queryKey: ["stats-based-advertisement"],
+    queryFn: async () => (await axios.get("/api/stats-based-advertisement")).data.data,
 });

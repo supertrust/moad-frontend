@@ -4,42 +4,52 @@ import { styles } from '@src/sections/statistics';
 // import { DataGrid } from '@src/components/common';
 import { Arrow } from '@src/components/icons';
 // import { columns } from '@src/sections/statistics/tabelData';
-import { useGetShowAdvertisementStats } from '@src/apis/advertisement';
+import { useGetShowAdvertisementStats, useGetStatBasedAdvertisment } from '@src/apis/advertisement';
 import { clsx } from 'clsx';
-import { Pagination } from 'antd';
+import { Pagination, Skeleton } from 'antd';
 import {
 	AdStatusesType,
 	AdTypesType,
 	IAdvertisement,
+	IAdvertisementStat,
 } from '@src/types/advertisement';
+import HeaderLine from '@src/components/common/HeaderLine';
+import Link from 'next/link';
 export default function StatisticsScreen() {
-	const { data: advertisement_stats, isLoading: isLoading } = useGetShowAdvertisementStats();
-	const [selectedAds, setSelectedAds] = useState<IAdvertisement[]>([]);
+	const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
 	const [status, setStatus] = useState<AdStatusesType | undefined>();
 	const [type, setType] = useState<AdTypesType | undefined>();
+	const [currentPage, setCurrentPage] = useState(1); // Current page number
+	const { data: advertisement_stats, isLoading } = useGetShowAdvertisementStats(currentPage);
+	const { data: totalStat, isLoading: isTotalLoading } = useGetStatBasedAdvertisment();
 	const date_start = '2023. 03. 01';
 	const date_end = '2023. 03. 08';
-	const ad_amount = '123,456,789';
+
+	const { 
+		advertisement_amount, all_vehicles , end ,
+		operating_vehicles, schedule , schedule_to_end
+	} = totalStat || {};
+
 	const driving_vehicle = [
 		{
 			title: '모든 차량수',
-			data: '120',
+			data: all_vehicles,
 		},
 		{
 			title: '운행차량',
-			data: '120',
+			data: operating_vehicles,
 		},
 		{
 			title: '운행예정',
-			data: '',
+			data: schedule,
 		},
 		{
 			title: '종료예정',
-			data: '60',
+			data: schedule_to_end,
 		},
 		{
 			title: '종료',
-			data: '20',
+			data: end,
 		},
 	];
 
@@ -56,9 +66,7 @@ export default function StatisticsScreen() {
 	// Pagination
 	const itemsPerPage = 6;
 
-	const [currentPage, setCurrentPage] = useState(1); // Current page number
 	const totalItems = advertisement_stats?.length ?? 0; // Total number of items
-	const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
 	const prevItems = (currentPage - 1) * itemsPerPage;
 	const currentItems = currentPage * itemsPerPage;
 	const handlePageChange = (page) => {
@@ -71,28 +79,13 @@ export default function StatisticsScreen() {
 			setSelectedAds([]);
 		}
 	};
-	const handleToggleSelect = (ad: IAdvertisement, selected: boolean) => () => {
+	const handleToggleSelect = (ad: IAdvertisementStat, selected: boolean) => () => {
 		if (selected) {
 			setSelectedAds((old) => old.filter((_ad) => _ad !== ad));
 		} else {
 			setSelectedAds((old) => [...old, ad]);
 		}
 	};
-
-	const stats = useMemo(
-		() =>
-			!advertisement_stats?.length
-				? []
-				: advertisement_stats?.slice(prevItems, currentItems).map((item, index) => ({
-					key: index,
-					ad_type: item.ad_type,
-					advertising_name: item.ad_name,
-					vehicles: item.vehicles_in_operation,
-					period: item.period,
-					status: item.situation,
-				})),
-		[advertisement_stats?.length],
-	);
 
 	return (
 		<>
@@ -107,37 +100,38 @@ export default function StatisticsScreen() {
 								    <div className={styles.title_wrap_top}>
 									통계
 									</div>
-									<div className={styles.title_wrap}>
-										<div className={styles.title}>광고 금액</div>
-										<div className={styles.line}></div>
-										<a href='/ad-amount' className={styles.text}>
-											view all
-										</a>
-									</div>
+									<HeaderLine 
+										title='광고 금액' 
+										left='view all'
+										href='/dashboard/ad-amount'
+									/>
 									<div className={styles.ad_amount_box}>
 										<div className={styles.box_wrap}>
 											<div className={styles.date}>
 												{date_start} ~ {date_end}
-											</div>
+											</div> 
 											<div className={styles.amount}>
-												{ad_amount ? ad_amount+'원' : '-'}
+												{isTotalLoading ? 
+													<Skeleton paragraph={false} className='w-24' />:
+													advertisement_amount ? advertisement_amount?.toLocaleString() + '원' : '-'
+												}
 											</div>
 										</div>
 									</div>
 								</div>
 
 								<div className={styles.driving_vehicle}>
-									<div className={styles.title_wrap}>
-										<div className={styles.title}>운행차량</div>
-										<div className={styles.line}></div>
-									</div>
+									<HeaderLine title='운행차량' />
 									<div className={styles.driving_vehicle_box}>
 										<ul className={styles.list_wrap}>
 											{driving_vehicle.map((data, index) => (
 												<li key={index} className={styles.list}>
 													<div className={styles.title}>{data.title}</div>
 													<div className={styles.data}>
-														{data.data ? data.data + '대' : '-'}
+														{isTotalLoading ? 
+															<Skeleton paragraph={false} className='w-14 items-center' />: 
+															data.data ? data.data + '대' : '-'
+														}
 													</div>
 												</li>
 											))}
@@ -145,12 +139,10 @@ export default function StatisticsScreen() {
 									</div>
 								</div>
 							</div>
+							
+							<HeaderLine title='운행거리/운행시간' className='mb-[9px]'/>
 							<div className='ad-contents !h-full shadow-none	'>
 								<div className={styles.step_02}>
-									<div className={`${styles.title_wrap} !pb-[9px]`}>
-										<div className={`${styles.title} ml-0 sm:ml-[5px]`}>운행거리/운행시간</div>
-										<div className={styles.line}></div>
-									</div>
 									<div className={styles.menuHd}>
 										<div className={styles.tabMenu}>
 											{statuses.map((item) => (
@@ -220,12 +212,11 @@ export default function StatisticsScreen() {
 												{isLoading && <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
 													<CircularProgress color="primary" />
 												</div>}
-												{advertisement_stats
-													?.slice(prevItems, currentItems)
+												{advertisement_stats?.slice(prevItems, currentItems)
 													.map((item, index) => {
 														const selected = selectedAds.includes(item);
 														return (
-															<li key={item.id} className={`${styles.listFlex} relative`}>
+															<li key={index} className={`${styles.listFlex} relative`}>
 																<a
 																	href={`/dashboard/statistics/1`}
 																	className={styles.grid}>
@@ -246,17 +237,17 @@ export default function StatisticsScreen() {
 																		{Types[item.ad_type]}
 																	</div>
 																	<div className={`${styles.gridBox} !text-left !justify-start`}>{item.ad_name}</div>
-																	<div className={`${styles.gridBox} ${styles.only_pc}`}>{`${item.vehicles_in_operation}`}대</div>
+																	<div className={`${styles.gridBox} ${styles.only_pc}`}>{`${item.number_of_vehicle}`}대</div>
 																	<div className={styles.gridBox}>
-																		{item.period}
+																		{item.total_distance?.toLocaleString() || "-"} km
 																	</div>
 																	<div className={`${styles.gridBox} ${styles.only_pc} `}>
-																		{
+																		{/* {
 																			statuses.find(
-																				(status) => item.situation === status.value,
+																				(status) => item. === status.value,
 																			)?.label
-																		}
-																		{item.situation}
+																		} */}
+																		{item.total_hours || '-'}시간
 																	</div>
 																	{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div> */}
 																	{/* <i className='only-mb ic-arrow-right'></i> */}

@@ -179,3 +179,21 @@ export type ICargoImage = {
     created_at: string,
     updated_at: string
   }
+
+
+export type IAdvertisementStat ={
+    ad_type: string,
+    ad_name: string,
+    number_of_vehicle: number,
+    total_distance: number,
+    total_hours: number
+}
+
+export type ITotalAdvertisementStat = {
+    advertisement_amount: number,
+    all_vehicles: number,
+    operating_vehicles: number,
+    schedule: number,
+    schedule_to_end: number,
+    end: number
+  }

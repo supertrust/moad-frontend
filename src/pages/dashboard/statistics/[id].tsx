@@ -9,11 +9,12 @@ import {
   AdStatusesType,
   AdTypesType,
   IAdvertisement,
+  IAdvertisementStat,
 } from '@src/types/advertisement';
 
 export default function StatisticsDetailScreen() {
-  const { data: advertisement_stats, isLoading } = useGetShowAdvertisementStats();
-  const [selectedAds, setSelectedAds] = useState<IAdvertisement[]>([]);
+  const { data: advertisement_stats, isLoading } = useGetShowAdvertisementStats(1);
+  const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
   const date_start = '2023. 03. 01';
@@ -74,7 +75,7 @@ export default function StatisticsDetailScreen() {
     }
   };
 
-  const handleToggleSelect = (ad: IAdvertisement, selected: boolean) => () => {
+  const handleToggleSelect = (ad: IAdvertisementStat, selected: boolean) => () => {
     if (selected) {
       setSelectedAds((old) => old.filter((_ad) => _ad !== ad));
     } else {
@@ -90,9 +91,9 @@ export default function StatisticsDetailScreen() {
             key: index,
             ad_type: item.ad_type,
             advertising_name: item.ad_name,
-            vehicles: item.vehicles_in_operation,
-            period: item.period,
-            status: item.situation,
+            vehicles: item.number_of_vehicle,
+            period: item.total_distance,
+            status: "",
           })),
     [advertisement_stats?.length],
   );
@@ -211,9 +212,9 @@ export default function StatisticsDetailScreen() {
                           .map((item, index) => {
                             const selected = selectedAds.includes(item);
                             return (
-                              <li key={item.id} className={`${styles.listFlex} relative`}>
+                              <li key={index} className={`${styles.listFlex} relative`}>
                                 <a
-                                  href={`/dashboard/advertisement-detail/${item.id}`}
+                                  href={`/dashboard/advertisement-detail/`}
                                   className={styles.grid}
                                 >
                                   <div className={styles.chkBox}>
@@ -233,17 +234,17 @@ export default function StatisticsDetailScreen() {
                                     {Types[item.ad_type]}
                                   </div>
                                   <div className={`${styles.gridBox} !text-left`}>{item.ad_name}</div>
-                                  <div className={`${styles.gridBox} ${styles.only_pc}`}>{`${item.vehicles_in_operation}`}대</div>
+                                  <div className={`${styles.gridBox} ${styles.only_pc}`}>{`${item.number_of_vehicle}`}대</div>
                                   <div className={styles.gridBox}>
-                                    {item.period}
+                                    {item.total_distance}
                                   </div>
                                   <div className={`${styles.gridBox} ${styles.only_pc} `}>
-                                    {
+                                    {/* {
                                       statuses.find(
                                         (status) => item.situation === status.value,
                                       )?.label
-                                    }
-                                    {item.situation}
+                                    } */}
+                                    {item.total_hours}
                                   </div>
                                   <Arrow fill={'#999999'} className='block sm:hidden absolute right-[12px] top-[28px] rotate-[-90deg]' />
                                 </a>

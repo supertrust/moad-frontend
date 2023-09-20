@@ -67,13 +67,13 @@ function InquirePage() {
             <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px] only-pc">
                 <div className="flex gap-[20px] items-center p-[20px] sm:p-[0]">
                     <Link href={`/dashboard/customer-service/inquire`}>
-                        <button className="font-bold text-[20px] text-blue-700">
+                        <button className="font-bold text-[20px] text-secondary">
                             문의내역확인
                         </button>
                     </Link>
                     {user?.role === "Advertiser" && (
                         <Link href={`inquire/form`}>
-                            <button className="text-[16px]">문의하기</button>
+                            <button className="text-[16px] text-[#2C324C]">문의하기</button>
                         </Link>
                     )}
                 </div>
@@ -86,11 +86,11 @@ function InquirePage() {
                         <Table width={`100%`} className="m-0 !text-[16px]">
                             <TableHead className="bg-[#E1ECFF]">
                                 <TableRow className={'!h-[3rem]'}>
-                                    <TableCell className="!text-center ">no</TableCell>
-                                    <TableCell className="!text-center ">분류</TableCell>
-                                    <TableCell className="!text-center">제목</TableCell>
-                                    <TableCell className="!text-center ">작성일</TableCell>
-                                    <TableCell className="!text-center ">상태</TableCell>
+                                    <TableCell className="!text-center !bg-[#E1ECFF]">no</TableCell>
+                                    <TableCell className="!text-center !bg-[#E1ECFF]">분류</TableCell>
+                                    <TableCell className="!text-center !bg-[#E1ECFF]">제목</TableCell>
+                                    <TableCell className="!text-center !bg-[#E1ECFF]">작성일</TableCell>
+                                    <TableCell className="!text-center !bg-[#E1ECFF]">상태</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody className="divide-y">

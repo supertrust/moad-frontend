@@ -185,11 +185,11 @@ export default function Index({ id }: { id: string }) {
       <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px]">
         <div className="flex gap-[20px] items-center p-[20px] sm:p-[0]">
           <Link href={`/dashboard/customer-service/inquire`}>
-            <button className="text-[16px]">문의내역확인</button>
+            <button className="text-[16px]  text-[#2C324C]">문의내역확인</button>
           </Link>
           {user?.role === "Advertiser" && (
             <Link href={`form`}>
-              <button className="font-bold text-[20px] text-blue-700">
+              <button className="font-bold text-[20px] text-secondary">
                 문의하기
               </button>
             </Link>

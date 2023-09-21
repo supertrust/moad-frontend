@@ -135,6 +135,7 @@ export default function AdListModule() {
 	const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
 	const prevItems = (currentPage - 1) * itemsPerPage;
 	const currentItems = currentPage * itemsPerPage;
+	const sortedAdvertisements = advertisements?.sort((a, b) => b.id - a.id);
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
 	};
@@ -234,7 +235,7 @@ export default function AdListModule() {
 							{isLoading && <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
 								<CircularProgress color="primary" />
 							</div>}
-							{advertisements
+							{sortedAdvertisements
 								?.slice(prevItems, currentItems)
 								.map((item, index) => {
 									const selected = selectedAds.includes(item);

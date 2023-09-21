@@ -68,7 +68,7 @@ header nav {
 .main_content {
 	/* min-height: 781px; */
 	background-color: #f5f7fb;
-	width: calc(100% - 320px);
+	width: calc(100% - 305px);
 	padding-top: 120px;
 	margin-left: 305px;
 }
@@ -3909,7 +3909,7 @@ input:focus-visible {
 
 @media only screen and (max-width: 575px) {
 	.vehicle_number {
-		padding: 20px 20px !important;
+		padding: 20px 0 22px 12px !important;
 		font-size: 16px !important;
 	  }
 	.ant-breadcrumb {
@@ -3934,6 +3934,8 @@ input:focus-visible {
 		top: 12px;
 		left: 12px;
 	}
+	
+
 
   }
 

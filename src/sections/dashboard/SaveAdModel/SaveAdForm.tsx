@@ -230,7 +230,7 @@ const SaveAdForm = ({
 					<div className={`${styles["mobile-top-header"]}`}>
 						<ArrowBack handleAction={onCancel} />
 						<div className={styles['header']}>
-							가이드
+						광고신청
 						</div>
 						<div></div>
 					</div>

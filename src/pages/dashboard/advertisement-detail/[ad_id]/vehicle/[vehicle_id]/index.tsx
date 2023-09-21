@@ -71,7 +71,7 @@ export default function VehicleInfoScreen() {
         <div className={`only-mb`}>
               <div className={`${styles["mobile-top-header"]}`}>
                 <ArrowBack handleAction={onBack} />
-                <div className={styles["header"]}>가이드</div>
+                <div className={styles["header"]}>차량정보</div>
                 <div></div>
               </div>
             </div>

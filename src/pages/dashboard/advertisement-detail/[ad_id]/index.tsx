@@ -311,7 +311,7 @@ function AdvertisementDetailScreen() {
             <div className={`only-mb`}>
               <div className={`${styles["mobile-top-header"]}`}>
                 <ArrowBack handleAction={onBack} />
-                <div className={styles["header"]}>가이드</div>
+                <div className={styles["header"]}>{advertisement?.ad_name}</div>
                 <div></div>
               </div>
             </div>

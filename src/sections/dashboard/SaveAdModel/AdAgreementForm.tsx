@@ -30,7 +30,7 @@ function AdAgreementForm({
 					<div className={`${styles["mobile-top-header"]} ${styles["aggreement-header"]}`}>
 						<ArrowBack handleAction={onDisagree} />
 						<div className={styles['header']}>
-							가이드
+            광고신청
 						</div>
             <div></div>
 					</div>

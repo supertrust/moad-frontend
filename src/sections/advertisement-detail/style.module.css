@@ -70,7 +70,7 @@
   margin-top: 12px;
   display: flex;
   justify-content: flex-start;
-  column-gap: 20px;
+  column-gap: 21px;
 }
 
 #ad_detail_list
@@ -935,7 +935,7 @@
     width: 100%;
     max-width: 100%;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 23px;
   }
 
   #ad_detail_list
@@ -1401,6 +1401,7 @@ span.carousel-control-prev-icon {
 @media screen and (min-width: 1200px) and (max-width: 1500px) {
   .right_side {
     width: 50%;
+    height: 393px;
   }
 .model_contents_container{
   flex-wrap: nowrap;
@@ -1466,8 +1467,6 @@ span.carousel-control-prev-icon {
     padding: 0px 25px 0px;
   }
 
-
-
 #ad_detail_list
 .container
 .board_content
@@ -1488,7 +1487,6 @@ margin-top: 0px;
 
 .ant-table-wrapper {
   box-shadow: 0px 2px 8px rgba(38, 51, 77, 0.05);
-  /* background: red; */
 }
 
 .mySwiper {
@@ -1506,8 +1504,80 @@ margin-top: 0px;
   height: 13px;
 }
 
+#ad_detail_list
+.container
+.board_content
+.ad_detail_list_content
+.detail_content
+ {
+margin-bottom: 21px;
+}
 
+#ad_detail_list
+.container
+.board_content
+.ad_detail_list_content
+.ad_contents
+.tab_menu {
+padding: 0px 0px 12px 0px;
+}
 
+#ad_detail_list
+  .container
+  .board_content
+  .ad_detail_list_content
+  .detail_content
+  .table_box
+  .table_line:nth-child(4) {
+  grid-column: 2/3;
+  grid-row: -4/-3;
+  border-left: 1px solid #ebedf4;
+}
+#ad_detail_list
+.container
+.board_content
+.ad_detail_list_content
+.detail_content
+.table_box {
+display: grid;
+}
+
+#ad_detail_list
+  .container
+  .board_content
+  .ad_detail_list_content
+  .detail_content
+  .table_box {
+  grid-template-rows: repeat(5, minmax(0px, auto));
+}
+
+#ad_detail_list
+.container
+.board_content
+.ad_detail_list_content
+.detail_content
+.table_box
+.table_line
+.title {
+  padding: 15px 0px 15px 0;
+}
+
+#ad_detail_list
+  .container
+  .board_content
+  .ad_detail_list_content
+  .detail_content
+  .slide_box {
+  height: 248px;
+}
+#ad_detail_list
+.container
+.board_content
+.ad_detail_list_content
+.ad_contents
+.tab_menu {
+column-gap: 16px;
+}
 }
 
 

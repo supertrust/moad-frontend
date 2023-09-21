@@ -39,7 +39,7 @@ export default function FaqScreen() {
           ))}
         </Tabs>
 
-        <Accordion className="accordion-section min-h-[500px] sm:min-h-[600px] h-full">
+        <Accordion className="accordion-section min-h-[500px] sm:min-h-[610px] h-full">
           {isFaqLoading &&  <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
                 <CircularProgress color="primary" />
               </div>

@@ -16,6 +16,24 @@
 	padding-top: 119px;
 	width: calc(100% - 305px)
 }
+.mobile-top-header {
+	display: flex !important;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 20px 36px 20px;
+  }
+  
+  .header {
+	font-size: 20px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: -0.2px;
+	text-align: center;
+	color: #2c324c;
+  }
 
 @media screen and (max-width:1024px) {
 	#notification_center {
@@ -251,5 +269,22 @@
 
 	.only_mb {
 		display: block
+	}
+}
+
+@media screen and (max-width:575px) {
+	.notification_center_content {
+		padding: 0px 20px 41px
+	}
+
+	.mobile-top-header {
+		padding: 15px 0px 36px 0px;
+	  }
+
+	  .notification_center_content .notification_wrap .list {
+		padding: 16px;
+	}
+	.notification_center_content .notification_wrap .list .info {
+		margin-bottom: 18px
 	}
 }

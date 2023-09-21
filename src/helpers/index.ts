@@ -73,3 +73,18 @@ export const getHoursAgoByDate = (serverDateTimeStamp: Date) => {
 export const getFileUrl = (path: string) => {
     return API_BASE_URL + path;
 }
+
+/**
+ * https://github.com/kwseok/hangul.js/blob/master/src/isHangul.js
+ */
+export const isHangul = (str?: string) => {
+    str =  str?.trim();
+    if(!str) return true;
+    for (let i = 0; i < str.length; i++) {
+        let c = str.charCodeAt(i)
+        if (c !== 32 && (c < 0xAC00 || c > 0xD7A3)) {
+            return false
+        }
+    }
+    return true
+}

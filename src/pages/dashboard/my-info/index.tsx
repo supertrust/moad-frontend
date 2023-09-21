@@ -15,7 +15,7 @@ import {
 } from '@src/components/common';
 import { styles } from '@src/sections/my-info';
 import Image from 'next/image';
-import { getFileUrl } from '@src/helpers';
+import { isHangul } from '@src/helpers';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
 
@@ -33,7 +33,8 @@ const UpdateUserInfoSchema = Yup.object({
 		.matches(/^[0-9]{11}$/, '전화번호는 11자리여야 합니다.'),
 	employee_name: Yup.string()
 		.required('직원 이름을 입력하세요.')
-		.max(10, '담당자 이름은 10자를 넘지 않아야 합니다.'),
+		.max(10, '담당자 이름은 10자를 넘지 않아야 합니다.')
+		.test('isKorean', '올바른 한글 이름 입력' , isHangul),
 	employee_phone_number: Yup.string()
 		.required('핸드폰번호를 입력해주세요')
 		.matches(/^[0-9]{11}$/, '전화번호는 11자리여야 합니다.'),

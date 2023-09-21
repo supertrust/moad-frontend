@@ -36,6 +36,6 @@ export const useUpdateUserProfileImage = () => useMutation<void, string, { profi
 })
 
 
-export const useMemberWithdrawal = () =>  useMutation<void, string>({
-    mutationFn: () => axios.get("/api/membership-withdrawal"),
+export const useMemberWithdrawal = () =>  useMutation<void, string, { reason : string }>({
+    mutationFn: (data) => axios.post("/api/membership-withdrawal", data ),
 })

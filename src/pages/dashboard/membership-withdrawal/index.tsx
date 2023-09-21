@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { styles } from '@src/sections/my-info';
 import { clsx } from 'clsx';
@@ -8,22 +8,48 @@ import {
 	RHFInput,
 	useForm,
 	Button,
+	Yup,
+	yupResolver,
 } from '@src/components/common';
 import { useMemberWithdrawal } from '@src/apis/user';
 import { toast } from 'react-toastify';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
 import useAuth from '@src/hooks/useAuth';
+import RHFTextarea from '@src/components/common/Form/RHFTextarea';
+
+
+const MembershipWithDrawalSchema = Yup.object({
+	reason: Yup.string()
+		.required('탈퇴 사유를 입력해 주세요.'),
+	condition: Yup.boolean()
+		.required("다음 조건을 확인하세요.")
+		.oneOf([true], "다음 조건을 확인하세요.")
+})
+
+
 
 function MembershipWithdrawalScreen() {
 	const { mutateAsync: memberWithdrawal, isLoading } = useMemberWithdrawal();
 	const { confirm } = useConfirmDialog();
 	const { logout } = useAuth();
 
-	const methods = useForm({ defaultValues: { check: false } });
-	const { handleSubmit, control } = methods;
+	const methods = useForm({ 
+		defaultValues: { condition: false, reason: "" } ,
+		resolver: yupResolver(MembershipWithDrawalSchema),
+	});
+	const { handleSubmit, control, watch } = methods;
 
-	const onSubmit = handleSubmit(async () => {
+	const [disabledSubmit, setDisabledSubmit] = useState(true);
+	useEffect(() => {
+		watch(({ condition, reason }) => {
+			const disabled = !reason || !condition ;
+			disabledSubmit !== disabled && setDisabledSubmit(disabled);
+		});
+	}, [watch]);
+
+
+	const onSubmit = handleSubmit(async ({ reason }) => {
 		const options: ConfirmPropsType = {
 			title: '',
 			size: 'sm',
@@ -45,7 +71,7 @@ function MembershipWithdrawalScreen() {
 				</div>
 			),
 			onConfirm: () => {
-				memberWithdrawal(undefined, {
+				memberWithdrawal({ reason }, {
 					onSuccess: () =>
 						confirm({
 							...options,
@@ -113,10 +139,10 @@ function MembershipWithdrawalScreen() {
 											</p>
 										</div>
 									</div>
-									<div className={clsx(styles.title, '!border-none mb-0')}>
+									<div className={clsx(styles.title, '!text-[14px] !border-none mb-0')}>
 										유의사항
 									</div>
-									<div className={clsx(styles.information_wrap, 'pt-2')}>
+									<div className={clsx(styles.information_wrap, 'pt-0')}>
 										<div className='p-4 border border-[#EBEDF4] rounded-md bg-[#EBEDF4] bg-opacity-20'>
 											<p>
 												1.회원탈퇴 처리 후에는 회원님의 개인정보를 복원할
@@ -127,35 +153,47 @@ function MembershipWithdrawalScreen() {
 											</p>
 										</div>
 
+										<RHFTextarea 
+											label="탈퇴사유"
+											name="reason"
+											rows={5}
+											placeholder='탈퇴사유를 입력해주세요.'
+											required
+											wrapperClassName='mt-4'
+											showLength
+											maxLength={300}
+										/>
 										<Controller
-											name='check'
+											name='condition'
 											control={control}
-											render={({ field: { onChange, onBlur, ref, value } }) => (
+											render={({ field: { onChange, onBlur, value}, fieldState : {error}}) => (
 												<>
-													<div className='mt-4'>
+													<div className='mt-2 mb-4'>
 														<label className='text-[#999999] flex flex-row items-center'>
 															<RHFInput
 																name=''
 																type='checkbox'
 																className='mr-2 border-[#999999]'
+																checked={value}
 																onBlur={onBlur}
 																onChange={onChange}
 															/>
 															해당 내용을 모두 확인했으며, 회원탈퇴에 동의합니다
 														</label>
+														{error && <span className='text-danger'>{error.message}</span>}
 													</div>
-
-													<Button
-														loading={isLoading}
-														type='submit'
-														className={`${styles.modify_btn} `}
-														onClick={onSubmit}
-														disabled={!value}>
-														수정완료
-													</Button>
 												</>
 											)}
-										/>
+										/> 
+										<Button
+											loading={isLoading}
+											type='submit'
+											className={`${styles.modify_btn} !leading-6`}
+											onClick={onSubmit}
+											disabled={disabledSubmit}
+										>
+											수정완료
+										</Button>
 									</div>
 								</div>
 							</div>

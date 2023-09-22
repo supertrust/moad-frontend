@@ -1,0 +1,157 @@
+$font-family: "Noto Sans KR", sans-serif;
+
+.mobile-top-header {
+  display: flex!important;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+  padding-left: 20px;
+  height : 60px;
+
+  .header{
+
+    font-family: $font-family;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #2c324c;
+    padding-right: 1.2rem;
+  }
+}
+
+
+.content{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  text-align: left;
+  color: #373737;
+}
+
+.notice-header{
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.2px;
+  text-align: left;
+  color: #373737;
+}
+
+.author {
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.43;
+  letter-spacing: -0.14px;
+  text-align: left;
+  color: #2c324c;
+}
+
+.created-date {
+
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 3.43;
+  letter-spacing: -0.14px;
+  text-align: left;
+  color: #999;
+}
+
+
+.next-prev{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  text-align: left;
+  color: #2c324c;
+
+}
+
+.list{
+  -webkit-text-stroke: 0 #ebedf4;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #2f48d1;
+
+}
+
+.mb-main-content{
+  max-height: calc(100vh - 250px) !important;
+}
+
+@media screen and (max-width: 767px) {
+  .author{
+    font-family: $font-family;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.12px;
+    text-align: left;
+    color: #2c324c;
+  }
+
+  .created-date{
+    font-family: $font-family;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.12px;
+    text-align: left;
+    color: #999;
+  }
+
+  .content {
+    font-family: $font-family;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.14px;
+    text-align: left;
+    color: #474747;
+  }
+
+  .next-prev{
+    font-family: $font-family;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.75;
+    letter-spacing: -0.5px;
+    color: #2c324c;
+  }
+
+}

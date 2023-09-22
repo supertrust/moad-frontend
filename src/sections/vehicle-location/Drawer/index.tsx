@@ -25,12 +25,12 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
     todayDistance,
     totalDistance,
   } = vehicle || {}
-
+  
   let start = start_time ? start_time.split('T')[1].split(':') : null 
 
   return (
     <div>
-      <div className={styles.button_wrap}>
+      <div className={`${styles.button_wrap}`}>
         <button
           type="button"
           id="location_detail_btn"
@@ -78,7 +78,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
                 </div>
 
                 <div className={clsx(styles.section, styles.operation_history)}>
-                  <div className={styles.text}>운행내역</div>
+                  <div className={`${styles.text}  mb-[16px]`}>운행내역</div>
                   <ul className={styles.history}>
                     <li className={styles.list}>
                       <i className={`${styles.icons} ${styles.ic_start}`}></i>
@@ -104,7 +104,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
                 <div
                   className={`${styles.section} ${styles.accomplishment_rate}`}
                 >
-                  <div className={styles.title}>운행 달성률</div>
+                  <div className={`${styles.title} !mb-[7px]`}>운행 달성률</div>
                   <ul className={styles.list_wrap}>
                     <li className={styles.list}>
                       <div className={styles.bar_wrap}>

@@ -606,7 +606,25 @@ a {
 	position: relative;
     left: 10px; 
 }
-
+.mobile-top-header {
+	display: flex!important;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 34px;
+	padding-right: 18px;
+}
+    
+.header{
+	font-size: 20px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: -0.2px;
+	text-align: center;
+	color: #2c324c;
+}
 @media (max-width: 767px) {
 	.change-password-content .form-wrap {
 		width: 342px !important;
@@ -3820,6 +3838,29 @@ input:focus-visible {
     height: 0.9em;
 }
 @media screen and (max-width: 767px) {
+	.accordion-button:not(.collapsed){
+		background-color :#f5f7fb !important;
+	}
+	.accordion-section .accordion-body {
+		padding: 20px 20px;
+	}
+	.faq-content .list-title {
+		flex-direction: column;
+		align-items: flex-start;
+		row-gap: 5px;
+	}
+	.faq-content .tab-section {
+		gap: 16px;
+	}
+	.faq-content .tab-section li button {
+		font-size: 14px;
+	}
+	.faq-content .mobile-top-header {
+		margin-bottom: 32px;
+	}
+	.faq-content .tab-section li button.active {
+		font-size: 16px;
+	}
 	.policy-container .terms-section .content-terms {
 		padding: 20px;
 	}
@@ -3830,10 +3871,10 @@ input:focus-visible {
 		border-width: 1px 1px 1px 1px;
 	}
 	.faq-content {
-		padding: 20px;
+		padding: 15px 0px;
 	}
 	.accordion-section .accordion-item button {
-		padding: 15px 15px;
+		padding: 15px 20px;
 	}
 	.guide-content {
 		padding: 20px 8px;
@@ -3858,6 +3899,18 @@ input:focus-visible {
 @media (max-width: 1024px) and (min-width: 768px) {
 	.chats-con-img div {
 		padding: 20px;
+	}
+	.faq-content {
+		padding: 20px 0px 43px 0px;
+	}
+	.accordion-section .accordion-item button {
+		padding: 20px 20px;
+	}
+	.accordion-section .accordion-body {
+		padding: 20px 20px;
+	}
+	.accordion-button:not(.collapsed) {
+		background-color: #f5f7fb !important;
 	}
 }
 
@@ -3908,6 +3961,9 @@ input:focus-visible {
 }
 
 @media only screen and (max-width: 575px) {
+	.mobile-top-header {
+		display: flex !important;
+		}
 	.vehicle_number {
 		padding: 20px 0 22px 12px !important;
 		font-size: 16px !important;

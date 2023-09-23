@@ -1,21 +1,21 @@
 import { Button, Modal } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
+import styles from "./styles.module.scss";
 
 export interface ConfirmModalProps {
   open: boolean;
-  text: string | null;
+  text: ReactNode | null;
   accept: VoidFunction;
   reject: VoidFunction;
 }
 
 export default function ConfirmModal({ open, text, accept, reject }: ConfirmModalProps) {
   const [openModal, setOpenModal] = useState(false);
-  const [modalText, setModalText] = useState<string | null>(null);
+
   const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
     setOpenModal(open);
-    setModalText(text);
     setAccepted(false);
   }, [open]);
 
@@ -30,12 +30,16 @@ export default function ConfirmModal({ open, text, accept, reject }: ConfirmModa
       onClose={reject}
       className='justify-center items-center flex'
     >
-      <div className="w-full max-w-xs bg-white rounded-xl px-5 py-9 shadow-md">
+      <div className="bg-white rounded-xl px-11 py-9 shadow-md">
         <div className="flex flex-col justify-center">
-          {modalText && (<div className='text-center' dangerouslySetInnerHTML={{ __html: modalText }}></div>)}
-          <div className="flex mt-3 gap-2 justify-center">
-            <Button variant='outlined' color='primary' onClick={reject}>취소</Button>
-            <Button variant='contained' color='primary' onClick={handleAccept} disabled={accepted}>삭제하기</Button>
+          {  text}
+          <div className="flex mt-3 gap-3 justify-center">
+            <Button className={'w-[92px] h-[35px]'} variant='outlined' sx={{
+              color : "#2f48d1"
+            }} onClick={reject}>
+              <span className={styles['reject-btn']}>취소</span></Button>
+            <Button  className={'w-[92px] h-[35px]'} variant='contained'  sx={{background : "#2f48d1"}} onClick={handleAccept}
+                     disabled={accepted}><span className={styles['accept-btn']}>삭제하기</span></Button>
           </div>
         </div>
       </div>

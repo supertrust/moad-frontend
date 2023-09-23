@@ -1,0 +1,205 @@
+$font-family: "Noto Sans KR", sans-serif;
+
+.mobile-top-header {
+  display: flex!important;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center!important;
+  padding-right: 20px;
+  padding-left: 20px;
+  height : 60px;
+
+  .header{
+
+    font-family: $font-family;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #2c324c;
+    padding-right: 1.2rem;
+  }
+}
+
+.answer-complete{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  text-align: right;
+  color: #2f48d1;
+}
+
+.question {
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  text-align: left;
+  color: #474747;
+}
+
+.text-answer-header{
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.5px;
+  text-align: left;
+  color: #474747;
+}
+
+.answer{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  text-align: left;
+  color: #474747;
+}
+
+.date{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  text-align: right;
+  color: #999;
+}
+
+.next-prev{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  text-align: left;
+  color: #2c324c;
+}
+
+.document-body {
+  padding: 6px;
+  border: solid 1px #ebedf4;
+  background-color: #ebedf4;
+}
+
+.document-name{
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.12px;
+  text-align: left;
+  color: #373737;
+}
+
+.document-count{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  text-align: left;
+  color: #000;
+}
+
+.before-reply-correction{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  text-align: left;
+  color: #999;
+}
+
+.delete-inquire{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  text-align: right;
+  color: #d12953;
+}
+
+.delete-modal-header{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  color: #2f48d1!important;
+  padding-bottom: 8px;
+  text-align: center;
+
+}
+
+.delete-modal-body{
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.14px;
+  color: #373737;
+  text-align: center;
+
+}
+
+.mobile-layout{
+
+  height: calc(100vh - 235px) !important;
+
+}
+
+.mobile-bottom{
+ height: 60px;
+}
+
+
+@media screen and (max-width: 767px) {
+
+  .text-answer-header{
+    font-size: 14px;
+    color: #474747;
+  }
+  .answer{
+    letter-spacing : -0.14px
+  }
+  .date{
+    font-size : 12px;
+    letter-spacing: -0.12px;
+  }
+
+}

@@ -188,7 +188,7 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Group controlId="bank" className={styles.customarrow}>
-              <Form.Label>이름 <span>*</span></Form.Label>
+              <Form.Label>은행 <span>*</span></Form.Label>
               <Form.Control type="text" placeholder="이름 입력" onClick={handleShow} />
             </Form.Group>
           </Row>
@@ -211,13 +211,13 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Group controlId="carNumber">
-              <Form.Label>이름 <span>*</span></Form.Label>
+              <Form.Label>차량번호  <span>*</span></Form.Label>
               <Form.Control type="text" placeholder="이름 입력" />
             </Form.Group>
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Group controlId="carType">
-              <Form.Label>이름 <span>*</span></Form.Label>
+              <Form.Label>차종 및 톤수 <span>*</span></Form.Label>
               <Form.Select aria-label="Default select example">
                 <option>선택</option>
                 <option value="1">윙바디 1t</option>
@@ -235,7 +235,7 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Group controlId="averageDays">
-              <Form.Label>월 평균 운행일수 <span>*</span></Form.Label>
+              <Form.Label>월 평균 운행일수  <span>*</span></Form.Label>
               <Form.Control type="text" placeholder="예) 20일" />
             </Form.Group>
           </Row>
@@ -247,6 +247,7 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Group controlId="averageDriving" className={`${styles.twocolumnbtn} gap-3.5`}>
+              <Form.Label>고정 운행지 </Form.Label>
               {/* <Button type="button" className={styles.button}>있음</Button> */}
               <Button className={`${styles.button} rounded min-h-[46px]`}  type="primary" size="large" >확인</Button>
               {/* <Button type="button" className={styles.buttonwhite}>없음</Button> */}
@@ -255,18 +256,19 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Group controlId="averageDriving">
-              <Form.Label>출발지 <span>*</span></Form.Label>
+              <Form.Label> 출발지 <span>*</span></Form.Label>
               <Form.Control type="text" placeholder="예) 서울시 강남구" />
             </Form.Group>
           </Row>
           <Row className={styles.mbcustom}>
             <Form.Group controlId="averageDriving">
-              <Form.Label>도착지 <span>*</span></Form.Label>
+              <Form.Label> 도착지 <span>*</span></Form.Label>
               <Form.Control type="text" placeholder="예) 서울시 강남구" />
             </Form.Group>
           </Row>
           <Row className={`${styles.mbcustom} ${modelImages.first ? styles.fileUploaded : ''}`}>
             <Form.Group controlId="formFile" className={styles.fileupload}>
+              <Form.Label> 차량 인증 사진 <span>*</span></Form.Label>
               {
                 modelImages.first ?
                   <>

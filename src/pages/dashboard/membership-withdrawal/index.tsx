@@ -192,7 +192,7 @@ function MembershipWithdrawalScreen() {
 											onClick={onSubmit}
 											disabled={disabledSubmit}
 										>
-											수정완료
+											회원탈퇴
 										</Button>
 									</div>
 								</div>

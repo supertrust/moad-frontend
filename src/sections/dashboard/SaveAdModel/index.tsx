@@ -1,6 +1,6 @@
 import React, { Ref, forwardRef, useImperativeHandle, useState } from "react";
 import styles from "./styles.module.css";
-import { useDeleteAdvertisement, useSaveAdvertisement } from "@src/apis/advertisement";
+import { useSaveAdvertisement } from "@src/apis/advertisement";
 import SaveAdForm from "./SaveAdForm";
 import { SaveAdvertisementType } from "@src/types/advertisement";
 import AdAgreementForm from "./AdAgreementForm";
@@ -18,37 +18,35 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
     const [id, setId] = useState<number | null>(null)
     const [open, setOpen] = useState(false);
     const [agreed, setAgreed] = useState(false);
+    const [showAgreement, setShowAgreement ]= useState(false);
+    const [advertisment, setAdvertisement ]= useState<SaveAdvertisementType | undefined>();
 
     const { mutateAsync: saveAdvertisement,isLoading : isLoadingSaveAdvertisement } = useSaveAdvertisement();
-    const { mutateAsync: deleteAdvertisement } = useDeleteAdvertisement();
 
     const onSubmitForm = async (props: SaveAdvertisementType) => {
-        await saveAdvertisement(props, {
-            onSuccess: ({ id: _id }) => {
-                setId(_id)
+        setAdvertisement(props);
+        setShowAgreement(true);
+    }
+
+    const onAgree = () => { 
+        advertisment && saveAdvertisement(advertisment, {
+            onSuccess: () => {
+                refetchAds();
+                setAgreed(true);
             }
         });
     }
 
-    const onAgree = () => {
-        setAgreed(true);
-        refetchAds();
-    }
-
     const onDisagree = () => {
-        if (id) {
-            deleteAdvertisement({ id: `${id}` }, {
-                onSettled: () => {
-                    onCancel();
-                }
-            })
-        }
+        setShowAgreement(false);
     }
 
     const onCancel = () => {
         setId(null);
         setAgreed(false);
         setOpen(false);
+        setShowAgreement(false)
+        setAdvertisement(undefined);
     }
 
     useImperativeHandle(ref, () => ({
@@ -60,11 +58,17 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
             {agreed ? (
                 <SaveAdSuccessPopup onOk={onCancel} />
             ) : (
-                !id ? (
-                    <SaveAdForm onCancel={onCancel} onSubmitForm={onSubmitForm} isLoadingSaveAdvertisement={isLoadingSaveAdvertisement} />
+                !showAgreement ? (
+                    <SaveAdForm 
+                        onCancel={onCancel} 
+                        onSubmitForm={onSubmitForm} 
+                        isLoadingSaveAdvertisement={isLoadingSaveAdvertisement} 
+                        values={advertisment}
+                    />
                 ) : (
-                    <AdAgreementForm onDisagree={onDisagree} onAgree={onAgree} />
-                ))}
+                    <AdAgreementForm onDisagree={onDisagree} onAgree={onAgree} isLoading={isLoadingSaveAdvertisement}  />
+                )
+            )}
         </div>
     ) : null;
 }

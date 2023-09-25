@@ -13,7 +13,7 @@ const axios = Axios.create({
 });
 
 const handleError = (error: any) => {
-    console.error('🚀 ~ Api error by axios ====> ', {
+    process.env.NODE_ENV === 'development' &&  console.error('🚀 ~ Api error by axios ====> ', {
         url: error.config.url,
         method: error.config.method,
         request_data: error.config.data,

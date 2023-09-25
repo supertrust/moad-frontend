@@ -2,13 +2,16 @@ import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import useAuth from "@src/hooks/useAuth";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import { ThreeDots } from "react-loader-spinner";
 
 function AdAgreementForm({
   onDisagree,
   onAgree,
+  isLoading, 
 }: {
   onDisagree: VoidFunction;
   onAgree: VoidFunction;
+  isLoading : boolean
 }) {
   const { user } = useAuth();
 
@@ -98,7 +101,20 @@ function AdAgreementForm({
               className={`${styles.btns} ${styles.active} ${styles.ad_apply_btn}`}
               onClick={onAgree}
             >
-              확인
+              {isLoading ? (
+                <div className='d-flex justify-content-center'>
+                  <ThreeDots
+                    height='20'
+                    width='40'
+                    radius='9'
+                    color='#FFFFFF'
+                    ariaLabel='three-dots-loading'
+                    visible
+                  />
+                </div>
+              ) : (
+                '확인'
+              )}
             </button>
           </div>
         </div>

@@ -89,13 +89,15 @@ const SaveAdForm = ({
 	onCancel,
 	onSubmitForm,
 	isLoadingSaveAdvertisement,
+	values
 }: {
 	onCancel: VoidFunction;
 	onSubmitForm: (props: SaveAdvertisementType) => Promise<void>;
 	isLoadingSaveAdvertisement: boolean;
+	values?: SaveAdvertisementType
 }) => {
 	const methods = useForm<FormDataType>({
-		defaultValues,
+		defaultValues : values || defaultValues,
 		//@ts-ignore
 		resolver: yupResolver(SaveAdvertisementSchema),
 	});
@@ -109,7 +111,7 @@ const SaveAdForm = ({
 	const [period, setPeriod] = useState(defaultValues.ad_period);
 	const [startDate, setStartDate] = useState(defaultValues.start_date);
 	const [vehicleDetails, setVehicleDetails] = useState(
-		defaultValues.vehicle_details,
+		values?.vehicle_details || defaultValues.vehicle_details,
 	);
 	const [isAreaVisible, setIsAreaVisible] = useState(true);
 	const [showModal, setShowModal] = useState(false);
@@ -593,6 +595,7 @@ const SaveAdForm = ({
 																className={
 																	'!w-[78px] h-[20px] border border-[#ebedf4] text-gray-500 text-right mr-[3px] text-[12px] p-[3px]'
 																}
+																value={value[item.id]}
 																onChange={(e) =>
 																	onChange({
 																		...value,
@@ -737,8 +740,8 @@ const SaveAdForm = ({
 									id='total_price'
 									className={`${styles.price_text} ${styles.total_price} ${styles.total_price} !text-[#2F48D1]`}>
 
-										<p>{totalPrice ? totalPrice.toLocaleString() : null}</p>
-										<p className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>원</p>
+										<span>{totalPrice && totalPrice.toLocaleString()}</span>
+										<span className={`${styles.text_won} !text-[#999999]`}>원</span>
 								</div>
 								{/* <div
 									className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>

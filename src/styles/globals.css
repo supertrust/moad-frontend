@@ -3317,7 +3317,7 @@ ul.pagination .page-item a:focus {
 }
 
 .privacy-content {
-	padding: 23px 30px 43px 30px;
+	padding: 0px 30px 43px 30px;
 }
 
 .content-terms {
@@ -3340,10 +3340,16 @@ ul.pagination .page-item a:focus {
 	background: transparent;
 }
 .policy-container .privacy-content ul li {
+    margin: 0 0 7px 0;
+	display: flex;
+    gap: 5px;
+}
+
+.policy-container .privacy-content .tab-section .nav-item{
 	margin: 0;
 }
 .policy-container .terms-section .content-terms {
-	padding: 30px;
+	padding: 30px 30px 66px 30px;
 	background: #ffffff;
 }
 .policy-container .terms-section .content-terms .terms-details .card-body {
@@ -3363,7 +3369,7 @@ ul.pagination .page-item a:focus {
 	background-color: #e1ecff;
 	border-top: solid 1px #a2a3a6;
 	padding: 40px 20px;
-	text-align: center;
+	text-align: left;
 	color: #373737;
 	font-size: 16px;
 	font-weight: 500;
@@ -3392,7 +3398,7 @@ ul.pagination .page-item a:focus {
 .policy-container .content-table .card .card-title {
 	margin-bottom: 0;
 	font-size: 15px;
-	padding: 5px 0;
+	/* padding: 5px 0; */
 	color: #222222 Im !important;
 }
 .policy-container .card-body .card-text,
@@ -3423,9 +3429,10 @@ ul.pagination .page-item a:focus {
 	border-bottom: 1px solid #dfdfdf;
 }
 .privacy-content ul {
-	margin-top: 15px;
-	float: left;
-	width: 100%;
+    margin-top: 20px;
+    margin-bottom: 0;
+    float: left;
+    width: 100%;
 }
 
 .privacy-content ul li {
@@ -3435,6 +3442,10 @@ ul.pagination .page-item a:focus {
 }
 .privacy-content ul li:last-child {
 	margin-bottom: 0px;
+}
+
+.card-body-bottom-text {
+    padding: 60px 0 96px 0 !important;
 }
 
 .privacy-content ul li ol li {
@@ -3487,12 +3498,28 @@ ul.pagination .page-item a:focus {
 	font-size: 14px;
 }
 
+.policy-container .content-table .card-body{
+	padding: 17px 30px 16px 30px !important;
+}
+
+.policy-container .card-body .card-title {
+	margin: 0px !important;
+	padding: 0px !important;
+}
 .content-table .card-body:hover {
 	background: #2f48d1;
 }
 
 .content-table .card-body:hover a {
 	color: #fff;
+}
+
+.policy-container .table-cont-text {
+	margin-top: 20px !important;
+}
+
+.policy-container .table-cont-second-text {
+    margin-top: 10px;
 }
 
 /*
@@ -3563,6 +3590,29 @@ ul.pagination .page-item a:focus {
 	border-radius: 10px;
 	background: #006bf8;
 	z-index: -1;
+}
+@media screen and (max-width: 767px){
+	.privacy-content{
+		padding: 0 20px;
+	}
+	.policy-container .content-table {
+		background: transparent;
+	}
+	.policy-container .content-table .card-body h5{
+		line-height: 0;
+	}
+	.policy-container .content-table .card-body a{
+		line-height: 18px;
+	}
+	.policy-container .content-table .card-body {
+		padding: 11px 8px 10px 8px !important;
+	}
+	.policy-container .card-details .card-body {
+		margin: 0 8px;
+	}
+	.policy-container .card-details .card-body {
+		margin: 0 20px;
+	}
 }
 
 @media screen and (max-width: 480px) {
@@ -3862,7 +3912,44 @@ input:focus-visible {
 		font-size: 16px;
 	}
 	.policy-container .terms-section .content-terms {
-		padding: 20px;
+		padding: 0px;
+	}
+	.policy-container .terms-section .terms-details {
+		padding: 10px 8px 10px 8px;
+	}
+	.policy-container .content {
+		padding: 35px 8px;
+		min-height: 260px;
+	}
+	.tab-section li button{
+		font-size: 14px;
+	}
+	.policy-container .content {
+		font-size: 13px;
+	}
+	.policy-container .content-table .card .card-title a {
+		font-size: 13px;
+	}
+	.policy-container .card-body .card-title strong {
+		font-size: 14px;
+	}
+	.policy-container .privacy-content ul li {
+		font-size: 12px;
+	}
+	.card-body-bottom-text {
+		padding: 30px 0 40px 0 !important;
+	}
+	.tab-section li button.active {
+		font-size: 16px;
+	}
+	.policy-container .terms-section .content-terms {
+		background: transparent;
+	}
+	.policy-container .terms-section .content-terms .terms-details .card-body {
+		padding: 20px 0px;
+	}
+	.policy-container .terms-section .content-terms .terms-details .card-body.last-section {
+		padding: 30px 0px;
 	}
 	.policy-container .content-table .card {
 		border-width: 1px 1px 0px 1px;
@@ -3989,6 +4076,10 @@ input:focus-visible {
 	.ad-detail-list .valu-text.carousel-caption {
 		top: 12px;
 		left: 12px;
+	}
+
+	.policy-container .privacy-content ul li {
+		margin: 0px 0px 0px 0px;
 	}
 	
 

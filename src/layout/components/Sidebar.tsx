@@ -13,6 +13,7 @@ const sideBarPath = {
   "/dashboard" : "dashboard",
   "/dashboard/my-info" : "My Page",
   "/dashboard/ad-management" : "Ad Management",
+  "/dashboard/statistics/[id]" : "Statistics",
   "/dashboard/statistics" : "Statistics",
   "/dashboard/customer-service/notice" : "Announcement",
   "/dashboard/customer-service/guide" : "Guide",
@@ -49,6 +50,7 @@ function Sidebar({ msg }: SidebarProps) {
 
   useEffect(()=>
   {
+    console.log('log',router.pathname)
     if(router.pathname && sideBarPath[router.pathname])
     {
       setTab(sideBarPath[router.pathname])

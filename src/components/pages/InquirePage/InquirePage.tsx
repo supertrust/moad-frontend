@@ -82,7 +82,7 @@ function InquirePage() {
                         <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
                             <CircularProgress color="primary" />
                         </div>
-                    ) : inquiries?.length ? (
+                    ) :  (
                         <Table width={`100%`} className="m-0 !text-[16px]">
                             <TableHead className="bg-[#E1ECFF]">
                                 <TableRow className={'!h-[3rem]'}>
@@ -93,43 +93,60 @@ function InquirePage() {
                                     <TableCell className="!text-center !bg-[#E1ECFF]">상태</TableCell>
                                 </TableRow>
                             </TableHead>
-                            <TableBody className="divide-y">
-                                {inquiries?.map((inq: any, index: number) => {
-                                    return (
-                                        <TableRow
-                                            key={index}
-                                            onClick={() => getDetail(inq.id)}
-                                            className="cursor-pointer hover:bg-blue-50 transform transition-all duration-200
+                            {
+                                inquiries?.length ?
+                                    <TableBody className="divide-y">
+                                        {inquiries?.map((inq: any, index: number) => {
+                                            return (
+                                                <TableRow
+                                                    key={index}
+                                                    onClick={() => getDetail(inq.id)}
+                                                    className="cursor-pointer hover:bg-blue-50 transform transition-all duration-200
                                             !h-[50px]"
-                                        >
-                                            <TableCell className="!text-center !text-[16px] !w-[150px]">
-                                                {index + 1 + (page - 1) * 10}
-                                            </TableCell>
-                                            <TableCell className="!text-center !text-[16px] !w-[150px]">
-                                                {InquiryType[inq.inquiry_type]}
-                                            </TableCell>
-                                            <TableCell className="!text-[16px]">{inq.inquiry_title}</TableCell>
-                                            <TableCell className="!text-center !text-[16px]  !text-[#999999] !w-[200px]">
-                                                {dateFormat(inq.created_at as string, "Y-m-d") ??
-                                                    "2023-04-19"}
-                                            </TableCell>
-                                            <TableCell className="!text-center !text-[16px] w-[150px]">
-                                                {inq.inquiry_answer ? (
-                                                    <span className="text-[#2F48D1]">답변완료</span>
-                                                ) : (
-                                                    <span className="!text-[#D12953]">답변전</span>
-                                                )}
-                                            </TableCell>
-                                        </TableRow>
-                                    );
-                                })}
-                            </TableBody>
+                                                >
+                                                    <TableCell className="!text-center !text-[16px] !w-[150px]">
+                                                        {index + 1 + (page - 1) * 10}
+                                                    </TableCell>
+                                                    <TableCell className="!text-center !text-[16px] !w-[150px]">
+                                                        {InquiryType[inq.inquiry_type]}
+                                                    </TableCell>
+                                                    <TableCell className="!text-[16px]">{inq.inquiry_title}</TableCell>
+                                                    <TableCell className="!text-center !text-[16px]  !text-[#999999] !w-[200px]">
+                                                        {dateFormat(inq.created_at as string, "Y-m-d") ??
+                                                            "2023-04-19"}
+                                                    </TableCell>
+                                                    <TableCell className="!text-center !text-[16px] w-[150px]">
+                                                        {inq.inquiry_answer ? (
+                                                            <span className="text-[#2F48D1]">답변완료</span>
+                                                        ) : (
+                                                            <span className="!text-[#D12953]">답변전</span>
+                                                        )}
+                                                    </TableCell>
+                                                </TableRow>
+                                            );
+                                        })}
+                                    </TableBody> :
+                                    <></>
+                            }
+
                         </Table>
-                    ) : (
-                        <div className="flex p-3 justify-center items-center">
-                            데이터를 찾을 수 없습니다!
-                        </div>
-                    )}
+                    )
+                    }
+
+                    {
+                        (!isLoading && !inquiries?.length ) ?
+                            <div className={'text-center flex flex-col justify-center items-center'}>
+                        <span className={styles['no-register-inquires']}>
+                            등록된 문의가 없습니다.
+                        </span>
+                                <div className={styles['contact-us-body']} onClick={()=>
+                                    router.push("/dashboard/customer-service/inquire/form")}>
+                            <span className={styles['contact-us']}>
+                                문의하기
+                            </span>
+                                </div>
+                            </div> : <></>
+                    }
                     {inquiries?.length ? (
                         <div className="py-[50px] flex justify-center">
                             <Pagination
@@ -141,7 +158,7 @@ function InquirePage() {
                                 sx={paginationStyles}
                             />
                         </div>
-                    ) : null}
+                    ) : <div></div>}
                 </Card>
             </div>
 
@@ -196,6 +213,12 @@ function InquirePage() {
                         </div>
                     })
                 }
+
+                {  (!isLoading && !inquiries?.length ) ?<div className={styles['no-data-layout']}>
+                    <span className={styles['no-data-mb']}>
+                        등록된 문의가 없습니다.
+                    </span>
+                </div> : <></>}
 
                 {inquiries?.length ? (
                     <div className="py-[50px] flex justify-center">

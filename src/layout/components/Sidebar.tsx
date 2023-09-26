@@ -18,6 +18,7 @@ const sideBarPath = {
   "/dashboard/customer-service/guide" : "Guide",
   "/dashboard/customer-service/faq" : "FAQ",
   "/dashboard/customer-service/inquire" : "Inquiry",
+  "/dashboard/customer-service/inquire/form" : "Inquiry",
   "/dashboard/customer-service/terms" : "Policies and Terms"
 }
 
@@ -45,14 +46,15 @@ function Sidebar({ msg }: SidebarProps) {
     "spot_ad" : "스팟"
   };
 
-  useEffect(()=>{
-    setTab(sideBarPath["/dashboard"])
-  },[])
 
   useEffect(()=>
   {
     if(router.pathname && sideBarPath[router.pathname])
-     setTab(sideBarPath[router.pathname])
+    {
+      setTab(sideBarPath[router.pathname])
+      barStatus(sideBarPath[router.pathname]);
+      msg(sideBarPath[router.pathname]);
+    }
   },[router.pathname])
 
 

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+* {
+  color: #333333;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  /*모바일 웹폰트 크기 자동조정 되지 않게 설정*/
+  -webkit-text-size-adjust: none; /*Chrome, Safari, newer versions of Opera*/
+  -moz-text-size-adjust: none; /*Firefox*/
+  -ms-text-size-adjust: none; /*Ie*/
+  -o-text-size-adjust: none; /*old versions of Opera*/
+}
+
+html, body, div, span, p, strong, input, button,
+ul, li, i, h1, h2, h3, h4, h5, h6, a, form,
+table, caption, tbody, tfoot, thead, tr, th, td, ._img,
+footer, header, textarea {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+._img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  background-color: #ffffff;
+}
+
+input {
+  outline: none;
+}/*# sourceMappingURL=style.css.map */

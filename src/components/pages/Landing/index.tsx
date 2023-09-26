@@ -4,103 +4,25 @@ import logo from "../../../../public/images/landing/header/logo-pc.svg";
 import logoMb from "../../../../public/images/landing/header/logo-mb.svg";
 import sec1Img from "../../../../public/images/landing/main/img-section-1.svg";
 import mbImg1 from "../../../../public/images/landing/main/bg-section-1-mb.png";
-import {  useState } from 'react';
+import { useState } from "react";
 
 import Image from "next/image";
 import "animate.css";
 import "animate.css/animate.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import HeaderComp from "./component/header/header";
 
 const Landing = () => {
-  const [isShowMobileNav , setIsShowMobileNav] = useState<Boolean>(false);
-  const navClassName = isShowMobileNav ? '_nav active' : '_nav';
+  const [isShowMobileNav, setIsShowMobileNav] = useState<Boolean>(false);
+  const navClassName = isShowMobileNav ? "_nav active" : "_nav";
 
-  const toggleMobileNav=()=>{
-    setIsShowMobileNav(!isShowMobileNav)
-  }
+  const toggleMobileNav = () => {
+    setIsShowMobileNav(!isShowMobileNav);
+  };
   return (
     <div id='landing_'>
-      <header
-        id='header'
-        className='header'>
-        <div className='header-continer'>
-          <h1 className='logo'>
-            <a
-              href='#'
-              className='logo-pc'>
-              <Image
-                src={logo}
-                alt=''
-                className='_img'
-              />
-            </a>
-            <a
-              href='#'
-              className='logo-mb'>
-              <Image
-                src={logoMb}
-                alt=''
-              />
-            </a>
-          </h1>
-          <button className='menu-mb-btn only-mb' id='menu_mb_btn' onClick={toggleMobileNav}></button>
-          <nav
-            id='_nav'
-            className={navClassName}>
-            <div className='menu-mb-top only-mb'>
-              <h1 className='menu-logo'>
-                <a
-                  href='#'
-                  className='logo-mb'>
-                  <Image
-                    src={logoMb}
-                    alt=''
-                  />
-                </a>
-              </h1>
-              <button
-                className='menu-close-btn'
-                id='menu_close_btn' onClick={toggleMobileNav}></button>
-            </div>
-            <ul className='menu'>
-              <li className='menu-list main active'>
-                <a
-                  href='#'
-                  className='menu-link'>
-                  서비스소개
-                </a>
-              </li>
-              <li className='menu-list about-us'>
-                <a
-                  href='#'
-                  className='menu-link'>
-                  회사소개
-                </a>
-              </li>
-              <li className='menu-list inquire'>
-                <a
-                  href='#'
-                  className='menu-link'>
-                  문의하기
-                </a>
-              </li>
-            </ul>
-            <div className='menu-terms-wrap only-mb'>
-              <a
-                href='#'
-                className='_text'>
-                이용약관
-              </a>
-              <a
-                href='#'
-                className='_text'>
-                개인정보처리방침
-              </a>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <HeaderComp />
 
       <main id='mian'>
         <section className='section01'>
@@ -192,8 +114,7 @@ const Landing = () => {
                   <div className='list-num'>01</div>
                   <div className='list-title'>기업의 가치와 품위</div>
                   <div className='list-text'>
-                  브랜드 광고를 통한 기업의 가치와
-                  품위를 높여줍니다.          
+                    브랜드 광고를 통한 기업의 가치와 품위를 높여줍니다.
                   </div>
                 </SwiperSlide>
 
@@ -201,8 +122,7 @@ const Landing = () => {
                   <div className='list-num'>02</div>
                   <div className='list-title'> 좋은 시인성과 이동성</div>
                   <div className='list-text'>
-                  뛰어난 시인성으로 고객을 사로잡아
-                  강하게 인식시킵니다.                    
+                    뛰어난 시인성으로 고객을 사로잡아 강하게 인식시킵니다.
                   </div>
                 </SwiperSlide>
 
@@ -210,8 +130,8 @@ const Landing = () => {
                   <div className='list-num'>03</div>
                   <div className='list-title'>적은 비용으로 최대의 효과</div>
                   <div className='list-text'>
-                  면적 대비 저렴한 비용과 뛰어난 노출 효과로 최대의
-                  효율을 발휘합니다.
+                    면적 대비 저렴한 비용과 뛰어난 노출 효과로 최대의 효율을
+                    발휘합니다.
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -260,7 +180,8 @@ const Landing = () => {
                       마세요!
                     </strong>
                     <br className='d-none-mobile' />
-                    직종에 맞는 최상의 디자인을 <br className="d-none-desktop"/> 제작해드립니다.
+                    직종에 맞는 최상의 디자인을{" "}
+                    <br className='d-none-desktop' /> 제작해드립니다.
                   </div>
                 </div>
               </li>

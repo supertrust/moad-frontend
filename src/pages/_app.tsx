@@ -17,7 +17,8 @@ import store from '@src/redux/store';
 import { ConfirmDialogProvider } from '@src/contexts/ConfirmDialogContext';
 import { Noto_Sans_KR } from 'next/font/google';
 
-import "../components/pages/Landing/styles.scss"
+import "../components/pages/Landing/styles.scss";
+import "../components/pages/Landing/about.scss";
 
 const notoSansKR = Noto_Sans_KR({
 	weight: '400',

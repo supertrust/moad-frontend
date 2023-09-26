@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ReactQueryClient from '@src/services/ReactQueryClient';
 import { AuthProvider } from '@src/contexts/AuthContext';
 import Layout from '@src/layout';
+import CargoLayout from '@src/layout/cargo';
 import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
@@ -26,6 +27,15 @@ const notoSansKR = Noto_Sans_KR({
 const _App = ({ Component, pageProps }: AppProps) => {
 	const { asPath } = useRouter();
 
+	if (asPath.includes('/cargo/dashboard')) {
+		return (
+			<main className={notoSansKR.className}>
+					<CargoLayout>
+					<Component {...pageProps} />
+				</CargoLayout>
+			</main>
+		);
+	}
 	if (asPath.includes('/dashboard')) {
 		return (
 			<main className={notoSansKR.className}>

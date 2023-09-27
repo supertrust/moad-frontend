@@ -95,7 +95,7 @@ const AboutComp = () => {
             <div className='flowing-banner-img flowing-banner-img1'>
               <div className='img-inner img1-inner'></div>
             </div>
-            <div className='flowing-baner-img flowing-banner-img2'>
+            <div className='flowing-banner-img flowing-banner-img2'>
               <div className='img-inner img2-inner'></div>
             </div>
           </section>

@@ -20,7 +20,10 @@ export default function StatisticsScreen() {
 	const [status, setStatus] = useState<AdStatusesType | undefined>();
 	const [type, setType] = useState<AdTypesType | undefined>();
 	const [currentPage, setCurrentPage] = useState(1); // Current page number
-	const { data: advertisement_stats, isLoading } = useGetShowAdvertisementStats(currentPage);
+	const { data: advertisement_stats, isLoading } = useGetShowAdvertisementStats({
+		status: status , page : currentPage
+	});
+	console.log("Status =>", status);
 	const { data: totalStat, isLoading: isTotalLoading } = useGetStatBasedAdvertisment();
 	const date_start = '2023. 03. 01';
 	const date_end = '2023. 03. 08';
@@ -160,23 +163,27 @@ export default function StatisticsScreen() {
 											))}
 										</div>
 										<div className={styles.rightMenu}>
-											<div className={styles.selectDropdown}>
-
-											<select id="countries" className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]  ${styles.selectOption} ${styles.only_pc}`}>
-												<option selected>캠페인 유형 선택</option>
-												<option value="1">1st Option</option>
-												<option value="2">2nd Option</option>
-												<option value="3">3rd Option</option>
-												<option value="4">4th Option</option>
-											</select>
-											<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
+											<div className='block lg:!hidden'>
+												선택 {selectedAds.length}건
 											</div>
-											<button
-												disabled={!selectedAds.length}
-												// onClick={handleDeleteAds}
-												className={styles.adDeleteBtn}>
-												삭제
-											</button>
+											<div className='flex flex-row gap-2'>
+												<div className={styles.selectDropdown}>
+													<select id="countries" className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]  ${styles.selectOption}`}>
+														<option selected>캠페인 유형 선택</option>
+														<option value="1">1st Option</option>
+														<option value="2">2nd Option</option>
+														<option value="3">3rd Option</option>
+														<option value="4">4th Option</option>
+													</select>
+													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
+												</div>
+												<button
+													disabled={!selectedAds.length}
+													// onClick={handleDeleteAds}
+													className={clsx(styles.adDeleteBtn, 'bg-white')}>
+													삭제
+												</button>
+											</div>
 										</div>
 									</div>
 									{/* <DataGrid columns={columns} rows={stats} loading={isLoading} /> */}

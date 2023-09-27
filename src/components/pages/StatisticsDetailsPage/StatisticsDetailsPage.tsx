@@ -13,7 +13,7 @@ import { Table } from "react-bootstrap";
 import styles from './styles.module.scss';
 
 function StatisticsDetailsPage() {
-    const { isLoading } = useGetShowAdvertisementStats(1);
+    const { isLoading } = useGetShowAdvertisementStats({ page: 1});
     const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
     const { setPageTitle } = useIcarusContext()
     const router = useRouter()

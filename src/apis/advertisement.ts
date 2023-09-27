@@ -1,6 +1,7 @@
 import { GetVehicleDetailsPropsType, GetVehicleDetailsResponseType } from "@src/types/vehicle";
 import axios from "@src/utils/axios";
 import {
+    AdStatusesType,
     GetAdvertisementCargoPropsType,
     GetAdvertisementDetailPropType,
     GetAdvertisementOperationAreaPropsType,
@@ -119,9 +120,11 @@ export const useGetAdvertiserVehiclesStats = () =>
     });
 
 
-export const useGetShowAdvertisementStats = (page: number) => useQuery<IAdvertisementStat[], string>({
-    queryKey: ["show-advertisement-stats", page],
-    queryFn: async () => (await axios.get("/api/show-advertisement-stats", { params: { page } })).data.data
+export const useGetShowAdvertisementStats = (
+    { status, page } : {status?: AdStatusesType, page: number}
+) => useQuery<IAdvertisementStat[], string>({
+    queryKey: ["show-advertisement-stats", status, page],
+    queryFn: async () => (await axios.get("/api/show-advertisement-stats", { params: { status, page } })).data.data
 });
 
 export const useGetAdvertisementOperationArea = ({

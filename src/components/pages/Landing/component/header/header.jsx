@@ -13,7 +13,6 @@ const paths = [
 const HeaderComp = () => {
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
-
   const showMobileMenu = () => {
     setShowMenu(!showMenu);
   };

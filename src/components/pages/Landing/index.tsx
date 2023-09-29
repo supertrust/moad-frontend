@@ -23,7 +23,6 @@ const Landing = () => {
   return (
     <div id='landing_'>
       <HeaderComp />
-
       <main id='mian'>
         <section className='section01'>
           <div className='section01-container'>

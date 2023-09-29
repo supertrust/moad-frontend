@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 const Footer = () => {
   return (
     <footer id='footer'>
@@ -7,18 +7,18 @@ const Footer = () => {
         <div className='terms-line'>
           <ul className='_list-wrap'>
             <li className='_list'>
-              <a
-                href=''
+              <Link
+                href='/landing/terms'
                 className='link'>
                 이용약관
-              </a>
+              </Link>
             </li>
             <li className='_list'>
-              <a
-                href=''
+              <Link
+                href='/landing/privacy'
                 className='link'>
                 개인정보처리방침
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -20,6 +20,7 @@ import "../components/pages/Landing/styles.scss";
 import "../components/pages/Landing/about.scss";
 import "../components/pages/Landing/inquire.scss";
 import "../components/pages/Landing/terms.scss";
+import "../components/pages/Landing/privacy.scss";
 
 const notoSansKR = Noto_Sans_KR({
 	weight: '400',

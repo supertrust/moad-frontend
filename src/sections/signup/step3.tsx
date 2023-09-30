@@ -15,6 +15,7 @@ import Image from 'next/image';
 import { RegisterPropsType } from '@src/types/auth';
 import { File } from 'buffer';
 import clsx from 'clsx';
+import { isHangul } from '@src/helpers';
 
 interface Step3Props {
 	onPrevStep: () => void;
@@ -44,10 +45,13 @@ const allowedFiles = [
 ];
 
 const RegisterSchema = Yup.object({
-	company_name: Yup.string().required('회사명은 필수 입력 사항입니다.'),
+	company_name: Yup.string()
+		.required('회사명은 필수 입력 사항입니다.')
+		.test('isKorean', '올바른 한글 이름 입력' , isHangul),
 	employee_name: Yup.string()
 		.required('직원 이름을 입력하세요.')
-		.max(10, '담당자 이름은 10자를 넘지 않아야 합니다.'),
+		.max(10, '담당자 이름은 10자를 넘지 않아야 합니다.')
+		.test('isKorean', '올바른 한글 이름 입력' , isHangul),
 	company_phone_number: Yup.string()
 		.required('핸드폰번호를 입력해주세요')
 		.matches(/^[0-9]{11}$/, '전화번호는 11자리여야 합니다.'),

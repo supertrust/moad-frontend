@@ -14,6 +14,7 @@ import { useGetDirection } from '@src/apis/kakap.map';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import DirectionRender from '@src/components/Map/DirectionRender';
 import PlaceAutoComplete from '@src/components/Map/PlaceAutoComplete';
+import { getRoutesPath } from '@src/helpers/map';
 
 interface IRide {
 	// started: boolean,
@@ -45,9 +46,6 @@ const CargoLocationPage = () => {
 	const { mutateAsync: logVehicleLocation } = useLogVehicleLocation();
 	const { mutateAsync: finishVehicleRide, isLoading: isEnding } = useFinishVehicleRide();
 	const { confirm } = useConfirmDialog();
-
-	const originRef = useRef();
-	console.log("Ref =>", originRef)
 
 	const [map, setMap] = useState<kakao.maps.Map>();
 	const mapRef = useRef<kakao.maps.Map>(null);
@@ -179,7 +177,11 @@ const CargoLocationPage = () => {
 						</div>
 					),
 				});
-				setRide( { ...ride, status })
+				setRide( { 
+					...ride, 
+					current: status == 'finish' ? undefined :  ride.current,
+					status 
+				})
 			},
 		})
 	}
@@ -197,7 +199,7 @@ const CargoLocationPage = () => {
 	useEffect(() => {
 		setPageTitle('차량위치');
 
-		logCurrentLocation()
+		// logCurrentLocation()
 		return () => timer && clearInterval(timer)
 	}, []);
 
@@ -223,7 +225,7 @@ const CargoLocationPage = () => {
 			<>
 				<MapMarker 
 					position={{ lat: position.getLat(), lng: position.getLng()}}
-					draggable= {true}//{!ride.status || ride?.status == 'finish'}
+					draggable= { !ride.status || !['running', 'stop'].includes(ride.status)  }//{!ride.status || ride?.status == 'finish'}
 					onDragEnd={async (marker) => {
 						const position = marker.getPosition();
 						if(position){
@@ -266,9 +268,9 @@ const CargoLocationPage = () => {
 		timer = !timer && setInterval(async () => {
 			setRide(prevRide => {
 				
-				const { directions, currentIndex,  status } = prevRide;
+				const { currentIndex,  status } = prevRide;
 				if(!directions || !status || ['stopped', 'finish'].includes(status)  ) return prevRide
-				const { roads } = directions.routes[0].sections[0];
+				const roads = getRoutesPath(directions);
 				
 				if(currentIndex == roads.length - 1) {
 					timer && clearInterval(timer);
@@ -284,15 +286,15 @@ const CargoLocationPage = () => {
 
 				logVehicleLocation({
 					cargo_vehicle_id: Number(vehicle_id),
-					current_point: `${nextLocation.vertexes[1]},${nextLocation.vertexes[0]}`,
-					current_point_name: nextLocation.name,
+					current_point: `${nextLocation.lat},${nextLocation.lng}`,
+					current_point_name: '',
 					passing_vehicle_descent: '0',
 					passing_vehicle_up: "0",
 				})
 				
 				return { 
 					...prevRide, 
-					current: new kakao.maps.LatLng(nextLocation.vertexes[1], nextLocation.vertexes[0]), 
+					current: new kakao.maps.LatLng(nextLocation.lat, nextLocation.lng), 
 					currentIndex: nextIndex  
 				}
 			})
@@ -317,10 +319,16 @@ const CargoLocationPage = () => {
 				{directions && <DirectionRender defaultDirections={directions} /> }
 				{ride.origin && renderMarker(ride.origin, 'origin')}
 				{ride.destination && renderMarker(ride.destination, 'destination')}
-				{ride.current && renderMarker(ride.current, 'current')}
-				{/* {ride.current &&  starting_point !== current_point && end_point !== current_point &&
-					<Marker position={ride.current}  />
-				} */}
+				{/* {ride.current && renderMarker(ride.current, 'current')} */}
+				{ride.current && 
+					<MapMarker 
+						position={{ lat: ride.current.getLat(), lng: ride.current.getLng() } } 
+						image ={{ 
+							src: "/images/vehicle_location/marker.png" , 
+							size: { width: 45, height: 45}
+						}} 
+					/>
+				}
 			</Map>
 			{isReady && 
 				<div 
@@ -338,7 +346,6 @@ const CargoLocationPage = () => {
 									name='origin'
 									render={({ fieldState: { error } }) => (
 										<PlaceAutoComplete 
-										ref={originRef}
 											placeholder='위치 입력'  
 											value = {ride.origin && {
 												lat: ride.origin?.getLat(),

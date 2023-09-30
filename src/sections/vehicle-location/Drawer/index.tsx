@@ -30,7 +30,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
 
   return (
     <div>
-      <div className={`${styles.button_wrap}`}>
+      <div className={`${styles.button_wrap} z-50`}>
         <button
           type="button"
           id="location_detail_btn"

@@ -1,31 +1,23 @@
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
-import React, { useEffect, useRef, useState } from "react";
-import { useSaveLocation, useVehicleLocationDetails } from "@src/apis/map";
-import { dateFormat } from "@src/helpers";
+import React, { useEffect, useState } from "react";
+import { useVehicleLocationDetails } from "@src/apis/map";
 import { useRouter } from "next/router";
 import { Button } from "@src/components/common";
-import { Map, Marker } from "@src/components/Map";
+import { Map } from "@src/components/Map";
 import Drawer from "@src/sections/vehicle-location/Drawer";
-import { ILocation } from "@src/components/Map/Map";
-import { DirectionsRenderer, InfoBox } from "@react-google-maps/api";
 import Loader from "@src/components/Loader";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import { MapMarker } from "react-kakao-maps-sdk";
+import { toLatLng } from "@src/helpers/map";
+import { useGetDirection } from "@src/apis/kakap.map";
+import DirectionRender from "@src/components/Map/DirectionRender";
 
 const VehicleLocationScreen = () => {
-  const { query } = useRouter();
-  const { ad_id, vehicle_id } = query;
-  const { setPageTitle } = useIcarusContext();
-  const [showDrawer, setShowDrawer] = useState(false);
-  const {
-    data: cargoLocation,
-    refetch,
-    isLoading,
-    isRefetching,
-  } = useVehicleLocationDetails(vehicle_id as string);
-  const [directions, setDirections] = useState<google.maps.DirectionsResult>();
-  useEffect(() => {
-    calculateRoute();
-  }, [cargoLocation]);
+	const { query } = useRouter();
+	const { ad_id, vehicle_id } = query;
+	const { setPageTitle } = useIcarusContext();
+	const [showDrawer, setShowDrawer] = useState(false);
+	const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string);
 
   const toggleDrawer = () => {
     setShowDrawer(!showDrawer);
@@ -40,37 +32,18 @@ const VehicleLocationScreen = () => {
     router.back();
   };
 
-  const starting_point = cargoLocation?.starting_point?.split(",");
-  const end_point = cargoLocation?.end_point.split(",");
-  const current_point = cargoLocation?.current_point.split(",");
-  const origin = starting_point && {
-    lat: Number(starting_point[0]),
-    lng: Number(starting_point[1]),
-  };
-  const destination = end_point && {
-    lat: Number(end_point[0]),
-    lng: Number(end_point[1]),
-  };
-  const currentPosition = current_point && {
-    lat: Number(current_point[0]),
-    lng: Number(current_point[1]),
-  };
+  const origin = toLatLng(cargoLocation?.starting_point);
+  const destination = toLatLng(cargoLocation?.end_point);
+  const currentPosition = toLatLng(cargoLocation?.current_point); 
 
-  const calculateRoute = async () => {
-    if (!origin || !destination) {
-      return;
-    }
-    const directionsService = new google.maps.DirectionsService();
-    const results = await directionsService.route({
-      origin,
-      destination,
-      travelMode: google.maps.TravelMode.DRIVING,
-      language: "ko",
-    });
-
-    if (!results) return;
-    setDirections(results);
-  };
+  // const { data , isLoading: isChecking } = useGetDirection({
+  //   origin: '127.48141666204886,36.674169220914834', // cargoLocation?.starting_point || '',
+  //   destination: '127.50405731284744,36.632767976460656', //cargoLocation?.end_point || '',
+  //   priority: "RECOMMEND",
+  //   car_type: 4,
+  //   road_details: true
+  // });
+  
 
   return (
     <div className="relative">
@@ -94,49 +67,20 @@ const VehicleLocationScreen = () => {
         location={currentPosition}
         showMarker={false}
       >
-        {currentPosition && (
-          <Marker position={currentPosition as google.maps.LatLngLiteral} />
-        )}
-        {directions && (
-          <DirectionsRenderer
-            directions={directions}
-            options={
-              {
-                // markerOptions : {
-                // 	icon: {
-                // 		url: '/images/vehicle_location/marker.png',
-                // 		scaledSize: new window.google.maps.Size(0, 0),
-                // 	}
-                // }
-              }
-            }
+        {currentPosition && 
+          <MapMarker 
+            position={{lat: currentPosition.getLat(), lng: currentPosition.getLng() }} 
+            image ={{ 
+              src: "/images/vehicle_location/marker.png" , 
+              size: { width: 40, height: 40 }
+            }} 
           />
-          // <PolylineF
-          // 	path={ride.directions.routes.flatMap((route) => {
-          // 		return route.overview_path
-          // 	})}
-          // 	options={{
-          // 		strokeColor: "#2183FE",
-          // 		strokeOpacity: 60 ,
-          // 		strokeWeight: 5,
-          // 		geodesic: true
-          // 	}}
-          // />
-        )}
-        {/* <Marker position={locations.destination}>
-			<InfoBox >
-				<div>
-					<div>
-						Distance:{' '}
-						{calculateDistance(locations.departure, locations.destination)}
-						km{' '}
-					</div>
-					<div>Duration: 2h 15m</div>
-				</div>
-			</InfoBox>
-		</Marker> */}
+        }
+        {origin && <MapMarker position={{lat: origin.getLat(), lng: origin.getLng() }} />}
+        {destination && <MapMarker  position={{lat: destination.getLat(), lng: destination.getLng() }} /> }
+        <DirectionRender origin={origin}  destination={destination} />
       </Map>
-      <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] ">
+      <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] z-50">
         <Button
           className="bg-[#2C324C] text-white w-20"
           onClick={() => refetch()}

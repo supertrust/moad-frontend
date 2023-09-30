@@ -88,3 +88,14 @@ export const isHangul = (str?: string) => {
     }
     return true
 }
+
+
+
+export const formatTimeFromMinute = (n: number) => {
+    var num = n;
+    var hours = (num / 60);
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    return  `${rhours && (rhours + "시간 ")}${rminutes && (rminutes + "분")}`;
+}

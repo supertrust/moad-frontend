@@ -1,27 +1,31 @@
 import { useIcarusContext } from '@src/hooks/useIcarusContext';
 import React, { useEffect, useRef, useState } from 'react';
 import { useFinishVehicleRide, useLogVehicleLocation, useSaveLocation, useVehicleLocationDetails } from '@src/apis/map';
-import { dateFormat } from '@src/helpers';
+import { dateFormat, formatTimeFromMinute } from '@src/helpers';
 import { useRouter } from 'next/router';
-import { Button, FormProvider, useForm, Yup, yupResolver} from '@src/components/common';
-import { Map , Marker } from '@src/components/Map';
-import { Autocomplete, DirectionsRenderer, InfoWindow, PolylineF } from '@react-google-maps/api';
-import Input from '@src/components/common/Input';
+import { Button, Controller, FormProvider, useForm, Yup, yupResolver} from '@src/components/common';
+import { Map } from '@src/components/Map';
 import { clsx } from 'clsx';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
-import { ILocation } from '@src/components/Map/Map';
 import { VehicleLocationState } from '@src/types/map';
+import { IGetDirection } from '@src/types/kakao.map';
+import { useGetDirection } from '@src/apis/kakap.map';
+import { MapMarker } from 'react-kakao-maps-sdk';
+import DirectionRender from '@src/components/Map/DirectionRender';
+import PlaceAutoComplete from '@src/components/Map/PlaceAutoComplete';
 
 interface IRide {
 	// started: boolean,
 	status?: VehicleLocationState
-	origin?: ILocation,
-	destination?: ILocation,
-	current?: ILocation,
+	origin?: kakao.maps.LatLng,
+	originName? :string
+	destination?: kakao.maps.LatLng,
+	destinationName?: string
+	current?: kakao.maps.LatLng,
 	distance?: string,
 	duration?: string,
-	directions?:google.maps.DirectionsResult,
+	directions?: IGetDirection,
 	currentIndex?: number
 }
 
@@ -42,12 +46,24 @@ const CargoLocationPage = () => {
 	const { mutateAsync: finishVehicleRide, isLoading: isEnding } = useFinishVehicleRide();
 	const { confirm } = useConfirmDialog();
 
-	const originRef = useRef<typeof Input>();
-	const destinationRef = useRef<typeof Input>();
-	const [map, setMap] = useState<google.maps.Map>();
-	const [center, setCenter] = useState<ILocation | undefined>()
+	const originRef = useRef();
+	console.log("Ref =>", originRef)
+
+	const [map, setMap] = useState<kakao.maps.Map>();
+	const mapRef = useRef<kakao.maps.Map>(null);
+	const [center, setCenter] = useState<kakao.maps.LatLng | undefined>()
 	const [ride , setRide] = useState<IRide>({ });
 	let timer ;
+
+	const { data: directions } =  useGetDirection({
+		origin:  ride.origin ? `${ride.origin.getLng()},${ride.origin.getLat()}` : "",
+		destination:  ride.destination ? `${ride.destination.getLng()},${ride.destination.getLat()}` : "",
+		priority: "DISTANCE",
+		car_type: 4
+	});
+
+	const { routes } = directions || {} ;
+
 
 	const confirmOptions: ConfirmPropsType = {
 		title: '',
@@ -61,7 +77,7 @@ const CargoLocationPage = () => {
 	};
 
 	useEffect(() => { 
-		calculateRoute() ;
+		// calculateRoute() ;
 		ride.current && setCenter(ride.current);
 	}, [ride]);
 
@@ -71,22 +87,22 @@ const CargoLocationPage = () => {
 			const geolocation = navigator.geolocation;
 			geolocation.getCurrentPosition(async position => {
 				const { coords } = position;
-				const gPosition =  new google.maps.LatLng(coords.latitude , coords.longitude);
-				setRide({ ...ride , origin: gPosition })
-				setCenter(gPosition);
-				await changeInputLocationName(gPosition, 'origin');
+				if(kakao?.maps){
+					const gPosition =  new kakao.maps.LatLng(coords.latitude , coords.longitude) ;
+					setRide({ ...ride , origin: gPosition })
+					setCenter(gPosition);
+					await changeInputLocationName(gPosition, 'origin');
+				}
 			});
 		}
-	},[isReady])
+	},[])
 
-
-	// const { data: cargoLocation } = useVehicleLocationDetails(vehicle_id as string);
 
 	const methods = useForm({ 
 		defaultValues: { origin : '' , destination: '' , current: ''},
 		resolver: yupResolver(RideSchema)
 	});
-	const { handleSubmit, formState: { errors } , setValue } = methods;
+	const { handleSubmit, setValue, control } = methods;
 	
 
 	const handleStartRide = handleSubmit(async (props) => {
@@ -94,22 +110,20 @@ const CargoLocationPage = () => {
 			if(ride.status === 'stopped'){
 				return handleUpdateRide('running');
 			}
-			const origin = ride.origin as google.maps.LatLng;
-			const destination = ride.destination as google.maps.LatLng;
+
+			const  { origin, destination } = ride ;
 			const currentDate = new Date();
-			const geocodingService = new google.maps.Geocoder();
-			const { results } = await geocodingService.geocode({ location: ride.origin });
 
 			await saveLocation({
 				cargo_vehicle_id: Number(vehicle_id),
 				cargo_to_advertisement_id: Number(ad_id),
-				starting_point: `${origin?.lat()},${origin?.lng()}`,
-				end_point: `${destination?.lat()},${destination?.lng()}`,
+				starting_point: `${origin?.getLat()},${origin?.getLng()}`,
+				end_point: `${destination?.getLat()},${destination?.getLng()}`,
 				start_time: dateFormat(currentDate.toISOString()),
 				end_time: '',
-				current_point: `${origin?.lat()},${origin?.lng()}`,
+				current_point: `${origin?.getLat()},${origin?.getLng()}`,
 				is_active: 'running',
-				current_point_name: results?.length && results[0] ? results[0].formatted_address : '',
+				current_point_name:  '',
 				passing_vehicle_descent: "0",
 				passing_vehicle_up: "0",
 			},{
@@ -143,11 +157,11 @@ const CargoLocationPage = () => {
 	});
 
 	const handleUpdateRide = async (status : VehicleLocationState) => {
-		const current = ride.current as google.maps.LatLng;
+		const current = ride.current as kakao.maps.LatLng;
 		const currentDate = new Date();
 		await finishVehicleRide({
 			cargo_vehicle_id: Number(vehicle_id),
-			end_point: `${current?.lat()},${current?.lng()}`,
+			end_point: `${current?.getLat()},${current?.getLng()}`,
 			end_time:  dateFormat(currentDate.toISOString()),
 			is_active: status
 		}, {
@@ -170,10 +184,14 @@ const CargoLocationPage = () => {
 		})
 	}
 
-	const getLocationName = async (location: ILocation) => {
-		const geocodingService = new google.maps.Geocoder();
-		const { results } = await geocodingService.geocode({ location });
-		return results?.length && results[0] ? results[0].formatted_address : ""
+	const getLocationName = async (location: kakao.maps.LatLng) => {
+		if(!window.kakao ) return ; 
+		const geocodingService = new kakao.maps.services.Geocoder();
+		return new Promise<string>((resolve, reject) => { 
+			geocodingService.coord2Address(location.getLng(),location.getLat() ,  ( result ) => {
+				resolve(result.length ? result[0].address.address_name : '')
+			})
+		})
 	}
 
 	useEffect(() => {
@@ -183,31 +201,7 @@ const CargoLocationPage = () => {
 		return () => timer && clearInterval(timer)
 	}, []);
 
-	const calculateRoute = async () => {
-		const { origin , destination , directions } = ride ;
-		if (!origin  || !destination || directions) {
-			return
-		}
-		const directionsService = new google.maps.DirectionsService()
-		const results = await directionsService.route({
-			origin, 
-			destination,
-			travelMode: google.maps.TravelMode.DRIVING,
-			language: "ko",
-		})
-
-		if(!results) return;
-		setRide({
-			...ride,
-			directions: results,
-			//@ts-ignore
-			distance: results?.routes?.length ? results.routes[0].legs[0].distance.text : '',
-			//@ts-ignore
-			duration:  results?.routes?.length ? results.routes[0].legs[0].duration.text : ''
-		})
-	};
-
-	const handleDropMark = (location : google.maps.LatLng | null, type?: PointType) => {
+	const handleDropMark = (location : kakao.maps.LatLng | null, type?: PointType) => {
 		if(!location) return;
 		const { origin } = ride; 
 		setCenter(location);
@@ -224,68 +218,48 @@ const CargoLocationPage = () => {
 	}
 
 
-	const [showInfo, setShowInfo] = useState(false);
-	const renderMarker =  (position: ILocation, type: PointType) => {
+	const renderMarker =  (position: kakao.maps.LatLng, type: PointType) => {
 		return (
 			<>
-				<Marker 
-					position={position}
-					draggable={true}
-					onDragEnd={async (e) => {
-						const { latLng } = e;
-						if(latLng){
+				<MapMarker 
+					position={{ lat: position.getLat(), lng: position.getLng()}}
+					draggable= {true}//{!ride.status || ride?.status == 'finish'}
+					onDragEnd={async (marker) => {
+						const position = marker.getPosition();
+						if(position){
+							const name = getLocationName(position);
 							setRide({
 								...ride, 
 								directions: undefined,
 								current: undefined,
-								[type] : latLng ,
+								[type] : position ,
+								[`${type}Name`]: name
 							})
-							await changeInputLocationName(latLng , type)
+
+							await changeInputLocationName(position , type)
 							// type == 'current' && await logCurrentLocation(latLng);
 						}
 					}}
-					onClick={() =>  type == 'destination' && setShowInfo(true)}
-					onMouseUp={() =>  type == 'destination' && setShowInfo(true)}
 				>
-				{type == 'destination' && showInfo && 
-					<InfoWindow onCloseClick={() => setShowInfo(false)} >
-						<>
-							<div>Distance:{` ${ride.distance}`}</div>
-							<div>Duration: {` ${ride.duration}`}</div>
-						</>
-					</InfoWindow>
+				{type == 'destination' && routes?.length && 
+					<div className='px-2'>
+						<div>Distance:{` ${routes[0].summary.distance.toLocaleString()}`}km</div>
+						<div>Duration: {` ${formatTimeFromMinute(routes[0].summary.duration)}`}</div>
+					</div>
 				}
-				</Marker>
+				</MapMarker>
 			</>
 		)
 	}
-	
-	const handleChangePlace = async ( type: PointType) => {
-		const refs = { origin: originRef , destination: destinationRef };
-		//@ts-ignore
-		const query = refs[type].current?.value || '';
-		setValue(type, query);
-		if(!map || !query) return;
-		const placeService = new google.maps.places.PlacesService(map);
-		placeService.findPlaceFromQuery({ fields: ['ALL'], language:"ko" , query }, (result, status) => {
-			if(status == 'OK' && result){
-				result[0].geometry?.location && 
-				handleDropMark(result[0].geometry.location , type )
-			}
+
+	const changeInputLocationName = async (location: kakao.maps.LatLng, type: PointType) => {
+		const locationName = await getLocationName(location) ;
+		setValue(type, locationName || '');
+		setRide({
+			...ride,
+			[type]: location,
+			[`${type}Name`]: locationName
 		})
-	}
-
-
-	const changeInputLocationName = async (location: ILocation, type: PointType) => {
-		const refs = { origin: originRef , destination: destinationRef };
-		const ref = refs[type];
-		if(ref){
-			const locationName = await getLocationName(location) ;
-			// if(ref.current?.value && ref.current?.value !== locationName){
-				ref.current.value = locationName;
-				setValue(type, locationName)
-			// }
-		}
 	} 
 
 	const logCurrentLocation = () => {
@@ -294,40 +268,31 @@ const CargoLocationPage = () => {
 				
 				const { directions, currentIndex,  status } = prevRide;
 				if(!directions || !status || ['stopped', 'finish'].includes(status)  ) return prevRide
-				const { overview_path } = directions.routes[0];
+				const { roads } = directions.routes[0].sections[0];
 				
-				if(currentIndex == overview_path.length - 1) {
+				if(currentIndex == roads.length - 1) {
 					timer && clearInterval(timer);
 					return { ...prevRide, status: 'finish', current: undefined }
 				}
 
 				const progress =  Math.floor(Math.random() * 10);
 				let nextIndex =  (currentIndex || 0) + progress;
-				if(nextIndex >= overview_path.length ) {
-					nextIndex = overview_path.length - 1 ; 
+				if(nextIndex >= roads.length ) {
+					nextIndex = roads.length - 1 ; 
 				}
-				const nextLocation = overview_path[nextIndex];
+				const nextLocation = roads[nextIndex];
 
-				const geocodingService = new google.maps.Geocoder();
-
-				geocodingService.geocode({ location: nextLocation }, async (results ,  status) => {
-					if(status == 'OK')
-					logVehicleLocation({
-						cargo_vehicle_id: Number(vehicle_id),
-						//@ts-ignore
-						current_point: `${nextLocation.lat()},${nextLocation.lng()}`,
-						current_point_name: results?.length && results[0] ? results[0].formatted_address : '',
-						passing_vehicle_descent: '0',
-						passing_vehicle_up: "0",
-					},{
-						// onSuccess: () => console.log("Log Position =>", nextLocation.toString())
-					})
-				});
+				logVehicleLocation({
+					cargo_vehicle_id: Number(vehicle_id),
+					current_point: `${nextLocation.vertexes[1]},${nextLocation.vertexes[0]}`,
+					current_point_name: nextLocation.name,
+					passing_vehicle_descent: '0',
+					passing_vehicle_up: "0",
+				})
 				
 				return { 
 					...prevRide, 
-					current: nextLocation, 
-					currentLoc: nextLocation.toString(),
+					current: new kakao.maps.LatLng(nextLocation.vertexes[1], nextLocation.vertexes[0]), 
 					currentIndex: nextIndex  
 				}
 			})
@@ -335,43 +300,21 @@ const CargoLocationPage = () => {
 		}, 10*1000); //5 * 60 * 1000
 	}
 
+	console.log("Ride =>", ride)
 	return (
 		<div>
 			<Map 
+				ref={mapRef}
 				zoom={13}
 				className="!h-[85vh]"
 				showMarker={false}
-				onClick={handleDropMark}
+				onClick={(_, event) => handleDropMark( event.latLng )}
 				location={center}
-				onLoad={(map) => {
-					setMap(map);
-					setIsReady(true);
+				onLoad={() => { setIsReady(true);
+					// setMap(map);
 				}}
 			>
-				{ride.directions && (
-					<DirectionsRenderer 
-						directions={ride.directions} 
-						options={{
-							markerOptions : { 
-								icon: {
-									url: '/images/vehicle_location/marker.png',
-									scaledSize: new window.google.maps.Size(0, 0),
-								}
-							}
-						}} 
-					/>
-					// <PolylineF 
-					// 	path={ride.directions.routes.flatMap((route) => {
-					// 		return route.overview_path
-					// 	})}
-					// 	options={{ 
-					// 		strokeColor: "#2183FE", 
-					// 		strokeOpacity: 60 ,
-					// 		strokeWeight: 5,
-					// 		geodesic: true
-					// 	}}
-					// />
-				)}
+				{directions && <DirectionRender defaultDirections={directions} /> }
 				{ride.origin && renderMarker(ride.origin, 'origin')}
 				{ride.destination && renderMarker(ride.destination, 'destination')}
 				{ride.current && renderMarker(ride.current, 'current')}
@@ -387,39 +330,52 @@ const CargoLocationPage = () => {
 						"left-0 sm:left-[20%] md:left-[30%] lg:left-[40%]",
 					)}
 				>
-					<div className='bg-white p-4 rounded-md'>
+					<div className='bg-white p-4 rounded-md z-50'>
 						<FormProvider methods={methods}>
 							<div className='flex flex-row mb-3 gap-3'>
-								<Autocomplete >
-									<>
-										<Input 
-											ref={originRef}
-											name="origin"
-											className={clsx("border rounded-md p-2" , errors.origin && 'border-danger')}
-											placeholder='위치 입력'
-											type='text'
-											readOnly={!!ride.status}
-											onBlur={() => handleChangePlace('origin')}
-										/>
-										{errors.origin && 
-											<span className='text-danger text-xs'>{errors.origin.message}</span>}
-									</>
-								</Autocomplete>
-								<Autocomplete >
-									<>
-										<Input 
-											ref={destinationRef}
-											name="destination" 
-											type='text' 
+								<Controller
+									control={control}
+									name='origin'
+									render={({ fieldState: { error } }) => (
+										<PlaceAutoComplete 
+										ref={originRef}
 											placeholder='위치 입력'  
-											className={clsx("border rounded-md p-2" , errors.destination && 'borde-danger')}
-											readOnly={!!ride.status}
-											onBlur={() => handleChangePlace('destination')}
+											value = {ride.origin && {
+												lat: ride.origin?.getLat(),
+												lng: ride.origin?.getLng(),
+												name: ride.originName || ''
+											}}
+											onChange={ value => {
+												if(value){
+													setValue('origin', value.name)
+													handleDropMark(new kakao.maps.LatLng(value?.lat, value?.lng), 'origin')
+												}
+											}}
+											error={error?.message}
 										/>
-										{errors.destination && 
-											<span className='text-danger text-xs'>{errors.destination.message}</span>}
-									</>
-								</Autocomplete>
+									)}
+								/>
+								<Controller
+									control={control}
+									name='destination'
+									render={({ fieldState: { error } }) => (
+										<PlaceAutoComplete 
+											placeholder='위치 입력'   
+											value = {ride.destination && {
+												lat: ride.destination?.getLat(),
+												lng: ride.destination?.getLng(),
+												name: ride.destinationName || ''
+											}}
+											onChange={ value => {
+												if(value){
+													setValue('destination', value.name)
+													handleDropMark(new kakao.maps.LatLng(value?.lat, value?.lng), 'destination')
+												}
+											}}
+											error={error?.message}
+										/>
+									)}
+								/>
 							</div>
 						</FormProvider>
 						<div className='flex flex-row gap-2'>

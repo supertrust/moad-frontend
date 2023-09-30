@@ -1,21 +1,18 @@
-import React, { ReactNode, forwardRef, useRef, useState } from 'react';
-import { GOOGLE_MAP_API_KEY } from '@src/config';
+import React, { ReactNode, Ref, useEffect, useRef, forwardRef } from 'react'; '@src/config';
 import { clsx } from 'clsx';
-import { 
-  useJsApiLoader,
-  GoogleMap ,
-  Marker,
-} from '@react-google-maps/api';
+import { Map as KakaoMap, MapMarker, useKakaoLoader , MapComponent } from "react-kakao-maps-sdk"
+import { KAKAO_MAP_API_KEY } from '@src/config';
 
-export type ILocation = google.maps.LatLng | google.maps.LatLngLiteral
+
+export type ILocation = kakao.maps.LatLng
 interface MapProps {
-  location?: google.maps.LatLng | google.maps.LatLngLiteral
+  location?: kakao.maps.LatLng
   zoom?: number
   children?: ReactNode
   className?: string
   showMarker?:boolean
-  onLoad?: (map: google.maps.Map) => void
-  onClick?: (location: google.maps.LatLng | null) => void
+  onClick?: (map: kakao.maps.Map , event: kakao.maps.event.MouseEvent) => void
+  onLoad?: (map?: kakao.maps.Map) => void
 }
 
 const Map = ({ 
@@ -24,54 +21,53 @@ const Map = ({
   showMarker = true, 
   children, className,
   onClick ,
-  onLoad,
-} : MapProps) => {
+  onLoad
+} : MapProps, ref: Ref<kakao.maps.Map>) => {
 
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: GOOGLE_MAP_API_KEY || '',
-    libraries: ['places'],
-    language: "ko",
-    region: "KO",    
+  const [ loading ] = useKakaoLoader({
+    appkey: KAKAO_MAP_API_KEY || '', 
+    libraries: ['services', 'clusterer', 'drawing'],
   })
 
-  const map = useRef<GoogleMap | undefined>();
-  const [center, setCenter] = useState();
-
+  useEffect(() => {
+    if(loading && onLoad) onLoad()
+  },[loading])
 
   // Seoul
   if(!location){
-    location = { lat: 35.92386810767318, lng:127.97836979407211}
+    location = window.kakao && new kakao.maps.LatLng(35.92386810767318, 127.97836979407211);
   }
 
   return (
-    <div className={clsx(className , "h-[100vh] w-full")} >
-        {isLoaded && 
-          <GoogleMap
-            center={center || location}
-            zoom={zoom}
-            mapContainerStyle={{ width: '100%', height: '100%' }}
-            options={{
-              zoomControl: true,
-              streetViewControl: false,
-              mapTypeControl: false,
-              fullscreenControl: true,
-
-            }}
-            onLoad={map => onLoad && onLoad(map)}
-            onClick={(e) => onClick && onClick(e.latLng)}
+    <div className={clsx(className , "h-[100vh] w-full z-10")} >
+        {!loading && 
+          <KakaoMap
+            ref={ref}
+            center={location ?
+              { lat: location.getLat(), lng: location.getLng() } : 
+              { lat: 35.92386810767318, lng: 127.97836979407211 }
+            }
+            style={{ width: '100%', height: '100%' }}
+            level={3}
+            onClick={onClick}
           >
-            {showMarker && <Marker 
-              position={location} 
-              icon={{
-                url: '/images/vehicle_location/marker.png',
-                scaledSize: new window.google.maps.Size(40,40),
-              }}
-            />}
+            {showMarker && 
+              <MapMarker 
+                position={location ?
+                  { lat: location.getLat(), lng: location.getLng() } : 
+                  { lat: 35.92386810767318, lng: 127.97836979407211 }
+                } 
+                image ={{ 
+                  src: "/images/vehicle_location/marker.png" , 
+                  size: { width: 50, height: 50}}
+                } 
+              />
+            }
             {children}
-          </GoogleMap>
+          </KakaoMap>
         }
     </div>
   )
 }
 
-export default Map
+export default forwardRef(Map)

@@ -1,4 +1,5 @@
 import { KOKAO_MAP_URL } from "@src/config";
+import { IGetDirection } from "@src/types/kakao.map";
 import { MutableRefObject } from "react";
 
 export const getMapScriptTag = (mapRef: null) => {
@@ -92,3 +93,24 @@ export const registerEvents = (
     });
   };
 };
+
+
+export const toLatLng = (location?: string):  kakao.maps.LatLng | undefined => {
+  if(!location) return undefined;
+  const position  = location.split(",");
+  return window.kakao ? new kakao.maps.LatLng(Number(position[0]), Number(position[1])): undefined;
+}
+
+export const getRoutesPath = ( directions: IGetDirection) => {
+  const { routes } = directions || {};
+  const path: {lat: number, lng: number}[] = [];
+  if(routes?.length && routes[0].sections?.length ) {
+    routes[0].sections[0].roads.map((road) => {
+        const { vertexes } = road;
+        for (let index = 0; index < vertexes.length; index = index + 2) {
+            path.push({ lat: vertexes[index+1],lng: vertexes[index] });
+        }
+    });
+  }
+  return path;
+}

@@ -115,13 +115,12 @@ export const getRoutesPath = ( directions: IGetDirection) => {
   return path;
 }
 
-export const getConvertDistance = (distance?: number)=> {
-  if(!distance) return undefined;
-  var converteddistance = '';
-  if(distance > 1000){
-    converteddistance = (distance / 1000 ).toLocaleString().slice(0,4)+'km'
-  }else{
-    converteddistance =(distance).toLocaleString()+'m'
-  } 
-  return converteddistance;
-}
+export const getConvertDistance = (distance?: number) => {
+  if (!distance) return undefined;
+
+  if (distance > 1000) {
+    return `${(distance / 1000).toLocaleString(undefined, { maximumFractionDigits: 2 })}km`;
+  } else {
+    return `${distance.toLocaleString()}m`;
+  }
+};

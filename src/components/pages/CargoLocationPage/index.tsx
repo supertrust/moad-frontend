@@ -14,7 +14,7 @@ import { useGetDirection } from '@src/apis/kakap.map';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import DirectionRender from '@src/components/Map/DirectionRender';
 import PlaceAutoComplete from '@src/components/Map/PlaceAutoComplete';
-import { getRoutesPath } from '@src/helpers/map';
+import { getRoutesPath,getConvertDistance } from '@src/helpers/map';
 
 interface IRide {
 	// started: boolean,
@@ -245,10 +245,10 @@ const CargoLocationPage = () => {
 				>
 				{type == 'destination' && routes?.length && 
 					<div className='px-2'>
-						<div>Distance:{` ${routes[0].summary.distance > 1000 ? (routes[0].summary.distance / 1000 ).toLocaleString().slice(0,4)+'km' : (routes[0].summary.distance).toLocaleString()+'m' }`}</div>
+						<div>Distance:{getConvertDistance(routes[0].summary.distance)}</div>
 						<div>Duration: {` ${formatTimeFromMinute(routes[0].summary.duration)}`}</div>
 					</div>
-				}
+				}	
 				</MapMarker>
 			</>
 		)
@@ -301,7 +301,6 @@ const CargoLocationPage = () => {
 
 		}, 10*1000); //5 * 60 * 1000
 	}
-
 	return (
 		<div>
 			<Map 

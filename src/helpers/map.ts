@@ -116,10 +116,10 @@ export const getRoutesPath = ( directions: IGetDirection) => {
 }
 
 export const getConvertDistance = (distance?: number) => {
-  if (!distance) return undefined;
+  if (!distance) distance = 0;
 
   if (distance > 1000) {
-    return `${(distance / 1000).toLocaleString(undefined, { maximumFractionDigits: 2 })}km`;
+    return `${(distance / 1000).toLocaleString('ko-KR', { maximumFractionDigits: 2 })}km`;
   } else {
     return `${distance.toLocaleString()}m`;
   }

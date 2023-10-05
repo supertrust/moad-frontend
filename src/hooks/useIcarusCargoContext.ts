@@ -1,4 +1,4 @@
-import { IcarusContext } from "@src/layout";
+import { IcarusContext } from "@src/layout/cargo";
 import { useContext } from "react";
 
 export function useIcarusContext() {

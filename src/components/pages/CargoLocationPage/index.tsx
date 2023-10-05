@@ -245,7 +245,7 @@ const CargoLocationPage = () => {
 				>
 				{type == 'destination' && routes?.length && 
 					<div className='px-2'>
-						<div>Distance:{` ${routes[0].summary.distance.toLocaleString()}`}km</div>
+						<div>Distance:{` ${routes[0].summary.distance > 1000 ? (routes[0].summary.distance / 1000 ).toLocaleString().slice(0,4)+'km' : (routes[0].summary.distance).toLocaleString()+'m' }`}</div>
 						<div>Duration: {` ${formatTimeFromMinute(routes[0].summary.duration)}`}</div>
 					</div>
 				}
@@ -302,7 +302,6 @@ const CargoLocationPage = () => {
 		}, 10*1000); //5 * 60 * 1000
 	}
 
-	console.log("Ride =>", ride)
 	return (
 		<div>
 			<Map 

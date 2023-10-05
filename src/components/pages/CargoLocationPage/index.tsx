@@ -306,7 +306,7 @@ const CargoLocationPage = () => {
 			<Map 
 				ref={mapRef}
 				zoom={13}
-				className="!h-[85vh]"
+				className="!h-[calc(100vh-278px)]"
 				showMarker={false}
 				onClick={(_, event) => handleDropMark( event.latLng )}
 				location={center}
@@ -331,7 +331,7 @@ const CargoLocationPage = () => {
 			{isReady && 
 				<div 
 					className={clsx(
-						"absolute bottom-0 md:bottom-40 z-[200]",
+						"absolute bottom-[82px] md:bottom-40 z-[200]",
 						"w-full sm:w-auto",
 						"left-0 sm:left-[20%] md:left-[30%] lg:left-[40%]",
 					)}
@@ -383,7 +383,7 @@ const CargoLocationPage = () => {
 								/>
 							</div>
 						</FormProvider>
-						<div className='flex flex-row gap-2'>
+						<div className='flex flex-row gap-2 justify-center'>
 							<Button 
 								onClick={handleStartRide} 
 								className="bg-secondary text-white px-4"

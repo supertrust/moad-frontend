@@ -10,6 +10,7 @@ export interface IUser {
     id: number
     sector: string;
     role: "Advertiser" | "Admin" | "Cargo";
+    role_id: number;
     image: string;
 }
 

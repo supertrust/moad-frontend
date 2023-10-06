@@ -3,18 +3,26 @@ import { styles } from "@src/components/pages/cargo";
 import { Button, Carousel } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { useGetCargoAdvertisementList } from "@src/apis/cargo/submitted-advertisement";
 
 const CargoOwnerDashboardScreen = () => {
+  const { data: advertisements } = useGetCargoAdvertisementList();
+  console.log("advertisements", advertisements);
+  const Types = {
+    fixed_ad: "고정",
+    national_ad: "국가",
+    spot_ad: "스팟",
+  };
   const contentStyle: React.CSSProperties = {
     display: "inline-block",
     height: "108px",
     color: "#fff",
     lineHeight: "160px",
     textAlign: "center",
-    width: "100%"
+    width: "100%",
   };
   return (
-    <div className="mb-20">
+    <div>
       <div className="px-[20px]">
         <div className="hidden">
           <div className="mb-16">
@@ -90,22 +98,64 @@ const CargoOwnerDashboardScreen = () => {
           </div>
         </div>
       </div>
-      <div className="py-[20px] bg-[#F5F7FB] w-full">
-        <div
+      <div className="py-[20px] bg-[#F5F7FB] w-full lg:flex">
+        {/* <div
           className={`mx-[20px] ${styles.blue_card} flex p-[16px] pb-[16px] flex-col mb-[16px]`}
-        >
-          <h4 className="text-sm text-[#152D51] mb-1">진행중인 광고</h4>
+        > */}
+        <div className="lg:w-[50%]">
+          <ul>
+            {advertisements?.map((data, index) => (
+              <li key={index}>
+                <div
+                  className={`mx-[20px] ${styles.blue_card} flex flex-row justify-between	p-[16px] pb-[16px] mb-[16px] text-white`}
+                >
+                  <div>{data.ad_name}</div>
+                  <div>({Types[data.type]})</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div  className="lg:w-[50%]">
+          <div className="mb-[20px] mx-[20px]">
+            <Carousel autoplay={false}>
+              <div className={`${styles.banner_1} ${styles.banner} `}>
+                <div className={`${styles.banner_content}`}>
+                  <p>서브텍스트 서브텍스트</p>
+                  <p className="text-[#346764] text-[16px] font-bold	">
+                    특별 이벤트!
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className={`${styles.banner_2} ${styles.banner}`}>
+                  <div className={`${styles.banner_content}`}>
+                    <p>24시간 긴급출동 서비스</p>
+                    <p className="!text-[#0868FD] !text-[14px] font-bold	">
+                      HELP CAR 서비스 출동
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Carousel>
+          </div>
+          <div className={`${styles.btnmbwrap} mx-[20px]`}>
+            <Button className={`${styles.btnmb}`}>운행시작</Button>
+            <Button className={`${styles.btnmb} !text-[#F24747]`}>
+              운행종료
+            </Button>
+          </div>
+        </div>
+        {/* <h4 className="text-sm text-[#152D51] mb-1">진행중인 광고</h4>
           <h3 className="text-[20px] text-white">진행중인 광고가 없습니다.</h3>
           <h4 className="text-sm text-[#152D51] mb-1">광고진행일</h4>
           <h4 className="text-sm text-[#152D51] mb-1">사진 업로드일</h4>
-          <h4 className="text-sm text-[#152D51]">입금일</h4>
-        </div>
-        <div className={`${styles.horizontal_scroll} flex mb-[20px]`}>
+          <h4 className="text-sm text-[#152D51]">입금일</h4> */}
+        {/* </div> */}
+        {/* <div className={`${styles.horizontal_scroll} flex mb-[20px]`}>
           <div className={`${styles.horizontal_scroll_box} flex flex-col`}>
             <h4>오늘 운행시간</h4>
-            <h6>
-            04:02
-            </h6>
+            <h6>04:02</h6>
           </div>
           <div className={`${styles.horizontal_scroll_box} flex flex-col`}>
             <h4>오늘 운행거리</h4>
@@ -122,7 +172,7 @@ const CargoOwnerDashboardScreen = () => {
           <div className={`${styles.horizontal_scroll_box} flex flex-col`}>
             <h4>예상 운행시간(월)</h4>
             <h6>
-            150 <span>시간</span>
+              150 <span>시간</span>
             </h6>
           </div>
           <div className={`${styles.horizontal_scroll_box} flex flex-col`}>
@@ -131,32 +181,7 @@ const CargoOwnerDashboardScreen = () => {
               30,000 <span>km</span>
             </h6>
           </div>
-        </div>
-        
-        <div className="mb-[20px] mx-[20px]">
-          <Carousel autoplay={false}>
-                <div className={`${styles.banner_1} ${styles.banner} `}>
-                  <div className={`${styles.banner_content}`}>
-                    <p>서브텍스트 서브텍스트</p>
-                    <p className="text-[#346764] text-[16px] font-bold	">특별 이벤트!</p>
-                  </div>
-                </div>
-            <div>
-            <div className={`${styles.banner_2} ${styles.banner}`}>
-                  <div className={`${styles.banner_content}`}>
-                    <p>24시간 긴급출동 서비스</p>
-                    <p className="!text-[#0868FD] !text-[14px] font-bold	">HELP CAR 서비스 출동</p>
-                  </div>
-                </div>
-            </div>
-          </Carousel>
-        </div>
-        <div className={`${styles.btnmbwrap} mx-[20px]`}>
-          <Button className={`${styles.btnmb}`}>운행시작</Button>
-          <Button className={`${styles.btnmb} !text-[#F24747]`}>
-            운행종료
-          </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

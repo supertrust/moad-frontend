@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styles } from "@src/sections/cargo-owner-signup";
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import Offcanvas from "react-bootstrap/Offcanvas";
 import Image from "next/image";
 import {Button} from "antd";
 
@@ -34,33 +34,40 @@ export default function CargOwnerAdList() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const choices =
-      [
-        { text: '전체', value: '전체' },
-        { text: '모집중', value: '모집중' },
-        { text: '종료된 광고', value: '종료된 광고' }
-      ];
-      const handleChange = event => {
-        setFilter(event.target.value);
-      };
+    const choices = [
+      { text: "전체", value: "전체" },
+      { text: "모집중", value: "모집중" },
+      { text: "종료된 광고", value: "종료된 광고" },
+    ];
+    const handleChange = (event) => {
+      setFilter(event.target.value);
+    };
     return (
       <>
-        <p onClick={handleShow} className="p-0">필터</p>
-        <Offcanvas show={show} onHide={handleClose} {...props} className={styles.Offcanvas}>
+        <p onClick={handleShow} className="p-0">
+          필터
+        </p>
+        <Offcanvas
+          show={show}
+          onHide={handleClose}
+          {...props}
+          className={styles.Offcanvas}
+        >
           <Offcanvas.Header closeButton className={styles.offcanvasheader}>
             <Offcanvas.Title>필터</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body className="flex flex-col pt-0">
             {choices.map((choice, index) => (
               <label key={index} className="py-2 text-lg">
-                <input type="radio"
+                <input
+                  type="radio"
                   name="filter"
                   value={choice.value}
                   key={index}
                   // checked={selected === choice.value}
-                  onChange={(e) => handleChange(e)} 
+                  onChange={(e) => handleChange(e)}
                   className="opacity-0"
-                  />
+                />
                 {choice.text}
               </label>
             ))}
@@ -72,7 +79,6 @@ export default function CargOwnerAdList() {
 
   const renderAd = (ad: ICargoAdvertisement) => {
     return (
-      <div className="container bg-[#fff] max-w-[600px] mx-auto mb-2">
         <div className="p-3.5 border rounded-[8px]">
           <div className="mb-2.5">
             <div className="relative">
@@ -102,7 +108,6 @@ export default function CargOwnerAdList() {
             <Button type="primary" block size="large" className="h-[48px] rounded-none w-full bg-[#EFEEF0] text-[#C8C5CB] flex items-center justify-center">종료된 광고</Button>
           </div>
         </div>
-      </div>
     )
   }
   
@@ -110,7 +115,7 @@ export default function CargOwnerAdList() {
     <div className="bg-[#F5F7FB]">
       <div className="container bg-[#fff] max-w-[600px] mx-auto py-6">
         <div>
-          <Image className="w-full" src={BarnerImage} alt='event' width={335} height={50} />
+          <Image className="w-full lg:d-none" src={BarnerImage} alt='event' width={335} height={50} />
         </div>
       </div>
       {isLoading ? <Loader  />: 
@@ -139,7 +144,9 @@ export default function CargOwnerAdList() {
               </div>
             </div>
           </div>
+          <div className={`${styles.ad_list_section} container bg-[#fff] max-w-[600px] mx-auto mb-2 `}>
           {ads?.map(ad =>  renderAd(ad))}
+          </div>
         </>
       }
     </div>

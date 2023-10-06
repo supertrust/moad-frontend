@@ -40,7 +40,7 @@ const LoginFormModule = () => {
 		try {
 			await login(props);
 			toast('성공적으로 로그인했습니다', { type: 'success' });
-			router.push('/dashboard/cargo');
+			router.push('/cargo/dashboard');
 		} catch (error) {
 			toast('로그인에 실패했습니다. 자격 증명을 확인하십시오.', {
 				type: 'error',

@@ -29,8 +29,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     const [token, setToken] = useState<string | null>(null);
 
     const { data: user, isLoading : isUserLoading } = useGetUser({ isAuthenticated });
+    console.log('user', user)
     const { data: userRole, isLoading : isRoleLoading } = useGetUserRole({ isAuthenticated });
-
     const checkAuth = useCallback(() => {
         if( (!isCargoRoute(router.pathname) && localStorage.getItem('cargo')) ||
             (isCargoRoute(router.pathname) && !localStorage.getItem('cargo')))

@@ -333,12 +333,12 @@ const CargoLocationPage = () => {
 					className={clsx(
 						"absolute bottom-[82px] md:bottom-40 z-[200]",
 						"w-full sm:w-auto",
-						"left-0 sm:left-[20%] md:left-[30%] lg:left-[40%]",
+						"left-0 sm:left-[20%] md:left-[30%] lg:left-[0%] lg:right-[0%] lg:bottom-[100px]",
 					)}
 				>
-					<div className='bg-white p-4 rounded-md z-50'>
+					<div className='bg-white p-4 rounded-md z-50 lg:w-[50%] lg:mx-auto'>
 						<FormProvider methods={methods}>
-							<div className='flex flex-row mb-3 gap-3'>
+							<div className='flex flex-row mb-3 gap-3 lg:justify-center'>
 								<Controller
 									control={control}
 									name='origin'

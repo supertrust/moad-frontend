@@ -16,7 +16,7 @@ function Footer() {
   // Render the footer for other pages
   return (
     <div>
-      <div className="footer_menu pt-3 pb-4 flex items-center justify-between gap-3 px-[20px] bg-white w-full fixed bottom-0 border-t border-[#EBEDF4]">
+      <div className="footer_menu pt-3 pb-4 flex items-center justify-between gap-3 px-[20px] bg-white w-full fixed bottom-0 border-t border-[#EBEDF4] lg:shadow-[0px_8px_24px_rgba(149,157,165,0.2)] lg:w-[50%] lg:mx-auto lg:left-0 lg:right-0 lg:rounded-2xl	lg:!bottom-[20px]">
         <div className="ftm_wrap flex items-center justify-center gap-1 flex-col">
           <div className="ftm_icon">
             <svg

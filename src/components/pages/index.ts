@@ -6,3 +6,4 @@ export * from "./InquirePage";
 export * from "./NoticeDetailsPage";
 export * from "./InquireDetailsPage";
 export * from "./StatisticsDetailsPage";
+export * from "./CargoLoginPage";

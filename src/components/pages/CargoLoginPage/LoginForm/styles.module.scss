@@ -1,0 +1,24 @@
+$font-family: "Noto Sans KR", sans-serif;
+
+.login-text{
+  font-family:$font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.error-text {
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #f24747;
+}

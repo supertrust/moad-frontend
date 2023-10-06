@@ -1,4 +1,5 @@
-import { isAuthenticateRoute, isWithoutAuthenticateRoute } from "@src/utils/route";
+import { useCargoLogin } from "@src/apis/cargo/cargo-auth";
+import { isAuthenticateRoute, isCargoRoute, isWithoutAuthenticateRoute } from "@src/utils/route";
 import { useRouter } from "next/router";
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -18,6 +19,7 @@ interface AuthProviderProps {
 
 function AuthProvider({ children }: AuthProviderProps) {
     const { mutateAsync: _login } = useLogin();
+    const { mutateAsync : _cargoLogin} = useCargoLogin()
     const { mutateAsync: _register } = useRegister();
     const { mutateAsync: _logout } = useLogout();
     const router = useRouter();
@@ -30,6 +32,12 @@ function AuthProvider({ children }: AuthProviderProps) {
     const { data: userRole, isLoading : isRoleLoading } = useGetUserRole({ isAuthenticated });
 
     const checkAuth = useCallback(() => {
+        if( (!isCargoRoute(router.pathname) && localStorage.getItem('cargo')) ||
+            (isCargoRoute(router.pathname) && !localStorage.getItem('cargo')))
+        {
+             localStorage.removeItem('token');
+        }
+
         const token = localStorage.getItem('token');
         setToken(token);
         if (token) {
@@ -39,21 +47,45 @@ function AuthProvider({ children }: AuthProviderProps) {
             setIsAuthenticated(isTokenValid);
 
             if (isTokenValid && isWithoutAuthenticateRoute())
-                router.push("/dashboard")
+            {
+                if(isCargoRoute(router.pathname))
+                    router.push("/cargo/dashboard")
 
-        } else if (isAuthenticateRoute(router.pathname)) router.push("/login")
+                else router.push("/dashboard")
+            }
+
+        } else {
+
+            if(isCargoRoute(router.pathname) && isAuthenticateRoute(router.pathname)) router.push("/cargo/login")
+            else if (isAuthenticateRoute(router.pathname)) router.push("/login")
+
+        }
         setLoading(false);
-    }, []);
+    }, [isCargoRoute(router.pathname)]);
 
     const login = useCallback(async (props: LoginPropsType) => {
-        try {
-            const data = await _login(props);
-            localStorage.setItem('token', data.token);
-            checkAuth();
-        } catch (error) {
-            throw error
+
+        if(isCargoRoute(router.pathname)){
+            try {
+                const data = await _cargoLogin(props);
+                localStorage.setItem("cargo","1");
+                localStorage.setItem('token', data.token);
+                checkAuth();
+            } catch (error) {
+                throw error
+            }
         }
-    }, []);
+     else{
+            try {
+                const data = await _login(props);
+                localStorage.removeItem("cargo")
+                localStorage.setItem('token', data.token);
+                checkAuth();
+            } catch (error) {
+                throw error
+            }
+        }
+    }, [isCargoRoute(router.pathname)]);
 
     const register = useCallback(async (props: RegisterPropsType) => {
         return _register(props).then(res => {
@@ -65,7 +97,7 @@ function AuthProvider({ children }: AuthProviderProps) {
             return false
         })
 
-    }, []);
+    }, [isCargoRoute(router.pathname)]);
 
     const logout = useCallback(async () => {
         router.push("/login")

@@ -1,0 +1,50 @@
+$color_1: #989898;
+$color_2: #0868fd;
+$font-family: "Noto Sans KR", sans-serif;
+
+
+.logo {
+  display: flex;
+  flex-direction: column !important;
+  border-bottom: none !important;
+  margin-bottom: 80px;
+}
+.title {
+  display: flex;
+  justify-content: center;
+}
+.join_section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  p {
+    color: $color_1;
+    text-decoration: underline;
+  }
+  span {
+    font-size: 16px;
+    color: $color_1;
+  }
+}
+.password {
+  position: relative;
+  .image {
+    position: absolute;
+    bottom: 55%;
+    right: 10px;
+    top: 55%;
+  }
+}
+.logo-text {
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: $color_2;
+}
+

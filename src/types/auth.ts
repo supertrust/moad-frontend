@@ -1,7 +1,8 @@
 import { IUser, IUserRole } from "./user";
 
 export type LoginPropsType = {
-    email: string;
+    email?: string;
+    phone?:string,
     password: string;
 }
 

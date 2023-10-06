@@ -23,3 +23,10 @@ export const isWithoutAuthenticateRoute=()=>{
     return false;
 }
 
+export const isCargoRoute = (urlString)=>
+{
+    if(!urlString)
+        return false;
+
+    return urlString.startsWith("/cargo")
+}

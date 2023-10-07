@@ -107,7 +107,7 @@ const CargoOwnerDashboardScreen = () => {
           <ul>
             {advertisements?.map((data, index) => (
               <li key={index}>
-                <Link href={`/cargo/dashboard/cargo-location/${data.advertiser_id}/vehicle/${data.cargo_vehicle_id}`} >
+                <Link href={`/cargo/dashboard/cargo-location/${data.cargo_to_advertisers}/vehicle/${data.cargo_vehicle_id}`} >
                   <div
                     className={`mx-[20px] ${styles.blue_card} flex flex-row justify-between	p-[16px] pb-[16px] mb-[16px] text-white`}
                   >
@@ -142,12 +142,12 @@ const CargoOwnerDashboardScreen = () => {
               </div>
             </Carousel>
           </div>
-          <div className={`${styles.btnmbwrap} mx-[20px]`}>
+          {/*<div className={`${styles.btnmbwrap} mx-[20px]`}>
             <Button className={`${styles.btnmb}`}>운행시작</Button>
             <Button className={`${styles.btnmb} !text-[#F24747]`}>
               운행종료
             </Button>
-          </div>
+          </div>*/}
         </div>
         {/* <h4 className="text-sm text-[#152D51] mb-1">진행중인 광고</h4>
           <h3 className="text-[20px] text-white">진행중인 광고가 없습니다.</h3>

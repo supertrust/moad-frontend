@@ -35,6 +35,9 @@ const CargoAdItem = ({ ad }: AdItemProps) => {
             onSuccess: () => {
                 toast.success("신청 성공")  ;
                 router.push('/cargo/dashboard')
+            },
+            onError:  (message) => {
+                toast.error(message == 'CARGO_VEHICLE_NOT_FOUND' ? "이 유형의 차량이 등록되어 있지 않은 경우" :  message )
             }
         })
     }

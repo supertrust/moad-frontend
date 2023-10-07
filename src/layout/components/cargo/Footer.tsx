@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function Footer() {
   // Get the current URL pathname
   const currentURL = window.location.pathname;
@@ -17,40 +19,44 @@ function Footer() {
   return (
     <div>
       <div className="footer_menu pt-3 pb-4 flex items-center justify-between gap-3 px-[20px] bg-white w-full fixed bottom-0 border-t border-[#EBEDF4] lg:shadow-[0px_8px_24px_rgba(149,157,165,0.2)] lg:w-[50%] lg:mx-auto lg:left-0 lg:right-0 lg:rounded-2xl	lg:!bottom-[20px]">
-        <div className="ftm_wrap flex items-center justify-center gap-1 flex-col">
-          <div className="ftm_icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-            >
-              <path
-                d="M3.33335 4.99984H1.66669V16.6665C1.66669 17.5832 2.41669 18.3332 3.33335 18.3332H15V16.6665H3.33335V4.99984ZM16.6667 1.6665H6.66669C5.75002 1.6665 5.00002 2.4165 5.00002 3.33317V13.3332C5.00002 14.2498 5.75002 14.9998 6.66669 14.9998H16.6667C17.5834 14.9998 18.3334 14.2498 18.3334 13.3332V3.33317C18.3334 2.4165 17.5834 1.6665 16.6667 1.6665ZM16.6667 13.3332H6.66669V3.33317H16.6667V13.3332ZM8.33335 7.49984H15V9.1665H8.33335V7.49984ZM8.33335 9.99984H11.6667V11.6665H8.33335V9.99984ZM8.33335 4.99984H15V6.6665H8.33335V4.99984Z"
-                fill="#C8C5CB"
-              />
-            </svg>
+        <Link href="/cargo/dashboard/ad-list" >
+          <div className="ftm_wrap flex items-center justify-center gap-1 flex-col">
+            <div className="ftm_icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M3.33335 4.99984H1.66669V16.6665C1.66669 17.5832 2.41669 18.3332 3.33335 18.3332H15V16.6665H3.33335V4.99984ZM16.6667 1.6665H6.66669C5.75002 1.6665 5.00002 2.4165 5.00002 3.33317V13.3332C5.00002 14.2498 5.75002 14.9998 6.66669 14.9998H16.6667C17.5834 14.9998 18.3334 14.2498 18.3334 13.3332V3.33317C18.3334 2.4165 17.5834 1.6665 16.6667 1.6665ZM16.6667 13.3332H6.66669V3.33317H16.6667V13.3332ZM8.33335 7.49984H15V9.1665H8.33335V7.49984ZM8.33335 9.99984H11.6667V11.6665H8.33335V9.99984ZM8.33335 4.99984H15V6.6665H8.33335V4.99984Z"
+                  fill="#C8C5CB"
+                />
+              </svg>
+            </div>
+            <div className="ftm_txt text-[12px] font-normal text-[#999]">광고리스트</div>
           </div>
-          <div className="ftm_txt text-[12px] font-normal text-[#999]">광고리스트</div>
-        </div>
-        <div className="ftm_wrap flex items-center justify-center gap-1 flex-col">
-          <div className="ftm_icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="21"
-              height="20"
-              viewBox="0 0 21 20"
-              fill="none"
-            >
-              <path
-                d="M10.3333 2.5L1.16663 9.5L2.17496 10.825L3.66663 9.68333V17.5H17V9.68333L18.4916 10.8167L19.5 9.5L10.3333 2.5ZM15.3333 15.8333H5.33329V8.41667L10.3333 4.6L15.3333 8.41667V15.8333Z"
-                fill="#C8C5CB"
-              />
-            </svg>
+        </Link>
+        <Link href="/cargo/dashboard" >
+          <div className="ftm_wrap flex items-center justify-center gap-1 flex-col">
+            <div className="ftm_icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="21"
+                height="20"
+                viewBox="0 0 21 20"
+                fill="none"
+              >
+                <path
+                  d="M10.3333 2.5L1.16663 9.5L2.17496 10.825L3.66663 9.68333V17.5H17V9.68333L18.4916 10.8167L19.5 9.5L10.3333 2.5ZM15.3333 15.8333H5.33329V8.41667L10.3333 4.6L15.3333 8.41667V15.8333Z"
+                  fill="#C8C5CB"
+                />
+              </svg>
+            </div>
+            <div className="ftm_txt text-[12px] font-normal text-[#999]">홈</div>
           </div>
-          <div className="ftm_txt text-[12px] font-normal text-[#999]">홈</div>
-        </div>
+        </Link>
         <div className="ftm_wrap flex items-center justify-center gap-1 flex-col">
           <div className="ftm_icon">
             <svg

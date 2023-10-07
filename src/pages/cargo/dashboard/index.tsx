@@ -3,12 +3,10 @@ import { styles } from "@src/components/pages/cargo";
 import { Button, Carousel } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import { useGetCargoAdvertisementList } from "@src/apis/cargo/submitted-advertisement";
 import { useGetCargoSubmittedAdvertisementList } from "@src/apis/cargo";
 
 const CargoOwnerDashboardScreen = () => {
   const { data: advertisements } = useGetCargoSubmittedAdvertisementList();
-  console.log("advertisements", advertisements);
   const Types = {
     fixed_ad: "고정",
     national_ad: "국가",

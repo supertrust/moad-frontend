@@ -4,9 +4,10 @@ import { Button, Carousel } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useGetCargoAdvertisementList } from "@src/apis/cargo/submitted-advertisement";
+import { useGetCargoSubmittedAdvertisementList } from "@src/apis/cargo";
 
 const CargoOwnerDashboardScreen = () => {
-  const { data: advertisements } = useGetCargoAdvertisementList();
+  const { data: advertisements } = useGetCargoSubmittedAdvertisementList();
   console.log("advertisements", advertisements);
   const Types = {
     fixed_ad: "고정",
@@ -106,12 +107,14 @@ const CargoOwnerDashboardScreen = () => {
           <ul>
             {advertisements?.map((data, index) => (
               <li key={index}>
-                <div
-                  className={`mx-[20px] ${styles.blue_card} flex flex-row justify-between	p-[16px] pb-[16px] mb-[16px] text-white`}
-                >
-                  <div>{data.ad_name}</div>
-                  <div>({Types[data.type]})</div>
-                </div>
+                <Link href={`/cargo/dashboard/cargo-location/${data.advertiser_id}/vehicle/${data.cargo_vehicle_id}`} >
+                  <div
+                    className={`mx-[20px] ${styles.blue_card} flex flex-row justify-between	p-[16px] pb-[16px] mb-[16px] text-white`}
+                  >
+                    <div>{data.ad_name}</div>
+                    <div>({Types[data.type]})</div>
+                  </div>
+                </Link>
               </li>
             ))}
           </ul>

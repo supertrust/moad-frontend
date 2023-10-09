@@ -18,6 +18,7 @@ import { getRoutesPath,getConvertDistance } from '@src/helpers/map';
 
 interface IRide {
 	// started: boolean,
+	cargo_location_vehicle_id?:number,
 	status?: VehicleLocationState
 	origin?: kakao.maps.LatLng,
 	originName? :string
@@ -44,8 +45,10 @@ const CargoLocationPage = () => {
 	const { setPageTitle } = useIcarusContext();
 	const { mutateAsync: saveLocation, isLoading: isSaving } = useSaveLocation();
 	const { mutateAsync: logVehicleLocation } = useLogVehicleLocation();
-	const { mutateAsync: finishVehicleRide, isLoading: isEnding } = useFinishVehicleRide();
+	const { mutateAsync: finishVehicleRide } = useFinishVehicleRide();
 	const { confirm } = useConfirmDialog();
+
+	const [isUpdatingRide, setIsUpdatingRide ] = useState<VehicleLocationState  | undefined>()
 
 	const [map, setMap] = useState<kakao.maps.Map>();
 	const mapRef = useRef<kakao.maps.Map>(null);
@@ -125,7 +128,7 @@ const CargoLocationPage = () => {
 				passing_vehicle_descent: "0",
 				passing_vehicle_up: "0",
 			},{
-				onSuccess: () =>  {
+				onSuccess: ({ id }) =>  {
 					confirm({
 						...confirmOptions,
 						description: (
@@ -139,7 +142,7 @@ const CargoLocationPage = () => {
 							</div>
 						),
 					});
-					setRide({ ...ride, status: 'running'})
+					setRide({ ...ride, status: 'running', cargo_location_vehicle_id: id})
 					logCurrentLocation()
 				},
 				onError: (error) => confirm({
@@ -155,10 +158,14 @@ const CargoLocationPage = () => {
 	});
 
 	const handleUpdateRide = async (status : VehicleLocationState) => {
+
+		if(!ride.cargo_location_vehicle_id ) return ;
+		setIsUpdatingRide(status);
+
 		const current = ride.current as kakao.maps.LatLng;
 		const currentDate = new Date();
 		await finishVehicleRide({
-			cargo_vehicle_id: Number(vehicle_id),
+			cargo_vehicle_location_id: ride.cargo_location_vehicle_id,
 			end_point: `${current?.getLat()},${current?.getLng()}`,
 			end_time:  dateFormat(currentDate.toISOString()),
 			is_active: status
@@ -182,6 +189,7 @@ const CargoLocationPage = () => {
 					current: status == 'finish' ? undefined :  ride.current,
 					status 
 				})
+				setIsUpdatingRide(undefined);
 			},
 		})
 	}
@@ -392,18 +400,18 @@ const CargoLocationPage = () => {
 										ride.status !== 'stopped' : 
 										(!ride.origin || !ride.destination)  
 								}
-							>시작</Button>
+							>{ride.status == 'stopped' ? "이력서" : "시작"}</Button>
 							<Button 
 								className="bg-danger text-white px-4" 
 								disabled ={ ride.status !== 'running' }
 								onClick={() =>  handleUpdateRide('stopped')}
-								loading={ ride.status == 'running' && isEnding }
+								loading={ isUpdatingRide == 'stopped'}
 							>중지 </Button>
 							<Button 
 								className="bg-primary text-white px-4" 
 								disabled ={ !ride.status && ride.status !== 'finish' }
 								onClick={() =>  handleUpdateRide('finish')}
-								loading={ !!ride.status && isEnding }
+								loading={ isUpdatingRide == 'finish' }
 							> 완료 </Button>
 						</div>
 					</div>

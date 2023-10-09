@@ -103,7 +103,7 @@ const CargoLocationPage = () => {
 		defaultValues: { origin : '' , destination: '' , current: ''},
 		resolver: yupResolver(RideSchema)
 	});
-	const { handleSubmit, setValue, control } = methods;
+	const { handleSubmit, setValue, control, getValues } = methods;
 	
 
 	const handleStartRide = handleSubmit(async (props) => {
@@ -212,12 +212,18 @@ const CargoLocationPage = () => {
 	}, []);
 
 	const handleDropMark = (location : kakao.maps.LatLng | null, type?: PointType) => {
-		if(!location) return;
+		if(!location || ride.status ) return;
 		const { origin } = ride; 
 		setCenter(location);
 		const init = { directions: undefined, distance: undefined, duration: undefined }
 		if(type){
-			return setRide({ ...ride, ...init, current: undefined, [type]: location }) ;
+			return setRide({ 
+				...ride, 
+				...init, 
+				current: undefined, 
+				[type]: location ,
+				[`${type}Name`]: getValues(type) || ''
+			}) ;
 		}
 		if(!origin) {
 			changeInputLocationName(location, 'origin')
@@ -365,6 +371,7 @@ const CargoLocationPage = () => {
 												}
 											}}
 											error={error?.message}
+											disable={!!ride.status}
 										/>
 									)}
 								/>
@@ -386,6 +393,7 @@ const CargoLocationPage = () => {
 												}
 											}}
 											error={error?.message}
+											disable={!!ride.status}
 										/>
 									)}
 								/>

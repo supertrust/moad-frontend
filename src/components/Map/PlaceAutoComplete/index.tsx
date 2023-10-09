@@ -13,6 +13,7 @@ interface PlaceAutoCompleteProps {
   placeholder?: string,
   onChange?:(value?: { name:  string, lat: number, lng: number}) =>  void
   error?: string
+  disable?: boolean
 }
 
 
@@ -21,7 +22,8 @@ function PlaceAutoComplete( {
   className,
   placeholder,
   onChange,
-  error
+  error,
+  disable
 } : PlaceAutoCompleteProps, ref:Ref<any>  ) {
 
   // const autoCompleteRef = useRef<AutoComplete>()
@@ -90,6 +92,7 @@ function PlaceAutoComplete( {
         allowClear={true}
         size="large"
         status={error && 'error'}
+        disabled={disable}
       />
       { error && <span className='text-danger text-xs'>{error}</span>}
     </>

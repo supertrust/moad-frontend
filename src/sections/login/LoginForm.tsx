@@ -11,6 +11,7 @@ import {
 	yupResolver,
 	Button,
 } from '@src/components/common';
+import clsx from 'clsx';
 
 const defaultValues = {
 	email: '',
@@ -93,9 +94,10 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 					className={`user-input ${error ? 'error' : 'active'}`}
 					type='text'
 					placeholder='이메일 입력'
-					label='아이디 (이메일)'
-					// value={email}
-					// onChange={(e) => setEmail(e.target.value)}
+					label='아이디'
+					caption='아이디를 잊어버리셨나요?'
+					captionPosition='top'
+					errorPosition="bottom"
 				/>
 				<i className='icon pw-show'></i>
 				<RHFInput
@@ -103,15 +105,16 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 					placeholder='비밀번호 입력'
 					name='password'
 					label='비밀번호'
+					caption='비밀번호를 잊어버리셨나요?'
 					className={`user-input ${error ? 'error' : 'active'}`}
-					// value={password}
-					// onChange={(e) => setpassword(e.target.value)}
 					right={
 						<span
 							className={`icon pw-show ${visiblePassword && 'active'}`}
 							onClick={() => setVisiblePassword(!visiblePassword)}
 						/>
 					}
+					captionPosition='top'
+					errorPosition="bottom"
 				/>
 				{/*<div className="login-utile-wrap flex-column align-items-start gap-2">
           <div className="login-keep-wrap">
@@ -124,9 +127,8 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
             <div className="bg-danger rounded-2 p-2 text-white">아이디/비밀번호를 확인하세요</div>
           </div>
         </div>*/}
-				<div
-					className={`${styles.check_mark} flex items-center justify-between`}>
-					<label
+				{/*<div className={`${styles.check_mark} flex items-center justify-between`}>
+					 <label
 						htmlFor='chk_1'
 						className={`${styles.chk_wrap} flex items-center gap-1 text-sm mt-[22px] mb-[30px]`}>
 						<input
@@ -143,13 +145,14 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 							error ? 'block' : 'hidden'
 						} text-sm text-[#F24747] mt-[22px] mb-[30px]`}>
 						아이디또는 비밀번호를 확인하세요
-					</div>
-				</div>
+					</div> 
+				</div>*/}
 				<Button
 					id='login_btn'
-					className={`${styles.login_btn} ${
+					className={clsx(
+						styles.login_btn , "mt-4 font-semibold",  
 						form ? styles.active : styles.disabled
-					} `}
+					)}
 					onClick={onSubmit}
 					loading={isSubmitting}
 					disabled={
@@ -157,7 +160,7 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 						!isSubmitting &&
 						!enabledSubmit
 					}>
-					다음
+					로그인
 				</Button>
 			</form>
 		</FormProvider>

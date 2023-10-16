@@ -10,20 +10,25 @@ export interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLIn
     required?: boolean;
     right? : ReactNode
     errorPosition?: 'top' | 'bottom'
+    captionPosition?: 'top' | 'bottom'
 }
 
 function Input(props: InputProps, ref: Ref<any>) {
-    const { error, wrapperClassName, required, label, caption, className, right,errorPosition = 'top',  ...rest } = props;
+    const { 
+        error, wrapperClassName, required, label, caption, className, right,
+        errorPosition = 'top', captionPosition = 'bottom',  ...rest 
+    } = props;
     return (
         <div className={`input-wrap ${wrapperClassName}`}>
             <div className='flex flex-row justify-between items-center'>
                 {label && (
                     <div className="desc mb-2 mr-3">
-                        {label && (<span className="font-bold">{label}</span>)}
+                        {label && (<span className="font-medium">{label}</span>)}
                         {required && (<span className="essential text-danger">*</span>)}
                     </div>
                 )}
                 {error && errorPosition == 'top' && <span className="text-danger">{error}</span>}
+                {caption && captionPosition == 'top' && <span className="text-[#3772FF] font-medium">{caption}</span>}
             </div>
             <div className='flex flex-row items-center'>
                 <input
@@ -38,7 +43,7 @@ function Input(props: InputProps, ref: Ref<any>) {
                 {right && right}
             </div>
             <div className={clsx('flex flex-row ', caption && error && 'justify-between', !caption && error && 'justify-end' )}>
-                {caption && <span>{caption}</span>}
+                {caption && captionPosition == 'bottom' && <span>{caption}</span>}
                 {error && errorPosition == 'bottom' && <span className="pull-right text-danger">{error}</span>}
             </div>
         </div>

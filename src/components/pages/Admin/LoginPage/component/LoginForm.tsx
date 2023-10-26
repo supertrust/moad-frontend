@@ -14,14 +14,12 @@ import {
 import clsx from 'clsx';
 
 const defaultValues = {
-	email: '',
+	username: '',
 	password: '',
 };
 
 const LoginSchema = Yup.object({
-	email: Yup.string()
-		.email('유효한 이메일을 입력하세요.')
-		.required('아이디(이메일)를 확인해주세요.'),
+	username: Yup.string().required('아이디(이메일)를 확인해주세요.'),
 	password: Yup.string().required('비밀번호를 입력해주세요.'),
 });
 
@@ -30,14 +28,14 @@ const LoginForm = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 	const router = useRouter();
 	const [remeberId, setRemeberId] = useState<boolean>(false);
 	const [error, setFormError] = useState<boolean>(false);
-	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
 	const [password, setpassword] = useState('');
 	const [form, setform] = useState(true);
 	const [visiblePassword, setVisiblePassword] = useState(false);
 
 	const canBeSubmitted = () => {
 		const isValid =
-			email.trim().length && // Email
+			username.trim().length && // Username
 			password.trim().length; // Password
 
 		if (isValid) {
@@ -90,7 +88,7 @@ const LoginForm = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 		<FormProvider methods={methods}>
 			<form action='' className='login-form'>
 				<RHFInput
-					name='email'
+					name='username'
 					className={`user-input ${error ? 'error' : 'active'}`}
 					type='text'
 					placeholder='이메일 입력'

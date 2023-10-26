@@ -37,9 +37,8 @@ export default function Login() {
               <div className="max-w-[380px] w-full h-[1px] bg-[#EEEEEE] mt-[16px]"></div>
             </div>
             <LoginForm enabledSubmit = {!findPass && !findId}/>
+            <button className='signup_btn' onClick={handleSignup} > 회원가입 </button>
             <div className="link-wrap gap-[10px]">
-              <a href={'#'} className="link text" onClick={handleSignup}>회원가입</a>
-              <span className="bar text">|</span>
               <div onClick={() => SetFindId(true)} id="find_id_btn" className="link text">
                 아이디 찾기
               </div>

@@ -40,3 +40,17 @@
     gap:4px;
     margin-top: 22px;   */
 }
+.signup_btn {
+    width: 100%;
+    padding: 17px 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #ffffff;
+    margin-top: 20px;
+    border-color: #0868fd;
+    justify-content: center;
+}

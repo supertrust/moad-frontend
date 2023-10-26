@@ -4097,4 +4097,17 @@ input:focus-visible {
     background: #ffffff;
     opacity: 0;
 }
-
+.signup_btn {
+	width: 100%;
+	padding: 17px 0;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	color: #0868fd;
+	margin-top: 20px;
+	border: 2px solid #0868fd !important;
+	justify-content: center;
+}

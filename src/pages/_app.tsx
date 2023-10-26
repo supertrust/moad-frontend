@@ -10,6 +10,7 @@ import ReactQueryClient from '@src/services/ReactQueryClient';
 import { AuthProvider } from '@src/contexts/AuthContext';
 import Layout from '@src/layout';
 import CargoLayout from '@src/layout/cargo';
+import AdminAdvertisementLayout from "@src/layout/advertisementAdmin"
 import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
@@ -29,6 +30,13 @@ const notoSansKR = Noto_Sans_KR({
 
 const _App = ({ Component, pageProps }: AppProps) => {
 	const { asPath } = useRouter();
+
+	if(asPath.includes("/admin/advertisement"))
+		return 	<main className={notoSansKR.className}>
+			<AdminAdvertisementLayout>
+				<Component {...pageProps} />
+			</AdminAdvertisementLayout>
+		</main>
 
 	if (asPath.includes('/cargo/dashboard')) {
 		return (

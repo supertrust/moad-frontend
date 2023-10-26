@@ -1,6 +1,7 @@
 export const WithoutAuthenticationRoute = ["signup","login"]
 
-export const PublicRoute = [...WithoutAuthenticationRoute,"landing"];
+//todo: "admin/advertisement" will be removed after api implement
+export const PublicRoute = [...WithoutAuthenticationRoute,"landing","admin/advertisement"];
 
 export const isAuthenticateRoute=(pathName)=>{
 

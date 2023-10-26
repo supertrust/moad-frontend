@@ -3,7 +3,7 @@ export const WithoutAuthenticationRoute = ["signup","login"]
 //todo: "admin/advertisement" will be removed after api implement
 export const PublicRoute = [...WithoutAuthenticationRoute,"landing","admin/advertisement"];
 
-export const isAuthenticateRoute=(pathName)=>{
+export const isAuthenticateRoute=(pathName : string)=>{
 
     for (const substring of PublicRoute) {
         if (pathName.includes(substring)) {
@@ -24,10 +24,17 @@ export const isWithoutAuthenticateRoute=()=>{
     return false;
 }
 
-export const isCargoRoute = (urlString)=>
+export const isCargoRoute = (urlString : string)=>
 {
     if(!urlString)
         return false;
 
     return urlString.startsWith("/cargo")
+}
+
+
+export const isAdminRoute = (urlString: string) => {
+    if(!urlString)
+        return false;
+    return urlString.startsWith("/admin")
 }

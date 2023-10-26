@@ -3,6 +3,7 @@ import { IUser, IUserRole } from "./user";
 export type LoginPropsType = {
     email?: string;
     phone?:string,
+    username?: string
     password: string;
 }
 

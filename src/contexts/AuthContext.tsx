@@ -1,5 +1,5 @@
 import { useCargoLogin } from "@src/apis/cargo/cargo-auth";
-import { isAuthenticateRoute, isCargoRoute, isWithoutAuthenticateRoute } from "@src/utils/route";
+import { isAdminRoute, isAuthenticateRoute, isCargoRoute, isWithoutAuthenticateRoute } from "@src/utils/route";
 import { useRouter } from "next/router";
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -10,6 +10,7 @@ import { useGetUser, useGetUserRole } from '@src/apis/user';
 import { queryClient } from '@src/services/ReactQueryClient';
 import { parseJwt } from '@src/helpers';
 import { toast } from "react-toastify";
+import { useAdminAdvertiserLogin } from "@src/apis/admin";
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -20,6 +21,7 @@ interface AuthProviderProps {
 function AuthProvider({ children }: AuthProviderProps) {
     const { mutateAsync: _login } = useLogin();
     const { mutateAsync : _cargoLogin} = useCargoLogin()
+    const { mutateAsync : adminLogin } = useAdminAdvertiserLogin()
     const { mutateAsync: _register } = useRegister();
     const { mutateAsync: _logout } = useLogout();
     const router = useRouter();
@@ -29,12 +31,13 @@ function AuthProvider({ children }: AuthProviderProps) {
     const [token, setToken] = useState<string | null>(null);
 
     const { data: user, isLoading : isUserLoading } = useGetUser({ isAuthenticated });
-    console.log('user', user)
     const { data: userRole, isLoading : isRoleLoading } = useGetUserRole({ isAuthenticated });
     const checkAuth = useCallback(() => {
         if( (!isCargoRoute(router.pathname) && localStorage.getItem('cargo')) ||
-            (isCargoRoute(router.pathname) && !localStorage.getItem('cargo')))
-        {
+            (isCargoRoute(router.pathname) && !localStorage.getItem('cargo')) ||
+            (!isAdminRoute(router.pathname) && localStorage.getItem('admin')) ||
+            (isAdminRoute(router.pathname) && !localStorage.getItem('admin'))
+        ){
              localStorage.removeItem('token');
         }
 
@@ -46,22 +49,21 @@ function AuthProvider({ children }: AuthProviderProps) {
             token && setAxiosToken(token);
             setIsAuthenticated(isTokenValid);
 
-            if (isTokenValid && isWithoutAuthenticateRoute())
-            {
+            if (isTokenValid && isWithoutAuthenticateRoute()){
                 if(isCargoRoute(router.pathname))
                     router.push("/cargo/dashboard")
-
+                else if(isAdminRoute(router.pathname))
+                    router.push("/admin/advertisement")
                 else router.push("/dashboard")
             }
 
         } else {
-
             if(isCargoRoute(router.pathname) && isAuthenticateRoute(router.pathname)) router.push("/cargo/login")
+            else if(isAdminRoute(router.pathname) && isAuthenticateRoute(router.pathname)) router.push("/admin/login")
             else if (isAuthenticateRoute(router.pathname)) router.push("/login")
-
         }
         setLoading(false);
-    }, [isCargoRoute(router.pathname)]);
+    }, [isCargoRoute(router.pathname) , isAdminRoute(router.pathname)]);
 
     const login = useCallback(async (props: LoginPropsType) => {
 
@@ -75,10 +77,20 @@ function AuthProvider({ children }: AuthProviderProps) {
                 throw error
             }
         }
-     else{
+        else if(isAdminRoute(router.pathname)){
+            try {
+                const data = await adminLogin(props);
+                localStorage.setItem("admin","1");
+                localStorage.setItem('token', data.token);
+                checkAuth();
+            } catch (error) {
+                throw error
+            }
+        }else{
             try {
                 const data = await _login(props);
                 localStorage.removeItem("cargo")
+                localStorage.removeItem("admin")
                 localStorage.setItem('token', data.token);
                 checkAuth();
             } catch (error) {

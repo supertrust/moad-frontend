@@ -26,6 +26,7 @@ export type RegisterPropsType = {
     employee_phone_number: string;
     employee_email: string;
     sector: string | undefined;
+    contact_position: string | undefined;
     business_license: any;
     verify_business_registration_number: boolean;
 }

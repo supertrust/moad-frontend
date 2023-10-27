@@ -16,6 +16,7 @@ import { RegisterPropsType } from '@src/types/auth';
 import { File } from 'buffer';
 import clsx from 'clsx';
 import { isHangul } from '@src/helpers';
+import RHFSelect from '@src/components/common/Form/RHFSelect';
 
 interface Step3Props {
 	onPrevStep: () => void;
@@ -32,6 +33,7 @@ const defaultValues = {
 	employee_phone_number: '',
 	employee_email: '',
 	sector: '',
+	contact_position: '',
 	business_license: File,
 	verify_business_registration_number: false,
 };
@@ -99,6 +101,17 @@ const Step3 = ({
 	const [verifybtnclick, setverifybtn] = useState(false);
 	const [message, setMessage] = useState('');
 	const ModalhandleClose = () => setShowModal(false);
+	const options = [
+		{value : '', text : '담당자 직위'},
+		{value : '사원', text : '사원'},
+		{value : '주임', text : '주임'},
+		{value : '대리', text : '대리'},
+		{value : '과장', text : '과장'},
+		{value : '차장', text : '차장'},
+		{value : '부장', text : '부장'},
+		{value : '임원', text : '임원'},
+		{value : '기타', text : '기타'}
+	];
 	const ModalhandleShow = (error: string) => {
 		setShowModal(true);
 		setMessage(error);
@@ -146,6 +159,7 @@ const Step3 = ({
 	};
 
 	const onSubmit = handleSubmit(async (props) => {
+		
 		if (!verifybtnclick) {
 			ModalhandleShow('사업자등록번호를 확인해주세요.');
 			return false;
@@ -292,6 +306,16 @@ const Step3 = ({
 									placeholder='담당자 성함 / 직위 입력'
 									spellCheck='false'
 									data-ms-editor='true'
+								/>
+								
+								<RHFSelect
+									wrapperClassName='manager-tel'
+									label='담당자 직위*'
+									required
+									id='contact_position'
+									name='contact_position'
+									options={options}
+									className='company-input'
 								/>
 								<RHFInput
 									wrapperClassName='manager-tel'
@@ -445,7 +469,7 @@ const Step3 = ({
 									className='link link-step01'
 									onClick={onSubmit}
 									disabled={
-										!(Object.keys(dirtyFields).length === 6 && imageUploaded)
+										!(Object.keys(dirtyFields).length === 7 && imageUploaded)
 									}>
 									다음
 								</Button>

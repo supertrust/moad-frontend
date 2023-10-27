@@ -8,7 +8,7 @@ export default function SignUpModulePage() {
   const [formStep, setFormStep] = useState(1);
   const [membershipInformation, setMembershipInformation] =
   useState<RegisterPropsType>({
-    email: "",
+      email: "",
       password: "",
       confirm_password: "",
       company_name: "",
@@ -18,6 +18,7 @@ export default function SignUpModulePage() {
       employee_phone_number: "",
       employee_email: "",
       sector: "",
+      contact_position: "",
       business_license: File,
       verify_business_registration_number: false,
     });

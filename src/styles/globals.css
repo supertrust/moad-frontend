@@ -1731,14 +1731,27 @@ a {
 	margin-bottom: 12px;
 }
 
-#sign_up .step-section .right .right-wrap .right-content .input-wrap {
+#sign_up .step-section .right .right-wrap .right-content .input-wrap,
+#sign_up .step-section .right .right-wrap .right-content .select-wrap {
 	display: block;
 	position: relative;
 	position: relative;
 	margin-bottom: 20px;
 }
+#sign_up .step-section .right .right-wrap .right-content .select-section select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	cursor: pointer;
+}
 
-#sign_up .step-section .right .right-wrap .right-content .input-wrap input {
+#sign_up .step-section .right .right-wrap .right-content .select-section {
+   position:relative,
+}
+
+
+#sign_up .step-section .right .right-wrap .right-content .input-wrap input ,
+#sign_up .step-section .right .right-wrap .right-content .select-wrap select {
 	width: 100%;
 	display: block;
 	padding: 13px 16px;

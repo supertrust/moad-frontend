@@ -1,0 +1,18 @@
+.adminPagination {
+    li {
+        background-color: white;
+        height: 48px !important;
+        width: 48px !important;
+        border-radius: 4px;
+        border: 1px solid #EAECF0;
+        a {
+            padding-top: 6px !important;
+        }
+    }
+
+    li.ant-pagination-item.ant-pagination-item-active{
+        background-color: #3772FF ;
+        border-color:#3772FF ;
+        color: white;
+    }
+}

@@ -19,7 +19,15 @@ module.exports = {
     colors: {
       primary: '#0868FD !important',
       secondary: '#2f48d1 !important',
-      danger : '#F24747!important' 
+      danger : '#F24747!important' ,
+      'admin-primary': '#3772FF!important', 
+      'admin-secondary': "#EBEFF6!important",
+      'admin-light' : '#F8FAFF!important',
+      "admin-error" : "#FF3252!important",
+      "admin-stroke" : "#EAECF0!important",
+      "admin-sub": "#99A0AC !important",
+      "admin-gray-1" :"#9CA3AF",
+      "admin-gray-2" :"#E7EFFF",
     }
   },
   plugins: [],

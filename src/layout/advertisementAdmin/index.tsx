@@ -37,7 +37,7 @@ function AdvertisementAdminLayout(props: LayoutProps) {
                <div style={{position : "fixed",width : "inherit"}}>
                    <Header  />
                </div>
-                <main className="flex-grow" style={{paddingTop : "64px"}}>
+                <main className="flex-grow bg-white" style={{paddingTop : "64px"}}>
                     {/*<IcarusContext.Provider>*/}
                         {/*{*/}
                         {/*    isUserLoading ?  <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">*/}

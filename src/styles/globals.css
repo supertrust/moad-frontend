@@ -4141,8 +4141,11 @@ input:focus-visible {
 }
 .admin-members-inquiry-pagination .ant-pagination-item-active {
 	background:  #3772ff !important;
-	color: white;
 	border-color: unset !important;
+}
+
+.admin-members-inquiry-pagination .ant-pagination-item-active font {
+	color : white;
 }
 
 .admin-members-inquiry-pagination svg path {

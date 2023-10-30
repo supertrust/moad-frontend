@@ -1,1 +1,1 @@
-export { default as filterAndSearchSection} from "./filterAndSearchSection";
+export { default as FilterAndSearchSection} from "./filterAndSearchSection";

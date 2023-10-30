@@ -1,125 +1,18 @@
+import { useAdminMemberInquiryList } from "@src/apis/admin/member-inquiry";
 import { DropdownIcon } from "@src/components/icons/admin/advertisement";
-import FilterAndSearchSection
-    from "@src/components/pages/Admin/AdminMemberInquiry/component/filterAndSearchSection/filterAndSearchSection";
-import React, { useCallback, useState } from 'react';
+import { formatDate } from "@src/utils/formatter";
+import {FilterAndSearchSection, AdListModal} from "./component";
+import { Pagination, Select, SelectProps, Table } from 'antd';
+import React, { useCallback, useMemo, useState } from 'react';
 import styles from "./styles.module.scss";
-import { Button, ConfigProvider, Pagination, Select, SelectProps, Table } from 'antd';
-import type { ColumnsType } from 'antd/es/table';
-
-type DataType = {
-    key: number;
-    no: number;
-    email: string;
-    sectors: string;
-    company_name: string;
-    company_phone: string;
-    manager: string;
-    contact_person: string;
-    contact_person_no: string;
-    contact_email: string;
-    total_ad_no: string;
-    dormant_state: string;
-    registration_date: string;
-};
 
 const colGeneral = {}
 
-const columns = [
-    {
-        title: 'No',
-        dataIndex: 'no',
-        width: 45,
-        ...colGeneral
-    },
-    {
-        title: '아이디',
-        dataIndex: 'email',
-        width: 200,
-        ...colGeneral
-    },
-    {
-        title: '업종',
-        dataIndex: 'sectors',
-        width: 180,
-        ...colGeneral
-    },
-    {
-        title: '회사명',
-        dataIndex: 'company_name',
-        width: 185,
-        ...colGeneral
-    },
-    {
-        title: '회사 전화번호',
-        dataIndex: 'company_phone',
-        width: 150,
-        ...colGeneral
-    },
-    {
-        title: '담당자',
-        dataIndex: 'manager',
-        width: 150,
-        ...colGeneral
-    },
-    {
-        title: '담당자 직위',
-        dataIndex: 'contact_person',
-        width: 150,
-        ...colGeneral
-    },
-    {
-        title: '담당자 휴대폰번호',
-        dataIndex: 'contact_person_no',
-        width: 150,
-        ...colGeneral
-    },
-    {
-        title: '담당자 이메일',
-        dataIndex: 'contact_email',
-        width: 200,
-        ...colGeneral
-    },
-    {
-        title: '총 광고건수',
-        dataIndex: 'total_ad_no',
-        width: 120,
-        ...colGeneral
-    },
-    {
-        title: '블랙리스트 및 휴면상태',
-        dataIndex: 'dormant_state',
-        width: 180,
-        ...colGeneral
-    },
-    {
-        title: '가입일시',
-        dataIndex: 'registration_date',
-        width: 176,
-        ...colGeneral
-    },
-];
-
-const data: DataType[] = [];
-for (let i = 0; i < 20; i++) {
-    data.push({
-        key: i,
-        no: i + 1,
-        email: "mufincrew@mail.com",
-        sectors: "온라인투자연계금융업",
-        company_name: "머스트핀테크",
-        company_phone: "02-123-4567",
-        manager: "홍길동",
-        contact_person: "사원",
-        contact_person_no: "010-1234-5678",
-        contact_email: "must@mufin.co.kr",
-        total_ad_no: "20건",
-        dormant_state: "정상",
-        registration_date: "2023.07.01 09:00:00"
-    });
-}
-
 
 const AdminMemberInquiry = () => {
+
+    const { data : memberInquiryRes ,isLoading } = useAdminMemberInquiryList();
+    const memberInquiryList = memberInquiryRes?.data;
 
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [loading, setLoading] = useState(false);
@@ -150,16 +43,97 @@ const AdminMemberInquiry = () => {
     };
 
 
-    console.log('sum', sumWidth())
-
-
     const rowSelection = {
         selectedRowKeys,
         onChange: onSelectChange,
     };
     const hasSelected = selectedRowKeys.length > 0;
+
+    const columns = useMemo(() => [
+        {
+            title: 'No',
+            dataIndex: 'no',
+            width: 45,
+            ...colGeneral,
+            render : (text,record,index)=>{
+                return <>{index+1}</>
+            }
+
+        },
+        {
+            title: '아이디',
+            dataIndex: 'employee_email',
+            width: 200,
+            ...colGeneral,
+        },
+        {
+            title: '업종',
+            dataIndex: 'sector',
+            width: 180,
+            ...colGeneral,
+        },
+        {
+            title: '회사명',
+            dataIndex: 'company_name',
+            width: 185,
+            ...colGeneral,
+        },
+        {
+            title: '회사 전화번호',
+            dataIndex: 'company_phone_number',
+            width: 150,
+            ...colGeneral,
+        },
+        {
+            title: '담당자',
+            dataIndex: 'manager',
+            width: 150,
+            ...colGeneral,
+        },
+        {
+            title: '담당자 직위',
+            dataIndex: 'contact_position',
+            width: 150,
+            ...colGeneral,
+        },
+        {
+            title: '담당자 휴대폰번호',
+            dataIndex: 'contact_person_mobile_number',
+            width: 150,
+            ...colGeneral,
+        },
+        {
+            title: '담당자 이메일',
+            dataIndex: 'contact_email',
+            width: 200,
+            ...colGeneral,
+        },
+        {
+            title: '총 광고건수',
+            dataIndex: 'total_ad_no',
+            width: 120,
+            ...colGeneral,
+        },
+        {
+            title: '블랙리스트 및 휴면상태',
+            dataIndex: 'dormant_state',
+            width: 180,
+            ...colGeneral,
+        },
+        {
+            title: '가입일시',
+            dataIndex: 'registration_date',
+            width: 176,
+            ...colGeneral,
+            render : (text,record)=>{
+                return <>{formatDate(record.registration_date,true)}</>
+            }
+        },
+    ], []);
+
     return (
         <div className={styles['body']}>
+            <AdListModal/>
             <FilterAndSearchSection/>
 
 
@@ -197,7 +171,7 @@ const AdminMemberInquiry = () => {
             <div>
                 <Table
                     pagination={false} scroll={{ x: sumWidth() + 50 }}
-                    rowSelection={rowSelection} columns={columns} dataSource={data}
+                    rowSelection={rowSelection} columns={columns} dataSource={memberInquiryList}
 
 
                     components={{
@@ -242,7 +216,7 @@ const AdminMemberInquiry = () => {
             <div className={'flex justify-center py-[54px]'}>
 
 
-                <Pagination className={'admin-members-inquiry-pagination'} defaultCurrent={1} total={50}/>
+                <Pagination className={'admin-members-inquiry-pagination'} defaultCurrent={1} total={10}/>
 
             </div>
 

@@ -31,7 +31,7 @@ const notoSansKR = Noto_Sans_KR({
 const _App = ({ Component, pageProps }: AppProps) => {
 	const { asPath } = useRouter();
 
-	if(asPath.includes("/admin"))
+	if(asPath.includes("/admin") && !asPath.includes("/admin/login"))
 		return 	<main className={notoSansKR.className}>
 			<AdminAdvertisementLayout>
 				<Component {...pageProps} />

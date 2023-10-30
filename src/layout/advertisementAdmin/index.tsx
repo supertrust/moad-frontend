@@ -34,7 +34,7 @@ function AdvertisementAdminLayout(props: LayoutProps) {
                </div>
 
             <div className={clsx("flex flex-col min-h-screen w-full",styles['advertisement-admin-main_content'])}>
-               <div style={{position : "fixed",width : "inherit"}}>
+               <div style={{position : "fixed",width : "inherit",zIndex : 1}}>
                    <Header  />
                </div>
                 <main className="flex-grow bg-white" style={{paddingTop : "64px"}}>

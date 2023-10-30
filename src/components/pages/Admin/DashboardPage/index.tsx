@@ -1,12 +1,116 @@
-import React, { useState } from 'react'
-import {AdvancedSearch, DataFilter} from './components'
-import { Checkbox } from 'antd';
-import Pagination from '@src/components/Pagination';
+import React, { useCallback, useMemo, useState } from 'react'
+import { AdvancedSearch, DataFilter } from './components'
+import { Checkbox, Pagination, Table } from 'antd';
+import { useCompanyAdList } from '@src/apis/admin/advertisement';
+import { ICompanyAdList } from '@src/types/admin/advertisment';
+import { ColumnsType } from 'antd/es/table';
 
 
 function Dashboard() {
 
   const [filters, setFilters] = useState();
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>();
+  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+
+  const { data: adList } = useCompanyAdList({ page: 1 });
+
+  const adDatas = useMemo(() =>
+    !adList?.length  ? [] : adList?.map((item, index) => ({...item, no : index + 1 })),
+  [adList]);
+
+  const colGeneral = {}
+  const columns: ColumnsType<ICompanyAdList> = [
+    {
+      title: 'No',
+      dataIndex: 'no',
+      width: 45,
+      className:"text-center",
+      render: (value, record, index) =>{
+        return index + 1
+      }
+    },
+    {
+      title: '광고명',
+      dataIndex: 'ad_name',
+      width: 350,
+      render: (value) => {
+        return <span className='underline'>{value}</span>
+      },
+    },
+    {
+      title: '업종',
+      dataIndex: 'sector',
+      width: 180,
+      className:"text-center",
+    },
+    {
+      title: '회사명',
+      dataIndex: 'company_name',
+      width: 185,
+      className:"text-center",
+    },
+    {
+      title: '광고모집기간',
+      dataIndex: 'recruitment_period',
+      className: 'text-center',
+      width: 150,
+    },
+    {
+      title: '모집차량수',
+      dataIndex: 'number_of_vehicle_recruited',
+      width: 150,
+      className: 'text-center',
+      render: (value) => {
+        return <span className='underline'>{value}</span>
+      },
+    },
+    {
+      title: '광고진행상태',
+      dataIndex: 'number_of_vehicle_in_operation',
+      width: 150,
+      className: 'text-center',
+      render: (value) => {
+        return <span className='underline'>{value}</span>
+      },
+    },
+    {
+      title: '광고기간',
+      dataIndex: '',
+      width: 150,
+      className: 'text-center',
+    },
+    {
+      title: '광고유형',
+      dataIndex: 'contact_email',
+      width: 200,
+      className: 'text-center',
+    },
+    {
+      title: '총 광고건수',
+      dataIndex: 'total_ad_no',
+      width: 120,
+      className: 'text-center',
+    },
+    {
+      title: '블랙리스트 및 휴면상태',
+      dataIndex: 'dormant_state',
+      width: 180,
+      className: 'text-center',
+    },
+    {
+      title: '가입일시',
+      dataIndex: 'registration_date',
+      width: 176,
+      className: 'text-center',
+    },
+  ];
+
+  const sumWidth = useCallback(() => {
+    return columns.reduce((totalWidth, column) => totalWidth + (Number(column.width) || 0), 0);
+  }, []);
 
 
   return (
@@ -14,64 +118,61 @@ function Dashboard() {
       <AdvancedSearch className='mb-16' />
       <DataFilter className='mb-3' />
       <div>
-        <table className='border border-admin-stroke w-full'>
-            <thead className='bg-admin-gray-2 border border-admin-stroke text-center'>
-              <tr className='h-11'>
-                <td><Checkbox/></td>
-                <td>NO</td>
-                <td>광고명</td>
-                <td>차량종 </td>
-                <td>회사명</td>
-                <td>광고모집기간</td>
-                <td>모집차량수</td>
-                <td>운행차량수</td>
-                <td>운행차량수</td>
-              </tr>
-            </thead>
-            <tbody className='text-center'>
-              <tr className='border border-admin-stroke h-11'>
-                <td> <Checkbox/></td>
-                <td>1</td>
-                <td className='text-left underline'>이카루스 서비스 오픈 출시 기념</td>
-                <td>온라인투자연계금융업 </td>
-                <td className='underline'>머스트핀테크</td>
-                <td>광고모집기간</td>
-                <td>2023.07.01 ~ 2023.07.31</td>
-                <td className='underline'>50대</td>
-                <td className='underline'>20/50</td>
-              </tr>
-              <tr className='border border-admin-stroke h-11'>
-                <td><Checkbox/> </td>
-                <td>2</td>
-                <td className='text-left underline'>이카루스 서비스 오픈 출시 기념</td>
-                <td>온라인투자연계금융업 </td>
-                <td className='underline'>머스트핀테크</td>
-                <td>광고모집기간</td>
-                <td>2023.07.01 ~ 2023.07.31</td>
-                <td className='underline'>50대</td>
-                <td className='underline-offset-4'>20/50</td>
-              </tr>
-              <tr className='border border-admin-stroke h-11'>
-                <td><Checkbox/></td>
-                <td>3</td>
-                <td className='text-left underline'>이카루스 서비스 오픈 출시 기념</td>
-                <td>온라인투자연계금융업 </td>
-                <td className='underline'>머스트핀테크</td>
-                <td>광고모집기간</td>
-                <td>2023.07.01 ~ 2023.07.31</td>
-                <td className='underline'>50대</td>
-                <td className='underline'>20/50</td>
-              </tr>
-            </tbody>
-        </table>
+        <div>
+          <Table
+            pagination={false} 
+            scroll={{ x: sumWidth() + 50 }}
+            rowKey={(row) => row.id}
+            rowSelection={{
+              selectedRowKeys,
+              onChange: onSelectChange,
+            }}
+            columns={columns}
+            dataSource={adList}
+            components={{
+              header: {
+                cell: ({ style: cellStyle, ...cellProps }: any) => {
+                  return (
+                    <th
+                      {...cellProps}
+                      style={{
+                        ...cellStyle,
+                        height: "45px",
+                        color: "#6b7280",
+                        padding: "0px",
+                        fontWeight: 500,
+                        background: "#f8faff",
+                        textAlign: "center",
+                      }}
+                    />
+                  );
+                }
+              },
+              body: {
+                cell: ({style: cellStyle, ...cellProps }: any) => {
+                  return (
+                    <td
+                      {...cellProps}
+                      style={{
+                        ...cellStyle,
+                        height: "40px",
+                        padding: 0,
+                      }}
+                    />
+                  );
+                }
+              }
+            }}
+            className='border border-admin-stroke'
+          />
+        </div>
       </div>
       <div className='flex flex-row mt-5 justify-center'>
         <Pagination
+          className='admin-members-inquiry-pagination'
           current={1}
-          total={5}
-          
+          total={50}
         />
-
       </div>
     </div>
   )

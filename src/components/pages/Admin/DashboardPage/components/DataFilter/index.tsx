@@ -40,6 +40,7 @@ function DataFilter({ className } : DataFilterProps) {
                 </div>
                 <div className='flex flex-row gap-1'>
                     <Select 
+                        popupClassName={"admin-advertisement-select"}
                         placeholder='광고진행상태' 
                         size='large' 
                         rootClassName='rounded-sm min-w-[160px] w-[15%]'
@@ -47,6 +48,7 @@ function DataFilter({ className } : DataFilterProps) {
                         options={progressOptions}
                     /> 
                     <Select 
+                        popupClassName={"admin-advertisement-select"}
                         placeholder='광고명순' 
                         size='large' 
                         rootClassName='rounded-sm min-w-[160px] w-[15%]'

@@ -4145,7 +4145,11 @@ input:focus-visible {
 }
 
 .admin-members-inquiry-pagination .ant-pagination-item-active font {
-	color : white;
+	color : white!important;
+}
+
+.admin-members-inquiry-pagination .ant-pagination-item-active  {
+	color : white!important;
 }
 
 .admin-members-inquiry-pagination svg path {

@@ -12,10 +12,15 @@ const colGeneral = {}
 const AdminMemberInquiry = () => {
 
     const { data : memberInquiryRes ,isLoading } = useAdminMemberInquiryList();
-    const memberInquiryList = memberInquiryRes?.data;
+    const memberInquiryList =memberInquiryRes?.data;
 
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
     const [loading, setLoading] = useState(false);
+
+    const [adListModalOpen,setAdListModalOpen] = useState({
+        open : false,
+        data :[]
+    })
 
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
@@ -113,6 +118,12 @@ const AdminMemberInquiry = () => {
             dataIndex: 'total_ad_no',
             width: 120,
             ...colGeneral,
+            render:(_,record)=>{
+                return <span className={'underline cursor-point'} onClick = {()=>setAdListModalOpen({
+                    open : true,
+                    data : record.advertisements || []
+                })}>{record.total_ad_no}</span>
+            },
         },
         {
             title: '블랙리스트 및 휴면상태',
@@ -133,7 +144,10 @@ const AdminMemberInquiry = () => {
 
     return (
         <div className={styles['body']}>
-            <AdListModal/>
+            <AdListModal adListModalOpen={adListModalOpen} handleAdListModalClose={()=>setAdListModalOpen({
+                open : false,
+                data : []
+            })}/>
             <FilterAndSearchSection/>
 
 
@@ -170,10 +184,11 @@ const AdminMemberInquiry = () => {
 
             <div>
                 <Table
-                    pagination={false} scroll={{ x: sumWidth() + 50 }}
+                    locale={{
+                        emptyText: '조회 결과가 없습니다.',
+                    }}
+                    pagination={false} scroll={{ x: sumWidth() + 50}}
                     rowSelection={rowSelection} columns={columns} dataSource={memberInquiryList}
-
-
                     components={{
                         header: {
                             cell: ({ style: cellStyle, ...cellProps }: any) => {
@@ -213,12 +228,11 @@ const AdminMemberInquiry = () => {
                 />
             </div>
 
-            <div className={'flex justify-center py-[54px]'}>
-
-
-                <Pagination className={'admin-members-inquiry-pagination'} defaultCurrent={1} total={10}/>
-
-            </div>
+            {
+                memberInquiryList?.length &&  <div className={'flex justify-center py-[54px]'}>
+                    <Pagination className={'admin-members-inquiry-pagination'} defaultCurrent={1} total={10}/>
+                </div>
+            }
 
 
         </div>

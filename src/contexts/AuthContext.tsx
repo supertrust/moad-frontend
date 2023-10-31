@@ -53,7 +53,7 @@ function AuthProvider({ children }: AuthProviderProps) {
                 if(isCargoRoute(router.pathname))
                     router.push("/cargo/dashboard")
                 else if(isAdminRoute(router.pathname))
-                    router.push("/admin/advertisement/dashboard")
+                    router.push("/admin/advertisement-management")
                 else router.push("/dashboard")
             }
 

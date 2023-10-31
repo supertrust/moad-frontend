@@ -1,10 +1,36 @@
 
 import { Button } from '@src/components/common';
+import { DateIcon } from '@src/components/icons';
+import { AdStatusType, AdTypeType, GetCompanyAdListType } from '@src/types/admin/advertisment';
 import { Checkbox, DatePicker, Select, Input } from 'antd';
-import React, { ReactNode } from 'react';
+import { clsx } from 'clsx';
+import React, { ReactNode, useState } from 'react';
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import localeData from 'dayjs/plugin/localeData'
+import weekday from 'dayjs/plugin/weekday'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+import weekYear from 'dayjs/plugin/weekYear'
+
+dayjs.extend(customParseFormat)
+dayjs.extend(advancedFormat)
+dayjs.extend(weekday)
+dayjs.extend(localeData)
+dayjs.extend(weekOfYear)
+dayjs.extend(weekYear)
+
+
+const searchOptions = [
+    // { value: 'terms', label: "광고명순" },
+    { value: 'ad_name', label: "광고명" },
+    { value: 'company_name', label: "회사명" },
+  ]
 
 interface AdvancedSearchProps {
     className?: string
+    value: GetCompanyAdListType,
+    onSearch: (value: GetCompanyAdListType) => void
 }
 
 const SearchLine = ({title , children}:{title: string, children: ReactNode}) => {
@@ -18,8 +44,79 @@ const SearchLine = ({title , children}:{title: string, children: ReactNode}) => 
     )
 }
 
-const AdvancedSearch = ({ className }: AdvancedSearchProps) => {
+const DateButton = ({
+    title, selected, onClick 
+}: {title:string, selected: boolean, onClick: VoidFunction}) => {
+    return( 
+        <span  
+            onClick={onClick}
+            className={clsx(
+            'py-2 px-3 rounded border cursor-pointer text-admin-gray-1',
+            selected && 'bg-admin-primary border-admin-primary text-white'
+        )}>{title}</span>
+    )
+}
+const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => {
 
+    const [filters, setFilters] = useState<GetCompanyAdListType>(value);
+    const { 
+        adPeriod, adApplication, adStatus, 
+        adSearchBy,  adSearch, adType ,
+        startDateAdApplication, endDateAdApplication,
+        endDateAdPeriod, startDateAdPeriod
+    } = filters;
+
+    const handleChange = (field: keyof typeof  value , value: any) => {
+        setFilters({
+            ...filters,
+            [field]: value
+        })
+    }
+
+    const handleChangeStatus = (value: AdStatusType) => {
+        if(value === 'entire'){
+            return handleChange('adStatus', [value])
+        } 
+        const values = adStatus?.filter(status =>  status !== 'entire');
+        const newValues = 
+        adStatus?.includes(value) ? 
+            values?.filter(status =>  status !== value):
+            [...values || [], value ]
+        handleChange(
+            'adStatus', 
+            newValues?.length ? newValues : ['entire']
+        )
+    }
+
+    const handleChangeType = (value: AdTypeType) => {
+        if(value === 'entire'){
+            return handleChange('adType', [value])
+        } 
+        const values = adType?.filter(status =>  status !== 'entire');
+        const newValues = 
+        adType?.includes(value) ? 
+            values?.filter(status =>  status !== value):
+            [...values || [], value ]
+        handleChange(
+            'adType', 
+            newValues?.length ? newValues : ['entire']
+        )
+    }
+
+    const handleSearch = () => onSearch({...filters, page: 1});
+
+    const handleReset = () => {
+        const filters :GetCompanyAdListType  = {
+            page: 1,
+            adPeriod:'all',
+            adApplication: 'all',
+            adSearchBy:'ad_name',
+            adStatus: ['entire'],
+            adType: ['entire']
+        }
+        setFilters(filters);
+        onSearch(filters);
+    }
 
     return (
         <div className={className}>
@@ -28,31 +125,46 @@ const AdvancedSearch = ({ className }: AdvancedSearchProps) => {
                 <SearchLine title='광고기간'>
                     <div className=' lg:flex lg:flex-row' >
                         <div className='m-1 flex flex-row gap-1 mr-1' >
-                            <span className='py-2 px-3 rounded text-white border bg-admin-primary border-admin-primary'>
-                                전체
-                            </span>
-                            <span className='py-2 px-3 ponter rounded border border-admin-stroke text-admin-sub'>
-                                오늘
-                            </span>
-                            <span className='py-2 px-3  rounded border  border-admin-stroke text-admin-sub'>
-                                1주
-                            </span>
-                            <span className='py-2 px-3  rounded border border-admin-stroke text-admin-sub'>
-                                3개월
-                            </span>
-                            <span className='py-2 px-3 rounded border border-admin-stroke text-admin-sub'>
-                                6개월
-                            </span>
+                            <DateButton 
+                                title='전체' 
+                                selected={adPeriod == 'all'}
+                                onClick={() => handleChange('adPeriod' , 'all')}
+                            />
+                            <DateButton 
+                                title='오늘' selected={adPeriod == 'today'}
+                                onClick={() => handleChange('adPeriod' , 'today')}
+                            />
+                            <DateButton 
+                                title='1주' selected={adPeriod == '1week'}
+                                onClick={() => handleChange('adPeriod' , '1week')}
+                            />
+                            <DateButton 
+                                title='3개월' selected={adPeriod == '3months'}
+                                onClick={() => handleChange('adPeriod' , '3months')}
+                            />
+                            <DateButton 
+                                title='6개월' selected={adPeriod == '6months'}
+                                onClick={() => handleChange('adPeriod' , '6months')}
+                            />
                         </div>
                         <div className='flex flex-grow flex-row gap-1 m-1' >
                             <DatePicker 
                                 className='flex-grow h-[40px] lg:h-auto'
+                                suffixIcon={<DateIcon/>}
                                 placeholder='날짜선택'
+                                format={"YYYY-MM-DD"}
+                                value={startDateAdPeriod ? dayjs(startDateAdPeriod, 'YYYY-MM-DD') : undefined}
+                                onChange={(date) => handleChange('startDateAdPeriod', date?.format('YYYY-MM-DD') )}
+
                             />
                             <span className='flex items-center'>~</span>
                             <DatePicker 
+                                suffixIcon={<DateIcon/>}
                                 className='flex-grow h-[40px] lg:h-auto'
                                 placeholder='날짜선택'
+                                format={"YYYY-MM-DD"}
+                                value={endDateAdPeriod ? dayjs(endDateAdPeriod, 'YYYY-MM-DD') : undefined}
+                                onChange={(date) => handleChange('endDateAdPeriod', date?.format('YYYY-MM-DD') )}
                             />
                         </div>
                     </div>
@@ -60,31 +172,45 @@ const AdvancedSearch = ({ className }: AdvancedSearchProps) => {
                 <SearchLine title='광고신청일'>
                     <div className=' lg:flex lg:flex-row' >
                         <div className='m-1 flex flex-row gap-1 mr-1' >
-                            <span className='py-2 px-3 rounded text-white border bg-admin-primary border-admin-primary'>
-                                전체
-                            </span>
-                            <span className='py-2 px-3 ponter rounded border border-admin-stroke text-admin-sub'>
-                                오늘
-                            </span>
-                            <span className='py-2 px-3  rounded border  border-admin-stroke text-admin-sub'>
-                                1주
-                            </span>
-                            <span className='py-2 px-3  rounded border border-admin-stroke text-admin-sub'>
-                                3개월
-                            </span>
-                            <span className='py-2 px-3 rounded border border-admin-stroke text-admin-sub'>
-                                6개월
-                            </span>
+                            <DateButton 
+                                title='전체' 
+                                selected={adApplication == 'all'}
+                                onClick={() => handleChange('adApplication' , 'all')}
+                            />
+                            <DateButton 
+                                title='오늘' selected={adApplication == 'today'}
+                                onClick={() => handleChange('adApplication' , 'today')}
+                            />
+                            <DateButton 
+                                title='1주' selected={adApplication == '1week'}
+                                onClick={() => handleChange('adApplication' , '1week')}
+                            />
+                            <DateButton 
+                                title='3개월' selected={adApplication == '3months'}
+                                onClick={() => handleChange('adApplication' , '3months')}
+                            />
+                            <DateButton 
+                                title='6개월' selected={adApplication == '6months'}
+                                onClick={() => handleChange('adApplication' , '6months')}
+                            />
                         </div>
                         <div className='flex flex-grow flex-row gap-1 m-1' >
                             <DatePicker 
                                 className='flex-grow h-[40px] lg:h-auto'
                                 placeholder='날짜선택'
+                                suffixIcon={<DateIcon/>}
+                                format={"YYYY-MM-DD"}
+                                value={startDateAdApplication ? dayjs(startDateAdApplication, 'YYYY-MM-DD') : undefined}
+                                onChange={(date) => handleChange('startDateAdApplication', date?.format('YYYY-MM-DD') )}
                             />
                             <span className='flex items-center'>~</span>
                             <DatePicker 
                                 className='flex-grow h-[40px] lg:h-auto'
+                                suffixIcon={<DateIcon/>}
                                 placeholder='날짜선택'
+                                format={"YYYY-MM-DD"}
+                                value={endDateAdApplication ? dayjs(endDateAdApplication, 'YYYY-MM-DD') : undefined}
+                                onChange={(date) => handleChange('endDateAdApplication', date?.format('YYYY-MM-DD') )}
                             />
                         </div>
                     </div>
@@ -92,38 +218,68 @@ const AdvancedSearch = ({ className }: AdvancedSearchProps) => {
                 <SearchLine title='광고상태'>
                     <div className="mx-4">
                         <label className='mr-4'>
-                            <Checkbox /> 전체
+                            <Checkbox  
+                                checked={adStatus?.includes('entire')}  
+                                onChange={() => handleChangeStatus('entire')}
+                            /> 전체
                         </label>
                         <label className='mr-4'>
-                            <Checkbox /> 광고신청중
+                            <Checkbox 
+                                checked={adStatus?.includes('applyingForAdvertisement')}  
+                                onChange={() => handleChangeStatus('applyingForAdvertisement')}
+                            /> 광고신청중
                         </label>
                         <label className='mr-4'>
-                            <Checkbox /> 광고검수중
+                            <Checkbox 
+                                checked={adStatus?.includes('adReviewing')}  
+                                onChange={() => handleChangeStatus('adReviewing')}
+                            />  광고검수중
                         </label>
                         <label className='mr-4'>
-                            <Checkbox /> 화물주모집중
+                            <Checkbox 
+                                checked={adStatus?.includes('focusingOnRecruitingCargoOwners')} 
+                                onChange={() => handleChangeStatus('focusingOnRecruitingCargoOwners')}
+                            /> 화물주모집중
                         </label>
                         <label className='mr-4'>
-                            <Checkbox /> 광고진행중
+                            <Checkbox 
+                                checked={adStatus?.includes('advertisementInProgress')}  
+                                onChange={() => handleChangeStatus('advertisementInProgress')}
+                            /> 광고진행중
                         </label>
                         <label className='mr-4'>
-                            <Checkbox /> 광고종료
+                            <Checkbox 
+                                checked={adStatus?.includes('advertisementEnds')}  
+                                onChange={() => handleChangeStatus('advertisementEnds')}
+                            /> 광고종료
                         </label>
                     </div>
                 </SearchLine>
                 <SearchLine title='광고유형'>
                     <div className="mx-4">
                         <label className='mr-4'>
-                            <Checkbox /> 전체
+                            <Checkbox  
+                                checked={adType?.includes('entire')}  
+                                onChange={() => handleChangeType('entire')}
+                            /> 전체
                         </label>
                         <label className='mr-4'>
-                            <Checkbox /> 고정형
+                            <Checkbox  
+                                checked={adType?.includes('fixed_ad')}  
+                                onChange={() => handleChangeType('fixed_ad')}
+                            /> 고정형
                         </label>
                         <label className='mr-4'>
-                            <Checkbox /> 전국형
+                            <Checkbox  
+                                checked={adType?.includes('national_ad')}  
+                                onChange={() => handleChangeType('national_ad')}
+                            /> 전국형
                         </label>
                         <label className='mr-4'>
-                            <Checkbox /> 스팟형
+                            <Checkbox  
+                                checked={adType?.includes('spot_ad')}  
+                                onChange={() => handleChangeType('spot_ad')}
+                            /> 스팟형
                         </label>
                     </div>
                 </SearchLine>
@@ -133,11 +289,16 @@ const AdvancedSearch = ({ className }: AdvancedSearchProps) => {
                             placeholder='검색어 선택' 
                             size='large' 
                             rootClassName='rounded-sm min-w-[200px] w-[15%]'
+                            options={searchOptions}
+                            value={adSearchBy}
+                            onChange={(value) => handleChange('adSearchBy', value)}
                         /> 
                         <Input 
                             size="large" 
                             placeholder="검색어를 입력해주세요." 
                             className='rounded-md'
+                            value={adSearch}
+                            onChange={(e) => handleChange('adSearch', e.target.value)}
                         />
                     </div>
                 </SearchLine>
@@ -145,9 +306,11 @@ const AdvancedSearch = ({ className }: AdvancedSearchProps) => {
             <div className='flex flex-row justify-center mt-4 gap-2'>
                 <Button 
                     className='border border-admin-primary text-admin-primary py-2 px-5 font-medium text-base'
+                    onClick={handleReset}
                 >초기화</Button>
                 <Button 
                     className='bg-admin-primary text-white border-admin-primary py-2 px-5 font-medium text-base'
+                    onClick={() => handleSearch()}
                 >
                     검색
                 </Button>

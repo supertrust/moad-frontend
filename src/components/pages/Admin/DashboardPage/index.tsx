@@ -2,26 +2,29 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { AdvancedSearch, DataFilter } from './components'
 import { Checkbox, Pagination, Table } from 'antd';
 import { useCompanyAdList } from '@src/apis/admin/advertisement';
-import { ICompanyAdList } from '@src/types/admin/advertisment';
+import { GetCompanyAdListType, ICompanyAdList } from '@src/types/admin/advertisment';
 import { ColumnsType } from 'antd/es/table';
 
 
-function Dashboard() {
+function AdminAdvertismenentManagement() {
 
-  const [filters, setFilters] = useState();
+  const [filters, setFilters] = useState<GetCompanyAdListType>({ 
+    page: 1,
+    adPeriod:'all',
+    adApplication: 'all',
+    adSearchBy:'ad_name',
+    adStatus: ['entire'],
+    adType: ['entire']
+  });
+
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>();
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
 
-  const { data: adList } = useCompanyAdList({ page: 1 });
+  const { data: adList } = useCompanyAdList(filters);
 
-  const adDatas = useMemo(() =>
-    !adList?.length  ? [] : adList?.map((item, index) => ({...item, no : index + 1 })),
-  [adList]);
-
-  const colGeneral = {}
   const columns: ColumnsType<ICompanyAdList> = [
     {
       title: 'No',
@@ -115,7 +118,11 @@ function Dashboard() {
 
   return (
     <div className='m-4'>
-      <AdvancedSearch className='mb-16' />
+      <AdvancedSearch 
+        className='mb-16'
+        value={filters} 
+        onSearch={setFilters}
+      />
       <DataFilter className='mb-3' />
       <div>
         <div>
@@ -178,4 +185,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default AdminAdvertismenentManagement

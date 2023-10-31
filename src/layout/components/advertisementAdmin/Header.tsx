@@ -3,8 +3,10 @@ import type { MenuProps } from 'antd';
 import { Dropdown } from 'antd';
 import React from 'react';
 import { Search } from "./Search";
+import useAuth from "@src/hooks/useAuth";
 
 const Header = () => {
+    const { logout } = useAuth();
     return (
         <div className={'w-full h-[64px] flex items-center justify-between px-6'} style={{ background : "white" }}>
                 <Search/>
@@ -17,7 +19,9 @@ const Header = () => {
                     </div >
                 </Dropdown>
                 <NotificationIcon/>
-                <LogoutIcon/>
+                <a onClick={logout} className="cursor-pointer">
+                    <LogoutIcon/>
+                </a>
             </div>
         </div>
     );

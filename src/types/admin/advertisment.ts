@@ -1,8 +1,8 @@
-export type PeriodeType = 'all' | 'today' | '1week' | '1month' | '3months' | '6months'
+export type PeriodeType = '' | 'today' | '1week' | '1month' | '3months' | '6months' 
 
-export type AdStatusType = 'entire' | 'applyingForAdvertisement' | 'adReviewing' | 'focusingOnRecruitingCargoOwners' | 'advertisementInProgress' | 'advertisementEnds'
+export type AdStatusType = '' | 'applyingForAdvertisement' | 'adReviewing' | 'focusingOnRecruitingCargoOwners' | 'advertisementInProgress' | 'advertisementEnds' 
 
-export type AdTypeType = 'entire' | 'fixed_ad' | 'national_ad' | 'spot_ad'
+export type AdTypeType = '' | 'fixed_ad' | 'national_ad' | 'spot_ad'
 
 export type GetCompanyAdListType = {
     page: number, 

@@ -10,11 +10,11 @@ function AdminAdvertismenentManagement() {
 
   const [filters, setFilters] = useState<GetCompanyAdListType>({ 
     page: 1,
-    adPeriod:'all',
-    adApplication: 'all',
+    adPeriod:'',
+    adApplication: '',
     adSearchBy:'ad_name',
-    adStatus: ['entire'],
-    adType: ['entire']
+    adStatus: [],
+    adType: []
   });
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>();

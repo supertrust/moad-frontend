@@ -74,32 +74,32 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
     }
 
     const handleChangeStatus = (value: AdStatusType) => {
-        if(value === 'entire'){
+        if(!value){
             return handleChange('adStatus', [value])
         } 
-        const values = adStatus?.filter(status =>  status !== 'entire');
+        const values = adStatus?.filter(status =>  !status);
         const newValues = 
         adStatus?.includes(value) ? 
             values?.filter(status =>  status !== value):
             [...values || [], value ]
         handleChange(
             'adStatus', 
-            newValues?.length ? newValues : ['entire']
+            newValues?.length ? newValues : []
         )
     }
 
     const handleChangeType = (value: AdTypeType) => {
-        if(value === 'entire'){
-            return handleChange('adType', [value])
+        if(!value){
+            return handleChange('adType', [])
         } 
-        const values = adType?.filter(status =>  status !== 'entire');
+        const values = adType?.filter(status =>  !status);
         const newValues = 
         adType?.includes(value) ? 
             values?.filter(status =>  status !== value):
             [...values || [], value ]
         handleChange(
             'adType', 
-            newValues?.length ? newValues : ['entire']
+            newValues?.length ? newValues : []
         )
     }
 
@@ -108,11 +108,11 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
     const handleReset = () => {
         const filters :GetCompanyAdListType  = {
             page: 1,
-            adPeriod:'all',
-            adApplication: 'all',
+            adPeriod:'',
+            adApplication: '',
             adSearchBy:'ad_name',
-            adStatus: ['entire'],
-            adType: ['entire']
+            adStatus: [''],
+            adType: ['']
         }
         setFilters(filters);
         onSearch(filters);
@@ -127,8 +127,8 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
                         <div className='m-1 flex flex-row gap-1 mr-1' >
                             <DateButton 
                                 title='전체' 
-                                selected={adPeriod == 'all'}
-                                onClick={() => handleChange('adPeriod' , 'all')}
+                                selected={!adPeriod}
+                                onClick={() => handleChange('adPeriod' , '')}
                             />
                             <DateButton 
                                 title='오늘' selected={adPeriod == 'today'}
@@ -174,7 +174,7 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
                         <div className='m-1 flex flex-row gap-1 mr-1' >
                             <DateButton 
                                 title='전체' 
-                                selected={adApplication == 'all'}
+                                selected={!adApplication}
                                 onClick={() => handleChange('adApplication' , 'all')}
                             />
                             <DateButton 
@@ -219,8 +219,8 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
                     <div className="mx-4">
                         <label className='mr-4'>
                             <Checkbox  
-                                checked={adStatus?.includes('entire')}  
-                                onChange={() => handleChangeStatus('entire')}
+                                checked={!adStatus?.length}  
+                                onChange={() => handleChangeStatus('')}
                             /> 전체
                         </label>
                         <label className='mr-4'>
@@ -259,8 +259,8 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
                     <div className="mx-4">
                         <label className='mr-4'>
                             <Checkbox  
-                                checked={adType?.includes('entire')}  
-                                onChange={() => handleChangeType('entire')}
+                                checked={!adType?.length}  
+                                onChange={() => handleChangeType('')}
                             /> 전체
                         </label>
                         <label className='mr-4'>

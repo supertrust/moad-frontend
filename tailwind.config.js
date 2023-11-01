@@ -28,6 +28,13 @@ module.exports = {
       "admin-sub": "#99A0AC !important",
       "admin-gray-1" :"#9CA3AF",
       "admin-gray-2" :"#E7EFFF",
+      "admin-button-1":"#5F7FB9",
+      "admin-success-bg":"#EBF8F1",
+      "admin-success":"#1CBA75",
+      "admin-danger-bg":"#EBF8F1",
+      "admin-danger":"#1CBA75",
+      "admin-warning-bg":"#FFF5DF",
+      "admin-warning":"#FF9C2B",
     }
   },
   plugins: [],

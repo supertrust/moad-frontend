@@ -14,6 +14,7 @@ export interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTML
     labelClassName?: string;
     captionPosition?: 'top' | 'bottom',
     options: { value: string, text: string }[];
+    selected?: string,
 }
 interface Option {
     value?: string,
@@ -23,7 +24,7 @@ interface Option {
 function Select(props: SelectProps, ref: Ref<any>) {
     const {
         error, wrapperClassName, required, label, caption, className, right,
-        errorPosition = 'top', captionPosition = 'bottom', labelClassName, options, ...rest } = props;
+        errorPosition = 'top', captionPosition = 'bottom', labelClassName, options,selected, ...rest } = props;
     return (
         <div className={`select-wrap ${wrapperClassName}`}>
             <div className='flex flex-row justify-between items-center'>

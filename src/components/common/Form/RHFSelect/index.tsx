@@ -3,10 +3,11 @@ import { Controller, useFormContext } from "react-hook-form";
 
 export interface RHFSelectProps extends SelectProps {
     name: string;
+    selected?: string;
 }
 
 const RHFSelect = (props: RHFSelectProps) => {
-    const { name, ...rest } = props;
+    const { name,selected, ...rest } = props;
     const { control } = useFormContext();
 
     return (
@@ -20,7 +21,7 @@ const RHFSelect = (props: RHFSelectProps) => {
                     onChange={(e) => {
                         onChange(e.target.value);
                     }}
-                    value={value || ""}
+                    value={value || selected || ""}
                     name={name}
                     {...rest}
                 />

@@ -44,3 +44,34 @@ export type UpdateUserInfoType = {
     sector: string
     business_license: null | File;
 }
+
+export type UpdateAdvertiserInfoType = {
+    id: number;
+    company_phone_no: string
+    contact_phone_number: string
+    contact_position: string
+    manager: string
+    contact_email: string
+}
+export type GetAdvertiserPropsType = {
+    id: number | undefined
+}
+export interface IAdvertiser {
+    "id": number,
+    "employee_email": string,
+    "sector": string,
+    "company_name": string,
+    "company_phone_number": string,
+    "manager": string,
+    "contact_position": string,
+    "contact_person_mobile_number": string,
+    "contact_email": string,
+    "total_ad_no": 0,
+    "advertisement": string,
+    "advertisements": [],
+    "dormant_state": number,
+    "company_registration_number": number,
+    "company_registration_certificate": string,
+    "registration_date": string,
+    "member_history": []
+}

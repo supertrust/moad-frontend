@@ -1,5 +1,5 @@
 import { queryClient } from "@src/services/ReactQueryClient";
-import { ChangePasswordPropsType, GetUserPropsType, GetUserRolePropsType, IUser, IUserRole, UpdateUserInfoType } from "@src/types/user";
+import { ChangePasswordPropsType, GetAdvertiserPropsType, GetUserPropsType, GetUserRolePropsType, IAdvertiser, IUser, IUserRole, UpdateAdvertiserInfoType, UpdateUserInfoType } from "@src/types/user";
 import axios from "@src/utils/axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -39,3 +39,18 @@ export const useUpdateUserProfileImage = () => useMutation<void, string, { profi
 export const useMemberWithdrawal = () =>  useMutation<void, string, { reason : string }>({
     mutationFn: (data) => axios.post("/api/membership-withdrawal", data ),
 })
+
+export const useUpdateAdvertiserInfo = () =>
+  useMutation<void, string, UpdateAdvertiserInfoType>({
+    mutationFn: (props) =>
+      {
+        const {id,...data} = props;
+        return(axios.post(`/api/update-advertiser-user/${id}`, data))
+      }
+});
+
+export const useGetAdvertiserInfo = ({ id }: GetAdvertiserPropsType) => {
+    return(useQuery<IAdvertiser>({
+    queryKey: ["advertiser",id],
+    queryFn: async () => (await axios.get(`/api/admin-advertisment-management/${id}`)).data?.data[0],
+}))}

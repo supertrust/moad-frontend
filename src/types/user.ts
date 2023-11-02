@@ -52,6 +52,17 @@ export type UpdateAdvertiserInfoType = {
     contact_position: string
     manager: string
     contact_email: string
+    memo ? : string
+}
+
+export type AddMemoProps = {
+    user_id : number,
+    content ?: string
+}
+export type BlockUserProps = {
+    id : number,
+    status : number,
+    reason : string | undefined | null
 }
 export type GetAdvertiserPropsType = {
     id: number | undefined

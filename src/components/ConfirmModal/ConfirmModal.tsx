@@ -7,9 +7,10 @@ export interface ConfirmModalProps {
   text: ReactNode | null;
   accept: VoidFunction;
   reject: VoidFunction;
+  className?: string;
 }
 
-export default function ConfirmModal({ open, text, accept, reject }: ConfirmModalProps) {
+export default function ConfirmModal({ open, text, accept, reject,className }: ConfirmModalProps) {
   const [openModal, setOpenModal] = useState(false);
 
   const [accepted, setAccepted] = useState(false);
@@ -28,7 +29,7 @@ export default function ConfirmModal({ open, text, accept, reject }: ConfirmModa
     <Modal
       open={openModal}
       onClose={reject}
-      className='justify-center items-center flex'
+      className={`justify-center items-center flex ${className}`}
     >
       <div className="bg-white rounded-xl px-11 py-9 shadow-md">
         <div className="flex flex-col justify-center">

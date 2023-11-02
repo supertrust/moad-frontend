@@ -1,5 +1,5 @@
 import { queryClient } from "@src/services/ReactQueryClient";
-import { ChangePasswordPropsType, GetAdvertiserPropsType, GetUserPropsType, GetUserRolePropsType, IAdvertiser, IUser, IUserRole, UpdateAdvertiserInfoType, UpdateUserInfoType } from "@src/types/user";
+import { AddMemoProps, BlockUserProps, ChangePasswordPropsType, GetAdvertiserPropsType, GetUserPropsType, GetUserRolePropsType, IAdvertiser, IUser, IUserRole, UpdateAdvertiserInfoType, UpdateUserInfoType } from "@src/types/user";
 import axios from "@src/utils/axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -54,3 +54,14 @@ export const useGetAdvertiserInfo = ({ id }: GetAdvertiserPropsType) => {
     queryKey: ["advertiser",id],
     queryFn: async () => (await axios.get(`/api/admin-advertisment-management/${id}`)).data?.data[0],
 }))}
+
+export const useAddMemo = () =>
+  useMutation<void, string, AddMemoProps>({
+    mutationFn: (props) =>(axios.post(`/api/memo`, props)),
+    onSuccess: () => queryClient.invalidateQueries(['advertiser'])
+});
+export const useUserBlock = () =>
+  useMutation<void, string, BlockUserProps>({
+    mutationFn: (props) =>(axios.post(`/api/block-user/${props.id}`, props)),
+    onSuccess: () => queryClient.invalidateQueries(['admin-member-inquiry-list'])
+});

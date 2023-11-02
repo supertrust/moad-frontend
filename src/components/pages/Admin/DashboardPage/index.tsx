@@ -5,6 +5,11 @@ import { useCompanyAdList } from '@src/apis/admin/advertisement';
 import { GetCompanyAdListType, ICompanyAdList } from '@src/types/admin/advertisment';
 import { ColumnsType } from 'antd/es/table';
 
+const Types = {
+  fixed_ad: "고정",
+  national_ad: "국가",
+  spot_ad: "스팟",
+};
 
 function AdminAdvertismenentManagement() {
 
@@ -52,18 +57,18 @@ function AdminAdvertismenentManagement() {
     {
       title: '회사명',
       dataIndex: 'company_name',
-      width: 185,
+      width: 150,
       className:"text-center",
     },
     {
       title: '광고모집기간',
-      dataIndex: 'recruitment_period',
+      dataIndex: 'advertisement_recruitment_period',
       className: 'text-center',
-      width: 150,
+      width: 185,
     },
     {
       title: '모집차량수',
-      dataIndex: 'number_of_vehicle_recruited',
+      dataIndex: 'number_of_vehicles_recruited',
       width: 150,
       className: 'text-center',
       render: (value) => {
@@ -72,7 +77,7 @@ function AdminAdvertismenentManagement() {
     },
     {
       title: '광고진행상태',
-      dataIndex: 'number_of_vehicle_in_operation',
+      dataIndex: 'number_of_vehicles_in_operation',
       width: 150,
       className: 'text-center',
       render: (value) => {
@@ -87,15 +92,16 @@ function AdminAdvertismenentManagement() {
     },
     {
       title: '광고유형',
-      dataIndex: 'contact_email',
+      dataIndex: 'advertising_period',
       width: 200,
       className: 'text-center',
     },
     {
       title: '총 광고건수',
-      dataIndex: 'total_ad_no',
+      dataIndex: 'advertisement_type',
       width: 120,
       className: 'text-center',
+      render: (value) => Types[value]
     },
     {
       title: '블랙리스트 및 휴면상태',
@@ -105,9 +111,13 @@ function AdminAdvertismenentManagement() {
     },
     {
       title: '가입일시',
-      dataIndex: 'registration_date',
+      dataIndex: 'advertisement_application_date_and_time',
       width: 176,
       className: 'text-center',
+      render: (value: string) => {
+        const date = value.split('T')
+        return <span>{date[0]} {date[1].split('.').shift()}</span>
+      },
     },
   ];
 

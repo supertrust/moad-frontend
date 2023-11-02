@@ -23,7 +23,12 @@ export interface ICompanyAdList {
     ad_name: string,
     sector: string,
     company_name: string,
-    recruitment_period: string
-    number_of_vehicle_recruited: number
-    number_of_vehicle_in_operation: number
+    advertisement_recruitment_period: string
+    number_of_vehicles_recruited: number
+    number_of_vehicles_in_operation: string
+    advertisement_progress_status: string
+    advertising_period: string
+    advertisement_type: string
+    advertising_area: number
+    advertisement_application_date_and_time: string
 }

@@ -4,6 +4,7 @@ import { Checkbox, Pagination, Table } from 'antd';
 import { useCompanyAdList } from '@src/apis/admin/advertisement';
 import { GetCompanyAdListType, ICompanyAdList } from '@src/types/admin/advertisment';
 import { ColumnsType } from 'antd/es/table';
+import { useRouter } from 'next/router';
 
 const Types = {
   fixed_ad: "고정",
@@ -126,6 +127,8 @@ function AdminAdvertismenentManagement() {
   }, []);
 
 
+  const router = useRouter();
+
   return (
     <div className='m-4'>
       <AdvancedSearch 
@@ -174,6 +177,7 @@ function AdminAdvertismenentManagement() {
                         ...cellStyle,
                         height: "40px",
                         padding: 0,
+                        cursor: 'pointer',
                       }}
                     />
                   );
@@ -181,6 +185,11 @@ function AdminAdvertismenentManagement() {
               }
             }}
             className='border border-admin-stroke'
+            onRow={(ad) => {
+              return {
+                onClick: (event) => router.push(`/admin/advertisement-management/${ad.id}`)
+              };
+            }}
           />
         </div>
       </div>

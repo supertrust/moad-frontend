@@ -15,6 +15,7 @@ import { useCallback, useMemo } from "react";
 import Search from "../../../../../../layout/components/advertisementAdmin/Search/Search";
 import DropdownIcon from "../../../../../icons/admin/advertisement/dropdownIcon";
 import styles from "./styles.module.scss";
+import AdDetail from '../adDetail/adDetail';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -50,6 +51,11 @@ function AdListModal({adListModalOpen,handleAdListModalClose} : {adListModalOpen
     const handleFieldChange = (value: string | string[]) => {
         console.log(`Selected: ${value}`);
     };
+
+    const [adDetailModalOpen, setAdDetailModalOpen] = React.useState<{open:boolean,data:AdminAdList | null}>({
+        open: false,
+        data: null,
+      });
 
     const fieldOptions : SelectProps['options'] = [
         {
@@ -121,7 +127,13 @@ function AdListModal({adListModalOpen,handleAdListModalClose} : {adListModalOpen
             width: 235,
             ...colGeneral,
             render:(_,record)=>{
-                return <div className={'flex'}><span className={'underline'}>{record.ad_name}</span></div>
+                
+                return <div className={'flex'} onClick={() =>
+                    setAdDetailModalOpen({
+                      open: true,
+                      data: record || [],
+                    })
+                  }><span className={'underline'}>{record.ad_name}</span></div>
             }
         },
         {
@@ -267,6 +279,15 @@ function AdListModal({adListModalOpen,handleAdListModalClose} : {adListModalOpen
                     </div>
                 </DialogActions>
             </BootstrapDialog>
+            <AdDetail
+                adDetailModalOpen={adDetailModalOpen}
+                handleAdDetailModalClose={() =>
+                    setAdDetailModalOpen({
+                    open: false,
+                    data: null,
+                })
+                }
+            />
         </div>
     );
 }

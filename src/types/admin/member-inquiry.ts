@@ -12,7 +12,13 @@ export type AdminAdList = {
     updated_at: string;
     deleted_at: string | null;
     approved: string;
+    content: string;
+    advertisement_vehicles : {
+        vehicles :{
+        vehicle_type : string
+    }}[]
 };
+
 
 export interface MemberInquiry {
     company_name: string;

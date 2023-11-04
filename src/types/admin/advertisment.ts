@@ -2,7 +2,7 @@ export type PeriodeType = '' | 'today' | '1week' | '1month' | '3months' | '6mont
 
 export type AdStatusType = '' | 'applyingForAdvertisement' | 'adReviewing' | 'focusingOnRecruitingCargoOwners' | 'advertisementInProgress' | 'advertisementEnds' 
 
-export type AdTypeType = '' | 'fixed_ad' | 'national_ad' | 'spot_ad'
+export type AdTypeType =  'fixed_ad' | 'national_ad' | 'spot_ad'
 
 export type GetCompanyAdListType = {
     page: number, 
@@ -62,6 +62,8 @@ export interface IAdvertisementDetails  {
     ad_name: string
     sector: string,
     company_name: string
+    company_phone_number: number,
+    manager: string,
     content: string,
     business_registration_number: number,
     advertisement_recruitment_period_start: string
@@ -80,6 +82,50 @@ export interface IAdvertisementDetails  {
     contact_email: string
     advertisement_application_date_and_time: string
     advertisement_content: string
-    advertising_cost: string
-    images: []
-  }
+    advertising_cost: string,
+    images: {
+        id: number,
+        advertisement_id: number,
+        image_path: string,
+        created_at: string,
+        updated_at: string
+    }[]
+}
+
+export type VehicleType = 'cargo' | 'tower' | 'loaded'
+
+export type UpdateCompanyAdProps = {
+    advertisement_id: string,
+    ad_name: string
+    company_phone_number: number,
+    business_registration_number: string
+    advertisement_recruitment_period_start: string
+    advertisement_recruitment_period_end : string
+    advertisement_progress_status: 'applying' | 'proceeding' | 'end'
+    advertising_period_start: string
+    advertising_period_end: string
+    advertisement_type: AdTypeType
+    advertisement_vehicle_type : VehicleType,
+    advertising_area : number[],
+    vehicle_details: { [key:string]: number},
+    contact_phone_person: string,
+    contact_phone_number: number,
+    contact_email: string,
+    contact_position: string,
+    advertisement_content: string,
+    advertising_cost: number,
+    manager: string,
+    number_of_vehicles_recruited: number
+    image_1: {},
+    image_2: {},
+    image_3: {},
+    image_4: {},
+    image_5: {},
+    image_6: {},
+    image_7: {},
+    image_8: {},
+    image_9: {},
+    image_10: {},
+    image_12: {},
+    image_13: {},
+}

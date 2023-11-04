@@ -98,7 +98,7 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
             adApplication: '',
             adSearchBy:'ad_name',
             adStatus: [''],
-            adType: ['']
+            adType: []
         }
         setFilters(filters);
         onSearch(filters);

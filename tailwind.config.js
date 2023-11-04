@@ -35,6 +35,7 @@ module.exports = {
       "admin-danger":"#1CBA75",
       "admin-warning-bg":"#FFF5DF",
       "admin-warning":"#FF9C2B",
+      "admin-placeholder":"#CDD1D9",
     }
   },
   plugins: [],

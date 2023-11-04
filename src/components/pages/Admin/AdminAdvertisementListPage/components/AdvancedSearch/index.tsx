@@ -88,7 +88,7 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
         )
     }
 
-    const handleChangeType = (value: AdTypeType) => {
+    const handleChangeType = (value?: AdTypeType) => {
         if(!value){
             return handleChange('adType', [])
         } 
@@ -112,7 +112,7 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
             adApplication: '',
             adSearchBy:'ad_name',
             adStatus: [''],
-            adType: ['']
+            adType: []
         }
         setFilters(filters);
         onSearch(filters);
@@ -260,7 +260,7 @@ const AdvancedSearch = ({ className, value, onSearch }: AdvancedSearchProps) => 
                         <label className='mr-4'>
                             <Checkbox  
                                 checked={!adType?.length}  
-                                onChange={() => handleChangeType('')}
+                                onChange={() => handleChangeType()}
                             /> 전체
                         </label>
                         <label className='mr-4'>

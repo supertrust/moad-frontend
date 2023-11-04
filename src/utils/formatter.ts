@@ -12,3 +12,14 @@ export const formatDate = (
     const timeString = time ? ` ${timeFormat}` : "";
     return dayjs(date).format(`${dateFormat}${timeString}`);
 };
+
+export const formatNumberWithCommas = (
+    number: number | undefined,
+    fraction = 1,
+): string | undefined => {
+    if (number === undefined) return number;
+    const formatter = new Intl.NumberFormat("ko-KR", {
+        maximumFractionDigits: fraction,
+    });
+    return formatter.format(number);
+};

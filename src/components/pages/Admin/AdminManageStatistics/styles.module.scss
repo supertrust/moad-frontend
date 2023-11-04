@@ -1,0 +1,131 @@
+$font-family: "Noto Sans KR", sans-serif;
+
+.top-value-body{
+  height: 170px;
+  margin: 30px 0px 40px 0px;
+  border: solid 1px #3772ff;
+  background-color: #f8faff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.top-value{
+
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  text-align: center;
+
+  .tob-value-title{
+    span{
+      font-family: $font-family;
+      font-size: 16px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: #6b7280;
+    }
+  }
+  .tob-value-number{
+    display: flex;
+    font-family: $font-family;
+    align-items: end;
+    font-size: 30px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #3772ff;
+    span:last-child{
+      font-size: 18px;
+      color: #1d2025;
+      padding-bottom: 2px;
+    }
+  }
+}
+
+.top-value:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #e3e5e8;
+}
+
+.title {
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #1d2025;
+}
+
+.sub-title {
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #99a0ac;
+}
+
+.sub-title span {
+  font-weight: 500;
+  color: #3772ff;
+}
+
+.excel-button{
+  width: 114px;
+  height: 40px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4px;
+  border: solid 1px #e3e5e8;
+  background-color: #eff4fd;
+}
+
+.excel-button span{
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.32px;
+  text-align: left;
+  color: #9ca3af;
+}
+
+.dropdown-text{
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #535a65;
+}
+

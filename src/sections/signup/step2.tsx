@@ -176,9 +176,7 @@ const Step2 = ({
 									label='비밀번호 확인'
 									right={
 										<span
-											className={`icon pw-show ${
-												visiblePasswordConfirmation && 'active'
-											}`}
+											className={`icon pw-show ${!visiblePassword && 'active'}`}
 											onClick={() =>
 												setVisiblePasswordConfirmation(
 													!visiblePasswordConfirmation,

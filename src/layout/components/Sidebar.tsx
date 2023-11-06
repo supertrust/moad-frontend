@@ -50,7 +50,6 @@ function Sidebar({ msg }: SidebarProps) {
 
   useEffect(()=>
   {
-    console.log('log',router.pathname)
     if(router.pathname && sideBarPath[router.pathname])
     {
       setTab(sideBarPath[router.pathname])

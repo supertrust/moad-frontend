@@ -112,8 +112,14 @@ function AuthProvider({ children }: AuthProviderProps) {
     }, [isCargoRoute(router.pathname)]);
 
     const logout = useCallback(async () => {
-        router.push("/login")
-        await _logout();
+        if(router.pathname?.includes("admin"))
+            router.push("/admin/login")
+
+        else {
+            router.push("/login");
+            await _logout();
+        }
+
         queryClient.clear();
         removeAxiosToken();
         localStorage.removeItem('token');

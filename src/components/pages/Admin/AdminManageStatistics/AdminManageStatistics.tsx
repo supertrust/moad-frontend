@@ -1,6 +1,10 @@
+import {
+    useGetAdminStatistics,
+    usePostAdminStatisticsList
+} from "@src/apis/admin/manage-statistics";
 import { DropdownIcon } from "@src/components/icons/admin/advertisement";
 import { FilterAndSearchSection } from "@src/components/pages/Admin/AdminManageStatistics/components";
-import { formatNumberWithCommas } from "@src/utils/formatter";
+import { formatDate, formatNumberWithCommas } from "@src/utils/formatter";
 import { Pagination, Select, SelectProps, Table } from "antd";
 import clsx from "clsx";
 import Link from "next/link";
@@ -13,11 +17,12 @@ const colGeneral = {
 
 const AdminManageStatistics = () => {
 
+    const {data : statList } = usePostAdminStatisticsList();
+    const {data : stat} = useGetAdminStatistics();
+
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
-   const manageStatisticsList =  Array(20).fill({ no: 1, employee_email : "mufincrew@mail.com",sector : "온라인투자연계금융업",
-       company_name : "머스트핀테크",
-       ad_in_progress : "유", no_of_vehicle : "230",ad_amount_monthly : "123,456,789", date_time_last_ad : "2023.07.01 09:00:00"});
+   const manageStatisticsList =  statList?.data;
     const handleFieldChange = (value: string | string[]) => {
         console.log(`Selected: ${value}`);
     };
@@ -102,13 +107,16 @@ const AdminManageStatistics = () => {
             },
             {
                 title: "진행중인광고",
-                dataIndex: "ad_in_progress",
+                dataIndex: "in_progress",
                 width: 120,
                 ...colGeneral,
+                render:(text)=>{
+                    return <>{text ? "유" : "무"}</>
+                }
             },
             {
                 title: "운행차량수",
-                dataIndex: "no_of_vehicle",
+                dataIndex: "vehicle_count",
                 width: 180,
                 ...colGeneral,
                 render: (text, record, index) => {
@@ -124,7 +132,7 @@ const AdminManageStatistics = () => {
             },
             {
                 title: "광고금액 (월)",
-                dataIndex: "ad_amount_monthly",
+                dataIndex: "total_cost",
                 width: 205,
                 align : "right" as AlignType,
                 ...colGeneral,
@@ -134,16 +142,19 @@ const AdminManageStatistics = () => {
                             className="underline text-[#1D2025]"
                             href={`/admin/member-detail/${record?.user_id}`}
                         >
-                            {text}{"원"}
+                            {text}{text?.length ? "원" : ""}
                         </Link>
                     );
                 },
             },
             {
                 title: "마지막광고등록일시",
-                dataIndex: "date_time_last_ad",
+                dataIndex: "registration_date",
                 width: 176,
                 ...colGeneral,
+                render: (text)=>{
+                    return <>{formatDate(text,true,"YYYY.MM.DD","HH:mm:ss")}</>
+                }
             },
 
         ],
@@ -299,7 +310,7 @@ const AdminManageStatistics = () => {
 
 
 
-            {manageStatisticsList?.length>0 && (
+            {manageStatisticsList?.length ? (
                 <div className={"flex justify-center py-[54px]"}>
                     <Pagination
                         className={"admin-members-inquiry-pagination"}
@@ -307,7 +318,7 @@ const AdminManageStatistics = () => {
                         total={10}
                     />
                 </div>
-            )}
+            )  : <></>}
 
         </div>
     );

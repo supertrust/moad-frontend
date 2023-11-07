@@ -7,11 +7,12 @@ import { useRouter } from "next/router";
 import React, { useState } from 'react';
 
 const allRoutes = {
-    dashboard: "/admin/dashboard",
+     dashboard: "/admin/dashboard",
     memberList: "/admin/member-inquiry",
     advertisement: "/admin/advertisement-management",
-    manageStat: "/admin/manage-statistics",
+     manageStat: "/admin/manage-statistics",
     postManagement: "/admin/post-management",
+    settings: "/admin/settings",
     withdrawalManagement: "/admin/withdrawal-management"
 }
 
@@ -51,9 +52,9 @@ const Sidebar = () => {
                 <div className={'cursor-pointer'} onClick={() => {
                     handleRouting(`${allRoutes.postManagement}/inquiry`)
                 }}><Icon6 isSelected={path.includes(allRoutes.postManagement)}/></div>
-                <div className={'cursor-pointer'} onClick={() => {
-                    handleRouting("")
-                }}><Icon7 isSelected={path === ""}/></div>
+                <div className={'cursor-pointer'} onClick = {()=>{
+                    handleRouting(allRoutes.settings)
+                }}><Icon7 isSelected={path.includes(allRoutes.settings)}/></div>
             </div>
         </div>
     );

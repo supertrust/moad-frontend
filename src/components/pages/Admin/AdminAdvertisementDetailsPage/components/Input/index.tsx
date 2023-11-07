@@ -31,7 +31,7 @@ const Input = ({
 
 
     return (
-        <div>
+        <>
             <div 
                 className={clsx(
                     styles['input-layout'],
@@ -65,7 +65,7 @@ const Input = ({
                 "text-sm ",
                 error ?  "text-admin-error" : "text-admin-sub"
             )}>{helperText}</div>}
-        </div>
+        </>
 
     );
 };

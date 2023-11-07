@@ -4190,3 +4190,20 @@ input:focus-visible {
 	background-color: white!important;
 	color : #3772FF!important;
 }
+
+
+.push-notification .ant-checkbox-inner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  
+	width: 20px;
+	height: 20px;
+}
+  
+.push-notification.ant-checkbox-inner::after {
+	transform: scale(2) rotate(45deg);
+	position: relative;
+	top: -6%;
+	inset-inline-start: 0;
+}

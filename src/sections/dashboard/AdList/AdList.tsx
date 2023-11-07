@@ -131,7 +131,7 @@ export default function AdListModule() {
 	const itemsPerPage = (window.innerWidth > 767) ? 6 : 5;
 
 	const [currentPage, setCurrentPage] = useState(1); // Current page number
-	const totalItems = advertisements?.data.length ?? 0; // Total number of items
+	const totalItems = advertisements?.data?.length ?? 0; // Total number of items
 	const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
 	const prevItems = (currentPage - 1) * itemsPerPage;
 	const currentItems = currentPage * itemsPerPage;

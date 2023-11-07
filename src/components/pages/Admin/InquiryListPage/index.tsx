@@ -4,6 +4,7 @@ import { Button, Pagination, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { GetPostType, IPost } from '@src/types/admin/posts';
 import { useGetPosts } from '@src/apis/admin/post';
+import { formatDate } from '@src/utils/formatter';
 
 
 function AdminPostList() {
@@ -35,7 +36,7 @@ function AdminPostList() {
         },
         {
             title: '유형',
-            dataIndex: 'type',
+            dataIndex: 'types',
             width: 100,
             className: "text-center",
         },
@@ -63,21 +64,18 @@ function AdminPostList() {
         },
         {
             title: '문의내용',
-            dataIndex: 'content',
+            dataIndex: 'title',
             className: 'text-left',
             width: 450,
             render: (value) => {
-                return <span className='underline'>{value}</span>
+                return <span className='underline text-ellipsis overflow-hidden'>{value}</span>
             },
         },
         {
             title: '답변',
-            dataIndex: 'answer',
+            dataIndex: 'inquiry_answer',
             width: 350,
             className: 'text-left',
-            render: (value) => {
-                return <span className='underline'>{value}</span>
-            },
         },
         {
             title: '답변작성자',
@@ -87,15 +85,17 @@ function AdminPostList() {
         },
         {
             title: '문의 등록일시',
-            dataIndex: 'date_inquiry',
+            dataIndex: 'registration_date',
             width: 150,
             className: 'text-center',
+            render: (value) => value && formatDate(value, true),
         },
         {
             title: '답변 등록일시',
-            dataIndex: 'reply_date',
+            dataIndex: 'updated_date',
             width: 150,
             className: 'text-center',
+            render: (value) => value && formatDate(value, true),
         }
     ];
 
@@ -170,7 +170,7 @@ function AdminPostList() {
                                             style={{
                                                 ...cellStyle,
                                                 height: "40px",
-                                                padding: 0,
+                                                padding: "0px 5px",
                                             }}
                                         />
                                     );

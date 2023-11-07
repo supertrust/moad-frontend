@@ -29,7 +29,13 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
     }
 
     const onAgree = () => { 
-        advertisment && saveAdvertisement(advertisment, {
+        const data = {
+            ...advertisment,
+            vehicle_details: JSON.stringify(advertisment?.vehicle_details),
+			operating_area: JSON.stringify(advertisment?.operating_area),
+        }
+        // @ts-ignore
+        advertisment && saveAdvertisement(data, {
             onSuccess: () => {
                 refetchAds();
                 setAgreed(true);

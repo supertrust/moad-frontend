@@ -37,13 +37,17 @@ export type SaveAdvertisementType = {
     start_date: string;
     vehicle_details: {
         [key: number]: number
-    },
-    operating_area: number[];
+    } | string,
+    operating_area: number[] | string;
     total_cost: number;
     status: string;
     end_date: string;
+    image_1?: string | FormData;
 };
 
+export interface IAdvertisementData {
+    data : IAdvertisement[]
+}
 export interface IAdvertisement {
     ad_name: string;
     ad_period: number;
@@ -69,7 +73,7 @@ export interface IAdvertisement {
         id: number;
         sector: string;
     }
-}
+}[]
 
 export type GetAdvertisementVehiclesPropsType = {
     advertisement_id: string;

@@ -89,7 +89,7 @@ const AdminAdvertisementDetailsPage = () => {
     const imageRef = useRef<HTMLInputElement>();
     const [updateImage, setUpdateImage] = useState(false);
     const [images, setImages] = useState<File[]>([]);
-
+console.log('images', images)
     const handleFileChange = event =>  setImages([...images, ...event.target.files as File[]])
     const removeFile = (file: File) => setImages(images.filter(image =>  image !== file))
     

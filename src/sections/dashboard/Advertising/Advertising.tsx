@@ -54,7 +54,7 @@ export default function Advertising() {
           <div className={styles.value}>
             <span>{
               (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
-              width={20} height ={28}/> : advertisements?.length
+              width={20} height ={28}/> : advertisements?.data?.length
             }건
             </span>
           </div>

@@ -63,8 +63,8 @@ export default function AdListModule() {
 	};
 
 	const handleSelectAll = () => {
-		if (selectedAds.length !== advertisements?.length) {
-			setSelectedAds(advertisements || []);
+		if (selectedAds.length !== advertisements?.data?.length) {
+			setSelectedAds(advertisements?.data || []);
 		} else {
 			setSelectedAds([]);
 		}
@@ -131,11 +131,13 @@ export default function AdListModule() {
 	const itemsPerPage = (window.innerWidth > 767) ? 6 : 5;
 
 	const [currentPage, setCurrentPage] = useState(1); // Current page number
-	const totalItems = advertisements?.length ?? 0; // Total number of items
+	const totalItems = advertisements?.data.length ?? 0; // Total number of items
 	const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
 	const prevItems = (currentPage - 1) * itemsPerPage;
 	const currentItems = currentPage * itemsPerPage;
-	const sortedAdvertisements = advertisements?.sort((a, b) => b.id - a.id);
+
+	const sortedAdvertisements = advertisements?.data?.sort((a, b) => b.id - a.id);
+	
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
 	};
@@ -207,7 +209,7 @@ export default function AdListModule() {
 									<input
 										type='checkbox'
 										onChange={handleSelectAll}
-										checked={selectedAds.length === advertisements?.length}
+										checked={selectedAds.length === advertisements?.data?.length}
 										name='all_chk'
 										id='all_chk'
 										className='all-chk'
@@ -306,7 +308,7 @@ export default function AdListModule() {
 					</div>
 					{/* Render the Pagination component */}
 					{
-						advertisements?.length &&
+						advertisements?.data?.length &&
 						<div className='flex justify-center py-[30px] notification_pagination'>
 							<Pagination
 								current={currentPage}

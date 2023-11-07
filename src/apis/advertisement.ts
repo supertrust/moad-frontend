@@ -9,6 +9,7 @@ import {
     GetAdvertisementsPropType,
     GetCargoImageListProps,
     IAdvertisement,
+    IAdvertisementData,
     IAdvertisementOperatingArea,
     IAdvertisementStat,
     IAdvertisementVehicle,
@@ -24,7 +25,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@src/services/ReactQueryClient";
 
 export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) =>
-    useQuery<IAdvertisement[], string>({
+    useQuery<IAdvertisementData, string>({
         queryKey: ["advertisements", ...Object.values(props)],
         queryFn: async () =>
             (await axios.get("/api/get-advertisement", { params: props })).data.data,
@@ -93,8 +94,14 @@ export const useGetOperatingAreas = () =>
     });
 
 export const useSaveAdvertisement = () =>   useMutation<IAdvertisement, string, SaveAdvertisementType>({
-    mutationFn: async (props) =>
-        (await axios.post("/api/save-advertisement", props)).data.data,
+    mutationFn: async (props) =>{
+        const formData = new FormData();
+        Object.entries(props).forEach(([key, value]) =>
+            !!value && formData.append(key, value as string | Blob)
+        );
+        return(await axios.post("/api/save-advertisement", formData, {
+            headers: { "Content-Type": "multipart/form-data"}
+        })).data.data},
     onSuccess: () => { 
         queryClient.invalidateQueries(["advertisements"] , {exact : false})
         queryClient.invalidateQueries(["advertisement-vehicles-stats"])

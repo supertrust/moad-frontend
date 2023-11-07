@@ -20,3 +20,24 @@ export type UpdateAdvetiserUserProps = {
     push_notification: string
     registrants: string
 }
+
+
+export interface IAdminUserDetails {
+    id: number
+    username: string,
+    email: string
+    access: string,
+    role_id: number
+    status: string,
+    created_at:  string
+    updated_at: string
+    deleted_at: string,
+    name: string
+    id_number: number
+    department: string
+    phone_number: number
+    mobile_phone: number
+    division: string,
+    registrants: string,
+    push_notification: string
+}

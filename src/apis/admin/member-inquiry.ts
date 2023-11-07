@@ -5,5 +5,5 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useAdminMemberInquiryList = () => useQuery<AdminMemberInquiryListRes, string>({
     queryKey: ["admin-member-inquiry-list"],
-    queryFn: async () => (await axios.get("/api/admin-advertisment-management")).data,
+    queryFn: async () => (await axios.post("/api/admin-advertisment-management")).data,
 });

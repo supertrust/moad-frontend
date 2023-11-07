@@ -231,7 +231,7 @@ const AdminMemberInquiry = () => {
         <div className={"flex items-center space-x-4"}>
           <span className={styles["title"]}>회원목록</span>
           <p className={styles["sub-title"]}>
-            전체 <span>150</span> 명 (검색결과 총 <span>0</span> 명)
+            전체 <span className={'underline'}>150</span> 명 (검색결과 총 <span  className={'underline'}>0</span> 명)
           </p>
         </div>
         <div className={"flex space-x-1"}>

@@ -39,3 +39,9 @@ export const useUpdateCompanyAd = () =>  useMutation<void, string, UpdateCompany
         queryClient.invalidateQueries(['company-ad-list'])
     }
 });
+
+export const useAdminApproveAd = () =>  
+    useMutation<void , string, { id: number , status: 'no' | 'yes'} >({
+        mutationFn: async (props) =>  (await axios.post("/api/approve-advertisement", props )).data,
+        onSuccess: (_, { id }) =>  queryClient.invalidateQueries(['ad-details', id])
+    })

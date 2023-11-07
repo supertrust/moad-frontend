@@ -142,6 +142,8 @@ export default function AdListModule() {
 		setCurrentPage(page);
 	};
 
+	console.log("Advertisment =>" , advertisements);
+
 	return (
 		<>
 			<div className={styles.titleWrap}>

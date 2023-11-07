@@ -6,7 +6,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import DotStatusIcon from "../../../icons/admin/advertisement/dotStatusIcon";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
-import { useGetAdvertisementDetails, useUpdateCompanyAd } from "@src/apis/admin/advertisement";
+import { useAdminApproveAd, useGetAdvertisementDetails, useUpdateCompanyAd } from "@src/apis/admin/advertisement";
 import Loader from "@src/components/Loader";
 import dayjs from 'dayjs';
 import { formatDate } from "@src/utils/formatter";
@@ -79,7 +79,10 @@ const AdminAdvertisementDetailsPage = () => {
     const { idx } = query;
     const { data: adDetails, isLoading } = useGetAdvertisementDetails(Number(idx));
     const { data: operatingAreas } = useGetOperatingAreas();
-    const { mutateAsync : updateCompanyAd, isLoading: isUpdating  } = useUpdateCompanyAd();
+    const { mutateAsync: updateCompanyAd, isLoading: isUpdating  } = useUpdateCompanyAd();
+
+    const [status, setStatus] = useState<'no' | 'yes'>('no')
+    const { mutateAsync: adminApproveAd , isLoading: isApproving } = useAdminApproveAd();
 
     const adAreaOptions = useMemo(
         () =>  operatingAreas?.map((area) => ({ label: area.area , value: area.id })) || [], 
@@ -89,7 +92,7 @@ const AdminAdvertisementDetailsPage = () => {
     const imageRef = useRef<HTMLInputElement>();
     const [updateImage, setUpdateImage] = useState(false);
     const [images, setImages] = useState<File[]>([]);
-console.log('images', images)
+
     const handleFileChange = event =>  setImages([...images, ...event.target.files as File[]])
     const removeFile = (file: File) => setImages(images.filter(image =>  image !== file))
     
@@ -152,6 +155,13 @@ console.log('images', images)
             }
         });
     })
+
+    const approveAd = async() => {
+        await adminApproveAd({ id: Number(idx), status}, {
+            onSuccess: () =>  toast.success('광고 상태 변경 성공'),
+            onError: (err) =>   toast.error( err || '문제가 발생했습니다.')
+        })
+    }
 
     return (
         <div className={'flex flex-col mt-[35.5px] px-6 mb-[56.3px]'}>
@@ -291,19 +301,33 @@ console.log('images', images)
                                 )}
                             />
                         </DataRow>
-                        <DataRow keyValue={"모집차량수"}>
+                        <DataRow keyValue={"광고진행상태"}>
                             <div className={'flex space-x-[30px] items-center px-2'}>
-                                <div className={styles['status']}>
+                                {/* { <div className={styles['status']}>
                                     <DotStatusIcon fill={"#7571ee"}/>
-                                    <span>
-                                    광고신청중
-                                </span>
-                                </div>
-                                <div className={styles['change-status-button']}>
-                                <span>
-                                    광고진행상태 변경
-                                </span>
-                                </div>
+                                    <span>광고신청중</span>
+                                </div>: */}
+                                {
+                                    <Select
+                                        popupClassName={"admin-advertisement-select"}
+                                        size={"large"}
+                                        style={{ width: 200, borderRadius: "4px!important" }}
+                                        suffixIcon={<div className={'pr-1'}><DropdownIcon/></div>}
+                                        options={[
+                                            { value: "no" , label: "아니요" }, 
+                                            { value: "yes" , label: "예"}
+                                        ]}
+                                        value={status}
+                                        onChange={(value) =>  setStatus(value)}
+                                    />
+                                }
+                                <Button 
+                                    className={styles['change-status-button']}
+                                    onClick={approveAd}
+                                    loading={isApproving}
+                                >
+                                    <span>제출</span>
+                                </Button>
                             </div>
                         </DataRow>
                         <DataRow keyValue={"광고기간"}>

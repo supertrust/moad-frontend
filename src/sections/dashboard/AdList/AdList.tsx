@@ -49,7 +49,6 @@ export default function AdListModule() {
 			type,
 			for_admin: userRole?.role_name === 'Admin',
 		});
-		console.log('advertisements', advertisements)
 	const { mutateAsync: updateAdStatus } = useUpdateAdStatus();
 	const { mutateAsync: deleteAd } = useDeleteAdvertisement();
 
@@ -150,7 +149,6 @@ export default function AdListModule() {
 		setCurrentPage(page);
 	};
 
-	console.log("Advertisment =>" , advertisements);
 
 	return (
 		<>

@@ -135,7 +135,7 @@ const SaveAdForm = ({
 
   const handleFileChange = event =>  setImages([...images, ...event.target.files as File[]])
   const removeFile = (file: File) => setImages(images.filter(image =>  image !== file))
-console.log('images', images)
+
   const {
     handleSubmit,
     control,
@@ -181,9 +181,8 @@ console.log('images', images)
         ...imageData,
         total_cost: totalPrice,
         end_date: endDate,
-        status: "proceeding",
+        status: "applying",
       };
-      console.log("values", values);
       await onSubmitForm(values);
     },
     (errors) => {
@@ -543,7 +542,6 @@ console.log('images', images)
 
                                 <div className={'flex gap-2 flex-wrap !mt-[12px]'}>
                                     {images.map((file, key)=>{
-                                      console.log('file.name', file.name)
                                       return( 
                                         <div className={styles['image_section']} key={key}>
                                          

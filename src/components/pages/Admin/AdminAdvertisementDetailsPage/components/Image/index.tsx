@@ -8,8 +8,8 @@ interface AdImageProps {
     src: string ,
     alt?: string
     className?: string
-    edit: boolean
-    onRemove: VoidFunction
+    edit?: boolean
+    onRemove?: VoidFunction
     onView?: VoidFunction
 }
 
@@ -20,7 +20,7 @@ function AdImage({ className, src, alt, onRemove, edit, onView} : AdImageProps) 
                 src={edit ? IconRemove : IconSearch} 
                 alt=''
                 className='absolute right-2 top-2 cursor-pointer'
-                onClick={edit ? onRemove: (onView && onView)}
+                onClick={edit ? (onRemove && onRemove): (onView && onView)}
             />
             <img 
                 src={src} 

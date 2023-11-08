@@ -2,6 +2,7 @@ import { number } from "yup";
 
 export type AdTypesType = "national_ad" | "spot_ad" | "fixed_ad";
 export type AdStatusesType = "proceeding" | "applying" | "end";
+export type AdVehicleType= "cargo" | "tower" | "loaded"
 
 export type GetAdvertisementsPropType = {
     type?: AdTypesType;
@@ -48,32 +49,38 @@ export type SaveAdvertisementType = {
 export interface IAdvertisementData {
     data : IAdvertisement[]
 }
+
 export interface IAdvertisement {
-    ad_name: string;
-    ad_period: number;
-    advertiser_id: number;
-    amount: number;
-    email: null | string;
-    end_date: string;
-    id: number;
-    start_date: string;
-    status: "proceeding"
-    total_cost: number;
+    id: number,
+    advertiser_id: number,
+    ad_name: string
+    type: AdTypesType,
+    start_date: string
+    email: string,
+    end_date: string
+    status: AdStatusesType,
+    total_cost:  number
+    ad_period: number
+    amount: number,
+    number_of_cargo: number
+    number_of_vehicles: string
+    vehicle_type: AdVehicleType
     approved: "yes" | "no",
-    type: "fixed_ad" | "national_ad" | "spot_ad";
-    number_of_vehicles: number;
-    advertiser: {
-        business_license: string;
-        business_registration_number: string;
-        company_name: string;
-        company_phone_number: string;
-        employee_email: string;
-        employee_name: string;
-        employee_phone_number: string;
-        id: number;
-        sector: string;
-    }
-}[]
+    situation: string,
+    content: string,
+    operating_areas: string[]
+    vehicles_in_operation:   {
+        number_of_vehicles: number,
+        vehicle_type: string
+    }[]
+    images: {
+        id: number,
+        advertisement_id: number,
+        image_path: string,
+        created_at: string,
+        updated_at: string
+    }[]
+  }
 
 export type GetAdvertisementVehiclesPropsType = {
     advertisement_id: string;

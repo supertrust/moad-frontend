@@ -21,6 +21,7 @@ import { clsx } from 'clsx';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { Button } from '@src/components/common';
 import { Arrow } from '@src/components/icons';
+import Link from "next/link";
 
 const statuses = [
 	{ label: '전체', value: undefined },
@@ -253,8 +254,7 @@ export default function AdListModule() {
 									const selected = selectedAds.includes(item);
 									return (
 										<li key={item.id} className={styles.listFlex}>
-											<a
-												href={`/dashboard/advertisement-detail/${item.id}`}
+											<div
 												className={styles.grid}>
 												<div className={styles.chkBox}>
 													{/* <input
@@ -276,10 +276,27 @@ export default function AdListModule() {
 														<label htmlFor={`item_${item.id}`}></label>
 													</div>
 												</div>
-												<div className={clsx(styles.typeWrap, styles.gridBox,styles.only_pc)}>
-													{Types[item.type]}
+												<div className={clsx(
+													styles.typeWrap, 
+													styles.gridBox,
+													styles.only_pc,
+													"cursor-pointer"
+												)}>
+													<Link 
+														href={`/dashboard/advertisement-detail/${item.id}`}
+														className="text-[#2C324C]"
+													>
+														{Types[item.type]}
+													</Link>
 												</div>
-												<div className={`${styles.gridBox} !text-left`}>{item.ad_name}</div>
+												<div className={clsx(styles.gridBox,'!text-left underline text-')}>
+													<Link 
+														href={`/dashboard/advertisement-detail/${item.id}/full-details`}
+														className="text-[#2C324C]"
+													>
+														{item.ad_name}
+													</Link>
+												</div>
 												<div
 													className={
 														styles.gridBox
@@ -300,7 +317,7 @@ export default function AdListModule() {
 													
 												</div>
 												
-											</a>
+											</div>
 											<RoleBasedGuard roles={['Admin']}>
 												<div className={styles.gridBox}>
 													<Button onClick={handleUpdateAdStatus('no', item.id)}>

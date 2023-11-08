@@ -7,9 +7,10 @@ interface HeaderTitleProps {
   left?: string | ReactNode
   href?: string
   className?: string
+  element?: ReactNode
 }
 
-function HeaderLine ({ title , left , href, className }: HeaderTitleProps) {
+function HeaderLine ({ title , left , href, className,element }: HeaderTitleProps) {
 
   const renderLeft = () => {
     const className = clsx('ml-2 !text-[#373737] text-[12px] font-normal', href && 'cursor-pointer');
@@ -21,6 +22,7 @@ function HeaderLine ({ title , left , href, className }: HeaderTitleProps) {
   return (
     <div className={clsx("flex flex-row items-center my-[20px]", className)}>
       <div className='mr-3 font-bold text-[20px] text-[#2C324C]'>{title}</div>
+      {element}
       <div className='flex-grow h-[1px] bg-[#EBEDF4] flex-1'></div>
       { left && renderLeft()}
     </div>

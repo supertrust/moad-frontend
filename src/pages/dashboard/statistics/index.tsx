@@ -3,7 +3,7 @@ import { CircularProgress } from "@mui/material";
 import { styles } from '@src/sections/statistics';
 // import { DataGrid } from '@src/components/common';
 import { Arrow } from '@src/components/icons';
-// import { columns } from '@src/sections/statistics/tabelData';
+import { Form } from 'react-bootstrap';
 import { useGetShowAdvertisementStats, useGetStatBasedAdvertisment } from '@src/apis/advertisement';
 import { clsx } from 'clsx';
 import { Pagination, Skeleton } from 'antd';
@@ -89,7 +89,28 @@ export default function StatisticsScreen() {
 			setSelectedAds((old) => [...old, ad]);
 		}
 	};
-
+	const customStyles = {
+		dropdownIndicator: base => ({
+		  ...base,
+		  color: "red" // Custom colour
+		})
+	  };
+const advertisementElement = (
+	<div className='relative'>
+	<Form.Select
+		aria-label='Default select example'
+		className={`border-[0px] !bg-[#f5f7fb] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px] 
+		${styles.selectOption}`}>
+		<option selected>이번 달</option>
+	</Form.Select>
+	<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
+	</div>
+);
+const vehicleElement = (
+	<div className='text-[#99A0AC] '> 
+		전체 기간 기준
+	</div>
+);
 	return (
 		<>
 			<div
@@ -105,6 +126,7 @@ export default function StatisticsScreen() {
 									</div>
 									<HeaderLine 
 										title='광고 금액' 
+										element={advertisementElement}
 										left='view all'
 										href='/dashboard/ad-amount'
 									/>
@@ -124,7 +146,7 @@ export default function StatisticsScreen() {
 								</div>
 
 								<div className={styles.driving_vehicle}>
-									<HeaderLine title='운행차량' />
+									<HeaderLine title='운행차량' element={vehicleElement} />
 									<div className={styles.driving_vehicle_box}>
 										<ul className={styles.list_wrap}>
 											{driving_vehicle.map((data, index) => (
@@ -168,19 +190,35 @@ export default function StatisticsScreen() {
 											</div>
 											<div className='flex flex-row gap-2'>
 												<div className={styles.selectDropdown}>
-													<select id="countries" className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]  ${styles.selectOption}`}>
-														<option selected>캠페인 유형 선택</option>
-														<option value="1">1st Option</option>
+												<Form.Select
+													aria-label='Default select example'
+													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px] 
+													${styles.selectOption}`}>
+													<option selected>캠페인 유형 선택</option>
+														<option value="1">1st Option</option> 
 														<option value="2">2nd Option</option>
 														<option value="3">3rd Option</option>
 														<option value="4">4th Option</option>
-													</select>
+												</Form.Select>
+													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
+												</div>
+												<div className={styles.selectDropdown}>
+												<Form.Select
+													aria-label='Default select example'
+													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px] 
+													${styles.selectOption}`}>
+													<option selected>이번 달</option>
+												</Form.Select>
 													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
 												</div>
 												<button
 													disabled={!selectedAds.length}
 													// onClick={handleDeleteAds}
-													className={clsx(styles.adDeleteBtn, 'bg-white')}>
+													className={
+														clsx(styles.adDeleteBtn, 
+														'border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-[#2F48D1] !text-[#2F48D1]'
+														)
+														}>
 													삭제
 												</button>
 											</div>

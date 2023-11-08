@@ -44,11 +44,12 @@ export default function AdListModule() {
 	const { confirm } = useConfirmDialog();
 
 	const { data: advertisements, refetch: refetchAdvertisements, isLoading } =
-		useGetAdvertisements({
-			status,
+		useGetAdvertisements(
+			{status :(status == 'applying' ? 'proceeding' : status),
 			type,
 			for_admin: userRole?.role_name === 'Admin',
 		});
+		console.log('advertisements', advertisements)
 	const { mutateAsync: updateAdStatus } = useUpdateAdStatus();
 	const { mutateAsync: deleteAd } = useDeleteAdvertisement();
 
@@ -136,8 +137,15 @@ export default function AdListModule() {
 	const prevItems = (currentPage - 1) * itemsPerPage;
 	const currentItems = currentPage * itemsPerPage;
 
-	const sortedAdvertisements = advertisements?.data?.sort((a, b) => b.id - a.id);
-	
+	var sortedAdvertisements = advertisements?.data?.sort((a, b) => b.id - a.id);
+
+	if(status == 'proceeding'){
+		sortedAdvertisements = sortedAdvertisements?.filter(item => item.approved === 'yes');
+	}
+	if(status == 'applying'){
+		sortedAdvertisements = sortedAdvertisements?.filter(item => item.approved === 'no');
+	}
+
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
 	};

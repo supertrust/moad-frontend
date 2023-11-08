@@ -151,6 +151,7 @@
     appearance:none;
 	height: 36px;
 	max-width: 149px;
+	background-image : none;
 }
 .title_wrap_top{
 	display: none;

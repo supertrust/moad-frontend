@@ -82,7 +82,7 @@ export default function AdListModule() {
 			confirm({
 				title: canDelete ? '광고삭제' : '확인사항',
 				description: (
-					<p className='text-center py-3'>
+					<p className='text-center'>
 						{canDelete ? (
 							<>
 								삭제하시면 통계에서도 확인하실 수 없습니다. <br />{' '}
@@ -90,14 +90,14 @@ export default function AdListModule() {
 							</>
 						) : (
 							<>
-								종료된 광고만 <br /> 삭제하실 수 있습니다
+								종료된 광고만 삭제하실 수 있습니다.
 							</>
 						)}
 					</p>
 				),
 				disableConfirmBtn: !canDelete,
 				cancelButtonProps: {
-					className: clsx(!canDelete && 'bg-primary text-white'),
+					className: clsx(!canDelete && ` !text-white ${styles.btn}`),
 				},
 				cancelText: canDelete ? '확인' : '취소',
 				confirmText: '삭제',
@@ -176,12 +176,7 @@ export default function AdListModule() {
 							<i className='ic-plus'></i>
 							광고 신청
 						</button>
-						<button
-							disabled={!selectedAds.length}
-							onClick={handleDeleteAds}
-							className={styles.adDeleteBtn}>
-							삭제
-						</button>
+						
 						<div className='select-box only-pc md:w-[149px]'>
 							<Form.Select
 								onChange={(e) => setType(e.target.value as AdTypesType)}
@@ -193,6 +188,12 @@ export default function AdListModule() {
 								<option value='spot_ad'>스팟</option>
 							</Form.Select>
 						</div>
+						<button
+							disabled={!selectedAds.length}
+							onClick={handleDeleteAds}
+							className={`${styles.adDeleteBtn} border-1 !border-[#2F48D1] !text-[#2F48D1]`}>
+							삭제
+						</button>
 					</div>
 				</div>
 				<div className={styles.tabWrap}>
@@ -224,7 +225,8 @@ export default function AdListModule() {
 							</div>
 							<div className={`${styles.typeWrapsecond} ${styles.gridBox} `}>광고 이름</div>
 							<div className={`${styles.typeWrapthird} ${styles.gridBox}`}>운행 차량수</div>
-							<div className={`${styles.typeWrapfourth} ${styles.gridBox}`}>기간</div>
+							<div className={`${styles.typeWrapfourth} ${styles.gridBox}`}>광고기간</div>
+							<div className={`${styles.typeWrapfourth} ${styles.gridBox}`}>모집기간</div>
 							<div className={`${styles.gridBox} ${styles.only_pc}`}>상태</div>
 
 							{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
@@ -282,6 +284,7 @@ export default function AdListModule() {
 														: '--'}
 														<Arrow fill={'#999999'} className='block sm:hidden absolute right-[10px] top-[24px] rotate-[-90deg]'/>
 												</div>
+												<div className={`${styles.gridBox} !text-left sm:!text-center`}></div>
 												<div className={`${styles.gridBox} ${styles.only_pc}`}>
 													{
 														statuses.find(

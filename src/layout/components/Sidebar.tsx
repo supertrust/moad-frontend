@@ -10,7 +10,7 @@ interface SidebarProps {
 }
 
 const sideBarPath = {
-  "/dashboard" : "dashboard",
+  "/dashboard" : {en:"dashboard",ko : '광고관리'},
   "/dashboard/my-info" : "My Page",
   "/dashboard/ad-management" : "Ad Management",
   "/dashboard/statistics/[id]" : "Statistics",
@@ -54,7 +54,7 @@ function Sidebar({ msg }: SidebarProps) {
     {
       setTab(sideBarPath[router.pathname])
       barStatus(sideBarPath[router.pathname]);
-      msg(sideBarPath[router.pathname]);
+      msg(sideBarPath[router.pathname].ko);
     }
   },[router.pathname])
 

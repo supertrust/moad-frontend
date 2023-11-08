@@ -39,7 +39,10 @@
     width: 15px;
     height: 15px;
 }
-
+.btn{
+    background-color: #0868FD !important;
+    color: #fff !important;
+}
 .heading {
     font-weight: 400;
     letter-spacing: -0.01em;
@@ -150,20 +153,20 @@
 .grid {
     width: 100%;
     display: grid;
-    grid-template-columns:  60px 1fr 2fr 120px 1.5fr 1fr;
+    grid-template-columns:  60px 1fr 2fr 120px 1fr 1fr 1fr;
     text-decoration: none !important;
 }
 
 
 @media screen and (min-width: 1401px){
 .grid {
-    grid-template-columns: 80px 114px 304px 126px 275px 173px;
+    grid-template-columns: 80px 104px 280px 110px 210px 210px 90px;
 }
 }
 
 @media screen and (min-width: 1450px){
     .grid {
-        grid-template-columns: 5% 12% 38% 15% 20% 10%;
+        grid-template-columns: 5% 10% 35% 10% 15% 15% 10%;
     }
 }
 

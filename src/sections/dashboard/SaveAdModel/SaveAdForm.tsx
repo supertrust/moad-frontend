@@ -48,7 +48,7 @@ const defaultValues: FormDataType = {
   start_date: new Date().toISOString().split("T")[0],
   vehicle_details: {},
   operating_area: [] ,
-  vehicle_type: '',
+  vehicle_type: 'cargo',
   content:  '',
   images: '',
 };
@@ -221,6 +221,11 @@ console.log('images', images)
       document.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
+  const TypeOfVechicle = [
+    {text :"카고",value :"cargo"},
+    {text :"탑",value :"tower"},
+    {text :"윙바디",value :"loaded"},
+  ];
   
   function CustomInput(props) {
     return (
@@ -359,7 +364,7 @@ console.log('images', images)
           <div className={styles.modal_step}>
             <div className={styles.radio_wrap}>
               <div className={`${styles.title} ${styles.only_pc} !mb-[16px]`}>
-                광고 유형
+              광고유형<span className="text-[#F24747]">*</span>
               </div>
               <Controller
                 control={control}
@@ -450,7 +455,7 @@ console.log('images', images)
                 <div
                   className={`${styles.input_section} ${styles.title_section} ${styles.input_ad_name}`}
                 >
-                  <div className={styles.input_title}>광고이름</div>
+                  <div className={styles.input_title}>광고이름<span className="text-[#F24747]">*</span></div>
                   <input
                     type="text"
                     id="input_ad_name"
@@ -478,7 +483,7 @@ console.log('images', images)
                 <div
                   className={`${styles.input_section} ${styles.title_section} ${styles.input_ad_name}`}
                 >
-                  <div className={styles.input_title}>광고이름</div>
+                  <div className={styles.input_title}>광고이름<span className="text-[#F24747]">*</span></div>
                   <textarea
                     name="content"
                     className="w-full px-[12px] py-[16px]"
@@ -510,7 +515,7 @@ console.log('images', images)
                 >
                   <div >
                     
-                    <p className={styles.input_title}>광고이미지</p>
+                    <p className={styles.input_title}>광고이미지<span className="text-[#F24747]">*</span></p>
 
                   <p className="mt-[8px] mb-[16px]">5MB 이하의 jpeg, jpg, png파일만 등록할 수 있습니다.<br/>
 5개까지 등록할 수 있습니다.</p>
@@ -533,14 +538,6 @@ console.log('images', images)
                                     >
                                         <span>편집</span>
                                     </button>
-                                    {updateImage && 
-                                        <button 
-                                            className={clsx(styles['ad-image-edit-btn'], "bg-admin-primary px-4 py-2 w-24 text-center justify-center rounded-md h-9 text-white")}
-                                            onClick={() => setUpdateImage(false)}
-                                        >
-                                            <span>완료</span>
-                                        </button>
-                                    }
                                 </div>
 
 
@@ -554,25 +551,32 @@ console.log('images', images)
                                           <span onClick={() => removeFile(file)}>
                                             <Image  
                                             src={'/images/ic-close.png'}
-                                            width={15}
-                                            height={15}
+                                            width={20}
+                                            height={20}
                                             alt="image"
                                           /></span>
                                         </div>
                                     )})}
 
                                     {updateImage && (images.length < 5) && 
-                                        <div className="h-auto w-[198.4px] border border-admin-stroke p-1">
+                                        <div className={`h-auto w-[198.4px] border border-admin-stroke p-1 ${styles['image_section']}`}>
                                             <div 
                                                 className={clsx(
                                                     "!border-dashed border cursor-pointer", 
-                                                    "flex h-full flex-col justify-center items-center gap-2"
+                                                    "flex h-full flex-col justify-center items-center gap-2 w-full"
                                                 )}
                                                 //@ts-ignore
                                                 onClick={()=> imageRef.current.click()}
                                             >
                                                 Choose file
                                             </div>
+                                            <span onClick={() => setUpdateImage(false)}>
+                                            <Image  
+                                            src={'/images/ic-close.png'}
+                                            width={20}
+                                            height={20}
+                                            alt="image"
+                                          /></span>
                                         </div>
                                     }
                                 </div>
@@ -591,7 +595,7 @@ console.log('images', images)
                 <div
                   className={`${styles.input_wrap} ${styles.ad_period_section} w-[50%] sm:w-full`}
                 >
-                  <div className={styles.input_title}>광고기간</div>
+                  <div className={styles.input_title}>광고기간<span className="text-[#F24747]">*</span></div>
                   <Controller
                     name="ad_period"
                     control={control}
@@ -617,7 +621,7 @@ console.log('images', images)
                           />
                           <div id="calender_area"></div>
                         </div>
-                        <ul className={styles.date_select_box}>
+                        <ul className={`${styles.date_select_box} z-10`}>
                           {[6, 12].map((period) => (
                             <li
                               key={period}
@@ -649,7 +653,7 @@ console.log('images', images)
                 <div
                   className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative w-[50%] sm:w-full`}
                 >
-                  <div className={styles.sub_title}>시작일</div>
+                  <div className={styles.sub_title}>시작일<span className="text-[#F24747]">*</span></div>
                   <Controller
                     name="start_date"
                     control={control}
@@ -683,7 +687,7 @@ console.log('images', images)
               <div
                 className={`${styles.input_wrap} ${styles.date_selector} w-full sm:!w-[100%] md:w-[40%]`}
               >
-                <div className={styles.sub_title}>총 광고기간</div>
+                <div className={styles.sub_title}>총 광고기간<span className="text-[#F24747]">*</span></div>
 
                 <div className={styles.date_content}>
                   <input
@@ -713,7 +717,7 @@ console.log('images', images)
                 <div
                   className={`${styles.input_wrap} ${styles.ad_period_section} w-[50%] sm:w-full`}
                 >
-                  <div className={styles.input_title}>차량종류</div>
+                  <div className={styles.input_title}>차량종류<span className="text-[#F24747]">*</span></div>
                   <Controller
                     name="vehicle_type"
                     control={control}
@@ -727,9 +731,9 @@ console.log('images', images)
                           <input
                             type="text"
                             onClick={() => {
-                              openVehicleType(!isOpen);
+                              openVehicleType(!isVehicleTypeOpen);
                             }}
-                            value={value ?? "cargo"}
+                            value={TypeOfVechicle?.find((item) => item.value === (value as string))?.text || ""} 
                             className={`${styles.box} ${styles.select_input} ${styles.spot_input_add} h-[36px]`}
                             id="select_type_input"
                             placeholder="기간 선택"
@@ -737,26 +741,25 @@ console.log('images', images)
                           />
                           <div id="calender_area"></div>
                         </div>
-                        <ul className={styles.date_select_box}>
-                          {["cargo", "tower", "loaded"].map((period) => (
+                        <ul className={`${styles.date_select_box} z-10 !h-auto`}>
+                          {TypeOfVechicle.map((type) => (
                             <li
-                              key={period}
+                              key={type.value}
                               className={styles.date_list}
                               onClick={() => {
-                                onChange(period);
+                                onChange(type.value);
                                 openVehicleType(false);
                               }}
-                              data-months={`${period}_months`}
                             >
                               <label
-                                htmlFor={`${period}_months`}
+                                htmlFor={`${type.value}`}
                                 className={styles.period_label}
-                              >{`${period}`}</label>
+                              >{`${type.text}`}</label>
                               <input
                                 type="radio"
-                                value={period}
+                                value={type.value}
                                 name="date_period"
-                                id={`${period}_months`}
+                                id={`${type.value}`}
                                 className={`${styles.period_input} h-[36px]`}
                               />
                             </li>
@@ -765,6 +768,7 @@ console.log('images', images)
                       </div>
                     )}
                   />
+
                 </div>
               </div>
             </div>
@@ -773,7 +777,7 @@ console.log('images', images)
             <div
               className={`${styles.input_section} ${styles.vehicles_section}`}
             >
-              <div className={styles.input_title}>운행차량</div>
+              <div className={styles.input_title}>운행차량<span className="text-[#F24747]">*</span></div>
               <Table
                 bordered
                 className="text-center rounded-sm border-gray-500 bg-[#FFFFFF] !m-0"
@@ -897,7 +901,7 @@ console.log('images', images)
               )}
             >
               <div className={styles.input_title}>
-                운행지역 (다중 선택 가능)
+                운행지역 (다중 선택 가능)<span className="text-[#F24747]">*</span>
               </div>
               <button type="button" id="reset_btn" className={styles.reset_btn}>
                 <span className={styles.text}>초기화</span>

@@ -44,6 +44,7 @@ function AdminAdvertismenentManagement() {
     {
       title: '광고명',
       dataIndex: 'ad_name',
+      className:"text-center",
       width: 350,
       render: (value) => {
         return <span className='underline'>{value}</span>
@@ -77,7 +78,7 @@ function AdminAdvertismenentManagement() {
       },
     },
     {
-      title: '광고진행상태',
+      title: '운행차량수',
       dataIndex: 'number_of_vehicles_in_operation',
       width: 150,
       className: 'text-center',
@@ -86,32 +87,32 @@ function AdminAdvertismenentManagement() {
       },
     },
     {
-      title: '광고기간',
-      dataIndex: '',
+      title: '광고진행상태',
+      dataIndex: 'advertisement_progress_status',
       width: 150,
       className: 'text-center',
     },
     {
-      title: '광고유형',
+      title: '광고기간',
       dataIndex: 'advertising_period',
       width: 200,
       className: 'text-center',
     },
     {
-      title: '총 광고건수',
+      title: '광고유형',
       dataIndex: 'advertisement_type',
       width: 120,
       className: 'text-center',
       render: (value) => Types[value]
     },
     {
-      title: '블랙리스트 및 휴면상태',
+      title: '광고지역',
       dataIndex: 'dormant_state',
       width: 180,
       className: 'text-center',
     },
     {
-      title: '가입일시',
+      title: '광고신청일시',
       dataIndex: 'advertisement_application_date_and_time',
       width: 176,
       className: 'text-center',

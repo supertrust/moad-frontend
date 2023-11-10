@@ -3,12 +3,16 @@ import { DataRow } from '@src/components/common';
 import HeaderLine from '@src/components/common/HeaderLine';
 import { useIcarusContext } from '@src/hooks/useIcarusContext';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './style.module';
 import { useGetAdvertisementDetail } from '@src/apis/advertisement';
 import AdImage from '../Admin/AdminAdvertisementDetailsPage/components/Image';
 import { API_BASE_URL } from '@src/config';
-import { clsx } from 'clsx';
+import Modal from "@mui/material/Modal";
+import { Box } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { Carousel } from "react-bootstrap";
+import Image from 'next/image';
 
 
 const Types = {
@@ -34,6 +38,12 @@ function AdFullDetails() {
 
     const title = '광고관리';
     const { pageTitle, setPageTitle } = useIcarusContext();
+    const [viewopen, setViewOpen] = useState(false);
+    const [index, setIndex] = useState(0);
+    const handleSelect = (selectedIndex: any, e: any) => {
+        setIndex(selectedIndex);
+      };
+      
     useEffect(() => { pageTitle !== title && setPageTitle(title) }, [])
 
     const getVehicleTypeCount = (type: string) => {
@@ -41,7 +51,16 @@ function AdFullDetails() {
         const vType = advertisement?.vehicles_in_operation?.filter(value => value.vehicle_type == type);
         return `${vType.length ? vType[0].number_of_vehicles : 0}대`
     }
-
+    const modalstyle = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 400,
+        bgcolor: "background.paper",
+        borderRadius: "8px",
+        boxShadow: 24,
+      };
     return (
         <div className='px-4 py-3'>
             <HeaderLine title='광고 상세' />
@@ -90,7 +109,13 @@ function AdFullDetails() {
                         firstColumClass={style.firstColumnClass}
                         colSpan={2}
                     >
-                        {advertisement?.start_date} ~ {advertisement?.end_date}
+                        {
+                        advertisement?.recruitment_period_start_date ?
+                        advertisement?.recruitment_period_start_date +'~'+ advertisement?.recruitment_period_end_date
+                        :
+                        '--'
+                        }
+                        
                     </DataRow>
                     <DataRow
                         title='차량종류'
@@ -158,6 +183,7 @@ function AdFullDetails() {
                                 <AdImage
                                     src={API_BASE_URL + value.image_path}
                                     key={key}
+                                    onView={()=>{setIndex(key);setViewOpen(true);}}
                                 />
                             ))}
 
@@ -166,6 +192,46 @@ function AdFullDetails() {
                     </DataRow>
                 </table>
             }
+            <Modal
+                open={viewopen}
+                onClose={() => setViewOpen(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                
+                <Box component="div" sx={modalstyle}>
+                <Box component="div">
+                    <CloseIcon
+                        onClick={()=>setViewOpen(false)}
+                        sx={{
+                        position: "absolute",
+                        top: "0px",
+                        right: "-30px",
+                        background: "#2C324C",
+                        cursor: "pointer",
+                        color: "#fff",
+                        zIndex: "99",
+                        }}
+                    />
+                </Box>
+                <Box component={'div'}>
+                <Carousel className='advertisment_full_detail ' activeIndex={index} interval={null} onSelect={handleSelect}>
+                {advertisement?.images.map((value, key) => (
+                          <Carousel.Item key={key}>
+                            <Image
+                               src={API_BASE_URL + value.image_path}
+                              alt="slides"
+                              width={668}
+                              height={500}
+                            />
+                            <Carousel.Caption className="valu-text">
+                            </Carousel.Caption>
+                          </Carousel.Item>
+                        ))}
+                      </Carousel>
+                </Box>
+                </Box>
+            </Modal>
         </div>
     )
 }

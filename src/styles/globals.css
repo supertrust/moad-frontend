@@ -3031,6 +3031,10 @@ ul.pagination .page-item a:focus {
 	height: 26px;
 	background-size: 18px;
 }
+.advertisment_full_detail .carousel-control-next-icon,
+.advertisment_full_detail .carousel-control-prev-icon {
+	background-size: 11px;
+}
 
 .only-mb {
 	display: none;
@@ -3298,6 +3302,19 @@ ul.pagination .page-item a:focus {
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
 	background-color: #e1ecff;
+	border-radius: 50%;
+	width: 26px;
+	height: 26px;
+}
+.advertisment_full_detail .carousel-control-next-icon {
+    background-image: url("/images/slide_arrow_right.png");
+}
+.advertisment_full_detail .carousel-control-prev-icon {
+	background-image: url("/images/slide_arrow_left.png");
+}
+.advertisment_full_detail .carousel-control-next-icon,
+.advertisment_full_detail .carousel-control-prev-icon {
+	background-color: transparent !important;
 	border-radius: 50%;
 	width: 26px;
 	height: 26px;

@@ -56,6 +56,8 @@ export interface IAdvertisement {
     ad_name: string
     type: AdTypesType,
     start_date: string
+    recruitment_period_start_date: string
+    recruitment_period_end_date: string
     email: string,
     end_date: string
     status: AdStatusesType,

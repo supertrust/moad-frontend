@@ -307,7 +307,11 @@ export default function AdListModule() {
 														: '--'}
 														<Arrow fill={'#999999'} className='block sm:hidden absolute right-[10px] top-[24px] rotate-[-90deg]'/>
 												</div>
-												<div className={`${styles.gridBox} !text-left sm:!text-center`}></div>
+												<div className={`${styles.gridBox} !text-left sm:!text-center`}>
+												{item.recruitment_period_start_date && item.recruitment_period_start_date
+														? `${item.recruitment_period_start_date} ~ ${item.recruitment_period_end_date}`
+														: '--'}
+												</div>
 												<div className={`${styles.gridBox} ${styles.only_pc}`}>
 													{
 														statuses.find(

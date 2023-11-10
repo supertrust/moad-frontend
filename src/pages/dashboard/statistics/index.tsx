@@ -66,6 +66,22 @@ export default function StatisticsScreen() {
 		national_ad: '국가',
 		spot_ad: '스팟',
 	};
+	const SelectTypes = [
+		{text: '전체',value : 'all'},
+		{text: '고정형',value : 'fixed_ad'},
+		{text: '전국형',value : 'national_ad'},
+		{text: '스팟형',value : 'spot_ad'}
+	];
+	const SelectDate = [
+		{text: '전체',value : 'all'},
+		{text: '오늘',value : 'today'},
+		{text: '이번 주',value : 'this_week'},
+		{text: '지난 주',value : 'last_week'},
+		{text: '이번 달',value : 'this_month'},
+		{text: '지난 달',value : 'last_month'},
+		{text: '올해',value : 'this_year'},
+		{text: '작년',value : 'last_year'},
+	];
 	// Pagination
 	const itemsPerPage = 6;
 
@@ -195,10 +211,9 @@ const vehicleElement = (
 													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px] 
 													${styles.selectOption}`}>
 													<option selected>캠페인 유형 선택</option>
-														<option value="1">1st Option</option> 
-														<option value="2">2nd Option</option>
-														<option value="3">3rd Option</option>
-														<option value="4">4th Option</option>
+													{SelectTypes.map((data) => (
+														<option key={data.value} value={data.value}>{data.text}</option>
+													))}
 												</Form.Select>
 													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
 												</div>
@@ -207,7 +222,9 @@ const vehicleElement = (
 													aria-label='Default select example'
 													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px] 
 													${styles.selectOption}`}>
-													<option selected>이번 달</option>
+													{SelectDate.map((data) => (
+														<option key={data.value} value={data.value}>{data.text}</option>
+													))}
 												</Form.Select>
 													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
 												</div>

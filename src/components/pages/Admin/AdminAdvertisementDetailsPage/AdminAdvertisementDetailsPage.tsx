@@ -429,7 +429,7 @@ const AdminAdvertisementDetailsPage = () => {
                                 )}
                             />
                         </DataRow>
-                        <DataRow keyValue={"광고지역"}>
+                        <DataRow keyValue={"차량 종류"}>
                             <Controller
                                 name='advertisement_vehicle_type'
                                 control={control}
@@ -535,7 +535,7 @@ const AdminAdvertisementDetailsPage = () => {
                                                 styles['pre-wrap']
                                             )}
                                             onChange={onChange}
-                                        >{value}</textarea>
+                                        >{adDetails?.content}</textarea>
                                         {error && <span className="text-sm text-admin-error">{error?.message}</span>}
                                     </>
                                 )}
@@ -581,7 +581,7 @@ const AdminAdvertisementDetailsPage = () => {
                                 <div className={'flex gap-2 flex-wrap'}>
                                     {adDetails?.images.map((value,key)=>( 
                                         <AdImage 
-                                            src={API_BASE_URL+value.image_path} 
+                                            src={value.completed_url}
                                             key={key}
                                             edit={updateImage}
                                             onRemove={() => {}}

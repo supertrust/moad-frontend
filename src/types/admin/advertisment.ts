@@ -87,6 +87,7 @@ export interface IAdvertisementDetails  {
         id: number,
         advertisement_id: number,
         image_path: string,
+        completed_url : string,
         created_at: string,
         updated_at: string
     }[]

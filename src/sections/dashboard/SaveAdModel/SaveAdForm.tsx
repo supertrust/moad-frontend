@@ -231,7 +231,7 @@ const SaveAdForm = ({
       <div className={`input-group ${styles.datepicker}`}>
         <input
           type="text"
-          className={`form-control h-[36px] ${styles.input_date}`}
+          className={`form-control h-[36px] ${styles.input_date} !text-[14px]`}
           onClick={props.onClick}
           value={startDate}
           onChange={props.onChange}
@@ -469,7 +469,7 @@ const SaveAdForm = ({
                   <div className="flex justify-end">
                     {/* <span className='text-danger'>{error?.message}</span> */}
                     <div className={styles.text_count}>
-                      {`${value.length}/25`}
+                      (<span className="text-[#0868FD]">{value.length}</span>/25)
                     </div>
                   </div>
                 </div>
@@ -499,7 +499,7 @@ const SaveAdForm = ({
                       <span className="text-[#3772FF]">
                         {(value as string)?.length ?? 0}
                       </span>
-                      {`/300`})
+                      {`/600`})
                     </div>
                   </div>
                 </div>
@@ -981,9 +981,10 @@ const SaveAdForm = ({
             </div>
 
             <div className={styles.price_section}>
+              <div className="border border-gray-300 rounded p-0 bg-white">
               <div className={`${styles.price_box} ${styles.spot_add}`}>
                 <div
-                  className={`${styles.price_text} !text-[#222222] border-solid border-r-[1px] border-[#EBEDF4] p-[16px]`}
+                  className={`${styles.price_text} !text-[#222222] p-[16px] !text-[18px]`}
                 >
                   광고비용
                 </div>
@@ -1000,6 +1001,27 @@ const SaveAdForm = ({
 									className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>
 									원
 								</div> */}
+              </div>
+              <div className={`${styles.price_box} ${styles.spot_add} border-solid border-t border-[#EBEDF4]`}>
+                <div
+                  className={`${styles.price_text} !text-[#606060] !text-[14px]  p-[16px]`}
+                >
+                  월 광고비용
+                </div>
+                <div
+                  id="total_month_price"
+                  className={`${styles.price_text} ${styles.total_price} ${styles.total_price} !text-[#2F48D1]`}
+                >
+                  <span>{totalPrice && totalPrice.toLocaleString()}</span>
+                  <span className={`${styles.text_won} !text-[#606060]`}>
+                    원
+                  </span>
+                </div>
+                {/* <div
+									className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>
+									원
+								</div> */}
+              </div>
               </div>
               <div className={styles.price_info}>
                 광고비용은 차후 상담에 따라 변경 될 수 있습니다.

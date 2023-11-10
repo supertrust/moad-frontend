@@ -189,7 +189,7 @@ export default function AdListModule() {
 								onChange={(e) => setType(e.target.value as AdTypesType)}
 								aria-label='Default select example'
 								className='font-medium adlist  border-1 border-[#2F48D1] text-[#2F48D1] h-[36px]'>
-								<option value=''>캠페인 유형 선택</option>
+								<option value=''>광고 유형 선택</option>
 								<option value='fixed_ad'>고정형</option>
 								<option value='national_ad'>전국형</option>
 								<option value='spot_ad'>스팟</option>
@@ -198,7 +198,7 @@ export default function AdListModule() {
 						<button
 							disabled={!selectedAds.length}
 							onClick={handleDeleteAds}
-							className={`${styles.adDeleteBtn} border-1 !border-[#2F48D1] !text-[#2F48D1]`}>
+							className={`${styles.adDeleteBtn} border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-[#2F48D1] !text-[#2F48D1]`}>
 							삭제
 						</button>
 					</div>

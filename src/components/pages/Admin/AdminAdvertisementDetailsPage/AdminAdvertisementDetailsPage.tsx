@@ -3,7 +3,6 @@ import { ArrowBackIconAdmin, DropdownIcon } from "@src/components/icons/admin/ad
 import { Checkbox, DatePicker, Radio, Select, SelectProps } from "antd";
 import clsx from "clsx";
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import DotStatusIcon from "../../../icons/admin/advertisement/dotStatusIcon";
 import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import { useAdminApproveAd, useGetAdvertisementDetails, useUpdateCompanyAd } from "@src/apis/admin/advertisement";
@@ -28,6 +27,7 @@ import { API_BASE_URL } from "@src/config";
 import Input from "./components/Input";
 import DataRow from "./components/DataRow";
 import ChooseNumberOfVehicle from "./components/ChooseNumberOfVehicle";
+import Link from "next/link";
 
 dayjs.extend(customParseFormat)
 dayjs.extend(advancedFormat)
@@ -163,6 +163,8 @@ const AdminAdvertisementDetailsPage = () => {
         })
     }
 
+    const router = useRouter();
+
     return (
         <div className={'flex flex-col mt-[35.5px] px-6 mb-[56.3px]'}>
             {isLoading ? 
@@ -170,12 +172,15 @@ const AdminAdvertisementDetailsPage = () => {
                 <FormProvider methods={methods}>
                     <div className={'flex justify-between'}>
 
-                        <div className={'flex items-center space-x-2'}>
+                        <Link href="#" 
+                            onClick={() => router.back()} 
+                            className={'flex items-center space-x-2 hover:no-underline '}
+                        >
                             <ArrowBackIconAdmin/>
                             <span className={styles['title']}>
                                 광고상세
                             </span>
-                        </div>
+                        </Link>
 
                         <div className={'flex space-x-2'}>
                             <div className={styles['upload-draft']}>

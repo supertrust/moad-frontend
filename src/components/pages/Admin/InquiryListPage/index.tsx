@@ -14,11 +14,6 @@ function AdminPostList() {
     const { data: postData, isLoading } = useGetPosts(filters);
     const { data: postList, current_page, total, per_page , last_page } = postData || {};
 
-    console.log("PostData =>", postData);
-    // console.log("Post=>", postList);
-
-    // const postList = [];
-
 
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>();
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
@@ -79,7 +74,7 @@ function AdminPostList() {
         },
         {
             title: '답변작성자',
-            dataIndex: 'answerer',
+            dataIndex: 'admin_author',
             width: 150,
             className: 'text-center',
         },
@@ -133,7 +128,7 @@ function AdminPostList() {
             <div>
                 <div>
                     <Table
-                        // loading={isLoading}
+                        loading={isLoading}
                         pagination={false}
                         scroll={{ x: sumWidth() + 50 }}
                         rowKey={(row) => row.id}
@@ -184,8 +179,10 @@ function AdminPostList() {
             <div className='flex flex-row mt-5 justify-center'>
                 <Pagination
                     className='admin-members-inquiry-pagination'
-                    // current={current_page}
-                    // total={total}
+                    current={current_page}
+                    total={total}
+                    pageSize={per_page}
+                    onChange={(page) => setFilters({ ...filters, page})}
                 />
             </div>
         </div>

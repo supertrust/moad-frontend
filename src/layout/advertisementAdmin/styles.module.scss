@@ -28,3 +28,13 @@
   padding-top: 0px;
   margin-left: 119px;
 }
+
+@media (min-width: 1024px) {
+  .advertisement-admin-sidebar_menu {
+    width: 257px;
+  }
+  .advertisement-admin-main_content {
+    margin-left: 257px;
+    width: calc(100% - 257px);
+  }
+}

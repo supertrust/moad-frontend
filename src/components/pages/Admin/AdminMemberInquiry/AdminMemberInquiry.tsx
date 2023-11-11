@@ -199,7 +199,7 @@ const AdminMemberInquiry = () => {
         width: 176,
         ...colGeneral,
         render: (text, record) => {
-          return <>{formatDate(record.registration_date, true)}</>;
+          return <>{formatDate(record.registration_date, true, 'YYYY.MM.DD')}</>;
         },
       },
     ],

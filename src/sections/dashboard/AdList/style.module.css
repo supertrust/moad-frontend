@@ -362,5 +362,8 @@
         height: 60px;
     }
 }
+.buttonfont{
+ font-family: inherit !important;
+}
 
 

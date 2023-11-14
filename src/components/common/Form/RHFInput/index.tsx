@@ -6,7 +6,7 @@ export interface RHFInputProps extends InputProps {
 }
 
 const RHFInput = (props: RHFInputProps) => {
-    const { name, ...rest } = props;
+    const { name,caption, ...rest } = props;
     const { control } = useFormContext();
 
     return (
@@ -21,6 +21,7 @@ const RHFInput = (props: RHFInputProps) => {
                     onChange={e => onChange(e.target.value)}
                     value={value}
                     name={name}
+                    caption={!error && caption}
                     error={error?.message}
                     {...rest}
                 />

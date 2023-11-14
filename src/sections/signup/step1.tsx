@@ -54,7 +54,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 						<p className='pl-1'>{text}</p> :
 						<p className='pl-1'>
 						“광고 상품”이라 함은 “광고주”의 “광고 소재”를 “광고매체”에 게재하기 위하여 “회사”가 “광고주”에게 판매하는 것으로 광고 상품의
-						종류, 노출 형태, 위치 등 구체적 내용은 광고 상품 및 광고 서비스 이용료 과금 기준( <a className='text-red-500' href='https://marketinghub.esmplus.com/ad-guide/index.html'>별첨1.</a> )과 같습니다.
+						종류, 노출 형태, 위치 등 구체적 내용은 광고 상품 및 광고 서비스 이용료 과금 기준( <a className='text-danger' href='https://marketinghub.esmplus.com/ad-guide/index.html'>별첨1.</a> )과 같습니다.
 					</p>}</div>
 	}
 	const list = [['①',`“광고” (이하 “광고”라고 함)라 함은 “회사”가 “광고주”가 신청한 광고 상품(아래 정의)의 내용과 절차에 따라 “광고주”의 “광고 소재”(아래 정의)를 “광고매체”에 노출하는 것을 말합니다.`],

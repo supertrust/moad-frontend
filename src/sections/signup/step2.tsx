@@ -129,6 +129,7 @@ const Step2 = ({
 									name='email'
 									id='email'
 									label='아이디 (이메일)'
+									errorPosition="bottom"
 									onBlur={(event) => {
 										if (errors.email) return;
 										event.target.value &&
@@ -154,6 +155,7 @@ const Step2 = ({
 									name='password'
 									id='password'
 									label='비밀번호'
+									errorPosition="bottom"
 									placeholder='비밀번호 입력'
 									caption={
 										<p className='pw-info-text'>
@@ -172,11 +174,12 @@ const Step2 = ({
 									id='confirm_password'
 									className='user-input'
 									name='confirm_password'
+									errorPosition="bottom"
 									placeholder='비밀번호 재입력'
 									label='비밀번호 확인'
 									right={
 										<span
-											className={`icon pw-show ${!visiblePassword && 'active'}`}
+											className={`icon pw-show ${!visiblePasswordConfirmation && 'active'}`}
 											onClick={() =>
 												setVisiblePasswordConfirmation(
 													!visiblePasswordConfirmation,

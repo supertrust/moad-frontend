@@ -52,12 +52,15 @@ function Sidebar({ msg }: SidebarProps) {
   {
     if(router.pathname && sideBarPath[router.pathname])
     {
-      setTab(sideBarPath[router.pathname])
-      barStatus(sideBarPath[router.pathname]);
-      msg(sideBarPath[router.pathname].ko);
+
+      setTab(sideBarPath[router.pathname]?.en || sideBarPath[router.pathname])
+      barStatus(sideBarPath[router.pathname]?.en || sideBarPath[router.pathname]);
+      // msg(sideBarPath[router.pathname].ko || sideBarPath[router.pathname]);
     }
   },[router.pathname])
 
+
+  console.log('tab',tab)
 
 
   return (

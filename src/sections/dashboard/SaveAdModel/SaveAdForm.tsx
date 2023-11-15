@@ -458,6 +458,7 @@ const SaveAdForm = ({
                   <input
                     type="text"
                     id="input_ad_name"
+                    placeholder="광고이름을 작성해주세요."
                     className={`${styles.box} ${styles.input_ad_title} h-[36px]`}
                     maxLength={25}
                     value={value}
@@ -482,9 +483,10 @@ const SaveAdForm = ({
                 <div
                   className={`${styles.input_section} ${styles.title_section} ${styles.input_ad_name}`}
                 >
-                  <div className={styles.input_title}>광고이름<span className="text-[#F24747]">*</span></div>
+                  <div className={styles.input_title}>광고내용<span className="text-[#F24747]">*</span></div>
                   <textarea
                     name="content"
+                    placeholder="광고내용을 입력해주세요."
                     className="w-full px-[12px] py-[16px]"
                     cols={30}
                     rows={10}

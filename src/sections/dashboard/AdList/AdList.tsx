@@ -179,6 +179,7 @@ export default function AdListModule() {
 					<div className={styles.rightMenu}>
 						<button
 							onClick={openModal}
+							id={styles.adAddBtn}
 							className={`${styles.adAddBtn} ${styles.buttonfont} font-[Inter] !w-[90px] md:!w-[138px]`}>
 							<i className='ic-plus'></i>
 							광고 신청

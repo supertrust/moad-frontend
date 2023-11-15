@@ -25,7 +25,7 @@ import { ConfirmPropsType } from "@src/contexts/ConfirmDialogContext";
 import IconPlus from '@images/admin-ad-details/ic-add-plus.png'
 import AdImage from "@src/components/pages/Admin/AdminAdvertisementDetailsPage/components/Image";
 import ImagePlaceholder from '@images/admin-ad-details/ic-image-placeholder.png'
-
+import adStyles from  '@src/sections/dashboard/AdList/style.module.css'
 
 type FormDataType = {
   ad_name: string;
@@ -255,9 +255,24 @@ const SaveAdForm = ({
     );
   }
   const trucks = [Truck01, Truck02, Truck03];
+
+  const containerRef = useRef(null);
+  const handleClickOutside = (event) => {
+    // @ts-ignore
+    if (containerRef.current && !containerRef.current.contains(event.target) && document.getElementById(adStyles.adAddBtn) != event.target) {
+      onCancel();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
     <FormProvider methods={methods}>
-      <div className={styles.ad_modal_wrap}>
+      <div className={styles.ad_modal_wrap} ref={containerRef} id={styles.ad_modal_wrap}>
         <div className={`only-mb`}>
           <div className={`${styles["mobile-top-header"]}`}>
             <ArrowBack handleAction={onCancel} />

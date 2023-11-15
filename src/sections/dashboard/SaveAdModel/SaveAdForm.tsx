@@ -992,7 +992,7 @@ const SaveAdForm = ({
                   id="total_price"
                   className={`${styles.price_text} ${styles.total_price} ${styles.total_price} !text-[#2F48D1]`}
                 >
-                  <span>{totalPrice && totalPrice.toLocaleString()}</span>
+                  <span>{totalPrice && (totalPrice * period).toLocaleString()}</span>
                   <span className={`${styles.text_won} !text-[#999999]`}>
                     원
                   </span>

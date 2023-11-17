@@ -93,16 +93,21 @@ export const formatTimeFromMinute = (n: number) => {
     const seconds = Math.round(n);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
-  
+
     if (hours > 0) {
       const remainingMinutes = minutes % 60;
       return `${hours}시간 ${remainingMinutes > 0 ? remainingMinutes + '분' : ''}`;
     }
-  
+
     if (minutes > 0) {
       return `${minutes}분`;
     }
-  
+
     return `${seconds}초`;
   };
-  
+
+
+  export const addWeeks = (date: Date, weeks: number) =>{
+    date.setDate(date.getDate() + 7 * weeks);
+    return date;
+  }

@@ -20,6 +20,7 @@ import Truck03 from "@images/advertising/img-car03.png";
 import clsx from "clsx";
 import { Loader } from "rsuite";
 import Link from "next/link";
+import { addWeeks } from '@src/helpers'
 import DatePicker from "react-datepicker";
 import { ConfirmPropsType } from "@src/contexts/ConfirmDialogContext";
 import IconPlus from '@images/admin-ad-details/ic-add-plus.png'
@@ -41,11 +42,12 @@ type FormDataType = {
   operating_area: number[];
 };
 
+const defaultStartDate = addWeeks(new Date(), 2)
 const defaultValues: FormDataType = {
   ad_name: "",
   ad_period: 6,
   type: "fixed_ad",
-  start_date: new Date().toISOString().split("T")[0],
+  start_date: defaultStartDate.toISOString().split("T")[0],
   vehicle_details: {},
   operating_area: [] ,
   vehicle_type: 'cargo',
@@ -225,7 +227,7 @@ const SaveAdForm = ({
     {text :"탑",value :"tower"},
     {text :"윙바디",value :"loaded"},
   ];
-  
+
   function CustomInput(props) {
     return (
       <div className={`input-group ${styles.datepicker}`}>
@@ -530,25 +532,25 @@ const SaveAdForm = ({
                   className={`${styles.input_section} ${styles.title_section} ${styles.input_ad_name} !mb-[20px]`}
                 >
                   <div >
-                    
+
                     <p className={styles.input_title}>광고이미지<span className="text-[#F24747]">*</span></p>
 
                   <p className="mt-[8px] mb-[16px]">5MB 이하의 jpeg, jpg, png파일만 등록할 수 있습니다.<br/>
 5개까지 등록할 수 있습니다.</p>
                   </div>
-                  
+
                   <div className={'flex flex-col space-y-1'}>
-                                <input 
-                                    type='file' 
+                                <input
+                                    type='file'
                                     //@ts-ignore
-                                    ref={imageRef} 
+                                    ref={imageRef}
                                     multiple
-                                    className="hidden" 
+                                    className="hidden"
                                     onChange={handleFileChange}
                                     accept="image/png,image/jpeg"
                                 />
                                 <div className="flex flex-row gap-1">
-                                    <button 
+                                    <button
                                         className={'bg-[#5F7FB9] px-4 py-2 w-24 text-center justify-center rounded-md h-9 text-white'}
                                         onClick={() => setUpdateImage(true)}
                                     >
@@ -559,12 +561,12 @@ const SaveAdForm = ({
 
                                 <div className={'flex gap-2 flex-wrap !mt-[12px]'}>
                                     {images.map((file, key)=>{
-                                      return( 
+                                      return(
                                         <div className={styles['image_section']} key={key}>
-                                         
+
                                           {file.name}
                                           <span onClick={() => removeFile(file)}>
-                                            <Image  
+                                            <Image
                                             src={'/images/ic-close.png'}
                                             width={20}
                                             height={20}
@@ -573,11 +575,11 @@ const SaveAdForm = ({
                                         </div>
                                     )})}
 
-                                    {updateImage && (images.length < 5) && 
+                                    {updateImage && (images.length < 5) &&
                                         <div className={`h-auto w-[198.4px] border border-admin-stroke p-1 ${styles['image_section']}`}>
-                                            <div 
+                                            <div
                                                 className={clsx(
-                                                    "!border-dashed border cursor-pointer", 
+                                                    "!border-dashed border cursor-pointer",
                                                     "flex h-full flex-col justify-center items-center gap-2 w-full"
                                                 )}
                                                 //@ts-ignore
@@ -586,7 +588,7 @@ const SaveAdForm = ({
                                                 Choose file
                                             </div>
                                             <span onClick={() => setUpdateImage(false)}>
-                                            <Image  
+                                            <Image
                                             src={'/images/ic-close.png'}
                                             width={20}
                                             height={20}
@@ -686,11 +688,10 @@ const SaveAdForm = ({
                           dateFormat="yyyy-mm-dd"
                           //  locale={locale}
                           selected={new Date(value)}
-                          onChange={(date: string) =>
-                            setStartDate(
-                              new Date(date).toISOString().split("T")[0]
-                            )
-                          }
+                          minDate={defaultStartDate}
+                          onChange={(date: string) => {
+                            setStartDate(new Date(date).toISOString().split("T")[0])
+                          }}
                           customInput={<CustomInput />}
                         />
                       </>
@@ -748,7 +749,7 @@ const SaveAdForm = ({
                             onClick={() => {
                               openVehicleType(!isVehicleTypeOpen);
                             }}
-                            value={TypeOfVechicle?.find((item) => item.value === (value as string))?.text || ""} 
+                            value={TypeOfVechicle?.find((item) => item.value === (value as string))?.text || ""}
                             className={`${styles.box} ${styles.select_input} ${styles.spot_input_add} h-[36px]`}
                             id="select_type_input"
                             placeholder="기간 선택"

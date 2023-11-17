@@ -25,10 +25,16 @@ import Link from "next/link";
 
 const statuses = [
 	{ label: '전체', value: undefined },
-	{ label: '진행중', value: 'proceeding' },
+	{ label: '진행중', value: 'in_progress' },
 	{ label: '신청중', value: 'applying' },
 	{ label: '종료', value: 'end' },
 ];
+
+const allStatuses = [...statuses,
+	{ label: '화물주모집중', value: 'recruiting_cargo_owners' },
+	{ label: '광고신청중', value: 'applying_for_advertisement' },
+	{ label: '진행', value: 'proceeding' },
+]
 
 const Types = {
 	fixed_ad: '고정',
@@ -139,17 +145,15 @@ export default function AdListModule() {
 
 	var sortedAdvertisements = advertisements?.data?.sort((a, b) => b.id - a.id);
 
-	if(status == 'proceeding'){
-		sortedAdvertisements = sortedAdvertisements?.filter(item => item.approved === 'yes');
-	}
-	if(status == 'applying'){
-		sortedAdvertisements = sortedAdvertisements?.filter(item => item.approved === 'no');
+	if(status){
+		sortedAdvertisements = sortedAdvertisements?.filter(item => item.status === status);
 	}
 
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
 	};
 
+	const getAdvertisementStatus = (ad: IAdvertisement) => allStatuses.find((status) => ad.status === status.value)?.label;
 
 	return (
 		<>
@@ -184,7 +188,6 @@ export default function AdListModule() {
 							<i className='ic-plus'></i>
 							광고 신청
 						</button>
-						
 						<div className='select-box only-pc md:w-[149px]'>
 							<Form.Select
 								onChange={(e) => setType(e.target.value as AdTypesType)}
@@ -278,12 +281,12 @@ export default function AdListModule() {
 													</div>
 												</div>
 												<div className={clsx(
-													styles.typeWrap, 
+													styles.typeWrap,
 													styles.gridBox,
 													styles.only_pc,
 													"cursor-pointer"
 												)}>
-													<Link 
+													<Link
 														href={`/dashboard/advertisement-detail/${item.id}`}
 														className="text-[#2C324C]"
 													>
@@ -291,7 +294,7 @@ export default function AdListModule() {
 													</Link>
 												</div>
 												<div className={clsx(styles.gridBox,'!text-left underline text-')}>
-													<Link 
+													<Link
 														href={`/dashboard/advertisement-detail/${item.id}/full-details`}
 														className="text-[#2C324C]"
 													>
@@ -314,14 +317,8 @@ export default function AdListModule() {
 														: '--'}
 												</div>
 												<div className={`${styles.gridBox} ${styles.only_pc}`}>
-													{
-														statuses.find(
-															(status) => item.status === status.value,
-														)?.label
-													}
-													
+													{getAdvertisementStatus(item)}
 												</div>
-												
 											</div>
 											<RoleBasedGuard roles={['Admin']}>
 												<div className={styles.gridBox}>

@@ -1,7 +1,7 @@
 import { number } from "yup";
 
 export type AdTypesType = "national_ad" | "spot_ad" | "fixed_ad";
-export type AdStatusesType = "proceeding" | "applying" | "end";
+export type AdStatusesType = "in_progress" | "proceeding" | "applying" | "end";
 export type AdVehicleType= "cargo" | "tower" | "loaded"
 
 export type GetAdvertisementsPropType = {
@@ -178,7 +178,7 @@ export type IAdvertissementCargoResponse = {
     data: IAdvertisementCargo[]
 }
 
-export type GetCargoImageListProps = { 
+export type GetCargoImageListProps = {
     advertisement_id: number
     cargo_vehicle_id: number
 }

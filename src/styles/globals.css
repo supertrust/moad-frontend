@@ -3760,7 +3760,7 @@ input:focus-visible {
 	background: #555; 
 } */
 
-.select-box .adlist {
+.select-box .custom-select {
 	background-image: url('/images/advertising/arrow.png');
 	background-size: auto;
 }

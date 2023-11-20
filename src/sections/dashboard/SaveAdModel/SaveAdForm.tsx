@@ -88,11 +88,16 @@ const SaveAdvertisementSchema = Yup.object().shape({
   start_date: Yup.string().required(
     "시작일을 선택해주세요. (등록 기준 1달 이후 선택)"
   ),
-  vehicle_details: Yup.object().test(
-    "is-not-empty-object",
-    "운행차량을 입력해주세요.",
-    (value) => Object.keys(value).length > 0
-  ),
+  vehicle_details: Yup.object()
+  .when("type", {
+    is: 'fixed_ad',
+    then: () => Yup.object().test(
+      "is-not-empty-object",
+      "운행차량을 입력해주세요.",
+      (value) => Object.keys(value).length > 0
+    ),
+    otherwise: () => Yup.object().optional()
+  }),
   operating_area: Yup.array().when("type", ([type], schema) =>
     type == "fixed_ad" ? schema.min(1, "운행지역을 선택해주세요.") : schema
   ),
@@ -402,13 +407,13 @@ const SaveAdForm = ({
                             const selectedAreas = getValues("operating_area");
                             item.type == "spot_ad" &&
                             //@ts-ignore
-                              setValue("operating_area", "");
+                              setValue("operating_area", []);
                             if (
                               "national_ad" &&
                               selectedAreas.length === areas?.length
                             ) {
                               //@ts-ignore
-                              setValue("operating_area", "");
+                              setValue("operating_area", []);
                               setShowModal(true);
                             }
                             onChange(item.type);

@@ -25,12 +25,13 @@ import Link from "next/link";
 
 const statuses = [
 	{ label: '전체', value: undefined },
-	{ label: '진행중', value: 'in_progress' },
-	{ label: '신청중', value: 'applying' },
-	{ label: '종료', value: 'end' },
+	{ label: '광고 진행중', value: 'in_progress' },
+	{ label: '리뷰 추가', value: 'ad_reviewing' },
+	{ label: '광고 끝', value: 'end' },
 ];
 
 const allStatuses = [...statuses,
+	{ label: '신청중', value: 'applying' },
 	{ label: '화물주모집중', value: 'recruiting_cargo_owners' },
 	{ label: '광고신청중', value: 'applying_for_advertisement' },
 	{ label: '진행', value: 'proceeding' },

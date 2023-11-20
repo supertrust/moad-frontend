@@ -57,8 +57,7 @@ export default function AdListModule() {
 	const { data: advertisements, refetch: refetchAdvertisements, isLoading } =
 		useGetAdvertisements(
 			{status :(status == 'applying' ? 'proceeding' : status),
-			type,
-			for_admin: userRole?.role_name === 'Admin',
+			type
 		});
 	const { mutateAsync: updateAdStatus } = useUpdateAdStatus();
 	const { mutateAsync: deleteAd } = useDeleteAdvertisement();
@@ -147,11 +146,11 @@ export default function AdListModule() {
 	const prevItems = (currentPage - 1) * itemsPerPage;
 	const currentItems = currentPage * itemsPerPage;
 
-	var sortedAdvertisements = advertisements?.data?.sort((a, b) => b.id - a.id);
+	let sortedAdvertisements = advertisements?.data?.sort((a, b) => b.id - a.id);
 
-	if(status){
-		sortedAdvertisements = sortedAdvertisements?.filter(item => item.status === status);
-	}
+	// if(status){
+	// 	sortedAdvertisements = sortedAdvertisements?.filter(item => item.status === status);
+	// }
 
 	const handlePageChange = (page) => {
 		setCurrentPage(page);

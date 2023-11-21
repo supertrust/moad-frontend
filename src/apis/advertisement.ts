@@ -20,6 +20,7 @@ import {
     IVehicle,
     SaveAdvertisementType,
     UpdateAdvertisementStatusType,
+    DraftAdvertisementImage
 } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@src/services/ReactQueryClient";
@@ -102,7 +103,7 @@ export const useSaveAdvertisement = () =>   useMutation<IAdvertisement, string, 
         return(await axios.post("/api/save-advertisement", formData, {
             headers: { "Content-Type": "multipart/form-data"}
         })).data.data},
-    onSuccess: () => { 
+    onSuccess: () => {
         queryClient.invalidateQueries(["advertisements"] , {exact : false})
         queryClient.invalidateQueries(["advertisement-vehicles-stats"])
     }
@@ -160,7 +161,7 @@ export const useUpdateAdStatus = () =>
   });
 
 
-export const useGetAdvertisementCargoList = (props: GetAdvertisementCargoPropsType) => 
+export const useGetAdvertisementCargoList = (props: GetAdvertisementCargoPropsType) =>
 useQuery<IAdvertissementCargoResponse, string>({
     queryKey: ["advertisement-cargo-list", {...Object.values(props)}],
     queryFn: async () => (await axios.get("/api/get-advehicles-list", { params: props })).data,
@@ -178,4 +179,9 @@ export const useGetCargoImage = (props: GetCargoImageListProps) => useQuery<ICar
 export const useGetStatBasedAdvertisment = () => useQuery<ITotalAdvertisementStat, string>({
     queryKey: ["stats-based-advertisement"],
     queryFn: async () => (await axios.get("/api/stats-based-advertisement")).data.data,
+});
+
+export const useGetDraftAdvertisementImages = (id:string) => useQuery<DraftAdvertisementImage[], string>({
+    queryKey: ["draft-advertisement-images"],
+    queryFn: async () => (await axios.get(`/api/get-advertisement-images/${id}/draft`)).data.data,
 });

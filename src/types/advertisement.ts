@@ -50,6 +50,18 @@ export interface IAdvertisementData {
     data : IAdvertisement[]
 }
 
+interface AdvertisementImage  {
+    id: number,
+    advertisement_id: number,
+    image_path: string,
+    completed_url : string,
+    created_at: string,
+    updated_at: string
+}
+
+export interface DraftAdvertisementImage extends AdvertisementImage {
+    status: 'draft'
+}
 export interface IAdvertisement {
     id: number,
     advertiser_id: number,
@@ -75,14 +87,7 @@ export interface IAdvertisement {
         number_of_vehicles: number,
         vehicle_type: string
     }[]
-    images: {
-        id: number,
-        advertisement_id: number,
-        image_path: string,
-        completed_url : string,
-        created_at: string,
-        updated_at: string
-    }[]
+    images: AdvertisementImage[]
   }
 
 export type GetAdvertisementVehiclesPropsType = {

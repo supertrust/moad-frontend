@@ -6,6 +6,7 @@ import {
   useGetAdvertisementDetail,
   useGetAdvertisementOperationArea,
   useGetAdvertisementVehicles,
+  useGetDraftAdvertisementImages
 } from "@src/apis/advertisement";
 import { DataGrid } from "@src/components/common";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
@@ -18,6 +19,7 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styled from '@emotion/styled';
 import React, {
   ChangeEvent,
   Suspense,
@@ -69,6 +71,7 @@ function AdvertisementDetailScreen() {
     useGetAdvertisementDetail({
       id: advertisementId,
     });
+  const {data: draftAdvertisementImages, isLoading: isDraftAdvertisementImagesLoading} = useGetDraftAdvertisementImages(advertisementId)
   // const { data: vehicles } = useGetAdvertisementVehicles({
   // 	advertisement_id: advertisementId,
   // });
@@ -88,10 +91,22 @@ function AdvertisementDetailScreen() {
     totalRecords,
   } = cargoList || {};
 
+  useEffect (() => {
+    console.log('uef: ',!isDraftAdvertisementImagesLoading, !draftAdvertisementImages?.length, draftAdvertisementImages);
+
+    if(!isDraftAdvertisementImagesLoading && !draftAdvertisementImages?.length) openModel("model")
+  },[isDraftAdvertisementImagesLoading, draftAdvertisementImages])
+
   useEffect(() => {
     if (advertisement?.ad_name) setPageTitle(advertisement?.ad_name);
     else setPageTitle("");
   }, [advertisement?.ad_name]);
+
+  const CarouselWrapper = styled.div`
+    .carousel.slide {
+      height: 395px
+    }
+  `;
 
   const mockup_arr = [
     {
@@ -298,7 +313,7 @@ function AdvertisementDetailScreen() {
         <CircularProgress color="primary" />
       </div>
     );
-  
+
   const onBack = () => {
     router.back();
   };
@@ -332,33 +347,34 @@ function AdvertisementDetailScreen() {
 
               <div className={styles.detail_content}>
                 <div className={styles.slide_box}>
+                  {draftAdvertisementImages?.length &&
                   <div
                     className={`${model === "image" ? styles.active : ""} ${
                       styles.detail_slide
                     } ${styles.box}`}
                     id="div3d"
                   >
-                    <div className={styles.swiper_wrapper}>
+                    <CarouselWrapper className={styles.swiper_wrapper}>
                       <Carousel activeIndex={index} onSelect={handleSelect}>
-                        {mockup_arr.map((item, index) => (
+                        {draftAdvertisementImages?.map((item, index) => (
                           <Carousel.Item key={index}>
                             <Image
-                              src={item.img ? item.img : item.default_img}
+                              src={item.completed_url}
                               alt="slides"
                               width={550}
                               height={500}
                             />
-                            <Carousel.Caption className="valu-text">
+                            {/* <Carousel.Caption className="valu-text">
                               <h3>
                                 {item.badge_text}
                                 {item.badge_text2}
                               </h3>
-                            </Carousel.Caption>
+                            </Carousel.Caption> */}
                           </Carousel.Item>
                         ))}
                       </Carousel>
-                    </div>
-                  </div>
+                    </CarouselWrapper>
+                  </div>}
                   <div
                     className={`${model === "model" ? styles.active : ""} ${
                       styles.detail_3d

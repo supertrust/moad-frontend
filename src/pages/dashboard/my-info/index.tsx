@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useIcarusContext } from '@src/hooks/useIcarusContext';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -196,15 +197,15 @@ export default function MyInfoScreen() {
 										<Link
 											href='/dashboard/membership-withdrawal'
 											className={styles.link}>
-											탈퇴하기
+											회원탈퇴
 										</Link>
 									</div>
 									<div className={styles.profile_wrap}>
 										<div className={styles.profile_img}>
 											<div className={styles.user_photo}>
 												<Image
-													src={ profileImage ? 
-															URL.createObjectURL(profileImage) : 
+													src={ profileImage ?
+															URL.createObjectURL(profileImage) :
 															user?.image || '/images/account_circle.png'
 													}
 													alt=''
@@ -248,7 +249,7 @@ export default function MyInfoScreen() {
 									<div className={styles.my_information}>
 										<div className={styles.title}>내 정보</div>
 										<div className={styles.information_wrap}>
-											<ul className={styles.list_wrap}>
+											<ul className={clsx('flex flex-col gap-2',styles.list_wrap)}>
 												<li className={styles.lists}>
 													<div className={styles.desc}>회사명</div>
 													<RHFInput
@@ -256,7 +257,9 @@ export default function MyInfoScreen() {
 														type='input'
 														name='company_name'
 														className={styles.input}
-														errorPosition='top'
+														errorPosition='bottom'
+														justifyEnd={false}
+														disabled={true}
 														wrapperClassName={`${styles.company_name} ${styles.text}`}
 														id='company_phone_number'
 														value={user?.company_name}
@@ -272,7 +275,8 @@ export default function MyInfoScreen() {
 														type='number'
 														name='company_phone_number'
 														className={styles.input}
-														errorPosition='top'
+														errorPosition='bottom'
+														justifyEnd={false}
 														wrapperClassName={`${styles.company_name} ${styles.text}`}
 														id='company_phone_number'
 													/>
@@ -289,7 +293,8 @@ export default function MyInfoScreen() {
 														name='employee_name'
 														wrapperClassName={`${styles.company_name} ${styles.text}`}
 														className={styles.input}
-														errorPosition='top'
+														errorPosition='bottom'
+														justifyEnd={false}
 													/>
 												</li>
 												<li className={styles.lists}>
@@ -302,7 +307,8 @@ export default function MyInfoScreen() {
 														name='employee_phone_number'
 														title='employee_phone_number'
 														className={styles.input}
-														errorPosition='top'
+														errorPosition='bottom'
+														justifyEnd={false}
 														id='employee_phone_number'
 														wrapperClassName={`${styles.company_name} ${styles.text}`}
 													/>
@@ -320,7 +326,8 @@ export default function MyInfoScreen() {
 															title='employee_email'
 															name='employee_email'
 															className={styles.input}
-															errorPosition='top'
+															errorPosition='bottom'
+															justifyEnd={false}
 														/>
 													</div>
 												</li>
@@ -331,7 +338,9 @@ export default function MyInfoScreen() {
 														type='number'
 														name='business_registration_number'
 														className={styles.input}
-														errorPosition='top'
+														errorPosition='bottom'
+														justifyEnd={false}
+														disabled={true}
 														wrapperClassName={`${styles.company_name} ${styles.text}`}
 														id='company_phone_number'
 														value={user?.business_registration_number}
@@ -345,7 +354,10 @@ export default function MyInfoScreen() {
 														title='sector'
 														name='sector'
 														className={styles.input}
-														errorPosition='top'
+														errorPosition='bottom'
+														justifyEnd={false}
+														showCount={true}
+														maxCount={10}
 														wrapperClassName={`${styles.company_name} ${styles.text}`}
 													/>
 												</li>
@@ -367,10 +379,10 @@ export default function MyInfoScreen() {
 				</Col>
 				<Modal show={showModal} centered size='sm' backdrop='static'>
 					<Modal.Body>
-						<div className='text-center my-4'>
-							<div className='text-secondary mb-3'>내 정보 수정 완료</div>
-							<div className='mb-3'>정보 수정이 완료되었습니다.</div>
-							<div className='flex flex-row justify-center'>
+						<div className='text-center my-3'>
+							<div className='mb-3 font-extrabold text-xl text-left'>수정완료</div>
+							<div className='mb-3 py-3 border-y border-y-admin-sub'>정보 수정이 완료되었습니다.</div>
+							<div className='flex flex-row justify-end'>
 								<Button
 									onClick={() => setShowModal(false)}
 									className='bg-secondary text-white flex justify-center px-4'>

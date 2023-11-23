@@ -201,6 +201,7 @@ export type ICargoImage = {
 
 
 export type IAdvertisementStat ={
+    id?:number,
     ad_type: string,
     ad_name: string,
     number_of_vehicle: number,

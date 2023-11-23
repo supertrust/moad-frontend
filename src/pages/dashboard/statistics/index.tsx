@@ -28,7 +28,7 @@ export default function StatisticsScreen() {
 	const date_start = '2023. 03. 01';
 	const date_end = '2023. 03. 08';
 
-	const { 
+	const {
 		advertisement_amount, all_vehicles , end ,
 		operating_vehicles, schedule , schedule_to_end
 	} = totalStat || {};
@@ -115,7 +115,7 @@ const advertisementElement = (
 	<div className='relative'>
 	<Form.Select
 		aria-label='Default select example'
-		className={`border-[0px] !bg-[#f5f7fb] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px] 
+		className={`border-[0px] !bg-[#f5f7fb] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
 		${styles.selectOption}`}>
 		<option selected>이번 달</option>
 	</Form.Select>
@@ -123,7 +123,7 @@ const advertisementElement = (
 	</div>
 );
 const vehicleElement = (
-	<div className='text-[#99A0AC] '> 
+	<div className='text-[#99A0AC] '>
 		전체 기간 기준
 	</div>
 );
@@ -140,8 +140,8 @@ const vehicleElement = (
 								    <div className={styles.title_wrap_top}>
 									통계
 									</div>
-									<HeaderLine 
-										title='광고 금액' 
+									<HeaderLine
+										title='광고 금액'
 										element={advertisementElement}
 										left='view all'
 										href='/dashboard/ad-amount'
@@ -150,9 +150,9 @@ const vehicleElement = (
 										<div className={styles.box_wrap}>
 											<div className={styles.date}>
 												{date_start} ~ {date_end}
-											</div> 
+											</div>
 											<div className={styles.amount}>
-												{isTotalLoading ? 
+												{isTotalLoading ?
 													<Skeleton paragraph={false} className='w-24' />:
 													advertisement_amount ? advertisement_amount?.toLocaleString() + '원' : '-'
 												}
@@ -169,8 +169,8 @@ const vehicleElement = (
 												<li key={index} className={styles.list}>
 													<div className={styles.title}>{data.title}</div>
 													<div className={styles.data}>
-														{isTotalLoading ? 
-															<Skeleton paragraph={false} className='w-14 items-center' />: 
+														{isTotalLoading ?
+															<Skeleton paragraph={false} className='w-14 items-center' />:
 															data.data ? data.data + '대' : '-'
 														}
 													</div>
@@ -180,7 +180,7 @@ const vehicleElement = (
 									</div>
 								</div>
 							</div>
-							
+
 							<HeaderLine title='운행거리/운행시간' className='mb-[9px]'/>
 							<div className='ad-contents !h-full shadow-none	'>
 								<div className={styles.step_02}>
@@ -208,9 +208,9 @@ const vehicleElement = (
 												<div className={styles.selectDropdown}>
 												<Form.Select
 													aria-label='Default select example'
-													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px] 
+													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
 													${styles.selectOption}`}>
-													<option selected>캠페인 유형 선택</option>
+													<option selected>광고 유형 선택</option>
 													{SelectTypes.map((data) => (
 														<option key={data.value} value={data.value}>{data.text}</option>
 													))}
@@ -220,7 +220,7 @@ const vehicleElement = (
 												<div className={styles.selectDropdown}>
 												<Form.Select
 													aria-label='Default select example'
-													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px] 
+													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
 													${styles.selectOption}`}>
 													{SelectDate.map((data) => (
 														<option key={data.value} value={data.value}>{data.text}</option>
@@ -232,7 +232,7 @@ const vehicleElement = (
 													disabled={!selectedAds.length}
 													// onClick={handleDeleteAds}
 													className={
-														clsx(styles.adDeleteBtn, 
+														clsx(styles.adDeleteBtn,
 														'border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-[#2F48D1] !text-[#2F48D1]'
 														)
 														}>
@@ -274,13 +274,13 @@ const vehicleElement = (
 												{isLoading && <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
 													<CircularProgress color="primary" />
 												</div>}
-												{advertisement_stats?.slice(prevItems, currentItems)
+												{ advertisement_stats?.slice(prevItems, currentItems)
 													.map((item, index) => {
 														const selected = selectedAds.includes(item);
 														return (
 															<li key={index} className={`${styles.listFlex} relative`}>
 																<a
-																	href={`/dashboard/statistics/1`}
+																	href={`/dashboard/statistics/${item.id}`}
 																	className={styles.grid}>
 																	<div className={styles.chkBox}>
 																		<div className={styles.form_group}>
@@ -319,6 +319,7 @@ const vehicleElement = (
 														);
 													})}
 											</ul>
+											{ !isLoading && !advertisement_stats?.length &&  <div className='w-fit m-auto'>진행중인 광고가 없습니다.</div> }
 										</div>
 										{ advertisement_stats?.length &&
 										<div className='flex justify-center py-[30px] notification_pagination'>

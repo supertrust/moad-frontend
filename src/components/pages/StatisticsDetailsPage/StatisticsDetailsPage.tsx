@@ -31,9 +31,9 @@ function StatisticsDetailsPage() {
     const prevItems = 1;
     const currentItems = 10;
 
-    useEffect(() => {
-        setPageTitle("이카루스 서비스 오픈 출시 기념")
-    }, [])
+    // useEffect(() => {
+    //   setPageTitle("이카루스 서비스 오픈 출시 기념")
+    // }, [])
 
 
     return (
@@ -42,7 +42,7 @@ function StatisticsDetailsPage() {
 
             <div className={clsx("only-pc", "mx-[30px]")}>
                 <div className={'py-[20px]'}>
-                    <span className={styles['top-title']}>{"통계 > 이카루스 서비스 오픈 출시 기념 > 운행거리/운행시간"}</span>
+                    <span className={styles['top-title']}>{"통계 > 이카루스 서비스 오픈 출시 기념 "}</span>
                 </div>
 
                 <Card variant="elevation" elevation={1}
@@ -86,10 +86,12 @@ function StatisticsDetailsPage() {
                                     <TableRow className={'!h-[60px]'}>
                                         <TableCell className={clsx(styles["table-title"])}>no</TableCell>
                                         <TableCell className={clsx(styles["table-title"])}>등록번호</TableCell>
-                                        <TableCell className={clsx(styles["table-title"])}>차량번호</TableCell>
+                                        <TableCell className={clsx(styles["table-title"])}>차량종류</TableCell>
                                         <TableCell className={clsx(styles["table-title"])}>운행거리</TableCell>
                                         <TableCell className={clsx(styles["table-title"])}>운행시간</TableCell>
                                         <TableCell className={clsx(styles["table-title"])}>달성률</TableCell>
+                                        <TableCell className={clsx(styles["table-title"])}>상태</TableCell>
+                                        <TableCell className={clsx(styles["table-title"])}>광고기간</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody className="divide-y">
@@ -116,8 +118,9 @@ function StatisticsDetailsPage() {
                                                 <TableCell className={clsx(styles["table-value"], "!w-[190px]")}>
                                                     {stats?.operating_time}
                                                 </TableCell>
-                                                <TableCell
-                                                    className={clsx(styles["table-value"], "w-[200px]")}>{stats?.achievement_rate}</TableCell>
+                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>{stats?.achievement_rate}</TableCell>
+                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>광고진행중</TableCell>
+                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>2023.03.01 ~ 2023.09.30</TableCell>
                                             </TableRow>
                                         );
                                     })}
@@ -275,6 +278,3 @@ const data = [1, 2, 3,4,5,6,7,8,9].map((obj, id) => {
         achievement_rate: "80%"
     }
 })
-
-
-

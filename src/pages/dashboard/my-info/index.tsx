@@ -248,9 +248,9 @@ export default function MyInfoScreen() {
 									</div>
 									<div className={styles.my_information}>
 										<div className={styles.title}>내 정보</div>
-										<div className={styles.information_wrap}>
+										<div className={clsx('mt-4', styles.information_wrap)}>
 											<ul className={clsx('flex flex-col gap-2',styles.list_wrap)}>
-												<li className={styles.lists}>
+												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>회사명</div>
 													<RHFInput
 														title='company_name'
@@ -265,7 +265,7 @@ export default function MyInfoScreen() {
 														value={user?.company_name}
 													/>
 												</li>
-												<li className={styles.lists}>
+												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>
 														회사 전화번호
 														<span className={styles.point}>*</span>
@@ -281,7 +281,7 @@ export default function MyInfoScreen() {
 														id='company_phone_number'
 													/>
 												</li>
-												<li className={styles.lists}>
+												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>
 														담당자 성함
 														<span className={styles.point}>*</span>
@@ -297,7 +297,7 @@ export default function MyInfoScreen() {
 														justifyEnd={false}
 													/>
 												</li>
-												<li className={styles.lists}>
+												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>
 														담당자 핸드폰
 														<span className={styles.point}>*</span>
@@ -313,7 +313,7 @@ export default function MyInfoScreen() {
 														wrapperClassName={`${styles.company_name} ${styles.text}`}
 													/>
 												</li>
-												<li className={styles.lists}>
+												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>
 														담당자 이메일 (계산서 발행)
 														<span className={styles.point}>*</span>
@@ -331,7 +331,7 @@ export default function MyInfoScreen() {
 														/>
 													</div>
 												</li>
-												<li className={styles.lists}>
+												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>사업자 등록번호</div>
 													<RHFInput
 														title='business_registration_number'
@@ -346,7 +346,7 @@ export default function MyInfoScreen() {
 														value={user?.business_registration_number}
 													/>
 												</li>
-												<li className={styles.lists}>
+												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>업종</div>
 													<RHFInput
 														type='text'
@@ -365,7 +365,7 @@ export default function MyInfoScreen() {
 											<Button
 												loading={isLoading}
 												type='submit'
-												className={`${styles.modify_btn} p-0`}
+												className={`${styles.modify_btn} p-0 mx-auto`}
 												onClick={onSubmit}
 												disabled={disabledSubmit}>
 												수정완료

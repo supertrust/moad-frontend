@@ -15,6 +15,9 @@ import {
 } from '@src/types/advertisement';
 import HeaderLine from '@src/components/common/HeaderLine';
 import Link from 'next/link';
+import {ISOformatDate} from  '@src/helpers'
+
+
 export default function StatisticsScreen() {
 	const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
 	const [status, setStatus] = useState<AdStatusesType | undefined>();
@@ -27,6 +30,7 @@ export default function StatisticsScreen() {
 	const { data: totalStat, isLoading: isTotalLoading } = useGetStatBasedAdvertisment();
 	const date_start = '2023. 03. 01';
 	const date_end = '2023. 03. 08';
+	const yearEnd = new Date(new Date().getFullYear(),11,31)
 
 	const {
 		advertisement_amount, all_vehicles , end ,
@@ -280,7 +284,7 @@ const vehicleElement = (
 														return (
 															<li key={index} className={`${styles.listFlex} relative`}>
 																<a
-																	href={`/dashboard/statistics/${item.id}`}
+																	href={`/dashboard/statistics/${item.id}?end=${ISOformatDate(yearEnd)}`}
 																	className={styles.grid}>
 																	<div className={styles.chkBox}>
 																		<div className={styles.form_group}>

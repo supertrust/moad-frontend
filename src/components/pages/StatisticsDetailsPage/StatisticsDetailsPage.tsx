@@ -1,5 +1,5 @@
 import { Card, CircularProgress, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
-import { useGetShowAdvertisementStats } from '@src/apis/advertisement';
+import { useGetVehicleAdvertisementStatsDetails } from '@src/apis/advertisement';
 import ArrowBack from "@src/components/icons/ArrowBack";
 import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
@@ -10,27 +10,27 @@ import { clsx } from 'clsx';
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from 'react';
 import { Table } from "react-bootstrap";
+import { useSearchParams } from 'next/navigation'
 import styles from './styles.module.scss';
+import {ISOformatDate} from  '@src/helpers'
 
+const currentYearStart = new Date(new Date().getFullYear(), 0, 1)
 function StatisticsDetailsPage() {
-    const { isLoading } = useGetShowAdvertisementStats({ page: 1});
+    const router = useRouter()
+    const { id } = router.query
+    const searchParams = useSearchParams()
+    const [currentPage, setCurrentPage] = useState(1); // Current page number
+    const { data: vehicle_advertisement_stats_details, isLoading } = useGetVehicleAdvertisementStatsDetails({ to: String(searchParams.get('end')), from: ISOformatDate(currentYearStart), advertisement_id: String(id), page: currentPage});
     const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
     const { setPageTitle } = useIcarusContext()
-    const router = useRouter()
-
     const itemsPerPage = 10;
-
-    const [currentPage, setCurrentPage] = useState(1); // Current page number
-
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
-
-
     const totalItems = 50;
     const prevItems = 1;
     const currentItems = 10;
 
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
     // useEffect(() => {
     //   setPageTitle("이카루스 서비스 오픈 출시 기념")
     // }, [])
@@ -51,7 +51,7 @@ function StatisticsDetailsPage() {
                         <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
                             <CircularProgress color="primary"/>
                         </div>
-                    ) : data?.length ? (
+                    ) : vehicle_advertisement_stats_details?.length ? (
                         <div>
                             <div className={'min-h-[74px] flex items-center px-4 justify-between space-x-5'}>
                                <div className={'flex space-x-[20px]'}>
@@ -95,7 +95,7 @@ function StatisticsDetailsPage() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody className="divide-y">
-                                    {data?.map((stats: any, index: number) => {
+                                    {vehicle_advertisement_stats_details?.map((stats: any, index: number) => {
                                         return (
                                             <TableRow
                                                 key={index}
@@ -110,17 +110,17 @@ function StatisticsDetailsPage() {
                                                 </TableCell>
 
                                                 <TableCell className={clsx(styles["table-value"], "!w-[205px]")}>
-                                                    {stats?.car_number}
+                                                    {stats?.vehicle_type}
                                                 </TableCell>
                                                 <TableCell className={clsx(styles["table-value"], "!w-[195px]")}>
-                                                    {stats?.driving_distance}
+                                                    {stats?.total_distance}
                                                 </TableCell>
                                                 <TableCell className={clsx(styles["table-value"], "!w-[190px]")}>
-                                                    {stats?.operating_time}
+                                                    {stats?.total_hours}
                                                 </TableCell>
                                                 <TableCell className={clsx(styles["table-value"], "w-[200px]")}>{stats?.achievement_rate}</TableCell>
-                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>광고진행중</TableCell>
-                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>2023.03.01 ~ 2023.09.30</TableCell>
+                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>{stats?.status}</TableCell>
+                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>{stats?.start_date} ~ {stats?.end_date}</TableCell>
                                             </TableRow>
                                         );
                                     })}
@@ -132,7 +132,7 @@ function StatisticsDetailsPage() {
                             데이터를 찾을 수 없습니다!
                         </div>
                     )}
-                    {data?.length ? (
+                    {vehicle_advertisement_stats_details?.length ? (
                         <div className='flex justify-center py-[20px] notification_pagination'>
                             <Pagination
                                 current={currentPage}
@@ -213,7 +213,7 @@ function StatisticsDetailsPage() {
 
                 <div className={'flex flex-col space-y-[12px]'}>
                     {
-                        data.map((obj, idx) => {
+                        vehicle_advertisement_stats_details?.map((obj, idx) => {
                             return <div key={idx}
                                         className={clsx(styles['mobile-card-body'], 'flex flex-col py-[20px]')}>
 
@@ -226,19 +226,19 @@ function StatisticsDetailsPage() {
                                 <div
                                     className={'flex items-center space-x-2 justify-between mx-[30px] border-b border-[#ebedf4] py-[14px]'}>
                                     <span className={styles['card-info-title']}>차량종류</span>
-                                    <span className={styles['card-info-value']}>{obj.car_number}</span>
+                                    <span className={styles['card-info-value']}>{obj.vehicle_type}</span>
                                 </div>
 
                                 <div
                                     className={'flex  items-center space-x-2 justify-between mx-[30px] border-b border-[#ebedf4] py-[14px]'}>
                                     <span className={styles['card-info-title']}>운행거리</span>
-                                    <span className={styles['card-info-value']}>{obj.driving_distance}</span>
+                                    <span className={styles['card-info-value']}>{obj.total_distance}</span>
                                 </div>
 
                                 <div
                                     className={'flex  items-center space-x-2 justify-between mx-[30px] border-b border-[#ebedf4] py-[14px]'}>
                                     <span className={styles['card-info-title']}>운행시간</span>
-                                    <span className={styles['card-info-value']}>{obj.operating_time}</span>
+                                    <span className={styles['card-info-value']}>{obj.total_hours}</span>
                                 </div>
 
                                 <div className={'flex  items-center space-x-2 justify-between mx-[30px]  py-[14px]'}>
@@ -252,7 +252,7 @@ function StatisticsDetailsPage() {
                     }
 
                 </div>
-
+                {vehicle_advertisement_stats_details?.length && (
                 <div className='flex justify-center py-[30px] notification_pagination'>
                     <Pagination
                         current={currentPage}
@@ -260,7 +260,7 @@ function StatisticsDetailsPage() {
                         pageSize={itemsPerPage}
                         onChange={handlePageChange}
                     />
-                </div>
+                </div>)}
             </div>
         </>
     );

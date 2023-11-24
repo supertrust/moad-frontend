@@ -111,3 +111,5 @@ export const formatTimeFromMinute = (n: number) => {
     date.setDate(date.getDate() + 7 * weeks);
     return date;
   }
+
+export const ISOformatDate = (d:Date) => d.toISOString().split('T')[0]

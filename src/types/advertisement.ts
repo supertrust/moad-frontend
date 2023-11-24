@@ -173,6 +173,18 @@ export type IAdvertisementCargo =  {
     }
 }
 
+export type VehicleAdvertisementStatsDetails = {
+    cargo_vehicle_id: number,
+    registration_number: string,
+    vehicle_type: string,
+    total_distance: number,
+    total_hours: string,
+    achievement_rate: string,
+    status: string,
+    start_date: string,
+    end_date: string
+}
+
 export type IAdvertissementCargoResponse = {
     message: string
     per_page: number

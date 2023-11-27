@@ -120,11 +120,13 @@ const advertisementElement = (
 	<Form.Select
 		aria-label='Default select example'
 		className={`border-[0px] !bg-[#f5f7fb] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
-		${styles.selectOption}`}>
-		<option selected>이번 달</option>
+		${styles.selectOption} cursor-pointer`}>
+		{SelectDate.map((data) => (
+			<option key={data.value} value={data.value}>{data.text}</option>
+		))}
 	</Form.Select>
-	<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
-	</div>
+	<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}/>
+	</div> 
 );
 const vehicleElement = (
 	<div className='text-[#99A0AC] '>
@@ -192,7 +194,7 @@ const vehicleElement = (
 										<div className={styles.tabMenu}>
 											{statuses.map((item) => (
 												<div
-													onClick={() => setStatus(item.value as AdStatusesType)}
+													onClick={() => {setSelectedAds([]);setStatus(item.value as AdStatusesType)}}
 													key={item.label}
 													className={styles.tabTitle}>
 													<span
@@ -213,24 +215,24 @@ const vehicleElement = (
 												<Form.Select
 													aria-label='Default select example'
 													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
-													${styles.selectOption}`}>
+													${styles.selectOption} cursor-pointer`}>
 													<option selected>광고 유형 선택</option>
 													{SelectTypes.map((data) => (
 														<option key={data.value} value={data.value}>{data.text}</option>
 													))}
 												</Form.Select>
-													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
+													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}/>
 												</div>
 												<div className={styles.selectDropdown}>
 												<Form.Select
 													aria-label='Default select example'
 													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
-													${styles.selectOption}`}>
+													${styles.selectOption} cursor-pointer`}>
 													{SelectDate.map((data) => (
 														<option key={data.value} value={data.value}>{data.text}</option>
 													))}
 												</Form.Select>
-													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc}`}/>
+													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}/>
 												</div>
 												<button
 													disabled={!selectedAds.length}
@@ -281,11 +283,10 @@ const vehicleElement = (
 												{ advertisement_stats?.slice(prevItems, currentItems)
 													.map((item, index) => {
 														const selected = selectedAds.includes(item);
+														console.log('selected', selected)
 														return (
 															<li key={index} className={`${styles.listFlex} relative`}>
-																<a
-																	href={`/dashboard/statistics/${item.id}?end=${ISOformatDate(yearEnd)}`}
-																	className={styles.grid}>
+																<div className={styles.grid}>
 																	<div className={styles.chkBox}>
 																		<div className={styles.form_group}>
 																			<input
@@ -296,13 +297,15 @@ const vehicleElement = (
 																				name='list_chk'
 																				id={`item_${index}`}
 																			/>
-																			<label htmlFor={`item_${index}  w-[15px] h-[15px]`}></label>
+																			<label htmlFor={`item_${index}`} className='w-[15px] h-[15px]'></label>
 																		</div>
 																	</div>
 																	<div className={clsx(styles.typeWrap, styles.gridBox)}>
 																		{Types[item.ad_type]}
 																	</div>
-																	<div className={`${styles.gridBox} !text-left !justify-start`}>{item.ad_name}</div>
+																	<a
+																	href={`/dashboard/statistics/${item.id}?end=${ISOformatDate(yearEnd)}`}
+																	className={`${styles.gridBox} !text-left !justify-start underline text-[#2C324C] hover:!text-[#2C324C]`}>{item.ad_name}</a>
 																	<div className={`${styles.gridBox} ${styles.only_pc}`}>{`${item.number_of_vehicle}`}대</div>
 																	<div className={styles.gridBox}>
 																		{item.total_distance?.toLocaleString() || "-"} km
@@ -318,7 +321,7 @@ const vehicleElement = (
 																	{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div> */}
 																	{/* <i className='only-mb ic-arrow-right'></i> */}
 																	<Arrow fill={'#999999'} className='block sm:hidden absolute right-[12px] top-[28px] rotate-[-90deg]'/>
-																</a>
+																</div>
 															</li>
 														);
 													})}

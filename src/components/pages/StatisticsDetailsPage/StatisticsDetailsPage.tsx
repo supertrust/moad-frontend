@@ -12,17 +12,27 @@ import React, { useEffect, useState } from 'react';
 import { Table } from "react-bootstrap";
 import { useSearchParams } from 'next/navigation'
 import styles from './styles.module.scss';
-import {ISOformatDate} from  '@src/helpers'
+import {ISOformatDate, dateFormat} from  '@src/helpers'
+import { TypeOfVechicle } from "@src/sections/dashboard/SaveAdModel/SaveAdForm";
+import RangePicker from "@src/components/common/RangePicker";
+
 
 const currentYearStart = new Date(new Date().getFullYear(), 0, 1)
 function StatisticsDetailsPage() {
     const router = useRouter()
     const { id } = router.query
     const searchParams = useSearchParams()
+    
     const [currentPage, setCurrentPage] = useState(1); // Current page number
     const { data: vehicle_advertisement_stats_details, isLoading } = useGetVehicleAdvertisementStatsDetails({ to: String(searchParams.get('end')), from: ISOformatDate(currentYearStart), advertisement_id: String(id), page: currentPage});
     const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
-    const { setPageTitle } = useIcarusContext()
+    const { setPageTitle } = useIcarusContext();
+
+    const [date, setDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
+
     const itemsPerPage = 10;
     const totalItems = 50;
     const prevItems = 1;
@@ -31,11 +41,24 @@ function StatisticsDetailsPage() {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
-    // useEffect(() => {
-    //   setPageTitle("이카루스 서비스 오픈 출시 기념")
-    // }, [])
+     useEffect(() => {
+      setPageTitle("통계")
+    }, [])
 
-
+    const allStatuses = [
+        { label: '시작', value: 'accepted' },
+        { label: '시작', value: 'apply' },
+        { label: '거부됨', value: 'rejected' },
+        { label: '시작', value: 'start' },
+        { label: '끝', value: 'end' },
+    ]
+    const handleDateChange = (range) => {
+        const startDate = range[0].format();
+        const endDate = range[1].format();
+        setStartDate(startDate);
+        setEndDate(endDate);
+      };
+    
     return (
         <>
             {/*pc version*/}
@@ -53,7 +76,7 @@ function StatisticsDetailsPage() {
                         </div>
                     ) : vehicle_advertisement_stats_details?.length ? (
                         <div>
-                            <div className={'min-h-[74px] flex items-center px-4 justify-between space-x-5'}>
+                            <div className={'min-h-[74px] flex items-center px-4 justify-between space-x-5 relative'}>
                                <div className={'flex space-x-[20px]'}>
                                    <div
                                        className={'flex items-center justify-between  bg-white border-y border-[#ebedf4] w-[320px]'}>
@@ -61,9 +84,15 @@ function StatisticsDetailsPage() {
                                            <PrevIcon width={16} height={16}/>
                                        </div>
                                        <div>
-                        <span className={styles['date']}>
-                            오늘 : 2023. 03. 08 ~ 2023. 03. 08
+                        <span className={styles['date']} onClick={() => setDatePickerOpen(true)}>
+                            {/* 오늘 : {dateFormat(startDate?.toISOString(),'Y-m-d')} ~ {dateFormat(endDate?.toISOString(),'Y-m-d')} */}
+                            <RangePicker
+                                    className='custom_picker'                                    
+                                    onchange={() => handleDateChange}
+                                    // footer={'extra footer'} 
+                                />
                         </span>
+                        
                                        </div>
                                        <div className={styles['date-next-prev']}>
                                            <NextIcon width={16} height={16}/>
@@ -71,10 +100,60 @@ function StatisticsDetailsPage() {
                                    </div>
 
                                    <div className={'h-[40px] w-[1px] bg-[#EBEDF4]'}>
-
+                                   {/* <DatePicker
+                                //    calendarClassName="!absolute left-0 top-[60px] !z-[99]"
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    selected={startDate}
+                                    onChange={ (dates) => {
+                                        const [start, end] = dates;
+                                        setStartDate(start);
+                                        setEndDate(end);
+                                    }}
+                                    shouldCloseOnSelect={true}
+                                    onBlur ={() => {
+                                        setDatePickerOpen(false)
+                                    }}
+                                    open={datePickerOpen}
+                                    selectsRange
+                                    selectsDisabledDaysInRange
+                                    inline
+                                    monthsShown={2}
+                                    isClearable
+                                    clearButtonTitle="Confirm"
+                                    cancelBtnText="Cancel"
+                                />
+                                 */}
+                                 {/* <DatePicker 
+                                 calendarClassName="!absolute left-0 top-[60px] !z-[99]"
+                                startDate={startDate}
+                                endDate={endDate}
+                                selected={startDate}
+                                onChange={ (dates) => {
+                                    const [start, end] = dates;
+                                    setStartDate(start);
+                                    setEndDate(end);
+                                    if(end){
+                                        setDatePickerOpen(false)
+                                    }
+                                }}
+                                selectsRange
+                                monthsShown={2}
+                                open={datePickerOpen}
+                                onClickOutside ={() => {
+                                    setDatePickerOpen(false)
+                                }}
+                                clearButtonTitle={'Today'}
+                                className="hidden"
+                                renderExtraFooter={() => (
+                                    <div onMouseDown={(e) => e.stopPropagation()}>
+                                     <input />  
+                                    </div>
+                                  )}
+                                 /> */}
+                                  
                                    </div>
                                </div>
-
                                 <span className={styles['selected-date']}>
                                   보고서는 실시간이 아닙니다. 2023. 03. 28 14:59 기준 , 2023.03.28  11: 00 시간까지 업데이트된 지표입니다.
                               </span>
@@ -110,16 +189,21 @@ function StatisticsDetailsPage() {
                                                 </TableCell>
 
                                                 <TableCell className={clsx(styles["table-value"], "!w-[205px]")}>
+                                                    {TypeOfVechicle?.find((item) => 
+                                                    item.value === (stats?.advertisement_vehicle_type))
+                                                    ?.text + ` `}
                                                     {stats?.vehicle_type}
                                                 </TableCell>
                                                 <TableCell className={clsx(styles["table-value"], "!w-[195px]")}>
-                                                    {stats?.total_distance}
+                                                    {stats?.total_distance}km
                                                 </TableCell>
                                                 <TableCell className={clsx(styles["table-value"], "!w-[190px]")}>
-                                                    {stats?.total_hours}
+                                                    {stats?.total_hours}시간
                                                 </TableCell>
                                                 <TableCell className={clsx(styles["table-value"], "w-[200px]")}>{stats?.achievement_rate}</TableCell>
-                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>{stats?.status}</TableCell>
+                                                <TableCell className={clsx(styles["table-value"], "w-[200px]")}>
+                                                    {allStatuses.find((status) => stats?.status === status.value)?.label}
+                                                    </TableCell>
                                                 <TableCell className={clsx(styles["table-value"], "w-[200px]")}>{stats?.start_date} ~ {stats?.end_date}</TableCell>
                                             </TableRow>
                                         );

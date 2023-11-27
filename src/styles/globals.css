@@ -4224,3 +4224,10 @@ input:focus-visible {
 	top: -6%;
 	inset-inline-start: 0;
 }
+
+.custom_picker{
+	border: none;
+}
+.custom_picker .ant-picker-input input{
+	text-align: center;
+}

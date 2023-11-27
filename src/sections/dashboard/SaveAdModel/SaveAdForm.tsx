@@ -42,6 +42,11 @@ type FormDataType = {
   operating_area: number[];
 };
 
+export const TypeOfVechicle = [
+  {text :"카고",value :"cargo"},
+  {text :"탑",value :"tower"},
+  {text :"윙바디",value :"loaded"},
+];
 const defaultStartDate = addWeeks(new Date(), 2)
 const defaultValues: FormDataType = {
   ad_name: "",
@@ -227,11 +232,7 @@ const SaveAdForm = ({
       document.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
-  const TypeOfVechicle = [
-    {text :"카고",value :"cargo"},
-    {text :"탑",value :"tower"},
-    {text :"윙바디",value :"loaded"},
-  ];
+  
 
   function CustomInput(props) {
     return (

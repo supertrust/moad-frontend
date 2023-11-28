@@ -1,11 +1,14 @@
 import React from "react";
 import { DatePicker } from "antd";
+import dayjs from "dayjs";
 
 export interface RangeProps {
   className?: string;
   format?: string;
   footer?:string;
-  onchange?:() => void;
+  startDate?:Date;
+  endDate?:Date;
+  onchange?:VoidFunction;
 }
 
 function RangePicker(props : RangeProps) {
@@ -15,8 +18,10 @@ function RangePicker(props : RangeProps) {
     <RangePicker
       className={props?.className}
       format="YYYY-MM-DD"
-      onChange={() => onchange}
+      // onChange={(range) => onchange(range)}
       separator={" ~ "}
+      allowEmpty={[false,false]}
+      // defaultValue={[dayjs(props.startDate??new Date()),dayjs(props.endDate??new Date())]}
       allowClear={false}
       suffixIcon={""}
       inputReadOnly

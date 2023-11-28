@@ -14,7 +14,7 @@ const sideBarPath = {
   "/dashboard/my-info" : "My Page",
   "/dashboard/ad-management" : "Ad Management",
   "/dashboard/statistics/[id]" : "Statistics",
-  "/dashboard/statistics" : {en: "Statistics", ko: '대시보드'},
+  "/dashboard/statistics" : {en: "Statistics", ko: '통계'},
   "/dashboard/customer-service/notice" : "Announcement",
   "/dashboard/customer-service/guide" : "Guide",
   "/dashboard/customer-service/faq" : "FAQ",
@@ -55,7 +55,7 @@ function Sidebar({ msg }: SidebarProps) {
 
       setTab(sideBarPath[router.pathname]?.en || sideBarPath[router.pathname])
       barStatus(sideBarPath[router.pathname]?.en || sideBarPath[router.pathname]);
-      // msg(sideBarPath[router.pathname].ko || sideBarPath[router.pathname]);
+      msg(sideBarPath[router.pathname].ko || sideBarPath[router.pathname]);
     }
   },[router.pathname])
 

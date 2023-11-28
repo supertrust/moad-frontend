@@ -4228,6 +4228,10 @@ input:focus-visible {
 .custom_picker{
 	border: none;
 }
+.custom_picker .ant-picker-range-separator{
+	padding: 0;
+}
 .custom_picker .ant-picker-input input{
 	text-align: center;
+	width: 80px;
 }

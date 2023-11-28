@@ -179,7 +179,24 @@ $font-family: "Noto Sans KR", sans-serif;
   color: #2c324c;
 }
 
-
+.ant-picker-custom-header{
+  div{
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    gap: 8px;
+    button{
+      width: auto;
+      border-radius: 5px;
+      border: 1px solid var(--__1, #EBEDF4);
+      background: #FFF;
+      padding: 4px 8px;
+      &.active{
+        border-color: #000;
+      }
+    }
+  }
+}
 
 @media screen and (max-width: 767px) {
 

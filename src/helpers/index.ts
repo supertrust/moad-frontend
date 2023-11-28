@@ -113,3 +113,104 @@ export const formatTimeFromMinute = (n: number) => {
   }
 
 export const ISOformatDate = (d:Date) => d.toISOString().split('T')[0]
+
+export const DateSelected = (selectedFilter) => {
+    const today = new Date();
+    switch (selectedFilter) {
+      case "today":
+        return {startDate : new Date(),endDate:new Date()};
+        case "this_week":
+            const startOfWeek = new Date(today);
+            startOfWeek.setDate(today.getDate() - today.getDay());
+    
+            const endOfWeek = new Date(today);
+            endOfWeek.setDate(today.getDate() - today.getDay() + 6);
+
+            return{startDate : startOfWeek,endDate:endOfWeek} ;
+        case "last_week":
+        const lastWeekStartDate = new Date(today);
+        lastWeekStartDate.setDate(today.getDate() - today.getDay() - 7); 
+
+        const lastWeekEndDate = new Date(today);
+        lastWeekEndDate.setDate(today.getDate() - today.getDay() - 1); 
+
+            return{startDate : lastWeekStartDate,endDate:lastWeekEndDate} ;
+        case "this_month":
+            const thisMonthStartDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            const nextMonthStartDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+            const thisMonthEndDate = new Date(nextMonthStartDate.getTime() - 1);
+          console.log('thisMonthEndDate', thisMonthEndDate)
+            return {
+              startDate: thisMonthStartDate,
+              endDate: thisMonthEndDate,
+            };
+        case "last_month":
+            const lastMonthStartDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+            const currentMonthStartDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            const lastMonthEndDate = new Date(currentMonthStartDate.getTime() - 1);
+          
+            return {
+              startDate: lastMonthStartDate,
+              endDate: lastMonthEndDate,
+            };
+        case "this_year":
+            const thisYearStartDate = new Date(today.getFullYear(), 0, 1);
+            const nextYearStartDate = new Date(today.getFullYear() + 1, 0, 1);
+            const thisYearEndDate = new Date(nextYearStartDate.getTime() - 1); 
+          
+            return {
+              startDate: thisYearStartDate,
+              endDate: thisYearEndDate,
+            };
+        case "last_year":
+            const lastYearStartDate = new Date(today.getFullYear() - 1, 0, 1);
+            const currentYearStartDate = new Date(today.getFullYear(), 0, 1);
+            const lastYearEndDate = new Date(currentYearStartDate.getTime() - 1); 
+          
+            return {
+              startDate: lastYearStartDate,
+              endDate: lastYearEndDate,
+            };
+        case "all":
+            return {
+                startDate: '',
+                endDate: '',
+              };
+      default:
+         return {
+            startDate: '',
+            endDate: '',
+          };;
+    }
+}
+
+export const totalDays = (startDate,endDate) => {
+
+const timeDifference = endDate - startDate;
+
+const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+return daysDifference;
+}
+
+export const getNextMonthDates = (type,date) => {
+    const givenDate = new Date(date);
+    const year = givenDate.getFullYear();
+    const month = givenDate.getMonth();
+  
+    const nextMonth = (month + 1) % 12;
+    const nextYear = nextMonth === 0 ? year + 1 : year;
+  
+    var startDate = new Date(nextYear, nextMonth, 1);
+    var endDate = new Date(nextYear, nextMonth + 1, 0);
+    if(type == 'prev'){
+        startDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), 1);
+        endDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), 0);
+        console.log('startDate', startDate)
+        console.log('endDate', endDate)
+    }
+    return {
+      startDate: startDate,
+      endDate: endDate,
+    };
+  }

@@ -139,7 +139,7 @@ export const useGetShowAdvertisementStats = (
 export const useGetVehicleAdvertisementStatsDetails = (
     { to, from, advertisement_id, page } : {to: string,from: string, advertisement_id:string, page: number}
 ) => useQuery<VehicleAdvertisementStatsDetails[], string>({
-    queryKey: ["show-advertisement-stats-details", advertisement_id, page],
+    queryKey: ["show-advertisement-stats-details", advertisement_id, page,to, from],
     queryFn: async () => (await axios.get("/api/vehicles-advertisement-stats", { params: { to, from, advertisement_id, page } })).data.data
 });
 

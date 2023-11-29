@@ -21,7 +21,7 @@ import {
     SaveAdvertisementType,
     UpdateAdvertisementStatusType,
     DraftAdvertisementImage,
-    VehicleAdvertisementStatsDetails
+    VehicleAdvertisementStatsResponse
 } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@src/services/ReactQueryClient";
@@ -138,9 +138,9 @@ export const useGetShowAdvertisementStats = (
 
 export const useGetVehicleAdvertisementStatsDetails = (
     { to, from, advertisement_id, page } : {to: string,from: string, advertisement_id:string, page: number}
-) => useQuery<VehicleAdvertisementStatsDetails[], string>({
+) => useQuery<VehicleAdvertisementStatsResponse, string>({
     queryKey: ["show-advertisement-stats-details", advertisement_id, page,to, from],
-    queryFn: async () => (await axios.get("/api/vehicles-advertisement-stats", { params: { to, from, advertisement_id, page } })).data.data
+    queryFn: async () => (await axios.get("/api/vehicles-advertisement-stats", { params: { to, from, advertisement_id, page } })).data
 });
 
 export const useGetAdvertisementOperationArea = ({

@@ -25,10 +25,10 @@ import { DatePicker } from "antd";
 import dayjs from "dayjs";
 
 const dateRangePickerCtrls = [
-  // {
-  //   label: "전체",
-  //   value: "all",
-  // },
+  {
+    label: "전체",
+    value: "all",
+  },
   {
     label: "오늘",
     value: "today",
@@ -75,21 +75,21 @@ function StatisticsDetailsPage() {
   const { setPageTitle } = useIcarusContext();
 
   const [date, setDate] = useState(new Date());
-  const [bufferdDate, setBufferdDate] = useState<DateRange>({startDate : new Date(),endDate: new Date(String(searchParams.get("end")))});
-  const [selectedDate, setSelectedDate] = useState({startDate : new Date(),endDate: new Date(String(searchParams.get("end")))});
+  const [bufferdDate, setBufferdDate] = useState<DateRange | []>({startDate : new Date(),endDate: new Date(String(searchParams.get("end")))});
+  const [selectedDate, setSelectedDate] = useState<DateRange>({startDate : new Date(),endDate: new Date(String(searchParams.get("end")))});
  
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
 
   const { data: vehicle_advertisement_stats_details, isLoading } =
     useGetVehicleAdvertisementStatsDetails({
-      to: selectedDate.endDate?ISOformatDate(selectedDate.endDate):'',
-      from: selectedDate.startDate?ISOformatDate(selectedDate.startDate) : '',
+      to: selectedDate.endDate?ISOformatDate(selectedDate.endDate as Date):'',
+      from: selectedDate.startDate?ISOformatDate(selectedDate.startDate as Date) : '',
       advertisement_id: String(id),
       page: currentPage,
     });
 
-  const itemsPerPage = 10;
-  const totalItems = 50;
+  const itemsPerPage = 15;
+  const totalItems = vehicle_advertisement_stats_details?.totalRecords;
   const prevItems = 1;
   const currentItems = 10;
 
@@ -107,8 +107,8 @@ function StatisticsDetailsPage() {
     { label: "시작", value: "start" },
     { label: "끝", value: "end" },
   ];
-  const handleMonthChange = (type) => {
-    const {startDate,endDate} = getNextMonthDates(type,selectedDate?.startDate)
+  const handleMonthChange = (type,date) => {
+    const {startDate,endDate} = getNextMonthDates(type,date)
     setSelectedDate({startDate:startDate as Date,endDate:endDate as Date});
   }
   const handleDateChange = (range) => {
@@ -118,13 +118,14 @@ function StatisticsDetailsPage() {
   };
 
   const filterDate = (value : string) => {
-    // if(value == 'all'){
-    //   setBufferdDate([])
-    // }else{
+    if(value == 'all'){
+      setBufferdDate([])
+      setSelectedDate({startDate:'',endDate:''})
+    }else{
       const filteredItemsToday : DateRange = DateSelected(value)
       console.log('filteredItemsToday', filteredItemsToday)
       setBufferdDate({startDate:filteredItemsToday?.startDate,endDate:filteredItemsToday?.endDate});
-    // }
+    }
   }
 
   // Extra options in date range picker
@@ -158,6 +159,9 @@ function StatisticsDetailsPage() {
     };
   }, [datePickerOpen]);
           
+  const bufferStartDate = !Array.isArray(bufferdDate) ? bufferdDate.startDate : new Date();
+  const bufferEndDate   = !Array.isArray(bufferdDate) ? bufferdDate.endDate : new Date();
+
   return (
     <>
       {/*pc version*/}
@@ -186,7 +190,7 @@ function StatisticsDetailsPage() {
                     "flex items-center justify-between  bg-white border-y border-[#ebedf4] w-[320px]"
                   }
                 >
-                  <div className={styles["date-next-prev"]} onClick={() => handleMonthChange('prev')}>
+                  <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleMonthChange('prev',selectedDate?.startDate)}>
                     <PrevIcon width={16} height={16} />
                   </div>
                   <div>
@@ -202,8 +206,8 @@ function StatisticsDetailsPage() {
                             className="w-[80px] text-center"
                             readOnly
                             placeholder="Start date"
-                            value={dateFormat(
-                              selectedDate.startDate?.toISOString(),
+                            value={selectedDate?.startDate && dateFormat(
+                              (selectedDate?.startDate as Date)?.toISOString(),
                               "Y-m-d"
                             )}
                           />
@@ -214,7 +218,7 @@ function StatisticsDetailsPage() {
                             className="w-[80px] text-center"
                             readOnly
                             placeholder="End date"
-                            value={dateFormat(selectedDate.endDate?.toISOString(), "Y-m-d")}
+                            value={selectedDate.endDate && dateFormat((selectedDate.endDate as Date)?.toISOString(), "Y-m-d")}
                           />
                         </div>
                       </div>
@@ -227,12 +231,12 @@ function StatisticsDetailsPage() {
                         onChange={handleDateChange}
                         separator={"~"}
                         defaultValue={[
-                          dayjs(bufferdDate.startDate ?? new Date()),
-                          dayjs(bufferdDate.endDate ?? new Date()),
+                          dayjs(bufferStartDate),
+                          dayjs(bufferEndDate),
                         ]}
                         value={[
-                          dayjs(bufferdDate.startDate ?? new Date()),
-                          dayjs(bufferdDate.endDate ?? new Date()),
+                          dayjs(bufferStartDate),
+                          dayjs(bufferEndDate),
                         ]}
                         allowClear={false}
                         suffixIcon={""}
@@ -246,10 +250,9 @@ function StatisticsDetailsPage() {
                           <div className="flex justify-between px-[20px] bg-[#E1ECFF] py-[15px] items-center">
                             <div>
                               {
-                                bufferdDate?.startDate && bufferdDate?.endDate && 
-                              <p>{ISOformatDate(bufferdDate?.startDate as Date)} ~ 
-                              {ISOformatDate(bufferdDate?.endDate as Date)} {' '}
-                              <span className="text-[#2F48D1] font-medium	">({totalDays(bufferdDate?.startDate,bufferdDate?.endDate)}일간)</span>
+                              <p>{ISOformatDate(bufferStartDate as Date)} ~ 
+                              {ISOformatDate(bufferEndDate as Date)} {' '}
+                              <span className="text-[#2F48D1] font-medium	">({totalDays(bufferStartDate,bufferEndDate)}일간)</span>
                               </p>
                               }
                             </div>
@@ -257,7 +260,7 @@ function StatisticsDetailsPage() {
                               <button
                                 className=" bg-[#2F48D1] text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
                                 onClick={() => {
-                                  setSelectedDate({startDate:bufferdDate.startDate as Date,endDate:bufferdDate.endDate as Date});
+                                  setSelectedDate({startDate:bufferStartDate as Date,endDate:bufferEndDate as Date});
                                   setDatePickerOpen(false)
                                 }}
                               >
@@ -277,7 +280,7 @@ function StatisticsDetailsPage() {
                       />
                     </div>
                   </div>
-                  <div className={styles["date-next-prev"]} onClick={() => handleMonthChange('next')}>
+                  <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleMonthChange('next',selectedDate?.endDate)}>
                     <NextIcon width={16} height={16} />
                   </div>
                 </div>
@@ -294,7 +297,7 @@ function StatisticsDetailsPage() {
                     <CircularProgress color="primary" />
                   </div>
                 ) :(
-                  vehicle_advertisement_stats_details?.length ? (
+                  vehicle_advertisement_stats_details?.data?.length ? (
                     <Table width={`100%`} className="m-0 !text-[16px]">
                        <TableHead className="bg-[#f5f7fb]">
                 <TableRow className={"!h-[60px]"}>
@@ -325,7 +328,7 @@ function StatisticsDetailsPage() {
                 </TableRow>
               </TableHead>
               <TableBody className="divide-y">
-                      {vehicle_advertisement_stats_details?.map(
+                      {vehicle_advertisement_stats_details?.data?.map(
                       (stats: any, index: number) => {
                         return (
                           <TableRow
@@ -412,130 +415,9 @@ function StatisticsDetailsPage() {
                     </div>
                   )
                 )}
-            {/* <Table width={`100%`} className="m-0 !text-[16px]">
-              <TableHead className="bg-[#f5f7fb]">
-                <TableRow className={"!h-[60px]"}>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    no
-                  </TableCell>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    등록번호
-                  </TableCell>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    차량종류
-                  </TableCell>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    운행거리
-                  </TableCell>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    운행시간
-                  </TableCell>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    달성률
-                  </TableCell>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    상태
-                  </TableCell>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    광고기간
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody className="divide-y">
-                {isLoading ? (
-                  <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
-                    <CircularProgress color="primary" />
-                  </div>
-                ) : vehicle_advertisement_stats_details?.length ? (
-                  vehicle_advertisement_stats_details?.map(
-                    (stats: any, index: number) => {
-                      return (
-                        <TableRow
-                          key={index}
-                          className="cursor-pointer hover:bg-blue-50 transform transition-all duration-200
-                                    !h-[50px]"
-                        >
-                          <TableCell
-                            className={clsx(
-                              styles["table-value"],
-                              "!w-[82.4px]"
-                            )}
-                          >
-                            {index + 1}
-                          </TableCell>
-                          <TableCell
-                            className={clsx(
-                              styles["table-value"],
-                              "!w-[185px]"
-                            )}
-                          >
-                            {stats?.registration_number}
-                          </TableCell>
-
-                          <TableCell
-                            className={clsx(
-                              styles["table-value"],
-                              "!w-[205px]"
-                            )}
-                          >
-                            {TypeOfVechicle?.find(
-                              (item) =>
-                                item.value === stats?.advertisement_vehicle_type
-                            )?.text + ` `}
-                            {stats?.vehicle_type}
-                          </TableCell>
-                          <TableCell
-                            className={clsx(
-                              styles["table-value"],
-                              "!w-[195px]"
-                            )}
-                          >
-                            {stats?.total_distance}km
-                          </TableCell>
-                          <TableCell
-                            className={clsx(
-                              styles["table-value"],
-                              "!w-[190px]"
-                            )}
-                          >
-                            {stats?.total_hours}시간
-                          </TableCell>
-                          <TableCell
-                            className={clsx(styles["table-value"], "w-[200px]")}
-                          >
-                            {stats?.achievement_rate}
-                          </TableCell>
-                          <TableCell
-                            className={clsx(styles["table-value"], "w-[200px]")}
-                          >
-                            {
-                              allStatuses.find(
-                                (status) => stats?.status === status.value
-                              )?.label
-                            }
-                          </TableCell>
-                          <TableCell
-                            className={clsx(styles["table-value"], "w-[200px]")}
-                          >
-                            {stats?.start_date} ~ {stats?.end_date}
-                          </TableCell>
-                        </TableRow>
-                      );
-                    }
-                  )
-                ) : (
-                  <TableCell
-                    colSpan={8}
-                    className={clsx(styles["table-value"], "!w-[82.4px]")}
-                  >
-                    데이터를 찾을 수 없습니다!
-                  </TableCell>
-                )}
-              </TableBody>
-            </Table> */}
           </div>
 
-          {vehicle_advertisement_stats_details?.length ? (
+          {vehicle_advertisement_stats_details?.data?.length ? (
             <div className="flex justify-center py-[20px] notification_pagination">
               <Pagination
                 current={currentPage}
@@ -608,7 +490,7 @@ function StatisticsDetailsPage() {
         </div>
 
         <div className={"flex flex-col space-y-[12px]"}>
-          {vehicle_advertisement_stats_details?.map((obj, idx) => {
+          {vehicle_advertisement_stats_details?.data?.map((obj, idx) => {
             return (
               <div
                 key={idx}
@@ -675,7 +557,7 @@ function StatisticsDetailsPage() {
             );
           })}
         </div>
-        {vehicle_advertisement_stats_details?.length && (
+        {vehicle_advertisement_stats_details?.data?.length && (
           <div className="flex justify-center py-[30px] notification_pagination">
             <Pagination
               current={currentPage}

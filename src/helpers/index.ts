@@ -193,7 +193,7 @@ const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 return daysDifference;
 }
 
-export const getNextMonthDates = (type,date) => {
+export const getNextMonthDates = (type, date) => {
     const givenDate = new Date(date);
     const year = givenDate.getFullYear();
     const month = givenDate.getMonth();
@@ -203,14 +203,15 @@ export const getNextMonthDates = (type,date) => {
   
     var startDate = new Date(nextYear, nextMonth, 1);
     var endDate = new Date(nextYear, nextMonth + 1, 0);
-    if(type == 'prev'){
-        startDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), 1);
-        endDate = new Date(givenDate.getFullYear(), givenDate.getMonth(), 0);
-        console.log('startDate', startDate)
-        console.log('endDate', endDate)
+    if (type == "prev") {
+      const previousMonth = month === 0 ? 11 : month - 1;
+      const previousYear = month === 0 ? year - 1 : year;
+  
+      startDate = new Date(previousYear, previousMonth, 1);
+      endDate = new Date(year, month, 0);
     }
     return {
       startDate: startDate,
       endDate: endDate,
     };
-  }
+  };  

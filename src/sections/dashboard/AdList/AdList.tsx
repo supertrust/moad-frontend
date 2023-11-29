@@ -34,6 +34,7 @@ const allStatuses = [
 	{ label: '광고 진행중', value: 'in_progress' },
 	{ label: '리뷰 추가', value: 'ad_reviewing' },
 	{ label: '광고 끝', value: 'end' },
+	{ label: '거절됨', value: 'decline' },
 	{ label: '신청중', value: 'applying' },
 	{ label: '화물주모집중', value: 'recruiting_cargo_owners' },
 	{ label: '광고신청중', value: 'applying_for_advertisement' },

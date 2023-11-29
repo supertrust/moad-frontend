@@ -173,6 +173,10 @@ export type IAdvertisementCargo =  {
     }
 }
 
+export type VehicleAdvertisementStatsResponse = {
+    data : VehicleAdvertisementStatsDetails[]
+    totalRecords: number
+}
 export type VehicleAdvertisementStatsDetails = {
     cargo_vehicle_id: number,
     registration_number: string,

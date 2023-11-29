@@ -67,9 +67,9 @@ const VehicleLocationScreen = () => {
         location={currentPosition}
         showMarker={false}
       >
-        {currentPosition && 
+        {currentPosition  && 
           <MapMarker 
-            position={{lat: currentPosition.getLat(), lng: currentPosition.getLng() }} 
+            position={{lat: currentPosition .getLat(), lng: currentPosition .getLng() }} 
             image ={{ 
               src: "/images/vehicle_location/marker.png" , 
               size: { width: 40, height: 40 }
@@ -77,12 +77,12 @@ const VehicleLocationScreen = () => {
           />
         }
         {origin && <MapMarker position={{lat: origin.getLat(), lng: origin.getLng() }} />}
-        {destination && <MapMarker  position={{lat: destination.getLat(), lng: destination.getLng() }} /> }
-        <DirectionRender origin={origin}  destination={destination} />
+        {currentPosition && <MapMarker  position={{lat: currentPosition.getLat(), lng: currentPosition.getLng() }} /> }
+        <DirectionRender origin={origin}  destination={currentPosition} />
       </Map>
       <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] z-50">
         <Button
-          className="bg-[#2C324C] text-white w-20"
+          className="bg-[#2C324C] text-white w-20 hidden"
           onClick={() => refetch()}
           loading={isRefetching}
         >

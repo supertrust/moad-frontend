@@ -5,7 +5,7 @@ import { clsx } from 'clsx';
 import CaretUp from '@images/vehicle_location/ic-arrow-up.png'
 import { IVehicleLocationDetails } from '@src/types/map';
 import Loader from '@src/components/Loader';
-
+import dynamic from "next/dynamic";
 interface DrawerProps {
   open: boolean
   handleClose: VoidFunction
@@ -13,6 +13,7 @@ interface DrawerProps {
   vehicle?:IVehicleLocationDetails
 }
 
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
 
@@ -20,14 +21,17 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
     passing_vehicle_descent, 
     passing_vehicle_up ,
     start_time,
-    // end_time,
+    end_time,
     avarageMonthlyDistane,
     todayDistance,
     totalDistance,
   } = vehicle || {}
   
   let start = start_time ? start_time.split('T')[1].split(':') : null 
-
+  let end   = end_time ? end_time.split('T')[1].split(':') : null 
+  
+  const categories = ['오늘 운행거리','총 운행거리','평균 월 운행거리'];
+  const data = [todayDistance||0,totalDistance||0,avarageMonthlyDistane||0];
   return (
     <div>
       <div className={`${styles.button_wrap} z-50`}>
@@ -89,7 +93,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
                       <i className={`${styles.icons} ${styles.ic_end}`}></i>
                       <div className={styles.data}>
 
-                      {`${totalDistance || 0}km`}
+                      {end ? `${end[0]}:${end[1]}` : '달리기'}
                       </div>
                       <div className={styles.text}>운행종료</div>
                     </li>
@@ -106,41 +110,65 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
                 >
                   <div className={`${styles.title} !mb-[7px]`}>운행 달성률</div>
                   <ul className={styles.list_wrap}>
-                    <li className={styles.list}>
-                      <div className={styles.bar_wrap}>
-                        <div className={`${styles.text} ${styles.km}`}>
-                          {`${todayDistance || 0}km`}
-                        </div>
-                        <div className={`${styles.bar} ${styles.today}`}></div>
-                      </div>
-                      <div className={`${styles.text} ${styles.desc}`}>
-                        오늘 운행거리
-                      </div>
-                    </li>
-                    <li className={styles.list}>
-                      <div className={styles.bar_wrap}>
-                        <div className={`${styles.text} ${styles.km}`}>
-                          {`${totalDistance || 0}km`}
-                        </div>
-                        <div className={`${styles.bar} ${styles.total}`}></div>
-                      </div>
-                      <div className={`${styles.text} ${styles.desc}`}>
-                        총 운행거리
-                      </div>
-                    </li>
-                    <li className={styles.list}>
-                      <div className={styles.bar_wrap}>
-                        <div className={`${styles.text} ${styles.km}`}>
-                          {`${avarageMonthlyDistane || 0}km`}
-                        </div>
-                        <div
-                          className={`${styles.bar} ${styles.average}`}
-                        ></div>
-                      </div>
-                      <div className={`${styles.text} ${styles.desc}`}>
-                        평균 월 운행거리
-                      </div>
-                    </li>
+                    <Chart
+              options={
+                {
+                xaxis: {
+                  categories:categories,
+                },
+                yaxis: {
+                  show: false,
+                },
+                chart: {
+                  toolbar: {
+                    show: true,
+                    tools: {
+                      download: false
+                    }
+                  }
+                },
+                dataLabels: {
+                  enabled: true,
+                  formatter: function (val, opts) {
+                    return `${val} KM`
+                  },
+                  style: {
+                    fontSize: '11px',
+                    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+                    fontWeight: 500,
+                    colors: ["#2C324C"]
+                },
+                },
+                plotOptions: {
+                  bar : {
+                    dataLabels: {
+                      position: 'top',
+                      total: {
+                        enabled: true,
+                        formatter: undefined,
+                        offsetX: 0,
+                        offsetY: 0,
+                      }
+                  }
+                  }
+                },
+                colors: [
+                  function ({ value, seriesIndex, dataPointIndex, w }) {
+                      if (dataPointIndex == 0) {
+                        return "#2F48D1";
+                      } else if (dataPointIndex == 1){
+                        return "#515E93";
+                      } else {
+                        return "#2C324C";
+                      }
+                    }
+                ]
+              }}
+              series={[{ data:data }]}
+              type="bar"
+              width={300}
+              height={180}
+            />
                   </ul>
                 </div>
                 <div className={styles.standard}>

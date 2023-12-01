@@ -114,6 +114,8 @@ export const formatTimeFromMinute = (n: number) => {
 
 export const ISOformatDate = (d:Date) => d.toISOString().split('T')[0]
 
+export const ISOformatTime = (d:Date) => d.toISOString().split('T')[1].split(':')
+
 export const DateSelected = (selectedFilter) => {
     const today = new Date();
     switch (selectedFilter) {

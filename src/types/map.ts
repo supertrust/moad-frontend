@@ -33,7 +33,7 @@ export type IVehicleLocationDetails = {
     is_active: VehicleLocationState,
     todayDistance: number,
     totalDistance: number,
-    avarageMonthlyDistane: number
+    avarageMonthlyDistance: number
 }
 
 export type LogVehiclLocationProps = {

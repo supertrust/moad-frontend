@@ -22,16 +22,22 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
     passing_vehicle_up ,
     start_time,
     end_time,
-    avarageMonthlyDistane,
+    avarageMonthlyDistance,
     todayDistance,
     totalDistance,
   } = vehicle || {}
   
-  let start = start_time ? start_time.split('T')[1].split(':') : null 
-  let end   = end_time ? end_time.split('T')[1].split(':') : null 
+  let start = start_time ? start_time.split('T') : null 
+  let startMonth = start ? start[0].split('-')[1] : null 
+  let startDate = start ? start[0].split('-')[2] : null 
+  let startTime = start ? start[1].split(':') : null 
   
+  let end = end_time ? end_time.split('T') : null 
+  let endMonth = end ? end[0].split('-')[1] : null 
+  let endDate = end ? end[0].split('-')[2] : null 
+  let endTime = end ? end[1].split(':') : null 
   const categories = ['오늘 운행거리','총 운행거리','평균 월 운행거리'];
-  const data = [todayDistance||0,totalDistance||0,avarageMonthlyDistane||0];
+  const data = [todayDistance||0,totalDistance||0,avarageMonthlyDistance||0];
   return (
     <div>
       <div className={`${styles.button_wrap} z-50`}>
@@ -85,22 +91,37 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
                   <div className={`${styles.text}  mb-[16px]`}>운행내역</div>
                   <ul className={styles.history}>
                     <li className={styles.list}>
-                      <i className={`${styles.icons} ${styles.ic_start}`}></i>
-                      <div className={styles.data}>{start ? `${start[0]}:${start[1]}` : '-'}</div>
+                      <div>
+                        <i className={`${styles.icons} ${styles.ic_start}`}></i>
+                      <div className={`${styles.data} !text-[12px] !text-gray !leading-normal	`}>{startDate ? `${startMonth}/${startDate}` : '-'}</div>
+                        </div>
+                        <div>
+                      <div className={styles.data}>{startTime ? `${startTime[0]}:${startTime[1]}` : '-'}</div>
                       <div className={styles.text}>운행시작</div>
+                        </div>
                     </li>
                     <li className={styles.list}>
+                      <div>
                       <i className={`${styles.icons} ${styles.ic_end}`}></i>
+                      <div className={`${styles.data} !text-[12px] !text-gray !leading-normal	`}>{endDate ? `${endMonth}/${endDate}` : '-'}</div>
+                      </div>
+                      <div>
                       <div className={styles.data}>
 
-                      {end ? `${end[0]}:${end[1]}` : '달리기'}
+                      {endTime ? `${endTime[0]}:${endTime[1]}` : '달리기'}
                       </div>
                       <div className={styles.text}>운행종료</div>
+                      </div>
                     </li>
                     <li className={styles.list}>
+                      <div className='min-h-[50px]'>
                       <i className={`${styles.icons} ${styles.ic_drive}`}></i>
+                      <div className={`${styles.data} !text-[12px] !text-gray !leading-normal	`}></div>
+                      </div>
+                      <div>
                       <div className={styles.data}>{`${todayDistance || 0}km`}</div>
                       <div className={styles.text}>운행거리</div>
+                      </div>
                     </li>
                   </ul>
                 </div>

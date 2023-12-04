@@ -34,17 +34,12 @@ import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import { allStatuses } from "@src/sections/dashboard/AdList/AdList";
 
 interface ICargoColumns extends IAdvertisementCargo {
   vehicle_information: "바라보다";
   vehicle_location: "바라보다";
 }
-
-const AdvertisementStatus = {
-  proceeding: "진행중",
-  applying: "신청중",
-  end: "종료",
-};
 
 const Types = {
   fixed_ad: "고정",
@@ -150,7 +145,7 @@ function AdvertisementDetailScreen() {
     {
       title: "광고상태",
       value: advertisement?.status
-        ? AdvertisementStatus[advertisement?.status]
+        ? allStatuses.find((status) => advertisement?.status === status.value)?.label 
         : advertisement?.status,
     },
     {

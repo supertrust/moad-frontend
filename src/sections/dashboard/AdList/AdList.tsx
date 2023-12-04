@@ -30,7 +30,7 @@ const statuses = [
 	{ label: '종료', value: 'end' },
 ];
 
-const allStatuses = [
+export const allStatuses = [
 	{ label: '광고 진행중', value: 'in_progress' },
 	{ label: '리뷰 추가', value: 'ad_reviewing' },
 	{ label: '광고 끝', value: 'end' },

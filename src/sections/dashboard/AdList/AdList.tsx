@@ -308,7 +308,14 @@ export default function AdListModule() {
 												<div
 													className={
 														styles.gridBox
-													}>{`${item.number_of_vehicles}`}</div>
+													}>
+														<Link
+														href={`/dashboard/advertisement-detail/${item.id}`}
+														className="text-[#2C324C]"
+													>
+														{`${item.number_of_vehicles}`}
+														</Link>
+														</div>
 												<div className={`${styles.gridBox} !text-left sm:!text-center`}>
 													{item.start_date && item.start_date
 														? `${item.start_date} ~ ${item.end_date}`

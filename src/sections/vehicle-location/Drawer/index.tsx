@@ -25,6 +25,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
     avarageMonthlyDistance,
     todayDistance,
     totalDistance,
+    current_point_name
   } = vehicle || {}
   
   let start = start_time ? start_time.split('T') : null 
@@ -63,7 +64,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
       </div>
       <div className={styles.vehicle_location_content}>
         <div className={clsx(styles.location_detail_wrap, open ? styles.closed : styles.open)} >
-          <div className={styles.address}>안산시 상록구 월피동</div>
+          <div className={styles.address}>{current_point_name}</div>
           <div className={styles.content_inner}>
             {isLoading ?
 
@@ -108,7 +109,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
                       <div>
                       <div className={styles.data}>
 
-                      {endTime ? `${endTime[0]}:${endTime[1]}` : '달리기'}
+                      {endTime ? `${endTime[0]}:${endTime[1]}` : '운행중'}
                       </div>
                       <div className={styles.text}>운행종료</div>
                       </div>
@@ -185,7 +186,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
                     }
                 ]
               }}
-              series={[{ data:data }]}
+              series  ={[{ data:data }]}
               type="bar"
               width={300}
               height={180}

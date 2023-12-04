@@ -53,6 +53,7 @@ const Types = {
 };
 
 const OperationStatus = {
+  active: "활동적인",
   service: "서비스 중",
   suspended: "운행종료",
   running: "운행중",
@@ -177,8 +178,8 @@ function AdvertisementDetailScreen() {
             registration_number: item.registration_number,
             vehicle_type: item.vehicle?.vehicle_type,
             vehicle_status: item.status,
-            vehicle_information: "바라보다",
-            vehicle_location: "바라보다",
+            vehicle_information: "보기",
+            vehicle_location: "보기",
             show_links: item.status == null ? false : true,
             cargo_vehicle_id: item.cargo_vehicle_id,
             advertisement_id: item.advertisement_id,
@@ -228,7 +229,7 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: ({ vehicle_status }) => {
-        return OperationStatus[vehicle_status];
+        return OperationStatus[vehicle_status.toLowerCase()];
       },
     },
     {

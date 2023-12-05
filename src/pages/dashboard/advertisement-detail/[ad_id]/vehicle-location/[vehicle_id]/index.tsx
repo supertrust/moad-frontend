@@ -12,16 +12,26 @@ import { toLatLng } from "@src/helpers/map";
 import { useGetDirection } from "@src/apis/kakap.map";
 import DirectionRender from "@src/components/Map/DirectionRender";
 
+type DateRange = {
+  startDate : Date |string,
+  endDate : Date | string
+}
+
 const VehicleLocationScreen = () => {
 	const { query } = useRouter();
 	const { ad_id, vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
 	const [showDrawer, setShowDrawer] = useState(false);
-	const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string);
+  const [selectedDateRange, setSelectedDateRange] = useState<DateRange>({startDate : new Date(),endDate: new Date()});
+	const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string, selectedDateRange);
 
   const toggleDrawer = () => {
     setShowDrawer(!showDrawer);
   };
+  const handleDateChange = (dateRange:DateRange) => {
+    setSelectedDateRange(dateRange)
+    refetch();
+  }
 
   useEffect(() => {
     setPageTitle("차량위치");
@@ -34,7 +44,7 @@ const VehicleLocationScreen = () => {
 
   const origin = toLatLng(cargoLocation?.starting_point);
   const destination = toLatLng(cargoLocation?.end_point);
-  const currentPosition = toLatLng(cargoLocation?.current_point); 
+  const currentPosition = toLatLng(cargoLocation?.current_point);
 
   // const { data , isLoading: isChecking } = useGetDirection({
   //   origin: '127.48141666204886,36.674169220914834', // cargoLocation?.starting_point || '',
@@ -43,7 +53,6 @@ const VehicleLocationScreen = () => {
   //   car_type: 4,
   //   road_details: true
   // });
-  
 
   return (
     <div className="relative">
@@ -67,13 +76,13 @@ const VehicleLocationScreen = () => {
         location={currentPosition}
         showMarker={false}
       >
-        {currentPosition  && 
-          <MapMarker 
-            position={{lat: currentPosition .getLat(), lng: currentPosition .getLng() }} 
-            image ={{ 
-              src: "/images/vehicle_location/marker.png" , 
+        {currentPosition  &&
+          <MapMarker
+            position={{lat: currentPosition .getLat(), lng: currentPosition .getLng() }}
+            image ={{
+              src: "/images/vehicle_location/marker.png" ,
               size: { width: 40, height: 40 }
-            }} 
+            }}
           />
         }
         {origin && <MapMarker position={{lat: origin.getLat(), lng: origin.getLng() }} />}
@@ -94,6 +103,7 @@ const VehicleLocationScreen = () => {
         handleClose={toggleDrawer}
         vehicle={cargoLocation}
         isLoading={isLoading}
+        dateChangeHandler={handleDateChange}
       />
     </div>
   );

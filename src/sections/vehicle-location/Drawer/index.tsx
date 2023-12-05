@@ -1,24 +1,129 @@
-import React from 'react';
-import styles from '../style.module.css';
+import React, { useState,useEffect } from 'react';
+import styles from '../style.module.scss';
 import Image from 'next/image';
 import { clsx } from 'clsx';
 import CaretUp from '@images/vehicle_location/ic-arrow-up.png'
 import { IVehicleLocationDetails } from '@src/types/map';
 import Loader from '@src/components/Loader';
 import dynamic from "next/dynamic";
+import { DatePicker } from "antd";
+import NextIcon from "@src/components/icons/NextIcon";
+import PrevIcon from "@src/components/icons/PrevIcon";
+import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, totalDays } from "@src/helpers";
+import dayjs from "dayjs";
+
 interface DrawerProps {
   open: boolean
   handleClose: VoidFunction
   isLoading: boolean
   vehicle?:IVehicleLocationDetails
+  dateChangeHandler: (...args: any[]) => void
 }
+type DateRange = {
+  startDate : Date |string,
+  endDate : Date | string
+}
+const dateRangePickerCtrls = [
+  {
+    label: "전체",
+    value: "all",
+  },
+  {
+    label: "오늘",
+    value: "today",
+  },
+  {
+    label: "이번 주",
+    value: "this_week",
+  },
+  {
+    label: "지난주",
+    value: "last_week",
+  },
+  {
+    label: "이번 달",
+    value: "this_month",
+  },
+  {
+    label: "지난 달",
+    value: "last_month",
+  },
+  {
+    label: "올해",
+    value: "this_year",
+  },
+  {
+    label: "작년",
+    value: "last_year",
+  }
+];
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
+function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: DrawerProps) {
+  const { RangePicker } = DatePicker;
+  const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
+  const [selectedDate, setSelectedDate] = useState<DateRange>({startDate : new Date(),endDate: new Date()});
+  const [bufferdDate, setBufferdDate] = useState<DateRange | []>({startDate : new Date(),endDate: new Date()});
+  const handleMonthChange = (type,date) => {
+    const {startDate,endDate} = getNextMonthDates(type,date)
+    setSelectedDate({startDate:startDate as Date,endDate:endDate as Date});
+  }
+  const handleDateChange = (range) => {
+    const startDate = range[0].format();
+    const endDate = range[1].format();
+    setBufferdDate({startDate:new Date(startDate),endDate:new Date(endDate)});
+  };
+  const filterDate = (value : string) => {
+    if(value == 'all'){
+      setBufferdDate([])
+      setSelectedDate({startDate:'',endDate:''})
+    }else{
+      const filteredItemsToday : DateRange = DateSelected(value)
+      console.log('filteredItemsToday', filteredItemsToday)
+      setBufferdDate({startDate:filteredItemsToday?.startDate,endDate:filteredItemsToday?.endDate});
+    }
+  }
+  // Extra options in date range picker
+  useEffect(() => {
+    const dateRangePicker = document.querySelector(
+      ".custom_popup_picker .ant-picker-panel-layout>div"
+    );
+    var newElementOuter = document.createElement("div");
+    newElementOuter.classList.add(styles['ant-picker-custom-header']);
+    var newElement = document.createElement("div");
+
+    dateRangePickerCtrls.forEach((item) => {
+      var newButton = document.createElement("button");
+      newButton.textContent = item.label;
+      newButton.onclick = () => {
+        var elements = document.getElementsByClassName(styles['active']);
+        console.log('elements', elements)
+        for (var i = 0; i < elements.length; i++) {
+          elements[i].classList.remove(styles['active']);
+        }
+        newButton.classList.add(styles['active']);
+        filterDate(item.value??'')
+      };
+      newElement.appendChild(newButton);
+    });
+
+    newElementOuter.appendChild(newElement);
+    dateRangePicker?.insertBefore(newElementOuter, dateRangePicker?.firstChild);
+    return () => {
+      dateRangePicker?.removeChild(newElementOuter);
+    };
+  }, [datePickerOpen]);
+
+  useEffect(() => {
+    dateChangeHandler(selectedDate)
+  }, [selectedDate])
+
+  const bufferStartDate = !Array.isArray(bufferdDate) ? bufferdDate.startDate : new Date();
+  const bufferEndDate   = !Array.isArray(bufferdDate) ? bufferdDate.endDate : new Date();
 
   const {
-    passing_vehicle_descent, 
+    passing_vehicle_descent,
     passing_vehicle_up ,
     start_time,
     end_time,
@@ -27,25 +132,26 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
     totalDistance,
     current_point_name
   } = vehicle || {}
-  
-  let start = start_time ? start_time.split('T') : null 
-  let startMonth = start ? start[0].split('-')[1] : null 
-  let startDate = start ? start[0].split('-')[2] : null 
-  let startTime = start ? start[1].split(':') : null 
-  
-  let end = end_time ? end_time.split('T') : null 
-  let endMonth = end ? end[0].split('-')[1] : null 
-  let endDate = end ? end[0].split('-')[2] : null 
-  let endTime = end ? end[1].split(':') : null 
+
+  let start = start_time ? start_time.split('T') : null
+  let startMonth = start ? start[0].split('-')[1] : null
+  let startDate = start ? start[0].split('-')[2] : null
+  let startTime = start ? start[1].split(':') : null
+
+  let end = end_time ? end_time.split('T') : null
+  let endMonth = end ? end[0].split('-')[1] : null
+  let endDate = end ? end[0].split('-')[2] : null
+  let endTime = end ? end[1].split(':') : null
   const categories = ['오늘 운행거리','총 운행거리','평균 월 운행거리'];
   const data = [todayDistance||0,totalDistance||0,avarageMonthlyDistance||0];
+
   return (
     <div>
       <div className={`${styles.button_wrap} z-50`}>
         <button
           type="button"
           id="location_detail_btn"
-          className={clsx(styles.arrow_wrap, open ? styles.btn_closed : styles.btn_open )} 
+          className={clsx(styles.arrow_wrap, open ? styles.btn_closed : styles.btn_open )}
           onClick={handleClose}
         >
           <i className={styles.ic_arrrow}></i>
@@ -71,6 +177,117 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
               <Loader size="lg" className='h-full w-full items-center justify-center flex flex-row '/> :
               <div className={styles.inner}>
                 <div className={`${styles.section} ${styles.now_location}`}>
+                  {/* DatesPicker start */}
+                  <div
+                  className={
+                    "min-h-[74px] flex items-center justify-between space-x-1 relative"
+                  }
+                >
+                  <div className={"flex space-x-[20px]"}>
+                    <div
+                      className={
+                        "flex items-center justify-between  bg-white border-y border-[#ebedf4] w-[300px]"
+                      }
+                    >
+                      <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleMonthChange('prev',selectedDate?.startDate)}>
+                        <PrevIcon width={16} height={16} />
+                      </div>
+                      <div>
+                        <span
+                          className={`${styles["date"]} ${
+                            datePickerOpen ? "hidden" : "block"
+                          }`}
+                          onClick={() => setDatePickerOpen(true)}
+                        >
+                          <div className="flex">
+                            <div>
+                              <input
+                                className="w-[80px] text-center"
+                                readOnly
+                                placeholder="Start date"
+                                value={selectedDate?.startDate && dateFormat(
+                                  (selectedDate?.startDate as Date)?.toISOString(),
+                                  "Y-m-d"
+                                )}
+                              />
+                            </div>
+                            <div>~</div>
+                            <div>
+                              <input
+                                className="w-[80px] text-center"
+                                readOnly
+                                placeholder="End date"
+                                value={selectedDate.endDate && dateFormat((selectedDate.endDate as Date)?.toISOString(), "Y-m-d")}
+                              />
+                            </div>
+                          </div>
+                        </span>
+                        <div>
+                          <RangePicker
+                            className={datePickerOpen ? "custom_picker" : "hidden"}
+                            popupClassName={"custom_popup_picker !left-[800px]"}
+                            format="YYYY-MM-DD"
+                            onChange={handleDateChange}
+                            separator={"~"}
+                            defaultValue={[
+                              dayjs(bufferStartDate),
+                              dayjs(bufferEndDate),
+                            ]}
+                            value={[
+                              dayjs(bufferStartDate),
+                              dayjs(bufferEndDate),
+                            ]}
+                            allowClear={false}
+                            suffixIcon={""}
+                            inputReadOnly
+                            open={datePickerOpen}
+                            onOpenChange={(open) =>
+                              setDatePickerOpen(datePickerOpen)
+                            }
+                            onCalendarChange={() => console.log("yes")}
+                            renderExtraFooter={() => (
+                              <div className="flex justify-between px-[20px] bg-[#E1ECFF] py-[15px] items-center">
+                                <div>
+                                  {
+                                  <p>{ISOformatDate(bufferStartDate as Date)} ~
+                                  {ISOformatDate(bufferEndDate as Date)} {' '}
+                                  <span className="text-[#2F48D1] font-medium	">({totalDays(bufferStartDate,bufferEndDate)}일간)</span>
+                                  </p>
+                                  }
+                                </div>
+                                <div className="flex gap-[4px]">
+                                  <button
+                                    className=" bg-[#2F48D1] text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
+                                    onClick={() => {
+                                      setSelectedDate({startDate:bufferStartDate as Date,endDate:bufferEndDate as Date});
+                                      setDatePickerOpen(false)
+                                    }}
+                                  >
+                                    Ok
+                                  </button>
+                                  <button
+                                    className=" bg-[#fff] text-[#999] px-[12px] py-[5px] rounded text-[12px] leading-normal"
+                                    onClick={() => {
+                                      setDatePickerOpen(false);
+                                    }}
+                                  >
+                                    취소
+                                  </button>
+                                </div>
+                              </div>
+                            )}
+                          />
+                        </div>
+                      </div>
+                      <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleMonthChange('next',selectedDate?.endDate)}>
+                        <NextIcon width={16} height={16} />
+                      </div>
+                    </div>
+
+                    <div className={"h-[40px] w-[1px] bg-[#EBEDF4]"}></div>
+                  </div>
+                </div>
+                  {/* DatesPicker end */}
                   <div className={styles.title}>지금 이곳은?</div>
                   <Image
                     src="/images/img-location.png"
@@ -108,8 +325,7 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
                       </div>
                       <div>
                       <div className={styles.data}>
-
-                      {endTime ? `${endTime[0]}:${endTime[1]}` : '운행중'}
+                        {endTime ? `${endTime[0]}:${endTime[1]}` : '운행중'}
                       </div>
                       <div className={styles.text}>운행종료</div>
                       </div>
@@ -193,9 +409,9 @@ function Drawer({ open, handleClose , isLoading, vehicle }: DrawerProps) {
             />
                   </ul>
                 </div>
-                <div className={styles.standard}>
+                {/* <div className={styles.standard}>
                   2023.03.01 ~ 2023.03.28 기준
-                </div>
+                </div> */}
               </div>
             }
           </div>

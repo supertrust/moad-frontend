@@ -77,7 +77,7 @@ function StatisticsDetailsPage() {
   const [date, setDate] = useState(new Date());
   const [bufferdDate, setBufferdDate] = useState<DateRange | []>({startDate : new Date(),endDate: new Date(String(searchParams.get("end")))});
   const [selectedDate, setSelectedDate] = useState<DateRange>({startDate : new Date(),endDate: new Date(String(searchParams.get("end")))});
- 
+
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
 
   const { data: vehicle_advertisement_stats_details, isLoading } =
@@ -158,7 +158,7 @@ function StatisticsDetailsPage() {
       dateRangePicker?.removeChild(newElementOuter);
     };
   }, [datePickerOpen]);
-          
+
   const bufferStartDate = !Array.isArray(bufferdDate) ? bufferdDate.startDate : new Date();
   const bufferEndDate   = !Array.isArray(bufferdDate) ? bufferdDate.endDate : new Date();
 
@@ -226,7 +226,7 @@ function StatisticsDetailsPage() {
                     <div>
                       <RangePicker
                         className={datePickerOpen ? "custom_picker" : "hidden"}
-                        popupClassName={"custom_popup_picker !left-[350px]"}
+                        popupClassName={"custom_popup_picker !left-unset"}
                         format="YYYY-MM-DD"
                         onChange={handleDateChange}
                         separator={"~"}
@@ -250,7 +250,7 @@ function StatisticsDetailsPage() {
                           <div className="flex justify-between px-[20px] bg-[#E1ECFF] py-[15px] items-center">
                             <div>
                               {
-                              <p>{ISOformatDate(bufferStartDate as Date)} ~ 
+                              <p>{ISOformatDate(bufferStartDate as Date)} ~
                               {ISOformatDate(bufferEndDate as Date)} {' '}
                               <span className="text-[#2F48D1] font-medium	">({totalDays(bufferStartDate,bufferEndDate)}일간)</span>
                               </p>
@@ -352,7 +352,7 @@ function StatisticsDetailsPage() {
                             >
                               {stats?.registration_number}
                             </TableCell>
-  
+
                             <TableCell
                               className={clsx(
                                 styles["table-value"],
@@ -406,7 +406,7 @@ function StatisticsDetailsPage() {
                     )}
                     </TableBody>
                     </Table>
-                    
+
                   ) : (
                     <div
                       className={'w-full p-[150px] text-center'}

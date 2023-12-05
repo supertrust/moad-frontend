@@ -7,10 +7,10 @@ export const useSaveLocation = () => useMutation<SaveRideResponse, string, SaveL
     mutationFn: async (props) => (await axios.post("/api/save-vehicle-location", props)).data.data,
 })
 
-export const useVehicleLocationDetails = (cargo_vehicle_id: string)  => useQuery<IVehicleLocationDetails, string>({
+export const useVehicleLocationDetails = (cargo_vehicle_id: string, dateRange: {} )  => useQuery<IVehicleLocationDetails, string>({
     queryKey: ["vehicle-location", cargo_vehicle_id],
-    queryFn: async () => (await axios.get(`/api/get-vehicle-location`,  { 
-        params : { cargo_vehicle_id }
+    queryFn: async () => (await axios.get(`/api/get-vehicle-location`,  {
+        params : { cargo_vehicle_id, dateRange }
     })).data.data,
     enabled: !!cargo_vehicle_id
 })

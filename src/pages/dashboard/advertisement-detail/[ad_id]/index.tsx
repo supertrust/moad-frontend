@@ -48,9 +48,9 @@ const Types = {
 };
 
 const OperationStatus = {
-  active: "활동적인",
-  service: "서비스 중",
-  suspended: "운행종료",
+  active: "운행대기중",
+  service: "점검중",
+  suspended: "강제종료",
   running: "운행중",
 };
 
@@ -343,7 +343,7 @@ function AdvertisementDetailScreen() {
 
               <div className={styles.detail_content}>
                 <div className={styles.slide_box}>
-                  {draftAdvertisementImages?.length &&
+                  {draftAdvertisementImages?.length ?
                   <div
                     className={`${model === "image" ? styles.active : ""} ${
                       styles.detail_slide
@@ -370,7 +370,7 @@ function AdvertisementDetailScreen() {
                         ))}
                       </Carousel>
                     </CarouselWrapper>
-                  </div>}
+                  </div> : null}
                   <div
                     className={`${model === "model" ? styles.active : ""} ${
                       styles.detail_3d

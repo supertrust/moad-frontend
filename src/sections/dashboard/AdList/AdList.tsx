@@ -31,14 +31,14 @@ const statuses = [
 ];
 
 export const allStatuses = [
-	{ label: '광고 진행중', value: 'in_progress' },
-	{ label: '리뷰 추가', value: 'ad_reviewing' },
-	{ label: '광고 끝', value: 'end' },
+	{ label: '광고진행중', value: 'in_progress' },
+	{ label: '광고검수중', value: 'ad_reviewing' },
+	{ label: '광고종료', value: 'end' },
 	{ label: '거절됨', value: 'decline' },
 	{ label: '신청중', value: 'applying' },
 	{ label: '화물주모집중', value: 'recruiting_cargo_owners' },
 	{ label: '광고신청중', value: 'applying_for_advertisement' },
-	{ label: '진행', value: 'proceeding' },
+	{ label: '진행중', value: 'proceeding' },
 ]
 
 const Types = {
@@ -311,7 +311,7 @@ export default function AdListModule() {
 													}>
 														<Link
 														href={`/dashboard/advertisement-detail/${item.id}`}
-														className="text-[#2C324C]"
+														className="text-[#2C324C] underline"
 													>
 														{`${item.number_of_vehicles}`}
 														</Link>

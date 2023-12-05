@@ -317,6 +317,7 @@ const vehicleElement = (
 																			)?.label
 																		} */}
 																		{item.total_hours || '-'}시간
+																		{/* {item.total_hours || '-'}분 */}
 																	</div>
 																	{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div> */}
 																	{/* <i className='only-mb ic-arrow-right'></i> */}

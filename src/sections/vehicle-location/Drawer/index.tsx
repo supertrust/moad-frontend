@@ -63,64 +63,66 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: DrawerProps) {
   const { RangePicker } = DatePicker;
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<DateRange>({startDate : new Date(),endDate: new Date()});
-  const [bufferdDate, setBufferdDate] = useState<DateRange | []>({startDate : new Date(),endDate: new Date()});
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [bufferdDate, setBufferdDate] = useState<Date | null>(new Date());
   const handleMonthChange = (type,date) => {
-    const {startDate,endDate} = getNextMonthDates(type,date)
-    setSelectedDate({startDate:startDate as Date,endDate:endDate as Date});
+    // const {startDate,endDate} = getNextMonthDates(type,date)
+    // setSelectedDate({startDate:startDate as Date,endDate:endDate as Date});
   }
   const handleDateChange = (range) => {
-    const startDate = range[0].format();
-    const endDate = range[1].format();
-    setBufferdDate({startDate:new Date(startDate),endDate:new Date(endDate)});
+    const startDate = new Date(range.format());
+    var day = startDate.getDate();
+    var month = startDate.getMonth();
+    var year = startDate.getFullYear();
+
+    setBufferdDate(startDate);
   };
   const filterDate = (value : string) => {
-    if(value == 'all'){
-      setBufferdDate([])
-      setSelectedDate({startDate:'',endDate:''})
-    }else{
-      const filteredItemsToday : DateRange = DateSelected(value)
-      console.log('filteredItemsToday', filteredItemsToday)
-      setBufferdDate({startDate:filteredItemsToday?.startDate,endDate:filteredItemsToday?.endDate});
-    }
+    // if(value == 'all'){
+    //   setBufferdDate([])
+    //   setSelectedDate({startDate:'',endDate:''})
+    // }else{
+    //   const filteredItemsToday : DateRange = DateSelected(value)
+    //   console.log('filteredItemsToday', filteredItemsToday)
+    //   setBufferdDate({startDate:filteredItemsToday?.startDate,endDate:filteredItemsToday?.endDate});
+    // }
   }
   // Extra options in date range picker
   useEffect(() => {
-    const dateRangePicker = document.querySelector(
-      ".custom_popup_picker .ant-picker-panel-layout>div"
-    );
-    var newElementOuter = document.createElement("div");
-    newElementOuter.classList.add(styles['ant-picker-custom-header']);
-    var newElement = document.createElement("div");
+    // const dateRangePicker = document.querySelector(
+    //   ".custom_popup_picker .ant-picker-panel-layout>div"
+    // );
+    // var newElementOuter = document.createElement("div");
+    // newElementOuter.classList.add(styles['ant-picker-custom-header']);
+    // var newElement = document.createElement("div");
 
-    dateRangePickerCtrls.forEach((item) => {
-      var newButton = document.createElement("button");
-      newButton.textContent = item.label;
-      newButton.onclick = () => {
-        var elements = document.getElementsByClassName(styles['active']);
-        console.log('elements', elements)
-        for (var i = 0; i < elements.length; i++) {
-          elements[i].classList.remove(styles['active']);
-        }
-        newButton.classList.add(styles['active']);
-        filterDate(item.value??'')
-      };
-      newElement.appendChild(newButton);
-    });
+    // dateRangePickerCtrls.forEach((item) => {
+    //   var newButton = document.createElement("button");
+    //   newButton.textContent = item.label;
+    //   newButton.onclick = () => {
+    //     var elements = document.getElementsByClassName(styles['active']);
+    //     console.log('elements', elements)
+    //     for (var i = 0; i < elements.length; i++) {
+    //       elements[i].classList.remove(styles['active']);
+    //     }
+    //     newButton.classList.add(styles['active']);
+    //     filterDate(item.value??'')
+    //   };
+    //   newElement.appendChild(newButton);
+    // });
 
-    newElementOuter.appendChild(newElement);
-    dateRangePicker?.insertBefore(newElementOuter, dateRangePicker?.firstChild);
-    return () => {
-      dateRangePicker?.removeChild(newElementOuter);
-    };
+    // newElementOuter.appendChild(newElement);
+    // dateRangePicker?.insertBefore(newElementOuter, dateRangePicker?.firstChild);
+    // return () => {
+    //   dateRangePicker?.removeChild(newElementOuter);
+    // };
   }, [datePickerOpen]);
 
   useEffect(() => {
     dateChangeHandler(selectedDate)
   }, [selectedDate])
 
-  const bufferStartDate = !Array.isArray(bufferdDate) ? bufferdDate.startDate : new Date();
-  const bufferEndDate   = !Array.isArray(bufferdDate) ? bufferdDate.endDate : new Date();
+  const bufferStartDate = !Array.isArray(bufferdDate) ? bufferdDate : new Date();
 
   const {
     passing_vehicle_descent,
@@ -128,8 +130,8 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
     start_time,
     end_time,
     avarageMonthlyDistance,
-    todayDistance,
-    totalDistance,
+    today_distance,
+    total_distance,
     current_point_name
   } = vehicle || {}
 
@@ -143,7 +145,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
   let endDate = end ? end[0].split('-')[2] : null
   let endTime = end ? end[1].split(':') : null
   const categories = ['오늘 운행거리','총 운행거리','평균 월 운행거리'];
-  const data = [todayDistance||0,totalDistance||0,avarageMonthlyDistance||0];
+  const data = [today_distance||0,total_distance||0,avarageMonthlyDistance||0];
 
   return (
     <div>
@@ -189,7 +191,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                         "flex items-center justify-between  bg-white border-y border-[#ebedf4] w-[300px]"
                       }
                     >
-                      <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleMonthChange('prev',selectedDate?.startDate)}>
+                      <div className={`${styles["date-next-prev"]} cursor-pointer`}>
                         <PrevIcon width={16} height={16} />
                       </div>
                       <div>
@@ -205,38 +207,23 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                                 className="w-[80px] text-center"
                                 readOnly
                                 placeholder="Start date"
-                                value={selectedDate?.startDate && dateFormat(
-                                  (selectedDate?.startDate as Date)?.toISOString(),
+                                value={selectedDate ? dateFormat(
+                                  (selectedDate as Date)?.toISOString(),
                                   "Y-m-d"
-                                )}
-                              />
-                            </div>
-                            <div>~</div>
-                            <div>
-                              <input
-                                className="w-[80px] text-center"
-                                readOnly
-                                placeholder="End date"
-                                value={selectedDate.endDate && dateFormat((selectedDate.endDate as Date)?.toISOString(), "Y-m-d")}
+                                ) : ''}
                               />
                             </div>
                           </div>
                         </span>
                         <div>
-                          <RangePicker
+                          <DatePicker 
                             className={datePickerOpen ? "custom_picker" : "hidden"}
-                            popupClassName={"custom_popup_picker !left-[800px]"}
+                            popupClassName={"custom_popup_picker vehicle-location !left-[800px]"}
                             format="YYYY-MM-DD"
                             onChange={handleDateChange}
-                            separator={"~"}
-                            defaultValue={[
-                              dayjs(bufferStartDate),
-                              dayjs(bufferEndDate),
-                            ]}
-                            value={[
-                              dayjs(bufferStartDate),
-                              dayjs(bufferEndDate),
-                            ]}
+                            // separator={"~"}
+                            defaultValue={dayjs(bufferStartDate)}
+                            value={dayjs(bufferStartDate)}
                             allowClear={false}
                             suffixIcon={""}
                             inputReadOnly
@@ -244,22 +231,14 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                             onOpenChange={(open) =>
                               setDatePickerOpen(datePickerOpen)
                             }
-                            onCalendarChange={() => console.log("yes")}
+                            // onCalendarChange={() => console.log("yes")}
                             renderExtraFooter={() => (
-                              <div className="flex justify-between px-[20px] bg-[#E1ECFF] py-[15px] items-center">
-                                <div>
-                                  {
-                                  <p>{ISOformatDate(bufferStartDate as Date)} ~
-                                  {ISOformatDate(bufferEndDate as Date)} {' '}
-                                  <span className="text-[#2F48D1] font-medium	">({totalDays(bufferStartDate,bufferEndDate)}일간)</span>
-                                  </p>
-                                  }
-                                </div>
+                              <div className="flex justify-end px-[20px] bg-[#E1ECFF] py-[15px] items-center">
                                 <div className="flex gap-[4px]">
                                   <button
                                     className=" bg-[#2F48D1] text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
                                     onClick={() => {
-                                      setSelectedDate({startDate:bufferStartDate as Date,endDate:bufferEndDate as Date});
+                                      setSelectedDate(bufferStartDate);
                                       setDatePickerOpen(false)
                                     }}
                                   >
@@ -279,7 +258,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                           />
                         </div>
                       </div>
-                      <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleMonthChange('next',selectedDate?.endDate)}>
+                      <div className={`${styles["date-next-prev"]} cursor-pointer`}>
                         <NextIcon width={16} height={16} />
                       </div>
                     </div>
@@ -325,7 +304,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                       </div>
                       <div>
                       <div className={styles.data}>
-                        {endTime ? `${endTime[0]}:${endTime[1]}` : '운행중'}
+                        {endTime ? `${endTime[0]}:${endTime[1]}` : (startTime ? '운행중' : '-')}
                       </div>
                       <div className={styles.text}>운행종료</div>
                       </div>
@@ -336,7 +315,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                       <div className={`${styles.data} !text-[12px] !text-gray !leading-normal	`}></div>
                       </div>
                       <div>
-                      <div className={styles.data}>{`${todayDistance || 0}km`}</div>
+                      <div className={styles.data}>{`${today_distance || 0}km`}</div>
                       <div className={styles.text}>운행거리</div>
                       </div>
                     </li>

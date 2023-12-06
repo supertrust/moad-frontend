@@ -4235,3 +4235,13 @@ input:focus-visible {
 	text-align: center;
 	width: 80px;
 }
+
+
+.vehicle-location .ant-picker-header-view{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.vehicle-location .ant-picker-header {
+		align-items: center;
+	}

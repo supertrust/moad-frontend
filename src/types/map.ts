@@ -31,8 +31,8 @@ export type IVehicleLocationDetails = {
     updated_at: string,
     deleted_at: string,
     is_active: VehicleLocationState,
-    todayDistance: number,
-    totalDistance: number,
+    today_distance: number,
+    total_distance: number,
     avarageMonthlyDistance: number
 }
 

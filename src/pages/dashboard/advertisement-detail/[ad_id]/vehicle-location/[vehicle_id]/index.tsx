@@ -11,6 +11,7 @@ import { MapMarker } from "react-kakao-maps-sdk";
 import { toLatLng } from "@src/helpers/map";
 import { useGetDirection } from "@src/apis/kakap.map";
 import DirectionRender from "@src/components/Map/DirectionRender";
+import { ISOformatDate } from "@src/helpers";
 
 type DateRange = {
   startDate : Date |string,
@@ -22,13 +23,18 @@ const VehicleLocationScreen = () => {
 	const { ad_id, vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
 	const [showDrawer, setShowDrawer] = useState(false);
-  const [selectedDateRange, setSelectedDateRange] = useState<DateRange>({startDate : new Date(),endDate: new Date()});
-	const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string, selectedDateRange);
+  const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(null);
+  const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
+  // @ts-ignore
+	const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string, 
+    selectedDate);
 
+    console.log('cargoLocation', cargoLocation)
   const toggleDrawer = () => {
     setShowDrawer(!showDrawer);
   };
-  const handleDateChange = (dateRange:DateRange) => {
+  const handleDateChange = (dateRange:Date) => {
+    console.log('dateRange', dateRange)
     setSelectedDateRange(dateRange)
     refetch();
   }
@@ -36,6 +42,7 @@ const VehicleLocationScreen = () => {
   useEffect(() => {
     setPageTitle("차량위치");
   }, []);
+
   const router = useRouter();
 
   const onBack = () => {

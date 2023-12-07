@@ -16,6 +16,7 @@ import {
 import HeaderLine from '@src/components/common/HeaderLine';
 import Link from 'next/link';
 import {ISOformatDate} from  '@src/helpers'
+import { Types } from '@src/components/pages/AdFullDetails';
 
 
 export default function StatisticsScreen() {
@@ -65,11 +66,7 @@ export default function StatisticsScreen() {
 		{ label: '진행중', value: 'proceeding' },
 		{ label: '종료', value: 'end' },
 	];
-	const Types = {
-		fixed_ad: '고정',
-		national_ad: '국가',
-		spot_ad: '스팟',
-	};
+
 	const SelectTypes = [
 		{text: '전체',value : 'all'},
 		{text: '고정형',value : 'fixed_ad'},

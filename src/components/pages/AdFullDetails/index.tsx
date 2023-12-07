@@ -15,9 +15,9 @@ import { Carousel } from "react-bootstrap";
 import Image from 'next/image';
 
 
-const Types = {
+export const Types = {
     fixed_ad: '고정',
-    national_ad: '국가',
+    national_ad: '전국',
     spot_ad: '스팟',
 };
 

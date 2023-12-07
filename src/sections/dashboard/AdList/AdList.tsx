@@ -22,6 +22,7 @@ import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { Button } from '@src/components/common';
 import { Arrow } from '@src/components/icons';
 import Link from "next/link";
+import { Types } from "@src/components/pages/AdFullDetails";
 
 const statuses = [
 	{ label: '전체', value: undefined },
@@ -41,11 +42,6 @@ export const allStatuses = [
 	{ label: '진행중', value: 'proceeding' },
 ]
 
-const Types = {
-	fixed_ad: '고정',
-	national_ad: '국가',
-	spot_ad: '스팟',
-};
 
 export default function AdListModule() {
 	const { userRole } = useAuth();

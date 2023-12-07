@@ -203,6 +203,10 @@ export type GetCargoImageListProps = {
     advertisement_id: number
     cargo_vehicle_id: number
 }
+export type GetTotalAdvertisementStatProps = {
+    start_date: Date | string
+    end_date: Date | string
+}
 
 export type ICargoImage = {
     id: number,

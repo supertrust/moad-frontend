@@ -21,7 +21,8 @@ import {
     SaveAdvertisementType,
     UpdateAdvertisementStatusType,
     DraftAdvertisementImage,
-    VehicleAdvertisementStatsResponse
+    VehicleAdvertisementStatsResponse,
+    GetTotalAdvertisementStatProps
 } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@src/services/ReactQueryClient";
@@ -184,9 +185,9 @@ export const useGetCargoImage = (props: GetCargoImageListProps) => useQuery<ICar
 });
 
 
-export const useGetStatBasedAdvertisment = () => useQuery<ITotalAdvertisementStat, string>({
-    queryKey: ["stats-based-advertisement"],
-    queryFn: async () => (await axios.get("/api/stats-based-advertisement")).data.data,
+export const useGetStatBasedAdvertisment = (props : GetTotalAdvertisementStatProps) => useQuery<ITotalAdvertisementStat, string>({
+    queryKey: ["stats-based-advertisement",{...Object.values(props)}],
+    queryFn: async () => (await axios.get("/api/stats-based-advertisement",{ params: props })).data.data,
 });
 
 export const useGetDraftAdvertisementImages = (id:string) => useQuery<DraftAdvertisementImage[], string>({

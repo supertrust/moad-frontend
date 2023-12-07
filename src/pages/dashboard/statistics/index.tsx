@@ -15,8 +15,9 @@ import {
 } from '@src/types/advertisement';
 import HeaderLine from '@src/components/common/HeaderLine';
 import Link from 'next/link';
-import {ISOformatDate} from  '@src/helpers'
+import {DateSelected, ISOformatDate} from  '@src/helpers'
 import { Types } from '@src/components/pages/AdFullDetails';
+import { DateRange, DateRangePickerCtrls } from '@src/components/pages/StatisticsDetailsPage/StatisticsDetailsPage';
 
 
 export default function StatisticsScreen() {
@@ -27,10 +28,9 @@ export default function StatisticsScreen() {
 	const { data: advertisement_stats, isLoading } = useGetShowAdvertisementStats({
 		status: status , page : currentPage
 	});
-	console.log("Status =>", status);
-	const { data: totalStat, isLoading: isTotalLoading } = useGetStatBasedAdvertisment();
-	const date_start = '2023. 03. 01';
-	const date_end = '2023. 03. 08';
+
+	const [selectedDate, setSelectedDate] = useState<DateRange| null>({startDate : '',endDate: ''});
+	const { data: totalStat, isLoading: isTotalLoading } = useGetStatBasedAdvertisment({start_date:selectedDate?.startDate??'',end_date:selectedDate?.endDate??''});
 	const yearEnd = new Date(new Date().getFullYear(),11,31)
 
 	const {
@@ -73,16 +73,19 @@ export default function StatisticsScreen() {
 		{text: '전국형',value : 'national_ad'},
 		{text: '스팟형',value : 'spot_ad'}
 	];
-	const SelectDate = [
-		{text: '전체',value : 'all'},
-		{text: '오늘',value : 'today'},
-		{text: '이번 주',value : 'this_week'},
-		{text: '지난 주',value : 'last_week'},
-		{text: '이번 달',value : 'this_month'},
-		{text: '지난 달',value : 'last_month'},
-		{text: '올해',value : 'this_year'},
-		{text: '작년',value : 'last_year'},
-	];
+
+	const filterDate = (value : string) => {
+		console.log('value', value)
+		if(value == 'all'){
+		  setSelectedDate({startDate:'',endDate:''})
+		}else{
+		  const filteredItemsToday : DateRange = DateSelected(value)
+		  setSelectedDate({
+			startDate:ISOformatDate(filteredItemsToday?.startDate as Date),
+			endDate:ISOformatDate(filteredItemsToday?.endDate as Date)});
+		}
+	  }
+	  
 	// Pagination
 	const itemsPerPage = 6;
 
@@ -117,9 +120,11 @@ const advertisementElement = (
 	<Form.Select
 		aria-label='Default select example'
 		className={`border-[0px] !bg-[#f5f7fb] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
-		${styles.selectOption} cursor-pointer`}>
-		{SelectDate.map((data) => (
-			<option key={data.value} value={data.value}>{data.text}</option>
+		${styles.selectOption} cursor-pointer`}
+		onChange={(e) => filterDate(e.target.value)}
+		>
+		{DateRangePickerCtrls.map((data) => (
+			<option key={data.value} value={data.value}>{data.label}</option>
 		))}
 	</Form.Select>
 	<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}/>
@@ -152,7 +157,7 @@ const vehicleElement = (
 									<div className={styles.ad_amount_box}>
 										<div className={styles.box_wrap}>
 											<div className={styles.date}>
-												{date_start} ~ {date_end}
+												{selectedDate?.startDate.toLocaleString()} {selectedDate?.startDate && '~'} {selectedDate?.endDate.toLocaleString()}
 											</div>
 											<div className={styles.amount}>
 												{isTotalLoading ?
@@ -224,9 +229,10 @@ const vehicleElement = (
 												<Form.Select
 													aria-label='Default select example'
 													className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
-													${styles.selectOption} cursor-pointer`}>
-													{SelectDate.map((data) => (
-														<option key={data.value} value={data.value}>{data.text}</option>
+													${styles.selectOption} cursor-pointer`}
+													>
+													{DateRangePickerCtrls.map((data) => (
+														<option key={data.value} value={data.value}>{data.label}</option>
 													))}
 												</Form.Select>
 													<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}/>

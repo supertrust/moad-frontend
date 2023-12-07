@@ -24,7 +24,7 @@ import { TypeOfVechicle } from "@src/sections/dashboard/SaveAdModel/SaveAdForm";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
 
-const dateRangePickerCtrls = [
+export const DateRangePickerCtrls = [
   {
     label: "전체",
     value: "all",
@@ -58,7 +58,7 @@ const dateRangePickerCtrls = [
     value: "last_year",
   }
 ];
-type DateRange = {
+export type DateRange = {
 startDate : Date |string,
 endDate : Date | string
 }
@@ -123,7 +123,6 @@ function StatisticsDetailsPage() {
       setSelectedDate({startDate:'',endDate:''})
     }else{
       const filteredItemsToday : DateRange = DateSelected(value)
-      console.log('filteredItemsToday', filteredItemsToday)
       setBufferdDate({startDate:filteredItemsToday?.startDate,endDate:filteredItemsToday?.endDate});
     }
   }
@@ -137,7 +136,7 @@ function StatisticsDetailsPage() {
     newElementOuter.classList.add(styles['ant-picker-custom-header']);
     var newElement = document.createElement("div");
 
-    dateRangePickerCtrls.forEach((item) => {
+    DateRangePickerCtrls.forEach((item) => {
       var newButton = document.createElement("button");
       newButton.textContent = item.label;
       newButton.onclick = () => {

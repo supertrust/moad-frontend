@@ -23,11 +23,11 @@ const VehicleLocationScreen = () => {
 	const { ad_id, vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
 	const [showDrawer, setShowDrawer] = useState(false);
-  const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(null);
+  const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
   // @ts-ignore
 	const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string, 
-    selectedDate);
+    ISOformatDate(selectedDateRange as Date));
 
     console.log('cargoLocation', cargoLocation)
   const toggleDrawer = () => {

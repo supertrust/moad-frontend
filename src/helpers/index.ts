@@ -217,3 +217,13 @@ export const getNextMonthDates = (type, date) => {
       endDate: endDate,
     };
   };  
+export const getNextPrevDates = (type, date) => {
+  var currentDate = new Date(date);
+
+  if (type == "prev") {
+    date.setDate(currentDate.getDate() - 1);
+  }else{
+    date.setDate(currentDate.getDate() + 1);
+  }
+  return new Date(date);
+};  

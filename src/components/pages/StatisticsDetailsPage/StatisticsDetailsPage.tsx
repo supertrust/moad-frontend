@@ -19,7 +19,7 @@ import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useSearchParams } from "next/navigation";
 import styles from "./styles.module.scss";
-import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, totalDays } from "@src/helpers";
+import { DateSelected, ISOformatDate, dateFormat, formatTimeFromMinute, getNextMonthDates, totalDays } from "@src/helpers";
 import { TypeOfVechicle } from "@src/sections/dashboard/SaveAdModel/SaveAdForm";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
@@ -331,6 +331,7 @@ function StatisticsDetailsPage() {
               <TableBody className="divide-y">
                       {vehicle_advertisement_stats_details?.data?.map(
                       (stats: any, index: number) => {
+                        const hours = formatTimeFromMinute(stats?.total_hours * 60);
                         return (
                           <TableRow
                             key={index}
@@ -380,7 +381,7 @@ function StatisticsDetailsPage() {
                                 "!w-[190px]"
                               )}
                             >
-                              {stats?.total_hours}시간
+                              {hours}
                             </TableCell>
                             <TableCell
                               className={clsx(styles["table-value"], "w-[200px]")}
@@ -492,6 +493,7 @@ function StatisticsDetailsPage() {
 
         <div className={"flex flex-col space-y-[12px]"}>
           {vehicle_advertisement_stats_details?.data?.map((obj, idx) => {
+            const hours = formatTimeFromMinute(obj.total_hours * 60);
             return (
               <div
                 key={idx}
@@ -540,7 +542,7 @@ function StatisticsDetailsPage() {
                 >
                   <span className={styles["card-info-title"]}>운행시간</span>
                   <span className={styles["card-info-value"]}>
-                    {obj.total_hours}
+                    {hours}
                   </span>
                 </div>
 

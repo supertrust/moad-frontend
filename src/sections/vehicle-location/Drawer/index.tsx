@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 import { DatePicker } from "antd";
 import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
-import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, totalDays } from "@src/helpers";
+import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, getNextPrevDates, totalDays } from "@src/helpers";
 import dayjs from "dayjs";
 
 interface DrawerProps {
@@ -63,11 +63,12 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: DrawerProps) {
   const { RangePicker } = DatePicker;
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [bufferdDate, setBufferdDate] = useState<Date | null>(new Date());
-  const handleMonthChange = (type,date) => {
-    // const {startDate,endDate} = getNextMonthDates(type,date)
-    // setSelectedDate({startDate:startDate as Date,endDate:endDate as Date});
+  const handleChange = (type,date) => {
+    const newDate = getNextPrevDates(type,date)
+    setBufferdDate(newDate);
+    setSelectedDate(newDate);
   }
   const handleDateChange = (range) => {
     const startDate = new Date(range.format());
@@ -77,6 +78,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
 
     setBufferdDate(startDate);
   };
+  
   const filterDate = (value : string) => {
     // if(value == 'all'){
     //   setBufferdDate([])
@@ -172,7 +174,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
       </div>
       <div className={styles.vehicle_location_content}>
         <div className={clsx(styles.location_detail_wrap, open ? styles.closed : styles.open)} >
-          <div className={styles.address}>{current_point_name}</div>
+          <div className={styles.address}>{current_point_name ?? '-'}</div>
           <div className={styles.content_inner}>
             {isLoading ?
 
@@ -191,7 +193,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                         "flex items-center justify-between  bg-white border-y border-[#ebedf4] w-[300px]"
                       }
                     >
-                      <div className={`${styles["date-next-prev"]} cursor-pointer`}>
+                      <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleChange('prev',selectedDate)}>
                         <PrevIcon width={16} height={16} />
                       </div>
                       <div>
@@ -218,7 +220,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                         <div>
                           <DatePicker 
                             className={datePickerOpen ? "custom_picker" : "hidden"}
-                            popupClassName={"custom_popup_picker vehicle-location !left-[800px]"}
+                            popupClassName={"custom_popup_picker vehicle-location !left-[calc(100%-314px)]"}
                             format="YYYY-MM-DD"
                             onChange={handleDateChange}
                             // separator={"~"}
@@ -258,7 +260,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                           />
                         </div>
                       </div>
-                      <div className={`${styles["date-next-prev"]} cursor-pointer`}>
+                      <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleChange('next',selectedDate)}>
                         <NextIcon width={16} height={16} />
                       </div>
                     </div>

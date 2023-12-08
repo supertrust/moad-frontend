@@ -182,7 +182,7 @@ export type VehicleAdvertisementStatsDetails = {
     registration_number: string,
     vehicle_type: string,
     total_distance: number,
-    total_hours: string,
+    total_hours: number,
     achievement_rate: string,
     status: string,
     start_date: string,

@@ -15,7 +15,7 @@ import {
 } from '@src/types/advertisement';
 import HeaderLine from '@src/components/common/HeaderLine';
 import Link from 'next/link';
-import {DateSelected, ISOformatDate} from  '@src/helpers'
+import {DateSelected, ISOformatDate, formatTimeFromMinute} from  '@src/helpers'
 import { Types } from '@src/components/pages/AdFullDetails';
 import { DateRange, DateRangePickerCtrls } from '@src/components/pages/StatisticsDetailsPage/StatisticsDetailsPage';
 
@@ -286,7 +286,7 @@ const vehicleElement = (
 												{ advertisement_stats?.slice(prevItems, currentItems)
 													.map((item, index) => {
 														const selected = selectedAds.includes(item);
-														console.log('selected', selected)
+														const hours = formatTimeFromMinute(item.total_hours * 60);
 														return (
 															<li key={index} className={`${styles.listFlex} relative`}>
 																<div className={styles.grid}>
@@ -307,23 +307,15 @@ const vehicleElement = (
 																		{Types[item.ad_type]}
 																	</div>
 																	<a
-																	href={`/dashboard/statistics/${item.id}?end=${ISOformatDate(yearEnd)}`}
+																	href={`/dashboard/statistics/${item.id}`}
 																	className={`${styles.gridBox} !text-left !justify-start underline text-[#2C324C] hover:!text-[#2C324C]`}>{item.ad_name}</a>
 																	<div className={`${styles.gridBox} ${styles.only_pc}`}>{`${item.number_of_vehicle}`}대</div>
 																	<div className={styles.gridBox}>
 																		{item.total_distance?.toLocaleString() || "-"} km
 																	</div>
 																	<div className={`${styles.gridBox} ${styles.only_pc} `}>
-																		{/* {
-																			statuses.find(
-																				(status) => item. === status.value,
-																			)?.label
-																		} */}
-																		{item.total_hours || '-'}시간
-																		{/* {item.total_hours || '-'}분 */}
+																		{hours || '-'}
 																	</div>
-																	{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>{item.amount}</div> */}
-																	{/* <i className='only-mb ic-arrow-right'></i> */}
 																	<Arrow fill={'#999999'} className='block sm:hidden absolute right-[12px] top-[28px] rotate-[-90deg]'/>
 																</div>
 															</li>

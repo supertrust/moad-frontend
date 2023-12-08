@@ -68,6 +68,8 @@ function StatisticsDetailsPage() {
   const { RangePicker } = DatePicker;
   const { id } = router.query;
   const searchParams = useSearchParams();
+  const yearStart = ISOformatDate(new Date(new Date().getFullYear(),0,2))
+  const yearEnd = ISOformatDate(new Date(new Date().getFullYear(),11,31))
 
   const [currentPage, setCurrentPage] = useState(1); // Current page number
 
@@ -75,8 +77,8 @@ function StatisticsDetailsPage() {
   const { setPageTitle } = useIcarusContext();
 
   const [date, setDate] = useState(new Date());
-  const [bufferdDate, setBufferdDate] = useState<DateRange | []>({startDate : new Date(),endDate: new Date(String(searchParams.get("end")))});
-  const [selectedDate, setSelectedDate] = useState<DateRange>({startDate : new Date(),endDate: new Date(String(searchParams.get("end")))});
+  const [bufferdDate, setBufferdDate] = useState<DateRange | []>({startDate : new Date(String(yearStart)),endDate: new Date(String(yearEnd))});
+  const [selectedDate, setSelectedDate] = useState<DateRange>({startDate : new Date(String(yearStart)),endDate: new Date(String(yearEnd))});
 
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
 

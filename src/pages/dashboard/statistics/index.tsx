@@ -169,7 +169,7 @@ const vehicleElement = (
 											<div className={styles.amount}>
 												{isTotalLoading ?
 													<Skeleton paragraph={false} className='w-24' />:
-													advertisement_amount ? advertisement_amount?.toLocaleString() + '원' : '-'
+													advertisement_amount ? Number(advertisement_amount)?.toLocaleString('kr-KR') + '원' : '-'
 												}
 											</div>
 										</div>

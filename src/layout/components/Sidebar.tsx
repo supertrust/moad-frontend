@@ -125,7 +125,7 @@ function Sidebar({ msg }: SidebarProps) {
             <>
               <li
                 className={
-                  tab === "Ad Management" || tab === "dashboard" ? "menu-list active" : "menu-list"
+                  tab === "Ad Management" || tab === "Dashboard" ? "menu-list active" : "menu-list"
                 }
               >
                 <Link

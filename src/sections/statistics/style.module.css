@@ -46,7 +46,7 @@
 .grid {
     width: 100%;
     display: grid;
-    grid-template-columns: 60px 1fr 2fr 120px 1.5fr 1fr;
+    grid-template-columns: 60px 1fr 2fr 120px 1.5fr 1fr 1fr;
     text-decoration: none !important;
 }
 .chkBox {
@@ -989,11 +989,11 @@
 	button.ad-add-btn p {
 		display: none;
 	}
-	
+
 	button.ad-add-btn {
 		width: 50px;
 	}
-	
+
 	button.ad-add-btn img {
 		width: 18px;
 	}

@@ -226,7 +226,8 @@ export type IAdvertisementStat ={
     ad_name: string,
     number_of_vehicle: number,
     total_distance: number,
-    total_hours: number
+    total_hours: number,
+    status: AdStatusesType
 }
 
 export type ITotalAdvertisementStat = {

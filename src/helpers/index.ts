@@ -124,21 +124,21 @@ export const DateSelected = (selectedFilter) => {
         case "this_week":
             const startOfWeek = new Date(today);
             startOfWeek.setDate(today.getDate() - today.getDay());
-    
+
             const endOfWeek = new Date(today);
             endOfWeek.setDate(today.getDate() - today.getDay() + 6);
 
             return{startDate : startOfWeek,endDate:endOfWeek} ;
         case "last_week":
         const lastWeekStartDate = new Date(today);
-        lastWeekStartDate.setDate(today.getDate() - today.getDay() - 7); 
+        lastWeekStartDate.setDate(today.getDate() - today.getDay() - 7);
 
         const lastWeekEndDate = new Date(today);
-        lastWeekEndDate.setDate(today.getDate() - today.getDay() - 1); 
+        lastWeekEndDate.setDate(today.getDate() - today.getDay() - 1);
 
             return{startDate : lastWeekStartDate,endDate:lastWeekEndDate} ;
         case "this_month":
-            const thisMonthStartDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            const thisMonthStartDate = new Date(today.getFullYear(), today.getMonth(), 2);
             const nextMonthStartDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
             const thisMonthEndDate = new Date(nextMonthStartDate.getTime() - 1);
           console.log('thisMonthEndDate', thisMonthEndDate)
@@ -147,28 +147,28 @@ export const DateSelected = (selectedFilter) => {
               endDate: thisMonthEndDate,
             };
         case "last_month":
-            const lastMonthStartDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+            const lastMonthStartDate = new Date(today.getFullYear(), today.getMonth() - 1, 2);
             const currentMonthStartDate = new Date(today.getFullYear(), today.getMonth(), 1);
             const lastMonthEndDate = new Date(currentMonthStartDate.getTime() - 1);
-          
+
             return {
               startDate: lastMonthStartDate,
               endDate: lastMonthEndDate,
             };
         case "this_year":
-            const thisYearStartDate = new Date(today.getFullYear(), 0, 1);
+            const thisYearStartDate = new Date(today.getFullYear() - 1, 12, 2);
             const nextYearStartDate = new Date(today.getFullYear() + 1, 0, 1);
-            const thisYearEndDate = new Date(nextYearStartDate.getTime() - 1); 
-          
+            const thisYearEndDate = new Date(nextYearStartDate.getTime() - 1);
+
             return {
               startDate: thisYearStartDate,
               endDate: thisYearEndDate,
             };
         case "last_year":
-            const lastYearStartDate = new Date(today.getFullYear() - 1, 0, 1);
+            const lastYearStartDate = new Date(today.getFullYear() - 2, 12, 2);
             const currentYearStartDate = new Date(today.getFullYear(), 0, 1);
-            const lastYearEndDate = new Date(currentYearStartDate.getTime() - 1); 
-          
+            const lastYearEndDate = new Date(currentYearStartDate.getTime() - 1);
+
             return {
               startDate: lastYearStartDate,
               endDate: lastYearEndDate,
@@ -199,16 +199,16 @@ export const getNextMonthDates = (type, date) => {
     const givenDate = new Date(date);
     const year = givenDate.getFullYear();
     const month = givenDate.getMonth();
-  
+
     const nextMonth = (month + 1) % 12;
     const nextYear = nextMonth === 0 ? year + 1 : year;
-  
+
     var startDate = new Date(nextYear, nextMonth, 1);
     var endDate = new Date(nextYear, nextMonth + 1, 0);
     if (type == "prev") {
       const previousMonth = month === 0 ? 11 : month - 1;
       const previousYear = month === 0 ? year - 1 : year;
-  
+
       startDate = new Date(previousYear, previousMonth, 1);
       endDate = new Date(year, month, 0);
     }
@@ -216,7 +216,7 @@ export const getNextMonthDates = (type, date) => {
       startDate: startDate,
       endDate: endDate,
     };
-  };  
+  };
 export const getNextPrevDates = (type, date) => {
   var currentDate = new Date(date);
 
@@ -226,4 +226,4 @@ export const getNextPrevDates = (type, date) => {
     date.setDate(currentDate.getDate() + 1);
   }
   return new Date(date);
-};  
+};

@@ -67,6 +67,13 @@ export default function StatisticsScreen() {
 		{ label: '종료', value: 'end' },
 	];
 
+	const statusMapper = {
+		in_progress: '광고진행중',
+		end: '광고종료',
+		proceeding: '진행중',
+		applying: '적용된'
+	}
+
 	const SelectTypes = [
 		{text: '전체',value : 'all'},
 		{text: '고정형',value : 'fixed_ad'},
@@ -85,7 +92,7 @@ export default function StatisticsScreen() {
 			endDate:ISOformatDate(filteredItemsToday?.endDate as Date)});
 		}
 	  }
-	  
+
 	// Pagination
 	const itemsPerPage = 6;
 
@@ -128,7 +135,7 @@ const advertisementElement = (
 		))}
 	</Form.Select>
 	<Arrow className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}/>
-	</div> 
+	</div>
 );
 const vehicleElement = (
 	<div className='text-[#99A0AC] '>
@@ -274,6 +281,7 @@ const vehicleElement = (
 												<div className={`${styles.gridBox} !font-medium`}>운행 차량수</div>
 												<div className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>총 운행거리</div>
 												<div className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>총 운행시간</div>
+												<div className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>상태</div>
 
 												{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
 											</div>
@@ -315,6 +323,9 @@ const vehicleElement = (
 																	</div>
 																	<div className={`${styles.gridBox} ${styles.only_pc} `}>
 																		{hours || '-'}
+																	</div>
+																	<div className={`${styles.gridBox} ${styles.only_pc} `}>
+																		{statusMapper[item.status] || '-'}
 																	</div>
 																	<Arrow fill={'#999999'} className='block sm:hidden absolute right-[12px] top-[28px] rotate-[-90deg]'/>
 																</div>

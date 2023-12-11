@@ -70,8 +70,8 @@ export default function StatisticsScreen() {
 	const statusMapper = {
 		in_progress: '광고진행중',
 		end: '광고종료',
-		proceeding: '진행중',
-		applying: '적용된'
+		proceeding: '광고검토중',
+		applying: '광고승인'
 	}
 
 	const SelectTypes = [

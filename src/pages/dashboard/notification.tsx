@@ -6,9 +6,12 @@ import { Pagination } from "antd";
 import ArrowBack from "@src/components/icons/ArrowBack";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import useAuth from "@src/hooks/useAuth";
 
 export default function NotificationScreen() {
-  const { data, isLoading } = useGetAllNotification();
+  const {  user } = useAuth();
+  const { data, isLoading } = useGetAllNotification({user_id:user?.id});
+
   const { data: notifications } = data || {};
   const router = useRouter();
 
@@ -54,10 +57,10 @@ export default function NotificationScreen() {
 
   return (
     <>
-      <div className={styles.notification_center_content}>
+      <div className={`${styles.notification_center_content} ${!notifications?.length && '!h-full flex justify-center items-center'}`}>
         <div className={styles.only_pc}>
-          <ul className={styles.notification_wrap}>
-            {notifications?.map(
+          <ul className={`${styles.notification_wrap} ${!notifications?.length && '!hidden'} `}>
+            {notifications?.length ? notifications?.map(
               (data, index) =>
                 index >= prevItems &&
                 index < currentItems && (
@@ -80,8 +83,14 @@ export default function NotificationScreen() {
                     </div>
                   </li>
                 )
-            )}
+            )
+          : ''
+          }
           </ul>
+          {!notifications?.length ? 
+           (<div className="text-center p-[100px]">알림이 없습니다.</div>)
+          : ''
+          }
         </div>
 
         <div className={styles.only_mb}>
@@ -121,6 +130,8 @@ export default function NotificationScreen() {
         </div>
 
         {/* Render the Pagination component */}
+        {
+          notifications?.length ? 
         <div className="flex justify-center mt-[40px] notification_pagination">
           <Pagination
             current={currentPage}
@@ -129,6 +140,9 @@ export default function NotificationScreen() {
             onChange={handlePageChange}
           />
         </div>
+          
+          : ''
+        }
       </div>
     </>
   );

@@ -17,8 +17,8 @@ export const useGetNoticeDetail = ({ id }: GetNoticeDetailPropsType) => useQuery
   queryKey: ["notice", id],
   queryFn: async () => (await axios.get(`/api/notice/${id}`)).data.data,
 })
-export const useGetAllNotification = () => useQuery<INotificationResponse, string>({
-  queryKey: ["notices-all"],
-  queryFn: async () => (await axios.get("/api/notifications")).data.data
+export const useGetAllNotification = (props = {}) => useQuery<INotificationResponse, string>({
+  queryKey: ["notices-all",],
+  queryFn: async () => (await axios.get("/api/notifications",{ params: props })).data.data
 })
 

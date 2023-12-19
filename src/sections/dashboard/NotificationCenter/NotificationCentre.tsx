@@ -5,9 +5,11 @@ import Link from "next/link";
 import { useGetAllNotification } from "@src/apis/notice";
 import { getHoursAgoByDate } from "@src/helpers/index";
 import { clsx } from "clsx";
+import useAuth from "@src/hooks/useAuth";
 
 export default function NotificationCentre() {
-  const { data: response,isLoading } = useGetAllNotification();
+  const {  user } = useAuth();
+  const { data: response,isLoading } = useGetAllNotification({user_id:user?.id});
 
   const { data: notifications } = response || {} ;
 
@@ -25,11 +27,29 @@ export default function NotificationCentre() {
             view all
           </Link>
         </div>
-        <div className={`${styles.notificationContent} mb-[20px] sm:mb-0`}>
-          <Link href="dashboard/notification">
+        <div className={`${styles.notificationContent} ${response?.data.length ? '' : 'flex items-center justify-center cursor-pointer' } mb-[20px] sm:mb-0`}>
+          <Link href="dashboard/notification" className={`${response?.data.length ? '' : 'pointer-events-none	text-[#999]' }`}>
             <ul className={styles.contentWrap}>
-              {notifications ?
-                  notifications.map((each, index) => index < 4 && (
+              {isLoading ? 
+               [1,2,3,4].map((each, index) => index < 4 && (
+                <li className={clsx(styles.list, index == 3 && '!border-b-0')} key={index}>
+                  <div className={styles.textWrap}>
+                    <div className={`${styles.itemTitle} ${styles.text}`}>
+                      <Skeleton variant="text" width={150} sx={{ fontSize : "14px" }} />
+                    </div>
+                    <div className={styles.text} >
+                    <span >
+                        <Skeleton variant="text" width={280} sx={{ fontSize : "14px" }}/>
+                    </span>
+                    </div>
+                  </div>
+                  <div className={styles.timestamp}>
+                    <Skeleton variant="text" width={20} sx={{ fontSize : "14px" }} />
+                  </div>
+                </li>
+            ))
+              : notifications?.length ?? 0 > 0 ?
+                  notifications?.map((each, index) => index < 4 && (
                       <li className={clsx(styles.list, index == 3 && '!border-b-0')} key={index}>
                         <div className={styles.textWrap}>
                           <div className={`${styles.itemTitle} ${styles.text}`}>
@@ -43,24 +63,9 @@ export default function NotificationCentre() {
                           <span>{getHoursAgoByDate(each?.created_at)}</span>
                         </div>
                       </li>
-                  )) :
-                  [1,2,3,4].map((each, index) => index < 4 && (
-                      <li className={clsx(styles.list, index == 3 && '!border-b-0')} key={index}>
-                        <div className={styles.textWrap}>
-                          <div className={`${styles.itemTitle} ${styles.text}`}>
-                            <Skeleton variant="text" width={150} sx={{ fontSize : "14px" }} />
-                          </div>
-                          <div className={styles.text} >
-                          <span >
-                              <Skeleton variant="text" width={280} sx={{ fontSize : "14px" }}/>
-                          </span>
-                          </div>
-                        </div>
-                        <div className={styles.timestamp}>
-                          <Skeleton variant="text" width={20} sx={{ fontSize : "14px" }} />
-                        </div>
-                      </li>
                   ))
+                 : 
+                 (<div>알림이 없습니다.</div>)
               }
             </ul>
           </Link>

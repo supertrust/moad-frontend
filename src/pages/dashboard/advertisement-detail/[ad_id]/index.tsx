@@ -6,7 +6,7 @@ import {
   useGetAdvertisementDetail,
   useGetAdvertisementOperationArea,
   useGetAdvertisementVehicles,
-  useGetDraftAdvertisementImages
+  useGetDraftAdvertisementImages,
 } from "@src/apis/advertisement";
 import { DataGrid } from "@src/components/common";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
@@ -19,7 +19,7 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import React, {
   ChangeEvent,
   Suspense,
@@ -67,7 +67,10 @@ function AdvertisementDetailScreen() {
     useGetAdvertisementDetail({
       id: advertisementId,
     });
-  const {data: draftAdvertisementImages, isLoading: isDraftAdvertisementImagesLoading} = useGetDraftAdvertisementImages(advertisementId)
+  const {
+    data: draftAdvertisementImages,
+    isLoading: isDraftAdvertisementImagesLoading,
+  } = useGetDraftAdvertisementImages(advertisementId);
   // const { data: vehicles } = useGetAdvertisementVehicles({
   // 	advertisement_id: advertisementId,
   // });
@@ -87,11 +90,42 @@ function AdvertisementDetailScreen() {
     totalRecords,
   } = cargoList || {};
 
-  useEffect (() => {
-    console.log('uef: ',!isDraftAdvertisementImagesLoading, !draftAdvertisementImages?.length, draftAdvertisementImages);
+  const [modelImages, setModelImages] = useState({
+    left: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+    right:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+    doorLeft:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+    doorRight:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+  });
 
-    if(!isDraftAdvertisementImagesLoading && !draftAdvertisementImages?.length) openModel("model")
-  },[isDraftAdvertisementImagesLoading, draftAdvertisementImages])
+  useEffect(() => {
+    const modalImagesArr = modelImages;
+    const propertyMap = {
+      0: 'left',
+      1: 'right',
+      2: 'doorLeft',
+      3: 'doorRight',
+    };
+    
+    draftAdvertisementImages?.map((data, index) => {
+      if (data?.is_3d == "0") {
+        const propertyName = propertyMap[index];
+        if (propertyName) {
+          modalImagesArr[propertyName] = data?.completed_url;
+        }
+      }
+
+      setModelImages(modalImagesArr);
+    });
+
+    if (!isDraftAdvertisementImagesLoading && !draftAdvertisementImages?.length)
+      openModel("model");
+  }, [isDraftAdvertisementImagesLoading, draftAdvertisementImages]);
+
+  console.log("State Update:::");
+  console.log(modelImages);
 
   useEffect(() => {
     if (advertisement?.ad_name) setPageTitle(advertisement?.ad_name);
@@ -100,7 +134,7 @@ function AdvertisementDetailScreen() {
 
   const CarouselWrapper = styled.div`
     .carousel.slide {
-      height: 395px
+      height: 395px;
     }
   `;
 
@@ -145,7 +179,8 @@ function AdvertisementDetailScreen() {
     {
       title: "광고상태",
       value: advertisement?.status
-        ? allStatuses.find((status) => advertisement?.status === status.value)?.label 
+        ? allStatuses.find((status) => advertisement?.status === status.value)
+            ?.label
         : advertisement?.status,
     },
     {
@@ -285,16 +320,18 @@ function AdvertisementDetailScreen() {
     setSwiper(false);
   };
 
-  const [modelImages, setModelImages] = useState({
-    left: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
-    right:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
-    doorLeft:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
-    doorRight:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
-  });
-
+  // const imageObj = draftAdvertisementImages?.map((data,index) => {
+  //   if(data?.is_3d == '0'){
+  //     const updatedModelImages = {
+  //       ...modelImages,
+  //       left: index === 0 ? data?.completed_url : modelImages.left,
+  //       right: index === 1 ? data?.completed_url : modelImages.right,
+  //       doorLeft: index === 2 ? data?.completed_url : modelImages.doorLeft,
+  //       doorRight: index === 3 ? data?.completed_url : modelImages.doorRight,
+  //     };
+  //     setModelImages(updatedModelImages)
+  //   }
+  // })
   const handleModelImageChange =
     (key: string) => (e: ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
@@ -343,34 +380,35 @@ function AdvertisementDetailScreen() {
 
               <div className={styles.detail_content}>
                 <div className={styles.slide_box}>
-                  {draftAdvertisementImages?.length ?
-                  <div
-                    className={`${model === "image" ? styles.active : ""} ${
-                      styles.detail_slide
-                    } ${styles.box}`}
-                    id="div3d"
-                  >
-                    <CarouselWrapper className={styles.swiper_wrapper}>
-                      <Carousel activeIndex={index} onSelect={handleSelect}>
-                        {draftAdvertisementImages?.map((item, index) => (
-                          <Carousel.Item key={index}>
-                            <Image
-                              src={item.completed_url}
-                              alt="slides"
-                              width={550}
-                              height={500}
-                            />
-                            {/* <Carousel.Caption className="valu-text">
+                  {draftAdvertisementImages?.length ? (
+                    <div
+                      className={`${model === "image" ? styles.active : ""} ${
+                        styles.detail_slide
+                      } ${styles.box}`}
+                      id="div3d"
+                    >
+                      <CarouselWrapper className={styles.swiper_wrapper}>
+                        <Carousel activeIndex={index} onSelect={handleSelect}>
+                          {draftAdvertisementImages?.map((item, index) => (
+                            <Carousel.Item key={index}>
+                              <Image
+                                src={item.completed_url}
+                                alt="slides"
+                                width={550}
+                                height={500}
+                              />
+                              {/* <Carousel.Caption className="valu-text">
                               <h3>
                                 {item.badge_text}
                                 {item.badge_text2}
                               </h3>
                             </Carousel.Caption> */}
-                          </Carousel.Item>
-                        ))}
-                      </Carousel>
-                    </CarouselWrapper>
-                  </div> : null}
+                            </Carousel.Item>
+                          ))}
+                        </Carousel>
+                      </CarouselWrapper>
+                    </div>
+                  ) : null}
                   <div
                     className={`${model === "model" ? styles.active : ""} ${
                       styles.detail_3d
@@ -391,7 +429,16 @@ function AdvertisementDetailScreen() {
                       <Suspense fallback={null}>
                         {/* @ts-ignore */}
                         <Center>
-                          <TruckModel images={modelImages} />
+                          <TruckModel
+                            Image3D={
+                              draftAdvertisementImages
+                                ? draftAdvertisementImages.find(
+                                    (item) => item?.is_3d == "1"
+                                  )?.completed_url
+                                : ""
+                            }
+                            images={modelImages}
+                          />
                         </Center>
                       </Suspense>
                       <OrbitControls

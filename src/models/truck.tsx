@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { GroupProps, useLoader } from '@react-three/fiber';
 
 interface IModel extends GroupProps {
+  Image3D?: string
   images?: {
     left: string;
     right: string;
@@ -13,7 +14,7 @@ interface IModel extends GroupProps {
 }
 
 export default function Model(props: IModel) {
-  const { images, ...rest } = props
+  const { images,Image3D, ...rest } = props
 
   const leftSideMaterial = new THREE.MeshBasicMaterial({
     map: useLoader(THREE.TextureLoader, images?.left || ""),
@@ -31,9 +32,9 @@ export default function Model(props: IModel) {
     map: useLoader(THREE.TextureLoader, images?.doorLeft || ""),
     side: THREE.DoubleSide,
   })
-
+  const imageURL = Image3D ? Image3D : '/3ds/3dtruck.glb';
   // @ts-ignore
-  const { nodes, materials } = useGLTF('/3ds/3dtruck.glb');
+  const { nodes, materials } = useGLTF(imageURL);
 
   return (
     <group {...rest} dispose={null}>

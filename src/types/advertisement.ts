@@ -57,6 +57,7 @@ interface AdvertisementImage  {
     completed_url : string,
     created_at: string,
     updated_at: string
+    is_3d: string
 }
 
 export interface DraftAdvertisementImage extends AdvertisementImage {

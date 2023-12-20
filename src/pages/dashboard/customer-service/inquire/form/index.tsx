@@ -147,6 +147,7 @@ export default function Index({ id }: { id: string }) {
   const onSubmit = handleSubmit(async (event: any) => {
     const formData = new FormData();
     setSubmitting(true);
+    formData.append("user_id", user?.id);
     formData.append("inquiry_type", event.inquiry_type as string);
     formData.append("inquiry_title", event.inquiry_title as string);
     formData.append("inquiry_question", event.inquiry_question as string);

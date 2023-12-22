@@ -43,7 +43,7 @@ function Sidebar({ msg }: SidebarProps) {
 
   const Tabs = {
     "fixed_ad" : '고정',
-    "national_ad" : '국가',
+    "national_ad" : '전국',
     "spot_ad" : "스팟"
   };
 

@@ -167,9 +167,9 @@ export default function Index({ id }: { id: string }) {
 
   const MenuItemStyles = {
     border: "0px solid",
-    "border-width": "0px 0px 1px 0px",
-    color: "#999999",
-    padding: "10px 12px",
+    // "border-width": "0px 0px 1px 0px",
+    color: "#535A65",
+    // padding: "10px 12px",
   };
   return (
     <>
@@ -234,7 +234,7 @@ export default function Index({ id }: { id: string }) {
                       label="type"
                       displayEmpty
                       className={`border border-gray-300 rounded ${errors?.inquiry_type? "!border-[#F24747]" : ''}`}
-                      sx={{ width: "100%", background: "#fff", border: "1px solid #EBEDF4", "border-radius": "5px" }}
+                      sx={{ width: "100%", background: "#fff", "border-radius": "5px" }}
                       MenuProps={{
                         PaperProps: {
                           sx: {
@@ -244,11 +244,15 @@ export default function Index({ id }: { id: string }) {
                             '.MuiList-root': {
                               padding: "0"
                             },
+                            '.Mui-selected' :{
+                              background: "#FFFFFF",
+                              color: "#2F48D1",
+                            }
                           },
                         },
                       }}
                     >
-                      <MenuItem sx={[MenuItemStyles, { "border-top": "1px solid" }]} selected value=""><em>선택</em></MenuItem>
+                      <MenuItem sx={MenuItemStyles} selected value="">선택</MenuItem>
                       <MenuItem sx={MenuItemStyles} value={"classification_of_payments"}>결제</MenuItem>
                       <MenuItem sx={MenuItemStyles} value={"error"}>오류</MenuItem>
                       <MenuItem sx={MenuItemStyles} value={"usage_inquiry"}>이용문의</MenuItem>

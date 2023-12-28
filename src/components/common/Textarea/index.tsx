@@ -11,11 +11,12 @@ export interface TextareaProps extends DetailedHTMLProps<TextareaHTMLAttributes<
     // right? : ReactNode
     errorPosition?: 'top' | 'bottom',
     showLength?: boolean
+    placeholderError?: boolean
 }
 
 function Textarea(props : TextareaProps,  ref: Ref<any>) {
     const { 
-        value , error, wrapperClassName, required, label, caption, className,
+        value , error,placeholderError = false, wrapperClassName, required, label, caption, className,
         errorPosition = 'top', showLength, maxLength ,  ...rest 
     } = props;
 
@@ -36,7 +37,7 @@ function Textarea(props : TextareaProps,  ref: Ref<any>) {
                         {required && (<span className="essential text-danger">*</span>)}
                     </div>
                 )}
-                {error && errorPosition == 'top' && <span className="text-danger">{error}</span>}
+                {!placeholderError && error && errorPosition == 'top' && <span className="text-danger">{error}</span>}
             </div>
             <textarea
                 ref={ref}
@@ -45,12 +46,13 @@ function Textarea(props : TextareaProps,  ref: Ref<any>) {
                 className={clsx(
                     `w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded`,
                     error &&  "!border-[#F24747]",
+                    error && placeholderError && "placeholder:!text-[#F24747]",
                     className
                 )}
             ></textarea>
             <div className={clsx('flex flex-row ', caption && error && 'justify-between', !caption && error && 'justify-end' )}>
                 {caption && <span>{caption}</span>}
-                {error && errorPosition == 'bottom' && <span className="pull-right text-danger">{error}</span>}
+                {!placeholderError && error && errorPosition == 'bottom' && <span className="pull-right text-danger">{error}</span>}
             </div>
             {showLength && (
                 <div className='flex flex-row justify-end text-[#999999]'>

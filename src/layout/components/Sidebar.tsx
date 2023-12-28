@@ -171,7 +171,7 @@ function Sidebar({ msg }: SidebarProps) {
                   }}
                 >
                   <i className="icon mypage"></i>
-                  <div className="name">마이페이지</div>
+                  <div className="name">내정보</div>
                 </Link>
                 <ul className="sub-wrap nav"></ul>
               </li>

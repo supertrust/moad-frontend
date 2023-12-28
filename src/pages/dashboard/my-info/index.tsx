@@ -380,13 +380,13 @@ export default function MyInfoScreen() {
 				</Col>
 				<Modal show={showModal} centered size='sm' backdrop='static'>
 					<Modal.Body>
-						<div className='text-center my-3'>
-							<div className='mb-3 font-extrabold text-xl text-left'>수정완료</div>
-							<div className='mb-3 py-3 border-y border-y-admin-sub'>정보 수정이 완료되었습니다.</div>
-							<div className='flex flex-row justify-end'>
+						<div className='text-center my-[4px]'>
+							<div className='text-[#2C324C] text-left text-xl mb-[20px] font-bold'>수정완료</div>
+							<div className='text-center p-3 border-y-[1px] border-[#EEEEEE]'>정보 수정이 완료되었습니다.</div>
+							<div className='flex flex-row justify-end mt-[20px]'>
 								<Button
 									onClick={() => setShowModal(false)}
-									className='bg-secondary text-white flex justify-center px-4'>
+									className='bg-primary text-white flex justify-center px-4'>
 									확인
 								</Button>
 							</div>

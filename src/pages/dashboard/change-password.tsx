@@ -14,6 +14,8 @@ import { useChangePassword } from '@src/apis/user';
 import { clsx } from 'clsx';
 import { PASSWORD_REGEX } from '@src/constants';
 import Link from 'next/link';
+import Input from '@src/components/common/Input';
+import { Controller } from "react-hook-form";
 
 const defaultValues = {
 	old_password: '',
@@ -27,13 +29,13 @@ const ChangePasswordSchema = Yup.object({
 		.required('새 비밀번호가 필요합니다.')
 		.matches(
 			PASSWORD_REGEX,
-			'비밀번호는 문자, 숫자, 기호를 조합하여 8자 이상이어야 합니다.',
+			'문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요.',
 		)
 		.min(8, '비밀번호는 8자 이상이어야 합니다.'),
 	confirm_password: Yup.string()
 		.required('비밀번호 확인이 필요합니다.')
 		// @ts-ignore
-		.oneOf([Yup.ref('new_password'), null], '비밀번호가 일치해야 합니다.'),
+		.oneOf([Yup.ref('new_password'), null], '비밀번호 형식이 맞지 않습니다.'),
 });
 
 export default function ChangePasswordScreen() {
@@ -41,6 +43,7 @@ export default function ChangePasswordScreen() {
 	const router = useRouter();
 
 	const [showModal, setShowModal] = useState(false);
+	const [error, setError] = useState(false);
 	const [showPassword, setShowPassword] = useState<{
 		old_password: boolean;
 		new_password: boolean;
@@ -61,18 +64,22 @@ export default function ChangePasswordScreen() {
 	const {
 		formState: { dirtyFields },
 		handleSubmit,
+		control,
 		reset,
 	} = methods;
 
 	const onSubmit = handleSubmit(async (props) => {
+		console.log('props', props)
 		await changePassword(props, {
 			onSuccess: () => {
+				setError(false);
 				setShowModal(true);
 				reset();
 			},
 			onError: (error: string) => {
 				// console.log('Error =>', error);
-				toast(error, { type: 'error' });
+				setError(true);
+				// toast(error, { type: 'error' });
 			},
 		});
 	});
@@ -118,24 +125,38 @@ export default function ChangePasswordScreen() {
 										</div>
 									</div>
 									<ul className='list-wrap-11'>
-										<RHFInput
-											label='기존 비밀번호'
-											type={showPassword.old_password ? 'text' : 'password'}
-											id='old_password'
-											name='old_password'
-											className='input-pass form-control input-wrap'
-											placeholder='비밀번호 입력'
-											right={
-												<i
-													className={clsx(
-														`icon pw-show`,
-														showPassword.old_password && 'active',
-													)}
-													onClick={() => toggleVisiblePassword('old_password')}
-												/>
-											}
-											errorPosition='bottom'
+										<Controller
+											control={control}
+											name={'old_password'}
+											render={({ field: { onChange, onBlur, ref, value }, fieldState: { error } }) => (
+												<Input
+													// @ts-ignore
+													ref={ref}
+													onBlur={onBlur}
+													onChange={e => {onChange(e.target.value);setError(false)}}
+													value={value}
+													label='기존 비밀번호'
+													type={showPassword.old_password ? 'text' : 'password'}
+													id='old_password'
+													name='old_password'
+													className='input-pass form-control input-wrap'
+													placeholder='비밀번호 입력'
+													right={
+														<i
+															className={clsx(
+																`icon pw-show`,
+																showPassword.old_password && 'active',
+															)}
+															onClick={() => toggleVisiblePassword('old_password')}
+														/>
+													}
+													errorPosition='bottom'
+													justifyEnd={false}
+													error={false}
+														/>
+											)}
 										/>
+										{error && <span className='pull-right text-danger'>비밀번호가 일치하지 않습니다.</span>}
 										<RHFInput
 											label='새 비밀번호'
 											type={showPassword.new_password ? 'text' : 'password'}
@@ -153,6 +174,7 @@ export default function ChangePasswordScreen() {
 												/>
 											}
 											errorPosition='bottom'
+											justifyEnd={false}
 										/>
 										<RHFInput
 											label='새 비밀번호 재입력'
@@ -173,6 +195,7 @@ export default function ChangePasswordScreen() {
 												/>
 											}
 											errorPosition='bottom'
+											justifyEnd={false}
 										/>
 									</ul>
 								</div>
@@ -196,12 +219,12 @@ export default function ChangePasswordScreen() {
 				<Modal show={showModal} centered size='sm' backdrop='static'>
 					<Modal.Body>
 						<div className='text-center my-4'>
-							<div className='text-secondary mb-3'>비밀번호 변경 완료</div>
-							<div className='mb-3'>비밀번호 변경이 완료되었습니다.</div>
-							<div className='flex flex-row justify-center'>
+							<div className='text-[#2C324C] text-xl	font-bold text-left mb-3'>변경완료</div>
+							<div className='mb-3 p-3 border-y-[1px] border-[#EEEEEE] text-[14px]'>비밀번호 변경이 완료되었습니다.</div>
+							<div className='flex flex-row justify-end'>
 								<Button
 									onClick={() => setShowModal(false)}
-									className='bg-secondary text-white flex justify-center px-4'>
+									className='bg-primary text-white flex justify-center px-4'>
 									확인
 								</Button>
 							</div>

@@ -6,6 +6,7 @@ import {
   yupResolver,
   useForm,
   Button,
+  RHFInput,
 } from "@src/components/common";
 import ArrowBack from "@src/components/icons/ArrowBack";
 import { ThreeDots } from "react-loader-spinner";
@@ -130,6 +131,7 @@ const SaveAdForm = ({
   const { data: areas, isLoading: isLoadingCars } = useGetOperatingAreas();
 
   const [isOpen, openPeriodList] = useState(false);
+  const [istermschecked, setIstermschecked] = useState(false);
   const [isVehicleTypeOpen, openVehicleType] = useState(false);
   const active_model = window.innerWidth > 767 ? false : true;
   const [isActive, setActive] = useState(active_model);
@@ -325,7 +327,7 @@ const SaveAdForm = ({
                   active_model && "hidden"
                 }`}
               >
-                <div className={styles.img_title}>부착예시</div>
+                <div className={styles.img_title}>{`<부착예시>`}</div>
               </div>
               <div
                 className={`${
@@ -355,7 +357,7 @@ const SaveAdForm = ({
               className={styles.text_wrap}
               onClick={() => setActive(!isActive)}
             >
-              <span className={styles.more_text}>자세히</span>{" "}
+              <span className={styles.more_text}>접기</span>{" "}
               <i className={styles.ic_down_blue}></i>
             </div>
           </div>
@@ -1003,7 +1005,16 @@ const SaveAdForm = ({
                 </div>
               </div>
             </div>
-
+            <div onClick={()=>setIstermschecked(!istermschecked)} className="inline-flex	w-auto gap-[8px] my-[30px]">
+              <div>
+                <Image
+                src={istermschecked ? '/images/ic-checked.png' : '/images/ic-check.png'}
+                width={20}
+                height={20}
+                alt="ic-check"
+              /></div>
+              <div><span className="text-[#2F48D1]">(필수)</span> 이카루스 광고 신청 약관 계약서 <span className="underline ml-[16px]">보기</span></div>
+            </div>
             <div className={styles.price_section}>
               <div className="border border-gray-300 rounded p-0 bg-white">
               <div className={`${styles.price_box} ${styles.spot_add}`}>
@@ -1119,6 +1130,7 @@ const SaveAdForm = ({
                 id={styles.ad_apply_btn}
                 className={`${styles.btns} ${styles.active} ${styles.ad_apply_btn}`}
                 onClick={onSubmit}
+                disabled={!istermschecked}
               >
                 {isLoadingSaveAdvertisement ? (
                   <div className="d-flex justify-content-center">
@@ -1145,19 +1157,19 @@ const SaveAdForm = ({
           centered
           className="bussiness-modal"
         >
-          <Modal.Header>
-            <Modal.Title>확인사항</Modal.Title>
+          <Modal.Header className="py-0 pl-0">
+            <Modal.Title className="text-[#2C324C] text-left text-xl mb-[20px] font-bold">확인사항</Modal.Title>
           </Modal.Header>
           <Modal.Body className="text-center">
             모든 운행 지역을 선택할 시<br />
             광고 유형을 전국형으로 변경해주세요
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className="py-0 pr-0">
             <Button
-              className="bg-primary text-white px-4"
+              className="bg-primary text-white px-4 !mt-[20px]"
               onClick={() => setShowModal(false)}
             >
-              닫다
+              확인
             </Button>
           </Modal.Footer>
         </Modal>

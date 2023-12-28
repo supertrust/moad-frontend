@@ -55,19 +55,19 @@ function MembershipWithdrawalScreen() {
 			size: 'sm',
 			cancelText: '취소',
 			confirmText: '회원탈퇴',
-			cancelButtonProps: { className: 'border-secondary text-secondary' },
-			confirmButtonProps: { className: 'border-secondary bg-secondary' },
-			footerClassName: 'border-none flex flex-row justify-center mb-3',
+			cancelButtonProps: { className: 'border-primary text-primary !px-[21px] !py-[5px]' },
+			confirmButtonProps: { className: 'border-primary bg-primary !px-[8px] !py-[5px]' },
+			footerClassName: 'border-none flex flex-row justify-end mb-3 py-1',
 		};
 
 		confirm({
 			...options,
 			description: (
-				<div className='mt-3'>
-					<div className='text-secondary text-center mb-2 font-bold'>
-						회원탈퇴
+				<div className='mt-[4px]'>
+					<div className='text-[#2C324C] text-left text-xl mb-[20px] font-bold'>
+					회원탈퇴
 					</div>
-					<div className='text-center'>게시물을 정말 삭제하시겠습니까?</div>
+					<div className='text-center p-3 border-y-[1px] border-[#EEEEEE]'>정말 탈퇴하시겠습니까?</div>
 				</div>
 			),
 			onConfirm: () => {
@@ -77,15 +77,15 @@ function MembershipWithdrawalScreen() {
 							...options,
 							disableConfirmBtn: true,
 							cancelButtonProps: {
-								className: 'border-secondary bg-secondary text-white',
+								className: 'border-primary bg-primary !text-[#fff] !px-[21px] !py-[5px]',
 							},
 							description: (
-								<div className='mt-3'>
-									<div className='text-secondary text-center mb-2 font-bold'>
-										회원탈퇴
+								<div className='mt-[4px]'>
+									<div className='text-[#2C324C] text-left text-xl mb-[20px] font-bold'>
+									회원탈퇴완료
 									</div>
-									<div className='text-center'>
-										지금까지 이용해주셔서 감사합니다.
+									<div className='text-center p-3 border-y-[1px] border-[#EEEEEE]'>
+									지금까지 이용해주셔서 감사합니다.
 									</div>
 								</div>
 							),
@@ -106,7 +106,7 @@ function MembershipWithdrawalScreen() {
 							<div className={styles.profile}>
 								<div className={styles.my_information}>
 									<div className={clsx(styles.title, '!border-none mb-0')}>
-										내 정보
+									회원탈퇴
 									</div>
 									<div className={clsx(styles.information_wrap, 'py-2')}>
 										<div className='p-4 border border-[#EBEDF4] rounded-md bg-[#F24747] bg-opacity-5'>
@@ -162,6 +162,7 @@ function MembershipWithdrawalScreen() {
 											wrapperClassName='mt-4'
 											showLength
 											maxLength={300}
+											placeholderError={true}
 										/>
 										<Controller
 											name='condition'

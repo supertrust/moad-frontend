@@ -20,7 +20,7 @@ const sideBarPath = {
   "/dashboard/customer-service/faq" : "FAQ",
   "/dashboard/customer-service/inquire" : "Inquiry",
   "/dashboard/customer-service/inquire/form" : "Inquiry",
-  "/dashboard/customer-service/terms" : "Policies and Terms"
+  "/dashboard/customer-service/terms" : {en: "Policies and Terms", ko: '정책 및 약관'}, //"Policies and Terms"
 }
 
 function Sidebar({ msg }: SidebarProps) {

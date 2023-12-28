@@ -352,18 +352,22 @@ const Step3 = ({
 										</div>
 									}
 								/>
-								<div className='input-wrap business-type'>
-									<div className='input-text'>업종</div>
-									<input
-										type='text'
-										id='business_type'
-										name='business_type'
-										className='company-input'
-										placeholder='업태/업종 입력'
-										spellCheck='false'
-										data-ms-editor='true'
-									/>
-								</div>
+								<RHFInput
+									wrapperClassName='manager-email'
+									label='업종'
+									required
+									type='text'
+									id='sector'
+									name='sector'
+									className='company-input'
+									placeholder='업태/업종 입력'
+									spellCheck='false'
+									data-ms-editor='true'
+									caption={
+										<div className='error-text'>
+										</div>
+									}
+								/>
 								<div className='business-num-wrap'>
 									<RHFInput
 										wrapperClassName='business-num  flex-1'
@@ -469,7 +473,7 @@ const Step3 = ({
 									className='link link-step01'
 									onClick={onSubmit}
 									disabled={
-										!(Object.keys(dirtyFields).length === 7 && imageUploaded)
+										!(Object.keys(dirtyFields).length > 7 && imageUploaded)
 									}>
 									다음
 								</Button>

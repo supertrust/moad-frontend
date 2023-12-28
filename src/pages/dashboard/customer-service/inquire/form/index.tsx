@@ -12,17 +12,22 @@ import {
 import Image from "next/image";
 import FormData from "form-data";
 import useAuth from "@src/hooks/useAuth";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import { Controller, FormProvider, yupResolver, useForm,Button } from '@src/components/common';
 
 import * as Yup from 'yup';
 import MenuItem from '@mui/material/MenuItem';
+import { Clear } from "@mui/icons-material";
+import { clsx } from "clsx";
+import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
+import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";
 
 const defaultValues = {
   inquiry_type: "",
   inquiry_title: "",
   inquiry_question: "",
   inquiry_answer: "",
+  inquiry_documents: []
 };
 
 const SaveInquirySchema = Yup.object({
@@ -30,6 +35,7 @@ const SaveInquirySchema = Yup.object({
   inquiry_title: Yup.string().required("광고이름을 입력해주세요."),
   inquiry_question: Yup.string().required("광고기간을 6개월 또는 12개월 선택해주세요."),
   inquiry_answer: Yup.string().optional(),
+  inquiry_documents: Yup.array().optional()
 })
 export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
@@ -45,9 +51,9 @@ export default function Index({ id }: { id: string }) {
     inquiry_question: "",
     inquiry_answer: "",
   });
-  const [files, setFiles] = useState<any[]>([]);
-  const [fileNames, setFileNames] = useState<any[]>([]);
   const router = useRouter();
+
+  const { confirm } = useConfirmDialog();
 
   useEffect(() => {
     if (data) {
@@ -71,68 +77,55 @@ export default function Index({ id }: { id: string }) {
       router.push(`/inquire/${id}`);
     }
   };
+  
+  const checkFiles = (files: File[]) => {
+    const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
+		const options: ConfirmPropsType = {
+			title: '확인사항',
+			size: 'sm',
+			cancelText: '확인',
+			disableConfirmBtn: true,
+			cancelButtonProps: {
+				className: 'border-primary bg-primary !text-[#FFFFFF]',
+				style: { color: "#fff !important"},
+			},
+			footerClassName: 'flex flex-row justify-end',
+		};
 
-  const handleInput = (e: any) => {
-    if (e) {
-      const { name, value } = e.target;
-      const updatedForm = { ...form, [name]: value };
-      setForm(updatedForm);
+    let hasError = false;
+    for (let index = 0; index < files.length; index++) {
+      const file  = files[index];
+      if (!file) return;
+
+      if (!allowedImages.includes(file.type)) {
+        hasError = true;
+        confirm({
+          ...options,
+          description: (
+            <div className='mt-3 text-center'>
+              JPG, JPEG, PNG 파일만 가능합니다.
+            </div>
+          ),
+        });
+        break;
+      }
+
+        // 3 MB
+      if (file.size > 3 * 1024 * 1024) {
+        hasError = true;
+        confirm({
+          ...options,
+          description: (
+            <div className='mt-3 text-center'>
+              최대 3MB까지만 가능합니다.
+            </div>
+          ),
+        });
+        break;
+      }
     }
-    else {
-      const { name } = e.target;
-      setErrors(`${name} is Required`)
-    }
-  };
 
-  const renderFileInputs = () => {
-    const inputs: any[] = [];
-    for (let i = 0; i < 5; i++) {
-      inputs.push(
-        <div
-          className="py-2 px-3 border border-gray-300 rounded flex gap-2 items-center"
-          key={i}
-        >
-          <input
-            type="file"
-            name={`file-${i}`}
-            id={`file-${i}`}
-            className="hidden"
-            onChange={(e) => handleFileSelect(e, i)}
-            disabled={submitting}
-          />
-          <label
-            htmlFor={`file-${i}`}
-            className="px-[9px] py-[3px] text-xs bg-[#E3E5ED] rounded-lg cursor-pointer hover:bg-gray-300 transition-all duration-200"
-          >
-            파일 선택
-          </label>
-          <span className="text-xs text-[#999999]">
-            {fileNames[i] !== undefined && fileNames[i] !== null
-              ? fileNames[i]
-              : "선택된 파일 없음"}
-          </span>
-        </div>
-      );
-    }
-
-    return inputs;
-  };
-
-  const handleFileSelect = (event: any, index: number) => {
-    const file = event?.target?.files?.[0];
-    if (file !== undefined) {
-      const newFiles = [...files];
-      newFiles[index] = file;
-      setFiles(newFiles);
-
-      fileNames[index] = file.name;
-      setFileNames(fileNames);
-    } else {
-      files.splice(index, 1);
-      fileNames.splice(index, 1);
-      setFiles([...files]);
-      setFileNames([...fileNames]);
-    }
+    return hasError ;
   };
   
   const methods = useForm({
@@ -155,7 +148,7 @@ export default function Index({ id }: { id: string }) {
       formData.append("id", form.id);
       formData.append("inquiry_answer", event.inquiry_answer as string);
     }
-    files.forEach((file, index) => {
+    event.inquiry_documents.forEach((file, index) => {
       formData.append(`inquiry_documents[]`, file as File);
     });
     try {
@@ -319,6 +312,7 @@ export default function Index({ id }: { id: string }) {
                       disabled={submitting || (id !== null && id !== undefined)}
                     />
                   </div>
+                  <div className="text-sm text-right">(<span className="text-secondary">{value?.length || "0"}</span>/300)</div>
                 </div>
                 )}
                 />
@@ -354,19 +348,67 @@ export default function Index({ id }: { id: string }) {
                   )}
                   />
                 )}
-                <div className="flex flex-col gap-1">
-                  <label className="font-bold">
-                    파일 첨부하기{" "}
-                    <span className="text-xs text-[#999999] font-normal">
-                      (png, pdf, jpeg, jpg 확장자 가능)
-                    </span>
-                  </label>
-                  <div className="flex flex-col gap-2">
-                    {renderFileInputs()}
-                  </div>
-                </div>
+
+              <Controller
+                  control={control}
+                  name="inquiry_documents"
+                  render={({ field: { value, onChange }, fieldState: { error } }) => {
+                    const removeFile = (index: number) => {
+                      onChange(value?.filter((_, docIndex) =>  docIndex !== index ))
+                    }
+
+                    return <>
+                      <div className="mb-2">
+                        <label className="font-bold mb-1">
+                          파일첨부
+                        </label>
+                        <div className="flex flex-row gap-2 items-center">
+                          <input
+                            type="file"
+                            name={`file-list`}
+                            id={`file-list`}
+                            multiple
+                            accept='image/*'
+                            className="hidden"
+                            onChange={(e) => {
+                              const files = e.target.files ? Array.from(e.target.files) : [];
+                              if(!checkFiles(files))
+                                onChange([...(value || []), ...files])
+                            }}
+                          />
+                          <label
+                            htmlFor={`file-list`}
+                            className="py-2 px-3 bg-[#EBEDF4] rounded cursor-pointer hover:bg-gray-300"
+                          >
+                            파일선택
+                          </label>
+                          <span className="text-[#999999] text-sm">
+                            3MB 이하의 jpg, jpeg, png  파일 업로드 가능
+                          </span>
+                        </div>
+                        {!!value?.length  && 
+                          <div className="flex flex-row items-center flex-wrap gap-2 mt-3" >
+                            {value?.map((doc: File, index) => (
+                              <div  key={index} className={
+                                clsx(
+                                  "flex flex-row justify-between items-center gap-1 ",
+                                  "bg-[#fff] rounded border border-[#EBEDF4] py-1 px-2 "
+                                )}
+                              >
+                                <span className="text-secondary">{doc.name}</span>
+                                <Clear className="text-[#7B756B] cursor-pointer" onClick={() => removeFile(index)}/>
+                              </div>
+                            ))}
+                            
+                          </div>
+                        }
+                      </div>
+                    </>
+                  }}
+                  />
                 <Button
                 disabled={submitting}
+                loading={submitting}
                 className="w-full bg-[#2F48D1] text-[#fff] p-[13px] h-[50px] items-center	justify-center"
                   onClick={onSubmit}
                 >

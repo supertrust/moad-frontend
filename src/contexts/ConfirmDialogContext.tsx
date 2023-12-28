@@ -63,7 +63,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
             {confirmProps && <Modal show={!!confirmProps} onHide={handelCancel} centered size={size}>
                 {title && 
                     <Modal.Header>
-                        <Modal.Title className="text-center font-bold">{title}</Modal.Title>
+                        <Modal.Title className="text-center font-bold text-[#2C324C]">{title}</Modal.Title>
                     </Modal.Header>
                 }
                 <Modal.Body>{description}</Modal.Body>

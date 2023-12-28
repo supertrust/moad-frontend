@@ -120,14 +120,15 @@ export default function MyInfoScreen() {
 	const handleUpdateProfileImage = ( profileImage:  File) => {
 		const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
 		const options: ConfirmPropsType = {
-			title: '',
+			title: '확인사항',
 			size: 'sm',
 			cancelText: '확인',
 			disableConfirmBtn: true,
 			cancelButtonProps: {
-				className: 'border-secondary bg-secondary text-white',
+				className: 'border-primary bg-primary !text-[#FFFFFF]',
+				style: { color: "#fff !important"},
 			},
-			footerClassName: 'border-none flex flex-row justify-center mb-3',
+			footerClassName: 'flex flex-row justify-end',
 		};
 
 		if (!profileImage) return;
@@ -136,7 +137,7 @@ export default function MyInfoScreen() {
 			return confirm({
 				...options,
 				description: (
-					<div className='mt-3 text-secondary text-center'>
+					<div className='mt-3 text-center'>
 						JPG, JPEG, PNG 파일만 가능합니다.
 					</div>
 				),
@@ -148,7 +149,7 @@ export default function MyInfoScreen() {
 			return confirm({
 				...options,
 				description: (
-					<div className='mt-3 text-secondary text-center'>
+					<div className='mt-3 text-center'>
 						최대 3MB까지만 가능합니다.
 					</div>
 				),

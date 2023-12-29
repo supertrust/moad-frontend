@@ -29,7 +29,7 @@ const ChangePasswordSchema = Yup.object({
 		.required('새 비밀번호가 필요합니다.')
 		.matches(
 			PASSWORD_REGEX,
-			'문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요.',
+			'문자, 대문자, 숫자, 기호를 조합하여 8자 이상을 입력하세요.',
 		)
 		.min(8, '비밀번호는 8자 이상이어야 합니다.'),
 	confirm_password: Yup.string()

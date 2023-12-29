@@ -81,7 +81,7 @@ export default function Advertising() {
         </div>
         <div className={styles.cards}>
           <div className={styles.itemTitle}>
-            <span>운행정지</span>
+            <span>운행종료</span>
           </div>
           <div className={styles.value}>
             <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}

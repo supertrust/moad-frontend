@@ -83,11 +83,10 @@ export default function Index({ id }: { id: string }) {
 		const options: ConfirmPropsType = {
 			title: '확인사항',
 			size: 'sm',
-			cancelText: '확인',
+			cancelText: (<span className="text-[#FFFFFF]">확인</span>),
 			disableConfirmBtn: true,
 			cancelButtonProps: {
 				className: 'border-primary bg-primary !text-[#FFFFFF]',
-				style: { color: "#fff !important"},
 			},
 			footerClassName: 'flex flex-row justify-end',
 		};

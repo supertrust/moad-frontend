@@ -7,7 +7,7 @@ export interface ConfirmPropsType {
     title: string;
     description?: ReactNode;
     confirmText?: string;
-    cancelText?: string;
+    cancelText?: ReactNode;
     disableConfirmBtn?: boolean
     onConfirm?: VoidFunction;
     onCancel?: VoidFunction;

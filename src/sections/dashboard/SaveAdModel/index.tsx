@@ -66,6 +66,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
             ) : (
                 !showAgreement ? (
                     <SaveAdForm 
+                        onOpenModal={() => setOpen(true)}
                         onCancel={onCancel} 
                         onSubmitForm={onSubmitForm} 
                         isLoadingSaveAdvertisement={isLoadingSaveAdvertisement} 

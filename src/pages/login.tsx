@@ -32,7 +32,7 @@ export default function Login() {
                 WELCOME TO <strong>ICARUS</strong>
               </div>
               <div className="text">
-                이카루스 광고주 페이지에 오신걸 환영합니다
+                이카루스 광고주 페이지에 오신걸 환영합니다.
               </div>
               <div className="max-w-[380px] w-full h-[1px] bg-[#EEEEEE] mt-[16px]"></div>
             </div>

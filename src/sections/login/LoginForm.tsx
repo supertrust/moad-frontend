@@ -157,7 +157,7 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 						!isSubmitting &&
 						!enabledSubmit
 					}>
-					다음
+					로그인
 				</Button>
 			</form>
 		</FormProvider>

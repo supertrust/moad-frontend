@@ -28,6 +28,7 @@ import IconPlus from '@images/admin-ad-details/ic-add-plus.png'
 import AdImage from "@src/components/pages/Admin/AdminAdvertisementDetailsPage/components/Image";
 import ImagePlaceholder from '@images/admin-ad-details/ic-image-placeholder.png'
 import adStyles from  '@src/sections/dashboard/AdList/style.module.css'
+import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";
 
 type FormDataType = {
   ad_name: string;
@@ -110,11 +111,13 @@ const SaveAdvertisementSchema = Yup.object().shape({
 });
 
 const SaveAdForm = ({
+  onOpenModal,
   onCancel,
   onSubmitForm,
   isLoadingSaveAdvertisement,
   values,
 }: {
+  onOpenModal: VoidFunction
   onCancel: VoidFunction;
   onSubmitForm: (props: SaveAdvertisementType) => Promise<void>;
   isLoadingSaveAdvertisement: boolean;
@@ -183,6 +186,60 @@ const SaveAdForm = ({
       .split("T")[0];
     return sixMonthsFromNow;
   }, [startDate, period]);
+
+
+  const {confirm} = useConfirmDialog();
+  const errorModal = useRef(null);
+
+  const checkFiles = (files: File[]) => {
+    const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
+		const options: ConfirmPropsType = {
+      ref: errorModal,
+			title: '확인사항',
+			size: 'sm',
+			cancelText: (<span className="text-[#FFFFFF]">확인</span>),
+			disableConfirmBtn: true,
+			cancelButtonProps: {
+				className: 'border-primary bg-primary !text-[#FFFFFF]',
+			},
+			footerClassName: 'flex flex-row justify-end',
+		};
+
+    let hasError = false;
+    for (let index = 0; index < files.length; index++) {
+      const file  = files[index];
+      if (!file) return;
+
+      if (!allowedImages.includes(file.type)) {
+        hasError = true;
+        confirm({
+          ...options,
+          description: (
+            <div className='mt-3 text-center'>
+              JPG, JPEG, PNG 파일만 가능합니다.
+            </div>
+          ),
+        });
+        break;
+      }
+
+        // 5 MB
+      if (file.size > 5 * 1024 * 1024) {
+        hasError = true;
+        confirm({
+          ...options,
+          description: (
+            <div className='mt-3 text-center'>
+              최대 5MB까지만 가능합니다.
+            </div>
+          ),
+        });
+        break;
+      }
+    }
+
+    return hasError ;
+  };
 
   const onSubmit = handleSubmit(
     async (v) => {
@@ -269,7 +326,9 @@ const SaveAdForm = ({
   const containerRef = useRef(null);
   const handleClickOutside = (event) => {
     // @ts-ignore
-    if (containerRef.current && !containerRef.current.contains(event.target) && document.getElementById(adStyles.adAddBtn) != event.target) {
+    if (containerRef.current && !containerRef.current.contains(event.target) && !errorModal.current?.dialog.contains(event.target) && 
+      document.getElementById(adStyles.adAddBtn) != event.target
+    ) {
       onCancel();
     }
   };
@@ -357,7 +416,9 @@ const SaveAdForm = ({
               className={styles.text_wrap}
               onClick={() => setActive(!isActive)}
             >
-              <span className={styles.more_text}>접기</span>{" "}
+              <span className={styles.more_text}>
+                {isActive ? "접기" : "자세히" }
+              </span>{" "}
               <i className={styles.ic_down_blue}></i>
             </div>
           </div>
@@ -554,15 +615,19 @@ const SaveAdForm = ({
                                     ref={imageRef}
                                     multiple
                                     className="hidden"
-                                    onChange={handleFileChange}
+                                    onChange={(e) => {
+                                      const files = e.target.files ? Array.from(e.target.files) : [];
+                                      if(!checkFiles(files))
+                                        handleFileChange(e)
+                                    }}
                                     accept="image/png,image/jpeg"
                                 />
                                 <div className="flex flex-row gap-1">
                                     <button
-                                        className={'bg-[#5F7FB9] px-4 py-2 w-24 text-center justify-center rounded-md h-9 text-white'}
+                                        className={'bg-[#5F7FB9] px-4 py-2 text-center justify-center rounded-md h-9 text-white'}
                                         onClick={() => setUpdateImage(true)}
                                     >
-                                        <span>편집</span>
+                                        <span>파일선택</span>
                                     </button>
                                 </div>
 
@@ -1005,15 +1070,15 @@ const SaveAdForm = ({
                 </div>
               </div>
             </div>
-            <div onClick={()=>setIstermschecked(!istermschecked)} className="inline-flex	w-auto gap-[8px] my-[30px]">
-              <div>
+            <div className="inline-flex	w-auto gap-[8px] my-[30px]">
+              <div onClick={()=>setIstermschecked(!istermschecked)} className="cursor-pointer">
                 <Image
                 src={istermschecked ? '/images/ic-checked.png' : '/images/ic-check.png'}
                 width={20}
                 height={20}
                 alt="ic-check"
               /></div>
-              <div><span className="text-[#2F48D1]">(필수)</span> 이카루스 광고 신청 약관 계약서 <span className="underline ml-[16px]">보기</span></div>
+              <div><span className="text-[#2F48D1]">(필수)</span> 이카루스 광고 신청 약관 계약서 <span className="underline ml-[16px] cursor-pointer">보기</span></div>
             </div>
             <div className={styles.price_section}>
               <div className="border border-gray-300 rounded p-0 bg-white">

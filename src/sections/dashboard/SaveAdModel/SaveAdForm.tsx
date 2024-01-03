@@ -281,6 +281,7 @@ const SaveAdForm = ({
 
   useEffect(() => {
     const handleKeyPress = (event) => {
+      if(event.target.nodeName == "TEXTAREA") return;
       if (event.code === "Enter") {
         event.preventDefault(); // Prevent form submission
         onSubmit().then(() => {});
@@ -579,6 +580,12 @@ const SaveAdForm = ({
                     value={(value as string) || ""} // Bind the value
                     onChange={(e) => {
                       onChange(e.target.value); // Call onChange with the new value
+                    }}
+                    onKeyDown={e => {
+                      if(e.keyCode == 13) {
+                        e.preventDefault();
+                        onChange(value + "\r\n");
+                      }
                     }}
                   ></textarea>
                   <div className="flex justify-end">

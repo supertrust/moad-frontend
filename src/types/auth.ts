@@ -50,14 +50,11 @@ export type VerifyInputPropsType = {
 }
 
 export type FindIdProps = {
-    company_name: string,
-    company_phone_number: string,
+    business_registration_number : string,
 }
 
 export type CheckUserProps = {
     email: string;
-    company_name: string;
-    company_phone_number: string;
 }
 
 export type SendOTP = {

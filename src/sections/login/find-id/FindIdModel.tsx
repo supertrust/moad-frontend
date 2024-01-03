@@ -14,15 +14,11 @@ import { FindIdProps } from '@src/types/auth';
 import { useRouter } from 'next/router';
 
 const defaultValues: FindIdProps = {
-	company_name: '',
-	company_phone_number: '',
+	business_registration_number : '',
 };
 
 const LoginSchema = Yup.object({
-	company_name: Yup.string().required('Company name is required'),
-	company_phone_number: Yup.string()
-		.required('Company Phone is required')
-		.matches(/^[0-9]{11}$/, 'Should be 11 digits'),
+	business_registration_number : Yup.string().required('Business registration number is required'),
 });
 const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 	const router = useRouter();
@@ -90,20 +86,20 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 							<div className={styles.input_content}>
 								<div className={styles.input_wrap}>
 									<div className={styles.input_text}>
-										회사명<span className={styles.essential}>*</span>
+									사업자등록번호<span className={styles.essential}>*</span>
 									</div>
 									<RHFInput
 										required
 										type='text'
-										id='id_find_company_name'
-										name='company_name'
+										id='id_find_business_registration_number'
+										name='business_registration_number'
 										className={`${styles.user_company} ${styles.input} `}
-										placeholder='회사명'
+										placeholder='사업자등록번호 입력'
 										spellCheck='false'
 										data-ms-editor='true'
 									/>
 								</div>
-								<div className={styles.input_wrap}>
+								{/* <div className={styles.input_wrap}>
 									<div className={styles.input_text}>
 										전화번호<span className={styles.essential}>*</span>
 									</div>
@@ -117,7 +113,7 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 										spellCheck='false'
 										data-ms-editor='true'
 									/>
-								</div>
+								</div> */}
 							</div>
 
 							{id && (
@@ -147,7 +143,7 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 									type='button'
 									loading={isLoading}
 									onClick={onSubmit}
-									disabled={Object.keys(dirtyFields).length !== 2}
+									disabled={Object.keys(dirtyFields).length !== 1}
 									className={`${styles.id_model_find} ${styles.btns} ${
 										isLoading && styles.btns_loading
 									}`}>

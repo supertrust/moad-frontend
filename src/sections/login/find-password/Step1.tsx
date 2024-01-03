@@ -21,16 +21,10 @@ type Step1Props = {
 
 const defaultValues: CheckUserProps = {
 	email: '',
-	company_name: '',
-	company_phone_number: '',
 };
 
 const CheckUserSchema = Yup.object({
 	email: Yup.string().required('이메일이 필요합니다'),
-	company_name: Yup.string().required('Company name is required'),
-	company_phone_number: Yup.string()
-		.required('Company Phone is required')
-		.matches(/^[0-9]{11}$/, 'Should be 11 digits'),
 });
 
 const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
@@ -114,7 +108,7 @@ const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
 							아이디(이메일)를 확인해주세요
 						</div>
 					</div>
-					<div className={styles.input_wrap}>
+					{/* <div className={styles.input_wrap}>
 						<div className={styles.input_text}>
 							회사명<span className={styles.essential}>*</span>
 						</div>
@@ -146,14 +140,14 @@ const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
 						<div className={`${styles.phone_error_text} ${styles.error_text}`}>
 							전화번호를 확인해주세요
 						</div>
-					</div>
+					</div> */}
 				</div>
 				<div className={styles.btn_wrap}>
 					<Button
 						id='step01_confirm'
 						loading={isLoading}
 						onClick={onSubmit}
-						disabled={Object.keys(dirtyFields).length !== 3}
+						disabled={Object.keys(dirtyFields).length !== 1}
 						className={`${styles.confirm_btn} ${styles.btns} ${
 							isLoading && styles.confirm_btn_loading
 						}`}>

@@ -27,7 +27,10 @@ export const useRegister = () => useMutation<IRegisterResponse, string, Register
         const formData = new FormData();
         Object.entries(props).forEach(([key, value]) => formData.append(key, value as string | Blob));
         return (await axios.post("/api/register", formData, {
-            headers: { 'content-type': 'multipart/form-data' }
+            headers: { 
+                'content-type': 'multipart/form-data',
+                'Accept-Language': 'ko'
+         }
         })).data
     }
 });

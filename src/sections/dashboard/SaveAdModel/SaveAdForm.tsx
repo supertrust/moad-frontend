@@ -1085,7 +1085,9 @@ const SaveAdForm = ({
                 height={20}
                 alt="ic-check"
               /></div>
-              <div><span className="text-[#2F48D1]">(필수)</span> 이카루스 광고 신청 약관 계약서 <span className="underline ml-[16px] cursor-pointer">보기</span></div>
+              <div><span className="text-[#2F48D1]">(필수)</span> 이카루스 광고 신청 약관 계약서  <a href={'/dashboard/advertising-contract'} target="_blank">
+              <span className="underline ml-[16px] cursor-pointer">보기</span>
+              </a></div>
             </div>
             <div className={styles.price_section}>
               <div className="border border-gray-300 rounded p-0 bg-white">

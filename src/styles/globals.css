@@ -614,6 +614,10 @@ a {
 	margin-bottom: 34px;
 	padding-right: 18px;
 }
+.advertising-contract .mobile-top-header {
+	justify-content: start;
+	gap:15px
+}
     
 .header{
 	font-size: 20px;

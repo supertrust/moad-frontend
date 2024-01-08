@@ -29,7 +29,7 @@ function InquireDetailsPage() {
 
     const download = async (path: string) => {
         const url = API_BASE_URL;
-        return downloadFile(url + path, getFileName(path) as string);
+        return downloadFile(path, getFileName(path) as string);
     };
 
 

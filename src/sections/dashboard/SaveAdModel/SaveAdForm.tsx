@@ -577,14 +577,20 @@ const SaveAdForm = ({
                     className="w-full px-[12px] py-[16px]"
                     cols={30}
                     rows={10}
-                    value={(value as string) || ""} // Bind the value
+                    value={value.slice(0, 600) || ""} // Bind the value
                     onChange={(e) => {
-                      onChange(e.target.value); // Call onChange with the new value
+                      const inputValue = e.target.value;
+                      if (inputValue.length <= 600) {
+                        onChange(inputValue); // Call onChange with the new value
+                      }
                     }}
-                    onKeyDown={e => {
-                      if(e.keyCode == 13) {
+                    onKeyDown={(e) => {
+                      if (e.keyCode === 13) {
                         e.preventDefault();
-                        onChange(value + "\r\n");
+                        const inputValue = value + "\r\n";
+                        if (inputValue.length <= 600) {
+                          onChange(inputValue);
+                        }
                       }
                     }}
                   ></textarea>
@@ -944,6 +950,12 @@ const SaveAdForm = ({
                                 id={item.vehicle_type}
                                 placeholder="직접입력"
                                 min={0}
+                                onKeyDown={(e) => {
+                                  // Allow only numeric characters and prevent negative sign
+                                  if (e.key === '-' || e.key === '.' ) {
+                                    e.preventDefault();
+                                  }
+                                }}
                               />
                               <span className={styles.text}>대</span>
                             </td>

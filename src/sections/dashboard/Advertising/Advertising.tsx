@@ -12,6 +12,7 @@ import { AdStatusesType, AdTypesType } from "@src/types/advertisement";
 import { toast } from "react-toastify";
 import useAuth from "@src/hooks/useAuth";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
+import { formatNumberWithCommas } from "@src/utils/formatter";
 export default function Advertising() {
   const { userRole } = useAuth();
   const adModel = useRef<AdModelRef>(null);
@@ -32,16 +33,16 @@ export default function Advertising() {
   return (
     <>
       <div className={`${styles.adStatus}`}>
-      <div className={styles.title_wrap_top}>
-      광고관리
-									</div>
+        <div className={styles.title_wrap_top}>광고관리</div>
         <div className={`${styles.titleWrap} pb-[11px] sm:pb-[20px] gap-[8px]`}>
           <div className={styles.title}>
             <span>광고 현황</span>
           </div>
           <div className={styles.line}></div>
           <div className={`${styles.text} !p-[0px]`}>
-            <span>{formatDate} {formatTime} 기준</span>
+            <span>
+              {formatDate} {formatTime} 기준
+            </span>
           </div>
         </div>
       </div>
@@ -52,10 +53,18 @@ export default function Advertising() {
             <span>등록된 광고</span>
           </div>
           <div className={styles.value}>
-            <span>{
-              (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
-              width={20} height ={28}/> : advertisements?.data?.length
-            }건
+            <span>
+              {isAdvertiserVehiclesStats || isAdvertisementLoading ? (
+                <Skeleton
+                  variant={"text"}
+                  sx={{ fontSize: "20px" }}
+                  width={20}
+                  height={28}
+                />
+              ) : (
+                formatNumberWithCommas(advertisements?.data?.length)
+              )}
+              건
             </span>
           </div>
         </div>
@@ -64,9 +73,19 @@ export default function Advertising() {
             <span>총 운행차량</span>
           </div>
           <div className={styles.value}>
-            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading)  ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
-                                                          width={20} height ={28}/> :
-                advertiserVehiclesStats?.total_vehicles}대</span>
+            <span>
+              {isAdvertiserVehiclesStats || isAdvertisementLoading ? (
+                <Skeleton
+                  variant={"text"}
+                  sx={{ fontSize: "20px" }}
+                  width={20}
+                  height={28}
+                />
+              ) : (
+                formatNumberWithCommas(advertiserVehiclesStats?.total_vehicles)
+              )}
+              대
+            </span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -74,9 +93,18 @@ export default function Advertising() {
             <span>운행중</span>
           </div>
           <div className={styles.value}>
-            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
-                                                         width={20} height ={28}/>
-                : `${advertiserVehiclesStats?.running}대`}</span>
+            <span>
+              {isAdvertiserVehiclesStats || isAdvertisementLoading ? (
+                <Skeleton
+                  variant={"text"}
+                  sx={{ fontSize: "20px" }}
+                  width={20}
+                  height={28}
+                />
+              ) : (
+                `${formatNumberWithCommas(advertiserVehiclesStats?.running)}대`
+              )}
+            </span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -84,9 +112,19 @@ export default function Advertising() {
             <span>운행종료</span>
           </div>
           <div className={styles.value}>
-            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}}
-                                                         width={20} height ={28}/>:
-                advertiserVehiclesStats?.suspensions}대</span>
+            <span>
+              {isAdvertiserVehiclesStats || isAdvertisementLoading ? (
+                <Skeleton
+                  variant={"text"}
+                  sx={{ fontSize: "20px" }}
+                  width={20}
+                  height={28}
+                />
+              ) : (
+                formatNumberWithCommas(advertiserVehiclesStats?.suspensions)
+              )}
+              대
+            </span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -94,7 +132,19 @@ export default function Advertising() {
             <span>총 진행거리</span>
           </div>
           <div className={styles.value}>
-            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}} width={20} height ={28}/>: advertiserVehiclesStats?.total_distance.toLocaleString()} km</span>
+            <span>
+              {isAdvertiserVehiclesStats || isAdvertisementLoading ? (
+                <Skeleton
+                  variant={"text"}
+                  sx={{ fontSize: "20px" }}
+                  width={20}
+                  height={28}
+                />
+              ) : (
+                formatNumberWithCommas(advertiserVehiclesStats?.total_distance,2)
+              )}{" "}
+              km
+            </span>
           </div>
         </div>
         <div className={styles.cards}>
@@ -102,7 +152,19 @@ export default function Advertising() {
             <span>총 진행시간</span>
           </div>
           <div className={styles.value}>
-            <span>{  (isAdvertiserVehiclesStats || isAdvertisementLoading) ? <Skeleton variant={'text'} sx={{fontSize : "20px"}} width={20} height ={28}/>: advertiserVehiclesStats?.total_hours.toLocaleString()} 분</span>
+            <span>
+              {isAdvertiserVehiclesStats || isAdvertisementLoading ? (
+                <Skeleton
+                  variant={"text"}
+                  sx={{ fontSize: "20px" }}
+                  width={20}
+                  height={28}
+                />
+              ) : (
+                formatNumberWithCommas(advertiserVehiclesStats?.total_hours)
+              )}{" "}
+              분
+            </span>
           </div>
         </div>
       </div>

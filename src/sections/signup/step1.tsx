@@ -172,12 +172,13 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 				centered
 				className='more-content-modal'
 				show={show.open}
+				scrollable
 				onHide={handleClose}>
 				<Modal.Header>
 					<Modal.Title className='text-center'>
 						{show.name == 'chk_2' ? '서비스 이용약관' : '개인정보처리방침'}
 					</Modal.Title>
-				</Modal.Header>
+				</Modal.Header>       
 				<Modal.Body className='h-auto'>
 					<div className='terms-text'>
 						<div className='inner-title'>

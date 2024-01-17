@@ -4,25 +4,30 @@ import { getHoursAgoByDate } from "@src/helpers";
 import { styles } from "@src/sections/notification";
 import { Pagination } from "antd";
 import ArrowBack from "@src/components/icons/ArrowBack";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useAuth from "@src/hooks/useAuth";
 
 export default function NotificationScreen() {
+  const [currentPage, setCurrentPage] = useState(1);
   const {  user } = useAuth();
-  const { data, isLoading } = useGetAllNotification({user_id:user?.id});
+  const { data, refetch, isLoading } = useGetAllNotification({
+    user_id:user?.id,
+    page: currentPage
+  });
 
   const { data: notifications } = data || {};
   const router = useRouter();
-
+useEffect(()=>{
+  refetch()
+}, [currentPage])
   // pagination
   const itemsPerPage = window.innerWidth > 767 ? 12 : 5;
-
-  const [currentPage, setCurrentPage] = useState(1); // Current page number
-  const totalItems = notifications?.length ?? 0; // Total number of items
-  const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
-  const prevItems = (currentPage - 1) * itemsPerPage;
-  const currentItems = currentPage * itemsPerPage;
+   // Current page number
+  // const totalItems = notifications?.length ?? 0; // Total number of items
+  // const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
+  // const prevItems = (currentPage - 1) * itemsPerPage;
+  // const currentItems = currentPage * itemsPerPage;
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -62,8 +67,9 @@ export default function NotificationScreen() {
           <ul className={`${styles.notification_wrap} ${!notifications?.length && '!hidden'} `}>
             {notifications?.length ? notifications?.map(
               (data, index) =>
-                index >= prevItems &&
-                index < currentItems && (
+                // index >= prevItems &&
+                // index < currentItems && 
+                (
                   <li key={index} className={styles.list}>
                     <div className={styles.info}>
                       <div className={styles.title}>{data.title}</div>
@@ -104,8 +110,9 @@ export default function NotificationScreen() {
           <ul className={styles.notification_wrap}>
             {notifications?.map(
               (data, index) =>
-                index >= prevItems &&
-                index < currentItems && (
+                // index >= prevItems &&
+                // index < currentItems &&
+                 (
                   <li key={index} className={styles.list}>
                     <div className={styles.info}>
                       <div className={styles.title}>{data.title}</div>
@@ -135,8 +142,8 @@ export default function NotificationScreen() {
         <div className="flex justify-center mt-[40px] notification_pagination">
           <Pagination
             current={currentPage}
-            total={totalItems}
-            pageSize={itemsPerPage}
+            total={data?.total}
+            pageSize={data?.per_page}
             onChange={handlePageChange}
           />
         </div>

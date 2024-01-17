@@ -310,7 +310,7 @@ const Step3 = ({
 								
 								<RHFSelect
 									wrapperClassName='manager-tel'
-									label='담당자 직위*'
+									label='담당자 직위'
 									required
 									id='contact_position'
 									name='contact_position'
@@ -420,7 +420,7 @@ const Step3 = ({
 								<div className='input-wrap business-license'>
 									<div className='flex flex-row justify-between gap-3'>
 										<div className='input-text'>
-											사업자 등록증 첨부<span className='essential'>*</span>
+											사업자 등록증 첨부<span className='essential text-danger'>*</span>
 										</div>
 										{errors?.business_license && (
 											<span className='text-danger'>

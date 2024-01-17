@@ -41,7 +41,7 @@ function NoticeDetailsPage() {
                         </div>
                     ) : (
                         <>
-                            <div className="sm:px-7  sm:!border-b-[1px] flex flex-wrap	items-center !h-[48px] sm:gap-2 justify-between items-center">
+                            <div className="sm:px-7  sm:!border-b-[1px] flex flex-wrap !h-[48px] sm:gap-2 justify-between items-center">
                                 <span className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[20px] sm:px-[0px]">{data?.title}</span>
                                 <div className="flex justify-end text-sm w-full lg:w-auto sm:w-auto py-[8px] sm:py-[0px] px-[10px] sm:px-[0px]">
                                     <span className={clsx(styles["author"],"pr-[24px]")}>By. 이카루스</span>
@@ -59,7 +59,8 @@ function NoticeDetailsPage() {
                                         height={500}
                                     />
                                 )}
-                                <div ><div className={clsx(styles["content"],"break-words whitespace-break-spaces")}>{data?.content}</div></div>
+                                <div ><div className={clsx(styles["content"],"break-words whitespace-break-spaces")} 
+                                dangerouslySetInnerHTML={{ __html: data?.content || '' }}/></div>
                             </div>
                             <div className="sm:py-[25px] p-[20px] !px-[45px] flex justify-between sm:justify-around items-center gap-0 border-t border-[#EBEDF4]">
                                 <Link
@@ -123,7 +124,7 @@ function NoticeDetailsPage() {
                         </div>
                     ) : (
                         <>
-                            <div className="sm:px-7  sm:!border-b-[1px] flex flex-wrap	items-center h-full sm:gap-2 justify-between items-center">
+                            <div className="sm:px-7  sm:!border-b-[1px] flex flex-wrap h-full sm:gap-2 justify-between items-center">
                                 <span className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[18px]">{data?.title}</span>
 
                             </div>

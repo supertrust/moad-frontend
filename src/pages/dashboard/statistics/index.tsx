@@ -18,6 +18,7 @@ import Link from 'next/link';
 import {DateSelected, ISOformatDate, formatTimeFromMinute} from  '@src/helpers'
 import { Types } from '@src/components/pages/AdFullDetails';
 import { DateRange, DateRangePickerCtrls } from '@src/components/pages/StatisticsDetailsPage/StatisticsDetailsPage';
+import { formatNumberWithCommas } from '@src/utils/formatter';
 
 
 export default function StatisticsScreen() {
@@ -41,23 +42,23 @@ export default function StatisticsScreen() {
 	const driving_vehicle = [
 		{
 			title: '모든 차량수',
-			data: all_vehicles,
+			data: formatNumberWithCommas(all_vehicles),
 		},
 		{
 			title: '운행차량',
-			data: operating_vehicles,
+			data: formatNumberWithCommas(operating_vehicles),
 		},
 		{
 			title: '운행예정',
-			data: schedule,
+			data: formatNumberWithCommas(schedule),
 		},
 		{
 			title: '종료예정',
-			data: schedule_to_end,
+			data: formatNumberWithCommas(schedule_to_end),
 		},
 		{
 			title: '종료',
-			data: end,
+			data: formatNumberWithCommas(end),
 		},
 	];
 
@@ -186,7 +187,7 @@ const vehicleElement = (
 													<div className={styles.data}>
 														{isTotalLoading ?
 															<Skeleton paragraph={false} className='w-14 items-center' />:
-															data.data ? data.data + '대' : '-'
+															data.data && data.data != '0' ? data.data + '대' : '-'
 														}
 													</div>
 												</li>
@@ -317,7 +318,7 @@ const vehicleElement = (
 																	<a
 																	href={`/dashboard/statistics/${item.id}`}
 																	className={`${styles.gridBox} !text-left !justify-start underline text-[#2C324C] hover:!text-[#2C324C]`}>{item.ad_name}</a>
-																	<div className={`${styles.gridBox} ${styles.only_pc}`}>{`${item.number_of_vehicle}`}대</div>
+																	<div className={`${styles.gridBox} ${styles.only_pc}`}>{`${formatNumberWithCommas(item.number_of_vehicle)}`}대</div>
 																	<div className={styles.gridBox}>
 																		{item.total_distance?.toLocaleString() || "-"} km
 																	</div>

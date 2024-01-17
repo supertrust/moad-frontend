@@ -23,6 +23,7 @@ import { DateSelected, ISOformatDate, dateFormat, formatTimeFromMinute, getNextM
 import { TypeOfVechicle } from "@src/sections/dashboard/SaveAdModel/SaveAdForm";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
+import { formatNumberWithCommas } from "@src/utils/formatter";
 
 export const DateRangePickerCtrls = [
   {
@@ -373,7 +374,7 @@ function StatisticsDetailsPage() {
                                 "!w-[195px]"
                               )}
                             >
-                              {stats?.total_distance}km
+                              {formatNumberWithCommas(stats?.total_distance)}km
                             </TableCell>
                             <TableCell
                               className={clsx(

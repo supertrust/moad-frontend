@@ -7,11 +7,12 @@ import { Map } from "@src/components/Map";
 import Drawer from "@src/sections/vehicle-location/Drawer";
 import Loader from "@src/components/Loader";
 import ArrowBack from "@src/components/icons/ArrowBack";
-import { MapMarker } from "react-kakao-maps-sdk";
+import { MapMarker, useKakaoLoader } from "react-kakao-maps-sdk";
 import { toLatLng } from "@src/helpers/map";
 import { useGetDirection } from "@src/apis/kakap.map";
 import DirectionRender from "@src/components/Map/DirectionRender";
 import { ISOformatDate } from "@src/helpers";
+import { KAKAO_MAP_API_KEY } from "@src/config";
 
 type DateRange = {
   startDate : Date |string,
@@ -19,6 +20,11 @@ type DateRange = {
 }
 
 const VehicleLocationScreen = () => {
+  const [ loading ] = useKakaoLoader({
+    appkey: KAKAO_MAP_API_KEY || '', 
+    libraries: ['services', 'clusterer', 'drawing'],
+  })
+
 	const { query } = useRouter();
 	const { ad_id, vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
@@ -42,7 +48,7 @@ const VehicleLocationScreen = () => {
   useEffect(() => {
     setPageTitle("차량위치");
   }, []);
-
+  
   const router = useRouter();
 
   const onBack = () => {

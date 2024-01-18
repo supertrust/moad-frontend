@@ -1,6 +1,6 @@
 import { useGetDirection } from '@src/apis/kakap.map';
 import { IGetDirection } from '@src/types/kakao.map'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Polyline, PolylineProps } from 'react-kakao-maps-sdk';
 
 interface DirectionRenderProps extends Omit<PolylineProps, 'path'> {
@@ -20,13 +20,17 @@ function DirectionRender({
     ...rest
 } : DirectionRenderProps) {
 
-    const { data } = useGetDirection({ 
+    const { data ,refetch } = useGetDirection({ 
         origin: origin  ? `${origin.getLng()},${origin.getLat()}` : '',
         destination: destination  ? `${destination.getLng()},${destination.getLat()}` : '',
         car_type: 4 ,
         priority:'DISTANCE'
     });
 
+    useEffect(() => {
+        refetch
+    }, [origin,destination])
+    
     const directions = data || defaultDirections ;
     const { routes } = directions || {};
 

@@ -582,6 +582,8 @@ const SaveAdForm = ({
                       const inputValue = e.target.value;
                       if (inputValue.length <= 600) {
                         onChange(inputValue); // Call onChange with the new value
+                      }else{
+                        onChange(inputValue.substring(0, 600))
                       }
                     }}
                     onKeyDown={(e) => {
@@ -938,14 +940,21 @@ const SaveAdForm = ({
                                 name="vehicles_num"
                                 // className={styles.input_num}
                                 className={
-                                  "!w-[78px] h-[20px] border border-[#ebedf4] text-gray-500 text-right mr-[3px] text-[12px] p-[3px]"
+                                  `!w-[78px] h-[20px] border  text-gray-500 text-right mr-[3px] text-[12px] p-[3px]
+                                  ${((Number(value[item.id])* item.expenses[period]) + Number(totalPrice)) || 0 <= 9223372036854775807 ? '!border-[#ebedf4]' : '!border-[#ff0000]'}
+                                  `
                                 }
                                 value={value[item.id]}
                                 onChange={(e) =>
-                                  onChange({
-                                    ...value,
-                                    [item.id]: e.target.value,
-                                  })
+                                  {
+                                    const inputValue = e.target.value; 
+                                    const newValue = ((Number(inputValue)* item.expenses[period]) + Number(totalPrice)) <= 9223372036854775807 ? inputValue : value[item.id];
+    
+                                    onChange({
+                                      ...value,
+                                      [item.id]: newValue,
+                                    });
+                                  }
                                 }
                                 id={item.vehicle_type}
                                 placeholder="직접입력"

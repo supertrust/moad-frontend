@@ -106,8 +106,6 @@ const Landing = () => {
                 className='list-wrap-mb swiper-wrapper'
                 spaceBetween={10}
                 slidesPerView={1.1}
-                // onSlideChange={() => console.log("slide change")}
-                // onSwiper={(swiper) => console.log(swiper)}
               >
                 <SwiperSlide className="_list swiper-slide'">
                   <div className='list-num'>01</div>

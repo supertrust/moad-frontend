@@ -69,7 +69,6 @@ export default function ChangePasswordScreen() {
 	} = methods;
 
 	const onSubmit = handleSubmit(async (props) => {
-		console.log('props', props)
 		await changePassword(props, {
 			onSuccess: () => {
 				setError(false);
@@ -77,7 +76,6 @@ export default function ChangePasswordScreen() {
 				reset();
 			},
 			onError: (error: string) => {
-				// console.log('Error =>', error);
 				setError(true);
 				// toast(error, { type: 'error' });
 			},

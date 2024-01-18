@@ -41,7 +41,6 @@ function AdvertisementAdminLayout(props: LayoutProps) {
             setExpanded(shouldBeExpanded);
         }
 
-        console.log(windowWidth)
 
         window.addEventListener('resize', handleExpande)
         return () => {

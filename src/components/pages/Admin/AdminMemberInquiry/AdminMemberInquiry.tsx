@@ -34,7 +34,7 @@ const AdminMemberInquiry = () => {
         setConfirmModel({ open: false, user_id: 0 });
       },
       onError: (error) => {
-        console.log("error", error);
+
       },
     });
   };
@@ -66,7 +66,7 @@ const AdminMemberInquiry = () => {
   ];
 
   const handleFieldChange = (value: string | string[]) => {
-    console.log(`Selected: ${value}`);
+
   };
 
   const rowSelection = {

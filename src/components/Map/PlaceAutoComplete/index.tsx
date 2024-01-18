@@ -64,8 +64,6 @@ function PlaceAutoComplete( {
       }
     }
   },[value]);
-  // console.log("Value =>", value)
-  // console.log("localValue =>", localValue)
 
 
   const handleSelect = ( option?: DefaultOptionType  ) => {

@@ -14,7 +14,7 @@ const AdminCargoOwnerPhotoHistory = () => {
         company_name : "머스트핀테크",
         advertisement_period : "2023.07.12 ~ 2023.11.11", vehicle_count : "50",vehicle_count_of_photo : "40"});
     const handleFieldChange = (value: string | string[]) => {
-        console.log(`Selected: ${value}`);
+        
     };
 
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {

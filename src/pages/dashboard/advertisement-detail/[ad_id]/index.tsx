@@ -124,8 +124,6 @@ function AdvertisementDetailScreen() {
       openModel("model");
   }, [isDraftAdvertisementImagesLoading, draftAdvertisementImages]);
 
-  console.log("State Update:::");
-  console.log(modelImages);
 
   useEffect(() => {
     if (advertisement?.ad_name) setPageTitle(advertisement?.ad_name);
@@ -309,7 +307,6 @@ function AdvertisementDetailScreen() {
     columns.splice(0, 1);
     columns.splice(1, 1);
   }
-  console.log("columns[0]", columns);
   const [swiper, setSwiper] = useState(false);
   const openBox = () => {
     setSwiper(!swiper);

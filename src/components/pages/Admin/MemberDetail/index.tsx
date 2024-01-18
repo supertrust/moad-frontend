@@ -124,7 +124,7 @@ const MemberDetail = ({ blackList = false }: { blackList: boolean }) => {
           });
         },
         onError: (error) => {
-          console.log("error", error);
+
         },
       });
     } else {
@@ -149,7 +149,7 @@ const MemberDetail = ({ blackList = false }: { blackList: boolean }) => {
           });
         },
         onError: (error) => {
-          console.log("error", error);
+
         },
       });
     }

@@ -29,7 +29,7 @@ const FilterAndSearchSection = () => {
     })
 
     const onChange = (e: CheckboxChangeEvent) => {
-        console.log(`checked = ${e.target.checked}`);
+
     };
 
     const fieldOptions: SelectProps['options'] = [
@@ -48,7 +48,7 @@ const FilterAndSearchSection = () => {
     ];
 
     const handleFieldChange = (value: string | string[]) => {
-        console.log(`Selected: ${value}`);
+
     };
 
 

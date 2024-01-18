@@ -35,12 +35,10 @@ const VehicleLocationScreen = () => {
 	const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string, 
     ISOformatDate(selectedDateRange as Date));
 
-    console.log('cargoLocation', cargoLocation)
   const toggleDrawer = () => {
     setShowDrawer(!showDrawer);
   };
   const handleDateChange = (dateRange:Date) => {
-    console.log('dateRange', dateRange)
     setSelectedDateRange(dateRange)
     refetch();
   }

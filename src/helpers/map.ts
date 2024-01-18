@@ -3,7 +3,7 @@ import { IGetDirection } from "@src/types/kakao.map";
 import { MutableRefObject } from "react";
 
 export const getMapScriptTag = (mapRef: null) => {
-  // console.log("KOKAO_MAP_URL", KOKAO_MAP_URL);
+
   const script = document.createElement("script");
   script.async = true;
   if (KOKAO_MAP_URL !== undefined) {
@@ -51,11 +51,6 @@ export const registerEvents = (
         "click",
         function (mouseEvent: { latLng: any }) {
           const position = mouseEvent.latLng;
-          // console.log(
-          //   "position.getLat(),position.getLng()",
-          //   position.getLng(),
-          //   position.getLat()
-          // );
 
           geocoder.coord2Address(
             position.getLng(),
@@ -63,7 +58,7 @@ export const registerEvents = (
             (result: { address: any }[], status: any) => {
               if (status === window.kakao.maps.services.Status.OK) {
                 const roadAddress = result[0].address;
-                // console.log("this was the address result", roadAddress);
+
               }
             }
           );

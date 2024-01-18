@@ -49,7 +49,7 @@ function AdListModal({adListModalOpen,handleAdListModalClose} : {adListModalOpen
     }, handleAdListModalClose : ()=>void}) {
 
     const handleFieldChange = (value: string | string[]) => {
-        console.log(`Selected: ${value}`);
+
     };
 
     const [adDetailModalOpen, setAdDetailModalOpen] = React.useState<{open:boolean,data:AdminAdList | null}>({

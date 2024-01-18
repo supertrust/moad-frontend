@@ -149,7 +149,6 @@ const Step3 = ({
 						setReadonly(true);
 					},
 					onError: (error) => {
-						// console.log('Error  _verifyBusinessNumber =>', error);
 						ModalhandleShow(error);
 						setError('business_registration_number', { message: error });
 					},

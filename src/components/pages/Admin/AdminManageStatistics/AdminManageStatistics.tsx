@@ -24,7 +24,6 @@ const AdminManageStatistics = () => {
 
    const manageStatisticsList =  statList?.data;
     const handleFieldChange = (value: string | string[]) => {
-        console.log(`Selected: ${value}`);
     };
 
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {

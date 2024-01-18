@@ -162,7 +162,6 @@ const SaveAdForm = ({
     getValues,
   } = methods;
 
-  // console.log("Errors =>", errors);
   // Object.keys(errors).length && Object.values(errors)[0].ref;
 
   const totalPrice = useMemo(() => {

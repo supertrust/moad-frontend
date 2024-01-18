@@ -59,10 +59,6 @@ function Sidebar({ msg }: SidebarProps) {
     }
   },[router.pathname])
 
-
-  console.log('tab',tab)
-
-
   return (
     <div className="content">
       <h1 className="side-logo cursor-pointer" onClick = {()=>router.push("/dashboard")}>

@@ -144,7 +144,7 @@ function StatisticsDetailsPage() {
       newButton.textContent = item.label;
       newButton.onclick = () => {
         var elements = document.getElementsByClassName(styles['active']);
-        console.log('elements', elements)
+
         for (var i = 0; i < elements.length; i++) {
           elements[i].classList.remove(styles['active']);
         }
@@ -247,7 +247,6 @@ function StatisticsDetailsPage() {
                         onOpenChange={(open) =>
                           setDatePickerOpen(datePickerOpen)
                         }
-                        onCalendarChange={() => console.log("yes")}
                         renderExtraFooter={() => (
                           <div className="flex justify-between px-[20px] bg-[#E1ECFF] py-[15px] items-center">
                             <div>

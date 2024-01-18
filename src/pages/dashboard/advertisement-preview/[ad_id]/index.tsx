@@ -263,7 +263,6 @@ function AdvertisementDetailScreen() {
     columns.splice(0, 1);
     columns.splice(1, 1);
   }
-  console.log("columns[0]", columns);
   const [swiper, setSwiper] = useState(false);
   const openBox = () => {
     setSwiper(!swiper);

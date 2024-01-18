@@ -83,7 +83,6 @@ export default function StatisticsScreen() {
 	];
 
 	const filterDate = (value : string) => {
-		console.log('value', value)
 		if(value == 'all'){
 		  setSelectedDate({startDate:'',endDate:''})
 		}else{

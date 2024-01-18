@@ -141,7 +141,7 @@ export const DateSelected = (selectedFilter) => {
             const thisMonthStartDate = new Date(today.getFullYear(), today.getMonth(), 2);
             const nextMonthStartDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
             const thisMonthEndDate = new Date(nextMonthStartDate.getTime() - 1);
-          console.log('thisMonthEndDate', thisMonthEndDate)
+
             return {
               startDate: thisMonthStartDate,
               endDate: thisMonthEndDate,

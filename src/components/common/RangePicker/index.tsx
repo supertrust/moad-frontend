@@ -13,7 +13,7 @@ export interface RangeProps {
 
 function RangePicker(props : RangeProps) {
     const { RangePicker } = DatePicker;
-    console.log('footer', props)
+
   return (
     <RangePicker
       className={props?.className}

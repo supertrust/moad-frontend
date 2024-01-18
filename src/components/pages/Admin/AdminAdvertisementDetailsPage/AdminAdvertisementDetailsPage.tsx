@@ -150,7 +150,6 @@ const AdminAdvertisementDetailsPage = () => {
                 toast.success('광고 업데이트 성공');
             },
             onError: (err) =>  {
-                console.log(err)
                 toast.error('문제가 발생했습니다.')
             }
         });

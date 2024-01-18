@@ -50,7 +50,7 @@ function ProfilePage() {
     });
 
     const { control, setValue, handleSubmit, formState: { errors } } = methods;
-    console.log("Errors =>", errors)
+
 
     useEffect(() => {
         if (adminDetails) {

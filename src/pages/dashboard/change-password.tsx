@@ -24,19 +24,21 @@ const defaultValues = {
 };
 
 const ChangePasswordSchema = Yup.object({
-	old_password: Yup.string().required('이전 비밀번호가 필요합니다.'),
-	new_password: Yup.string()
-		.required('새 비밀번호가 필요합니다.')
-		.matches(
-			PASSWORD_REGEX,
-			'문자, 대문자, 숫자, 기호를 조합하여 8자 이상을 입력하세요.',
-		)
-		.min(8, '비밀번호는 8자 이상이어야 합니다.'),
-	confirm_password: Yup.string()
-		.required('비밀번호 확인이 필요합니다.')
+  old_password: Yup.string().required('이전 비밀번호가 필요합니다.'),
+  new_password: Yup.string()
+    .required('새 비밀번호가 필요합니다.')
+    .notOneOf([Yup.ref('old_password')], '새 비밀번호는 이전 비밀번호와 같을 수 없습니다.')
+    .matches(
+      PASSWORD_REGEX,
+      '문자, 대문자, 숫자, 기호를 조합하여 8자 이상을 입력하세요.',
+    )
+    .min(8, '비밀번호는 8자 이상이어야 합니다.'),
+  confirm_password: Yup.string()
+    .required('비밀번호 확인이 필요합니다.')
 		// @ts-ignore
-		.oneOf([Yup.ref('new_password'), null], '비밀번호 형식이 맞지 않습니다.'),
+    .oneOf([Yup.ref('new_password'), null], '비밀번호 형식이 맞지 않습니다.'),
 });
+
 
 export default function ChangePasswordScreen() {
 	const { mutateAsync: changePassword, isLoading } = useChangePassword();

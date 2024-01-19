@@ -6,7 +6,7 @@ import CaretUp from '@images/vehicle_location/ic-arrow-up.png'
 import { IVehicleLocationDetails } from '@src/types/map';
 import Loader from '@src/components/Loader';
 import dynamic from "next/dynamic";
-import { DatePicker } from "antd";
+import { DatePicker, Select } from "antd";
 import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
 import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, getNextPrevDates, totalDays } from "@src/helpers";
@@ -16,8 +16,10 @@ interface DrawerProps {
   open: boolean
   handleClose: VoidFunction
   isLoading: boolean
-  vehicle?:IVehicleLocationDetails
+  vehicle?:IVehicleLocationDetails | null
+  locationIds?:{id:number}[]
   dateChangeHandler: (...args: any[]) => void
+  rideChangeHandler: (...args: any[]) => void
 }
 type DateRange = {
   startDate : Date |string,
@@ -60,9 +62,10 @@ const dateRangePickerCtrls = [
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: DrawerProps) {
+function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,rideChangeHandler,locationIds }: DrawerProps) {
   const { RangePicker } = DatePicker;
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
+  const [selectedRide, setSelectedRide] = useState<number|undefined>(vehicle?.id);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [bufferdDate, setBufferdDate] = useState<Date | null>(new Date());
   const handleChange = (type,date) => {
@@ -79,6 +82,14 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
     setBufferdDate(startDate);
   };
   
+  useEffect(() => {
+    rideChangeHandler(selectedRide)
+  }, [selectedRide])
+  
+  useEffect(() => {
+    setSelectedRide(vehicle?.id)
+  }, [vehicle?.id])
+
   const filterDate = (value : string) => {
     // if(value == 'all'){
     //   setBufferdDate([])
@@ -266,15 +277,37 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler }: D
                   </div>
                 </div>
                   {/* DatesPicker end */}
-                  <div className={styles.title}>지금 이곳은?</div>
-                  <Image
+                  <div className={styles.title}>차량 선택</div>
+                  {/* <Image
                     src="/images/img-location.png"
                     alt=""
                     className={styles.img}
                     width={300}
                     height={300}
                     priority
-                  />
+                  /> */}
+                  <Select
+                    popupClassName={"admin-advertisement-select"}
+                    size={"large"}
+                    style={{ width: '100%', borderRadius: "4px!important" }}
+                    onChange={(e) => setSelectedRide(Number(e))}
+                    value={selectedRide}
+                    defaultValue={0}
+                    className='mb-2'
+                  >
+                    {locationIds ? (
+                      locationIds?.map((ride, index) => {
+                        return (
+                          <Select.Option key={index} value={ride?.id}>
+                            타다 {index + 1}
+                          </Select.Option>
+                        );
+                      })
+                    ) : (
+                      <Select.Option value={0}>차량을 찾을 수 없습니다.</Select.Option>
+                    )}
+                  </Select>
+
                   <div className={styles.location_name}>영동고속도로</div>
                   <div className={styles.text_wrap}>
                     <div className={styles.text}>평균(일) 통과차량</div>

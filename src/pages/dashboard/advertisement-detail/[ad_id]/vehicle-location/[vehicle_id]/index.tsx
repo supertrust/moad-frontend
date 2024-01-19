@@ -1,6 +1,6 @@
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import React, { useEffect, useState } from "react";
-import { useVehicleLocationDetails } from "@src/apis/map";
+import { useAllVehicleLocationDetails } from "@src/apis/map";
 import { useRouter } from "next/router";
 import { Button } from "@src/components/common";
 import { Map } from "@src/components/Map";
@@ -13,6 +13,7 @@ import { useGetDirection } from "@src/apis/kakap.map";
 import DirectionRender from "@src/components/Map/DirectionRender";
 import { ISOformatDate } from "@src/helpers";
 import { KAKAO_MAP_API_KEY } from "@src/config";
+import { IVehicleLocationDetails } from "@src/types/map";
 
 type DateRange = {
   startDate : Date |string,
@@ -32,8 +33,14 @@ const VehicleLocationScreen = () => {
   const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
   // @ts-ignore
-	const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string, 
+	// const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string, 
+  //   ISOformatDate(selectedDateRange as Date));
+	
+    const { data: cargoAllLocation, refetch , isLoading, isRefetching} = useAllVehicleLocationDetails(vehicle_id as string, 
     ISOformatDate(selectedDateRange as Date));
+
+const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.length - 1] : null;
+    const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(latestLocation);
 
   const toggleDrawer = () => {
     setShowDrawer(!showDrawer);
@@ -42,13 +49,29 @@ const VehicleLocationScreen = () => {
     setSelectedDateRange(dateRange)
     refetch();
   }
+  
+  const handleRideChange = (data:number) => {
+    const foundObject : IVehicleLocationDetails | null = cargoAllLocation?.find(item => item?.id == data) || null;
+    setCargoLocation(foundObject)
+  }
 
   useEffect(() => {
     setPageTitle("차량위치");
   }, []);
   
+  useEffect(() => {
+    if(cargoAllLocation){
+      setCargoLocation(cargoAllLocation[cargoAllLocation?.length - 1])
+    }
+  }, [cargoAllLocation]);
+  
   const router = useRouter();
 
+  const allLocationIds = cargoAllLocation?.map((data,index) => {
+    return {id:data?.id}
+  })
+  
+  
   const onBack = () => {
     router.back();
   };
@@ -113,8 +136,10 @@ const VehicleLocationScreen = () => {
         open={showDrawer}
         handleClose={toggleDrawer}
         vehicle={cargoLocation}
+        locationIds={allLocationIds}
         isLoading={isLoading}
         dateChangeHandler={handleDateChange}
+        rideChangeHandler={handleRideChange}
       />
     </div>
   );

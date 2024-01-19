@@ -12,7 +12,7 @@ export const useGetDirection = (props : GetDirectionType) => useQuery<IGetDirect
             headers: { Authorization: `KakaoAK ${KAKAO_REST_API_KEY}` }
         }
     )).data,
-    // enabled: !!props.origin && !!props.destination
+    enabled: !!props.origin && !!props.destination
 })
 
 export const useCheckMultipeStopDirection = () => useMutation<IGetDirection, string, MultipleStopDirectionProps>({

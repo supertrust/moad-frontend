@@ -291,7 +291,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
                     size={"large"}
                     style={{ width: '100%', borderRadius: "4px!important" }}
                     onChange={(e) => setSelectedRide(Number(e))}
-                    value={selectedRide}
+                    value={ locationIds?.length || 0 > 0 ? selectedRide : 0}
                     defaultValue={0}
                     className='mb-2'
                   >
@@ -304,7 +304,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
                         );
                       })
                     ) : (
-                      <Select.Option value={0}>차량을 찾을 수 없습니다.</Select.Option>
+                      <Select.Option value={0}>No data found.</Select.Option>
                     )}
                   </Select>
 

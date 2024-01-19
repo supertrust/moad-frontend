@@ -47,7 +47,7 @@ const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.len
   };
   const handleDateChange = (dateRange:Date) => {
     setSelectedDateRange(dateRange)
-    refetch();
+    // refetch();
   }
   
   const handleRideChange = (data:number) => {

@@ -1,3 +1,4 @@
+import { formatDateWithLabels } from '@src/utils/formatter';
 import React from 'react'
 function TermsOfUse() {
   return (
@@ -681,7 +682,7 @@ function TermsOfUse() {
         </li>
       </ol>
       <p className="c1">
-        <span className="c9 c13">본 약관은 0000년 00월 00일부터 적용됩니다.</span>
+        <span className="c9 c13">본 약관은 {formatDateWithLabels()}부터 적용됩니다.</span>
       </p>
       <p className="c1">
         <span>별첨1. </span>
@@ -715,7 +716,7 @@ function TermsOfUse() {
         <span className="c2">제1조 (적용일자)</span>
       </p>
       <p className="c1">
-        <span className="c9 c12">본 약관은 0000년 00월 00부터 적용됩니다.</span>
+        <span className="c9 c12">본 약관은 {formatDateWithLabels()}부터 적용됩니다.</span>
       </p>
       <p className="c1">
         <span className="c0">&nbsp;</span>

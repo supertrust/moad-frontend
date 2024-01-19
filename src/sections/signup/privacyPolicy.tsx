@@ -1,3 +1,4 @@
+import { formatDateWithLabels } from '@src/utils/formatter';
 import React from 'react'
 function PrivacyPolicy() {
   return (
@@ -343,7 +344,7 @@ function PrivacyPolicy() {
         <span className="c5">1) 관계법령에 따른 정보보유 사유</span>
       </li>
     </ol>
-    <a id="t.8598f61c0b5e071d7dd9745373dfac885bdeb7f5" />bbbbbb
+    <a id="t.8598f61c0b5e071d7dd9745373dfac885bdeb7f5" />
     <a id="t.1" />
     <table className="c30">
       <tbody>
@@ -855,10 +856,10 @@ function PrivacyPolicy() {
       </span>
     </p>
     <p className="c9">
-      <span className="c14">공고 일자: 0000년 00월 00일</span>
+      <span className="c14">공고 일자: {formatDateWithLabels()}</span>
     </p>
     <p className="c9">
-      <span className="c14">시행 일자: 0000년 00월 00일</span>
+      <span className="c14">시행 일자: {formatDateWithLabels()}</span>
     </p>
     <p className="c8">
       <span className="c15">&nbsp;</span>

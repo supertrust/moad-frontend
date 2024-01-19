@@ -23,3 +23,14 @@ export const formatNumberWithCommas = (
     });
     return formatter.format(number);
 };
+
+export const formatDateWithLabels = (date = new Date()) => {
+    const formattedDate = date.toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).replace('. ', '년 ').replace('. ', '월 ').replace('.', '일');
+
+    return formattedDate;
+
+}

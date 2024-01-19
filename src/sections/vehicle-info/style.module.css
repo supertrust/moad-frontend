@@ -175,7 +175,7 @@
   .content_inner
   .slide_box
   .thumbs_slider {
-  margin-top: 20px;
+  margin: 0px;
 }
 
 .swiperslide {
@@ -514,7 +514,7 @@
 }
 
 .main_img {
-  height: 432px;
+  /* height: 432px; */
   width: 100%;
   object-fit: cover;
 }

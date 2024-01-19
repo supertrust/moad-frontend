@@ -163,6 +163,9 @@ export type IAdvertisementCargo =  {
     deleted_at: string,
     created_at: string,
     updated_at: string,
+    user_cargo: {
+        car_number: string
+    },
     vehicle: {
       id: number,
       vehicle_type: string,

@@ -203,7 +203,7 @@ function AdvertisementDetailScreen() {
         : cargoItems?.map((item) => ({
             key: item.id,
             no: item.id,
-            registration_number: item.registration_number,
+            car_number: item?.user_cargo?.car_number,
             vehicle_type: item.vehicle?.vehicle_type,
             vehicle_status: item.status,
             vehicle_information: "보기",
@@ -231,7 +231,7 @@ function AdvertisementDetailScreen() {
       },
     },
     {
-      dataIndex: "registration_number",
+      dataIndex: "car_number",
       title: "등록번호",
       sort: true,
       headerStyle: {

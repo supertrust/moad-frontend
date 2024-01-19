@@ -59,6 +59,25 @@ export default function VehicleInfoScreen() {
       />
     )
   }
+  const ShowNoImage = ({ classname = "" }: { classname?: string }) => {
+    return (
+      <div
+        className={`${classname} p-[37px] flex flex-col justify-center items-center bg-[#FFFFFF] border-[1px] border-[#EBEDF4] rounded-md	`}
+      >
+        <Image
+          className={clsx(styles.img, "rounded-md object-center !w-6 !h-6")}
+          src={"/images/ad-detail-list/no_image_found.svg"}
+          alt={"no-image"}
+          width={24}
+          height={24}
+        />
+        <p className="text-center pt-1 font-medium text-[#9E9E9E]">
+          이미지 등록 예정입니다.
+        </p>
+      </div>
+    );
+  };
+  
   const router = useRouter();
   const onBack = () => {
     router.back();
@@ -152,62 +171,83 @@ export default function VehicleInfoScreen() {
             {isLoading ? 
               <Loader size="lg" className="flex flex-row"/> :
               <div className={styles.content_inner}>
-                <div className={`${styles.slide_box} ${styles.pc_slider} ${styles.content_body}`}>
+                <div className={`${styles.slide_box} ${styles.pc_slider} ${styles.content_body} flex flex-col !gap-5`}>
                   <div  className={styles.slider}>
 
-                  <div className={`${styles.badge} hidden sm:block`}>
+                  
+                    
+                   {!isImagesLoading && images?.length && images[0]?.image_path ? 
+                   <React.Fragment>
+                    <div className={`${styles.badge} hidden sm:block`}>
                       <div className={styles.text}>옆면</div>
                       <div className={styles.text_sub}>(운전석)</div>
                     </div>
-                    
-                    <Image
-                      className={`${styles.img} ${styles.main_img} hidden sm:block`}
-                      src={!isImagesLoading && images?.length && images[0]?.image_path || '/images/ad-detail-list/no-image.png'}
-                      alt={!isImagesLoading  && images?.length && images[0]?.image_title || ''}
-                      width={500}
-                      height={500}
-                      onClick={() => showFullSize(true)}
-                    />
+                     <Image
+                        className={`${styles.img} ${styles.main_img} hidden sm:block`}
+                        src={images[0]?.image_path }
+                        alt={images[0]?.image_title || ''}
+                        width={500}
+                        height={500}
+                        onClick={() => showFullSize(true)}
+                      />
+                   </React.Fragment>
+                    :
+                    <ShowNoImage classname={'min-h-[428px]'}/>
+                  
+                  }
                   </div>
+                  {images.length > 0 ?
                   <Swiper
-                    onSwiper={setThumbsSwiper}
-                    spaceBetween={10}
-                    slidesPerView={1}
-                    breakpoints={{
-                      640: {
-                        slidesPerView: 1,
-                        spaceBetween: 10,
-                      },
-                      768: {
-                        slidesPerView: 2,
-                        spaceBetween: 10,
-                      },
-                      1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                      },
-                    }}
-                    freeMode={true}
-                    watchSlidesProgress={true}
-                    modules={[FreeMode, Navigation, Thumbs]}
-                    className={styles.thumbs_slider}
-                  >
-                    {images.map( (image, index) => 
-                      <SwiperSlide className={styles.swiperslide}  
-                        key={index}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          showFullSize(true)
-                        }}
-                      >
-                        {/* <div className={styles.badge}>
-                      <div className={styles.text}>옆면</div>
-                      <div className={styles.text_sub}>(운전석)</div>
-                    </div> */}
-                        {showImage(image)}
-                      </SwiperSlide>
-                    )}
-                  </Swiper>
+                  onSwiper={setThumbsSwiper}
+                  spaceBetween={10}
+                  slidesPerView={1}
+                  breakpoints={{
+                    640: {
+                      slidesPerView: 1,
+                      spaceBetween: 10,
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 10,
+                    },
+                    1024: {
+                      slidesPerView: 4,
+                      spaceBetween: 10,
+                    },
+                  }}
+                  freeMode={true}
+                  watchSlidesProgress={true}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className={styles.thumbs_slider}
+                >
+
+                  {images.map( (image, index) => 
+                    <SwiperSlide className={styles.swiperslide}  
+                      key={index}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        showFullSize(true)
+                      }}
+                    >
+                      {/* <div className={styles.badge}>
+                    <div className={styles.text}>옆면</div>
+                    <div className={styles.text_sub}>(운전석)</div>
+                  </div> */}
+                      {showImage(image)}
+                    </SwiperSlide>
+                  )
+                }
+                </Swiper>
+                : (
+                  <div className="flex justify-between gap-2">
+
+                    {[0,1,2,3].map((data,index) => 
+                        <ShowNoImage key={index} classname={'min-h-[136px]'}/>
+                      )}
+                  </div>
+                )
+                  }
+                  
                 </div>
 
                 <div className={`${styles.table_box} ${styles.content_body}`}>
@@ -267,10 +307,7 @@ export default function VehicleInfoScreen() {
                         시간
                       </div>
                     </li>
-                    {advertisement?.fixed_destination ==
-                        "Yes" && (
-                            <>
-                              <li className={styles.list}>
+                    <li className={styles.list}>
                                 <div className={`${styles.title} ${styles.text}`}>
                                   고정 출발지
                                 </div>
@@ -289,8 +326,6 @@ export default function VehicleInfoScreen() {
                                   {advertisement?.end_point}
                                 </div>
                               </li>
-                            </>
-                        )}
                   </ul>
                 </div>
               </div>

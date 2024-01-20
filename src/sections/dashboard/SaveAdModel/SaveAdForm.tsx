@@ -347,7 +347,7 @@ const SaveAdForm = ({
   const handleClickOutside = (event) => {
     // @ts-ignore
     if (containerRef.current && !containerRef.current.contains(event.target) && !errorModal.current?.dialog.contains(event.target) &&
-      document.getElementById(adStyles.adAddBtn) != event.target
+    !document.querySelector('.more-content-modal')?.contains(event.target) && document.getElementById(adStyles.adAddBtn) != event.target
     ) {
       onCancel();
     }

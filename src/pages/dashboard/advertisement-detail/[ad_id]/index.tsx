@@ -108,7 +108,7 @@ function AdvertisementDetailScreen() {
       2: 'doorLeft',
       3: 'doorRight',
     };
-    
+
     draftAdvertisementImages?.map((data, index) => {
       if (data?.is_3d == "0") {
         const propertyName = propertyMap[index];
@@ -183,7 +183,7 @@ function AdvertisementDetailScreen() {
     },
     {
       title: "광고지역",
-      value: operationAreas?.map((item) => `${item.area}, `),
+      value: operationAreas?.map((item) => item.area).join(', '),
     },
     {
       title: "광고금액",

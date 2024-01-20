@@ -9,7 +9,10 @@ import useAuth from "@src/hooks/useAuth";
 
 export default function NotificationCentre() {
   const {  user } = useAuth();
-  const { data: response,isLoading } = useGetAllNotification({user_id:user?.id});
+  const { data: response,isLoading } = useGetAllNotification({
+    type: 'advertiser',
+    user_id:user?.id
+  });
 
   const { data: notifications } = response || {} ;
 
@@ -30,7 +33,7 @@ export default function NotificationCentre() {
         <div className={`${styles.notificationContent} ${response?.data.length ? '' : 'flex items-center justify-center cursor-pointer' } mb-[20px] sm:mb-0`}>
           <Link href="dashboard/notification" className={`${response?.data.length ? '' : 'pointer-events-none	text-[#999]' }`}>
             <ul className={styles.contentWrap}>
-              {isLoading ? 
+              {isLoading ?
                [1,2,3,4].map((each, index) => index < 4 && (
                 <li className={clsx(styles.list, index == 3 && '!border-b-0')} key={index}>
                   <div className={styles.textWrap}>
@@ -64,7 +67,7 @@ export default function NotificationCentre() {
                         </div>
                       </li>
                   ))
-                 : 
+                 :
                  (<div>알림이 없습니다.</div>)
               }
             </ul>

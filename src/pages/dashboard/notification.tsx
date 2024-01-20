@@ -12,6 +12,7 @@ export default function NotificationScreen() {
   const [currentPage, setCurrentPage] = useState(1);
   const {  user } = useAuth();
   const { data, refetch, isLoading } = useGetAllNotification({
+    type: 'advertiser',
     user_id:user?.id,
     page: currentPage
   });
@@ -68,7 +69,7 @@ useEffect(()=>{
             {notifications?.length ? notifications?.map(
               (data, index) =>
                 // index >= prevItems &&
-                // index < currentItems && 
+                // index < currentItems &&
                 (
                   <li key={index} className={styles.list}>
                     <div className={styles.info}>
@@ -93,7 +94,7 @@ useEffect(()=>{
           : ''
           }
           </ul>
-          {!notifications?.length ? 
+          {!notifications?.length ?
            (<div className="text-center p-[100px]">알림이 없습니다.</div>)
           : ''
           }
@@ -138,7 +139,7 @@ useEffect(()=>{
 
         {/* Render the Pagination component */}
         {
-          notifications?.length ? 
+          notifications?.length ?
         <div className="flex justify-center mt-[40px] notification_pagination">
           <Pagination
             current={currentPage}
@@ -147,7 +148,7 @@ useEffect(()=>{
             onChange={handlePageChange}
           />
         </div>
-          
+
           : ''
         }
       </div>

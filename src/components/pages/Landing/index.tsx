@@ -48,7 +48,6 @@ const Landing = () => {
               />
             </div>
             <div className='section01-mb-bg'>
-              {/* <img src="./images/main/bg-section-1-mb.png" alt=""> */}
               <Image
                 src={mbImg1}
                 alt='image'

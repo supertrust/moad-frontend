@@ -26,7 +26,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
             <div className={styles.iconwrap}>
               <div className={`${styles.iconwrapli} ${styles.active}`} >
                 <div className={styles.iconwrapimage}>
-                  {/* <img src={'/images/cargo/ic-01.svg'} /> */}
                   <Image
                     src="/images/cargo/ic-01.svg"
                     alt="logo-pc"
@@ -272,7 +271,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
               {
                 modelImages.first ?
                   <>
-                    {/* <img className={styles.fitimage} src={modelImages.first} /> */}
                     <Image
                       className={styles.fitimage}
                       src={modelImages.first}
@@ -284,7 +282,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
                   </>
                   :
                   <>
-                    {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
                     <Image
                       src="/images/cargo/camera_alt.svg"
                       alt="logo-pc"
@@ -303,7 +300,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
               {
                 modelImages.second ?
                   <>
-                    {/* <img className={styles.fitimage} src={modelImages.second} /> */}
                     <Image
                       className={styles.fitimage}
                       src={modelImages.second}
@@ -315,7 +311,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
                   </>
                   :
                   <>
-                    {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
                     <Image
                       src="/images/cargo/camera_alt.svg"
                       alt="logo-pc"
@@ -336,7 +331,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
                 {
                   modelImages.three ?
                     <>
-                      {/* <img className={styles.fitimage} src={modelImages.three} /> */}
                       <Image
                         className={styles.fitimage}
                         src={modelImages.three}
@@ -348,7 +342,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
                     </>
                     :
                     <>
-                      {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
                       <Image
                         src="/images/cargo/camera_alt.svg"
                         alt="logo-pc"
@@ -365,7 +358,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
                 {
                   modelImages.four ?
                     <>
-                      {/* <img className={styles.fitimage} src={modelImages.four} /> */}
                       <Image
                         className={styles.fitimage}
                         src={modelImages.four}
@@ -377,7 +369,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
                     </>
                     :
                     <>
-                      {/* <img src={'/images/cargo/camera_alt.svg'} /> */}
                       <Image
                         src="/images/cargo/camera_alt.svg"
                         alt="logo-pc"
@@ -396,7 +387,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
             <div className={styles.heading_preview}>인증 예시</div>
             <Form.Label className={styles.lable_preview}>차량 옆면 (운전석)</Form.Label>
             <div className={styles.desc}>
-              {/* <img src={'/images/cargo/truck.png'} /> */}
               <Image
                 src="/images/cargo/truck.png"
                 alt="logo-pc"
@@ -408,7 +398,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
           <Row className={styles.mbcustom}>
             <Form.Label className={styles.lable_preview}>차량 옆면 (조수석)</Form.Label>
             <div className={styles.desc}>
-              {/* <img src={'/images/cargo/truck.png'} /> */}
               <Image
                 src="/images/cargo/truck.png"
                 alt="logo-pc"
@@ -423,7 +412,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
                 <div className={styles.twocolumninner}>
                   <Form.Label className={styles.lable_preview}>뒷면 사진</Form.Label>
                   <div className={styles.desc}>
-                    {/* <img src={'/images/cargo/truck.png'} /> */}
                     <Image
                       src="/images/cargo/truck.png"
                       alt="logo-pc"
@@ -435,7 +423,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
                 <div className={styles.twocolumninner}>
                   <Form.Label className={styles.lable_preview}>뒷면 사진</Form.Label>
                   <div className={styles.desc}>
-                    {/* <img src={'/images/cargo/truck.png'} /> */}
                     <Image
                       src="/images/cargo/truck.png"
                       alt="logo-pc"
@@ -449,7 +436,6 @@ const PageTwo = ({ onButtonClick }: { onButtonClick: any }) => {
           </Row>
 
           <div className={styles.bluebuttonnew}>
-            {/* <Button type="button" className={styles.buttonfull} onClick={() => onButtonClick("stepthree")}>확인</Button> */}
             <Button type="primary" block size="large" className={`${styles.buttonfull} rounded`} onClick={() => onButtonClick("stepthree")}>확인</Button>
           </div>
         </Form>

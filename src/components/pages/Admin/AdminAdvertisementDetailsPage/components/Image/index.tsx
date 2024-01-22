@@ -22,10 +22,12 @@ function AdImage({ className, src, alt, onRemove, edit, onView} : AdImageProps) 
                 className='absolute right-2 top-2 cursor-pointer'
                 onClick={edit ? (onRemove && onRemove): (onView && onView)}
             />
-            <img 
+            <Image 
                 src={src} 
                 alt={alt || ''}
                 className='h-full w-full'
+                width={20}
+                height={20}
             />
         </div>
     )

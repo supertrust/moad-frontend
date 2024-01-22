@@ -31,7 +31,6 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
             <div className={styles.emailtag}>
               <input type={!isVisible ? "password" : "text"} placeholder={placeholder} name={name}></input>
               <div className={styles.eyeicon} onClick={toggle}>
-                {/* <img  src={isVisible ? '/images/ic-show.png' : '/images/ic-hide.png'} /> */}
                 <Image
                     src={isVisible ? '/images/ic-show.png' : '/images/ic-hide.png'}
                     alt="logo-pc"
@@ -51,7 +50,6 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
     >
       <Modal className={styles.modalcheck} show={show} onHide={verifyClose}>
         <div className={styles.modalicon}>
-            {/* <img src={'/images/cargo/checkwhite.svg'}/> */}
             <Image
                     src="/images/cargo/checkwhite.svg"
                     alt="logo-pc"
@@ -72,7 +70,6 @@ const PageOne = ({ onButtonClick }:{onButtonClick: any}) => {
       </Modal>
       <Modal className={styles.modalcheck} show={error} onHide={errorClose}>
         <div className={styles.modaliconred}>
-            {/* <img src={'/images/cargo/close.svg'}/> */}
             <Image
                     src="/images/cargo/close.svg"
                     alt="logo-pc"

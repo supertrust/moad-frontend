@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import Head from "next/head";
 import clsx from "clsx";
+import Image from "next/image";
 
 function ConfirmPage() {
   const router = useRouter();
@@ -55,9 +56,11 @@ function ConfirmPage() {
               <div className={`${styles["_confirm_root__list_items"]}`}>
                 <div className={`${styles["_confirm_root__text_img"]}`}>
                   <div className={`${styles["_step_avatar_style"]}`}>
-                    <img
+                    <Image
                       src='/images/confirm/1.svg'
                       alt='step1'
+                      width={70}
+                      height={70}
                     />
                   </div>
                   <div className={`${styles["text_ss"]}`}>
@@ -121,9 +124,11 @@ function ConfirmPage() {
               <div className={`${styles["_confirm_root__list_items"]}`}>
                 <div className={`${styles["_confirm_root__text_img"]}`}>
                   <div className={`${styles["_step_avatar_style"]}`}>
-                    <img
+                    <Image
                       src='/images/confirm/2.svg'
                       alt='step1'
+                      width={70}
+                      height={70}
                     />
                   </div>
                   <div className={`${styles["text_ss"]}`}>
@@ -189,9 +194,11 @@ function ConfirmPage() {
                 )}>
                 <div className={`${styles["_confirm_root__text_img"]}`}>
                   <div className={`${styles["_step_avatar_style"]}`}>
-                    <img
+                    <Image
                       src='/images/confirm/3.svg'
                       alt='step3'
+                      width={70}
+                      height={70}
                     />
                   </div>
                   <div className={`${styles["text_ss"]}`}>

@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 function ProcessPage() {
   const router = useRouter();
@@ -48,9 +49,11 @@ function ProcessPage() {
               <div className={`${styles["_root__list_items"]}`}>
                 <div className={`${styles["_root__text_img"]}`}>
                   <div className={`${styles["_step_avatar_style"]}`}>
-                    <img
+                    <Image
                       src='/images/process/1.svg'
                       alt='step1'
+                      width={110}
+                      height={100}
                     />
                   </div>
                   <div className={`${styles["text_ss"]}`}>
@@ -66,9 +69,11 @@ function ProcessPage() {
                 </div>
                 <div className={`${styles["_root__text_img"]}`}>
                   <div className={`${styles["_step_avatar_style"]}`}>
-                    <img
+                    <Image
                       src='/images/process/2.svg'
                       alt='step2'
+                      width={110}
+                      height={100}
                     />
                   </div>
                   <div className={`${styles["text_ss"]}`}>
@@ -82,9 +87,11 @@ function ProcessPage() {
                 </div>
                 <div className={`${styles["_root__text_img"]}`}>
                   <div className={`${styles["_step_avatar_style"]}`}>
-                    <img
+                    <Image
                       src='/images/process/3.svg'
                       alt='step3'
+                      width={110}
+                      height={100}
                     />
                   </div>
                   <div className={`${styles["text_ss"]}`}>
@@ -98,9 +105,11 @@ function ProcessPage() {
                 </div>
                 <div className={`${styles["_root__text_img"]}`}>
                   <div className={`${styles["_step_avatar_style"]}`}>
-                    <img
+                    <Image
                       src='/images/process/4.svg'
                       alt='step4'
+                      width={110}
+                      height={100}
                     />
                   </div>
                   <div className={`${styles["text_ss"]}`}>
@@ -114,9 +123,11 @@ function ProcessPage() {
                 </div>
                 <div className={`${styles["_root__text_img"]}`}>
                   <div className={`${styles["_step_avatar_style"]}`}>
-                    <img
+                    <Image
                       src='/images/process/5.svg'
                       alt='step5'
+                      width={110}
+                      height={100}
                     />
                   </div>
                   <div className={`${styles["text_ss"]}`}>

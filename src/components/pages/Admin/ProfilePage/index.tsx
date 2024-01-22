@@ -5,7 +5,7 @@ import EditIcon from '@images/ic-change.png'
 import CrownIcon from '@images/admin-account/ic-crown.png'
 import { Button, Controller, DataRow, useForm, Yup, yupResolver } from '@src/components/common';
 import Input from '../AdminAdvertisementDetailsPage/components/Input';
-import styles from './style.module';
+import { styles } from './style.module';
 import { clsx } from 'clsx';
 import useAuth from '@src/hooks/useAuth';
 import { PushNotificationModal } from './components';

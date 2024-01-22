@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import { useRouter } from "next/router";
 import React from "react";
 import Head from "next/head";
+import Image from "next/image";
 
 function CargPage() {
   const router = useRouter();
@@ -44,9 +45,11 @@ function CargPage() {
           elevation={3}
           className={`flex flex-col justify-between h-full gap-2 !shadow-[0px_2px_8px_0px_rgba(38,51,77,0.00)] ${styles["_bottom_a_style_img_group"]}`}>
           <div className={`${styles["_root__text_img"]}`}>
-            <img
+            <Image
               src='/images/b11.svg'
               alt='me'
+              height={20}
+              width={20}
             />
             <div>
               <h4>화물차 랩핑 광고</h4>

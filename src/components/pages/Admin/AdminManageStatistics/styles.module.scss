@@ -35,7 +35,7 @@ $font-family: "Noto Sans KR", sans-serif;
   .tob-value-number{
     display: flex;
     font-family: $font-family;
-    align-items: end;
+    align-items: flex-end;
     font-size: 30px;
     font-weight: 900;
     font-stretch: normal;

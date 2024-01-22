@@ -104,6 +104,8 @@ const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.len
           <div></div>
         </div>
       </div>
+      {
+        allLocationIds?.length || 0 > 0 ?
       <Map
         zoom={13}
         className="!h-[85vh] relative"
@@ -123,6 +125,9 @@ const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.len
         {currentPosition && <MapMarker  position={{lat: currentPosition.getLat(), lng: currentPosition.getLng() }} /> }
         <DirectionRender origin={origin}  destination={currentPosition} />
       </Map>
+      :
+      <div>No dat</div>
+      }
       <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] z-50">
         <Button
           className="bg-[#2C324C] text-white w-20 hidden"

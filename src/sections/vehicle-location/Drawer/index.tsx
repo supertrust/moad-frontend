@@ -299,12 +299,12 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
                       locationIds?.map((ride, index) => {
                         return (
                           <Select.Option key={index} value={ride?.id}>
-                            타다 {index + 1}
+                            운행기록 {index + 1}
                           </Select.Option>
                         );
                       })
                     ) : (
-                      <Select.Option value={0}>No data found.</Select.Option>
+                      <Select.Option value={0}>운행 기록이 없습니다.</Select.Option>
                     )}
                   </Select>
 

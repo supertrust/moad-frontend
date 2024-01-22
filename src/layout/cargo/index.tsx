@@ -3,6 +3,7 @@ import useAuth from "@src/hooks/useAuth";
 import React, { createContext, ReactNode, useState } from "react";
 import { Footer, Header } from "../components/cargo";
 import AuthGuard from "@src/guards/AuthGuard";
+import Head from "next/head";
 
 interface LayoutProps {
   children: ReactNode
@@ -25,6 +26,10 @@ function CargoLayout(props: LayoutProps) {
 
   return (
     <div id="cargo-dashboard" className="dashboard page">
+      <Head>
+        <title>이카루스 화물주 어드민</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <div className="cargo_content flex flex-col min-h-screen">
         <Header text={pageTitle} profileImage={profileImage} onlyTitle={showOnlyTitle} />
         <main className="flex-grow mb-[80px]">

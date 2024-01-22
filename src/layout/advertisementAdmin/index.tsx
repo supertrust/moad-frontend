@@ -9,6 +9,7 @@ import styles from "./styles.module.scss";
 import Arrow from '@images/ic-arrow-prev.png';
 import Image from "next/image";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import Head from "next/head";
 
 interface LayoutProps {
     children: ReactNode
@@ -29,7 +30,7 @@ function AdvertisementAdminLayout(props: LayoutProps) {
     // const {isUserLoading} = useAuth();
     const [profileImage , setProfileImage] = useState<File|undefined>();
 
-    
+
     const [expanded, setExpanded] = useState(false);
     const windowWidth = useRef(window.innerWidth);
 
@@ -50,7 +51,10 @@ function AdvertisementAdminLayout(props: LayoutProps) {
 
     return (
         <div id="dashboard" className={clsx("dashboard page " , expanded && 'sidebar-expanded')}>
-
+            <Head>
+                <title>이카루스 광고주 어드민</title>
+                <meta property="og:title" content="My page title" key="title" />
+            </Head>
             <div className={styles['advertisement-admin-sidebar_menu']}>
                 <Sidebar />
             </div>
@@ -58,7 +62,7 @@ function AdvertisementAdminLayout(props: LayoutProps) {
                <div style={{position : "fixed",width : "inherit",zIndex : 1}}>
                    <Header  />
 
-                    <button 
+                    <button
                         className={clsx(
                             "absolute top-4 -left-4 bg-admin-primary border-5 border-[#F8FBFF]",
                             "h-8 w-8 rounded-full pt-1 cursor-pointer lg",
@@ -66,10 +70,10 @@ function AdvertisementAdminLayout(props: LayoutProps) {
                         )}
                         onClick={() => setExpanded(!expanded)}
                     >
-                        <ArrowBack 
+                        <ArrowBack
                             className={clsx(
-                                "transform transition duration-300 ease-in-out" , 
-                                expanded ? "rotate-0" : "rotate-180" 
+                                "transform transition duration-300 ease-in-out" ,
+                                expanded ? "rotate-0" : "rotate-180"
                             )}
                             background="#F8FBFF"
                             width={14}

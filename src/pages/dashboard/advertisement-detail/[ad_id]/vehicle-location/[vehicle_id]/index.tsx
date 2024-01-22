@@ -22,7 +22,7 @@ type DateRange = {
 
 const VehicleLocationScreen = () => {
   const [ loading ] = useKakaoLoader({
-    appkey: KAKAO_MAP_API_KEY || '', 
+    appkey: KAKAO_MAP_API_KEY || '',
     libraries: ['services', 'clusterer', 'drawing'],
   })
 
@@ -33,14 +33,14 @@ const VehicleLocationScreen = () => {
   const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
   // @ts-ignore
-	// const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string, 
+	// const { data: cargoLocation , refetch , isLoading, isRefetching} = useVehicleLocationDetails(vehicle_id as string,
   //   ISOformatDate(selectedDateRange as Date));
-	
-    const { data: cargoAllLocation, refetch , isLoading, isRefetching} = useAllVehicleLocationDetails(vehicle_id as string, 
-    ISOformatDate(selectedDateRange as Date));
 
-const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.length - 1] : null;
-    const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(latestLocation);
+  const { data: cargoAllLocation, refetch , isLoading, isRefetching} = useAllVehicleLocationDetails(vehicle_id as string,
+  ISOformatDate(selectedDateRange as Date));
+
+  const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.length - 1] : null;
+  const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(latestLocation);
 
   const toggleDrawer = () => {
     setShowDrawer(!showDrawer);
@@ -49,7 +49,7 @@ const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.len
     setSelectedDateRange(dateRange)
     // refetch();
   }
-  
+
   const handleRideChange = (data:number) => {
     const foundObject : IVehicleLocationDetails | null = cargoAllLocation?.find(item => item?.id == data) || null;
     setCargoLocation(foundObject)
@@ -58,20 +58,20 @@ const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.len
   useEffect(() => {
     setPageTitle("차량위치");
   }, []);
-  
+
   useEffect(() => {
     if(cargoAllLocation){
       setCargoLocation(cargoAllLocation[cargoAllLocation?.length - 1])
     }
   }, [cargoAllLocation]);
-  
+
   const router = useRouter();
 
   const allLocationIds = cargoAllLocation?.map((data,index) => {
     return {id:data?.id}
   })
-  
-  
+
+
   const onBack = () => {
     router.back();
   };
@@ -87,6 +87,10 @@ const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.len
   //   car_type: 4,
   //   road_details: true
   // });
+
+  if(!cargoAllLocation) {
+    return <div className="m-auto w-fit h-full flex items-center">No Data Found</div>
+  }
 
   return (
     <div className="relative">

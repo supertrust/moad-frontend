@@ -181,10 +181,10 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
           안산시 상록구 월피동
         </div>
       </div>
-      <div className={styles.vehicle_location_content}>
+      <div className={`${styles.vehicle_location_content} h-[calc(100vh-120px)]`}>
         <div className={clsx(styles.location_detail_wrap, open ? styles.closed : styles.open)} >
           <div className={styles.address}>{current_point_name ?? '-'}</div>
-          <div className={styles.content_inner}>
+          <div className={`${styles.content_inner}`}>
             {isLoading ?
 
               <Loader size="lg" className='h-full w-full items-center justify-center flex flex-row '/> :
@@ -355,10 +355,10 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
                 </div>
 
                 <div
-                  className={`${styles.section} ${styles.accomplishment_rate}`}
+                  className={`${styles.section} ${styles.accomplishment_rate} !pb-0`}
                 >
                   <div className={`${styles.title} !mb-[7px]`}>운행 달성률</div>
-                  <ul className={styles.list_wrap}>
+                  <ul className={`${styles.list_wrap} !m-0`}>
                     <Chart
               options={
                 {

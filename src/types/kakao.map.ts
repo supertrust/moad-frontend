@@ -8,7 +8,7 @@ export type Priority = 'DISTANCE' | 'RECOMMEND' | 'TIME';
 export type GetDirectionType = {
     origin: string,
     destination: string,
-    waypoint?: string,
+    waypoints?: string,
     priority?: Priority,
     avoid?: string,
     alternatives?: boolean,

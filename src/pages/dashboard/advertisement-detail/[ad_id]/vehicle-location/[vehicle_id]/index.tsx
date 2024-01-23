@@ -14,6 +14,7 @@ import DirectionRender from "@src/components/Map/DirectionRender";
 import { ISOformatDate } from "@src/helpers";
 import { KAKAO_MAP_API_KEY } from "@src/config";
 import { IVehicleLocationDetails } from "@src/types/map";
+import Image from "next/image";
 
 type DateRange = {
   startDate : Date |string,
@@ -88,15 +89,15 @@ const VehicleLocationScreen = () => {
   //   road_details: true
   // });
 
-  if(!cargoAllLocation) {
-    return <div className="m-auto w-fit h-full flex items-center">No Data Found</div>
-  }
+  // if(!cargoAllLocation) {
+  //   return <div className="m-auto w-fit h-full flex items-center">No Data Found</div>
+  // }
 
   return (
     <div className="relative">
       {isLoading && (
-        <div className="absolute z-50 left-0 w-full top-[50%]">
-          <div className="flex flex-row justify-center items-center">
+        <div className={`w-full top-[50%] ${showDrawer ? 'w-full' : 'w-[calc(100%-340px)]'}`}>
+          <div className="flex flex-row justify-center items-center h-[calc(100vh-170px)]">
             <Loader size="lg" />
           </div>
         </div>
@@ -108,8 +109,8 @@ const VehicleLocationScreen = () => {
           <div></div>
         </div>
       </div>
-      {/* {
-        allLocationIds?.length || 0 > 0 ? */}
+      {
+        allLocationIds?.length || 0 > 0 ?
       <Map
         zoom={13}
         className="!h-[85vh] relative"
@@ -129,9 +130,19 @@ const VehicleLocationScreen = () => {
         {currentPosition && <MapMarker  position={{lat: currentPosition.getLat(), lng: currentPosition.getLng() }} /> }
         <DirectionRender origin={origin}  destination={currentPosition} />
       </Map>
-      {/* // :
-      // <div className="h-[500px] flex justify-center align-middle">No dat</div>
-      // } */}
+      :
+       !isLoading && <div className={`flex flex-col justify-center items-center align-middle h-[calc(100vh-170px)] ${showDrawer ? 'w-full' : 'w-[calc(100%-340px)]'}`}>
+        <Image
+        src={'/images/location_not_found.png'}
+        width={200}
+        height={200}
+        alt={'no data'}
+        unoptimized
+        className={``}
+        />
+        <p>운행 기록이 없습니다.</p>
+       </div>
+      }
       <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] z-50">
         <Button
           className="bg-[#2C324C] text-white w-20 hidden"

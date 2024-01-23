@@ -23,6 +23,7 @@ function DirectionRender({
     const { data ,refetch } = useGetDirection({ 
         origin: origin  ? `${origin.getLng()},${origin.getLat()}` : '',
         destination: destination  ? `${destination.getLng()},${destination.getLat()}` : '',
+        // waypoints: '126.8250091,37.4916703 | 126.8250091,37.4916703',
         car_type: 4 ,
         priority:'DISTANCE'
     });
@@ -36,11 +37,13 @@ function DirectionRender({
 
     const path: {lat: number, lng: number}[] = [];
     if(routes?.length && routes[0].sections?.length ) {
-        routes[0].sections[0].roads.map((road) => {
-            const { vertexes } = road;
-            for (let index = 0; index < vertexes.length; index = index + 2) {
-                path.push({ lat: vertexes[index+1],lng: vertexes[index] });
-            }
+        routes[0].sections.map((data) => {
+            data?.distance > 0 && data?.roads.map((road) => {
+                const { vertexes } = road;
+                for (let index = 0; index < vertexes.length; index = index + 2) {
+                    path.push({ lat: vertexes[index+1],lng: vertexes[index] });
+                }
+            })
         });
     }
 

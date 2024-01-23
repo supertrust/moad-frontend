@@ -26,7 +26,7 @@ function NoticeDetailsPage() {
     return (
         <>
             <Head>
-                <title>{isLoading ? "Loading page ..." : data?.title}</title>
+                <title>{isLoading ? "페이지 로드 중 ..." : data?.title}</title>
             </Head>
             <div className="only-pc lg:!py-5 lg:!pl-7 lg:!pr-5 p-0 text-gray-700 flex flex-col gap-3">
                 <div className={styles["notice-header"]}>이카루스에서 알려드립니다.</div>

@@ -52,7 +52,7 @@ function NoticePage() {
     return (
         <>
             <Head>
-                <title>Notice</title>
+                <title>이카루스 광고주</title>
             </Head>
             <div className="pl-[30px] pr-[20px]  pt-[20px] pb-[35px] text-gray-700 flex flex-col gap-[20px] only-pc">
                 <div className="font-bold text-[20px] text-[#373737]">이카루스에서 알려드립니다.</div>

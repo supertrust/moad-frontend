@@ -16,7 +16,7 @@ function ProcessPage() {
   return (
     <>
       <Head>
-        <title>Process</title>
+        <title>이카루스 광고주</title>
       </Head>
       <div style={{ backgroundColor: "#f5f7fb !important" }}>
         <div className={"only-mb"}>

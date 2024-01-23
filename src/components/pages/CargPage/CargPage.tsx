@@ -16,7 +16,7 @@ function CargPage() {
   return (
     <>
       <Head>
-        <title>page title - 가이드</title>
+        <title>이카루스 광고주</title>
       </Head>
       <div className={"only-mb"}>
         <div className={`${styles["mobile-top-header"]}`}>

@@ -1,4 +1,5 @@
 import { FindIdModel, FindPassModel, LoginForm } from "@src/sections/login";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -12,6 +13,11 @@ export default function Login() {
   }
 
   return (
+    <>
+    <Head>
+      <title>이카루스 광고주</title>
+      <meta property="og:title" content="이카루스 광고주" key="title" />
+    </Head>
     <main className="min-h-screen">
       <div id="login" className="login">
         <div className="left">
@@ -53,5 +59,6 @@ export default function Login() {
       {findId ? <FindIdModel SetFindId={SetFindId} /> : null}
       {findPass ? <FindPassModel setFindPass={SetFindPass} setFindId={SetFindId} /> : null}
     </main>
+    </>
   );
 }

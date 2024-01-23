@@ -17,24 +17,25 @@ export default function Model(props: IModel) {
   const { images,Image3D, ...rest } = props
 
   const leftSideMaterial = new THREE.MeshBasicMaterial({
-    map: useLoader(THREE.TextureLoader, images?.left || ""),
+    map: new THREE.TextureLoader().load(`/_next/image?url=${encodeURI(images?.left + '&w=1200&q=75'||'')}`),
     side: THREE.DoubleSide
   })
+  
   const rightSideMaterial = new THREE.MeshBasicMaterial({
-    map: useLoader(THREE.TextureLoader, images?.right || ""),
+    map: new THREE.TextureLoader().load(`/_next/image?url=${encodeURI(images?.right + '&w=1200&q=75'||'')}`),
     side: THREE.DoubleSide
   })
   const rightBackDoorMaterial = new THREE.MeshBasicMaterial({
-    map: useLoader(THREE.TextureLoader, images?.doorRight || ""),
+    map: new THREE.TextureLoader().load(`/_next/image?url=${encodeURI(images?.doorRight + '&w=1200&q=75'||'')}`),
     side: THREE.DoubleSide,
   })
   const leftBackDoorMaterial = new THREE.MeshBasicMaterial({
-    map: useLoader(THREE.TextureLoader, images?.doorLeft || ""),
+    map: new THREE.TextureLoader().load(`/_next/image?url=${encodeURI(images?.doorLeft + '&w=1200&q=75'||'')}`),
     side: THREE.DoubleSide,
   })
   const imageURL = Image3D ? Image3D : '/3ds/3dtruck.glb';
   // @ts-ignore
-  const { nodes, materials } = useGLTF(imageURL);
+  const { nodes, materials } = useGLTF('/3ds/3dtruck.glb');
 
   return (
     <group {...rest} dispose={null}>

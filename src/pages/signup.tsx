@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Step1, Step2, Step3, Step4 } from "@src/sections/signup";
 import { RegisterPropsType } from "@src/types/auth";
 import { File } from "buffer";
+import Head from "next/head";
 
 export default function SignUpModulePage() {
   const [formStep, setFormStep] = useState(1);
@@ -27,6 +28,11 @@ export default function SignUpModulePage() {
   const prevFormStep = () => setFormStep((formStep) => formStep - 1);
 
   return (
+    <>
+    <Head>
+      <title>이카루스 광고주</title>
+      <meta property="og:title" content="이카루스 광고주" key="title" />
+    </Head>
     <main className="min-h-screen">
       <div id="sign_up">
         {formStep === 1 ? (
@@ -49,5 +55,6 @@ export default function SignUpModulePage() {
         ) : null}
       </div>
     </main>
+    </>
   );
 }

@@ -62,7 +62,7 @@ function InquirePage() {
     return (
         <>
             <Head>
-                <title>Inquiry</title>
+                <title>이카루스 광고주</title>
             </Head>
             <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px] only-pc">
                 <div className="flex gap-[20px] items-center p-[20px] sm:p-[0]">

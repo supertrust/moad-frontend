@@ -128,7 +128,7 @@ const VehicleLocationScreen = () => {
         }
         {origin && <MapMarker position={{lat: origin.getLat(), lng: origin.getLng() }} />}
         {currentPosition && <MapMarker  position={{lat: currentPosition.getLat(), lng: currentPosition.getLng() }} /> }
-        <DirectionRender origin={origin}  destination={currentPosition} />
+        <DirectionRender origin={origin}  destination={currentPosition} logs={cargoLocation?.logs}/>
       </Map>
       :
        !isLoading && <div className={`flex flex-col justify-center items-center align-middle h-[calc(100vh-170px)] ${showDrawer ? 'w-full' : 'w-[calc(100%-340px)]'}`}>

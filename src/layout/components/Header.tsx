@@ -79,12 +79,12 @@ function Header(props: HeaderProps) {
                                     <Dropdown.Menu>
                                         <Dropdown.Item
                                             onClick={() => router.push('/dashboard/my-info')}>
-                                            Edit Profile
+                                            프로필 수정
                                         </Dropdown.Item>
                                         <Dropdown.Item
                                             onClick={handleLogout}
                                             className='logout-danger'>
-                                            Log Out
+                                            로그아웃
                                         </Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>

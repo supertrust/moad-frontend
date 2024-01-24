@@ -195,7 +195,6 @@ const vehicleElement = (
 									</div>
 								</div>
 							</div>
-
 							<HeaderLine title='운행거리/운행시간' className='mb-[9px]'/>
 							<div className='ad-contents !h-full shadow-none	'>
 								<div className={styles.step_02}>

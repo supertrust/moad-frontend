@@ -343,7 +343,6 @@ function AdvertisementDetailScreen() {
         <CircularProgress color="primary" />
       </div>
     );
-
   const onBack = () => {
     router.back();
   };

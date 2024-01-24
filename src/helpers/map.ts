@@ -3,7 +3,6 @@ import { IGetDirection } from "@src/types/kakao.map";
 import { MutableRefObject } from "react";
 
 export const getMapScriptTag = (mapRef: null) => {
-
   const script = document.createElement("script");
   script.async = true;
   if (KOKAO_MAP_URL !== undefined) {
@@ -58,7 +57,6 @@ export const registerEvents = (
             (result: { address: any }[], status: any) => {
               if (status === window.kakao.maps.services.Status.OK) {
                 const roadAddress = result[0].address;
-
               }
             }
           );

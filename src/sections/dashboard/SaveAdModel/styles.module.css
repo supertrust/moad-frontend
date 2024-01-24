@@ -1097,7 +1097,6 @@ body .div {
   #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap.ad_start_date {
     max-width: 100%;
   }
-
   .date_content span {
     display: none;
   }
@@ -1120,7 +1119,6 @@ body .div {
   /* .spot_input_add {
     position: relative !important;
   }
-
 
   .spot_input_add::after {
     content: "~" !important;
@@ -1441,7 +1439,6 @@ display: none !important;
   #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap {
     width: 30%;
   }
-
   #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.active {
     padding: 9px 23px;
   }

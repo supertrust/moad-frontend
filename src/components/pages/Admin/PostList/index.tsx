@@ -19,7 +19,6 @@ function AdminPostList() {
 
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>();
     const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-
         setSelectedRowKeys(newSelectedRowKeys);
     };
 

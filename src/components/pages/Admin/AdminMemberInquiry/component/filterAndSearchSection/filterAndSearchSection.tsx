@@ -92,7 +92,6 @@ const FilterAndSearchSection = () => {
     })
 
     const onChange = (e: CheckboxChangeEvent) => {
-
     };
 
     const fieldOptions : SelectProps['options'] = [
@@ -127,7 +126,6 @@ const FilterAndSearchSection = () => {
     ];
 
     const handleFieldChange = (value: string | string[]) => {
-
     };
 
 

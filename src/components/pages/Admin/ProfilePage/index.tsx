@@ -51,7 +51,6 @@ function ProfilePage() {
 
     const { control, setValue, handleSubmit, formState: { errors } } = methods;
 
-
     useEffect(() => {
         if (adminDetails) {
             Object.entries(adminDetails).forEach(([key, value]) => {

@@ -124,7 +124,6 @@ const MemberDetail = ({ blackList = false }: { blackList: boolean }) => {
           });
         },
         onError: (error) => {
-
         },
       });
     } else {
@@ -149,7 +148,6 @@ const MemberDetail = ({ blackList = false }: { blackList: boolean }) => {
           });
         },
         onError: (error) => {
-
         },
       });
     }

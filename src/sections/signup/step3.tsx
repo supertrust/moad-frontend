@@ -17,6 +17,7 @@ import { File } from 'buffer';
 import clsx from 'clsx';
 import { isHangul } from '@src/helpers';
 import RHFSelect from '@src/components/common/Form/RHFSelect';
+import { EMAIL_REGEX } from '@src/constants';
 
 interface Step3Props {
 	onPrevStep: () => void;
@@ -66,7 +67,7 @@ const RegisterSchema = Yup.object({
 	verify_business_registration_number:
 		Yup.boolean().required('사업자등록번호를 확인해 주세요.'),
 	employee_email: Yup.string()
-		.email('유효한 이메일을 입력하세요.')
+		.matches(EMAIL_REGEX, '유효한 이메일을 입력하세요.')
 		.required('직원 이메일을 입력하세요.'),
 	business_license: Yup.mixed()
 		.required('사업자 등록증을 업로드하세요.')

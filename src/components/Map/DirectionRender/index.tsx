@@ -24,12 +24,10 @@ function DirectionRender({
       
     const reversedLocations = logs?.map((log,index) => {
         const [latitude, longitude] = log.location.split(',').map(parseFloat);
-        if(index < 30){
             return `${longitude.toFixed(7)},${latitude.toFixed(7)}`;
-        }
       });
     
-      const result = logs?.length && logs?.length < 30 ? reversedLocations?.join(' | ') : '';
+      const result = logs?.length && logs?.length < 5 ? reversedLocations?.join(' | ') : '';
 
     const { data ,refetch } = useGetDirection({ 
         origin: origin  ? `${origin.getLng()},${origin.getLat()}` : '',

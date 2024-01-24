@@ -7,7 +7,7 @@ import {
 } from '@src/components/common';
 import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
-import { PASSWORD_REGEX } from '@src/constants';
+import { EMAIL_REGEX, PASSWORD_REGEX } from '@src/constants';
 import Image from 'next/image';
 import { RegisterPropsType } from '@src/types/auth';
 import { useVerifyInput } from '@src/apis/auth';
@@ -27,7 +27,7 @@ const defaultValues = {
 
 const RegisterSchema = Yup.object({
 	email: Yup.string()
-		.email('아이디(이메일)를 확인해주세요')
+		.matches(EMAIL_REGEX, '아이디(이메일)를 확인해주세요.')
 		.required('아이디(이메일)를 확인해주세요'),
 	password: Yup.string()
 		.required('비밀번호가 필요합니다.')

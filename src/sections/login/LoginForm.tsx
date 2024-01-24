@@ -11,6 +11,7 @@ import {
 	yupResolver,
 	Button,
 } from '@src/components/common';
+import { EMAIL_REGEX } from '@src/constants';
 
 const defaultValues = {
 	email: '',
@@ -19,7 +20,7 @@ const defaultValues = {
 
 const LoginSchema = Yup.object({
 	email: Yup.string()
-		.email('유효한 이메일을 입력하세요.')
+		.matches(EMAIL_REGEX, '유효한 이메일을 입력하세요.')
 		.required('아이디(이메일)를 확인해주세요.'),
 	password: Yup.string().required('비밀번호를 입력해주세요.'),
 });

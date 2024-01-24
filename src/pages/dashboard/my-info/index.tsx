@@ -19,6 +19,7 @@ import Image from 'next/image';
 import { isHangul } from '@src/helpers';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
+import { EMAIL_REGEX } from '@src/constants';
 
 const defaultValues = {
 	company_phone_number: '',
@@ -40,7 +41,7 @@ const UpdateUserInfoSchema = Yup.object({
 		.required('핸드폰번호를 입력해주세요')
 		.matches(/^[0-9]{11}$/, '전화번호는 11자리여야 합니다.'),
 	employee_email: Yup.string()
-		.email('유효한 이메일을 입력하세요.')
+		.matches(EMAIL_REGEX, '유효한 이메일을 입력하세요.')
 		.required('직원 이메일을 입력하세요.'),
 	sector: Yup.string(),
 });
@@ -71,14 +72,14 @@ export default function MyInfoScreen() {
 				employee_phone_number,
 			}) => {
 				const disabled =
-					!company_phone_number &&
-					!employee_email &&
-					!employee_name &&
-					!employee_phone_number;
-				disabledSubmit !== disabled && setDisabledSubmit(disabled);
+					company_phone_number === (user?.company_phone_number || '') &&
+					employee_email === (user?.employee_email || '') &&
+					employee_name === (user?.employee_name || '') &&
+					employee_phone_number === (user?.employee_phone_number || '');
+				setDisabledSubmit(disabled);
 			},
 		);
-	}, [watch]);
+	}, [watch,user]);
 
 	const onSubmit = handleSubmit(async (values) => {
 

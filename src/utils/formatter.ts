@@ -17,7 +17,7 @@ export const formatNumberWithCommas = (
     number: number | undefined,
     fraction = 1,
 ): string | undefined => {
-    if (number === undefined) return number;
+    if (number === undefined) return '0';
     const formatter = new Intl.NumberFormat("ko-KR", {
         maximumFractionDigits: fraction,
     });

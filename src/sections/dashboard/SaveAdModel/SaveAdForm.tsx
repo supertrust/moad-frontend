@@ -29,6 +29,7 @@ import AdImage from "@src/components/pages/Admin/AdminAdvertisementDetailsPage/c
 import ImagePlaceholder from '@images/admin-ad-details/ic-image-placeholder.png'
 import adStyles from  '@src/sections/dashboard/AdList/style.module.css'
 import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";
+import { adDetailsData } from "@src/constants";
 import { Divider } from "antd";
 
 type FormDataType = {
@@ -44,6 +45,20 @@ type FormDataType = {
   };
   operating_area: number[];
 };
+
+type AdDataType =  {
+  mainTitle: string;
+  subTitle: string;
+  mainLine: string;
+  details: {
+      mainHeading: string;
+      subHeading: string;
+      list: {
+          title: string;
+          description: string;
+      }[];
+  };
+}
 
 export const TypeOfVechicle = [
   {text :"카고",value :"cargo"},
@@ -86,24 +101,6 @@ const adTypes = [
     faq: true,
   },
 ];
-
-const list = [{
-  title:'지역적인 타겟팅 효과',
-  description: `해당 지역의 소비자들에게 집중적으로 광고 메시지를 전달할 수 있습니다. 특히, 지역적인 특성이나 문화 등을
-  고려한 광고 전략을 세울 수 있어 효과적인 광고 효과를 기대할 수 있습니다.`
-},{
-  title:'예산 효율성',
-  description: `지역을 한정하여 광고를 진행할 경우, 해당 지역에 대한 광고 예산을 효율적으로 분배할 수 있습니다. 즉, 광고 예산을 더욱 집중적으로
-  투자하여 노출빈도나 광고 크기 등을 높일 수 있습니다.`
-},{
-  title:'지역 경쟁사 대응',
-  description: `특정 지역에서 경쟁사가 많은 경우, 해당 지역에서만 광고를 진행하여 경쟁사에 대응할 수 있습니다.
-  이는 지역적인 시장 경쟁력을 높이는 데에도 큰 도움이 될 수 있습니다.`
-},{
-  title:'지역 효과 측정',
-  description: `특정 지역에서만 광고를 진행할 경우, 해당 지역의 매출 혹은 인지도 등을 측정하여 광고 효과를 분석하고 개선할 수 있습니다.
-  이를 통해 미디어 플래닝에 대한 정확한 정보를 얻을 수 있어, 미래 광고 전략 수립에 큰 도움이 됩니다.`
-}]
 
 const SaveAdvertisementSchema = Yup.object().shape({
   type: Yup.string().required("고유형을 선택해주세요."),
@@ -164,6 +161,7 @@ const SaveAdForm = ({
   );
   const [isAreaVisible, setIsAreaVisible] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [detailModal, setDetailModal] = useState(1);
   const [openDetailModal, setOpenDetailModal] = useState(false);
   const [allError, setErrors] = useState<string | undefined>("");
   const imageRef = useRef<HTMLInputElement>();
@@ -386,20 +384,20 @@ const SaveAdForm = ({
             </div>
             <div id={styles.slide_wrap} className={styles.slide_wrap}>
               <ul className={styles.info_list_wrap}>
-                <li className={styles.list}>
+                <div className={styles.info_text}>
                   광고 목적에 따라 광고 상품 유형을 선택하고, 광고 노출 기간 등
                   원하시는 조건을 등록하실 수 있습니다.
-                </li>
-                <li className={styles.list}>
+                </div>
+                <div className={styles.info_text}>
                   광고 유형은 ‘고정형광고, ‘전국광고’, ‘스팟광고’, 총
                   3가지입니다. 등록 후 유형 변경은 불가하니 어떤 광고 상품을
                   진행할지 검토 후 선택하세요.
-                </li>
-                <li className={styles.list}>
+                </div>
+                <div className={styles.info_text}>
                   광고 등록시 1~2일 정도 검수시간이 소요됩니다.
                   <br className="block sm:!hidden" /> (담당자 전화번호로
                   연락드립니다.)
-                </li>
+                </div>
               </ul>
               <div
                 className={`${styles.info_img_wrap} ${
@@ -521,7 +519,9 @@ const SaveAdForm = ({
                                   styles.detail_desc,
                                   "md:mt-[10px] md:mr-[10px] underline"
                                 )}
-                                onClick={() => setOpenDetailModal(true)}
+                                onClick={() => {
+                                  setDetailModal(index + 1)
+                                  setOpenDetailModal(true)}}
                               >
                                 상세설명
                               </span>
@@ -1288,19 +1288,20 @@ const SaveAdForm = ({
             </Button>
           </Modal.Footer>
         </Modal>
-        <DetailModal open={openDetailModal} handleClose={() => setOpenDetailModal(false)}/>
+        <DetailModal open={openDetailModal} handleClose={() => setOpenDetailModal(false)} iconClassName={styles[`detailModalIcon${detailModal}`]} adData={adDetailsData[detailModal-1]} />
       </div>
     </FormProvider>
   );
 };
 
-const DetailModal = ({open, handleClose}:{open: boolean, handleClose: VoidFunction}) => {
+const DetailModal = ({open, handleClose, iconClassName, adData}:{open: boolean, handleClose: VoidFunction, iconClassName:string, adData: AdDataType}) => {
 
   const ListItem = ({title, description}) =>  <div className="gap-2 flex flex-col">
     <div className="text-xl font-bold text-secondary">{title}</div>
     <div>{description}</div>
-  </div>
+  </div>;
 
+  const {mainTitle, subTitle, mainLine, details:{mainHeading, subHeading, list}} = adData;
 
   return (
     <Modal
@@ -1312,24 +1313,24 @@ const DetailModal = ({open, handleClose}:{open: boolean, handleClose: VoidFuncti
 				<Modal.Header className={styles.bg_Head_}>
 					<Modal.Title className="w-full text-left px-4">
 						<div>
-              <div>가이드</div>
-              <div className="text-3xl font-bold">고정형 광고 확인하기</div>
+              <div>{mainTitle}</div>
+              <div className="text-3xl font-bold">{subTitle}</div>
             </div>
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className='h-auto'>
 					<div className='terms-text'>
 						<div className='text-lg mb-1'>
-              광고 목적에 따라 광고 유형을 적절하게 선택하여 광고의 효율을 높일 수 있습니다.
+              {mainLine}
 						</div>
             <div className="bg-[#F7F7F7] p-[40px] ">
               <div className="flex gap-2">
                 <div
-                  className={styles.detailModalIcon}
+                  className={iconClassName}
                 ></div>
                 <div className="gap-2 flex flex-col justify-center">
-                  <div className="text-2xl font-bold text-secondary">고정형 광고</div>
-                  <div>특정 지역 화주들을 매칭하여 노출할 수 있는 고정형 광고</div>
+                  <div className="text-2xl font-bold text-secondary">{mainHeading}</div>
+                  <div>{subHeading}</div>
                 </div>
               </div>
               <Divider />

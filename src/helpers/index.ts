@@ -227,3 +227,36 @@ export const getNextPrevDates = (type, date) => {
   }
   return new Date(date);
 };
+
+export function numberWithHyphens(number) {
+  try {
+    const numberString = String(number);
+    let formattedNumber = numberString;
+
+    if (numberString.length >= 4) {
+      formattedNumber = numberString.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+    }
+
+    if (numberString.length >= 8) {
+      formattedNumber = numberString.replace(/(\d{3})(\d{4})(\d{1})/, '$1-$2-$3');
+    }
+
+    return formattedNumber;
+  } catch(e) {
+    return 0;
+  }
+}
+
+export function numberWithoutHyphens(koreanPhoneNumber, prevValue) {
+  try {
+    // Remove hyphens and convert back to a number
+    const numberWithoutHyphens = koreanPhoneNumber.replace(/-/g, '').replace(/[^\d]/g, '');
+    if(!numberWithoutHyphens) return;
+
+    console.log('numberWithoutHyphens: ', numberWithoutHyphens, parseInt(numberWithoutHyphens, 10));
+    return parseInt(numberWithoutHyphens, 10);
+  } catch (e) {
+    console.log('numberWithoutHyphens-catch: ', prevValue, 'error: ', e);
+    return prevValue;
+  }
+}

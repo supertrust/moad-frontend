@@ -159,7 +159,7 @@ const Step3 = ({
 	};
 
 	const onSubmit = handleSubmit(async (props) => {
-		
+
 		if (!verifybtnclick) {
 			ModalhandleShow('사업자등록번호를 확인해주세요.');
 			return false;
@@ -272,7 +272,7 @@ const Step3 = ({
 									data-ms-editor='true'
 									caption={
 										<div className='error-text'>
-											이미 사용중인 전화번호입니다
+											전화번호 형식이 잘못되었습니다
 										</div>
 									}
 									onBlur={(event) => {
@@ -288,7 +288,7 @@ const Step3 = ({
 													},
 													onError: (error) => {
 														setError('company_phone_number', {
-															message: '이미 사용중인 전화번호입니다.',
+															message: '전화번호 형식이 잘못되었습니다',
 														});
 													},
 												},
@@ -303,11 +303,11 @@ const Step3 = ({
 									id='employee_name'
 									name='employee_name'
 									className='company-input'
-									placeholder='담당자 성함 / 직위 입력'
+									placeholder='담당자 성함 입력'
 									spellCheck='false'
 									data-ms-editor='true'
 								/>
-								
+
 								<RHFSelect
 									wrapperClassName='manager-tel'
 									label='담당자 직위'
@@ -373,9 +373,9 @@ const Step3 = ({
 										wrapperClassName='business-num  flex-1'
 										required
 										label='사업자 등록번호 (10자리)'
-										type='number'
-										minLength={10}
-										maxLength={10}
+										type='phoneNumber'
+										minLength={12}
+										maxLength={12}
 										id='business_registration_number'
 										name='business_registration_number'
 										className='company-input'

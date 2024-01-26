@@ -604,7 +604,7 @@ a {
 	border: 1px solid #ebedf4;
 	border-radius: 5px;
 	position: relative;
-    left: 10px; 
+    left: 10px;
 }
 .mobile-top-header {
 	display: flex!important;
@@ -618,7 +618,7 @@ a {
 	justify-content: start;
 	gap:15px
 }
-    
+
 .header{
 	font-size: 20px;
 	font-weight: bold;
@@ -3057,13 +3057,13 @@ ul.pagination .page-item a:focus {
 		margin: auto;
 		z-index: 101;
 		top: 64px;
-	}	
+	}
 }
 
 @media (max-width : 450px) {
 	 #side_mb {
 		left: 86px !important;
-	}	
+	}
 }
 #side_mb {
 	display:none;
@@ -3748,20 +3748,20 @@ input:focus-visible {
 
 
 /* ::-webkit-scrollbar {
-	width: 3px; 
+	width: 3px;
 }
 
 ::-webkit-scrollbar-track {
-	background: #f1f1f1; 
+	background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #888; 
-	border-radius: 3px; 
+	background: #888;
+	border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #555; 
+	background: #555;
 } */
 
 .select-box .custom-select {
@@ -4111,7 +4111,7 @@ input:focus-visible {
 	.policy-container .privacy-content ul li {
 		margin: 0px 0px 0px 0px;
 	}
-	
+
 
 
   }
@@ -4217,11 +4217,11 @@ input:focus-visible {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-  
+
 	width: 20px;
 	height: 20px;
 }
-  
+
 .push-notification.ant-checkbox-inner::after {
 	transform: scale(2) rotate(45deg);
 	position: relative;
@@ -4249,3 +4249,11 @@ input:focus-visible {
 	.vehicle-location .ant-picker-header {
 		align-items: center;
 	}
+
+@layer base {
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+}

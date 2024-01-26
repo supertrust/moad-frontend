@@ -332,10 +332,20 @@ body .div {
   background: url("/images/advertising/img-check01-active.png") no-repeat center center / cover;
 }
 
-.detailModalIcon {
+.detailModalIcon1 {
   height: 80px;
   width: 80px;
   background: url("/images/advertising/img-check01-active.png") no-repeat center center / cover;
+}
+.detailModalIcon2 {
+  height: 80px;
+  width: 80px;
+  background: url("/images/advertising/img-check02-active.png") no-repeat center center / cover;
+}
+.detailModalIcon3 {
+  height: 80px;
+  width: 80px;
+  background: url("/images/advertising/img-check03-active.png") no-repeat center center / cover;
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .box_icon.box_icon02 {

@@ -48,8 +48,8 @@ function CargPage() {
             <Image
               src='/images/b11.svg'
               alt='me'
-              height={20}
-              width={20}
+              height={200}
+              width={200}
             />
             <div>
               <h4>화물차 랩핑 광고</h4>

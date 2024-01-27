@@ -13,6 +13,7 @@ import Image from "next/image";
 import FormData from "form-data";
 import useAuth from "@src/hooks/useAuth";
 import Select from '@mui/material/Select';
+import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { Controller, FormProvider, yupResolver, useForm,Button } from '@src/components/common';
 
 import * as Yup from 'yup';
@@ -32,12 +33,21 @@ const defaultValues = {
 
 const SaveInquirySchema = Yup.object({
   inquiry_type: Yup.string().required("고유형을 선택해주세요."),
-  inquiry_title: Yup.string().required("광고이름을 입력해주세요."),
-  inquiry_question: Yup.string().required("광고기간을 6개월 또는 12개월 선택해주세요."),
+  inquiry_title: Yup.string().required("광고이름을 입력해주세요.").test(
+    'not-only-spaces',
+    '입력은 공백만으로 구성될 수 없습니다.',
+    value => !/^\s*$/.test(value),
+  ),
+  inquiry_question: Yup.string().required("광고기간을 6개월 또는 12개월 선택해주세요.").test(
+    'not-only-spaces',
+    '입력은 공백만으로 구성될 수 없습니다.',
+    value => !/^\s*$/.test(value),
+  ),
   inquiry_answer: Yup.string().optional(),
   inquiry_documents: Yup.array().optional()
 })
 export default function Index({ id }: { id: string }) {
+  const { setPageTitle} = useIcarusContext()
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
   const { mutateAsync: saveInquiry } = useSaveInquiry();
   const { data } = useGetInquiryDetail({ id });
@@ -54,7 +64,9 @@ export default function Index({ id }: { id: string }) {
   const router = useRouter();
 
   const { confirm } = useConfirmDialog();
-
+  useEffect(()=>{
+    setPageTitle("문의내역")
+  },[])
   useEffect(() => {
     if (data) {
       setData(data);
@@ -77,7 +89,7 @@ export default function Index({ id }: { id: string }) {
       router.push(`/inquire/${id}`);
     }
   };
-  
+
   const checkFiles = (files: File[]) => {
     const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
 		const options: ConfirmPropsType = {
@@ -126,7 +138,7 @@ export default function Index({ id }: { id: string }) {
 
     return hasError ;
   };
-  
+
   const methods = useForm({
     defaultValues,
     resolver: yupResolver(SaveInquirySchema),
@@ -389,7 +401,7 @@ export default function Index({ id }: { id: string }) {
                             3MB 이하의 jpg, jpeg, png  파일 업로드 가능
                           </span>
                         </div>
-                        {!!value?.length  && 
+                        {!!value?.length  &&
                           <div className="flex flex-row items-center flex-wrap gap-2 mt-3" >
                             {value?.map((doc: File, index) => (
                               <div  key={index} className={
@@ -402,7 +414,7 @@ export default function Index({ id }: { id: string }) {
                                 <Clear className="text-[#7B756B] cursor-pointer" onClick={() => removeFile(index)}/>
                               </div>
                             ))}
-                            
+
                           </div>
                         }
                       </div>

@@ -104,7 +104,16 @@ const adTypes = [
 
 const SaveAdvertisementSchema = Yup.object().shape({
   type: Yup.string().required("고유형을 선택해주세요."),
-  ad_name: Yup.string().required("광고이름을 입력해주세요."),
+  ad_name: Yup.string().required("광고이름을 입력해주세요.").test(
+    'not-only-spaces',
+    '입력은 공백만으로 구성될 수 없습니다.',
+    value => !/^\s*$/.test(value),
+  ),
+  content: Yup.string().required("광고 내용을 입력해주세요.").test(
+    'not-only-spaces',
+    '입력은 공백만으로 구성될 수 없습니다.',
+    value => !/^\s*$/.test(value),
+  ),
   ad_period: Yup.number().required(
     "광고기간을 6개월 또는 12개월 선택해주세요."
   ),
@@ -117,7 +126,11 @@ const SaveAdvertisementSchema = Yup.object().shape({
     then: () => Yup.object().test(
       "is-not-empty-object",
       "운행차량을 입력해주세요.",
-      (value) => Object.keys(value).length > 0
+      (value) => {
+        const hasNonEmptyValue = Object.values(value).some(val => val !== '')
+
+        return Object.keys(value).length > 0 && hasNonEmptyValue
+      }
     ),
     otherwise: () => Yup.object().optional()
   }),
@@ -139,12 +152,7 @@ const SaveAdForm = ({
   isLoadingSaveAdvertisement: boolean;
   values?: SaveAdvertisementType;
 }) => {
-  const methods = useForm<FormDataType>({
-    //@ts-ignore
-    defaultValues: values || defaultValues,
-    //@ts-ignore
-    resolver: yupResolver(SaveAdvertisementSchema),
-  });
+
 
   const { data: vehicles, isLoading: isLoadingVehicles } = useGetVehicles();
   const { data: areas, isLoading: isLoadingCars } = useGetOperatingAreas();
@@ -170,12 +178,17 @@ const SaveAdForm = ({
 
   const handleFileChange = event =>  setImages([...images, ...event.target.files as File[]])
   const removeFile = (file: File) => setImages(images.filter(image =>  image !== file))
-
+  const methods = useForm<FormDataType>({
+    //@ts-ignore
+    defaultValues: values || defaultValues,
+    //@ts-ignore
+    resolver: yupResolver(SaveAdvertisementSchema),
+  });
   const {
     handleSubmit,
     control,
     watch,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting, isSubmitted, errors },
     setValue,
     getValues,
   } = methods;
@@ -261,9 +274,9 @@ const SaveAdForm = ({
   const onSubmit = handleSubmit(
     async (v) => {
       const imageData = {};
-        images.map((image, index) => {
-            imageData[`image_${index+1}`] = image;
-        });
+      images.map((image, index) => {
+          imageData[`image_${index+1}`] = image;
+      });
       const values = {
         ...v,
         ...imageData,
@@ -271,7 +284,7 @@ const SaveAdForm = ({
         end_date: endDate,
         status: "applying",
       };
-      await onSubmitForm(values);
+      if(images.length > 0) await onSubmitForm(values);
     },
     (errors) => {
       const error = Object.values(errors)[0].message;
@@ -339,6 +352,8 @@ const SaveAdForm = ({
       </div>
     );
   }
+  const ErrorMessage = ({error}) =>  <span className='text-danger'>{error}</span>
+
   const trucks = [Truck01, Truck02, Truck03];
 
   const containerRef = useRef(null);
@@ -575,7 +590,7 @@ const SaveAdForm = ({
                     }}
                   />
                   <div className="flex justify-end">
-                    {/* <span className='text-danger'>{error?.message}</span> */}
+                    <ErrorMessage error={error?.message}/>
                     <div className={styles.text_count}>
                       (<span className="text-[#0868FD]">{value.length}</span>/25)
                     </div>
@@ -586,7 +601,9 @@ const SaveAdForm = ({
             <Controller
               control={control}
               name="content"
-              render={({ field: { value, onChange } }) => (
+              render={({ field: { value, onChange },
+                fieldState: { error }
+               }) => (
                 <div
                   className={`${styles.input_section} ${styles.title_section} ${styles.input_ad_name}`}
                 >
@@ -617,6 +634,7 @@ const SaveAdForm = ({
                     }}
                   ></textarea>
                   <div className="flex justify-end">
+                    <ErrorMessage error={error?.message}/>
                     <div className={styles.text_count}>
                       (
                       <span className="text-[#3772FF]">
@@ -639,8 +657,8 @@ const SaveAdForm = ({
 
                     <p className={styles.input_title}>광고이미지<span className="text-[#F24747]">*</span></p>
 
-                  <p className="mt-[8px] mb-[16px]">5MB 이하의 jpeg, jpg, png파일만 등록할 수 있습니다.<br/>
-5개까지 등록할 수 있습니다.</p>
+                    <p className="mt-[8px] mb-[16px]">5MB 이하의 jpeg, jpg, png파일만 등록할 수 있습니다.<br/>
+                      5개까지 등록할 수 있습니다.</p>
                   </div>
 
                   <div className={'flex flex-col space-y-1'}>
@@ -664,6 +682,9 @@ const SaveAdForm = ({
                                     >
                                         <span>파일선택</span>
                                     </button>
+                                    <div className="flex justify-end">
+                                        {isSubmitted && images.length === 0 && <ErrorMessage error='광고이미지는 필수 입력 항목입니다.'/>}
+                                    </div>
                                 </div>
 
 
@@ -1026,7 +1047,7 @@ const SaveAdForm = ({
                 스팟광고의 광고 희망시간/기간등 차후 상담에 따라 결정됩니다.
               </div>
             </div>
-            {/* <span className='text-danger'>{errors?.vehicle_details?.message}</span> */}
+            <ErrorMessage error={errors?.vehicle_details?.message}/>
 
             <div
               className={clsx(

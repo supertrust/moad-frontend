@@ -9,7 +9,8 @@ import { useRouter } from "next/router";
 export default function FaqScreen() {
   const router = useRouter();
   const [selectedTab, setSelectedTab] = useState<string>('all');
-  const { data: faq,isLoading : isFaqLoading } = useGetFaq(selectedTab !== 'all' ? selectedTab : '');
+  const [currentPage, setCurrentPage] = useState(1); // Current page number
+  const { data: faq,isLoading : isFaqLoading } = useGetFaq(currentPage,selectedTab);
 
   const Types = {
     "all": '전체',
@@ -20,7 +21,6 @@ export default function FaqScreen() {
   // Pagination
   const itemsPerPage = 10;
 
-  const [currentPage, setCurrentPage] = useState(1); // Current page number
   const totalItems =  faq?.length || 0 ; //selectedTab == "all" ? faq?.length ?? 0 : (selectedTab == "service_use" ? faqUse?.length : selectedTab == "payment_refund" ? faqRefund?.length : (selectedTab == "etc" ? faqEtc?.length : 0)) ?? 0; // Total number of items
   const totalPages = Math.ceil(totalItems / itemsPerPage); // Total number of pages
   const prevItems = (currentPage - 1) * itemsPerPage;
@@ -72,7 +72,7 @@ export default function FaqScreen() {
                     <div className="title">{item.question}</div>
                   </div>
                 </Accordion.Header>
-                <Accordion.Body className="bg-[#E1ECFF] lg:bg-[rgba(225,236,255,0.25)]" 
+                <Accordion.Body className="bg-[#E1ECFF] lg:bg-[rgba(225,236,255,0.25)]"
                 dangerouslySetInnerHTML={{ __html: item.answer || '' }}/>
               </Accordion.Item>
             );

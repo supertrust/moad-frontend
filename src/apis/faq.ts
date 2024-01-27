@@ -2,9 +2,9 @@ import { IFaq } from "@src/types/faq";
 import axios from "@src/utils/axios";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetFaq = (filter?: string) => useQuery<IFaq[], string>({
+export const useGetFaq = (currentPage:number, filter?: string) => useQuery<IFaq[], string>({
     queryKey: ["faq" , filter ],
-    queryFn: async () => (await axios.get(`/api/get-faq/${filter || '{filter}'}`)).data.data,
+    queryFn: async () => (await axios.get(`/api/get-faq/${filter || '{filter}'}?page=${currentPage}&limit=10`)).data.data,
 })
 
 export const useGetFaqUse = () => useQuery<IFaq[], string>({

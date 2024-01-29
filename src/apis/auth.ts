@@ -40,7 +40,11 @@ export const useLogout = () => useMutation<void, string>({
 });
 
 export const useVerifyInput = () => useMutation<void, string, VerifyInputPropsType>({
-    mutationFn: async (props) => (await axios.post("/api/verify-input", props)).data
+    mutationFn: async (props) => (await axios.post("/api/verify-input", props,{
+        headers: { 
+            'Accept-Language': 'ko'
+     }
+    })).data
 })
 
 export const useFindId = () => useMutation<string, string, FindIdProps>({

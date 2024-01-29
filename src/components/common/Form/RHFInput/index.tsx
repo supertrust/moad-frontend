@@ -22,7 +22,7 @@ const RHFInput = (props: RHFInputProps) => {
                     ref={ref}
                     onBlur={onBlur}
                     onChange={e => onChange(isPhoneNumber ? numberWithoutHyphens(e.target.value, value) : e.target.value)}
-                    value={isPhoneNumber ? numberWithHyphens(value) : value}
+                    value={isPhoneNumber ? numberWithHyphens(value,name) : value}
                     name={name}
                     caption={!error && caption}
                     error={error?.message}

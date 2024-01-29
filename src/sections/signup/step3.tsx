@@ -288,7 +288,7 @@ const Step3 = ({
 													},
 													onError: (error) => {
 														setError('company_phone_number', {
-															message: '전화번호 형식이 잘못되었습니다',
+															message: error,
 														});
 													},
 												},

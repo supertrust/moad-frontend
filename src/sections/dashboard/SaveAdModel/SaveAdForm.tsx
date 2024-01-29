@@ -120,20 +120,15 @@ const SaveAdvertisementSchema = Yup.object().shape({
   start_date: Yup.string().required(
     "시작일을 선택해주세요. (등록 기준 1달 이후 선택)"
   ),
-  vehicle_details: Yup.object()
-  .when("type", {
-    is: 'fixed_ad',
-    then: () => Yup.object().test(
-      "is-not-empty-object",
-      "운행차량을 입력해주세요.",
-      (value) => {
-        const hasNonEmptyValue = Object.values(value).some(val => val !== '')
+  vehicle_details: Yup.object().test(
+    "is-not-empty-object",
+    "운행차량을 입력해주세요.",
+    (value) => {
+      const hasNonEmptyValue = Object.values(value).some(val => val !== '')
 
-        return Object.keys(value).length > 0 && hasNonEmptyValue
-      }
-    ),
-    otherwise: () => Yup.object().optional()
-  }),
+      return Object.keys(value).length > 0 && hasNonEmptyValue
+    }
+  ),
   operating_area: Yup.array().when("type", ([type], schema) =>
     type == "fixed_ad" ? schema.min(1, "운행지역을 선택해주세요.") : schema
   ),
@@ -1139,7 +1134,7 @@ const SaveAdForm = ({
                 </div>
               </div>
             </div>
-            <div className="inline-flex	w-auto gap-[8px] my-[30px]">
+            <div className="flex	w-auto gap-[8px] my-[30px]">
               <div onClick={()=>setIstermschecked(!istermschecked)} className="cursor-pointer">
                 <Image
                 src={istermschecked ? '/images/ic-checked.png' : '/images/ic-check.png'}

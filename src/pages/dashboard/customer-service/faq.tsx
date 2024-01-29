@@ -1,8 +1,8 @@
 import { CircularProgress } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Accordion, Tab, Tabs } from "react-bootstrap";
 import { Pagination } from "antd";
-import { useGetFaq } from "@src/apis/faq";
+import { useGetCategories, useGetFaq } from "@src/apis/faq";
 import ArrowBack from "@src/components/icons/ArrowBack";
 import { useRouter } from "next/router";
 
@@ -11,6 +11,9 @@ export default function FaqScreen() {
   const [selectedTab, setSelectedTab] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const { data: faq,isLoading : isFaqLoading } = useGetFaq(currentPage,selectedTab);
+  const { data: category, isLoading, isFetching, refetch } = useGetCategories({ type:'faq' })
+  const faqTypes = category?.data ? [{name:'전체'}].concat(category?.data) : []
+
 
   const Types = {
     "": '전체',
@@ -30,7 +33,7 @@ export default function FaqScreen() {
   };
   const handleSelect = (key) => {
     setCurrentPage(1);
-    setSelectedTab(key);
+    setSelectedTab(key==='전체' ? '' : key);
   }
 
 
@@ -52,9 +55,9 @@ export default function FaqScreen() {
                                     </div>
 
                                 </div>
-        <Tabs defaultActiveKey="" onSelect={(e) => { handleSelect(e) }} className="mb-[16px] lg:mb-[30px] px-[20px] lg:px-0 tab-section">
-          {Types && Object.keys(Types).map((key,index) => (
-            <Tab key={index} eventKey={key} title={Types[key]} />
+        <Tabs defaultActiveKey="전체" onSelect={(e) => { handleSelect(e) }} className="mb-[16px] lg:mb-[30px] px-[20px] lg:px-0 tab-section">
+          {faqTypes && faqTypes.map(({name},index) => (
+            <Tab key={index} eventKey={name} title={name} />
           ))}
         </Tabs>
 
@@ -63,12 +66,12 @@ export default function FaqScreen() {
                 <CircularProgress color="primary" />
               </div>
           }
-          {!isFaqLoading && faq?.slice(prevItems, currentItems).map((item, i) => {
+          {!isFaqLoading && Array.isArray(faq) &&faq?.slice(prevItems, currentItems).map((item, i) => {
             return (
               <Accordion.Item eventKey={`${i}`} key={i}>
                 <Accordion.Header className="border-b border-[#EBEDF4] lg:border-[#999999] bg-[#f5f7fb] lg:bg-[#fff]">
                   <div className="list-title">
-                    { selectedTab == "all"  && <div className="w-[80px] font-bold text-secondary">{Types[item.type]}</div> }
+                    { selectedTab == "all"  && <div className="w-[80px] font-bold text-secondary">{item.type}</div> }
                     <div className="title">{item.question}</div>
                   </div>
                 </Accordion.Header>

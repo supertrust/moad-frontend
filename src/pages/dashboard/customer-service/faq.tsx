@@ -8,12 +8,12 @@ import { useRouter } from "next/router";
 
 export default function FaqScreen() {
   const router = useRouter();
-  const [selectedTab, setSelectedTab] = useState<string>('all');
+  const [selectedTab, setSelectedTab] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const { data: faq,isLoading : isFaqLoading } = useGetFaq(currentPage,selectedTab);
 
   const Types = {
-    "all": '전체',
+    "": '전체',
     "service_use": '서비스이용',
     "payment_refund": '결제/환불',
     "etc": '기타'
@@ -52,7 +52,7 @@ export default function FaqScreen() {
                                     </div>
 
                                 </div>
-        <Tabs defaultActiveKey="all" onSelect={(e) => { handleSelect(e) }} className="mb-[16px] lg:mb-[30px] px-[20px] lg:px-0 tab-section">
+        <Tabs defaultActiveKey="" onSelect={(e) => { handleSelect(e) }} className="mb-[16px] lg:mb-[30px] px-[20px] lg:px-0 tab-section">
           {Types && Object.keys(Types).map((key,index) => (
             <Tab key={index} eventKey={key} title={Types[key]} />
           ))}

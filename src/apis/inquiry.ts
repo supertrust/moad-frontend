@@ -13,7 +13,9 @@ export const useGetInquiryDetail = ({ id }: GetInquiryDetailPropsType) => useQue
 })
 
 export const useSaveInquiry = () => useMutation<void, string, SaveInquiryType>({
-    mutationFn: async (props) => axios.post("/api/save-inquiry", props),
+    mutationFn: async (props) => {return(axios.post("/api/save-inquiry", props,{
+        headers: { "content-type": "multipart/form-data" },
+      }))},
 })
 
 export const useUpdateInquiry = () => useMutation<void, string, UpdateInquiryType>({

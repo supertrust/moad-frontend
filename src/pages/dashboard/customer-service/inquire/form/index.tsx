@@ -89,7 +89,7 @@ export default function Index({ id }: { id: string }) {
       router.push(`/inquire/${id}`);
     }
   };
-
+  
   const checkFiles = (files: File[]) => {
     const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
 		const options: ConfirmPropsType = {
@@ -138,7 +138,7 @@ export default function Index({ id }: { id: string }) {
 
     return hasError ;
   };
-
+  
   const methods = useForm({
     defaultValues,
     resolver: yupResolver(SaveInquirySchema),
@@ -184,9 +184,9 @@ export default function Index({ id }: { id: string }) {
   };
   return (
     <>
-      {/* <Head>
-        <title>Contact Us</title>
-      </Head> */}
+      <Head>
+        <title>이카루스 광고주</title>
+      </Head>
       <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px]">
         <div className="flex gap-[20px] items-center p-[20px] sm:p-[0]">
           <Link href={`/dashboard/customer-service/inquire`}>
@@ -401,7 +401,7 @@ export default function Index({ id }: { id: string }) {
                             3MB 이하의 jpg, jpeg, png  파일 업로드 가능
                           </span>
                         </div>
-                        {!!value?.length  &&
+                        {!!value?.length  && 
                           <div className="flex flex-row items-center flex-wrap gap-2 mt-3" >
                             {value?.map((doc: File, index) => (
                               <div  key={index} className={
@@ -414,7 +414,7 @@ export default function Index({ id }: { id: string }) {
                                 <Clear className="text-[#7B756B] cursor-pointer" onClick={() => removeFile(index)}/>
                               </div>
                             ))}
-
+                            
                           </div>
                         }
                       </div>

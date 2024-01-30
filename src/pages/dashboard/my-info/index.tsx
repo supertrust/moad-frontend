@@ -70,11 +70,13 @@ export default function MyInfoScreen() {
 				employee_email,
 				employee_name,
 				employee_phone_number,
+				sector
 			}) => {
 				const disabled =
 					company_phone_number === (user?.company_phone_number || '') &&
 					employee_email === (user?.employee_email || '') &&
 					employee_name === (user?.employee_name || '') &&
+					sector === (user?.sector || '') &&
 					employee_phone_number === (user?.employee_phone_number || '');
 				setDisabledSubmit(disabled);
 			},

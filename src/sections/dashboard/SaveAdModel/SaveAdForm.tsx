@@ -367,6 +367,13 @@ const SaveAdForm = ({
     };
   }, []);
 
+  useEffect(() => {
+    if(watch().type!=="fixed_ad"){
+      setValue('operating_area',[])
+      setIsAreaVisible(false)
+    }
+  },[])
+
   return (
     <FormProvider methods={methods}>
       <div className={styles.ad_modal_wrap} ref={containerRef} id={styles.ad_modal_wrap}>

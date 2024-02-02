@@ -81,14 +81,14 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
 
     setBufferdDate(startDate);
   };
-  
+
   useEffect(() => {
     rideChangeHandler(selectedRide)
   }, [selectedRide])
-  
+
   useEffect(() => {
-    setSelectedRide(vehicle?.id)
-  }, [vehicle?.id])
+    if(locationIds) setSelectedRide(locationIds[0]?.id)
+  }, [JSON.stringify(locationIds)])
 
   const filterDate = (value : string) => {
     // if(value == 'all'){
@@ -227,7 +227,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
                           </div>
                         </span>
                         <div>
-                          <DatePicker 
+                          <DatePicker
                             className={datePickerOpen ? "custom_picker" : "hidden"}
                             popupClassName={"custom_popup_picker vehicle-location !left-[calc(100%-314px)]"}
                             format="YYYY-MM-DD"

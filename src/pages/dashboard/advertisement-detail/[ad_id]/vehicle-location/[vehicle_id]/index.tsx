@@ -31,6 +31,7 @@ const VehicleLocationScreen = () => {
 	const { ad_id, vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
 	const [showDrawer, setShowDrawer] = useState(false);
+  const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(null);
   const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
   // @ts-ignore
@@ -40,8 +41,11 @@ const VehicleLocationScreen = () => {
   const { data: cargoAllLocation, refetch , isLoading, isRefetching} = useAllVehicleLocationDetails(vehicle_id as string,
   ISOformatDate(selectedDateRange as Date));
 
-  const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.length - 1] : null;
-  const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(latestLocation);
+
+  useEffect(() => {
+    const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.length - 1] : null;
+    setCargoLocation(latestLocation)
+  }, [JSON.stringify(cargoAllLocation)])
 
   const toggleDrawer = () => {
     setShowDrawer(!showDrawer);

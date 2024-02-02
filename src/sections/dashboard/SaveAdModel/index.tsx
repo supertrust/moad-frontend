@@ -5,6 +5,7 @@ import SaveAdForm from "./SaveAdForm";
 import { SaveAdvertisementType } from "@src/types/advertisement";
 import AdAgreementForm from "./AdAgreementForm";
 import SaveAdSuccessPopup from "./SaveAdSuccessPopup";
+import { Modal } from "antd";
 
 interface IAdModelProps {
     refetchAds: VoidFunction
@@ -59,7 +60,15 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
         open: () => setOpen(true),
     }), [])
 
-    return open ? (
+    return (
+        <Modal
+      open={open}
+      onCancel={() => setOpen(false)}
+      width={'972px'}
+      footer={false}
+      closable={false}
+      className={'ad_modal'}
+    >
         <div id={styles.ad_apply_modal} className={`ad-apply-modal ${agreed && styles.aggred}`}>
             {agreed ? (
                 <SaveAdSuccessPopup onOk={onCancel} />
@@ -77,7 +86,8 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
                 )
             )}
         </div>
-    ) : null;
+    </Modal>
+    ) ;
 }
 
 export default forwardRef(AdModel)

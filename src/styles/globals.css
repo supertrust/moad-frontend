@@ -4257,3 +4257,7 @@ input:focus-visible {
 		margin: 0;
 	}
 }
+
+.ad_modal .ant-modal-content{
+	padding: 0;
+}

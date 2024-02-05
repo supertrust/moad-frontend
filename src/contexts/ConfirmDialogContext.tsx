@@ -16,6 +16,7 @@ export interface ConfirmPropsType {
     cancelButtonProps?: ButtonProps;
     size?: "lg" | "xl" | "sm" ,
     footerClassName?: string,
+    dialogClassName?: string,
     ref?:any
 }
 
@@ -41,6 +42,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
         cancelButtonProps,
         size,
         footerClassName,
+        dialogClassName,
         ref
     } = confirmProps || {};
 
@@ -62,7 +64,8 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
     return (
         <ConfirmDialogContext.Provider value={{ confirm }}>
             {children}
-            {confirmProps && <Modal show={!!confirmProps} onHide={handelCancel} centered size={size} ref={ref} id >
+            {confirmProps && <Modal show={!!confirmProps} onHide={handelCancel} centered size={size} dialogClassName={dialogClassName}
+ ref={ref} id >
                 {title && 
                     <Modal.Header>
                         <Modal.Title className="text-center font-bold text-[#2C324C]">{title}</Modal.Title>
@@ -71,7 +74,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
                 <Modal.Body>{description}</Modal.Body>
                 <Modal.Footer className={footerClassName}>
                     <Button 
-                        {...cancelButtonProps}  
+                        {...restCancelButtonProps}  
                         className={clsx(
                             "outline-primary border border-primary text-primary px-3 ", 
                             cancelButtonStyle 

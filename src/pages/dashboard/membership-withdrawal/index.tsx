@@ -72,26 +72,42 @@ function MembershipWithdrawalScreen() {
 			),
 			onConfirm: () => {
 				memberWithdrawal({ reason }, {
-					onSuccess: () =>
-						confirm({
+					onSuccess: (response : any) =>
+						{
+							const status = response?.data?.status;
+							const dialogClassName = (status != 'success') ? 'max-w-[380px]' : '' ;
+							confirm({
 							...options,
 							disableConfirmBtn: true,
 							cancelButtonProps: {
-								className: 'border-primary bg-primary !text-[#fff] !px-[21px] !py-[5px]',
+								className: `border-primary bg-primary !px-[21px] !py-[5px] ${styles.text_white}`
 							},
+							dialogClassName : dialogClassName,
 							description: (
 								<div className='mt-[4px]'>
 									<div className='text-[#2C324C] text-left text-xl mb-[20px] font-bold'>
-									회원탈퇴완료
+									{status == 'success' ? '회원탈퇴완료' : '주의'}
 									</div>
 									<div className='text-center p-3 border-y-[1px] border-[#EEEEEE]'>
-									지금까지 이용해주셔서 감사합니다.
+									{status == 'success' ? '지금까지 이용해주셔서 감사합니다.' :  (
+										<>
+										진행중인 광고가 있거나 삭제할수 없는 상태입니다.
+										<br/>
+										고객센터에 연락주시길 바랍니다.
+										</>
+									)}
 									</div>
 								</div>
 							),
-							onCancel: logout,
-						}),
-					onError: (error) => toast(error, { type: 'error' }),
+							onCancel: () => {
+								if(status == 'success'){
+									return logout;
+								}
+								return;
+							},
+						})
+					},
+					onError: (error) => toast(error, { type: 'error' }),	
 				});
 			},
 		});

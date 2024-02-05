@@ -36,8 +36,9 @@ export const useUpdateUserProfileImage = () => useMutation<void, string, { profi
 })
 
 
-export const useMemberWithdrawal = () =>  useMutation<void, string, { reason : string }>({
-    mutationFn: (data) => axios.post("/api/membership-withdrawal", data ),
+export const useMemberWithdrawal =  () =>  useMutation<void, string, { reason : string }>({
+    mutationFn: async (props) => {
+        return((await axios.post("/api/membership-withdrawal", props)).data)}
 })
 
 export const useUpdateAdvertiserInfo = () =>

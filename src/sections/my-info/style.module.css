@@ -22,7 +22,9 @@
     padding: 16px 30px;
     border-bottom: 1px solid #ebedf4;
 }
-
+.text_white{
+    color: #fff !important;
+}
 .profile_wrap {
     display: flex;
     justify-content: flex-start;

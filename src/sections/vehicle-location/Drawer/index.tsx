@@ -10,13 +10,15 @@ import { DatePicker, Select } from "antd";
 import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
 import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, getNextPrevDates, totalDays } from "@src/helpers";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
+import type { CellRenderInfo } from 'rc-picker/es/interface';
 
 interface DrawerProps {
   open: boolean
   handleClose: VoidFunction
   isLoading: boolean
   vehicle?:IVehicleLocationDetails | null
+  vehicleDate?:string[] | null
   locationIds?:{id:number}[]
   dateChangeHandler: (...args: any[]) => void
   rideChangeHandler: (...args: any[]) => void
@@ -62,7 +64,8 @@ const dateRangePickerCtrls = [
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,rideChangeHandler,locationIds }: DrawerProps) {
+function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChangeHandler,rideChangeHandler,locationIds }: DrawerProps) {
+
   const { RangePicker } = DatePicker;
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
   const [selectedRide, setSelectedRide] = useState<number|undefined>(vehicle?.id);
@@ -158,6 +161,28 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
   const categories = ['오늘 운행거리','총 운행거리','평균 월 운행거리'];
   const data = [today_distance||0,total_distance||0,avarageMonthlyDistance||0];
 
+  const style: React.CSSProperties = {
+    border: `1px solid #2F48D1`,
+    lineHeight: 'normal',
+    background : '#E1ECFF'
+  };
+  const cellRender = React.useCallback((current: number | Dayjs, info: CellRenderInfo<Dayjs>) => {
+    if (info.type !== 'date') {
+      return info.originNode;
+    }
+    if (typeof current === 'number') {
+      return <div className="ant-picker-cell-inner">{current}</div>;
+    }
+    const currentDate = current.toDate(); 
+    const formattedCurrentDate = ISOformatDate(currentDate);
+    const isVehicleDate = vehicleDate?.includes(formattedCurrentDate);
+
+    return (
+      <div className="ant-picker-cell-inner" style={isVehicleDate ? style : {}}>
+        {current.date()}
+      </div>
+    );
+  }, [vehicleDate]);
   return (
     <div>
       <div className={`${styles.button_wrap} z-50`}>
@@ -265,6 +290,7 @@ function Drawer({ open, handleClose , isLoading, vehicle, dateChangeHandler,ride
                                 </div>
                               </div>
                             )}
+                            cellRender={cellRender}
                           />
                         </div>
                       </div>

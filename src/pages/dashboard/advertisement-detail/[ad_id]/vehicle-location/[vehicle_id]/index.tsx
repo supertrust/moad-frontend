@@ -1,6 +1,6 @@
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import React, { useEffect, useState } from "react";
-import { useAllVehicleLocationDetails } from "@src/apis/map";
+import { useAllVehicleLocationDate, useAllVehicleLocationDetails } from "@src/apis/map";
 import { useRouter } from "next/router";
 import { Button } from "@src/components/common";
 import { Map } from "@src/components/Map";
@@ -40,6 +40,8 @@ const VehicleLocationScreen = () => {
 
   const { data: cargoAllLocation, refetch , isLoading, isRefetching} = useAllVehicleLocationDetails(vehicle_id as string,
   ISOformatDate(selectedDateRange as Date));
+  
+  const { data: cargoAllLocationDate} = useAllVehicleLocationDate(vehicle_id as string);
 
 
   useEffect(() => {
@@ -160,6 +162,7 @@ const VehicleLocationScreen = () => {
         open={showDrawer}
         handleClose={toggleDrawer}
         vehicle={cargoLocation}
+        vehicleDate={cargoAllLocationDate}
         locationIds={allLocationIds}
         isLoading={isLoading}
         dateChangeHandler={handleDateChange}

@@ -24,6 +24,15 @@ export const useAllVehicleLocationDetails = (cargo_vehicle_id: string, date_filt
     retry: 0,
 })
 
+export const useAllVehicleLocationDate = (cargo_vehicle_id: string )  => useQuery<string[], string>({
+    queryKey: ["all-vehicle-location", cargo_vehicle_id],
+    queryFn: async () => (await axios.get(`/api/get-all-vehicle-date`,  {
+        params : { cargo_vehicle_id }
+    })).data.data,
+    enabled: !!cargo_vehicle_id,
+    retry: 0,
+})
+
 export const useLogVehicleLocation = () => useMutation<void, string, LogVehiclLocationProps>({
     mutationFn: async (props) => axios.post("/api/log-vehicle-location", props),
     onSuccess: (_, { cargo_vehicle_id }) => queryClient.invalidateQueries(['vehicle-location', cargo_vehicle_id])

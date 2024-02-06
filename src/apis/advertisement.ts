@@ -32,6 +32,7 @@ export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) =>
         queryKey: ["advertisements", ...Object.values(props)],
         queryFn: async () =>
             (await axios.get("/api/get-advertisement", { params: props })).data,
+        retry: 0, // Disable retries
     });
 
 export const useGetAdvertisementDetail = (

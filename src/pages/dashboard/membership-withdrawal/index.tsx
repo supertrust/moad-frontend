@@ -34,7 +34,7 @@ function MembershipWithdrawalScreen() {
 	const { confirm } = useConfirmDialog();
 	const { logout } = useAuth();
 
-	const methods = useForm({ 
+	const methods = useForm({
 		defaultValues: { condition: false, reason: "" } ,
 		resolver: yupResolver(MembershipWithDrawalSchema),
 	});
@@ -107,7 +107,7 @@ function MembershipWithdrawalScreen() {
 							},
 						})
 					},
-					onError: (error) => toast(error, { type: 'error' }),	
+					onError: (error) => toast(error, { type: 'error' }),
 				});
 			},
 		});
@@ -127,39 +127,27 @@ function MembershipWithdrawalScreen() {
 									<div className={clsx(styles.information_wrap, 'py-2')}>
 										<div className='p-4 border border-[#EBEDF4] rounded-md bg-[#F24747] bg-opacity-5'>
 											<div className='text-danger font-bold mb-3 text-base'>
-												회원 탈퇴 시 1년동안 개인정보 및 이카루스 내에서
-												만들어진 데이터가 보관되며,
-												<br />
-												1년 이후에 회원님에 관한 모든 데이터가 자동으로
-												삭제됩니다.
+											이카루스 회원탈퇴시 아래 주의사항을 반드시 읽어주시길 바랍니다.
 											</div>
 											<p>
-												1.계약 또는청약철회 등에 관한 기록 보존 이류 :
-												전자상거래 등에서의 소비자보호에 관한법률/ 보존 기간 :
-												5년 <br />
-												1.계약 또는청약철회 등에 관한 기록 보존 이류 :
-												전자상거래 등에서의 소비자보호에 관한법률/ 보존 기간 :
-												5년 <br />
-												1.계약 또는청약철회 등에 관한 기록 보존 이류 :
-												전자상거래 등에서의 소비자보호에 관한법률/ 보존 기간 :
-												5년 <br />
-												1.계약 또는청약철회 등에 관한 기록 보존 이류 :
-												전자상거래 등에서의 소비자보호에 관한법률/ 보존 기간 :
-												5년 <br />
-												1.계약 또는청약철회 등에 관한 기록 보존 이류 :
-												전자상거래 등에서의 소비자보호에 관한법률/ 보존 기간 :
-												5년 <br />
-												1.계약 또는청약철회 등에 관한 기록 보존 이류 :
-												전자상거래 등에서의 소비자보호에 관한법률/ 보존 기간 :
-												5년
+												1. 기존 아이디는 영구적으로 사용이 중지되므로, 기존에 사용하시던 아이디를 통한 재가입은 불가능합니다. <br />
+												2. 회원 정보는 1년동안 보관되며, 이후 일괄적으로 정보는 삭제됩니다. <br />
+												3. 아래의 경우에 하나라도 해당되는 경우 아이디 삭제가 불가능합니다. <br />
+												<p className='ml-6'>
+													    a. 검수중인 광고가 있을경우.<br />
+													    b. 진행중인 광고가 있을경우. (진행중이라 함은, 검수, 종료, 거부의 상태를 제외한 모든 광고상태에 해당함)
+												</p>
+												4. 작성한 1:1문의 및 게시글등은 삭제되지않고 영구보존됩니다. <br />
+												5. 회원탈퇴 취소는 절대적으로 불가능하므로 꼭 주의하시길 바랍니다. <br />
+												6. 이후 문의사항은 이카루스 고객센터로 연락 바랍니다.
 											</p>
 										</div>
 									</div>
-									<div className={clsx(styles.title, '!text-[14px] !border-none mb-0')}>
+									{/* <div className={clsx(styles.title, '!text-[14px] !border-none mb-0')}>
 										유의사항
-									</div>
+									</div> */}
 									<div className={clsx(styles.information_wrap, 'pt-0')}>
-										<div className='p-4 border border-[#EBEDF4] rounded-md bg-[#EBEDF4] bg-opacity-20'>
+										{/* <div className='p-4 border border-[#EBEDF4] rounded-md bg-[#EBEDF4] bg-opacity-20'>
 											<p>
 												1.회원탈퇴 처리 후에는 회원님의 개인정보를 복원할
 												수없습니다.
@@ -167,9 +155,9 @@ function MembershipWithdrawalScreen() {
 												2.진행중 또는 신청중인 광고가 있을 시 회원탈퇴가 불가능
 												합니다.
 											</p>
-										</div>
+										</div> */}
 
-										<RHFTextarea 
+										<RHFTextarea
 											label="탈퇴사유"
 											name="reason"
 											rows={5}
@@ -201,7 +189,7 @@ function MembershipWithdrawalScreen() {
 													</div>
 												</>
 											)}
-										/> 
+										/>
 										<Button
 											loading={isLoading}
 											type='submit'

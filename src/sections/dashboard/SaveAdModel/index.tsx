@@ -29,7 +29,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
         setShowAgreement(true);
     }
 
-    const onAgree = () => { 
+    const onAgree = () => {
         const data = {
             ...advertisment,
             vehicle_details: JSON.stringify(advertisment?.vehicle_details),
@@ -64,7 +64,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
         <Modal
       open={open}
       onCancel={() => setOpen(false)}
-      width={'972px'}
+      width={agreed ? '367px' :'972px'}
       footer={false}
       closable={false}
       className={'ad_modal'}
@@ -74,11 +74,11 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
                 <SaveAdSuccessPopup onOk={onCancel} />
             ) : (
                 !showAgreement ? (
-                    <SaveAdForm 
+                    <SaveAdForm
                         onOpenModal={() => setOpen(true)}
-                        onCancel={onCancel} 
-                        onSubmitForm={onSubmitForm} 
-                        isLoadingSaveAdvertisement={isLoadingSaveAdvertisement} 
+                        onCancel={onCancel}
+                        onSubmitForm={onSubmitForm}
+                        isLoadingSaveAdvertisement={isLoadingSaveAdvertisement}
                         values={advertisment}
                     />
                 ) : (

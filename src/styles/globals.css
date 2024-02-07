@@ -4261,3 +4261,12 @@ input:focus-visible {
 .ad_modal .ant-modal-content{
 	padding: 0;
 }
+
+a.ant-picker-today-btn {
+  font-size: 0;
+}
+
+a.ant-picker-today-btn:after {
+  content: "오늘";
+  font-size: 16px; /* original font size */
+}

@@ -6,12 +6,16 @@ import CaretUp from '@images/vehicle_location/ic-arrow-up.png'
 import { IVehicleLocationDetails } from '@src/types/map';
 import Loader from '@src/components/Loader';
 import dynamic from "next/dynamic";
-import { DatePicker, Select } from "antd";
+import { DatePicker, Select, ConfigProvider } from "antd";
 import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
 import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, getNextPrevDates, totalDays } from "@src/helpers";
 import dayjs, { Dayjs } from "dayjs";
 import type { CellRenderInfo } from 'rc-picker/es/interface';
+import koKR from 'antd/locale/ko_KR';
+import 'dayjs/locale/ko';
+
+dayjs.locale('ko');
 
 interface DrawerProps {
   open: boolean
@@ -164,7 +168,8 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
   const style: React.CSSProperties = {
     border: `1px solid #2F48D1`,
     lineHeight: 'normal',
-    background : '#E1ECFF'
+    background : '#2F48D1',
+    color: '#FFFF'
   };
   const cellRender = React.useCallback((current: number | Dayjs, info: CellRenderInfo<Dayjs>) => {
     if (info.type !== 'date') {
@@ -173,7 +178,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
     if (typeof current === 'number') {
       return <div className="ant-picker-cell-inner">{current}</div>;
     }
-    const currentDate = current.toDate(); 
+    const currentDate = current.toDate();
     const formattedCurrentDate = ISOformatDate(currentDate);
     const isVehicleDate = vehicleDate?.includes(formattedCurrentDate);
 
@@ -252,6 +257,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                           </div>
                         </span>
                         <div>
+                        <ConfigProvider locale={koKR}>
                           <DatePicker
                             className={datePickerOpen ? "custom_picker" : "hidden"}
                             popupClassName={"custom_popup_picker vehicle-location !left-[calc(100%-314px)]"}
@@ -277,7 +283,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                                       setDatePickerOpen(false)
                                     }}
                                   >
-                                    Ok
+                                    확인
                                   </button>
                                   <button
                                     className=" bg-[#fff] text-[#999] px-[12px] py-[5px] rounded text-[12px] leading-normal"
@@ -292,6 +298,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                             )}
                             cellRender={cellRender}
                           />
+                        </ConfigProvider>
                         </div>
                       </div>
                       <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleChange('next',selectedDate)}>

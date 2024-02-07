@@ -32,6 +32,21 @@ import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";
 import { adDetailsData } from "@src/constants";
 import { Divider } from "antd";
 
+const convertDate = (d : string)=>{
+  let currentDate = new Date(d);
+
+  let year = currentDate.getFullYear();
+
+  let month = String(currentDate.getMonth() + 1).padStart(2, '0');
+
+  let day = String(currentDate.getDate()).padStart(2, '0');
+
+  let formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate
+
+}
+
 type FormDataType = {
   ad_name: string;
   vehicle_type: string;
@@ -44,6 +59,8 @@ type FormDataType = {
     [key: number]: number;
   };
   operating_area: number[];
+  ad_recruitment_period_start_date : string
+  ad_recruitment_period_end_date : string;
 };
 
 type AdDataType =  {
@@ -65,6 +82,11 @@ export const TypeOfVechicle = [
   {text :"탑",value :"tower"},
   {text :"윙바디",value :"loaded"},
 ];
+
+const CurrentTypeOfVechicle = [
+  {text :"윙바디",value :"loaded"},
+];
+
 const defaultStartDate = addWeeks(new Date(), 2)
 const defaultValues: FormDataType = {
   ad_name: "",
@@ -76,6 +98,8 @@ const defaultValues: FormDataType = {
   vehicle_type: 'cargo',
   content:  '',
   images: '',
+  ad_recruitment_period_start_date : "",
+  ad_recruitment_period_end_date : ""
 };
 
 const adTypes = [
@@ -119,6 +143,12 @@ const SaveAdvertisementSchema = Yup.object().shape({
   ),
   start_date: Yup.string().required(
     "시작일을 선택해주세요. (등록 기준 1달 이후 선택)"
+  ),
+  ad_recruitment_period_start_date: Yup.string().required(
+      "광고 채용 기간 시작일 필요"
+  ),
+  ad_recruitment_period_end_date: Yup.string().required(
+      "광고 채용 기간 종료일 필요"
   ),
   vehicle_details: Yup.object().test(
     "is-not-empty-object",
@@ -279,7 +309,7 @@ const SaveAdForm = ({
         end_date: endDate,
         status: "applying",
       };
-      if(images.length > 0) await onSubmitForm(values);
+      if(images.length > 0 && validationOfDisplayingTime().length===0) await onSubmitForm(values);
     },
     (errors) => {
       const error = Object.values(errors)[0].message;
@@ -347,6 +377,66 @@ const SaveAdForm = ({
       </div>
     );
   }
+
+  function CustomInputRecruitmentStart(props) {
+    return (
+        <div className={`input-group ${styles.datepicker}`}>
+          <input
+              type="text"
+              className={`form-control h-[36px] ${styles.input_date} !text-[14px]`}
+              onClick={props.onClick}
+              value={watch().ad_recruitment_period_start_date}
+              onChange={props.onChange}
+              readOnly
+          />
+          <svg
+              onClick={props.onClick}
+              className="absolute right-[12px] top-[30%] z-[99]"
+              width="14"
+              height="16"
+              viewBox="0 0 14 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+                d="M12.3335 1.99996H11.6668V1.33329C11.6668 0.966626 11.3668 0.666626 11.0002 0.666626C10.6335 0.666626 10.3335 0.966626 10.3335 1.33329V1.99996H3.66683V1.33329C3.66683 0.966626 3.36683 0.666626 3.00016 0.666626C2.6335 0.666626 2.3335 0.966626 2.3335 1.33329V1.99996H1.66683C0.933496 1.99996 0.333496 2.59996 0.333496 3.33329V14C0.333496 14.7333 0.933496 15.3333 1.66683 15.3333H12.3335C13.0668 15.3333 13.6668 14.7333 13.6668 14V3.33329C13.6668 2.59996 13.0668 1.99996 12.3335 1.99996ZM11.6668 14H2.3335C1.96683 14 1.66683 13.7 1.66683 13.3333V5.33329H12.3335V13.3333C12.3335 13.7 12.0335 14 11.6668 14Z"
+                fill="#999999"
+            />
+          </svg>
+        </div>
+    );
+  }
+
+
+  function CustomInputRecruitmentEnd(props) {
+
+    return (
+        <div className={`input-group ${styles.datepicker}`}>
+          <input
+              type="text"
+              className={`form-control h-[36px] ${styles.input_date} !text-[14px]`}
+              onClick={props.onClick}
+              value={watch().ad_recruitment_period_end_date}
+              onChange={props.onChange}
+              readOnly
+          />
+          <svg
+              onClick={props.onClick}
+              className="absolute right-[12px] top-[30%] z-[0]"
+              width="14"
+              height="16"
+              viewBox="0 0 14 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+                d="M12.3335 1.99996H11.6668V1.33329C11.6668 0.966626 11.3668 0.666626 11.0002 0.666626C10.6335 0.666626 10.3335 0.966626 10.3335 1.33329V1.99996H3.66683V1.33329C3.66683 0.966626 3.36683 0.666626 3.00016 0.666626C2.6335 0.666626 2.3335 0.966626 2.3335 1.33329V1.99996H1.66683C0.933496 1.99996 0.333496 2.59996 0.333496 3.33329V14C0.333496 14.7333 0.933496 15.3333 1.66683 15.3333H12.3335C13.0668 15.3333 13.6668 14.7333 13.6668 14V3.33329C13.6668 2.59996 13.0668 1.99996 12.3335 1.99996ZM11.6668 14H2.3335C1.96683 14 1.66683 13.7 1.66683 13.3333V5.33329H12.3335V13.3333C12.3335 13.7 12.0335 14 11.6668 14Z"
+                fill="#999999"
+            />
+          </svg>
+        </div>
+    );
+  }
   const ErrorMessage = ({error}) =>  <span className='text-danger'>{error}</span>
 
   const trucks = [Truck01, Truck02, Truck03];
@@ -359,6 +449,22 @@ const SaveAdForm = ({
       setIsAreaVisible(false)
     }
   },[])
+
+  const validationOfDisplayingTime = ()=>{
+    const tRecruitStart = new Date(watch().ad_recruitment_period_start_date);
+    const tRecruitEnd = new Date(watch().ad_recruitment_period_end_date);
+    const tStartDate = new Date(startDate);
+
+    if(tRecruitEnd<tRecruitStart)
+      return "표시 종료일은 시작일보다 커야 합니다."
+
+    else if(tRecruitEnd>=tStartDate)
+      return "광고 시작일은 표시 종료일보다 커야 합니다."
+
+    return ""
+
+
+  }
 
   return (
     <FormProvider methods={methods}>
@@ -843,68 +949,118 @@ const SaveAdForm = ({
                 </div>
               </div>
             </div>
-            <div
-              className={`${styles.input_section} ${styles.date_section} !mb-[20px]`}
-            >
-              <div className="flex gap-[13px] w-full sm:!w-[100%] md:w-[60%]">
+            <div className={'flex flex-col mb-3'}>
+              <div className={'flex gap-3 flex-wrap'}>
                 <div
-                  className={`${styles.input_wrap} ${styles.ad_period_section} w-[50%] sm:w-full`}
+                    className={`${styles.input_section} ${styles.date_section} !mb-[20px]`}
                 >
-                  <div className={styles.input_title}>차량종류<span className="text-[#F24747]">*</span></div>
+                  <div className="flex gap-[13px] w-full sm:!w-[100%] md:w-[60%]">
+                    <div
+                        className={`${styles.input_wrap} ${styles.ad_period_section} w-[50%] sm:w-full`}
+                    >
+                      <div className={styles.input_title}>차량종류<span className="text-[#F24747]">*</span></div>
+                      <Controller
+                          name="vehicle_type"
+                          control={control}
+                          render={({ field: { value, onChange } }) => (
+                              <div
+                                  className={`${isVehicleTypeOpen ? styles.active : ""} ${
+                                      styles.select_wrap
+                                  } ${styles.spot_add}`}
+                              >
+                                <div className={styles.select_text}>
+                                  <input
+                                      type="text"
+                                      onClick={() => {
+                                        openVehicleType(!isVehicleTypeOpen);
+                                      }}
+                                      value={CurrentTypeOfVechicle?.find((item) => item.value === (value as string))?.text || ""}
+                                      className={`${styles.box} ${styles.select_input} ${styles.spot_input_add} h-[36px]`}
+                                      id="select_type_input"
+                                      placeholder="기간 선택"
+                                      readOnly
+                                  />
+                                  <div id="calender_area"></div>
+                                </div>
+                                <ul className={`${styles.date_select_box} z-1 !h-auto`}>
+                                  {CurrentTypeOfVechicle.map((type) => (
+                                      <li
+                                          key={type.value}
+                                          className={styles.date_list}
+                                          onClick={() => {
+                                            onChange(type.value);
+                                            openVehicleType(false);
+                                          }}
+                                      >
+                                        <label
+                                            htmlFor={`${type.value}`}
+                                            className={styles.period_label}
+                                        >{`${type.text}`}</label>
+                                        <input
+                                            type="radio"
+                                            value={type.value}
+                                            name="date_period"
+                                            id={`${type.value}`}
+                                            className={`${styles.period_input} h-[36px]`}
+                                        />
+                                      </li>
+                                  ))}
+                                </ul>
+                              </div>
+                          )}
+                      />
+
+                    </div>
+                  </div>
+                </div>
+                <div
+                    className={` ${styles.input_wrap} customdatepickerwidth relative w-[175px]`}
+                >
+                  <div className={styles.sub_title}>표시 시작 날짜<span className="text-[#F24747]">*</span></div>
                   <Controller
-                    name="vehicle_type"
-                    control={control}
-                    render={({ field: { value, onChange } }) => (
-                      <div
-                        className={`${isVehicleTypeOpen ? styles.active : ""} ${
-                          styles.select_wrap
-                        } ${styles.spot_add}`}
-                      >
-                        <div className={styles.select_text}>
-                          <input
-                            type="text"
-                            onClick={() => {
-                              openVehicleType(!isVehicleTypeOpen);
-                            }}
-                            value={TypeOfVechicle?.find((item) => item.value === (value as string))?.text || ""}
-                            className={`${styles.box} ${styles.select_input} ${styles.spot_input_add} h-[36px]`}
-                            id="select_type_input"
-                            placeholder="기간 선택"
-                            readOnly
-                          />
-                          <div id="calender_area"></div>
-                        </div>
-                        <ul className={`${styles.date_select_box} z-10 !h-auto`}>
-                          {TypeOfVechicle.map((type) => (
-                            <li
-                              key={type.value}
-                              className={styles.date_list}
-                              onClick={() => {
-                                onChange(type.value);
-                                openVehicleType(false);
+                      name="ad_recruitment_period_start_date"
+                      control={control}
+                      render={({ field: { value, onChange } }) => {
+                        return <>
+                          <DatePicker
+                              dateFormat="yyyy-mm-dd"
+                              onChange={(date: string) => {
+                                setValue('ad_recruitment_period_start_date', convertDate(date))
                               }}
-                            >
-                              <label
-                                htmlFor={`${type.value}`}
-                                className={styles.period_label}
-                              >{`${type.text}`}</label>
-                              <input
-                                type="radio"
-                                value={type.value}
-                                name="date_period"
-                                id={`${type.value}`}
-                                className={`${styles.period_input} h-[36px]`}
-                              />
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                              customInput={<CustomInputRecruitmentStart />}
+                          />
+                        </>
+                      }}
                   />
 
                 </div>
+                <div
+                    className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative w-[175px]`}
+                >
+                  <div className={styles.sub_title}>표시 종료 날짜<span className="text-[#F24747]">*</span></div>
+                  <Controller
+                      name="ad_recruitment_period_end_date"
+                      control={control}
+                      render={({ field: { value, onChange } }) => (
+                          <>
+                            <DatePicker
+                                dateFormat="yyyy-mm-dd"
+                                onChange={(date: string) => {
+                                  console.log('date',new Date(date))
+                                  setValue('ad_recruitment_period_end_date', convertDate(date))
+                                }}
+                                customInput={<CustomInputRecruitmentEnd />}
+                            />
+                          </>
+                      )}
+                  />
+
+                </div>
+
               </div>
+              {(isSubmitted && validationOfDisplayingTime().length) ? <span className='text-danger'>{validationOfDisplayingTime()}</span> : <></>}
             </div>
+
             {/* <span className='text-danger'>{errors?.ad_period?.message || errors?.start_date?.message}</span> */}
 
             <div
@@ -970,19 +1126,19 @@ const SaveAdForm = ({
                                 // className={styles.input_num}
                                 className={
                                   `!w-[78px] h-[20px] border  text-gray-500 text-right mr-[3px] text-[12px] p-[3px]
-                                  ${((Number(value[item.id])* item.expenses[period]) + Number(totalPrice)) || 0 <= 9223372036854775807 ? '!border-[#ebedf4]' : '!border-[#ff0000]'}
+                                  ${(Number(value[item.id]) || 0) <= 10000 ? '!border-[#ebedf4]' : '!border-[#ff0000]'}
                                   `
                                 }
                                 value={value[item.id]}
                                 onChange={(e) =>
                                   {
-                                    const inputValue = e.target.value;
-                                    const newValue = ((Number(inputValue)* item.expenses[period]) + Number(totalPrice)) <= 9223372036854775807 ? inputValue : value[item.id];
-
-                                    onChange({
-                                      ...value,
-                                      [item.id]: newValue,
-                                    });
+                                    const newValue = Number(e.target.value);
+                                    if(newValue<=10000) {
+                                      onChange({
+                                        ...value,
+                                        [item.id]: newValue,
+                                      });
+                                    }
                                   }
                                 }
                                 id={item.vehicle_type}
@@ -991,6 +1147,12 @@ const SaveAdForm = ({
                                 onKeyDown={(e) => {
                                   // Allow only numeric characters and prevent negative sign
                                   if (e.key === '-' || e.key === '.' ) {
+                                    e.preventDefault();
+                                  }
+                                }}
+                                onPaste={(e) => {
+                                  const pastedValue = e.clipboardData.getData('text/plain');
+                                  if (parseInt(pastedValue, 10) > 10000) {
                                     e.preventDefault();
                                   }
                                 }}

@@ -17,6 +17,12 @@ const AuthContext = createContext<AuthContextType | null>(null);
 interface AuthProviderProps {
     children: ReactNode
 }
+const ADVERTISER_ROLE = {
+    created_at:null,
+    id:2,
+    role_name:"Advertiser",
+    updated_at:null,
+}
 
 function AuthProvider({ children }: AuthProviderProps) {
     const { mutateAsync: _login } = useLogin();
@@ -31,7 +37,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     const [token, setToken] = useState<string | null>(null);
 
     const { data: user, isLoading : isUserLoading } = useGetUser({ isAuthenticated });
-    const { data: userRole, isLoading : isRoleLoading } = useGetUserRole({ isAuthenticated });
+    // const { data: userRole, isLoading : isRoleLoading } = useGetUserRole({ isAuthenticated });
     const checkAuth = useCallback(() => {
         if( (!isCargoRoute(router.pathname) && localStorage.getItem('cargo')) ||
             (isCargoRoute(router.pathname) && !localStorage.getItem('cargo')) ||
@@ -133,7 +139,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     const value = useMemo(() => ({
         user: user || null,
-        userRole: userRole || null,
+        userRole: ADVERTISER_ROLE,
         isAuthenticated,
         token,
         login,
@@ -141,15 +147,13 @@ function AuthProvider({ children }: AuthProviderProps) {
         logout,
         loading,
         isUserLoading,
-        isRoleLoading
+        isRoleLoading: false
     }), [
         isAuthenticated,
         user,
         token,
         loading,
-        userRole,
         isUserLoading,
-        isRoleLoading
     ]);
 
     return (

@@ -23,7 +23,7 @@ import { DateSelected, ISOformatDate, dateFormat, formatTimeFromMinute, getNextM
 import { TypeOfVechicle } from "@src/sections/dashboard/SaveAdModel/SaveAdForm";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
-import { formatNumberWithCommas } from "@src/utils/formatter";
+import { formatDate, formatNumberWithCommas } from "@src/utils/formatter";
 
 export const DateRangePickerCtrls = [
   {
@@ -164,6 +164,19 @@ function StatisticsDetailsPage() {
   const bufferStartDate = !Array.isArray(bufferdDate) ? bufferdDate.startDate : new Date();
   const bufferEndDate   = !Array.isArray(bufferdDate) ? bufferdDate.endDate : new Date();
 
+  const [currentTimestamp, setCurrentTimestamp] = useState('');
+
+  useEffect(() => {
+    const timestamp = new Date();
+    const options = { timeZone: 'Asia/Seoul' };
+    const formattedTimestamp = formatDate(timestamp.toLocaleString('en-US', options), true, 'YYYY.MM.DD', 'HH:mm')
+
+    setCurrentTimestamp(formattedTimestamp||'');
+  }, []);
+
+  const now = new Date();
+
+
   return (
     <>
       {/*pc version*/}
@@ -289,8 +302,7 @@ function StatisticsDetailsPage() {
                 <div className={"h-[40px] w-[1px] bg-[#EBEDF4]"}></div>
               </div>
               <span className={styles["selected-date"]}>
-                보고서는 실시간이 아닙니다. 2023. 03. 28 14:59 기준 , 2023.03.28
-                11: 00 시간까지 업데이트된 지표입니다.
+                {`보고서는 실시간이 아닙니다. ${currentTimestamp} 기준, ${currentTimestamp.split(' ')[0]} 00:00 시간까지 업데이트된 지표입니다.`}
               </span>
             </div>
             {isLoading ? (

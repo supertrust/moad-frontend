@@ -200,7 +200,7 @@ function AdvertisementDetailScreen() {
     () =>
       !cargoItems?.length
         ? []
-        : cargoItems?.map((item) => ({
+        : cargoItems?.filter(item => item?.user_cargo).map((item) => ({
             key: item.id,
             no: item.id,
             car_number: item?.user_cargo?.car_number,
@@ -212,7 +212,7 @@ function AdvertisementDetailScreen() {
             cargo_vehicle_id: item.cargo_vehicle_id,
             advertisement_id: item.advertisement_id,
           })),
-    [cargoItems?.length]
+    [cargoItems]
   );
 
   const columns = [
@@ -257,7 +257,7 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: ({ vehicle_status }) => {
-        return OperationStatus[vehicle_status.toLowerCase()];
+        return vehicle_status && OperationStatus[vehicle_status.toLowerCase()];
       },
     },
     {

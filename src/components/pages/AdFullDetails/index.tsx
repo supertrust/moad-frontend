@@ -21,6 +21,17 @@ export const Types = {
     spot_ad: '스팟',
 };
 
+export const allStatuses = {
+    in_progress: '광고진행중',
+    ad_reviewing: '광고검수중',
+    end: '광고종료',
+    decline: '거절됨',
+    applying: '신청중',
+    recruiting_cargo_owners: '화물주모집중',
+    applying_for_advertisement: '광고신청중',
+    proceeding: '진행중',
+}
+
 const TypeOfVechicle = [
     {text :"카고",value :"cargo"},
     {text :"탑",value :"tower"},
@@ -43,7 +54,7 @@ function AdFullDetails() {
     const handleSelect = (selectedIndex: any, e: any) => {
         setIndex(selectedIndex);
       };
-      
+
     useEffect(() => { pageTitle !== title && setPageTitle(title) }, [])
 
     const getVehicleTypeCount = (type: string) => {
@@ -73,7 +84,7 @@ function AdFullDetails() {
                         firstColumClass={style.firstColumnClass}
                         colSpan={2}
                     >
-                        {advertisement?.status}
+                        {allStatuses[advertisement?.status || 'in_progress']}
                     </DataRow>
                     <DataRow
                         title='광고유형'
@@ -97,8 +108,8 @@ function AdFullDetails() {
                         firstColumClass={style.firstColumnClass}
                         colSpan={2}
                     >
-                        <textarea 
-                            readOnly 
+                        <textarea
+                            readOnly
                             rows={5}
                             className={style.textArea}
                         >{advertisement?.content}</textarea>
@@ -115,7 +126,7 @@ function AdFullDetails() {
                         :
                         '--'
                         }
-                        
+
                     </DataRow>
                     <DataRow
                         title='차량종류'
@@ -123,7 +134,7 @@ function AdFullDetails() {
                         firstColumClass={style.firstColumnClass}
                         colSpan={2}
                     >
-                        {advertisement?.vehicle_type && 
+                        {advertisement?.vehicle_type &&
                             (TypeOfVechicle.find(type =>  type.value === advertisement?.vehicle_type))?.text
                         }
                     </DataRow>
@@ -148,7 +159,7 @@ function AdFullDetails() {
                     >
                         { getVehicleTypeCount('1t') }
                     </DataRow>
-                    {['2.5t', '5t', '11t'].map(type => 
+                    {['2.5t', '5t', '11t'].map(type =>
                         <DataRow
                             key={type}
                             title={type}
@@ -198,7 +209,7 @@ function AdFullDetails() {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                
+
                 <Box component="div" sx={modalstyle}>
                 <Box component="div">
                     <CloseIcon

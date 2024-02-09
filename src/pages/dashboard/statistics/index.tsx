@@ -158,8 +158,6 @@ const vehicleElement = (
 									<HeaderLine
 										title='광고 금액'
 										element={advertisementElement}
-										left='view all'
-										href='/dashboard/ad-amount'
 									/>
 									<div className={styles.ad_amount_box}>
 										<div className={styles.box_wrap}>

@@ -22,6 +22,7 @@ import "../components/pages/Landing/about.scss";
 import "../components/pages/Landing/inquire.scss";
 import "../components/pages/Landing/terms.scss";
 import "../components/pages/Landing/privacy.scss";
+import { setRouter } from '@src/utils/axios';
 
 const notoSansKR = Noto_Sans_KR({
 	weight: '400',
@@ -29,7 +30,9 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 const _App = ({ Component, pageProps }: AppProps) => {
-	const { asPath } = useRouter();
+	const router = useRouter();
+	const { asPath } = router;
+	setRouter(router)
 
 	if(asPath.includes("/admin") && !asPath.includes("/admin/login"))
 		return 	<main className={notoSansKR.className}>

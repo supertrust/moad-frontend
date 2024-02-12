@@ -360,7 +360,7 @@ export default function MyInfoScreen() {
 														errorPosition='bottom'
 														justifyEnd={false}
 														showCount={true}
-														maxCount={10}
+														maxCount={20}
 														wrapperClassName={`${styles.company_name} ${styles.text}`}
 													/>
 												</li>

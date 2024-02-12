@@ -261,6 +261,18 @@ const SaveAdForm = ({
 		};
 
     let hasError = false;
+    if(files.length > 5){
+      hasError = true;
+      confirm({
+        ...options,
+        description: (
+          <div className='mt-3 text-center'>
+            5개까지 등록할 수 있습니다.
+          </div>
+        ),
+      });
+      return hasError;
+    }
     for (let index = 0; index < files.length; index++) {
       const file  = files[index];
       if (!file) return;
@@ -1211,7 +1223,11 @@ const SaveAdForm = ({
               <div className={styles.input_title}>
                 운행지역 (다중 선택 가능)<span className="text-[#F24747]">*</span>
               </div>
-              <button type="button" id="reset_btn" className={styles.reset_btn}>
+              <button type="button" id="reset_btn" className={styles.reset_btn}
+                onClick={()=> {
+                  setValue('operating_area',[])
+                }}
+              >
                 <span className={styles.text}>초기화</span>
                 <i className={styles.ic_reset}></i>
               </button>

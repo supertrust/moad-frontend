@@ -101,7 +101,7 @@ function MembershipWithdrawalScreen() {
 							),
 							onCancel: () => {
 								if(status == 'success'){
-									return logout;
+									 logout();
 								}
 								return;
 							},
@@ -147,15 +147,6 @@ function MembershipWithdrawalScreen() {
 										유의사항
 									</div> */}
 									<div className={clsx(styles.information_wrap, 'pt-0')}>
-										{/* <div className='p-4 border border-[#EBEDF4] rounded-md bg-[#EBEDF4] bg-opacity-20'>
-											<p>
-												1.회원탈퇴 처리 후에는 회원님의 개인정보를 복원할
-												수없습니다.
-												<br />
-												2.진행중 또는 신청중인 광고가 있을 시 회원탈퇴가 불가능
-												합니다.
-											</p>
-										</div> */}
 
 										<RHFTextarea
 											label="탈퇴사유"

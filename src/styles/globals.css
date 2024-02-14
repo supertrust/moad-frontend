@@ -4270,3 +4270,7 @@ a.ant-picker-today-btn:after {
   content: "오늘";
   font-size: 16px; /* original font size */
 }
+
+th.ant-table-cell {
+	text-align: center !important;
+}

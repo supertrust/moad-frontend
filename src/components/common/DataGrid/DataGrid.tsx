@@ -16,6 +16,7 @@ interface TableProps {
 	totalItems?: number;
 	itemsPerPage?: number;
 	onChangePage?: (page: number) => void;
+	[key: string]: any;
 }
 
 const DataGrid: React.FC<TableProps> = ({
@@ -28,6 +29,7 @@ const DataGrid: React.FC<TableProps> = ({
 	totalItems,
 	itemsPerPage,
 	onChangePage,
+	additionalTableProps
 }) => {
 	const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
@@ -82,6 +84,7 @@ const DataGrid: React.FC<TableProps> = ({
 				dataSource={rows}
 				bordered
 				loading={loading ? { indicator: antIcon } : undefined}
+				{...additionalTableProps}
 			/>
 			{showPagination && (
 				<div className='flex justify-center py-[30px] notification_pagination'>

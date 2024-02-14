@@ -22,7 +22,9 @@ import {
     UpdateAdvertisementStatusType,
     DraftAdvertisementImage,
     VehicleAdvertisementStatsResponse,
-    GetTotalAdvertisementStatProps
+    GetTotalAdvertisementStatProps,
+    GetCargoVerificationImagesProps,
+    CargoVerificationImage
 } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@src/services/ReactQueryClient";
@@ -194,4 +196,10 @@ export const useGetStatBasedAdvertisment = (props : GetTotalAdvertisementStatPro
 export const useGetDraftAdvertisementImages = (id:string) => useQuery<DraftAdvertisementImage[], string>({
     queryKey: ["draft-advertisement-images"],
     queryFn: async () => (await axios.get(`/api/get-advertisement-images/${id}/draft`)).data.data,
+});
+
+export const useGetCargoVerificationImages = (props:GetCargoVerificationImagesProps) => useQuery<CargoVerificationImage[], string>({
+    queryKey: ["get-cargo-verification-images", props ],
+    queryFn: async () => (await axios.get(`/api/get-cargo-verification-images`, { params: props })).data.data,
+    retry: 0
 });

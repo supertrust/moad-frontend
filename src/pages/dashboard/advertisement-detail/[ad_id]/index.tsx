@@ -1,11 +1,13 @@
 import { CircularProgress } from "@mui/material";
 import { Center, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { DateIcon } from "@src/components/icons";
 import {
   useGetAdvertisementCargoList,
   useGetAdvertisementDetail,
   useGetAdvertisementOperationArea,
   useGetAdvertisementVehicles,
+  useGetCargoVerificationImages,
   useGetDraftAdvertisementImages,
 } from "@src/apis/advertisement";
 import { DataGrid } from "@src/components/common";
@@ -14,7 +16,7 @@ import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import TruckModel from "@src/models/truck";
 import { styles } from "@src/sections/advertisement-detail";
 import { IAdvertisementCargo } from "@src/types/advertisement";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, DatePicker, Modal } from "antd";
 import { clsx } from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,6 +37,21 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowBack from "@src/components/icons/ArrowBack";
 import { allStatuses } from "@src/sections/dashboard/AdList/AdList";
+import { formatDate } from "@src/utils/formatter";
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import localeData from 'dayjs/plugin/localeData'
+import weekday from 'dayjs/plugin/weekday'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+import weekYear from 'dayjs/plugin/weekYear'
+
+dayjs.extend(customParseFormat)
+dayjs.extend(advancedFormat)
+dayjs.extend(weekday)
+dayjs.extend(localeData)
+dayjs.extend(weekOfYear)
+dayjs.extend(weekYear)
 
 interface ICargoColumns extends IAdvertisementCargo {
   vehicle_information: "바라보다";
@@ -56,6 +73,7 @@ const OperationStatus = {
 
 function AdvertisementDetailScreen() {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState<{ page: number; status: string }>({
     page: 1,
     status: "",
@@ -89,6 +107,10 @@ function AdvertisementDetailScreen() {
     per_page,
     totalRecords,
   } = cargoList || {};
+  const [verifyPicturesModalData, setVerifyPicturesModalData] = useState<{
+    advertisement_id: number;
+    cargo_vehicle_id: number;
+  }>({advertisement_id: 0, cargo_vehicle_id: 0});
 
   const [modelImages, setModelImages] = useState({
     left: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
@@ -302,6 +324,29 @@ function AdvertisementDetailScreen() {
         // :"아직 할당되지 않았습니다."
       ),
     },
+    {
+      dataIndex: "vehicle_location",
+      title: "인증사진",
+      headerStyle: {
+        backgroundColor: "rgb(244 247 251)",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+      },
+      render: (text: any, record: any) => (
+        <div
+          className="text-[#1675e0]"
+          onClick={() => {
+            setVerifyPicturesModalData({
+              advertisement_id: record.advertisement_id,
+              cargo_vehicle_id: record.cargo_vehicle_id
+            })
+            setOpen(true)
+          }}
+        >
+        {text}
+        </div>
+      ),
+    },
   ];
   if (window.innerWidth < 767) {
     columns.splice(0, 1);
@@ -349,6 +394,13 @@ function AdvertisementDetailScreen() {
 
   return (
     <>
+      {open &&
+        <VerifyPicturesModal
+          open={open}
+          close={() => setOpen(false)}
+          verifyPicturesModalData={verifyPicturesModalData}
+        />
+      }
       <div id={styles.ad_detail_list} className="ad-detail-list page">
         <div className={styles.container}>
           <div className={styles.board_content}>
@@ -659,5 +711,171 @@ const WithRoles = () => (
     <AdvertisementDetailScreen />
   </RoleBasedGuard>
 );
+
+const VerifyPicturesModal = ({
+  open,
+  close,
+  verifyPicturesModalData,
+}: {
+  open: boolean;
+  close: VoidFunction;
+  verifyPicturesModalData: {
+    advertisement_id: number;
+    cargo_vehicle_id: number;
+  };
+}) => {
+  const [index, setIndex] = useState(0);
+  const [step, setStep] = useState(0);
+  const [{start_date, end_date}, setDate] = useState({start_date:'', end_date: ''});
+  const [selectedRow, setSelectedRow] = useState(0);
+  const { data, isLoading } = useGetCargoVerificationImages({
+    ...verifyPicturesModalData,start_date, end_date
+  });
+
+  const handleSelect = (selectedIndex: any, e: any) => {
+    setIndex(selectedIndex);
+  };
+
+  const CarouselWrapper = styled.div`
+    .carousel.slide {
+      height: 395px;
+    }
+  `;
+
+  const columns = [
+    {
+      dataIndex: "date",
+      title: "날짜",
+      headerStyle: {
+        backgroundColor: "rgb(244 247 251)",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+      },
+      render: (text: string) => {
+        return  <div className='text-center'>
+          {formatDate(text, false, "YYYY.MM.DD")}
+        </div>
+      }
+    },
+    {
+      dataIndex: "status",
+      title: "상태",
+      headerStyle: {
+        backgroundColor: "rgb(244 247 251)",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+      },
+      render: (text: any, record: any) => {
+        const completed = text === '완전한'
+        return <div className={`text-center ${completed ? 'text-[#30CD2C]' : 'text-[#CE3A54]'}`}>
+          {completed ? '완료' : '미완료'}
+        </div>
+      },
+    },
+    {
+      dataIndex: "date",
+      title: "비고",
+      headerStyle: {
+        backgroundColor: "rgb(244 247 251)",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+      },
+      render: (text: any, record: any, index) => {
+        const enabled = record.image_path.length > 0
+        return <div
+        className={`text-center underline ${enabled ? 'text-[#1675e0]' : 'text-[#999999]'}`}
+        onClick={()=>{
+          if(enabled) {
+            setStep(1)
+            console.log('index: ', index);
+
+            setSelectedRow(index)
+          }
+        }}
+        >사진보기</div>
+      }
+    }
+  ];
+
+  return (
+    <Modal
+      open={open}
+      onCancel={close}
+      title={
+        <p className="text-2xl font-bold text-center text-[#29293E] py-2 border-b border-white">
+          차량정보
+        </p>
+      }
+      footer={false}
+      closable={false}
+      className={"ad_modal"}
+    >
+      <div className="p-[16px] flex justify-center">
+        {step === 1 && data && data[selectedRow].image_path?.length && (
+          <div
+            className={`!w-[550px] overflow-hidden ${styles.active} ${styles.detail_slide} ${styles.box}`}
+            id="div3d"
+          >
+             <ArrowBack
+                className={"ml-4 mb-4"}
+                handleAction={() => setStep(0)}
+              />
+            <CarouselWrapper className={styles.swiper_wrapper}>
+              <Carousel activeIndex={index} onSelect={handleSelect}>
+                {data[selectedRow].image_path?.map((item, index) => (
+                  <Carousel.Item key={index}>
+                    <Image
+                      src={item}
+                      alt="slides"
+                      width={550}
+                      height={500}
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </CarouselWrapper>
+          </div>
+        )}
+        {step === 0 &&
+        <div>
+          <div className="flex justify-between pb-4 w-[483px]">
+            <DatePicker
+              suffixIcon={<DateIcon/>}
+              popupClassName={"admin-advertisement-date-picker"}
+              placeholder={"시작일 선택"}
+              className={clsx(
+                  styles['date-picker'],
+              )}
+              onChange={(date, dateString) => setDate({end_date, start_date: dateString})}
+              value={start_date ? dayjs(start_date, "YYYY-MM-DD") : undefined}
+            />
+            <DatePicker
+              suffixIcon={<DateIcon/>}
+              popupClassName={"admin-advertisement-date-picker"}
+              placeholder={"종료일 선택"}
+              className={clsx(
+                  styles['date-picker'],
+              )}
+              onChange={(date, dateString) => setDate({start_date, end_date: dateString})}
+              value={end_date ? dayjs(end_date, "YYYY-MM-DD") : undefined}
+            />
+          </div>
+          <DataGrid
+            columns={columns}
+            rows={data||[]}
+            loading={isLoading}
+            additionalTableProps={{scroll:{ y: 500 }}}
+            // showPagination
+            // currentPage={currentPage}
+            // itemsPerPage={per_page}
+            // totalItems={totalRecords}
+            // onChangePage={(page) => setFilters({ ...filters, page })}
+          />
+        </div>
+        }
+      </div>
+    </Modal>
+  );
+};
 
 export default WithRoles;

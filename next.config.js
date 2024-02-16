@@ -1,7 +1,9 @@
+// configure all the allowed host
 const hostnames = [
   "upload.wikimedia.org",
   "dev-icarus.mufin.lol",
   "dev-backend.icarus.mufin.lol",
+  "dev-static.icarus.mufin.lol",
 ];
 /** @type {import('next').NextConfig} */
 const nextConfig = {

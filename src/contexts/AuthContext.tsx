@@ -159,6 +159,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         const currUserData = localStorage.getItem('user');
         if(currUserData)
             setUser(JSON.parse(currUserData))
+        else localDataUpdated()
     },[])
 
     const value = useMemo(() => ({

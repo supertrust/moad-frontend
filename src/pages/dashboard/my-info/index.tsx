@@ -150,7 +150,7 @@ export default function MyInfoScreen() {
 			});
 		}
 
-			// 3 MB
+			// 3 MB image
 		if (profileImage.size > 3 * 1024 * 1024) {
 			return confirm({
 				...options,

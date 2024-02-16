@@ -192,7 +192,7 @@ function AdFullDetails() {
                         <div className='sm:flex sm:flex-row gap-1'>
                             {advertisement?.images.map((value, key) => (
                                 <AdImage
-                                    src={API_BASE_URL + value.image_path}
+                                    src={value.image_path}
                                     key={key}
                                     onView={()=>{setIndex(key);setViewOpen(true);}}
                                 />

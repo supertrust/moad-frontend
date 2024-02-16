@@ -31,7 +31,7 @@ import { queryClient } from "@src/services/ReactQueryClient";
 
 export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) =>
     useQuery<IAdvertisementData, string>({
-        queryKey: ["advertisements", ...Object.values(props)],
+        queryKey: ["advertisements", ...Object.values(props).filter(value => value != undefined && value != null)],
         queryFn: async () =>
             (await axios.get("/api/get-advertisement", { params: props })).data,
         retry: 0, // Disable retries
@@ -125,11 +125,16 @@ export const useGetAdvertisementVehicles = ({
         enabled: !!advertisement_id,
     });
 
-export const useGetAdvertiserVehiclesStats = () =>
+export const useGetAdvertiserVehiclesStats = (props:{notfication?: boolean }={}) =>
     useQuery<IAdvertisementVehicle[], string>({
-        queryKey: ["advertisement-vehicles-stats"],
+        queryKey: ["advertisement-vehicles-stats",...Object.values(props)],
         queryFn: async () =>
-            (await axios.get("/api/get-advertiser-dashboard-stats")).data.data,
+            (await axios.get("/api/get-advertiser-dashboard-stats",{
+                params: {
+                    ...props
+                }
+            })).data.data,
+        retry :0
     });
 
 

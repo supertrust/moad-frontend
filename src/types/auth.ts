@@ -41,7 +41,8 @@ export type AuthContextType = {
     userRole: IUserRole | null;
     loading: boolean,
     isUserLoading : boolean,
-    isRoleLoading : boolean
+    isRoleLoading : boolean,
+    localDataUpdated : VoidFunction
 }
 
 export type VerifyInputPropsType = {

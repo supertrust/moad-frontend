@@ -50,7 +50,7 @@ export default function MyInfoScreen() {
 	const { mutateAsync: updateUserInfo, isLoading } = useUpdateUserInfo();
 	const { mutateAsync: updateUserProfileImage } = useUpdateUserProfileImage();
 	const { setPageTitle , setProfileImage : setTopBarImage } = useIcarusContext();
-	const { user } = useAuth();
+	const { user,localDataUpdated } = useAuth();
 	const email = user?.email;
 	const [showModal, setShowModal] = useState(false);
 	const { confirm } = useConfirmDialog();
@@ -88,6 +88,9 @@ export default function MyInfoScreen() {
 		if(profileImage){
 			setTopBarImage(profileImage)
 			updateUserProfileImage({ profile_img: profileImage } , {
+				onSuccess : () => { localDataUpdated()
+				toast.success('프로필 사진이 업데이트되었습니다.')
+				},
 				onError: () => setTopBarImage(undefined)
 			})
 		}
@@ -100,6 +103,7 @@ export default function MyInfoScreen() {
 			business_license: null,
 		},{
 			onSuccess: () => {
+				localDataUpdated()
 				setShowModal(true);
 			},
 			onError: (error) => toast(error, { type: 'error' }),

@@ -36,8 +36,23 @@ function AuthProvider({ children }: AuthProviderProps) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [token, setToken] = useState<string | null>(null);
 
-    const { data: user, isLoading : isUserLoading } = useGetUser({ isAuthenticated });
+    const { data: userData,refetch:refetchUserData  } = useGetUser({ isAuthenticated : false });
+    const [user,setUser] = useState(null);
     // const { data: userRole, isLoading : isRoleLoading } = useGetUserRole({ isAuthenticated });
+
+    const localDataUpdated = async(currentUser : any={})=>{
+        const res = await refetchUserData()
+        const userDetails={...currentUser,...res?.data}
+        if(userDetails){
+            setUser(userDetails)
+            const localUserInfo = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : {};
+            localStorage.setItem('user',JSON.stringify({
+                ...localUserInfo,
+                ...userDetails
+            }))
+        }
+    }
+
     const checkAuth = useCallback(() => {
         if( (!isCargoRoute(router.pathname) && localStorage.getItem('cargo')) ||
             (isCargoRoute(router.pathname) && !localStorage.getItem('cargo')) ||
@@ -97,8 +112,9 @@ function AuthProvider({ children }: AuthProviderProps) {
                 const data = await _login(props);
                 localStorage.removeItem("cargo")
                 localStorage.removeItem("admin")
-                localStorage.setItem('token', data.token);
+                await localStorage.setItem("token", data.token);
                 checkAuth();
+                await localDataUpdated(data)
             } catch (error) {
                 throw error
             }
@@ -129,6 +145,8 @@ function AuthProvider({ children }: AuthProviderProps) {
         queryClient.clear();
         removeAxiosToken();
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setUser(null)
         setToken(null);
         setIsAuthenticated(false);
     }, []);
@@ -136,6 +154,12 @@ function AuthProvider({ children }: AuthProviderProps) {
     useEffect(() => {
         checkAuth();
     }, []);
+
+    useEffect(()=>{
+        const currUserData = localStorage.getItem('user');
+        if(currUserData)
+            setUser(JSON.parse(currUserData))
+    },[])
 
     const value = useMemo(() => ({
         user: user || null,
@@ -146,14 +170,14 @@ function AuthProvider({ children }: AuthProviderProps) {
         register,
         logout,
         loading,
-        isUserLoading,
-        isRoleLoading: false
+        isUserLoading:!user,
+        isRoleLoading: false,
+        localDataUpdated
     }), [
         isAuthenticated,
         user,
         token,
         loading,
-        isUserLoading,
     ]);
 
     return (

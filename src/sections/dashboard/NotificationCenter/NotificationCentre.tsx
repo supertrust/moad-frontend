@@ -1,4 +1,5 @@
 import { Skeleton } from "@mui/material";
+import { useGetAdvertisements, useGetAdvertiserVehiclesStats } from "@src/apis/advertisement";
 import React from "react";
 import styles from "./style.module.css";
 import Link from "next/link";
@@ -8,13 +9,13 @@ import { clsx } from "clsx";
 import useAuth from "@src/hooks/useAuth";
 
 export default function NotificationCentre() {
-  const {  user } = useAuth();
-  const { data: response,isLoading } = useGetAllNotification({
-    type: 'advertiser',
-    user_id:user?.id
-  });
+    const {
+        data:response,
+        isLoading
+    } = useGetAdvertiserVehiclesStats({notfication : true }) as { data: any, isLoading: boolean}
 
-  const { data: notifications } = response || {} ;
+  const {  notifications } = response || {} ;
+
 
   return (
       <>
@@ -30,8 +31,8 @@ export default function NotificationCentre() {
             view all
           </Link>
         </div>
-        <div className={`${styles.notificationContent} ${response?.data.length ? '' : 'flex items-center justify-center cursor-pointer' } mb-[20px] sm:mb-0`}>
-          <Link href="dashboard/notification" className={`${response?.data.length ? '' : 'pointer-events-none	text-[#999]' }`}>
+        <div className={`${styles.notificationContent} ${notifications?.length ? '' : 'flex items-center justify-center cursor-pointer' } mb-[20px] sm:mb-0`}>
+          <Link href="dashboard/notification" className={`${notifications?.length ? '' : 'pointer-events-none	text-[#999]' }`}>
             <ul className={styles.contentWrap}>
               {isLoading ?
                [1,2,3,4].map((each, index) => index < 4 && (

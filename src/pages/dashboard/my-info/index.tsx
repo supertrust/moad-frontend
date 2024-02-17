@@ -48,7 +48,7 @@ const UpdateUserInfoSchema = Yup.object({
 
 export default function MyInfoScreen() {
 	const { mutateAsync: updateUserInfo, isLoading } = useUpdateUserInfo();
-	const { mutateAsync: updateUserProfileImage } = useUpdateUserProfileImage();
+	const { mutateAsync: updateUserProfileImage,isLoading:isProfilePicUpdating } = useUpdateUserProfileImage();
 	const { setPageTitle , setProfileImage : setTopBarImage } = useIcarusContext();
 	const { user,localDataUpdated } = useAuth();
 	const email = user?.email;
@@ -84,16 +84,6 @@ export default function MyInfoScreen() {
 	}, [watch,user]);
 
 	const onSubmit = handleSubmit(async (values) => {
-
-		if(profileImage){
-			setTopBarImage(profileImage)
-			updateUserProfileImage({ profile_img: profileImage } , {
-				onSuccess : () => { localDataUpdated()
-				toast.success('프로필 사진이 업데이트되었습니다.')
-				},
-				onError: () => setTopBarImage(undefined)
-			})
-		}
 
 		await updateUserInfo({
 			...values,
@@ -163,6 +153,20 @@ export default function MyInfoScreen() {
 		}
 
 		setProfileImage(profileImage);
+
+		if(profileImage){
+			updateUserProfileImage({ profile_img: profileImage }, {
+				onSuccess: () => {
+					setTopBarImage(profileImage)
+					localDataUpdated()
+					toast.success('프로필 사진이 업데이트되었습니다.')
+				},
+				onError: () => {
+					setTopBarImage(undefined)
+					toast.error('프로필 사진 업데이트에 실패했습니다.')
+				}
+			}).then(r  =>{})
+		}
 	};
 
 	useEffect(() => {
@@ -278,6 +282,7 @@ export default function MyInfoScreen() {
 														<span className={styles.point}>*</span>
 													</div>
 													<RHFInput
+														numberFunctionality={false}
 														title='company_phone_number'
 														type='number'
 														name='company_phone_number'
@@ -310,6 +315,7 @@ export default function MyInfoScreen() {
 														<span className={styles.point}>*</span>
 													</div>
 													<RHFInput
+														numberFunctionality={false}
 														type='number'
 														name='employee_phone_number'
 														title='employee_phone_number'
@@ -370,7 +376,7 @@ export default function MyInfoScreen() {
 												</li>
 											</ul>
 											<Button
-												loading={isLoading}
+												loading={isLoading || isProfilePicUpdating}
 												type='submit'
 												className={`${styles.modify_btn} p-0 mx-auto`}
 												onClick={onSubmit}

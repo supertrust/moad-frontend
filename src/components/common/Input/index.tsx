@@ -16,6 +16,7 @@ export interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLIn
     justifyEnd?: boolean,
     showCount?: boolean,
     maxCount?: number,
+    numberFunctionality?: boolean
 }
 
 function Input(props: InputProps, ref: Ref<any>) {

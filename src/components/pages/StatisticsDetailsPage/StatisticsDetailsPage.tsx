@@ -329,9 +329,9 @@ function StatisticsDetailsPage() {
                   <TableCell className={clsx(styles["table-title"])}>
                     운행시간
                   </TableCell>
-                  <TableCell className={clsx(styles["table-title"])}>
-                    달성률
-                  </TableCell>
+                  {/*<TableCell className={clsx(styles["table-title"])}>*/}
+                  {/*  달성률*/}
+                  {/*</TableCell>*/}
                   <TableCell className={clsx(styles["table-title"])}>
                     상태
                   </TableCell>
@@ -395,11 +395,11 @@ function StatisticsDetailsPage() {
                             >
                               {hours}
                             </TableCell>
-                            <TableCell
-                              className={clsx(styles["table-value"], "w-[200px]")}
-                            >
-                              {stats?.achievement_rate}
-                            </TableCell>
+                            {/*<TableCell*/}
+                            {/*  className={clsx(styles["table-value"], "w-[200px]")}*/}
+                            {/*>*/}
+                            {/*  {stats?.achievement_rate}*/}
+                            {/*</TableCell>*/}
                             <TableCell
                               className={clsx(styles["table-value"], "w-[200px]")}
                             >

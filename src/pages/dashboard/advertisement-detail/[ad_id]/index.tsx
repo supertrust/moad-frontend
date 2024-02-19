@@ -296,7 +296,7 @@ function AdvertisementDetailScreen() {
           legacyBehavior
           href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}
         >
-          <a target="_blank" className="hover:no-underline">
+          <a  className="hover:no-underline">
             {text}
           </a>
         </Link>
@@ -317,7 +317,7 @@ function AdvertisementDetailScreen() {
           legacyBehavior
           href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle-location/${record.cargo_vehicle_id}`}
         >
-          <a target="_blank" className="hover:no-underline">
+          <a  className="hover:no-underline">
             {text}
           </a>
         </Link>
@@ -334,7 +334,7 @@ function AdvertisementDetailScreen() {
       },
       render: (text: any, record: any) => (
         <div
-          className="text-[#1675e0]"
+          className="text-[#1675e0] cursor-pointer"
           onClick={() => {
             setVerifyPicturesModalData({
               advertisement_id: record.advertisement_id,
@@ -420,7 +420,7 @@ function AdvertisementDetailScreen() {
                     title: "광고관리",
                   },
                   {
-                    title: "신제품 홍보 출시기념",
+                    title: " 광고 운행차량 상세",
                   },
                 ]}
                 className="text-[#2c324c] mb-[20px] hidden sm:block"

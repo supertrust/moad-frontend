@@ -19,10 +19,10 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
     const [id, setId] = useState<number | null>(null)
     const [open, setOpen] = useState(false);
     const [agreed, setAgreed] = useState(false);
-    const [showAgreement, setShowAgreement ]= useState(false);
-    const [advertisment, setAdvertisement ]= useState<SaveAdvertisementType | undefined>();
+    const [showAgreement, setShowAgreement] = useState(false);
+    const [advertisment, setAdvertisement] = useState<SaveAdvertisementType | undefined>();
 
-    const { mutateAsync: saveAdvertisement,isLoading : isLoadingSaveAdvertisement } = useSaveAdvertisement();
+    const { mutateAsync: saveAdvertisement, isLoading: isLoadingSaveAdvertisement } = useSaveAdvertisement();
 
     const onSubmitForm = async (props: SaveAdvertisementType) => {
         setAdvertisement(props);
@@ -33,7 +33,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
         const data = {
             ...advertisment,
             vehicle_details: JSON.stringify(advertisment?.vehicle_details),
-			operating_area: JSON.stringify(advertisment?.operating_area),
+            operating_area: JSON.stringify(advertisment?.operating_area),
         }
         // @ts-ignore
         advertisment && saveAdvertisement(data, {
@@ -60,34 +60,53 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
         open: () => setOpen(true),
     }), [])
 
+
     return (
-        <Modal
-      open={open}
-      onCancel={() => setOpen(false)}
-      width={agreed ? '367px' :'972px'}
-      footer={false}
-      closable={false}
-      className={'ad_modal'}
-    >
-        <div id={styles.ad_apply_modal} className={`ad-apply-modal ${agreed && styles.aggred}`}>
-            {agreed ? (
-                <SaveAdSuccessPopup onOk={onCancel} />
-            ) : (
-                !showAgreement ? (
-                    <SaveAdForm
-                        onOpenModal={() => setOpen(true)}
-                        onCancel={onCancel}
-                        onSubmitForm={onSubmitForm}
-                        isLoadingSaveAdvertisement={isLoadingSaveAdvertisement}
-                        values={advertisment}
-                    />
-                ) : (
-                    <AdAgreementForm onDisagree={onDisagree} onAgree={onAgree} isLoading={isLoadingSaveAdvertisement}  />
-                )
-            )}
-        </div>
-    </Modal>
-    ) ;
+        <>
+
+            <Modal
+                open={open && !agreed}
+                onCancel={() => setOpen(false)}
+                width={'972px'}
+                footer={false}
+                closable={false}
+                className={'ad_modal'}
+            >
+                <div id={styles.ad_apply_modal} className={`ad-apply-modal ${agreed && styles.aggred}`}>
+                    {
+
+                        !showAgreement ? (
+                            <SaveAdForm
+                                onOpenModal={() => setOpen(true)}
+                                onCancel={onCancel}
+                                onSubmitForm={onSubmitForm}
+                                isLoadingSaveAdvertisement={isLoadingSaveAdvertisement}
+                                values={advertisment}
+                            />
+                        ) : (
+                            <AdAgreementForm onDisagree={onDisagree} onAgree={onAgree}
+                                             isLoading={isLoadingSaveAdvertisement}/>
+
+                        )}
+                </div>
+            </Modal>
+
+            <Modal
+                open={open && agreed}
+                onCancel={() => setOpen(false)}
+                width={'367px'}
+                footer={false}
+                closable={false}
+                className={'ad_modal'}
+            >
+                <div id={styles.ad_apply_modal} className={`ad-apply-modal ${agreed && styles.aggred}`}>
+                    {agreed ? (
+                        <SaveAdSuccessPopup onOk={onCancel}/>) : <></>
+                    }
+                </div>
+            </Modal>
+        </>
+    );
 }
 
 export default forwardRef(AdModel)

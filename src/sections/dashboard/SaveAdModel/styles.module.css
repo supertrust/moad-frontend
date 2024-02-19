@@ -189,7 +189,7 @@ body .div {
 }
 
 #ad_apply_modal .ad_modal_wrap .agrement_content {
-  padding: 38px 30px 40px 30px;
+  padding: 38px 30px 0px 30px;
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step {
@@ -917,6 +917,14 @@ body .div {
 
 .terms_title {
   font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
+  color: #2c324c;
+}
+
+.part_title {
+  font-weight: 700;
   font-size: 16px;
   line-height: 23px;
   text-align: center;
@@ -940,7 +948,7 @@ body .div {
 
 .terms_company {
   padding-top: 35px;
-  margin-bottom: 135px;
+  margin-bottom: 50px;
   font-weight: 500;
   font-size: 16px;
   line-height: 23px;

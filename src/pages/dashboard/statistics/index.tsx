@@ -311,12 +311,12 @@ const vehicleElement = (
 																	<div className={clsx(styles.typeWrap, styles.gridBox)}>
 																		{Types[item.ad_type]}
 																	</div>
-																	<a
+																	<Link
 																	href={`/dashboard/statistics/${item.id}`}
-																	className={`${styles.gridBox} !text-left !justify-start underline text-[#2C324C] hover:!text-[#2C324C]`}>{item.ad_name}</a>
+																	className={`${styles.gridBox} !text-left !justify-start underline text-[#2C324C] hover:!text-[#2C324C]`}>{item.ad_name}</Link>
 																	<div className={`${styles.gridBox} ${styles.only_pc}`}>{`${formatNumberWithCommas(item.number_of_vehicle)}`}대</div>
 																	<div className={styles.gridBox}>
-																		{item.total_distance?.toLocaleString() || "-"} km
+																		{formatNumberWithCommas(item.total_distance,10)|| "-"} km
 																	</div>
 																	<div className={`${styles.gridBox} ${styles.only_pc} `}>
 																		{hours || '-'}

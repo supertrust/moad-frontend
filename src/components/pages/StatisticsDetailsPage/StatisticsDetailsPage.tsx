@@ -68,16 +68,13 @@ function StatisticsDetailsPage() {
   const router = useRouter();
   const { RangePicker } = DatePicker;
   const { id } = router.query;
-  const searchParams = useSearchParams();
   const yearStart = ISOformatDate(new Date(new Date().getFullYear(),0,2))
   const yearEnd = ISOformatDate(new Date(new Date().getFullYear(),11,31))
 
   const [currentPage, setCurrentPage] = useState(1); // Current page number
 
-  const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
   const { setPageTitle } = useIcarusContext();
 
-  const [date, setDate] = useState(new Date());
   const [bufferdDate, setBufferdDate] = useState<DateRange | []>({startDate : new Date(String(yearStart)),endDate: new Date(String(yearEnd))});
   const [selectedDate, setSelectedDate] = useState<DateRange>({startDate : new Date(String(yearStart)),endDate: new Date(String(yearEnd))});
 
@@ -87,7 +84,7 @@ function StatisticsDetailsPage() {
     useGetVehicleAdvertisementStatsDetails({
       to: selectedDate.endDate?ISOformatDate(selectedDate.endDate as Date):'',
       from: selectedDate.startDate?ISOformatDate(selectedDate.startDate as Date) : '',
-      advertisement_id: String(id),
+      advertisement_id: id as string,
       page: currentPage,
     });
 
@@ -385,7 +382,7 @@ function StatisticsDetailsPage() {
                                 "!w-[195px]"
                               )}
                             >
-                              {formatNumberWithCommas(stats?.total_distance)}km
+                              {formatNumberWithCommas(stats?.total_distance,10)}km
                             </TableCell>
                             <TableCell
                               className={clsx(

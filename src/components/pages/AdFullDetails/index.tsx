@@ -230,7 +230,7 @@ function AdFullDetails() {
                 {advertisement?.images.map((value, key) => (
                           <Carousel.Item key={key}>
                             <Image
-                               src={API_BASE_URL + value.image_path}
+                               src={value.image_path}
                               alt="slides"
                               width={668}
                               height={500}

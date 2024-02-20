@@ -95,7 +95,7 @@ const defaultValues: FormDataType = {
   start_date: defaultStartDate.toISOString().split("T")[0],
   vehicle_details: {},
   operating_area: [] ,
-  vehicle_type: 'cargo',
+  vehicle_type: 'loaded',
   content:  '',
   images: '',
   ad_recruitment_period_start_date : "",
@@ -164,6 +164,34 @@ const SaveAdvertisementSchema = Yup.object().shape({
   ),
 });
 
+function filterImageKeys(obj) {
+  var imageKeys : any[] = [];
+  for (var key in obj) {
+    if (key.includes("image_")) {
+      imageKeys.push(obj[key]);
+    }
+  }
+  return imageKeys;
+}
+
+function deleteImageKeys(obj) {
+  for (var key in obj) {
+    if (key.includes("image_")) {
+      delete obj[key];
+    }
+  }
+  return obj
+}
+
+function removeZeroValueKeys(obj) {
+  for (var key in obj) {
+    if (obj[key] === 0) {
+      delete obj[key];
+    }
+  }
+}
+
+
 const SaveAdForm = ({
   onOpenModal,
   onCancel,
@@ -202,7 +230,11 @@ const SaveAdForm = ({
   const [updateImage, setUpdateImage] = useState(false);
 
   const handleFileChange = event =>  setImages([...images, ...event.target.files as File[]])
-  const removeFile = (file: File) => setImages(images.filter(image =>  image !== file))
+  const removeFile = (file: File) => {
+    setImages(images.filter(image =>  image !== file))
+    const currValues = deleteImageKeys(getValues())
+    reset({...currValues})
+  }
   const methods = useForm<FormDataType>({
     //@ts-ignore
     defaultValues: values || defaultValues,
@@ -213,6 +245,7 @@ const SaveAdForm = ({
     handleSubmit,
     control,
     watch,
+      reset,
     formState: { isSubmitting, isSubmitted, errors },
     setValue,
     getValues,
@@ -314,6 +347,13 @@ const SaveAdForm = ({
       images.map((image, index) => {
           imageData[`image_${index+1}`] = image;
       });
+
+      if(!totalPrice)
+      {
+        setErrors('운행할 차량을 하나 이상 선택해야 합니다.')
+        return;
+      }
+
       const values = {
         ...v,
         ...imageData,
@@ -321,6 +361,8 @@ const SaveAdForm = ({
         end_date: endDate,
         status: "applying",
       };
+      removeZeroValueKeys(v.vehicle_details)
+
       if(images.length > 0 && validationOfDisplayingTime().length===0) await onSubmitForm(values);
     },
     (errors) => {
@@ -335,6 +377,16 @@ const SaveAdForm = ({
       }
     }
   );
+
+  useEffect(() => {
+    const currImages = filterImageKeys(getValues());
+    console.log('cuir',currImages)
+    if(images.length === 0 && currImages.length>0)
+    {
+        setUpdateImage(true);
+        setImages([...currImages]);
+    }
+  },[])
 
   useEffect(() => {
     watch(({ ad_period, vehicle_details, start_date, type }) => {

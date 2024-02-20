@@ -1,4 +1,5 @@
 import React, { Ref, forwardRef, useImperativeHandle, useState } from "react";
+import { toast } from "react-toastify";
 import styles from "./styles.module.css";
 import { useSaveAdvertisement } from "@src/apis/advertisement";
 import SaveAdForm from "./SaveAdForm";
@@ -40,7 +41,11 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
             onSuccess: () => {
                 refetchAds();
                 setAgreed(true);
-            }
+            },
+            onError:(error)=>{
+                toast.error("뭔가 잘못됐어!")
+
+        }
         });
     }
 

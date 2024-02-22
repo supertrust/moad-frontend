@@ -69,7 +69,12 @@ const OperationStatus = {
   service: "점검중",
   suspended: "강제종료",
   running: "운행중",
+  end : "종료됨"
 };
+
+const DisabledButton = ({children})=>{
+  return  <div className={'flex justify-center'}><button disabled={true} className={'text-[black] !opacity-80'}>{children}</button></div>
+}
 
 function AdvertisementDetailScreen() {
   const router = useRouter();
@@ -291,16 +296,14 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-        // record.show_links ?
-        <Link
-          legacyBehavior
-          href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}
-        >
-          <a  className="hover:no-underline">
-            {text}
-          </a>
-        </Link>
-        // :"아직 할당되지 않았습니다."
+          record?.vehicle_status==="end" ? <DisabledButton>{text}</DisabledButton> :  <Link
+           legacyBehavior
+           href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}
+       >
+         <a  className="hover:no-underline">
+           {text}
+         </a>
+       </Link>
       ),
     },
     {
@@ -312,7 +315,7 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-        // record.show_links ?
+          record?.vehicle_status==="end" ? <DisabledButton>{text}</DisabledButton> :
         <Link
           legacyBehavior
           href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle-location/${record.cargo_vehicle_id}`}
@@ -333,6 +336,7 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
+          record?.vehicle_status==="end" ? <DisabledButton>{text}</DisabledButton> :
         <div
           className="text-[#1675e0] cursor-pointer"
           onClick={() => {

@@ -105,7 +105,7 @@ function StatisticsDetailsPage() {
     { label: "시작", value: "apply" },
     { label: "거부됨", value: "rejected" },
     { label: "시작", value: "start" },
-    { label: "끝", value: "end" },
+    { label: "종료됨", value: "end" },
   ];
   const handleMonthChange = (type,date) => {
     const {startDate,endDate} = getNextMonthDates(type,date)

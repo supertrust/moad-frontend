@@ -15,7 +15,7 @@ import styles from "./styles.module.scss";
 
 function InquireDetailsPage() {
     const id = useRouter().query.id as string;
-    const { data, isLoading } = useGetInquiryDetail({ id });
+    const { data, isFetching :isLoading } = useGetInquiryDetail({ id });
     const { mutateAsync: deleteInquiry } = useDeleteInquiry();
     const { user } = useAuth();
     const [deleteModal, setDeleteModal] = useState<{

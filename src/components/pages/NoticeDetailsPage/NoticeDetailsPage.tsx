@@ -15,7 +15,7 @@ import styles from "./styles.module.scss";
 
 function NoticeDetailsPage() {
     const id = useRouter().query.id as string;
-    const { data, isLoading } = useGetNoticeDetail({ id });
+    const { data, isFetching:isLoading } = useGetNoticeDetail({ id });
     const {setPageTitle } = useIcarusContext();
     const router = useRouter();
 

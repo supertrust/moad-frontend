@@ -50,7 +50,10 @@ axios.interceptors.response.use(
             if (isAuthenticateRoute(window.location.pathname)) {
                 // Redirect to the login page
                 localStorage.removeItem('token');
-                window.location.href = '/login';
+                localStorage.removeItem('user');
+                if(window.location.pathname.includes('/login')) return;
+                const returnUrl = window.location.href.replace(window.location.origin, '');
+                router.push(`/login?returnUrl=${returnUrl}`);
             }
         } else {
             return handleError(err);

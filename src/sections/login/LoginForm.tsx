@@ -28,6 +28,7 @@ const LoginSchema = Yup.object({
 const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 	const { login } = useAuth();
 	const router = useRouter();
+	const {returnUrl} = router.query;
 	const [remeberId, setRemeberId] = useState<boolean>(false);
 	const [error, setFormError] = useState<boolean>(false);
 	const [email, setEmail] = useState('');
@@ -64,7 +65,7 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 			await login(props);
 			setFormError(false);
 			toast('성공적으로 로그인했습니다', { type: 'success' });
-			router.push('/dashboard');
+			await router.replace(returnUrl as string || "/dashboard")
 		} catch (error) {
 			setFormError(true);
 			toast('로그인에 실패했습니다. 자격 증명을 확인하십시오.', {

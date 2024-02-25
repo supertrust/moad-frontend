@@ -11,26 +11,27 @@ type AuthGuardProps = {
 };
 
 export default function AuthGuard({ children }: AuthGuardProps) {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading, isUserLoading } = useAuth();
 
   const { pathname, push } = useRouter();
 
   const [requestedLocation, setRequestedLocation] = useState<string | null>(null);
 
   useEffect(() => {
+    if(isUserLoading)return;
     if (requestedLocation && pathname !== requestedLocation) {
       push(requestedLocation);
     }
     if (isAuthenticated) {
       setRequestedLocation(null);
     }
-  }, [isAuthenticated, pathname, push, requestedLocation]);
+  }, [isAuthenticated, pathname, push, requestedLocation, isUserLoading]);
 
   if (loading) {
     return <LoadingPage />;
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !isUserLoading) {
     if (pathname !== requestedLocation) {
       setRequestedLocation(pathname);
     }

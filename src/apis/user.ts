@@ -6,7 +6,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 export const useGetUser = ({ isAuthenticated }: GetUserPropsType) => useQuery<IUser>({
     queryKey: ["user"],
     queryFn: async () => (await axios.get("/api/get-user-details")).data.data,
-    enabled: isAuthenticated
+    enabled: isAuthenticated,
+    retry : 0
 })
 
 export const useGetUserRole = ({ isAuthenticated }: GetUserRolePropsType) => useQuery<IUserRole>({

@@ -31,26 +31,10 @@ const notoSansKR = Noto_Sans_KR({
 
 const _App = ({ Component, pageProps }: AppProps) => {
 	const router = useRouter();
-	const { asPath } = router;
+	const { pathname } = router;
 	setRouter(router)
 
-	if(asPath.includes("/admin") && !asPath.includes("/admin/login"))
-		return 	<main className={notoSansKR.className}>
-			<AdminAdvertisementLayout>
-				<Component {...pageProps} />
-			</AdminAdvertisementLayout>
-		</main>
-
-	if (asPath.includes('/cargo/dashboard')) {
-		return (
-			<main className={notoSansKR.className}>
-					<CargoLayout>
-					<Component {...pageProps} />
-				</CargoLayout>
-			</main>
-		);
-	}
-	if (asPath.includes('/dashboard')) {
+	if (pathname.includes('/dashboard')) {
 		return (
 			<main className={notoSansKR.className}>
 				<Layout>

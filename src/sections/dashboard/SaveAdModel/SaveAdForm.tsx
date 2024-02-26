@@ -25,7 +25,7 @@ import { addWeeks } from '@src/helpers'
 import DatePicker from "react-datepicker";
 import { ConfirmPropsType } from "@src/contexts/ConfirmDialogContext";
 import IconPlus from '@images/admin-ad-details/ic-add-plus.png'
-import AdImage from "@src/components/pages/Admin/AdminAdvertisementDetailsPage/components/Image";
+import { AdImage } from "@src/components/common";
 import ImagePlaceholder from '@images/admin-ad-details/ic-image-placeholder.png'
 import adStyles from  '@src/sections/dashboard/AdList/style.module.css'
 import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";

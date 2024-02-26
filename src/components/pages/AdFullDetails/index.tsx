@@ -1,13 +1,11 @@
 import Loader from '@src/components/Loader';
-import { DataRow } from '@src/components/common';
+import { DataRow,AdImage } from '@src/components/common';
 import HeaderLine from '@src/components/common/HeaderLine';
 import { useIcarusContext } from '@src/hooks/useIcarusContext';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import style from './style.module';
 import { useGetAdvertisementDetail } from '@src/apis/advertisement';
-import AdImage from '../Admin/AdminAdvertisementDetailsPage/components/Image';
-import { API_BASE_URL } from '@src/config';
 import Modal from "@mui/material/Modal";
 import { Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";

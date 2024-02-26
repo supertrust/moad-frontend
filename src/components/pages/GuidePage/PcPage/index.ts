@@ -1,0 +1,1 @@
+export { default as PcPage } from './PcPage';

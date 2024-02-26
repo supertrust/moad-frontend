@@ -1,3 +1,3 @@
-import { CargPage } from "@src/components/pages";
+import { PcPage } from "@src/components/pages";
 
-export default CargPage;
+export default PcPage;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThreeDots } from 'react-loader-spinner';
+import { ThreeDots } from "react-loader-spinner";
 import styles from './style.module.css';
 import { ButtonProps } from './types';
 

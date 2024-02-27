@@ -11,9 +11,10 @@ interface AdImageProps {
     edit?: boolean
     onRemove?: VoidFunction
     onView?: VoidFunction
+    onClick?: VoidFunction
 }
 
-function AdImage({ className, src, alt, onRemove, edit, onView} : AdImageProps) {
+function AdImage({ className, src, alt, onRemove, edit, onView,onClick} : AdImageProps) {
     return (
         <div className={clsx("relative h-[156px] w-[198.4px]", className)}>
             <Image
@@ -23,6 +24,7 @@ function AdImage({ className, src, alt, onRemove, edit, onView} : AdImageProps) 
                 onClick={edit ? (onRemove && onRemove): (onView && onView)}
             />
             <Image
+                onClick={onClick && onClick}
                 src={src}
                 alt={alt || ''}
                 className='h-full w-full'

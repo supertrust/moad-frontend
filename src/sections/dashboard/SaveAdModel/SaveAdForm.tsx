@@ -1,3 +1,4 @@
+import { getImagePreviewUrl } from "@src/utils/formatter";
 import React, { useEffect, useMemo, useState, useRef, forwardRef } from "react";
 import {
   Controller,
@@ -11,6 +12,7 @@ import {
 import ArrowBack from "@src/components/icons/ArrowBack";
 import { ThreeDots } from "react-loader-spinner";
 import { useGetOperatingAreas, useGetVehicles } from "@src/apis/advertisement";
+import { toast } from "react-toastify";
 import styles from "./styles.module.css";
 import { Form, Modal, Table } from "react-bootstrap";
 import { SaveAdvertisementType } from "@src/types/advertisement";
@@ -126,6 +128,7 @@ const adTypes = [
   },
 ];
 
+
 const SaveAdvertisementSchema = Yup.object().shape({
   type: Yup.string().required("고유형을 선택해주세요."),
   ad_name: Yup.string().required("광고이름을 입력해주세요.").test(
@@ -227,11 +230,43 @@ const SaveAdForm = ({
   const [allError, setErrors] = useState<string | undefined>("");
   const imageRef = useRef<HTMLInputElement>();
   const [images, setImages] = useState<File[]>([]);
+  const [prevImages, setPrevImages] = useState<string[]>([]);
+
   const [updateImage, setUpdateImage] = useState(false);
 
-  const handleFileChange = event =>  setImages([...images, ...event.target.files as File[]])
-  const removeFile = (file: File) => {
+  const handleFileChange = event =>  {
+    const currentImage = [...images, ...event.target.files as File[]]
+    const previewCurrImage = [...prevImages, ...[...event.target.files as File[]].map(file=>URL.createObjectURL(file))]
+    const options: ConfirmPropsType = {
+      ref: errorModal,
+      title: '확인사항',
+      size: 'sm',
+      cancelText: (<span className="text-[#FFFFFF]">확인</span>),
+      disableConfirmBtn: true,
+      cancelButtonProps: {
+        className: 'border-primary bg-primary !text-[#FFFFFF]',
+      },
+      footerClassName: 'flex flex-row justify-end',
+    };
+
+    setImages(currentImage.slice(0,5))
+    setPrevImages(previewCurrImage.slice(0,5))
+
+    if(currentImage.length > 5){
+      confirm({
+        ...options,
+        description: (
+            <div className='mt-3 text-center'>
+              5개까지 등록할 수 있습니다.
+            </div>
+        ),
+      });
+
+    }
+  }
+  const removeFile = (file: File,key) => {
     setImages(images.filter(image =>  image !== file))
+    setPrevImages(prevImages.filter((image, index) => index !== key))
     const currValues = deleteImageKeys(getValues())
     reset({...currValues})
   }
@@ -294,18 +329,6 @@ const SaveAdForm = ({
 		};
 
     let hasError = false;
-    if(files.length > 5){
-      hasError = true;
-      confirm({
-        ...options,
-        description: (
-          <div className='mt-3 text-center'>
-            5개까지 등록할 수 있습니다.
-          </div>
-        ),
-      });
-      return hasError;
-    }
     for (let index = 0; index < files.length; index++) {
       const file  = files[index];
       if (!file) return;
@@ -380,11 +403,11 @@ const SaveAdForm = ({
 
   useEffect(() => {
     const currImages = filterImageKeys(getValues());
-    console.log('cuir',currImages)
     if(images.length === 0 && currImages.length>0)
     {
         setUpdateImage(true);
         setImages([...currImages]);
+        setPrevImages([...currImages.map(file=>URL.createObjectURL(file))])
     }
   },[])
 
@@ -847,23 +870,20 @@ const SaveAdForm = ({
 
 
                                 <div className={'flex gap-2 flex-wrap !mt-[12px]'}>
-                                    {images.map((file, key)=>{
+                                    {prevImages.map((file,key )=>{
                                       return(
-                                        <div className={styles['image_section']} key={key}>
-
-                                          {file.name}
-                                          <span onClick={() => removeFile(file)}>
-                                            <Image
-                                            src={'/images/ic-close.png'}
-                                            width={20}
-                                            height={20}
-                                            alt="image"
-                                          /></span>
-                                        </div>
+                                          <AdImage
+                                              key={key}
+                                              src={file || ""}
+                                              className={'!w-[164px] !h-[126px] !lg:w-[176px] !lg:h-[138px] cursor-pointer'}
+                                              edit={true}
+                                              onRemove={() => removeFile(images[key],key)}
+                                              onClick={()=>window.open(file || "", '_blank')}
+                                          />
                                     )})}
 
                                     {updateImage && (images.length < 5) &&
-                                        <div className={`h-auto w-[198.4px] border border-admin-stroke p-1 ${styles['image_section']}`}>
+                                        <div className={`cursor-pointer !w-[164px] !h-[126px] h-[138px] relative w-[176x] border border-admin-stroke  ${styles['image_section']} p-0`}>
                                             <div
                                                 className={clsx(
                                                     "!border-dashed border cursor-pointer",
@@ -872,15 +892,20 @@ const SaveAdForm = ({
                                                 //@ts-ignore
                                                 onClick={()=> imageRef.current.click()}
                                             >
-                                                Choose file
+                                              <Image src={ImagePlaceholder} alt="" />
+                                              <span className="text-admin-placeholder text-lg font-medium">
+                                                            이미지 추가
+                                                        </span>
+                                              <Image src={IconPlus} alt="" />
                                             </div>
-                                            <span onClick={() => setUpdateImage(false)}>
                                             <Image
+                                                onClick={() => setUpdateImage(false)}
+                                                className='absolute right-2 top-2 cursor-pointer'
                                             src={'/images/ic-close.png'}
                                             width={20}
                                             height={20}
                                             alt="image"
-                                          /></span>
+                                          />
                                         </div>
                                     }
                                 </div>

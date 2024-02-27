@@ -41,3 +41,9 @@ export const parseHtml = (html: string) => {
 
     return parse(html)
 }
+
+export const getImagePreviewUrl = (file?: File | null) => {
+    if (!file)
+        return file;
+    return URL.createObjectURL(file)
+}

@@ -131,7 +131,7 @@ function Header(props: HeaderProps) {
             <div
                 id={showMobileNav ? "side_mb" : ""}
                 className={`side-mb ${showMobileNav ? 'block' : 'hidden'}`}>
-                {showMobileNav && <MobileNav/> }
+                {showMobileNav && <MobileNav toggle={toggle}/> }
             </div>
         </div>
     );

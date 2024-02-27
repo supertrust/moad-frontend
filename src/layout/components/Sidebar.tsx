@@ -1,5 +1,6 @@
 import { Skeleton } from "@mui/material";
 import useAuth from "@src/hooks/useAuth";
+import { PageRouting } from "@src/utils/values";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -82,41 +83,7 @@ function Sidebar({ msg }: SidebarProps) {
               })
           }
 
-          {user?.role === "Cargo" && ( <li className={
-              tab === "cargo dashboard" ? "menu-list active" : "menu-list"
-            }
-          >
-            <Link
-              href={"/dashboard/cargo"}
-              className="link"
-              onClick={() => {
-                barStatus("cargo dashboard");
-                msg("cargo dashboard");
-              }}
-            >
-              <i className="icon home"></i>
-              <div className="name">Cargo</div>
-            </Link>
-            {/* <ul className="sub-wrap"></ul> */}
-          </li>
-          )}
-          {user?.role === "Admin" && (
-            <li
-              className={tab === "Inquiry" ? "menu-list active" : "menu-list "}
-            >
-              <Link
-                href={"/dashboard/customer-service/inquire"}
-                className="link"
-                onClick={() => {
-                  barStatus("Inquiry");
-                  msg("Inquiry");
-                }}
-              >
-                <i className="icon center"></i>
-                1:1문의
-              </Link>
-            </li>
-          )}
+
           {user?.role === "Advertiser" && (
             <>
               <li
@@ -125,7 +92,7 @@ function Sidebar({ msg }: SidebarProps) {
                 }
               >
                 <Link
-                  href={"/dashboard"}
+                  href={PageRouting.dashboard}
                   className="link"
                   onClick={() => {
                     barStatus("Ad Management");
@@ -143,7 +110,7 @@ function Sidebar({ msg }: SidebarProps) {
                 }
               >
                 <Link
-                  href={"/dashboard/statistics"}
+                  href={PageRouting.statistics}
                   className="link"
                   onClick={() => {
                     barStatus("Statistics");
@@ -159,7 +126,7 @@ function Sidebar({ msg }: SidebarProps) {
                 className={tab === "My Page" ? "menu-list active" : "menu-list"}
               >
                 <Link
-                  href={"/dashboard/my-info"}
+                  href={PageRouting.myInfo}
                   className="link"
                   onClick={() => {
                     barStatus("My Page");
@@ -184,7 +151,7 @@ function Sidebar({ msg }: SidebarProps) {
               >
                 <Link
                   className="link"
-                  href={"/dashboard/customer-service/notice"}
+                  href={PageRouting.notice}
                   onClick={() => {
                     barStatus("Announcement");
                     msg("공지사항");
@@ -196,7 +163,7 @@ function Sidebar({ msg }: SidebarProps) {
                 <ul className="sub-wrap ">
                   <li className="sub-list notice ">
                     <Link
-                      href={"/dashboard/customer-service/notice"}
+                      href={PageRouting.notice}
                       className={
                         tab === "Announcement" ? "sub-link active" : "sub-link "
                       }
@@ -210,7 +177,7 @@ function Sidebar({ msg }: SidebarProps) {
                   </li>
                   <li className="sub-list guide ">
                     <Link
-                      href={"/dashboard/customer-service/guide"}
+                      href={PageRouting.guide}
                       className={
                         tab === "Guide" ? "sub-link active" : "sub-link "
                       }
@@ -224,7 +191,7 @@ function Sidebar({ msg }: SidebarProps) {
                   </li>
                   <li className="sub-list faq ">
                     <Link
-                      href={"/dashboard/customer-service/faq"}
+                      href={PageRouting.faq}
                       className={
                         tab === "FAQ" ? "sub-link active" : "sub-link "
                       }
@@ -238,7 +205,7 @@ function Sidebar({ msg }: SidebarProps) {
                   </li>
                   <li className="sub-list inquire active">
                     <Link
-                      href={"/dashboard/customer-service/inquire"}
+                      href={PageRouting.inquire}
                       className={
                         tab === "Inquiry" ? "sub-link active" : "sub-link "
                       }
@@ -252,7 +219,7 @@ function Sidebar({ msg }: SidebarProps) {
                   </li>
                   <li className="sub-list terms ">
                     <Link
-                      href={"/dashboard/customer-service/terms"}
+                      href={PageRouting.terms}
                       className={
                         tab === "Policies and Terms"
                           ? "sub-link active"

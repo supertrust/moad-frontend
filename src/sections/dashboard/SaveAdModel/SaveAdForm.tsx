@@ -1,3 +1,5 @@
+import AdAgreementForm from "@src/sections/dashboard/SaveAdModel/AdAgreementForm";
+import SaveAdSuccessPopup from "@src/sections/dashboard/SaveAdModel/SaveAdSuccessPopup";
 import { getImagePreviewUrl } from "@src/utils/formatter";
 import React, { useEffect, useMemo, useState, useRef, forwardRef } from "react";
 import {
@@ -60,6 +62,9 @@ type FormDataType = {
   vehicle_details: {
     [key: number]: number;
   };
+  vehicle_min: {
+    [key: number]: number;
+  };
   operating_area: number[];
   ad_recruitment_period_start_date : string
   ad_recruitment_period_end_date : string;
@@ -96,6 +101,7 @@ const defaultValues: FormDataType = {
   type: "fixed_ad",
   start_date: defaultStartDate.toISOString().split("T")[0],
   vehicle_details: {},
+  vehicle_min : {},
   operating_area: [] ,
   vehicle_type: 'loaded',
   content:  '',
@@ -194,19 +200,27 @@ function removeZeroValueKeys(obj) {
   }
 }
 
+function removeValueNotExistInOtherObject(obj,otherObj) {
+  for (var key in obj) {
+    if (otherObj[key]===undefined) {
+      delete obj[key];
+    }
+  }
+}
+
 
 const SaveAdForm = ({
   onOpenModal,
   onCancel,
   onSubmitForm,
   isLoadingSaveAdvertisement,
-  values,
+    done,
 }: {
   onOpenModal: VoidFunction
   onCancel: VoidFunction;
   onSubmitForm: (props: SaveAdvertisementType) => Promise<void>;
   isLoadingSaveAdvertisement: boolean;
-  values?: SaveAdvertisementType;
+  done : boolean
 }) => {
 
 
@@ -216,13 +230,17 @@ const SaveAdForm = ({
   const [isOpen, openPeriodList] = useState(false);
   const [istermschecked, setIstermschecked] = useState(false);
   const [isVehicleTypeOpen, openVehicleType] = useState(false);
+  const [isAggrementFormOpen,setIsAggrementFormOpen] = useState(false)
   const active_model = window.innerWidth > 767 ? false : true;
   const [isActive, setActive] = useState(active_model);
   const [period, setPeriod] = useState(defaultValues.ad_period);
   const [startDate, setStartDate] = useState(defaultValues.start_date);
   const [vehicleDetails, setVehicleDetails] = useState(
-    values?.vehicle_details || defaultValues.vehicle_details
+    defaultValues.vehicle_details
   );
+  // const [vehicleMinDetails, setVehicleMinDetails] = useState(
+  //     defaultValues.vehicle_min
+  // );
   const [isAreaVisible, setIsAreaVisible] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [detailModal, setDetailModal] = useState(1);
@@ -272,7 +290,7 @@ const SaveAdForm = ({
   }
   const methods = useForm<FormDataType>({
     //@ts-ignore
-    defaultValues: values || defaultValues,
+    defaultValues: {...defaultValues},
     //@ts-ignore
     resolver: yupResolver(SaveAdvertisementSchema),
   });
@@ -309,6 +327,30 @@ const SaveAdForm = ({
       .split("T")[0];
     return sixMonthsFromNow;
   }, [startDate, period]);
+
+  // useEffect(()=>{
+  //
+  //   return ()=>{
+  //     if(done)
+  //     {
+  //       reset({
+  //         ...defaultValues,
+  //         // vehicle_details : {},
+  //         // vehicle_min: {},
+  //         operating_area:[]
+  //
+  //       })
+  //       // setValue('vehicle_min',{})
+  //       // setValue('vehicle_details',{})
+  //       setImages([])
+  //       setPrevImages([])
+  //       setVehicleDetails({})
+  //       setIstermschecked(false)
+  //       setUpdateImage(false)
+  //
+  //     }
+  //   }
+  // },[done])
 
 
   const {confirm} = useConfirmDialog();
@@ -364,6 +406,20 @@ const SaveAdForm = ({
     return hasError ;
   };
 
+  const minimumNumberVehicleValidation  = ()=>{
+    let res = true;
+    Object.keys(watch('vehicle_details')).forEach(function(key) {
+      // console.log(key + ': ' + myObject[key]);
+       const ve = watch('vehicle_details')[key]
+      const minV = watch('vehicle_min')[key]
+
+      if(minV===undefined || minV>ve || (minV==0 && ve))
+        res=false;
+    });
+
+    return res;
+  }
+
   const onSubmit = handleSubmit(
     async (v) => {
       const imageData = {};
@@ -376,6 +432,11 @@ const SaveAdForm = ({
         setErrors('운행할 차량을 하나 이상 선택해야 합니다.')
         return;
       }
+      if (!minimumNumberVehicleValidation())
+      {
+        setErrors('필요한 최소 차량은 차량 수보다 적어야 합니다.')
+        return;
+      }
 
       const values = {
         ...v,
@@ -385,8 +446,14 @@ const SaveAdForm = ({
         status: "applying",
       };
       removeZeroValueKeys(v.vehicle_details)
+      removeValueNotExistInOtherObject(v.vehicle_min,v.vehicle_details)
 
-      if(images.length > 0 && validationOfDisplayingTime().length===0) await onSubmitForm(values);
+      console.log('hasv',values)
+
+      if(images.length > 0 && validationOfDisplayingTime().length===0) {
+        setErrors('')
+        await onSubmitForm(values)
+      };
     },
     (errors) => {
       const error = Object.values(errors)[0].message;
@@ -553,8 +620,29 @@ const SaveAdForm = ({
 
   }
 
+  // console.log('hash', watch('vehicle_details')[1],watch('vehicle_min')[1])
+
+  const agreemenetFormClose = ()=>setIsAggrementFormOpen(false)
+
+  const agreementOnClick = (agree : boolean,outside=false)=>{
+    if(outside)
+    {
+      if(agree)
+        toast.error('계약서를 읽어주세요')
+      else setIstermschecked(false)
+      return ;
+    }
+    agreemenetFormClose();
+    setIstermschecked(true)
+
+  }
+
   return (
     <FormProvider methods={methods}>
+      {/*<SaveAdSuccessPopup open={done} onCancel={onCancel}/>*/}
+      <AdAgreementForm open={isAggrementFormOpen} onClose={agreemenetFormClose} onAgree={()=>agreementOnClick(true)}
+                      />
+
       <div className={styles.ad_modal_wrap} id={styles.ad_modal_wrap}>
         <div className={`only-mb`}>
           <div className={`${styles["mobile-top-header"]}`}>
@@ -1166,11 +1254,14 @@ const SaveAdForm = ({
                     <td width={"18%"} className="!font-medium !p-[7px]">
                       차량
                     </td>
-                    <td width={"21%"} className="!font-medium !p-[7px]">
+                    <td width={"15%"} className="!font-medium !p-[7px]">
                       차량대수
                     </td>
+                    <td width={"15%"} className="!font-medium !p-[7px]">
+                      최소필요 차량수
+                    </td>
                     <td
-                      width={"34%"}
+                      width={"25%"}
                       className="!font-medium !p-[7px] hidden sm:block sm:w-full"
                     >
                       규격
@@ -1245,6 +1336,48 @@ const SaveAdForm = ({
                                     e.preventDefault();
                                   }
                                 }}
+                              />
+                              <span className={styles.text}>대</span>
+                            </td>
+                            <td
+                                className={`${styles.vehicles_num_wrap} ${styles.cell} !p-[7px]`}
+                            >
+                              <input
+                                  type="number"
+                                  name="vehicles_1"
+                                  // className={styles.input_num}
+                                  className={
+                                    `!w-[78px] h-[20px] border  text-gray-500 text-right mr-[3px] text-[12px] p-[3px]
+                                  ${(watch('vehicle_details')[item.id]>=watch('vehicle_min')[item.id] || watch('vehicle_details')[item.id]==undefined) ? '!border-[#ebedf4]' : '!border-[#ff0000]'}
+                                      ${(watch('vehicle_details')[item.id]>=watch('vehicle_min')[item.id] && watch('vehicle_details')[item.id]>0
+                                    && watch('vehicle_min')[item.id]==0) ?  '!border-[#ff0000]' : '!border-[#ebedf4]'}
+                                  `
+                                  }
+                                  value={watch('vehicle_min')[item.id]}
+                                  onChange={(e) =>
+                                  {
+                                    const newValue = Number(e.target.value);
+
+                                      const prevValue = watch('vehicle_min') || {}
+                                      prevValue[item.id] = newValue
+                                      setValue('vehicle_min',prevValue)
+                                  }
+                                  }
+                                  id={item.vehicle_type}
+                                  placeholder="직접입력"
+                                  min={0}
+                                  onKeyDown={(e) => {
+                                    // Allow only numeric characters and prevent negative sign
+                                    if (e.key === '-' || e.key === '.' ) {
+                                      e.preventDefault();
+                                    }
+                                  }}
+                                  onPaste={(e) => {
+                                    // const pastedValue = e.clipboardData.getData('text/plain');
+                                    // if (parseInt(pastedValue, 10) > 10000) {
+                                    //   e.preventDefault();
+                                    // }
+                                  }}
                               />
                               <span className={styles.text}>대</span>
                             </td>
@@ -1383,16 +1516,16 @@ const SaveAdForm = ({
               </div>
             </div>
             <div className="flex	w-auto gap-[8px] my-[30px]">
-              <div onClick={()=>setIstermschecked(!istermschecked)} className="cursor-pointer">
+              <div onClick={()=>agreementOnClick(!istermschecked,true)} className="cursor-pointer">
                 <Image
                 src={istermschecked ? '/images/ic-checked.png' : '/images/ic-check.png'}
                 width={20}
                 height={20}
                 alt="ic-check"
               /></div>
-              <div><span className="text-[#2F48D1]">(필수)</span> 이카루스 광고 신청 약관 계약서  <a href={'/dashboard/advertising-contract'} target="_blank">
-              <span className="underline ml-[16px] cursor-pointer">보기</span>
-              </a></div>
+              <div><span className="text-[#2F48D1]">(필수)</span> 이카루스 광고 신청 약관 계약서  <>
+              <span onClick={()=>setIsAggrementFormOpen(true)} className="underline ml-[16px] cursor-pointer text-[#2F48D1]">보기</span>
+              </></div>
             </div>
             <div className={styles.price_section}>
               <div className="border border-gray-300 rounded p-0 bg-white">

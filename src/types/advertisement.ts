@@ -39,6 +39,9 @@ export type SaveAdvertisementType = {
     vehicle_details: {
         [key: number]: number
     } | string,
+    vehicle_min: {
+        [key: number]: number
+    } | string,
     operating_area: number[] | string;
     total_cost: number;
     status: string;

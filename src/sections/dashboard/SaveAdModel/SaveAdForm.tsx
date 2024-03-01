@@ -209,6 +209,22 @@ function removeValueNotExistInOtherObject(obj,otherObj) {
 }
 
 
+const minimumNumberVehicleValidation  = (watch)=>{
+  let res = true;
+  Object.keys(watch['vehicle_details']).forEach(function(key) {
+    // console.log(key + ': ' + myObject[key]);
+    const ve = watch['vehicle_details'][key]
+    const minV = watch['vehicle_min'][key]
+
+    if(minV===undefined || minV>ve || (minV==0 && ve))
+      res=false;
+  });
+
+  return res;
+}
+
+
+
 const SaveAdForm = ({
   onOpenModal,
   onCancel,
@@ -238,9 +254,6 @@ const SaveAdForm = ({
   const [vehicleDetails, setVehicleDetails] = useState(
     defaultValues.vehicle_details
   );
-  // const [vehicleMinDetails, setVehicleMinDetails] = useState(
-  //     defaultValues.vehicle_min
-  // );
   const [isAreaVisible, setIsAreaVisible] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [detailModal, setDetailModal] = useState(1);
@@ -304,8 +317,6 @@ const SaveAdForm = ({
     getValues,
   } = methods;
 
-  // Object.keys(errors).length && Object.values(errors)[0].ref;
-
   const totalPrice = useMemo(() => {
     let price = 0;
     Object.entries(vehicleDetails).map(([key, value]) => {
@@ -328,29 +339,27 @@ const SaveAdForm = ({
     return sixMonthsFromNow;
   }, [startDate, period]);
 
-  // useEffect(()=>{
-  //
-  //   return ()=>{
-  //     if(done)
-  //     {
-  //       reset({
-  //         ...defaultValues,
-  //         // vehicle_details : {},
-  //         // vehicle_min: {},
-  //         operating_area:[]
-  //
-  //       })
-  //       // setValue('vehicle_min',{})
-  //       // setValue('vehicle_details',{})
-  //       setImages([])
-  //       setPrevImages([])
-  //       setVehicleDetails({})
-  //       setIstermschecked(false)
-  //       setUpdateImage(false)
-  //
-  //     }
-  //   }
-  // },[done])
+  useEffect(()=>{
+      if(done)
+       dataReset()
+  },[done])
+
+  const dataReset = ()=>{
+      reset({
+          ...defaultValues,
+          vehicle_details : {},
+          vehicle_min: {},
+          operating_area:[]
+
+      })
+      setValue('vehicle_min',{})
+      setValue('vehicle_details',{})
+      setImages([])
+      setPrevImages([])
+      setVehicleDetails({})
+      setIstermschecked(false)
+      setUpdateImage(false)
+  }
 
 
   const {confirm} = useConfirmDialog();
@@ -406,20 +415,6 @@ const SaveAdForm = ({
     return hasError ;
   };
 
-  const minimumNumberVehicleValidation  = ()=>{
-    let res = true;
-    Object.keys(watch('vehicle_details')).forEach(function(key) {
-      // console.log(key + ': ' + myObject[key]);
-       const ve = watch('vehicle_details')[key]
-      const minV = watch('vehicle_min')[key]
-
-      if(minV===undefined || minV>ve || (minV==0 && ve))
-        res=false;
-    });
-
-    return res;
-  }
-
   const onSubmit = handleSubmit(
     async (v) => {
       const imageData = {};
@@ -432,7 +427,7 @@ const SaveAdForm = ({
         setErrors('운행할 차량을 하나 이상 선택해야 합니다.')
         return;
       }
-      if (!minimumNumberVehicleValidation())
+      if (!minimumNumberVehicleValidation({...watch()}))
       {
         setErrors('필요한 최소 차량은 차량 수보다 적어야 합니다.')
         return;
@@ -504,13 +499,14 @@ const SaveAdForm = ({
 
 
   function CustomInput(props) {
+
     return (
       <div className={`input-group ${styles.datepicker}`}>
         <input
           type="text"
           className={`form-control h-[36px] ${styles.input_date} !text-[14px]`}
           onClick={props.onClick}
-          value={startDate}
+          value={watch()[props.name]}
           onChange={props.onChange}
           readOnly
         />
@@ -532,65 +528,8 @@ const SaveAdForm = ({
     );
   }
 
-  function CustomInputRecruitmentStart(props) {
-    return (
-        <div className={`input-group ${styles.datepicker}`}>
-          <input
-              type="text"
-              className={`form-control h-[36px] ${styles.input_date} !text-[14px]`}
-              onClick={props.onClick}
-              value={watch().ad_recruitment_period_start_date}
-              onChange={props.onChange}
-              readOnly
-          />
-          <svg
-              onClick={props.onClick}
-              className="absolute right-[12px] top-[30%] z-[99]"
-              width="14"
-              height="16"
-              viewBox="0 0 14 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-                d="M12.3335 1.99996H11.6668V1.33329C11.6668 0.966626 11.3668 0.666626 11.0002 0.666626C10.6335 0.666626 10.3335 0.966626 10.3335 1.33329V1.99996H3.66683V1.33329C3.66683 0.966626 3.36683 0.666626 3.00016 0.666626C2.6335 0.666626 2.3335 0.966626 2.3335 1.33329V1.99996H1.66683C0.933496 1.99996 0.333496 2.59996 0.333496 3.33329V14C0.333496 14.7333 0.933496 15.3333 1.66683 15.3333H12.3335C13.0668 15.3333 13.6668 14.7333 13.6668 14V3.33329C13.6668 2.59996 13.0668 1.99996 12.3335 1.99996ZM11.6668 14H2.3335C1.96683 14 1.66683 13.7 1.66683 13.3333V5.33329H12.3335V13.3333C12.3335 13.7 12.0335 14 11.6668 14Z"
-                fill="#999999"
-            />
-          </svg>
-        </div>
-    );
-  }
 
 
-  function CustomInputRecruitmentEnd(props) {
-
-    return (
-        <div className={`input-group ${styles.datepicker}`}>
-          <input
-              type="text"
-              className={`form-control h-[36px] ${styles.input_date} !text-[14px]`}
-              onClick={props.onClick}
-              value={watch().ad_recruitment_period_end_date}
-              onChange={props.onChange}
-              readOnly
-          />
-          <svg
-              onClick={props.onClick}
-              className="absolute right-[12px] top-[30%] z-[0]"
-              width="14"
-              height="16"
-              viewBox="0 0 14 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-                d="M12.3335 1.99996H11.6668V1.33329C11.6668 0.966626 11.3668 0.666626 11.0002 0.666626C10.6335 0.666626 10.3335 0.966626 10.3335 1.33329V1.99996H3.66683V1.33329C3.66683 0.966626 3.36683 0.666626 3.00016 0.666626C2.6335 0.666626 2.3335 0.966626 2.3335 1.33329V1.99996H1.66683C0.933496 1.99996 0.333496 2.59996 0.333496 3.33329V14C0.333496 14.7333 0.933496 15.3333 1.66683 15.3333H12.3335C13.0668 15.3333 13.6668 14.7333 13.6668 14V3.33329C13.6668 2.59996 13.0668 1.99996 12.3335 1.99996ZM11.6668 14H2.3335C1.96683 14 1.66683 13.7 1.66683 13.3333V5.33329H12.3335V13.3333C12.3335 13.7 12.0335 14 11.6668 14Z"
-                fill="#999999"
-            />
-          </svg>
-        </div>
-    );
-  }
   const ErrorMessage = ({error}) =>  <span className='text-danger'>{error}</span>
 
   const trucks = [Truck01, Truck02, Truck03];
@@ -628,7 +567,27 @@ const SaveAdForm = ({
     if(outside)
     {
       if(agree)
-        toast.error('계약서를 읽어주세요')
+      {
+        const options: ConfirmPropsType = {
+          ref: errorModal,
+          title: '확인사항',
+          size: 'sm',
+          disableConfirmBtn: true,
+          cancelText: (<span className="text-[#FFFFFF]">확인</span>),
+          cancelButtonProps: {
+            className: 'border-primary bg-primary !text-[#FFFFFF]',
+          },
+        };
+
+        confirm({
+          ...options,
+          description: (
+              <div className='text-center'>
+                동의하기 전에 약관을 읽어주십시오.
+              </div>
+          ),
+        });
+      }
       else setIstermschecked(false)
       return ;
     }
@@ -1089,8 +1048,10 @@ const SaveAdForm = ({
                           //  locale={locale}
                           selected={new Date(value)}
                           minDate={defaultStartDate}
+                          name={'start_date'}
                           onChange={(date: string) => {
-                            setStartDate(new Date(date).toISOString().split("T")[0])
+                            setStartDate(convertDate(date))
+                            setValue('start_date',convertDate(date))
                           }}
                           customInput={<CustomInput />}
                         />
@@ -1201,10 +1162,11 @@ const SaveAdForm = ({
                         return <>
                           <DatePicker
                               dateFormat="yyyy-mm-dd"
+                              name={'ad_recruitment_period_start_date'}
                               onChange={(date: string) => {
                                 setValue('ad_recruitment_period_start_date', convertDate(date))
                               }}
-                              customInput={<CustomInputRecruitmentStart />}
+                              customInput={<CustomInput />}
                           />
                         </>
                       }}
@@ -1221,12 +1183,13 @@ const SaveAdForm = ({
                       render={({ field: { value, onChange } }) => (
                           <>
                             <DatePicker
+                                name={'ad_recruitment_period_end_date'}
                                 dateFormat="yyyy-mm-dd"
                                 onChange={(date: string) => {
                                   console.log('date',new Date(date))
                                   setValue('ad_recruitment_period_end_date', convertDate(date))
                                 }}
-                                customInput={<CustomInputRecruitmentEnd />}
+                                customInput={<CustomInput />}
                             />
                           </>
                       )}
@@ -1309,7 +1272,7 @@ const SaveAdForm = ({
                                   ${(Number(value[item.id]) || 0) <= 10000 ? '!border-[#ebedf4]' : '!border-[#ff0000]'}
                                   `
                                 }
-                                value={value[item.id]}
+                                value={value[item.id] || ""}
                                 onChange={(e) =>
                                   {
                                     const newValue = Number(e.target.value);
@@ -1353,7 +1316,7 @@ const SaveAdForm = ({
                                     && watch('vehicle_min')[item.id]==0) ?  '!border-[#ff0000]' : '!border-[#ebedf4]'}
                                   `
                                   }
-                                  value={watch('vehicle_min')[item.id]}
+                                  value={watch('vehicle_min')[item.id] || ""}
                                   onChange={(e) =>
                                   {
                                     const newValue = Number(e.target.value);
@@ -1632,7 +1595,10 @@ const SaveAdForm = ({
               <button
                 type="button"
                 id={styles.ad_apply_cancel}
-                onClick={onCancel}
+                onClick={()=>{
+                  dataReset()
+                  onCancel()
+                }}
                 className={`${styles.btns} ${styles.cancel_btn}`}
               >
                 취소

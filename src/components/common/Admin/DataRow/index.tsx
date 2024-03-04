@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 import React,  { ReactNode } from "react";
 
 interface DataRowProps {
-    title: string, 
+    title: ReactNode,
     required?: boolean
     children: ReactNode
     className?: string

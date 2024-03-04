@@ -45,6 +45,7 @@ export const useGetAdvertisementDetail = (
         queryFn: async () =>
             (await axios.get("/api/get-advertisement", { params: { id: props.id } }))
                 .data.data?.[0],
+        enabled : !!props.id
     });
 export const useGetAdvertisementAllDetail = ({
                                                  advertisement_id,

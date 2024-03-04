@@ -90,6 +90,7 @@ export interface IAdvertisement {
     vehicles_in_operation:   {
         number_of_vehicles: number,
         vehicle_type: string
+        min_num_of_vehicle : string | number
     }[]
     images: AdvertisementImage[]
   }

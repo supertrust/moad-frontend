@@ -12,6 +12,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Carousel } from "react-bootstrap";
 import Image from 'next/image';
 
+const labelColClass =
+    ' bg-admin-light font-medium'
 
 export const Types = {
     fixed_ad: '고정',
@@ -60,6 +62,13 @@ function AdFullDetails() {
         const vType = advertisement?.vehicles_in_operation?.filter(value => value.vehicle_type == type);
         return `${vType.length ? vType[0].number_of_vehicles : 0}대`
     }
+
+    const getMinVehicleTypeCount = (type: string) => {
+        if(!advertisement?.vehicles_in_operation) return "0대"
+        const vType = advertisement?.vehicles_in_operation?.filter(value => value.vehicle_type == type);
+        return `${vType.length ? vType[0].min_num_of_vehicle : 0}대`
+    }
+
     const modalstyle = {
         position: "absolute",
         top: "50%",
@@ -145,7 +154,10 @@ function AdFullDetails() {
                         {advertisement?.number_of_cargo || 0}대
                     </DataRow>
                     <DataRow
-                        title='운행차량수'
+                        title={<p className={labelColClass}>운행 차량수<br/> <span className={'!text-[14px] font-normal'}>
+                            (최소 운행차량수 /
+최대 운행차량수)
+                        </span></p>}
                         className={style.className}
                         firstColumClass={style.firstColumnClass}
                         colSpan={1}
@@ -155,7 +167,7 @@ function AdFullDetails() {
                             className: style.additionalColumClass
                         }]}
                     >
-                        { getVehicleTypeCount('1t') }
+                        { getMinVehicleTypeCount('1t') } / { getVehicleTypeCount('1t') }
                     </DataRow>
                     {['2.5t', '5t', '11t'].map(type =>
                         <DataRow
@@ -163,7 +175,7 @@ function AdFullDetails() {
                             title={type}
                             className={style.className}
                             firstColumClass={style.additionalColumClass}
-                        > {getVehicleTypeCount(type) }</DataRow>
+                        > {getMinVehicleTypeCount(type)} / {getVehicleTypeCount(type) }</DataRow>
                     )}
                     <DataRow
                         title='광고기간'

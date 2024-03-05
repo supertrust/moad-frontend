@@ -2,7 +2,8 @@ import React, { useMemo, useState } from 'react';
 import { CircularProgress } from "@mui/material";
 import { styles } from '@src/sections/statistics';
 // import { DataGrid } from '@src/components/common';
-import { Arrow } from '@src/components/icons';
+import { Tooltip } from 'antd';
+import { Arrow, TooltipIcon } from '@src/components/icons';
 import { Form } from 'react-bootstrap';
 import { useGetShowAdvertisementStats, useGetStatBasedAdvertisment } from '@src/apis/advertisement';
 import { clsx } from 'clsx';
@@ -36,28 +37,21 @@ export default function StatisticsScreen() {
 
 	const {
 		advertisement_amount, all_vehicles , end ,
-		operating_vehicles, schedule , schedule_to_end
+		operating_vehicles, schedule , schedule_to_end,total_add,advertisement_progress,
 	} = totalStat || {};
 
 	const driving_vehicle = [
 		{
-			title: '모든 차량수',
-			data: formatNumberWithCommas(all_vehicles),
+			title: '총 광고 수',
+			data: formatNumberWithCommas(total_add),
+			tooltip : `운행중인 차량수 : ${operating_vehicles}대`
 		},
 		{
-			title: '운행차량',
-			data: formatNumberWithCommas(operating_vehicles),
+			title: '진행중인 광고',
+			data: formatNumberWithCommas(advertisement_progress),
 		},
 		{
-			title: '운행예정',
-			data: formatNumberWithCommas(schedule),
-		},
-		{
-			title: '종료예정',
-			data: formatNumberWithCommas(schedule_to_end),
-		},
-		{
-			title: '종료',
+			title: '종료된 광고',
 			data: formatNumberWithCommas(end),
 		},
 	];
@@ -161,9 +155,19 @@ const vehicleElement = (
 									/>
 									<div className={styles.ad_amount_box}>
 										<div className={styles.box_wrap}>
-											<div className={styles.date}>
-												{selectedDate?.startDate.toLocaleString()} {selectedDate?.startDate && '~'} {selectedDate?.endDate.toLocaleString()}
-											</div>
+
+												<div className={'mb-[24px] flex items-center gap-2'}>
+													<span className={styles.date}>
+													{selectedDate?.startDate.toLocaleString()} {selectedDate?.startDate && '~'} {selectedDate?.endDate.toLocaleString()}
+												</span>
+													{selectedDate?.startDate &&
+
+															<TooltipIcon title={"기간내 계약진행된 총 광고 금액의 합계"}/>}
+
+
+
+												</div>
+
 											<div className={styles.amount}>
 												{isTotalLoading ?
 													<Skeleton paragraph={false} className='w-24' />:
@@ -177,14 +181,19 @@ const vehicleElement = (
 								<div className={styles.driving_vehicle}>
 									<HeaderLine title='운행차량' element={vehicleElement} />
 									<div className={styles.driving_vehicle_box}>
-										<ul className={styles.list_wrap}>
+										<ul className={clsx(styles.list_wrap)}>
 											{driving_vehicle.map((data, index) => (
-												<li key={index} className={styles.list}>
-													<div className={styles.title}>{data.title}</div>
+												<li key={index} className={clsx(styles.list,'!items-center')}>
+													<div className={'flex gap-2 items-center mb-[20px]'}>
+														<span className={styles.title}>{data.title}</span>
+														{
+															data?.tooltip ? <TooltipIcon title={data.tooltip}/> : null
+														}
+													</div>
 													<div className={styles.data}>
 														{isTotalLoading ?
 															<Skeleton paragraph={false} className='w-14 items-center' />:
-															data.data && data.data != '0' ? data.data + '대' : '-'
+															data.data!=undefined ? data.data + '대' : '-'
 														}
 													</div>
 												</li>

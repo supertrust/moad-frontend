@@ -4274,3 +4274,14 @@ a.ant-picker-today-btn:after {
 th.ant-table-cell {
 	text-align: center !important;
 }
+
+.ant-tooltip-inner {
+	color: black!important;
+	background-color: #ECECEC!important;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.ant-tooltip-placement-bottom .ant-tooltip-arrow, .ant-tooltip-placement-bottomLeft .ant-tooltip-arrow, .ant-tooltip-placement-bottomRight .ant-tooltip-arrow {
+	border-bottom-color: #ECECEC!important;
+}

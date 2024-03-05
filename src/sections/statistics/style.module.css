@@ -275,7 +275,7 @@
 }
 
 #statistics .container .board_content .statistics_content .step_01 .ad_amount .ad_amount_box .box_wrap .date {
-	margin-bottom: 24px;
+	/*margin-bottom: 24px;*/
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 20px;
@@ -302,13 +302,13 @@
 	height: 171px;
 	padding: 0 57px;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
 	margin-bottom : 0px;
 }
 
 #statistics .container .board_content .statistics_content .step_01 .driving_vehicle .driving_vehicle_box .list_wrap .list .title {
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 20px;

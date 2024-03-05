@@ -257,5 +257,7 @@ export type ITotalAdvertisementStat = {
     operating_vehicles: number,
     schedule: number,
     schedule_to_end: number,
-    end: number
+    end: number,
+    advertisement_progress : number,
+    total_add : number
   }

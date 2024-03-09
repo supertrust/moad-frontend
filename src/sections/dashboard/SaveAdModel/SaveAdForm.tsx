@@ -1316,15 +1316,19 @@ const SaveAdForm = ({
                                     && watch('vehicle_min')[item.id]==0) ?  '!border-[#ff0000]' : '!border-[#ebedf4]'}
                                   `
                                   }
-                                  value={watch('vehicle_min')[item.id] || ""}
+                                  value={watch('vehicle_min')[item.id]}
                                   onChange={(e) =>
-                                  {
-                                    const newValue = Number(e.target.value);
-
-                                      const prevValue = watch('vehicle_min') || {}
-                                      prevValue[item.id] = newValue
-                                      setValue('vehicle_min',prevValue)
-                                  }
+                                    {
+                                      let prevValue = watch('vehicle_min') || {}
+                                      if(e.target.value){
+                                        const newValue = Number(e.target.value);
+                                        prevValue[item.id] = newValue
+                                      }else {
+                                        const {[item.id]:v, ...restValues} = prevValue
+                                        prevValue = restValues
+                                      }
+                                      setValue('vehicle_min', prevValue)
+                                    }
                                   }
                                   id={item.vehicle_type}
                                   placeholder="직접입력"

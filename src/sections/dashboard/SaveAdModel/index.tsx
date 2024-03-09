@@ -88,10 +88,14 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
     // }
 
 
-    const onCancel = () => {
-        setId(null);
-        setDone(false);
-        setOpen(false);
+    const onCancel = (e) => {
+        if (e.code === "Enter") {
+            e.preventDefault(); // Prevent form submission
+        }else {
+            setId(null);
+            setDone(false);
+            setOpen(false);
+        }
     }
 
     useImperativeHandle(ref, () => ({
@@ -113,7 +117,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
                 onCancel={onCancel}
                 width={'972px'}
                 footer={false}
-                closable={false}
+                closable={true}
                 className={'ad_modal'}
             >
                 <div id={styles.ad_apply_modal} className={`ad-apply-modal`}>

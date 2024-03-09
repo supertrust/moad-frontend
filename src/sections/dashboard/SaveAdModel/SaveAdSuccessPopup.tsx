@@ -4,14 +4,14 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 
-function SaveAdSuccessPopup({ open,onCancel}: { onCancel: VoidFunction,open : boolean }) {
+function SaveAdSuccessPopup({ open,onCancel}: { onCancel: (e: any) => void,open : boolean }) {
   const { user } = useAuth();
 
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.code === "Enter") {
         event.preventDefault(); // Prevent form submission
-        onCancel();
+        onCancel(event);
       }
     };
     document.addEventListener("keydown", handleKeyPress);

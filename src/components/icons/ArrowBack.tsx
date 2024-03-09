@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import React from 'react';
 
-const ArrowBack = ({ 
+const ArrowBack = ({
     handleAction,
     className="",
-    width = 24 , 
+    width = 24 ,
     height = 24,
     background = '#2C324C'
 } : {
-    handleAction : ()=>void,
+    handleAction : (()=>void) | ((e: any) => void),
     className?: string,
     height? : number,
     width?: number,

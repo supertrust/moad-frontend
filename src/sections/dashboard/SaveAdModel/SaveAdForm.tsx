@@ -233,7 +233,7 @@ const SaveAdForm = ({
     done,
 }: {
   onOpenModal: VoidFunction
-  onCancel: VoidFunction;
+  onCancel: (e: any) => void;
   onSubmitForm: (props: SaveAdvertisementType) => Promise<void>;
   isLoadingSaveAdvertisement: boolean;
   done : boolean
@@ -1595,9 +1595,9 @@ const SaveAdForm = ({
               <button
                 type="button"
                 id={styles.ad_apply_cancel}
-                onClick={()=>{
+                onClick={(e)=>{
                   dataReset()
-                  onCancel()
+                  onCancel(e)
                 }}
                 className={`${styles.btns} ${styles.cancel_btn}`}
               >

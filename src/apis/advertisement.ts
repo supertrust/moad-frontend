@@ -201,8 +201,9 @@ export const useGetStatBasedAdvertisment = (props : GetTotalAdvertisementStatPro
 });
 
 export const useGetDraftAdvertisementImages = (id:string) => useQuery<DraftAdvertisementImage[], string>({
-    queryKey: ["draft-advertisement-images"],
+    queryKey: ["draft-advertisement-images",id],
     queryFn: async () => (await axios.get(`/api/get-advertisement-images/${id}/draft`)).data.data,
+    enabled : !!id
 });
 
 export const useGetCargoVerificationImages = (props:GetCargoVerificationImagesProps) => useQuery<CargoVerificationImage[], string>({

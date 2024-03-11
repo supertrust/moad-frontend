@@ -324,7 +324,7 @@ function AdvertisementDetailScreen() {
             {text}
           </a>
         </Link>
-        // :"아직 할당되지 않았습니다."
+
       ),
     },
     {

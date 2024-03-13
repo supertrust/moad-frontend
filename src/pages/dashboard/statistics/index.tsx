@@ -1,25 +1,19 @@
-import React, { useMemo, useState } from 'react';
 import { CircularProgress } from "@mui/material";
-import { styles } from '@src/sections/statistics';
-// import { DataGrid } from '@src/components/common';
-import { Tooltip } from 'antd';
-import { Arrow, TooltipIcon } from '@src/components/icons';
-import { Form } from 'react-bootstrap';
 import { useGetShowAdvertisementStats, useGetStatBasedAdvertisment } from '@src/apis/advertisement';
-import { clsx } from 'clsx';
-import { Pagination, Skeleton } from 'antd';
-import {
-	AdStatusesType,
-	AdTypesType,
-	IAdvertisement,
-	IAdvertisementStat,
-} from '@src/types/advertisement';
 import HeaderLine from '@src/components/common/HeaderLine';
-import Link from 'next/link';
-import {DateSelected, ISOformatDate, formatTimeFromMinute} from  '@src/helpers'
+import { Arrow, TooltipIcon } from '@src/components/icons';
 import { Types } from '@src/components/pages/AdFullDetails';
 import { DateRange, DateRangePickerCtrls } from '@src/components/pages/StatisticsDetailsPage/StatisticsDetailsPage';
+import { DateSelected, formatTimeFromMinute, ISOformatDate } from '@src/helpers'
+import { styles } from '@src/sections/statistics';
+import { AdStatusesType, AdTypesType, IAdvertisementStat, } from '@src/types/advertisement';
 import { formatNumberWithCommas } from '@src/utils/formatter';
+// import { DataGrid } from '@src/components/common';
+import { Pagination, Skeleton } from 'antd';
+import { clsx } from 'clsx';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { Form } from 'react-bootstrap';
 
 
 export default function StatisticsScreen() {
@@ -179,7 +173,7 @@ const vehicleElement = (
 								</div>
 
 								<div className={styles.driving_vehicle}>
-									<HeaderLine title='운행차량' element={vehicleElement} />
+									<HeaderLine title='광고통계' element={vehicleElement} />
 									<div className={styles.driving_vehicle_box}>
 										<ul className={clsx(styles.list_wrap)}>
 											{driving_vehicle.map((data, index) => (
@@ -193,7 +187,7 @@ const vehicleElement = (
 													<div className={styles.data}>
 														{isTotalLoading ?
 															<Skeleton paragraph={false} className='w-14 items-center' />:
-															data.data!=undefined ? data.data + '대' : '-'
+															data.data!=undefined ? data.data + '개' : '-'
 														}
 													</div>
 												</li>

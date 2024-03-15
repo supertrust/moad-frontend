@@ -1,6 +1,7 @@
-import { Button, Modal } from '@mui/material'
-import React, { ReactNode, useEffect, useState } from 'react'
+import { Button, Modal } from "@mui/material";
+import React, { ReactNode, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
+import useAuth from "@src/hooks/useAuth";
 
 export interface ConfirmModalProps {
   open: boolean;
@@ -10,7 +11,15 @@ export interface ConfirmModalProps {
   className?: string;
 }
 
-export default function ConfirmModal({ open, text, accept, reject,className }: ConfirmModalProps) {
+export default function ConfirmModal({
+  open,
+  text,
+  accept,
+  reject,
+  className,
+}: ConfirmModalProps) {
+  const { dictionary, setLang, lang } = useAuth();
+
   const [openModal, setOpenModal] = useState(false);
 
   const [accepted, setAccepted] = useState(false);
@@ -23,7 +32,7 @@ export default function ConfirmModal({ open, text, accept, reject,className }: C
   const handleAccept = () => {
     setAccepted(true);
     accept();
-  }
+  };
 
   return (
     <Modal
@@ -33,17 +42,34 @@ export default function ConfirmModal({ open, text, accept, reject,className }: C
     >
       <div className="bg-white rounded-xl px-11 py-9 shadow-md">
         <div className="flex flex-col justify-center">
-          {  text}
+          {text}
           <div className="flex mt-3 gap-3 justify-center">
-            <Button className={'w-[92px] h-[35px]'} variant='outlined' sx={{
-              color : "#2f48d1"
-            }} onClick={reject}>
-              <span className={styles['reject-btn']}>취소</span></Button>
-            <Button  className={'w-[92px] h-[35px]'} variant='contained'  sx={{background : "#2f48d1"}} onClick={handleAccept}
-                     disabled={accepted}><span className={styles['accept-btn']}>삭제하기</span></Button>
+            <Button
+              className={"w-[92px] h-[35px]"}
+              variant="outlined"
+              sx={{
+                color: "#2f48d1",
+              }}
+              onClick={reject}
+            >
+              <span className={styles["reject-btn"]}>
+                {dictionary.confirm_modal.cancel}
+              </span>
+            </Button>
+            <Button
+              className={"w-[92px] h-[35px]"}
+              variant="contained"
+              sx={{ background: "#2f48d1" }}
+              onClick={handleAccept}
+              disabled={accepted}
+            >
+              <span className={styles["accept-btn"]}>
+                {dictionary.confirm_modal.delete}
+              </span>
+            </Button>
           </div>
         </div>
       </div>
     </Modal>
-  )
+  );
 }

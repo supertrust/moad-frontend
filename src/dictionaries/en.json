@@ -1,0 +1,1293 @@
+{
+  "dashboard": {
+    "title": "Advertising Management",
+    "advertizing_status": "Advertising Status",
+    "standard": "Standard",
+    "registered_advertisement": "Registered Advertisement",
+    "total_vehicales": "Total Vehicles",
+    "running": "Running",
+    "suspensions": "Suspended",
+    "case": "cases",
+    "big": "big",
+    "total_distance": "Total Distance",
+    "total_hours": "Total Hours",
+    "minutes": "minute",
+    "notification_center": "Notification Center"
+  },
+  "confirm_modal": {
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "products": {
+    "cart": "Toevoegen aan Winkelwagen"
+  },
+  "common": {
+    "ad_details": "Ad Details",
+    "advertisement_management": "Advertising Management",
+    "advertisement_status": "Advertisement Status",
+    "advertisement_type": "Advertisement Type",
+    "advertisement_name": "Advertisement Name",
+    "advertisement_content": "Advertisement Content",
+    "vehicle_recruitment_period": "Vehicle Recruitment Period",
+    "vehicle_type": "Vehicle Type",
+    "vehicle_count": "Vehicle Count",
+    "min_vehicle_count": "Minimum Vehicle Count",
+    "max_vehicle_count": "Maximum Vehicle Count",
+    "advertisement_period": "Advertisement Period",
+    "operating_area": "Operating Area",
+    "advertisement_images": "Advertisement Images",
+    "min_max_number_vehicales": "Minimum number of operating vehicles / Maximum number of operating vehicles",
+    "advertisement_details": "Advertisement Details"
+  },
+  "types": {
+    "fixed_ad": "Fixed",
+    "national_ad": "National",
+    "spot_ad": "Spot"
+  },
+  "statuses": {
+    "in_progress": "In Progress",
+    "ad_reviewing": "Ad Reviewing",
+    "end": "End",
+    "decline": "Decline",
+    "applying": "Applying",
+    "recruiting_cargo_owners": "Recruiting Cargo Owners",
+    "applying_for_advertisement": "Applying for Advertisement",
+    "proceeding": "Proceeding"
+  },
+  "vehicle_types": {
+    "cargo": "Cargo",
+    "tower": "Tower",
+    "loaded": "Loaded"
+  },
+  "process_page": {
+    "titles": "Icarus Advertiser",
+    "headers": "Guide",
+    "steps": [
+      {
+        "number": "STEP 1",
+        "title": "Apply for Advertisement",
+        "description": "Apply for an advertisement by setting conditions such as advertisement type, desired period, and desired number of vehicles, depending on the purpose of the advertisement."
+      },
+      {
+        "number": "STEP 2",
+        "title": "Consultation for Advertisement",
+        "description": "An Icarus representative will contact you after confirmation. They will assist you with detailed consultations regarding the progress of the advertisement."
+      },
+      {
+        "number": "STEP 3",
+        "title": "Vehicle Recruitment",
+        "description": "Recruit vehicles that have been verified by Icarus, and recruit vehicles to attach the advertisement."
+      },
+      {
+        "number": "STEP 4",
+        "title": "Advertisement Progress",
+        "description": "You can check the progress of the advertisement, such as the real-time location of the operating vehicles."
+      }
+    ]
+  },
+  "guide_page": {
+    "title": "Guide",
+    "starting_guide": {
+      "title": "Starting Guide",
+      "subtitle": "Are you new to Icarus? Here are some helpful tips for new advertisers."
+    },
+    "boxes": [
+      {
+        "title": "Is it your first time with wrapping ads?",
+        "subtitle": "The best opportunity to promote your brand! Check before starting wrapping ads!",
+        "links": [
+          {
+            "text": "What is wrapping advertising?",
+            "href": "/dashboard/customer-service/guide/pc"
+          },
+          {
+            "text": "Check the advertising process",
+            "href": "/dashboard/customer-service/guide/process"
+          }
+        ]
+      },
+      {
+        "title": "Check before starting an ad!",
+        "subtitle": "Find out what ads are right for you!",
+        "links": [
+          {
+            "text": "Check ad types",
+            "href": "/dashboard/customer-service/guide/confirm"
+          }
+        ]
+      }
+    ]
+  },
+  "confirm_page": {
+    "titles": "Icarus Advertiser",
+    "headers": "Guide",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Fixed Ads",
+        "description": "Fixed ads that can be exposed by matching specific area advertisers"
+      },
+      {
+        "number": "2",
+        "title": "National Ads",
+        "description": "Ads that maximize advertising effectiveness by matching all advertisers nationwide at a low cost"
+      },
+      {
+        "number": "3",
+        "title": "Spot Ads",
+        "description": "Ads that can be exposed in specific areas and times on an hourly basis"
+      }
+    ]
+  },
+  "pc_page": {
+    "titles": "Icarus Advertiser",
+    "headers": "Guide",
+    "subheaders": "What is Wrapping Advertisement?",
+    "content": [
+      {
+        "title": "Truck Wrapping Advertisement",
+        "description": "A marketing method that covers the exterior of a vehicle with special vinyl film to deliver advertising messages. It can promote products, brands, services, events, or other campaigns through driving roads, and advertisements can be placed on the sides and rear of vehicles. It has the advantage of obtaining a very large advertising effect in popular means of transportation."
+      },
+      {
+        "title": "High Exposure Rate",
+        "description": "Truck wrapping advertisements have a very high exposure rate as they are visible to vehicles driving on the road. In addition, vehicles pass through various areas while driving on the road, ensuring diversity in advertising areas. Especially, the advertising effect is higher when driving in traffic congestion or on major roads."
+      },
+      {
+        "title": "Wide Advertising Range",
+        "description": "Wrapping advertisements can include various advertising areas and can be advertised in many places. Also, as trucks generally use highways with heavy traffic, more people can see the advertisements."
+      },
+      {
+        "title": "Cost Saving",
+        "description": "Truck wrapping advertisements can propagate advertisements at a lower cost compared to conventional advertising media. Also, as trucks operate on fixed routes every day, they can deliver advertising messages on the route without additional advertising costs."
+      },
+      {
+        "title": "High Participation Rate",
+        "description": "Wrapping advertisements have a high participation rate due to the size of the vehicle, bright colors, unique designs, etc. This arouses curiosity about the advertisement and makes it memorable."
+      },
+      {
+        "title": "Sustainability of Advertising Messages",
+        "description": "Wrapping advertisements have a high sustainability of advertising messages. The advertising film can be maintained for a certain period, and vehicle wrapping can be relatively easily removed, so advertisers can easily update or change advertisements even if advertising strategies or campaigns change."
+      },
+      {
+        "title": "Enhancement of Brand Recognition",
+        "description": "Truck wrapping advertisements can promote the brand, products, or services of advertisers in a large image, thereby increasing brand recognition and awareness."
+      }
+    ]
+  },
+  "InquireDetailsPage": {
+    "loading_page": "Loading page...",
+    "data_not_found": "Data Not Found",
+    "classification_of_payments": "Classification of Payments",
+    "error": "Error",
+    "usage_inquiry": "Usage Inquiry",
+    "member_related": "Member Related",
+    "delete_modal_header": "Delete Post",
+    "delete_modal_body": "Are you sure you want to delete this post?",
+    "inquire_history": "Inquire History",
+    "inquire": "Inquire",
+    "prev_post": "Previous Post",
+    "next_post": "Next Post",
+    "list": "List",
+    "answer_complete": "Answer Complete",
+    "before_reply_correction": "Correction",
+    "delete_inquire": "Delete Inquire",
+    "downloaded_documents": "Downloaded",
+    "case": "case",
+    "delete": "Delete",
+    "Icarus": "Icarus",
+    "no_written_answer": "There are no written answers.",
+    "inquire_details": "Inquiry details",
+    "correction": "correction",
+    "delete_post": "Delete post",
+    "before_reply": "Before reply",
+    "no_data_found": "No data found!"
+  },
+  "sidebar": {
+    "advertisementManagement": "Advertising Management",
+    "statistics": "Statistics",
+    "myInfo": "My Info",
+    "customerService": "Customer Service Center",
+    "guide": "Guide",
+    "faq": "FAQ",
+    "inquiry": "1:1 inquiry",
+    "termsAndPolicies": "Policies and Terms",
+    "logout": "Log out"
+  },
+  "notificationCenter": {
+    "title": "Notification Center",
+    "noNotification": "There are no notifications."
+  },
+  "adList": {
+    "title": "Advertisement List",
+    "applyForAdBtn": "Apply for Ad",
+    "deleteAdBtn": "Delete",
+    "columns": {
+      "adType": "Ad Type",
+      "adName": "Ad Name",
+      "noOfVehiclesInOp": "Number of vehicles in operation",
+      "adPeriod": "Advertisement period",
+      "recruitmentPeriod": "Recruitment Period",
+      "status": "status"
+    },
+    "adTypes": {
+      "all": "All",
+      "fixed": "Fixed",
+      "national": "National",
+      "spot": "Spot"
+    },
+    "adStatuses": {
+      "all": "All",
+      "inProgress": "In Progress",
+      "adReviewing": "Applying",
+      "end": "End"
+    },
+    "allAdStatuses": {
+      "inProgress": "Ad in progress",
+      "adReviewing": "Ad reviewing",
+      "end": "Ad end",
+      "declined": "Rejected",
+      "applying": "Applying",
+      "recruitingCargoOwners": "Recruiting Cargo Owners",
+      "applyingForAdvertisement": "Applying for advertisement",
+      "proceeding": "In progress"
+    },
+    "deleteAdsModal": {
+      "deleteTitle": "Delete Ad",
+      "deleteMsg": "If you delete it, you will not be able to see it in statistics.",
+      "deleteConfirmationMsg": "Are you sure you want to delete?",
+      "deleteCancelBtn": "Confirm",
+
+      "confirmBtn": "Delete",
+
+      "checkListTitle": "Checklist",
+      "checkListMsg": "You can only delete ads that have ended.",
+      "checkCancelBtn": "Cancel"
+    }
+  },
+  "statistics": {
+    "checkModal": {
+      "title": "Confirmation",
+      "msg": "You can only delete ads that have ended",
+      "btnText": "OK"
+    },
+    "removeAdsModal": {
+      "title": "Delete Ad",
+      "msg": "Once deleted, it cannot be recovered and information about the advertisement cannot be viewed.",
+      "cancelBtnText": "Cancel",
+      "delBtnText": "Delete"
+    },
+    "drivingDstTime": {
+      "title": "Travel distance/travel time",
+      "statuses": ["All", "In Progress", "Finished"],
+      "chooseAdType": "Choose ad type",
+      "selectTypes": ["Entire", "Fixed", "National type", "Spot type"],
+      "delete": "Delete",
+      "columns": [
+        "Ad type",
+        "Ad name",
+        "Number of vehicles operating",
+        "Total driving distance",
+        "Total driving time",
+        "Status"
+      ],
+      "noAdsMsg": "There are no ads running."
+    },
+    "vehicleElement": "Based on the entire period",
+    "adAmount": {
+      "title": "Advertising amount",
+      "tooltipMsg": "Sum of total advertising amount contracted within the period.",
+      "won": "won"
+    },
+    "opVehicle": {
+      "title": "Operating Vehicle",
+      "driving_vehicle": [
+        {
+          "title": "Total number of ads",
+          "tooltip": "Number of vehicles in operation"
+        },
+        {
+          "title": "Ongoing Advertisement"
+        },
+        {
+          "title": "Ad ended"
+        }
+      ]
+    }
+  },
+  "myInfo": {
+    "title": "My information",
+    "header": "Profile",
+    "subHeader": "Cancel membership",
+    "changePass": "Change password",
+    "edit": "Edit",
+    "companyName": "Company Name",
+    "companyPhoneNumber": "Company phone number",
+    "contactPersonName": "Contact Person Name",
+    "contactPersonsCellPhone": "Contact Person's Cell Phone",
+    "contactPersonsEmail": "Person in charge email (invoice issued)",
+    "companyRegistrationNumber": "Business registration number",
+    "sectors": "Industry",
+    "modificationsCompleted": "Modifications completed",
+    "updateProfileImgModal": {
+      "title": "Confirmation",
+      "cancelBtnText": "Confirm",
+      "allowedFileTypesMsg": "Only JPG, JPEG, and PNG files are allowed.",
+      "allowedFileSizeMsg": "Only up to 3MB is allowed.",
+      "profilePictureUpdatedMsg": {
+        "success": "Your profile picture has been updated.",
+        "failed": "Failed to update profile picture."
+      }
+    },
+    "validations": {
+      "companyPhoneNumber": {
+        "required": "Please enter your cell phone number",
+        "length": "Phone number must be 11 digits."
+      },
+      "employeeName": {
+        "required": "Please enter the employee's name.",
+        "length": "The contact name must not exceed 10 characters.",
+        "isKorean": "Enter the correct Korean name"
+      },
+      "employeePhoneNumber": {
+        "required": "Please enter your cell phone number",
+        "length": "Phone number must be 11 digits."
+      },
+      "employeeEmail": {
+        "format": "Please enter a valid email.",
+        "required": "Enter your employee email."
+      }
+    },
+    "modificationsCompletedModal": {
+      "title": "Edited",
+      "msg": "Information modification complete.",
+      "btnText": "OK"
+    }
+  },
+  "membershipWithdrawal": {
+    "title": "Cancel membership",
+    "heading": "When canceling your Icarus membership, please be sure to read the precautions below.",
+    "precautionaryMeasures": [
+      "1. The existing ID will be permanently suspended, so re-registration using the previously used ID is not possible.",
+      "2. Membership information is stored for one year, after which the information is deleted in batches.",
+      [
+        "3. If any of the following cases apply, ID deletion is not possible.",
+        "a. If there is an advertisement under review.",
+        " b. If there is an advertisement in progress. (In progress refers to all advertisement states except those of inspection, termination, or rejection)"
+      ],
+      "4. 1:1 inquiries and posts made will not be deleted and will be permanently preserved.",
+      "5. Please note that cancellation of membership withdrawal is absolutely impossible.",
+      "6. For further inquiries, please contact Icarus Customer Center."
+    ],
+    "reasonForWithdrawal": "Reason for withdrawal",
+    "placeholderReason": "Please enter a reason for withdrawal.",
+    "agreeToWithdrawMsg": "I have confirmed all relevant information and agree to cancel membership",
+    "btnText": "Withdraw membership",
+    "verificationModal": {
+      "title": "Cancel membership",
+      "description": "Are you sure you want to cancel?",
+      "cancelText": "Cancel",
+      "confirmText": "Cancel membership"
+    },
+    "submitModal": {
+      "successTitle": "Membership withdrawal complete",
+      "successMsg": "Thank you for using us so far.",
+
+      "failedTitle": "Caution",
+      "failedMsg": "There is an ad in progress or cannot be deleted.",
+      "contactSupportMsg": "Please contact customer service."
+    },
+    "validations": {
+      "reason": {
+        "required": "Please enter the reason for withdrawal."
+      },
+      "condition": {
+        "required": "Please check the following conditions.",
+        "isTrue": "Check the following conditions."
+      }
+    }
+  },
+  "changePasswordScreen": {
+    "title": " Change password",
+    "subText": "8 or more characters combining letters, numbers, and symbols",
+    "oldPassword": "Old password",
+    "oldPasswordPlaceholder": "Enter password",
+    "passwordsNotMatchError": "Passwords do not match.",
+    "newPassword": "New password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPassword": "Re-enter new password",
+    "confirmPasswordPlaceholder": "Re-enter new password",
+    "cancelText": "Cancel",
+    "completeEditText": "Edit complete",
+    "modal": {
+      "title": "Change complete",
+      "description": "Password change has been completed.",
+      "btn": "OK"
+    },
+    "validations": {
+      "oldPassword": {
+        "required": "Your old password is required."
+      },
+      "newPassword": {
+        "required": "A new password is required.",
+        "notEqualsToOldPassword": "The new password cannot be the same as the old password.",
+        "checkFormat": "Enter at least 8 characters using a combination of letters, uppercase letters, numbers, and symbols.",
+        "checkLength": "Password must be at least 8 characters long."
+      },
+      "confirmPassword": {
+        "required": "You need to confirm your password.",
+        "shouldMatchNewPassword": "Password format does not match."
+      }
+    }
+  },
+  "noticePage": {
+    "pageTitle": "Notice",
+    "title": "Icarus Advertiser",
+    "heading": "Notice from Icarus.",
+    "columns": ["no", "Title", "Creation date"],
+    "noAdsMsg": "There are no registered announcements."
+  },
+  "noticeDetailPage": {
+    "pageTitle": "Notice",
+    "title": "Notice from Icarus.",
+    "postBy": "By. Icarus",
+    "prevBtnText": "Previous post",
+    "nextBtnText": "Next post",
+    "listBtnText": "list"
+  },
+  "faqPage": {
+    "allTab": "All",
+    "noFaqsMsg": "There are no registered FAQs."
+  },
+  "inquiryPage": {
+    "pageTitle": "Inquiry Details",
+    "title": "Icarus Advertiser",
+    "checkInquiryDetailsBtn": "Check inquiry details",
+    "contactUsBtn": "Contact Us",
+    "columns": ["no", "Category", "Title", "Creation date", "Status"],
+    "answerCompletedBtn": "Answer completed",
+    "answerBtn": "Answer Btn",
+    "noRegInquiriesMsg": "There are no registered inquiries.",
+    "inquiryType": {
+      "classification_of_payments": "Payments",
+      "error": "Error",
+      "usage_inquiry": "Usage inquiry",
+      "member_related": "Member related"
+    }
+  },
+  "inquireFormPage": {
+    "pageTitle": "Inquiry Details",
+    "title": "Icarus Advertiser",
+    "checkInquiryDetailsBtn": "Check inquiry details",
+    "contactUsBtn": "Contact Us",
+    "inquiryType": "Inquiry Type",
+    "inquirySubject": "Inquiry Subject",
+    "inquirySubjectPlaceholder": "(Required) Please enter a subject for your inquiry",
+    "inquiry": "Inquiry",
+    "inquiryPlaceHolder": "(Required) Please enter a title for your inquiry",
+    "inquiryResponse": "Inquiry response",
+    "inquiryResponsePlaceholder": "(Required) Please enter a title for your inquiry",
+    "attachments": "Attach files",
+    "selectFile": "Select file",
+    "inquiryTypes": [
+      "Selection",
+      "Payment",
+      "Error",
+      "Usage Inquiry",
+      "Membership Related"
+    ],
+    "validFilesMsg": "You can upload jpg, jpeg, png files under 3MB",
+    "btnText": "Register inquiry",
+    "validations": {
+      "inquiryType": {
+        "required": "Please select a unique type."
+      },
+      "inquiryTitle": {
+        "required": "Please enter the advertisement name.",
+        "checkForOnlySpaces": "Input cannot consist only of spaces.'"
+      },
+      "inquiryQuestion": {
+        "required": "Please select an advertising period of 6 months or 12 months.",
+        "checkForOnlySpaces": "Input cannot consist only of spaces.'"
+      }
+    },
+    "checkFilesModal": {
+      "title": "Confirmation",
+      "cancelButton": "Confirm",
+      "allowedFileTypesDesc": "Only JPG, JPEG, and PNG files are allowed.",
+      "allowedFileSizeDesc": "Only up to 3MB is allowed."
+    }
+  },
+  "dateRangePickerCtrls": [
+    {
+      "label": "All",
+      "value": "all"
+    },
+    {
+      "label": "Today",
+      "value": "today"
+    },
+    {
+      "label": "This week",
+      "value": "this_week"
+    },
+    {
+      "label": "Last week",
+      "value": "last_week"
+    },
+    {
+      "label": "This month",
+      "value": "this_month"
+    },
+    {
+      "label": "Last month",
+      "value": "last_month"
+    },
+    {
+      "label": "This year",
+      "value": "this_year"
+    },
+    {
+      "label": "Last year",
+      "value": "last_year"
+    }
+  ],
+
+  "privacy": {
+    "pageTitle": "Privacy Policy",
+    "section01InfoText": "Icarus Co., Ltd. (hereinafter referred to as “Company”) considers the personal information of users who use the Internet site (homepage URL, hereinafter referred to as “Icarus”) operated by the company to be very important and has the following personal information processing policy. This personal information processing policy will be updated if there are changes in laws or guidelines related to personal information, and may vary depending on changes in the policy, so users are advised to check it frequently when visiting the Icarus Marketing Platform site. Icarus Marketing Platform's privacy policy contains the following contents.",
+    "policyList": {
+      "policyItem01": {
+        "title": "Article 1. Collection and Use of Personal Information",
+        "description": {
+          "items": [
+            {
+              "subItem": "a.",
+              "text": "The purpose of the company collecting personal information is to confirm the user's identity and intention to use the service in order to provide optimized and customized services. The company collects only the minimum necessary information required to perform the essential functions of the service at the initial membership registration, and may additionally collect information necessary for payment processing, goods delivery, refunds, etc., depending on the services provided."
+            },
+            {
+              "subItem": "b.",
+              "text": "The company will not use personal information for purposes other than the collection and use purposes without the user's consent or provide it to a third party without the user's consent."
+            },
+            {
+              "subItem": "c.",
+              "text": "The company may collect and use personal information for the following purposes. However, in addition to the information obtained with consent under relevant laws such as the National Tax Basic Act and the Electronic Financial Transactions Act, the company may inform users and collect such information if it is unavoidable for collection and storage purposes."
+            }
+          ],
+          "tableContent": {
+            "title": "1) Members",
+            "items": [
+              {
+                "purpose": "Confirmation of member identity, handling of complaints and inquiries, provision of information on new products/services and notifications, communication related to advertising execution, etc.",
+                "items": "ID (email address), password, name, phone number, affiliated company",
+                "retentionPeriod": "6 months after user withdrawal / 1 month after rejection, but in case of transactions, according to relevant laws regarding retention period"
+              }
+            ],
+            "secondTitle": "2) Others",
+            "secondItem": "During the service use process or business processing process, the following information may be automatically generated and collected, stored, combined, and analyzed. Usage history information such as IP address, visit date and time, service use records, etc.: Prevention of illegal use, prevention of unauthorized use, development of new services and provision of customized services, etc."
+          }
+        }
+      },
+      "policyItem02": {
+        "title": "Article 2. Provision of Personal Information to Third Parties",
+        "description": {
+          "items": [
+            {
+              "subItem": "a.",
+              "text": "The company uses the personal information of users within the scope notified in the 'Collection and Use of Personal Information' and does not exceed this scope without prior consent of the user or generally provide the user's personal information to third parties. However, there are exceptions as follows:"
+            },
+            {
+              "subItem": "1)",
+              "text": "When users have previously agreed to disclosure or provision to third parties"
+            },
+            {
+              "subItem": "2)",
+              "text": "When there is a requirement based on legal regulations or at the request of investigation authorities and supervisory agencies according to the procedures and methods prescribed by law for investigation or investigation purposes"
+            },
+            {
+              "subItem": "3)",
+              "text": "When necessary for fee settlement"
+            },
+            {
+              "subItem": "4)",
+              "text": "Users may provide personal information to third parties. You may not consent, and may consent to provision to a third party at any time. You can withdraw. Even if you refuse to consent You can use the membership registration service, but it is not provided by a third party. The use/provision of related services may be restricted. Any changes to the provision of other personal information to third parties will be notified and A separate notice will be provided."
+            }
+          ]
+        }
+      },
+      "policyItem03": {
+        "title": "Article 3. Outsourcing of Personal Information Processing",
+        "description": {
+          "items": [
+            {
+              "subItem": "a.",
+              "text": "The company may outsource the processing of personal information to third parties in order to provide smooth and improved services. In this case, the company shall inform users of all the following matters in advance and obtain their consent. The same applies even if any of the following matters change."
+            },
+            {
+              "subItem": "1)",
+              "text": "The entity receiving the outsourcing of personal information processing."
+            },
+            {
+              "subItem": "2)",
+              "text": "The details of the tasks for which personal information processing is outsourced."
+            },
+            {
+              "subItem": "b.",
+              "text": "The company may outsource the processing of personal information to third parties in order to provide smooth and improved services. In this case, the company shall inform users of all the following matters in advance and obtain their consent. The same applies even if any of the following matters change."
+            },
+            {
+              "subItem": "",
+              "text": "When entrusting work related to the processing of personal information, the company takes necessary measures to ensure that personal information is safely managed at the time of consignment contract in accordance with relevant laws and regulations. When entering into a consignment contract, the company considers the trustee's ability to protect personal information and periodically checks whether the trustee fulfills his or her duties, including safe management and destruction of personal information. Additionally, the information we entrust to process is limited to the minimum information necessary to provide smooth service."
+            }
+          ]
+        }
+      },
+      "policyItem04": {
+        "title": "Article 4. Retention of User Personal Information: Period of Use and Disposal",
+        "description": {
+          "items": [
+            {
+              "text": "The company generally notifies, agrees, retains, and uses the user's personal information for the period agreed upon and specified by the user, and promptly destroys it when the purpose of collecting and using the personal information is achieved or when the user requests its destruction. However, the following information is retained for the specified reasons."
+            },
+            {
+              "subItem": "a.",
+              "text": "Reasons for retaining information under relevant laws and company policies: If it is necessary to retain the user's personal information in accordance with the provisions of relevant laws, the company will retain the user's personal information in accordance with the provisions of the law and will not use it for purposes such as marketing."
+            },
+            {
+              "subItem": "b.",
+              "text": "Retention Period: The retention and use period of collected personal information is from the time of service use agreement (membership registration) to service use agreement termination (withdrawal application, forced withdrawal included). Also, when consent is withdrawn, the company promptly destroys information other than data stored for a certain period according to the reasons for information retention specified above. If personal information processing is outsourced to a third party, the company instructs the contractor to destroy it as well."
+            }
+          ]
+        }
+      },
+      "policyItem05": {
+        "title": "Article 5. Use and Management of Cookies",
+        "description": {
+          "items": [
+            {
+              "subItem": "a.",
+              "text": "Purpose of using cookies:\n1) The company uses 'cookies' to store usage information to provide personalized services on websites operated by the company. Cookies are small amounts of information that a website server sends to a user's browser and are stored on the user's computer's hard drive.\n2) The company can provide specific personalized services possible only through the use of cookies.\n3) The company may use cookies to identify members and maintain their login status."
+            },
+            {
+              "subItem": "b.",
+              "text": "Installation/Operation and Refusal of Cookies:\n1) Users have the option to choose whether to install cookies. Therefore, users can allow/reject all cookies or require confirmation each time a cookie is stored by adjusting options in their web browser:\n  - Select [Internet Options] from the [Tools] menu.\n  - Click the [Privacy] tab.\n  - Set the [Privacy Level]."
+            }
+          ]
+        }
+      },
+      "policyItem06": {
+        "title": "Article 6. Access, Correction, and Withdrawal of Personal Information",
+        "description": {
+          "items": [
+            {
+              "subItem": "a.",
+              "text": "Users can request to access, correct, or delete their personal information through the Personal Information Customer Center at any time. If requested via email or in writing, we will process access, correction, or deletion accordingly. If a user's personal information has been provided to or entrusted to a third party, the user can request deletion from the company or the third party/trustee. However, it is not possible to correct the member ID (ID) and name, except in exceptional cases such as name changes due to marriage or changes in business registration numbers due to administrative issues. If correction or deletion is prohibited or restricted by other laws, the processing may be limited. Furthermore, if a request for correction of personal information errors is made, we will not use or provide the personal information until the correction is completed, unless requested to provide the personal information under another law. If incorrect personal information has already been provided to a third party, we will notify the third party of the correction results to ensure correction."
+            },
+            {
+              "subItem": "b.",
+              "text": "Users can request the suspension of processing of their personal information on the Icarus Marketing Platform site at any time. However, a request for suspension of processing may be rejected in the following cases:\n1) When it is unavoidable to comply with special provisions of the law or fulfill legal obligations.\n2) When there is a risk of harming another person's life or body, or unfairly infringing on another person's property and other interests.\n3) When it is difficult to fulfill the contract, such as providing services agreed upon with the information subject, unless the information subject clearly expresses their intention to terminate the contract."
+            },
+            {
+              "subItem": "c.",
+              "text": "Users can withdraw their consent to the collection, use, and provision of personal information agreed upon through membership registration at any time. We will promptly take necessary measures such as deleting personal information upon request for withdrawal of consent by clicking on 'Apply for Membership Withdrawal' on the company's website, or by contacting us in writing or via email. However, if the company is required by law or the terms and conditions to retain the user's personal information, the processing will proceed. In this case, users must provide their member ID and identification information for identity verification, and there may be some restrictions on services or inability to use certain services due to withdrawal."
+            }
+          ]
+        }
+      },
+      "policyItem07": {
+        "title": "Article 7. User Responsibilities and Legal Compliance",
+        "description": {
+          "items": [
+            "a. Users are responsible for protecting their own personal information, and the company is not responsible for problems arising from the leakage of personal information due to issues on the Internet beyond the company's control, such as transfer, lending, loss of ID, password, access medium, hacking using methods or technologies that cannot be blocked by the user's carelessness or security measures under relevant laws, despite the company's considerable care.",
+            "b. Users must keep their personal information up to date, and they are responsible for problems arising from incorrect information input by the user.",
+            "c. Membership registration using another person's personal information or payment processing using stolen IDs may result in loss of user eligibility and punishment under relevant laws.",
+            "d. Users are responsible for maintaining the security of their IDs, passwords, etc., and cannot transfer or lend them to third parties. Users must cooperate with the periodic change of passwords for security purposes according to the company's privacy policy.",
+            "e. After using the company's service, users must always log out of their accounts and close the web browser program.",
+            "f. Users must comply with the 'Act on Promotion of Information and Communication Network Utilization and Information Protection,' 'Personal Information Protection Act,' and other laws related to personal information."
+          ]
+        }
+      },
+      "policyItem08": {
+        "title": "Article 8. Links to Other Websites",
+        "description": {
+          "items": [
+            "The company may provide links to other websites to users. However, this 'Privacy Policy' does not apply to websites that are linked and collect personal information."
+          ]
+        }
+      },
+      "policyItem09": {
+        "title": "Article 9. Security Measures for Personal Information Protection",
+        "description": {
+          "items": [
+            "The company implements the following technical/administrative measures to ensure the safety of personal information and prevent its loss, theft, leakage, alteration, or damage."
+          ]
+        },
+        "subItems": {
+          "encryption": {
+            "title": "a. Encryption of Personal Information",
+            "description": "User passwords are stored and managed using one-way encryption, and personal information confirmation and modification are only possible by the user who knows the password. Passwords are generated and applied according to password creation rules to prevent easy guessing of numbers such as the user's birthday or phone number. Personal information such as passwords is stored and managed using secure encryption algorithms."
+          },
+          "hacking": {
+            "title": "b. Measures against Hacking",
+            "description": "The company operates intrusion detection and prevention systems 24 hours a day to prevent the leakage of user personal information due to hacking or intrusion into the company's information and communication network. All intrusion detection and prevention systems are operated with redundancy to prepare for emergencies, and sensitive personal information is transmitted securely over the network through encrypted communication."
+          },
+          "minimization": {
+            "title": "c. Minimization and Education of Personal Information Handlers",
+            "description": "The company limits the number of personal information handlers to a minimum and raises awareness of the importance of personal information protection through educational measures and administrative actions."
+          },
+          "dedicatedDepartment": {
+            "title": "d. Operation of Dedicated Personal Information Protection Department",
+            "description": "The company operates a dedicated personal information protection department to efficiently protect personal information and promptly correct any issues found with the implementation of the privacy policy and the compliance of personal information handlers."
+          }
+        }
+      },
+      "policyItem10": {
+        "title": "Article 10. Reporting and Contact Information",
+        "description": {
+          "items": [
+            "The company strives to ensure that users can safely use the company's services. Users can report all privacy-related complaints regarding the use of the company's services to the dedicated department, and the company will promptly and sincerely respond to the user's reported issues."
+          ]
+        },
+        "contact": {
+          "privacyOfficer": {
+            "title": "Privacy Officer",
+            "name": "Lee Jinhee",
+            "department": "Privacy Protection Team",
+            "email": "lubme520@naver.com",
+            "phoneNumber": "044-864-9984",
+            "note": "※ The contact information above is connected to the 'Privacy Protection Customer Center.'"
+          },
+          "otherContacts": {
+            "title": "Other Reporting and Consultation Contacts",
+            "agencies": [
+              {
+                "name": "Personal Information Dispute Mediation Committee",
+                "website": "www.kopico.go.kr",
+                "phone": "1833-6972"
+              },
+              {
+                "name": "Personal Information Infringement Report Center",
+                "website": "privacy.kisa.or.kr",
+                "phone": "118"
+              },
+              {
+                "name": "Advanced Crime Investigation Center, Supreme Prosecutors' Office",
+                "website": "www.spo.go.kr",
+                "phone": "1301"
+              },
+              {
+                "name": "Cyber Safety Bureau, National Police Agency",
+                "website": "cyberbureau.police.go.kr",
+                "phone": "182"
+              }
+            ]
+          }
+        }
+      },
+      "policyItem11": {
+        "title": "Article 11. Amendment of Privacy Policy",
+        "description": {
+          "items": [
+            "This privacy policy may be subject to additions, deletions, or modifications due to changes in relevant laws and guidelines or the company's needs. In such cases, notice will be given at least 7 days in advance through the website or email. If prior notice is difficult, notice will be given promptly, and the revised policy will take effect after a minimum of 7 days unless otherwise stated. However, in cases of significant changes, notice will be given at least 30 days in advance, and the revised policy will take effect after a minimum of 30 days unless otherwise stated. Additionally, the company may obtain separate consent from customers as required by relevant laws."
+          ]
+        }
+      }
+    },
+    "footer": {
+      "announcementDate": "Announcement Date: 0000/00/00",
+      "enforcementDate": "Effective Date: 0000/00/00"
+    }
+  },
+  "adForm": {
+    "title": "Advertising Form",
+    "validations": {
+      "files": {
+        "msg": "Ad image is required."
+      },
+      "type":{
+        "required": "Please select a unique type."
+      },
+      "adName":{
+        "required": "Please enter the advertisement name.",
+        "checkForOnlySpaces": "Input cannot consist of only spaces."
+      },
+      "content":{
+        "required": "Please enter the advertisement content.",
+        "checkForOnlySpaces": "Input cannot consist of only spaces."
+      },
+      "adPeriod":{
+        "required": "Please select an advertising period of 6 months or 12 months."
+      },
+      "startDate":{
+        "required": "Please select a start date (select one month after registration)"
+      },
+      "adRecruitmentPeriodStartDate":{
+        "required": "Ad recruitment period start date required"
+      },
+      "adRecruitmentPeriodEndDate":{
+        "required": "Ad recruitment period end date required"
+      },
+      "vehicleDetails":{
+        "emptyObject": "Please enter the vehicle you are driving."
+      },
+      "operatingArea":{
+        "min": "Please select an operating area."
+      }
+    },
+    "info_text": [
+      "Create an ad by selecting the region where the ad is displayed.",
+      "The characteristics of advertisements may vary depending on the region.",
+      "Select the type of advertising product according to the advertising purpose, advertising exposure period, etc.",
+      "You can register your desired conditions.",
+      "The types of advertisements are ‘fixed advertisement’, ‘national advertisement’, ‘spot advertisement’, total",
+      "There are three. You cannot change the type after registration, so what kind of advertising product should you choose?",
+      "Please review and choose whether to proceed.",
+      "When registering an ad, it takes approximately 1-2 days for inspection.",
+      "I'll contact you at the phone number in charge.",
+      "Attachment example"
+    ],
+    "buttons": ["Close", "Details"],
+    "ad_type": "Ad type",
+    "detailed_description": "Detailed Description",
+    "fixed_advertising": "Fixed Advertising",
+    "lbl_advertisement_name": "Advertisement name",
+    "advertisement_name": "Please write the advertisement name.",
+    "lbl_advertisement_content": "Advertisement content",
+    "advertisement_content": "Please enter the advertisement name.",
+    "lbl_advertising_image": "Advertising image",
+    "image_limit": "Only jpeg, jpg, and png files of 5MB or less can be registered.",
+    "image_limit2": "You can register up to 5 items.",
+    "select_file": "Select File",
+    "advertising_period": "Advertising period",
+    "six_months": "6 Months",
+    "twelve_months": "12 Months",
+    "start_date": "Start Date",
+    "total_period": "Total Period",
+    "vehicle_type": "Vehicle Type",
+    "display_start_date": "Display Start Date",
+    "display_end_date": "Display End Date",
+    "wing_body": "Wing Body",
+    "operating_vehicles": "Operating Vehicles",
+    "ad_cost": "Advertising cost",
+    "monthly_ad_cost": "Monthly advertising cost",
+    "cost_description": "Advertising costs may change depending on subsequent consultation.",
+    "won": "won",
+    "required": "Essential",
+    "icarus_toc": "Icarus Advertising Application Terms and Conditions Agreement",
+    "look": "See",
+    "operating_area": "Operating area (multiple selections possible)",
+    "vehicle": "Vehicle",
+    "num_of_vehicles": "Number of Vehicles",
+    "min_vehicles": "Minimum number of vehicles required",
+    "standard": "standard",
+    "price": "price",
+    "big": "Big",
+    "rear": "Rear (free service)",
+    "apply_for_ad": "Apply",
+    "cancel": "Cancel",
+    "confrim_toc": "Please read the terms and conditions before agreeing.",
+    "confirm": "Confirm",
+    "done": "Done"
+  },
+  "policyPage": {
+    "headerTitle": "이카루스 광고 신청 약관 계약서",
+    "content": "주식회사애드메타(이하 “대행사”라 한다)와 (이하 “차주”라 한다)하기조항에 의거하여 광고계약을 체결한다. 제 1 조【 계약의 목적 】 \"대행사\"는 제2조에 명시된 광고물을 \"차주\"에게 위임하여 \"차주\"가 관리자로서 의무를 성실히 이행하여 본 광고가 효과적으로 집행될 수 있도록 \"대행사\", \"차주\" 간의 책무 관계를 명확히 하는데 있다. 제 2 조【 계약목적물 】 매체명, 매체종류, 광고위치, 수량, 기타사항 제 3 조【 광고료 및 지불방법 】 1. \"대행사\"는 매월 광고료 일금 원정 ( )을 3조2항이 지켜진 익월 2번째주화요일에 계좌이체로 \"차주\"에게 지급한다. 2. \"차주\"는 매월(4번째주월요일~ 금요일사이) 날짜, 운행거리(계기판) 식별이 가능한 사진(차량의 좌우,후면)을 \"대행사\"에게 제공하여 광고 게재 확인이 가능하도록 하여야 한다. 3. 위의 3조2항이 지켜지지 않을 시에 “대행사”는 “차주”에게 광고료를 지급하지 아니한다. 제 4 조【 계약기간 】 1. 본 광고의 계약기간은 게첨 일로부터 개월까지 로 하며, 계약만료 1개월 전에 \"대행사\", \"차주\" 협의 하에 연장키로 하며, 동일조건에서는 \"대행 사\"에게 광고 우선권을 주기로 한다. 단, 계약만료 시 광고주 또는 대행사가 바뀔 경우에 본 계약은 자동 만료되는 것으로 간주한다."
+  },
+  "toc": {
+    "terms_and_conditions": "Terms and Conditions of Icarus Advertising Application Agreement",
+    "contract_agreement": "This Agreement",
+    "purpose_of_contract": "Article 1 (Purpose of the Contract)",
+    "compliance_with_laws": "Article 2 (Compliance with Laws)",
+    "principle_of_good_faith": "Article 3 (Principle of Good Faith)",
+    "content_of_task": "Article 4 (Content of the Task)",
+    "diligent_performance": "Article 5 (Diligent Performance of the Task)",
+    "task_compensation_expenses": "Article 6 (Compensation and Expenses of the Task)",
+    "disclosure_and_review": "Article 7 (Disclosure and Review of Data and Task Content)",
+    "contract_period": "Article 8 (Contract Period)",
+    "ownership_and_intellectual_property": "Article 9 (Ownership and Intellectual Property Rights, etc.)",
+    "third_party_infringement": "Article 10 (Prohibition of Infringement of Intellectual Property Rights of Third Parties, etc.)",
+    "prohibition_of_assignment": "Article 11 (Prohibition of Assignment)",
+    "contract_termination": "Article 12 (Termination of Contract)",
+    "contract_interpretation": "Article 13 (Principles of Contract Interpretation)",
+    "jurisdiction": "Article 14 (Jurisdiction)",
+    "contract_effectiveness": "Article 15 (Effectiveness of the Contract)",
+    "consignor": {
+      "corporate_name": "Corporate Name: Icarus",
+      "ceo": "CEO: Chah Juheon (Signature or Seal)",
+      "address": "Address: 1115, 1116, Dabong Building, Daechi-dong, Gangnam-gu, Seoul, 418 Teheran-ro",
+      "phone_number": "Phone Number: "
+    },
+    "consignee": {
+      "name": "Name: Hwamulju (Signature or Seal)",
+      "resident_registration_number": "Resident Registration Number: ",
+      "address": "Address: ",
+      "phone_number": "Phone Number: "
+    }
+  },
+  "terms_and_conditions": {
+    "title": "Icarus Advertising Application Terms and Conditions",
+    "section1": {
+      "title": "Article 1 (Purpose of the Contract)",
+      "content": "The purpose of this contract is to stipulate the necessary matters between the delegator ('Party A' or 'the Assignor') and the freight owner ('Party B' or 'the Assignee') for Party A to entrust tasks to Party B, who will perform them, and Party A agrees to pay compensation to Party B accordingly."
+    },
+    "section2": {
+      "title": "Article 2 (Compliance with Relevant Laws and Regulations)",
+      "content": "The parties agree and conclude this contract on an equal basis, and shall comply with relevant laws and regulations including the Monopoly Regulation and Fair Trade Act in the performance thereof."
+    },
+    "section3": {
+      "title": "Article 3 (Principle of Good Faith)",
+      "content": "The parties shall faithfully fulfill their rights and obligations under this contract in accordance with the principle of good faith, thereby establishing and maintaining a fair relationship between them."
+    },
+    "section4": {
+      "title": "Article 4 (Content of the Service)",
+      "content": {
+        "title": "Party A entrusts Party B with the following service (hereinafter referred to as the 'Service') to be performed:",
+        "subLists": [
+          {
+            "title": "Service to be Performed: Operating advertisements provided by Icarus",
+            "subLists": [
+              {
+                "title": "Purpose of the Service: Advertisement exposure"
+              },
+              {
+                "title": "Objectives of the Service Performance",
+                "subLists": [
+                  {
+                    "title": "Achievement of mileage targets and time targets"
+                  }
+                ]
+              },
+              {
+                "title": "Service Performer",
+                "subLists": [
+                  {
+                    "title": "Service Manager: Freight Owner"
+                  },
+                  {
+                    "title": "Service Participant: Implementation of contracted mileage operations"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Another subList Title",
+            "subLists": [
+              {
+                "title": "Another sub-subList Title"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "section5": {
+      "title": "Article 5 (Faithful Performance of the Service)",
+      "content": {
+        "title": "In providing the Service, Party B shall faithfully provide the highest level of Service possible to achieve the objectives that Party A aims to achieve through this contract, utilizing accumulated knowledge and experience.",
+        "subLists": [
+          {
+            "title": "Party B guarantees the achievement of the purpose of the Service and the derivation of related results. Party A and Party B may separately agree on whether to issue a guarantee insurance certificate."
+          },
+          {
+            "title": "If Party B fails to faithfully perform the Service as stipulated in the contract, Party A may terminate the contract with the consent of Party B."
+          },
+          {
+            "title": "Upon the effectiveness of the contract, Party B shall perform the Service related to this contract immediately. If there is no submission or report of the work performance outcomes according to the content of the work of this contract for 3 days, Party A may return and claim an additional penalty equal to the agreed% of the amount already paid as a penalty, unless Party B obtains prior approval for the delay in progress due to special circumstances."
+          }
+        ]
+      }
+    },
+    "section6": {
+      "title": "Article 6 (Treatment of Service Fees and Expenses)",
+      "content": {
+        "title": "Party A shall pay Party B the fee for the Service as follows, including VAT.",
+        "subLists": [
+          {
+            "title": "Down Payment: ₩0, Paid"
+          },
+          {
+            "title": "Balance: ₩0, Paid"
+          }
+        ]
+      }
+    },
+    "section7": {
+      "title": "Article 7 (Disclosure of Information and Review of Service Content)",
+      "content": {
+        "title": "Party A and Party B shall cooperate to allow access to and review of records, reports, etc., related to the performance and results of the Service within the scope permitted by law.",
+        "subLists": [
+          {
+            "title": "Within 7 days after completion of the Service, Party B shall submit a final report compiling the results of the Service performance to Party A."
+          },
+          {
+            "title": "Party B shall provide Party A with a report on the progress of the Service performance as follows. In addition, Party B shall promptly report on the progress of the Service performance if requested by Party A:"
+          }
+        ]
+      }
+    },
+    "section8": {
+      "title": "Article 8 (Contract Period)",
+      "content": {
+        "title": "The contract period of this contract shall be from February 19, 2024, to the date designated by the advertiser.",
+        "subLists": [
+          {
+            "title": "Party A and Party B may indicate their intention to extend the contract in writing up to 7 days before the expiration of this contract period. If the other party accepts the intention to extend the contract, the contract period shall be extended for one year."
+          }
+        ]
+      }
+    },
+    "section9": {
+      "title": "Article 9 (Ownership and Intellectual Property Rights)",
+      "content": {
+        "title": "The ownership and intellectual property rights related to the final results of the Service, as well as reports, interim deliverables, derivative works based on the Service, and secondary deliverables based on the Service process, shall belong to Party A.",
+        "subLists": [
+          {
+            "title": "However, if deemed necessary for more efficient utilization, Party A may transfer them to Party B free of charge."
+          }
+        ]
+      }
+    },
+    "section10": {
+      "title": "Article 10 (Prohibition of Infringement of Third-Party Intellectual Property Rights, etc.)",
+      "content": {
+        "title": "Party B shall make active efforts to prevent infringement of third-party intellectual property rights, ownership, etc. during the performance of the Service.",
+        "subLists": [
+          {
+            "title": "If Party A incurs costs (including damages to third parties, litigation costs, legal consultation fees, etc.) and damages (including damages to Party A due to the inability to use the deliverables for the intended purpose) due to legal measures or the like taken against Party A for infringement of intellectual property rights by third parties regarding the deliverables or the like produced by Party B's performance of this Service, Party B shall indemnify Party A for such costs and damages."
+          }
+        ]
+      }
+    },
+    "section11": {
+      "title": "Article 11 (Prohibition of Transfer)",
+      "content": {
+        "title": "Neither party may transfer the contents of this contract or the rights and obligations arising from this contract to a third party without the written consent of the other party.",
+        "subLists": [
+          {
+            "title": "In the event of a violation of the preceding paragraph resulting in the transfer of rights and obligations under this contract to a third party, the violating party shall be liable for compensation for any damages caused thereby."
+          }
+        ]
+      }
+    },
+    "section12": {
+      "title": "Article 12 (Cancellation or Termination of the Contract)",
+      "content": {
+        "title": "Either party may cancel or terminate this contract by written notice in the event of the occurrence of any of the following reasons:",
+        "subLists": [
+          {
+            "title": "When it becomes impossible to achieve the purpose of this Service due to force majeure, changes in legal regulations, etc."
+          },
+          {
+            "title": "If one of the parties loses its creditworthiness, the other party may demand cancellation or termination of this contract, settle any obligations already incurred immediately, etc."
+          }
+        ]
+      }
+    },
+    "section13": {
+      "title": "Article 13 (Principles of Contract Interpretation)",
+      "content": "In case of doubt or disagreement in the interpretation of the contract, the parties shall decide by mutual agreement, and in the absence of agreement or for matters not specified in this contract, they shall be handled in accordance with general business practices."
+    },
+    "section14": {
+      "title": "Article 14 (Jurisdiction)",
+      "content": "In the event of a dispute arising out of or in connection with this contract, the competent court shall be the court having jurisdiction over the address of Party A."
+    },
+    "section15": {
+      "title": "Article 15 (Effectiveness of the Contract)",
+      "content": {
+        "title": "To prove the conclusion of this contract, the parties shall prepare and retain one copy of this contract by preparing, signing, or affixing seals to it.",
+        "subLists": [
+          {
+            "title": "If this contract is concluded through electronic signature, the parties shall acknowledge the effectiveness of electronic methods for preparing, signing, and delivering the contract."
+          }
+        ]
+      }
+    }
+  },
+  "buttons": {
+    "previous": "Previous",
+    "confirm": "Confirm"
+  },
+  "adTypes": [
+    {
+      "type": "fixed_ad",
+      "title": "Fixed Ad",
+      "subtitle_1": "Matching specific local shippers",
+      "subtitle_2": "for exposure as a fixed ad",
+      "faq": true
+    },
+    {
+      "type": "national_ad",
+      "title": "National Ad",
+      "subtitle_1": "Matching all shippers nationwide for minimal cost",
+      "subtitle_2": "to maximize advertising effectiveness",
+      "faq": true
+    },
+    {
+      "type": "spot_ad",
+      "title": "Spot Ad",
+      "subtitle_1": "Matching specific local shippers",
+      "subtitle_2": "for exposure as a fixed ad",
+      "faq": true
+    }
+  ],
+  "terms": {
+    "privacy_policy": "Privacy Policy",
+    "terms_of_use": "Terms of Use"
+  },
+  "tou": {
+    "section1": "Article 1. Collection and Use of Personal Information",
+    "section2": "Article 2. Provision of Personal Information to Third Parties",
+    "section3": "Article 3. Entrustment of Personal Information Processing",
+    "section4": "Article 4. Retention and Disposal of User Personal Information",
+    "section5": "Article 5. Operation and Refusal of Cookies",
+    "section6": "Article 6. User Rights",
+    "section7": "Article 7. User Obligations",
+    "section8": "Article 8. Responsibility for Linked Sites",
+    "section9": "Article 9. Technical/Administrative Measures for Protection of Personal Information",
+    "section10": "Article 10. Personal Information Protection Manager",
+    "section11": "Article 11. Duty to Notify",
+    "section12": "Article 12. Company's Disclaimer",
+    "section13": "Article 13. Obligations and Confidentiality of Personal Information Protection",
+    "section14": "Article 14. Dispute Resolution",
+    "section15": "Article 15. Obligations and Confidentiality of Personal Information Protection",
+    "det_section1": "Article 1. Purpose",
+    "section1Detail": "This agreement aims to regulate the rights, obligations, and responsibilities of the 'Company' and 'Advertiser' in providing advertising services (defined below) by ㈜Icarus ('Company').",
+    "det_section2": {
+      "title": "Article 1. Definitions",
+      "points": [
+        "The term 'Advertisement' (hereinafter referred to as 'Advertisement') refers to the exposure of the 'Advertiser's' 'Advertisement Materials' on 'Advertisement Media' according to the content and procedures of the advertisement product (defined below) applied for by the 'Advertiser'.",
+        "The term 'Advertisement Materials' refers to the materials created by the 'Advertiser', such as product descriptions, product photos, text, or images, which are registered on advertisement media.",
+        "The term 'Advertisement Product' refers to the product sold by the 'Company' to the 'Advertiser' to publish the 'Advertiser's' 'Advertisement Materials' on the 'Advertisement Media'. The specific contents such as the type, exposure form, and location of the advertisement product are as per the criteria for charging advertisement service fees (Attachment 1).",
+        "The term 'Advertisement Service' refers to the service provided by the 'Company' to expose the 'Advertiser's' 'Advertisement Materials' on the 'Advertisement Media' according to the contents of the advertisement products purchased by the 'Advertiser', and to provide various services such as advertisement registration, advertisement management, and reports.",
+        "The term 'Advertiser' refers to a person who applies for and uses the service according to the procedures specified in this agreement.",
+        "The term 'Icarus Advertisement Center' refers to the service page (homepage URL) provided by the 'Company' to the 'Advertiser' for advertisement application, publication, management, cancellation, etc.",
+        "The term 'Service Usage Fee' refers to the amount paid by the 'Advertiser' to the 'Company' as the service usage fee.",
+        "The term 'External Platform Advertisement' refers to the 'Advertisement Service' provided by the 'Company' through the internet and mobile advertisement platforms designated by the 'Company' to provide 'Advertisement Media'.",
+        "The term 'Advertisement Money' refers to the electronic payment means issued by the 'Company' to the 'Advertiser' for promotional benefits or for compensation and refunds. Unless otherwise specified, 'Advertisement Money' is valid for 3 months from the date of issue and can only be used when paying for 'Advertisement Products'."
+      ]
+    },
+    "3": {
+      "title": "Article 3. Posting and Composition of Terms",
+      "points": [
+        "\"Company\" shall post the contents of these Terms on \"Icarus (homepage URL)\" to make it easily accessible to the \"Advertiser\".",
+        "In the event of any amendment to these Terms by the \"Company\", the \"Company\" shall give notice by posting the effective date and reasons for the amendment together with the current Terms at least seven (7) days prior to the effective date, up to the day before the effective date, in the manner specified in paragraph 1. However, in the event of any amendment to the Terms that is disadvantageous to the \"Advertiser\", the Company shall give notice with a minimum prior notice period of thirty (30) days.",
+        "If the \"Company\" has given notice or notification of the amended Terms in accordance with the preceding paragraph, and the \"Advertiser\" does not express its intention within the period specified in the preceding paragraph, it shall be deemed that the \"Advertiser\" has agreed to the amended Terms, even if the \"Advertiser\" has not explicitly expressed its refusal."
+      ]
+    },
+    "4": {
+      "title": "Article 4. Establishment of Service Agreement",
+      "points": [
+        "\"Advertiser\" enters into the agreement by agreeing to the following \"Terms\" provided by the \"Company\" and applying for use according to the procedures prescribed by the \"Company\", and the agreement is concluded when the \"Company\" approves such application.",
+        "The \"Company\" may restrict the use of the advertising service if the \"Advertiser\" has any of the following reasons:"
+      ],
+      "subpoints": [
+        "Providing false information or failing to provide information requested by the \"Company\"",
+        "Losing \"Advertiser\" qualification due to violation of the basic terms, etc.",
+        "Other cases where the \"Company\" deems it necessary to restrict the use of the advertising service based on reasonable judgment"
+      ]
+    },
+    "5": {
+      "title": "Article 5. Registration, Restriction, and Management of Advertisements",
+      "points": [
+        "\"Company\" shall announce the types of advertising products, advertising areas, registration procedures, billing methods, etc., in accordance with the advertising product and advertising service usage fee criteria (Attachment 1) and on the \"Icarus Advertising Center\". \"Advertisers\" must carefully review this before applying for advertising.",
+        "\"Company\" only examines whether the \"Advertiser\"'s applied \"advertisement\" and \"advertisement material\" conform to the procedures, criteria, and methods set by the \"Company\", and does not conduct a substantive review of the substantive rights validity, scope, rights holders, related contracts, etc., between the \"advertisement\" and the \"advertisement material\". \"Company\" shall not be liable for the cancellation, deletion, or temporary suspension of the \"advertisement\" or \"advertisement material\" due to a report or request from a claimant, and this shall be resolved between the claimant and the \"Advertiser\". The \"Company\" will publish the advertisement approved by the Company on the \"advertisement material\" of the \"Advertiser\" to the \"advertisement media\"."
+      ]
+    },
+    "6": {
+      "title": "Article 6. Changes and Discontinuation of Advertising Services",
+      "points": [
+        "\"Company\" has the authority to determine and change or add the scope of advertising media, advertising areas, posting order, posting information, UI, etc. (hereinafter referred to as \"advertising area, etc.\").",
+        "If there are any changes to the content of the \"advertising area, etc.\", the \"Company\" will announce it on the bulletin board within \"Icarus\" before the change. If the \"Advertiser\" does not agree to the changes in the advertising service, they may suspend the exposure of the \"advertisement\" on \"Icarus\" at any time.",
+        "\"Company\" may conduct tests targeting certain keywords and traffic without separate notice to enhance the quality of the \"advertising service\" and increase the effectiveness of the \"advertisement\". However, if the test falls under any of the following items, the details of the test will be announced separately at least 7 days in advance through the Icarus notice board."
+      ]
+    },
+    "7": {
+      "title": "Article 7. Settlement of Advertising Service Fees",
+      "points": [
+        "\"Advertisers\" shall pay the fees to the \"Company\" as the consideration for using this advertising service according to the 'Advertising Service Usage Fee Criteria' (Attachment 1). However, in the case of Cost per Click (CPC) advertising products, service fees shall be imposed even if the user of the \"advertisement media\" who clicked on the advertisement material did not check the content of the advertisement material.",
+        "\"Company\" shall deduct the advertising service usage fee mentioned in the preceding clause from the sales deposit deposited by the \"Advertiser\" on the advertisement media on a daily basis. However, if the \"Advertiser\" holds \"advertising money\", it shall be deducted first.",
+        "\"Company\" issues a tax invoice for the actual advertising service usage fee executed by the \"Advertiser\", and the \"Advertiser\" can print out the tax invoice through \"Icarus\".",
+        "The advertising service usage fee in paragraph 1 of this article may be changed, and in such case, the \"Company\" shall post it on the initial screen of the \"Icarus Advertising Center\"."
+      ]
+    },
+    "8": {
+      "title": "Article 8. Notification to Advertisers",
+      "points": [
+        "\"Company\" may notify the \"Advertiser\" by providing one of the electronic mail addresses, (mobile) phone numbers, or addresses provided by the \"Advertiser\" to \"Icarus Advertising Center\" unless otherwise specified in the 'Basic Terms' and 'These Terms'. Alternatively, notifications may be made through means such as notification windows when the \"Advertiser\" logs into the \"Icarus Advertising Center\".",
+        "\"Advertiser\" shall provide the \"Company\" with contact information such as an email address, (mobile) phone number, and address that can actually be reached, and shall keep such information up-to-date. The \"Advertiser\" must check the notifications from the \"Company\".",
+        "\"Company\" shall not be liable for any disadvantages arising from the negligence of the \"Advertiser\" in fulfilling the obligations of the preceding clause."
+      ]
+    },
+    "9": {
+      "title": "Article 9. Termination, End, and Refund of Service Agreement",
+      "points": [
+        "\"Advertisers\" may terminate the advertising service agreement by accessing the \"Icarus Advertising Center\" at any time.",
+        "\"Company\" may terminate the service agreement if any of the following reasons occur. In this case, the \"Company\" shall notify the \"Advertiser\" of the reason for termination by email, telephone, fax, or other means. However, the \"Company\" may give the \"Advertiser\" an opportunity to express their opinion on the reason for termination in advance.",
+        "If the service agreement is terminated by the \"Company\", the service application requested by the \"Advertiser\" will be automatically canceled, and the remaining amount including advertising credits (excluding those issued free of charge) will be refunded to the \"Advertiser\" in the form of a sales deposit."
+      ]
+    },
+    "10": {
+      "title": "Article 10. Obligations of the Company",
+      "points": [
+        "\"Company\" shall comply with relevant laws and these Terms and Conditions, and shall make continuous and stable efforts to provide the \"Advertising Service\".",
+        "\"Company\" shall establish a security system to protect personal information (including credit information) in order to ensure that \"Advertisers\" can use the \"Advertising Service\" stably, and shall disclose and comply with the privacy policy.",
+        "If opinions or complaints are raised by the \"Advertisers\" related to relevant laws, the \"Company\" shall process them if they are deemed legitimate, and may notify the \"Advertisers\" of the processing process and results through the bulletin board on the \"Icarus Advertising Center\", email, etc.",
+        "\"Company\" may provide advertising setting functions to \"Advertisers\" to improve advertising effectiveness, and shall make best efforts to ensure that advertisements are displayed according to the conditions set by the \"Advertisers\"."
+      ]
+    },
+    "11": {
+      "title": "Article 11. Obligations of Advertisers",
+      "points": [
+        "\"Advertisers\" shall comply with relevant laws, these Terms and Conditions, individual agreements, and seller operation policies, as well as other policies established and disclosed by the Company for customer protection and service reliability enhancement, when registering advertising materials with keywords on advertising media.",
+        "\"Advertisers\" shall regularly check notices such as those posted on the Icarus Advertising Center or delivered to their email addresses notified to the Company for smooth service provision.",
+        "\"Advertisers\" may use the service only for advertising purposes and shall not provide or leak information provided by the service to third parties.",
+        "If disputes arise between the \"Company\" and the \"Advertisers\", customers, or third parties due to the \"Advertisers'\" own reasons, the \"Advertisers\" shall immediately indemnify the Company at their own expense and responsibility, and shall immediately compensate the Company, customers, or third parties for any damages incurred.",
+        "\"Advertisers\" shall not rent or transfer the service usage rights under these Terms and Conditions to any third party. However, with the consent of the \"Advertisers\", the Company may grant the right to use the Icarus Advertising Center and related systems to an advertising agency designated by the \"Advertisers\" (\"Advertising Agency\"). The supervision responsibility for the Advertising Agency shall belong to the Advertisers. If the Advertisers designate an Advertising Agency, the effects of such designation shall be maintained for the period announced by the Company on the Icarus Advertising Center (hereinafter referred to as the \"Minimum Maintenance Period\"), and the Advertisers may not designate another Advertising Agency within the Minimum Maintenance Period. The Minimum Maintenance Period is confirmable.",
+        "In the event that the contractual relationship between the Company and the Advertising Agency is terminated or terminated, the Advertisers may choose to directly perform advertising tasks or designate another advertising agency in a contractual relationship with the Company. If the Advertisers do not make a choice, the direct performance of advertising tasks will be automatically changed."
+      ]
+    },
+    "12": {
+      "title": "Article 12. Disclaimer of the Company",
+      "points": [
+        "\"Company\" shall be exempt from liability for providing services in the event of force majeure, external attacks such as DDoS, IDC failures, and circuit failures of period telecommunications operators, etc., which are beyond the Company's prediction and control, preventing the normal provision of services.",
+        "Except for intentional or gross negligence, \"Company\" shall not be liable for damages incurred by \"Advertisers\" due to the suspension of services mentioned in the preceding clause, and shall not compensate for operating losses, special damages, etc.",
+        "The services provided by the \"Company\" to the \"Advertisers\" are limited to providing an advertising platform to expose advertisements. In no event shall the \"Company\" act as an agent or representative for \"Advertisers\" or their agencies, nor shall it assume any responsibility for the sale of goods.",
+        "\"Company\" shall not be responsible for any service disruptions caused by the fault of \"Advertisers\".",
+        "\"Company\" shall not be liable for the reliability, accuracy, legality, etc., of the products advertised by \"Advertisers\", and shall not be liable for any damages incurred by \"Advertisers\", customers, or third parties who rely on them. However, if \"Advertisers\" violate relevant laws or the Company's advertising policies, the Company may refuse to publish the advertisement, but shall not be liable for the publication or discontinuation of the advertisement."
+      ]
+    },
+    "13": {
+      "title": "Article 13. Obligation of Personal Information Protection and Confidentiality",
+      "points": [
+        "Each party shall make efforts to protect the personal information of the \"Advertiser\" in accordance with the relevant laws, such as the \"Act on Promotion of Information and Communications Network Utilization and Information Protection, etc.\" The protection and use of the \"Advertiser's\" personal information shall be governed by the \"Company\".",
+        "Except as required by law, each party shall not disclose to third parties the confidential information such as personal information, technical information, and management information acquired from the other party under paragraph 1, and shall not use such information for purposes other than the performance of the service contract."
+      ]
+    },
+    "14": {
+      "title": "Article 14. Dispute Resolution",
+      "points": [
+        "This agreement shall be governed by and construed in accordance with the laws of the Republic of Korea, and any disputes arising out of or in connection with the use of this service shall be subject to the exclusive jurisdiction of the court having jurisdiction over the address under the Civil Procedure Act."
+      ]
+    },
+    "15": {
+      "title": "Article 15. Obligations and Confidentiality of Personal Information Protection",
+      "points": [
+        "\"Company\" does not guarantee where, how often, or in what order \"Advertisement Materials\" will be posted on the \"External Platform Ad\" network, or the priority between different \"Advertisers\".",
+        "\"Company\" may change the technology of \"External Platform Ads\" or stop posting \"Advertisement Materials\" without notice or compensation to the \"Advertiser\" or may not start such posting.",
+        "\"Company\" measures, through the servers of the external platform advertising company selected by \"Company\", other indicators necessary to calculate the number of clicks and/or advertising fees to be borne by the \"Advertiser\", and provides the measurement results to the \"Advertiser\".",
+        "\"External Platform Ads\" may be at risk of third-party fraudulent or inappropriate activities that may affect click-through rates or other fees under this Agreement. \"Company\" shall not be liable to the \"Advertiser\" for any third-party fraudulent clicks or other inappropriate activities that may occur.",
+        "\"Advertiser\" must diligently review the measurement results provided by \"Company\" in implementing \"External Platform Ads\" and decide whether to continue with the \"External Platform Ads\". The \"Advertiser\" may not raise objections to the measurement results specified in paragraph (3) against \"Company\"."
+      ]
+    },
+    "appendix_1": {
+      "title": "Appendix 1. Criteria for Charging Advertisement Product and Service Usage Fees",
+      "content": "The terms and conditions of this agreement shall apply from January 1, 0000."
+    },
+    "appendix_2": {
+      "title": "Appendix 2. Advertisement Operation Guide",
+      "content": "The terms and conditions of this agreement shall apply from January 1, 0000."
+    }
+  },
+  "edit_profile": "Edit Profile",
+  "logout": "Logout"
+}

@@ -12,24 +12,26 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
+import useAuth from '@src/hooks/useAuth';
 
 function NoticeDetailsPage() {
     const id = useRouter().query.id as string;
     const { data, isFetching:isLoading } = useGetNoticeDetail({ id });
     const {setPageTitle } = useIcarusContext();
+	const { dictionary:{ loadingPageMsg, noticeDetailPage } } = useAuth();
     const router = useRouter();
 
     useEffect(()=>{
-       setPageTitle("공지사항")
-    },[])
+       setPageTitle(noticeDetailPage.pageTitle)
+    },[noticeDetailPage])
 
     return (
         <>
             <Head>
-                <title>{isLoading ? "페이지 로드 중 ..." : data?.title}</title>
+                <title>{isLoading ? loadingPageMsg : data?.title}</title>
             </Head>
             <div className="only-pc lg:!py-5 lg:!pl-7 lg:!pr-5 p-0 text-gray-700 flex flex-col gap-3">
-                <div className={styles["notice-header"]}>이카루스에서 알려드립니다.</div>
+                <div className={styles["notice-header"]}>{noticeDetailPage.title}</div>
                 <Card
                     variant="elevation"
                     elevation={2}
@@ -44,7 +46,7 @@ function NoticeDetailsPage() {
                             <div className="sm:px-7  sm:!border-b-[1px] flex flex-wrap !h-[48px] sm:gap-2 justify-between items-center">
                                 <span className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[20px] sm:px-[0px]">{data?.title}</span>
                                 <div className="flex justify-end text-sm w-full lg:w-auto sm:w-auto py-[8px] sm:py-[0px] px-[10px] sm:px-[0px]">
-                                    <span className={clsx(styles["author"],"pr-[24px]")}>By. 이카루스</span>
+                                    <span className={clsx(styles["author"],"pr-[24px]")}>{noticeDetailPage.postBy}</span>
                                     <span className={clsx(styles["created-date"],"!pr-[2px]")}>
                                         {formatDate(data?.created_at,true)}</span>
                                 </div>
@@ -59,7 +61,7 @@ function NoticeDetailsPage() {
                                         height={500}
                                     />
                                 )}
-                                <div ><div className={clsx(styles["content"],"break-words whitespace-break-spaces")} 
+                                <div ><div className={clsx(styles["content"],"break-words whitespace-break-spaces")}
                                 dangerouslySetInnerHTML={{ __html: data?.content || '' }}/></div>
                             </div>
                             <div className="sm:py-[25px] p-[20px] !px-[45px] flex justify-between sm:justify-around items-center gap-0 border-t border-[#EBEDF4]">
@@ -71,7 +73,7 @@ function NoticeDetailsPage() {
                                         type="button"
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
                                     >
-                                       <PrevIcon/> <span className={styles['next-prev']}>이전글</span>
+                                       <PrevIcon/> <span className={styles['next-prev']}>{noticeDetailPage.prevBtnText}</span>
                                     </button>
                                 </Link>
                                 <Link href={`/dashboard/customer-service/notice`} className="hidden sm:block">
@@ -79,7 +81,7 @@ function NoticeDetailsPage() {
                                         type="button"
                                         className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-[#2F48D1] !border-solid w-[92px] h-9 flex justify-center text-[#2F48D1]"
                                     >
-                                        <span className={styles['list']} >목록</span>
+                                        <span className={styles['list']} >{noticeDetailPage.listBtnText}</span>
                                     </button>
                                 </Link>
                                 <Link
@@ -91,7 +93,7 @@ function NoticeDetailsPage() {
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C]
                                         disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
                                     >
-                                        <span className={styles['next-prev']}>다음글</span> <NextIcon/>
+                                        <span className={styles['next-prev']}>{noticeDetailPage.nextBtnText}</span> <NextIcon/>
                                     </button>
                                 </Link>
                             </div>
@@ -105,7 +107,7 @@ function NoticeDetailsPage() {
                 <div className={`${styles["mobile-top-header"]}`}>
                     <ArrowBack handleAction={()=>router.back()}/>
                     <div className={styles['header']}>
-                        공지사항
+                        {noticeDetailPage.pageTitle}
                     </div>
                     <div></div>
                 </div>
@@ -130,7 +132,7 @@ function NoticeDetailsPage() {
                             </div>
                             <div className={clsx(styles['mb-main-content'],"px-[18px]   overflow-y-auto flex flex-col gap-2")}>
                                 <div className="flex justify-end text-sm w-full lg:w-auto sm:w-auto  sm:px-[0px] pb-[16px]">
-                                    <span className={clsx(styles["author"],"pr-[12px]")}>By. 이카루스</span>
+                                    <span className={clsx(styles["author"],"pr-[12px]")}>{noticeDetailPage.postBy}</span>
                                     <span className={clsx(styles["created-date"],"!pr-[0px]")}>
                                         {formatDate(data?.created_at)}</span>
 
@@ -159,7 +161,7 @@ function NoticeDetailsPage() {
                                         type="button"
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
                                     >
-                                        <PrevIcon/> <span className={styles['next-prev']}>이전글</span>
+                                        <PrevIcon/> <span className={styles['next-prev']}>{noticeDetailPage.prevBtnText}</span>
                                     </button>
                                 </Link>
                                 <Link href={`/dashboard/customer-service/notice`} className="hidden sm:block">
@@ -167,7 +169,7 @@ function NoticeDetailsPage() {
                                         type="button"
                                         className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-[#2F48D1] !border-solid w-[92px] h-9 flex justify-center text-[#2F48D1]"
                                     >
-                                        <span className={styles['list']} >목록</span>
+                                        <span className={styles['list']} >{noticeDetailPage.listBtnText}</span>
                                     </button>
                                 </Link>
                                 <Link
@@ -179,7 +181,7 @@ function NoticeDetailsPage() {
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C]
                                         disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
                                     >
-                                        <span className={styles['next-prev']}>다음글</span> <NextIcon
+                                        <span className={styles['next-prev']}>{noticeDetailPage.nextBtnText}</span> <NextIcon
                                     />
                                     </button>
                                 </Link>
@@ -193,4 +195,3 @@ function NoticeDetailsPage() {
 }
 
 export default NoticeDetailsPage;
-

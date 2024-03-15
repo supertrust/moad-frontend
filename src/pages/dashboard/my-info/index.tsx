@@ -29,31 +29,32 @@ const defaultValues = {
 	sector: '',
 };
 
-const UpdateUserInfoSchema = Yup.object({
-	company_phone_number: Yup.string()
-		.required('핸드폰번호를 입력해주세요')
-		.matches(/^[0-9]{11}$/, '전화번호는 11자리여야 합니다.'),
-	employee_name: Yup.string()
-		.required('직원 이름을 입력하세요.')
-		.max(10, '담당자 이름은 10자를 넘지 않아야 합니다.')
-		.test('isKorean', '올바른 한글 이름 입력' , isHangul),
-	employee_phone_number: Yup.string()
-		.required('핸드폰번호를 입력해주세요')
-		.matches(/^[0-9]{11}$/, '전화번호는 11자리여야 합니다.'),
-	employee_email: Yup.string()
-		.matches(EMAIL_REGEX, '유효한 이메일을 입력하세요.')
-		.required('직원 이메일을 입력하세요.'),
-	sector: Yup.string(),
-});
 
 export default function MyInfoScreen() {
 	const { mutateAsync: updateUserInfo, isLoading } = useUpdateUserInfo();
 	const { mutateAsync: updateUserProfileImage,isLoading:isProfilePicUpdating } = useUpdateUserProfileImage();
 	const { setPageTitle , setProfileImage : setTopBarImage } = useIcarusContext();
-	const { user,localDataUpdated } = useAuth();
+	const { user,localDataUpdated, dictionary: { myInfo } } = useAuth();
 	const email = user?.email;
 	const [showModal, setShowModal] = useState(false);
 	const { confirm } = useConfirmDialog();
+	const { validations } = myInfo
+	const UpdateUserInfoSchema = Yup.object({
+		company_phone_number: Yup.string()
+			.required(validations.companyPhoneNumber.required)
+			.matches(/^[0-9]{11}$/, validations.companyPhoneNumber.length),
+		employee_name: Yup.string()
+			.required(validations.employeeName.required)
+			.max(10, validations.employeeName.length)
+			.test('isKorean', validations.employeeName.isKorean , isHangul),
+		employee_phone_number: Yup.string()
+			.required(validations.employeePhoneNumber.required)
+			.matches(/^[0-9]{11}$/, validations.employeePhoneNumber.length),
+		employee_email: Yup.string()
+			.matches(EMAIL_REGEX, validations.employeeEmail.format)
+			.required(validations.employeeEmail.required),
+		sector: Yup.string(),
+	});
 
 	const methods = useForm({
 		defaultValues,
@@ -101,7 +102,7 @@ export default function MyInfoScreen() {
 	});
 
 	useEffect(() => {
-		setPageTitle('내 정보');
+		setPageTitle(myInfo.title);
 	}, []);
 
 	useEffect(() => {
@@ -117,9 +118,9 @@ export default function MyInfoScreen() {
 	const handleUpdateProfileImage = ( profileImage:  File) => {
 		const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
 		const options: ConfirmPropsType = {
-			title: '확인사항',
+			title: myInfo.updateProfileImgModal.title,
 			size: 'sm',
-			cancelText: (<span className='text-[#FFFFFF]'>확인</span>),
+			cancelText: (<span className='text-[#FFFFFF]'>{myInfo.updateProfileImgModal.cancelBtnText}</span>),
 			disableConfirmBtn: true,
 			cancelButtonProps: {
 				className: 'border-primary bg-primary !text-[#FFFFFF]',
@@ -134,7 +135,7 @@ export default function MyInfoScreen() {
 				...options,
 				description: (
 					<div className='mt-3 text-center'>
-						JPG, JPEG, PNG 파일만 가능합니다.
+						{myInfo.updateProfileImgModal.allowedFileTypesMsg}
 					</div>
 				),
 			});
@@ -146,7 +147,7 @@ export default function MyInfoScreen() {
 				...options,
 				description: (
 					<div className='mt-3 text-center'>
-						최대 3MB까지만 가능합니다.
+						{myInfo.updateProfileImgModal.allowedFileSizeMsg}
 					</div>
 				),
 			});
@@ -159,11 +160,11 @@ export default function MyInfoScreen() {
 				onSuccess: () => {
 					setTopBarImage(profileImage)
 					localDataUpdated()
-					toast.success('프로필 사진이 업데이트되었습니다.')
+					toast.success(myInfo.updateProfileImgModal.profilePictureUpdatedMsg.success)
 				},
 				onError: () => {
 					setTopBarImage(undefined)
-					toast.error('프로필 사진 업데이트에 실패했습니다.')
+					toast.error(myInfo.updateProfileImgModal.profilePictureUpdatedMsg.failed)
 				}
 			}).then(r  =>{})
 		}
@@ -204,11 +205,11 @@ export default function MyInfoScreen() {
 							<div className={styles.form_wrap}>
 								<div className={styles.profile}>
 									<div className={styles.title_wraps_1}>
-										<div className={styles.title}>프로필</div>
+										<div className={styles.title}>{myInfo.header}</div>
 										<Link
 											href='/dashboard/membership-withdrawal'
 											className={styles.link}>
-											회원탈퇴
+											{myInfo.subHeader}
 										</Link>
 									</div>
 									<div className={styles.profile_wrap}>
@@ -250,19 +251,19 @@ export default function MyInfoScreen() {
 										</div>
 									</div>
 									<div className={styles.change_password}>
-										<div className={styles.title}>비밀번호 변경</div>
+										<div className={styles.title}>{myInfo.changePass}</div>
 										<Link
 											href={'change-password'}
 											className={styles.correction}>
-											수정
+											{myInfo.edit}
 										</Link>
 									</div>
 									<div className={styles.my_information}>
-										<div className={styles.title}>내 정보</div>
+										<div className={styles.title}>{myInfo.title}</div>
 										<div className={clsx('mt-4', styles.information_wrap)}>
 											<ul className={clsx('flex flex-col gap-2',styles.list_wrap)}>
 												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
-													<div className={styles.desc}>회사명</div>
+													<div className={styles.desc}>{myInfo.companyName}</div>
 													<RHFInput
 														title='company_name'
 														type='input'
@@ -278,7 +279,7 @@ export default function MyInfoScreen() {
 												</li>
 												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>
-														회사 전화번호
+														{myInfo.companyPhoneNumber}
 														<span className={styles.point}>*</span>
 													</div>
 													<RHFInput
@@ -295,7 +296,7 @@ export default function MyInfoScreen() {
 												</li>
 												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>
-														담당자 성함
+														{myInfo.contactPersonName}
 														<span className={styles.point}>*</span>
 													</div>
 													<RHFInput
@@ -311,7 +312,7 @@ export default function MyInfoScreen() {
 												</li>
 												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>
-														담당자 핸드폰
+														{myInfo.contactPersonsCellPhone}
 														<span className={styles.point}>*</span>
 													</div>
 													<RHFInput
@@ -328,7 +329,7 @@ export default function MyInfoScreen() {
 												</li>
 												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
 													<div className={styles.desc}>
-														담당자 이메일 (계산서 발행)
+														{myInfo.contactPersonsEmail}
 														<span className={styles.point}>*</span>
 													</div>
 													<div
@@ -345,7 +346,7 @@ export default function MyInfoScreen() {
 													</div>
 												</li>
 												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
-													<div className={styles.desc}>사업자 등록번호</div>
+													<div className={styles.desc}>{myInfo.companyRegistrationNumber}</div>
 													<RHFInput
 														title='business_registration_number'
 														type='number'
@@ -360,7 +361,7 @@ export default function MyInfoScreen() {
 													/>
 												</li>
 												<li className={clsx('flex-col !items-start sm:flex-row sm:items-center',styles.lists)}>
-													<div className={styles.desc}>업종</div>
+													<div className={styles.desc}>{myInfo.sectors}</div>
 													<RHFInput
 														type='text'
 														id='sector'
@@ -381,7 +382,7 @@ export default function MyInfoScreen() {
 												className={`${styles.modify_btn} p-0 mx-auto`}
 												onClick={onSubmit}
 												disabled={disabledSubmit}>
-												수정완료
+												{myInfo.modificationsCompleted}
 											</Button>
 										</div>
 									</div>
@@ -393,13 +394,13 @@ export default function MyInfoScreen() {
 				<Modal show={showModal} centered size='sm' backdrop='static'>
 					<Modal.Body>
 						<div className='text-center my-[4px]'>
-							<div className='text-[#2C324C] text-left text-xl mb-[20px] font-bold'>수정완료</div>
-							<div className='text-center p-3 border-y-[1px] border-[#EEEEEE]'>정보 수정이 완료되었습니다.</div>
+							<div className='text-[#2C324C] text-left text-xl mb-[20px] font-bold'>{myInfo.modificationsCompletedModal.title}</div>
+							<div className='text-center p-3 border-y-[1px] border-[#EEEEEE]'>{myInfo.modificationsCompletedModal.msg}</div>
 							<div className='flex flex-row justify-end mt-[20px]'>
 								<Button
 									onClick={() => setShowModal(false)}
 									className='bg-primary text-white flex justify-center px-4'>
-									확인
+									{myInfo.modificationsCompletedModal.btnText}
 								</Button>
 							</div>
 						</div>

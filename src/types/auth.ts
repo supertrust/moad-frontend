@@ -30,6 +30,8 @@ export type RegisterPropsType = {
     business_license: any;
     verify_business_registration_number: boolean;
 }
+export type Langs = "kr" | "en"
+export type Dictionary = Record<string, any>
 
 export type AuthContextType = {
     isAuthenticated: boolean;
@@ -37,6 +39,9 @@ export type AuthContextType = {
     register: (props: RegisterPropsType) => Promise<boolean>;
     logout: () => Promise<void>;
     token: string | null;
+    dictionary: Dictionary,
+    lang: Langs,
+    setLang: (lang: Langs) => {}
     user: IUser | null;
     userRole: IUserRole | null;
     loading: boolean,

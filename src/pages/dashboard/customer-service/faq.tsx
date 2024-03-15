@@ -4,19 +4,21 @@ import { Accordion, Tab, Tabs } from "react-bootstrap";
 import { Pagination } from "antd";
 import { useGetCategories, useGetFaq } from "@src/apis/faq";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import useAuth from '@src/hooks/useAuth';
 import { useRouter } from "next/router";
 
 export default function FaqScreen() {
   const router = useRouter();
+	const { dictionary:{ faqPage } } = useAuth();
   const [selectedTab, setSelectedTab] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const { data: faq,isLoading : isFaqLoading } = useGetFaq(currentPage,selectedTab);
   const { data: category, isLoading, isFetching, refetch } = useGetCategories({ type:'faq' })
-  const faqTypes = category?.data ? [{name:'전체'}].concat(category?.data) : []
+  const faqTypes = category?.data ? [{name:faqPage.allTab}].concat(category?.data) : []
 
 
   const Types = {
-    "": '전체',
+    "": faqPage.allTab,
     "service_use": '서비스이용',
     "payment_refund": '결제/환불',
     "etc": '기타'
@@ -33,7 +35,7 @@ export default function FaqScreen() {
   };
   const handleSelect = (key) => {
     setCurrentPage(1);
-    setSelectedTab(key==='전체' ? '' : key);
+    setSelectedTab(key===faqPage.allTab ? '' : key);
   }
 
 
@@ -55,7 +57,7 @@ export default function FaqScreen() {
                                     </div>
 
                                 </div>
-        <Tabs defaultActiveKey="전체" onSelect={(e) => { handleSelect(e) }} className="mb-[16px] lg:mb-[30px] px-[20px] lg:px-0 tab-section">
+        <Tabs defaultActiveKey={faqPage.allTab} onSelect={(e) => { handleSelect(e) }} className="mb-[16px] lg:mb-[30px] px-[20px] lg:px-0 tab-section">
           {faqTypes && faqTypes.map(({name},index) => (
             <Tab key={index} eventKey={name} title={name} />
           ))}
@@ -82,7 +84,7 @@ export default function FaqScreen() {
           })}
           {!isFaqLoading && !faq?.length &&
             <div className="!text-center !text-[#999] border-0 !p-[200px] bg-[#fff] rounded-[5px]">
-              등록된 FAQ가 없습니다.
+              {faqPage.noFaqsMsg}
             </div>
           }
         </Accordion>

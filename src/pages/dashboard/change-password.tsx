@@ -16,6 +16,8 @@ import { PASSWORD_REGEX } from '@src/constants';
 import Link from 'next/link';
 import Input from '@src/components/common/Input';
 import { Controller } from "react-hook-form";
+import useAuth from '@src/hooks/useAuth';
+
 
 const defaultValues = {
 	old_password: '',
@@ -23,24 +25,10 @@ const defaultValues = {
 	confirm_password: '',
 };
 
-const ChangePasswordSchema = Yup.object({
-  old_password: Yup.string().required('이전 비밀번호가 필요합니다.'),
-  new_password: Yup.string()
-    .required('새 비밀번호가 필요합니다.')
-    .notOneOf([Yup.ref('old_password')], '새 비밀번호는 이전 비밀번호와 같을 수 없습니다.')
-    .matches(
-      PASSWORD_REGEX,
-      '문자, 대문자, 숫자, 기호를 조합하여 8자 이상을 입력하세요.',
-    )
-    .min(8, '비밀번호는 8자 이상이어야 합니다.'),
-  confirm_password: Yup.string()
-    .required('비밀번호 확인이 필요합니다.')
-		// @ts-ignore
-    .oneOf([Yup.ref('new_password'), null], '비밀번호 형식이 맞지 않습니다.'),
-});
 
 
 export default function ChangePasswordScreen() {
+	const { dictionary:{ changePasswordScreen } } = useAuth();
 	const { mutateAsync: changePassword, isLoading } = useChangePassword();
 	const router = useRouter();
 
@@ -58,6 +46,22 @@ export default function ChangePasswordScreen() {
 			[field]: !showPassword[field],
 		});
 	};
+
+	const ChangePasswordSchema = Yup.object({
+		old_password: Yup.string().required(changePasswordScreen.validations.oldPassword.required),
+		new_password: Yup.string()
+			.required(changePasswordScreen.validations.newPassword.required)
+			.notOneOf([Yup.ref('old_password')], changePasswordScreen.validations.newPassword.notEqualsToOldPassword)
+			.matches(
+				PASSWORD_REGEX,
+				changePasswordScreen.validations.newPassword.checkFormat,
+			)
+			.min(8, changePasswordScreen.validations.newPassword.checkLength),
+		confirm_password: Yup.string()
+			.required(changePasswordScreen.validations.confirmPassword.required)
+			// @ts-ignore
+			.oneOf([Yup.ref('new_password'), null], changePasswordScreen.validations.confirmPassword.shouldMatchNewPassword),
+	});
 
 	const methods = useForm({
 		defaultValues,
@@ -119,9 +123,9 @@ export default function ChangePasswordScreen() {
 							<div className='form-wrap'>
 								<div className='change-password-wrap'>
 									<div className='title-wrap p-0'>
-										<div className='title'>비밀번호 변경</div>
+										<div className='title'>{changePasswordScreen.title}</div>
 										<div className='sub-text'>
-											문자, 숫자, 기호를 조합하여 8자 이상
+											{changePasswordScreen.subText}
 										</div>
 									</div>
 									<ul className='list-wrap-11'>
@@ -135,12 +139,12 @@ export default function ChangePasswordScreen() {
 													onBlur={onBlur}
 													onChange={e => {onChange(e.target.value);setError(false)}}
 													value={value}
-													label='기존 비밀번호'
+													label={changePasswordScreen.oldPassword}
 													type={showPassword.old_password ? 'text' : 'password'}
 													id='old_password'
 													name='old_password'
 													className='input-pass form-control input-wrap'
-													placeholder='비밀번호 입력'
+													placeholder={changePasswordScreen.oldPasswordPlaceholder}
 													right={
 														<i
 															className={clsx(
@@ -156,14 +160,14 @@ export default function ChangePasswordScreen() {
 														/>
 											)}
 										/>
-										{error && <span className='pull-right text-danger'>비밀번호가 일치하지 않습니다.</span>}
+										{error && <span className='pull-right text-danger'>{changePasswordScreen.passwordsNotMatchError}</span>}
 										<RHFInput
-											label='새 비밀번호'
+											label={changePasswordScreen.newPassword}
 											type={showPassword.new_password ? 'text' : 'password'}
 											id='new_password'
 											name='new_password'
 											className='input-pass form-control input-wrap'
-											placeholder='새 비밀번호 입력'
+											placeholder={changePasswordScreen.newPasswordPlaceholder}
 											right={
 												<i
 													className={clsx(
@@ -177,12 +181,12 @@ export default function ChangePasswordScreen() {
 											justifyEnd={false}
 										/>
 										<RHFInput
-											label='새 비밀번호 재입력'
+											label={changePasswordScreen.confirmPassword}
 											type={showPassword.confirm_password ? 'text' : 'password'}
 											id='confirm_password'
 											name='confirm_password'
 											className='input-pass form-control input-wrap'
-											placeholder='새 비밀번호 재입력'
+											placeholder={changePasswordScreen.confirmPasswordPlaceholder}
 											right={
 												<i
 													className={clsx(
@@ -201,7 +205,7 @@ export default function ChangePasswordScreen() {
 								</div>
 								<div className='btn-wrap'>
 									<Link href='/dashboard/my-info' className='cancel-btn btns'>
-										취소
+										{changePasswordScreen.cancelText}
 									</Link>
 									<Button
 										loading={isLoading}
@@ -209,7 +213,7 @@ export default function ChangePasswordScreen() {
 										className='modify-btn btnss'
 										onClick={onSubmit}
 										disabled={Object.keys(dirtyFields).length !== 3}>
-										수정완료
+											{changePasswordScreen.completeEditText}
 									</Button>
 								</div>
 							</div>
@@ -219,13 +223,13 @@ export default function ChangePasswordScreen() {
 				<Modal show={showModal} centered size='sm' backdrop='static'>
 					<Modal.Body>
 						<div className='text-center my-4'>
-							<div className='text-[#2C324C] text-xl	font-bold text-left mb-3'>변경완료</div>
-							<div className='mb-3 p-3 border-y-[1px] border-[#EEEEEE] text-[14px]'>비밀번호 변경이 완료되었습니다.</div>
+							<div className='text-[#2C324C] text-xl	font-bold text-left mb-3'>{changePasswordScreen.modal.title}</div>
+							<div className='mb-3 p-3 border-y-[1px] border-[#EEEEEE] text-[14px]'>{changePasswordScreen.modal.description}</div>
 							<div className='flex flex-row justify-end'>
 								<Button
 									onClick={() => setShowModal(false)}
 									className='bg-primary text-white flex justify-center px-4'>
-									확인
+									{changePasswordScreen.modal.btn}
 								</Button>
 							</div>
 						</div>

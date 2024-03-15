@@ -5,14 +5,14 @@ import dayjs from "dayjs";
 export interface RangeProps {
   className?: string;
   format?: string;
-  footer?:string;
-  startDate?:Date;
-  endDate?:Date;
-  onchange?:VoidFunction;
+  footer?: string;
+  startDate?: Date;
+  endDate?: Date;
+  onchange?: VoidFunction;
 }
 
-function RangePicker(props : RangeProps) {
-    const { RangePicker } = DatePicker;
+function RangePicker(props: RangeProps) {
+  const { RangePicker } = DatePicker;
 
   return (
     <RangePicker
@@ -20,12 +20,14 @@ function RangePicker(props : RangeProps) {
       format="YYYY-MM-DD"
       // onChange={(range) => onchange(range)}
       separator={" ~ "}
-      allowEmpty={[false,false]}
+      allowEmpty={[false, false]}
       // defaultValue={[dayjs(props.startDate??new Date()),dayjs(props.endDate??new Date())]}
       allowClear={false}
       suffixIcon={""}
       inputReadOnly
-      renderExtraFooter={() => {return props?.footer}}
+      renderExtraFooter={() => {
+        return props?.footer;
+      }}
     />
   );
 }

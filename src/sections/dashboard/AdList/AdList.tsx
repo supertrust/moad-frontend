@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import React, { useRef, useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Pagination } from 'antd';
+import { Pagination, Tooltip } from 'antd';
 import AdModel, { AdModelRef } from '../SaveAdModel';
 import styles from './style.module.css';
 import {
@@ -24,13 +24,6 @@ import { Arrow } from '@src/components/icons';
 import Link from "next/link";
 import { Types } from "@src/components/pages/AdFullDetails";
 
-const statuses = [
-	{ label: '전체', value: undefined },
-	{ label: '진행중', value: 'in_progress' },
-	{ label: '신청중', value: 'ad_reviewing' },
-	{ label: '종료', value: 'end' },
-];
-
 export const allStatuses = [
 	{ label: '광고진행중', value: 'in_progress' },
 	{ label: '광고검수중', value: 'ad_reviewing' },
@@ -42,9 +35,26 @@ export const allStatuses = [
 	{ label: '진행중', value: 'proceeding' },
 ]
 
-
 export default function AdListModule() {
-	const { userRole } = useAuth();
+	const { userRole, dictionary:{adList} } = useAuth();
+	const {adStatuses, allAdStatuses, deleteAdsModal, adTypes, columns} = adList
+	const statuses = [
+		{ label: adStatuses.all, value: undefined },
+		{ label: adStatuses.inProgress, value: 'in_progress' },
+		{ label: adStatuses.adReviewing, value: 'ad_reviewing' },
+		{ label: adStatuses.end, value: 'end' },
+	];
+
+	const allStatuses = [
+		{ label: allAdStatuses.inProgress, value: 'in_progress' },
+		{ label: allAdStatuses.adReviewing, value: 'ad_reviewing' },
+		{ label: allAdStatuses.end, value: 'end' },
+		{ label: allAdStatuses.declined, value: 'decline' },
+		{ label: allAdStatuses.applying, value: 'applying' },
+		{ label: allAdStatuses.recruitingCargoOwners, value: 'recruiting_cargo_owners' },
+		{ label: allAdStatuses.applyingForAdvertisement, value: 'applying_for_advertisement' },
+		{ label: allAdStatuses.proceeding, value: 'proceeding' },
+	]
 	const adModel = useRef<AdModelRef>(null);
 	const [selectedAds, setSelectedAds] = useState<IAdvertisement[]>([]);
 	const [status, setStatus] = useState<AdStatusesType | undefined>();
@@ -87,17 +97,17 @@ export default function AdListModule() {
 				}
 			});
 			confirm({
-				title: canDelete ? '광고삭제' : '확인사항',
+				title: canDelete ? deleteAdsModal.deleteTitle : deleteAdsModal.checkListTitle,
 				description: (
 					<p className='text-center'>
 						{canDelete ? (
 							<>
-								삭제하시면 통계에서도 확인하실 수 없습니다. <br />{' '}
-								삭제하시겠습니까?
+								{deleteAdsModal.deleteMsg} <br />{' '}
+								{deleteAdsModal.deleteConfirmationMsg}
 							</>
 						) : (
 							<>
-								종료된 광고만 삭제하실 수 있습니다.
+								{deleteAdsModal.checkListMsg}
 							</>
 						)}
 					</p>
@@ -106,8 +116,8 @@ export default function AdListModule() {
 				cancelButtonProps: {
 					className: clsx(!canDelete && ` !text-white ${styles.btn}`),
 				},
-				cancelText: canDelete ? '확인' : '취소',
-				confirmText: '삭제',
+				cancelText: canDelete ? deleteAdsModal.deleteCancelBtn : deleteAdsModal.checkCancelBtn,
+				confirmText: deleteAdsModal.confirmBtn,
 				onConfirm: async () => {
 					await Promise.all(
 						selectedAds.map(async (ad) => {
@@ -159,7 +169,7 @@ export default function AdListModule() {
 		<>
 			<div className={styles.titleWrap}>
 				<div className={styles.title}>
-					<h4 className="text-[16px] lg:text-[20px] leading-normal">광고 목록</h4>{' '}
+					<h4 className="text-[16px] lg:text-[20px] leading-normal">{adList.title}</h4>{' '}
 				</div>
 				<div className={styles.line} />
 			</div>
@@ -186,7 +196,7 @@ export default function AdListModule() {
 							id={styles.adAddBtn}
 							className={`${styles.adAddBtn} ${styles.buttonfont} font-[Inter] !w-[90px] md:!w-[138px]`}>
 							<i className='ic-plus'></i>
-							광고 신청
+							{adList.applyForAdBtn}
 						</button>
 						<div className='select-box only-pc md:w-[149px]'>
 							<Form.Select
@@ -195,17 +205,17 @@ export default function AdListModule() {
 								className='font-medium custom-select  border-1 border-[#2F48D1] text-[#2F48D1] h-[36px]'
 							>
 								{/* <option value="" >광고 유형 선택</option> */}
-								<option value=''>전체</option>
-								<option value='fixed_ad'>고정형</option>
-								<option value='national_ad'>전국형</option>
-								<option value='spot_ad'>스팟</option>
+								<option value=''>{adTypes.all}</option>
+								<option value='fixed_ad'>{adTypes.fixed}</option>
+								<option value='national_ad'>{adTypes.national}</option>
+								<option value='spot_ad'>{adTypes.spot}</option>
 							</Form.Select>
 						</div>
 						<button
 							disabled={!selectedAds.length}
 							onClick={handleDeleteAds}
 							className={`${styles.adDeleteBtn} border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-[#2F48D1] !text-[#2F48D1]`}>
-							삭제
+							{adList.deleteAdBtn}
 						</button>
 					</div>
 				</div>
@@ -234,13 +244,17 @@ export default function AdListModule() {
 								</div>
 							</div>
 							<div className={`${styles.typeWrap} ${styles.gridBox} ${styles.only_pc}`}>
-								광고 유형
+								{columns.adType}
 							</div>
-							<div className={`${styles.typeWrapsecond} ${styles.gridBox} `}>광고 이름</div>
-							<div className={`${styles.typeWrapthird} ${styles.gridBox}`}>운행 차량수</div>
-							<div className={`${styles.typeWrapfourth} ${styles.gridBox}`}>광고기간</div>
-							<div className={`${styles.typeWrapfourth} ${styles.gridBox}`}>모집기간</div>
-							<div className={`${styles.gridBox} ${styles.only_pc}`}>상태</div>
+							<div className={`${styles.typeWrapsecond} ${styles.gridBox} `}>{columns.adName}</div>
+							<div className={`${styles.typeWrapthird} ${styles.gridBox}`}>
+							<Tooltip placement="top" title={columns.noOfVehiclesInOp} color={"#ECECEC"}>
+							{columns.noOfVehiclesInOp}
+							</Tooltip>
+							</div>
+							<div className={`${styles.typeWrapfourth} ${styles.gridBox}`}>{columns.adPeriod}</div>
+							<div className={`${styles.typeWrapfourth} ${styles.gridBox}`}>{columns.recruitmentPeriod}</div>
+							<div className={`${styles.gridBox} ${styles.only_pc}`}>{columns.status}</div>
 
 							{/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
 						</div>

@@ -31,27 +31,12 @@ const defaultValues = {
   inquiry_documents: []
 };
 
-const SaveInquirySchema = Yup.object({
-  inquiry_type: Yup.string().required("고유형을 선택해주세요."),
-  inquiry_title: Yup.string().required("광고이름을 입력해주세요.").test(
-    'not-only-spaces',
-    '입력은 공백만으로 구성될 수 없습니다.',
-    value => !/^\s*$/.test(value),
-  ),
-  inquiry_question: Yup.string().required("광고기간을 6개월 또는 12개월 선택해주세요.").test(
-    'not-only-spaces',
-    '입력은 공백만으로 구성될 수 없습니다.',
-    value => !/^\s*$/.test(value),
-  ),
-  inquiry_answer: Yup.string().optional(),
-  inquiry_documents: Yup.array().optional()
-})
 export default function Index({ id }: { id: string }) {
   const { setPageTitle} = useIcarusContext()
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
   const { mutateAsync: saveInquiry } = useSaveInquiry();
   const { data } = useGetInquiryDetail({ id });
-  const { user } = useAuth();
+  const { user, dictionary: { inquireFormPage } } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const [allError, setErrors] = useState<string | undefined>('')
   const [form, setForm] = useState({
@@ -65,7 +50,7 @@ export default function Index({ id }: { id: string }) {
 
   const { confirm } = useConfirmDialog();
   useEffect(()=>{
-    setPageTitle("문의내역")
+    setPageTitle(inquireFormPage.pageTitle)
   },[])
   useEffect(() => {
     if (data) {
@@ -89,13 +74,13 @@ export default function Index({ id }: { id: string }) {
       router.push(`/inquire/${id}`);
     }
   };
-  
+
   const checkFiles = (files: File[]) => {
     const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
 		const options: ConfirmPropsType = {
-			title: '확인사항',
+			title: inquireFormPage.checkFilesModal.title,
 			size: 'sm',
-			cancelText: (<span className="text-[#FFFFFF]">확인</span>),
+			cancelText: (<span className="text-[#FFFFFF]">{inquireFormPage.checkFilesModal.cancelButton}</span>),
 			disableConfirmBtn: true,
 			cancelButtonProps: {
 				className: 'border-primary bg-primary !text-[#FFFFFF]',
@@ -114,7 +99,7 @@ export default function Index({ id }: { id: string }) {
           ...options,
           description: (
             <div className='mt-3 text-center'>
-              JPG, JPEG, PNG 파일만 가능합니다.
+              {inquireFormPage.checkFilesModal.allowedFileTypesDesc}
             </div>
           ),
         });
@@ -128,7 +113,7 @@ export default function Index({ id }: { id: string }) {
           ...options,
           description: (
             <div className='mt-3 text-center'>
-              최대 3MB까지만 가능합니다.
+              {inquireFormPage.checkFilesModal.allowedFileSizeDesc}
             </div>
           ),
         });
@@ -138,7 +123,23 @@ export default function Index({ id }: { id: string }) {
 
     return hasError ;
   };
-  
+
+  const SaveInquirySchema = Yup.object({
+    inquiry_type: Yup.string().required(inquireFormPage.validations.inquiryType.required),
+    inquiry_title: Yup.string().required(inquireFormPage.validations.inquiryTitle.required).test(
+      'not-only-spaces',
+      inquireFormPage.validations.inquiryTitle.checkForOnlySpaces,
+      value => !/^\s*$/.test(value),
+    ),
+    inquiry_question: Yup.string().required(inquireFormPage.validations.inquiryQuestion.required).test(
+      'not-only-spaces',
+      inquireFormPage.validations.inquiryQuestion.checkForOnlySpaces,
+      value => !/^\s*$/.test(value),
+    ),
+    inquiry_answer: Yup.string().optional(),
+    inquiry_documents: Yup.array().optional()
+  })
+
   const methods = useForm({
     defaultValues,
     resolver: yupResolver(SaveInquirySchema),
@@ -185,17 +186,17 @@ export default function Index({ id }: { id: string }) {
   return (
     <>
       <Head>
-        <title>이카루스 광고주</title>
+        <title>{inquireFormPage.title}</title>
       </Head>
       <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px]">
         <div className="flex gap-[20px] items-center p-[20px] sm:p-[0]">
           <Link href={`/dashboard/customer-service/inquire`}>
-            <button className="text-[16px]  text-[#2C324C]">문의내역확인</button>
+            <button className="text-[16px]  text-[#2C324C]">{inquireFormPage.checkInquiryDetailsBtn}</button>
           </Link>
           {user?.role === "Advertiser" && (
             <Link href={`form`}>
               <button className="font-bold text-[20px] text-secondary">
-                문의하기
+                {inquireFormPage.contactUsBtn}
               </button>
             </Link>
           )}
@@ -227,7 +228,7 @@ export default function Index({ id }: { id: string }) {
                             render={({ field: { value, onChange }, fieldState: { error } }) => (
                 <div className="flex flex-col gap-1">
                   <label className="font-bold" htmlFor="inquiry_type">
-                    문의유형<span className="text-[#D12953] font-medium">*</span>
+                    {inquireFormPage.inquiryType}<span className="text-[#D12953] font-medium">*</span>
                   </label>
                   <div
                     className={(submitting || (id !== null && id !== undefined) ? "opacity-70" : "")
@@ -263,11 +264,11 @@ export default function Index({ id }: { id: string }) {
                         },
                       }}
                     >
-                      <MenuItem sx={MenuItemStyles} selected value="">선택</MenuItem>
-                      <MenuItem sx={MenuItemStyles} value={"classification_of_payments"}>결제</MenuItem>
-                      <MenuItem sx={MenuItemStyles} value={"error"}>오류</MenuItem>
-                      <MenuItem sx={MenuItemStyles} value={"usage_inquiry"}>이용문의</MenuItem>
-                      <MenuItem sx={MenuItemStyles} value={"member_related"}>회원관련</MenuItem>
+                      <MenuItem sx={MenuItemStyles} selected value="">{inquireFormPage.inquiryTypes[0]}</MenuItem>
+                      <MenuItem sx={MenuItemStyles} value={"classification_of_payments"}>{inquireFormPage.inquiryTypes[1]}</MenuItem>
+                      <MenuItem sx={MenuItemStyles} value={"error"}>{inquireFormPage.inquiryTypes[2]}</MenuItem>
+                      <MenuItem sx={MenuItemStyles} value={"usage_inquiry"}>{inquireFormPage.inquiryTypes[3]}</MenuItem>
+                      <MenuItem sx={MenuItemStyles} value={"member_related"}>{inquireFormPage.inquiryTypes[4]}</MenuItem>
                     </Select>
 
                   </div>
@@ -280,7 +281,7 @@ export default function Index({ id }: { id: string }) {
                             render={({ field: { value, onChange }, fieldState: { error } }) => (
                 <div className="flex flex-col gap-1">
                   <label className="font-bold" htmlFor="inquiry_title">
-                    문의제목<span className="text-[#D12953] font-medium">*</span>
+                    {inquireFormPage.inquirySubject}<span className="text-[#D12953] font-medium">*</span>
                   </label>
                   <div
                     className={`
@@ -294,7 +295,7 @@ export default function Index({ id }: { id: string }) {
                       name="inquiry_title"
                       className=
                       {`w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded ${errors?.inquiry_title? "!border-[#F24747]" : ''}`}
-                      placeholder="(필수) 문의 제목을 입력해주세요"
+                      placeholder={inquireFormPage.inquirySubjectPlaceholder}
                       value={value}
                       // onChange={handleInput}
                       onChange={e => onChange(e.target.value)}
@@ -310,7 +311,7 @@ export default function Index({ id }: { id: string }) {
                             render={({ field: { value, onChange }, fieldState: { error } }) => (
                 <div className="flex flex-col gap-1">
                   <label className="font-bold" htmlFor="inquiry_question">
-                    문의사항<span className="text-[#D12953] font-medium">*</span>
+                    {inquireFormPage.inquiry}<span className="text-[#D12953] font-medium">*</span>
                   </label>
                   <div
                     className={`${(submitting || (id !== null && id !== undefined) ? "opacity-70" : "")}`}
@@ -320,7 +321,7 @@ export default function Index({ id }: { id: string }) {
                       id="inquiry_question"
                       name="inquiry_question"
                       className={`w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded ${errors.inquiry_question? "!border-[#F24747]" : ''} `}
-                      placeholder="(필수) 문의 제목을 입력해주세요"
+                      placeholder={inquireFormPage.inquiryPlaceHolder}
                       value={value}
                       // onChange={handleInput}
                       onChange={e => onChange(e.target.value)}
@@ -338,7 +339,7 @@ export default function Index({ id }: { id: string }) {
                   render={({ field: { value, onChange }, fieldState: { error } }) => (
                   <div className="flex flex-col gap-1">
                     <label className="font-bold" htmlFor="inquiry_answer">
-                      문의 답변<span className="text-[#D12953] font-medium">*</span>
+                      {inquireFormPage.inquiryResponse}<span className="text-[#D12953] font-medium">*</span>
                     </label>
                     <div
                       className={
@@ -352,7 +353,7 @@ export default function Index({ id }: { id: string }) {
                         id="inquiry_answer"
                         name="inquiry_answer"
                         className="w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 rounded"
-                        placeholder="(필수) 문의 제목을 입력해주세요"
+                        placeholder={inquireFormPage.inquiryResponsePlaceholder}
                         value={value}
                         onChange={e => onChange(e.target.value)}
                         required
@@ -375,7 +376,7 @@ export default function Index({ id }: { id: string }) {
                     return <>
                       <div className="mb-2">
                         <label className="font-bold mb-1">
-                          파일첨부
+                          {inquireFormPage.attachments}
                         </label>
                         <div className="flex flex-row gap-2 items-center">
                           <input
@@ -395,13 +396,13 @@ export default function Index({ id }: { id: string }) {
                             htmlFor={`file-list`}
                             className="py-2 px-3 bg-[#EBEDF4] rounded cursor-pointer hover:bg-gray-300"
                           >
-                            파일선택
+                            {inquireFormPage.selectFile}
                           </label>
                           <span className="text-[#999999] text-sm">
-                            3MB 이하의 jpg, jpeg, png  파일 업로드 가능
+                           {inquireFormPage.validFilesMsg}
                           </span>
                         </div>
-                        {!!value?.length  && 
+                        {!!value?.length  &&
                           <div className="flex flex-row items-center flex-wrap gap-2 mt-3" >
                             {value?.map((doc: File, index) => (
                               <div  key={index} className={
@@ -414,7 +415,7 @@ export default function Index({ id }: { id: string }) {
                                 <Clear className="text-[#7B756B] cursor-pointer" onClick={() => removeFile(index)}/>
                               </div>
                             ))}
-                            
+
                           </div>
                         }
                       </div>
@@ -427,7 +428,7 @@ export default function Index({ id }: { id: string }) {
                 className="w-full bg-[#2F48D1] text-[#fff] p-[13px] h-[50px] items-center	justify-center"
                   onClick={onSubmit}
                 >
-                  문의 등록
+                  {inquireFormPage.btnText}
                 </Button>
               </form>
             </FormProvider>

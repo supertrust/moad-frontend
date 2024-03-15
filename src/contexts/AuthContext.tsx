@@ -3,13 +3,15 @@ import { isAdminRoute, isAuthenticateRoute, isCargoRoute, isWithoutAuthenticateR
 import { useRouter } from "next/router";
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
-import { AuthContextType, LoginPropsType, RegisterPropsType } from '@src/types/auth';
+import { AuthContextType, Dictionary, Langs, LoginPropsType, RegisterPropsType } from '@src/types/auth';
 import { useLogin, useRegister, useLogout } from '@src/apis/auth';
 import { removeAxiosToken, setAxiosToken } from '@src/utils/axios';
 import { useGetUser, useGetUserRole } from '@src/apis/user';
 import { queryClient } from '@src/services/ReactQueryClient';
 import { parseJwt } from '@src/helpers';
 import { toast } from "react-toastify";
+import en from "@src/dictionaries/en.json";
+import kr from "@src/dictionaries/kr.json";
 import { useAdminAdvertiserLogin } from "@src/apis/admin";
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -32,10 +34,18 @@ function AuthProvider({ children }: AuthProviderProps) {
     const router = useRouter();
 
     const [loading, setLoading] = useState(true);
+    const [lang, setLang] = useState<Langs>('kr');
+    const [dictionary, setDictionary] = useState<Dictionary>();
     const [token, setToken] = useState<string | null>(null);
 
     const { data: userData, refetch: refetchUserData,isLoading : isUserLoading } = useGetUser({ isAuthenticated: false });
     const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const dictionaries = { en, kr }
+
+        setDictionary(dictionaries[lang])
+    }, [lang]);
 
     const localDataUpdated = async (currentUser: any = {}) => {
         const res = await refetchUserData()
@@ -115,14 +125,19 @@ function AuthProvider({ children }: AuthProviderProps) {
         login,
         register,
         logout,
+        lang,
+        setLang,
+        dictionary,
         loading : loading,
         isUserLoading: !user && isUserLoading,
         isRoleLoading: false,
         localDataUpdated
     }), [
+        lang,
         user,
         token,
         loading,
+        dictionary,
         isUserLoading
     ]);
 

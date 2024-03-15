@@ -1,14 +1,12 @@
-import React from "react";
-import Footer from "./component/footer/footer";
-import HeaderComp from "./component/header/header";
+import React from 'react';
+import Footer from './component/footer/footer';
+import HeaderComp from './component/header/header';
 
 const PrivacyComp = () => {
   return (
     <div className='_privacy-page-root'>
       <HeaderComp />
-      <main
-        id='privacy_policy'
-        className='page'>
+      <main id='privacy_policy' className='page'>
         <div className='page-title-wrap'>
           <h1 className='page-title-text'>개인정보 처리방침</h1>
         </div>
@@ -34,79 +32,57 @@ const PrivacyComp = () => {
           <div className='policy-list-grid'>
             <ul className='policy-list-wrap'>
               <li className='policy-list'>
-                <a
-                  href='#policy_item01'
-                  className='policy-box'>
+                <a href='#policy_item01' className='policy-box'>
                   제1조. 개인정보의 수집•이용
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item02'
-                  className='policy-box'>
+                <a href='#policy_item02' className='policy-box'>
                   제2조. 개인정보 제3자 제공
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item03'
-                  className='policy-box'>
+                <a href='#policy_item03' className='policy-box'>
                   제3조. 개인정보 처리 위탁
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item04'
-                  className='policy-box'>
+                <a href='#policy_item04' className='policy-box'>
                   제4조. 이용자 개인정보의 보유: 이용기간 및 파기
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item05'
-                  className='policy-box'>
+                <a href='#policy_item05' className='policy-box'>
                   제5조. 쿠키(Cookie)의 운용 및 거부
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item06'
-                  className='policy-box'>
+                <a href='#policy_item06' className='policy-box'>
                   제6조. 이용자 권리
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item07'
-                  className='policy-box'>
+                <a href='#policy_item07' className='policy-box'>
                   제7조. 이용자의 의무
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item08'
-                  className='policy-box'>
+                <a href='#policy_item08' className='policy-box'>
                   제8조. 링크 사이트에 대한 책임
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item09'
-                  className='policy-box'>
+                <a href='#policy_item09' className='policy-box'>
                   제9조. 개인정보의 기술적/관리적 보호 대책
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item10'
-                  className='policy-box'>
+                <a href='#policy_item10' className='policy-box'>
                   제10조. 개인정보보호책임자
                 </a>
               </li>
               <li className='policy-list'>
-                <a
-                  href='#policy_item11'
-                  className='policy-box'>
+                <a href='#policy_item11' className='policy-box'>
                   제11조. 고지의 의무
                 </a>
               </li>
@@ -115,9 +91,7 @@ const PrivacyComp = () => {
         </section>
         <section className='privacy-policy-section03'>
           <div className='policy-content'>
-            <div
-              id='policy_item01'
-              className='policy-items'>
+            <div id='policy_item01' className='policy-items'>
               <div className='policy-items-tit'>
                 제1조. 개인정보의 수집•이용
               </div>
@@ -261,7 +235,7 @@ const PrivacyComp = () => {
                   <div className='policy-sub-wrap'>
                     <div className='policy-text'>1&#41;</div>
                     <div className='policy-text'>
-                      {" "}
+                      {' '}
                       홈페이지, 모바일 어플리케이션, 모바일 웹 페이지 서면,
                       팩스, 전화, 고객센터 문의하기, 이벤트 응
                     </div>
@@ -269,7 +243,7 @@ const PrivacyComp = () => {
                   <div className='policy-sub-wrap'>
                     <div className='policy-text'>2&#41;</div>
                     <div className='policy-text'>
-                      {" "}
+                      {' '}
                       생성정보 수집 툴을 통한 자동 수집
                     </div>
                   </div>
@@ -289,9 +263,7 @@ const PrivacyComp = () => {
                 </div>
               </div>
             </div>
-            <div
-              id='policy_item02'
-              className='policy-items'>
+            <div id='policy_item02' className='policy-items'>
               <div className='policy-items-tit'>제2조. 개인정보 제3자 제공</div>
               <div className='policy-main-wrap'>
                 <div className='policy-text'>가.</div>
@@ -337,9 +309,7 @@ const PrivacyComp = () => {
                 </div>
               </div>
             </div>
-            <div
-              id='policy_item03'
-              className='policy-items'>
+            <div id='policy_item03' className='policy-items'>
               <div className='policy-items-tit'>제3조. 개인정보 처리 위탁</div>
               <div className='policy-main-wrap'>
                 <div className='policy-text'>가.</div>
@@ -389,9 +359,7 @@ const PrivacyComp = () => {
                 </div>
               </div>
             </div>
-            <div
-              id='policy_item04'
-              className='policy-items'>
+            <div id='policy_item04' className='policy-items'>
               <div className='policy-items-tit'>
                 제4조. 이용자 개인정보의 보유: 이용기간 및 파기
               </div>
@@ -547,9 +515,7 @@ const PrivacyComp = () => {
                 </div>
               </div>
             </div>
-            <div
-              id='policy_item05'
-              className='policy-items'>
+            <div id='policy_item05' className='policy-items'>
               <div className='policy-items-tit'>
                 제5조. 쿠키(Cookie)의 운용 및 거부
               </div>
@@ -610,9 +576,7 @@ const PrivacyComp = () => {
                 </div>
               </div>
             </div>
-            <div
-              id='policy_item06'
-              className='policy-items'>
+            <div id='policy_item06' className='policy-items'>
               <div className='policy-items-tit'>제6조. 이용자의 권리</div>
               <div className='policy-main-wrap'>
                 <div className='policy-text'>가.</div>
@@ -688,14 +652,12 @@ const PrivacyComp = () => {
                 </div>
               </div>
             </div>
-            <div
-              id='policy_item07'
-              className='policy-items'>
+            <div id='policy_item07' className='policy-items'>
               <div className='policy-items-tit'>제7조. 이용자의 의무</div>
               <div className='policy-text-top policy-text'>
                 이용자는 자신의 개인정보를 보호할 의무가 있으며, 회사의
                 귀책사유가 없이 ID, 비밀번호, 접근매체 등의 양도•대여•분실이나
-                로그인 상태에서 이석 등 이용자 본인의 부주의나 관계법령에 의한{" "}
+                로그인 상태에서 이석 등 이용자 본인의 부주의나 관계법령에 의한{' '}
                 <br />
                 보안 조치로 차단할 수 없는 방법이나 기술을 사용한 해킹 등 회사가
                 상당한 주의에도 불구하고 통제할 수 없는 인터넷 상의 문제 등으로
@@ -743,9 +705,7 @@ const PrivacyComp = () => {
                 </div>
               </div>
             </div>
-            <div
-              id='policy_item08'
-              className='policy-items'>
+            <div id='policy_item08' className='policy-items'>
               <div className='policy-items-tit'>제8조. 이용자의 의무</div>
               <div className='policy-text-top policy-text'>
                 회사는 이용자에게 다른 웹사이트에 대한 링크를 제공할 수
@@ -753,9 +713,7 @@ const PrivacyComp = () => {
                 행위에 대해서는 본 "개인정보처리방침"이 적용되지 않습니다.
               </div>
             </div>
-            <div
-              id='policy_item09'
-              className='policy-items'>
+            <div id='policy_item09' className='policy-items'>
               <div className='policy-items-tit'>
                 제9조. 개인정보의 기술적/관리적 보호 대책
               </div>
@@ -816,9 +774,7 @@ const PrivacyComp = () => {
                 </div>
               </div>
             </div>
-            <div
-              id='policy_item10'
-              className='policy-items'>
+            <div id='policy_item10' className='policy-items'>
               <div className='policy-items-tit'>
                 제10조. 개인정보 보호책임자
               </div>
@@ -855,9 +811,7 @@ const PrivacyComp = () => {
                 경찰청 사이버안전국 / cyberbureau.police.go.kr / (국번없이) 182
               </div>
             </div>
-            <div
-              id='policy_item11'
-              className='policy-items'>
+            <div id='policy_item11' className='policy-items'>
               <div className='policy-text-top'>
                 <div className='policy-items-tit'>제11조. 고지의 의무</div>
                 <div className='policy-text-top policy-text'>

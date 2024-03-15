@@ -5,9 +5,12 @@ import { useRouter } from "next/router";
 import React from "react";
 import Head from "next/head";
 import Image from "next/image";
+import useAuth from "@src/hooks/useAuth";
+
 
 function ProcessPage() {
   const router = useRouter();
+  const { dictionary, setLang, lang } = useAuth();
 
   const onBack = () => {
     router.back();
@@ -16,7 +19,7 @@ function ProcessPage() {
   return (
     <>
       <Head>
-        <title>이카루스 광고주</title>
+        <title>{dictionary.process_page.titles}</title>
       </Head>
       <div style={{ backgroundColor: "#f5f7fb !important" }}>
         <div className={"only-mb"}>
@@ -27,7 +30,7 @@ function ProcessPage() {
                 handleAction={onBack}
               />
             </div>
-            <div className={styles["header"]}>가이드</div>
+            <div className={styles["header"]}>{dictionary.process_page.headers}</div>
             <div></div>
           </div>
         </div>
@@ -37,9 +40,9 @@ function ProcessPage() {
           style={{ backgroundColor: "#f5f7fb" }}>
           <div style={{ backgroundColor: "white" }}>
             <div className={`${styles["bg_Head_"]}`}>
-              <div className='font-bold text-[30px] text-[#373737]'>가이드</div>
+              <div className='font-bold text-[30px] text-[#373737]'>{dictionary.process_page.headers}</div>
               <div className='font-bold text-[40px] text-[#373737]'>
-                이카루스 광고 진행 프로세스
+                {dictionary.process_page.titles}
               </div>
             </div>
             <Card
@@ -47,98 +50,25 @@ function ProcessPage() {
               elevation={3}
               className={`flex flex-col justify-between h-full gap-2 !shadow-[0px_2px_8px_0px_rgba(38,51,77,0.00)] ${styles["_bottom_card_list_wrapper"]}`}>
               <div className={`${styles["_root__list_items"]}`}>
-                <div className={`${styles["_root__text_img"]}`}>
-                  <div className={`${styles["_step_avatar_style"]}`}>
-                    <Image
-                      src='/images/process/1.svg'
-                      alt='step1'
-                      width={110}
-                      height={100}
-                    />
+                {dictionary.process_page.steps.map((step, index) => (
+                  <div key={index} className={`${styles["_root__text_img"]}`}>
+                    <div className={`${styles["_step_avatar_style"]}`}>
+                      <Image
+                        src={`/images/process/${index + 1}.svg`}
+                        alt={`step${index + 1}`}
+                        width={110}
+                        height={100}
+                      />
+                    </div>
+                    <div className={`${styles["text_ss"]}`}>
+                      <h3>{step.number}</h3>
+                      <h4>{step.title}</h4>
+                      <p>
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className={`${styles["text_ss"]}`}>
-                    <h3>STEP 1</h3>
-                    <h4>광고 신청하기</h4>
-                    <p>
-                      광고 목적에 따라 광고 유형, 희망 기간, 희망 차
-                      <br className={`${styles["br_mobile"]}`} />량 등
-                      <br className={`${styles["br_desktop"]}`} />
-                      조건 을 설정하여 광고를 신청합니다.
-                    </p>
-                  </div>
-                </div>
-                <div className={`${styles["_root__text_img"]}`}>
-                  <div className={`${styles["_step_avatar_style"]}`}>
-                    <Image
-                      src='/images/process/2.svg'
-                      alt='step2'
-                      width={110}
-                      height={100}
-                    />
-                  </div>
-                  <div className={`${styles["text_ss"]}`}>
-                    <h3>STEP 2</h3>
-                    <h4>광고 상담</h4>
-                    <p>
-                      이카루스 담당자가 확인 후 연락드립니다. <br />
-                      광고 진행에 관한 자세한 상담을 도와드립니다.
-                    </p>
-                  </div>
-                </div>
-                <div className={`${styles["_root__text_img"]}`}>
-                  <div className={`${styles["_step_avatar_style"]}`}>
-                    <Image
-                      src='/images/process/3.svg'
-                      alt='step3'
-                      width={110}
-                      height={100}
-                    />
-                  </div>
-                  <div className={`${styles["text_ss"]}`}>
-                    <h3>STEP 3</h3>
-                    <h4>차량 모집</h4>
-                    <p>
-                      이카루스에서 검증된 차량들이며, <br />
-                      해당 광고를 부착할 차량을 모집합니다.
-                    </p>
-                  </div>
-                </div>
-                <div className={`${styles["_root__text_img"]}`}>
-                  <div className={`${styles["_step_avatar_style"]}`}>
-                    <Image
-                      src='/images/process/4.svg'
-                      alt='step4'
-                      width={110}
-                      height={100}
-                    />
-                  </div>
-                  <div className={`${styles["text_ss"]}`}>
-                    <h3>STEP 4</h3>
-                    <h4>광고 진행</h4>
-                    <p>
-                      운행차량의 실시간 위치 등 <br />
-                      광고 진행을 확인하실 수 있습니다.
-                    </p>
-                  </div>
-                </div>
-                <div className={`${styles["_root__text_img"]}`}>
-                  <div className={`${styles["_step_avatar_style"]}`}>
-                    <Image
-                      src='/images/process/5.svg'
-                      alt='step5'
-                      width={110}
-                      height={100}
-                    />
-                  </div>
-                  <div className={`${styles["text_ss"]}`}>
-                    <h3>STEP 5</h3>
-                    <h4>광고 통계 확인</h4>
-                    <p>
-                      총 누적금액, 진행 거리, 진행 시간 등 <br />
-                      각종 내역들을 통계에서 확인하실 수 있습니다.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </Card>
           </div>

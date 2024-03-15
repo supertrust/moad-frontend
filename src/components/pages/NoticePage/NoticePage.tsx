@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { PushPin } from '@mui/icons-material';
 import { useGetNotices } from "@src/apis/notice";
+import useAuth from '@src/hooks/useAuth';
 import Head from "next/head";
 
 function NoticePage() {
@@ -17,6 +18,7 @@ function NoticePage() {
     const {setPageTitle} = useIcarusContext()
     const [pin, setPin] = useState<number | null>(null);
     const { data, isLoading } = useGetNotices({ page });
+	const { dictionary:{ noticePage } } = useAuth();
     const router = useRouter();
 
     const onBack = ()=>
@@ -47,15 +49,15 @@ function NoticePage() {
 
     useEffect(()=>
     {
-       setPageTitle("공지사항");
-    },[])
+       setPageTitle(noticePage.pageTitle);
+    },[noticePage])
     return (
         <>
             <Head>
-                <title>이카루스 광고주</title>
+                <title>{noticePage.title}</title>
             </Head>
             <div className="pl-[30px] pr-[20px]  pt-[20px] pb-[35px] text-gray-700 flex flex-col gap-[20px] only-pc">
-                <div className="font-bold text-[20px] text-[#373737]">이카루스에서 알려드립니다.</div>
+                <div className="font-bold text-[20px] text-[#373737]">{noticePage.heading}</div>
                 <Card variant="elevation" elevation={3} className="flex flex-col justify-between min-h-[660px] h-full gap-2 !shadow-[0px_2px_8px_0px_rgba(38,51,77,0.05)]">
                     {isLoading ? (
                         <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
@@ -66,9 +68,9 @@ function NoticePage() {
                             {/* <TableHead className={`bg-sky-100 bg-[#E1ECFF] ${pin?'table-head-notice' : ''}`}> */}
                             <TableHead className={`bg-sky-100 bg-[#E1ECFF]`}>
                                 <TableRow>
-                                    <TableCell className="!text-center">no</TableCell>
-                                    <TableCell className="!text-center">제목</TableCell>
-                                    <TableCell className="!text-center">작성일</TableCell>
+                                    <TableCell className="!text-center">{noticePage.columns[0]}</TableCell>
+                                    <TableCell className="!text-center">{noticePage.columns[1]}</TableCell>
+                                    <TableCell className="!text-center">{noticePage.columns[2]}</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody className="divide-y">
@@ -107,7 +109,7 @@ function NoticePage() {
                                     })
                                     :
                                     <TableRow>
-                                        <TableCell colSpan={3} className="!text-center !text-[#999] border-0 !p-[200px]">등록된 공지사항이 없습니다.</TableCell>
+                                        <TableCell colSpan={3} className="!text-center !text-[#999] border-0 !p-[200px]">{noticePage.noAdsMsg}</TableCell>
                                     </TableRow>
                                 }
 
@@ -134,7 +136,7 @@ function NoticePage() {
                         <ArrowBack className={'ml-4'} handleAction={onBack}/>
                     </div>
                     <div className={styles['header']}>
-                        공지사항
+                        {noticePage.pageTitle}
                     </div>
                     <div></div>
 

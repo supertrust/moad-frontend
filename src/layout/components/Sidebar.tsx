@@ -25,7 +25,7 @@ const sideBarPath = {
 }
 
 function Sidebar({ msg }: SidebarProps) {
-  const { logout, user } = useAuth();
+  const { logout, user, dictionary } = useAuth();
   const [tab, setTab] = useState("Advertising Management");
   const router = useRouter();
 
@@ -100,7 +100,7 @@ function Sidebar({ msg }: SidebarProps) {
                   }}
                 >
                   <i className="icon home"></i>
-                  <div className="name">광고관리</div>
+                  <div className="name">{dictionary.sidebar.advertisementManagement}</div>
                 </Link>
                 <ul className="sub-wrap"></ul>
               </li>
@@ -118,7 +118,7 @@ function Sidebar({ msg }: SidebarProps) {
                   }}
                 >
                   <i className="icon statistics"></i>
-                  <div className="name">통계</div>
+                  <div className="name">{dictionary.sidebar.statistics}</div>
                 </Link>
                 <ul className="sub-wrap"></ul>
               </li>
@@ -134,7 +134,7 @@ function Sidebar({ msg }: SidebarProps) {
                   }}
                 >
                   <i className="icon mypage"></i>
-                  <div className="name">내정보</div>
+                  <div className="name">{dictionary.sidebar.myInfo}</div>
                 </Link>
                 <ul className="sub-wrap nav"></ul>
               </li>
@@ -158,7 +158,7 @@ function Sidebar({ msg }: SidebarProps) {
                   }}
                 >
                   <i className="icon center"></i>
-                  <div className="name">고객센터</div>
+                  <div className="name">{dictionary.sidebar.customerService}</div>
                 </Link>
                 <ul className="sub-wrap ">
                   <li className="sub-list notice ">
@@ -172,7 +172,7 @@ function Sidebar({ msg }: SidebarProps) {
                         msg("공지사항");
                       }}
                     >
-                      고객센터
+                      {dictionary.sidebar.customerService}
                     </Link>
                   </li>
                   <li className="sub-list guide ">
@@ -186,7 +186,7 @@ function Sidebar({ msg }: SidebarProps) {
                         msg("가이드");
                       }}
                     >
-                      가이드
+                      {dictionary.sidebar.guide}
                     </Link>
                   </li>
                   <li className="sub-list faq ">
@@ -200,7 +200,7 @@ function Sidebar({ msg }: SidebarProps) {
                         msg("FAQ");
                       }}
                     >
-                      FAQ
+                      {dictionary.sidebar.faq}
                     </Link>
                   </li>
                   <li className="sub-list inquire active">
@@ -214,7 +214,7 @@ function Sidebar({ msg }: SidebarProps) {
                         msg("문의내역");
                       }}
                     >
-                      1:1문의
+                      {dictionary.sidebar.inquiry}
                     </Link>
                   </li>
                   <li className="sub-list terms ">
@@ -230,7 +230,7 @@ function Sidebar({ msg }: SidebarProps) {
                         msg("정책 및 약관");
                       }}
                     >
-                      정책 및 약관
+                      {dictionary.sidebar.termsAndPolicies}
                     </Link>
                   </li>
                 </ul>
@@ -242,7 +242,7 @@ function Sidebar({ msg }: SidebarProps) {
       <div className="side-logout d-flex align-items-center">
         <a  onClick={handleLogout} className="logout-btn">
           <i className="ic-logout"></i>
-          <div className="text-white">로그아웃</div>
+          <div className="text-white">{dictionary.sidebar.logout}</div>
         </a>
       </div>
     </div>

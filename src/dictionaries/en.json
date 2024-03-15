@@ -39,6 +39,13 @@
     "min_max_number_vehicales": "Minimum number of operating vehicles / Maximum number of operating vehicles",
     "advertisement_details": "Advertisement Details"
   },
+  "operationStatus": {
+    "active": "Waiting for operation",
+    "service": "Inspecting",
+    "suspended": "Force stop",
+    "running": "Running",
+    "end" : "Ended"
+  },
   "types": {
     "fixed_ad": "Fixed",
     "national_ad": "National",
@@ -1289,5 +1296,77 @@
     }
   },
   "edit_profile": "Edit Profile",
-  "logout": "Logout"
+  "logout": "Logout",
+  "statisticsDetailsPage": {
+    "topTitle": "Statistics > Icarus Service Open Launch Celebration",
+    "reportsAreNotRealTime": "Reports are not real time.",
+    "lastUpdatedAt": "Metric updated by time.",
+    "noDataMsg": "No content was viewed.",
+    "celebratingMsg": "Celebrating the launch of the Icarus service",
+    "columns": [
+      "no", "Registration number", "Vehicle type", "Driving distance", "Driving time", "Status", "Advertisement period"
+    ],
+    "standard": "standard",
+    "rangePicker": {
+      "extraFooter": {
+        "daily": "daily",
+        "okBtn": "Ok",
+        "cancelBtn": "Cancel"
+
+      }
+    }
+  },
+  "adDetailsPage": {
+    "adDetailColumns":["Ad name", "Ad period", "Ad type", "Ad status", "Ad area", "Ad amount"],
+    "columns":["no","Registration number", "Vehicle type", "Driving status", "Vehicle information", "Vehicle location", "Authentication photo"],
+    "breadCrumb":["Ad Management", "Advertising Vehicle Details"],
+    "mockupOptions":["Rotate 360°", "View as image"],
+    "tabs": ["All", "In operation", "In operation"]
+  },
+  "verifyPicturesModal":{
+    "title": "Vehicle Information",
+    "viewPhotos": "View photos",
+    "selectStartDate": "Select start date",
+    "selectEndDate": "Select end date",
+    "columns": ["Date", "Status", "Remarks"],
+    "status": {
+      "complete": "complete",
+      "incomplete": "incomplete"
+    }
+  },
+  "adVehicleDetailsPage": {
+    "title": "Vehicle Information",
+    "header": "Vehicle information",
+    "imagesAreScheduled": "Images are scheduled to be registered.",
+    "breadcrumb": ["Advertising Management", "Icarus New Product Release", "Vehicle Information"],
+    "badge":{
+      "text": "side",
+      "subText": "Driver's Seat"
+    },
+    "listItemsLabels": [["No.", "No."], "Vehicle type", "Average driving distance (months)", "Average driving days (months)", "Average daily driving time (days)", ["day", "hour"], "fixed origin", "fixed destination"]
+  },
+  "adVehicleLocDetailsPage": {
+    "pageTitle": "Vehicle Location",
+    "noRecordMsg":"No driving record.",
+    "refresh": "refresh"
+  },
+  "adVehicleLocDrawerPage": {
+    "categories" : ["Today's driving distance","Total driving distance","Average monthly driving distance"],
+    "wolpi":"Wolpi-dong, Sangnok-gu, Ansan-si",
+    "checkBtn":"Confirm",
+    "cancelBtn":"Cancel",
+    "vehicleSelection": "Vehicle selection",
+    "drivingRecord": "Driving Record",
+    "noRecordMsg":"No driving record.",
+    "expressWay": "Yeongdong Expressway",
+    "avgVehiclesPerDay": "Average number of passing vehicles per day",
+    "uphill": "uphill",
+    "downhill": "downhill",
+    "opDetails": "Operation Details",
+    "startOfOperation":"Start operation",
+    "opEnd": "Operation ends",
+    "drivingDistance": "Driving Distance",
+    "drivingAchievementRate": "Driving Achievement Rate"
+  },
+  "view": "View"
 }

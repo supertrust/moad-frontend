@@ -15,6 +15,7 @@ import { ISOformatDate } from "@src/helpers";
 import { KAKAO_MAP_API_KEY } from "@src/config";
 import { IVehicleLocationDetails } from "@src/types/map";
 import Image from "next/image";
+import useAuth from '@src/hooks/useAuth';
 
 type DateRange = {
   startDate : Date |string,
@@ -31,6 +32,7 @@ const VehicleLocationScreen = () => {
 	const { ad_id, vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
 	const [showDrawer, setShowDrawer] = useState(false);
+  const { dictionary: { adVehicleLocDetailsPage } } = useAuth();
   const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(null);
   const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
@@ -40,7 +42,7 @@ const VehicleLocationScreen = () => {
 
   const { data: cargoAllLocation, refetch , isLoading, isRefetching} = useAllVehicleLocationDetails(vehicle_id as string,
   ISOformatDate(selectedDateRange as Date));
-  
+
   const { data: cargoAllLocationDate} = useAllVehicleLocationDate(vehicle_id as string);
 
 
@@ -63,7 +65,7 @@ const VehicleLocationScreen = () => {
   }
 
   useEffect(() => {
-    setPageTitle("차량위치");
+    setPageTitle(adVehicleLocDetailsPage.pageTitle);
   }, []);
 
   useEffect(() => {
@@ -111,7 +113,7 @@ const VehicleLocationScreen = () => {
       <div className={`only-mb`}>
         <div className={`mobile-top-header px-[20px] pt-[15px] pb-[16px] mb-0`}>
           <ArrowBack handleAction={onBack} />
-          <div className={"header"}>차량위치</div>
+          <div className={"header"}>{adVehicleLocDetailsPage.pageTitle}</div>
           <div></div>
         </div>
       </div>
@@ -146,7 +148,7 @@ const VehicleLocationScreen = () => {
         unoptimized
         className={``}
         />
-        <p>운행 기록이 없습니다.</p>
+        <p>{adVehicleLocDetailsPage.noRecordMsg}</p>
        </div>
       }
       <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] z-50">
@@ -155,7 +157,7 @@ const VehicleLocationScreen = () => {
           onClick={() => refetch()}
           loading={isRefetching}
         >
-          새로고침
+          {adVehicleLocDetailsPage.refresh}
         </Button>
       </div>
       <Drawer

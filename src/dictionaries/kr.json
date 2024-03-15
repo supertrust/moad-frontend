@@ -39,6 +39,13 @@
     "min_max_number_vehicales": "최소 운행차량수 / 최대 운행차량수",
     "advertisement_details": "광고 상세"
   },
+  "operationStatus": {
+    "active": "운행대기중",
+    "service": "점검중",
+    "suspended": "강제종료",
+    "running": "운행중",
+    "end" : "종료됨"
+  },
   "types": {
     "fixed_ad": "고정",
     "national_ad": "전국",
@@ -1258,5 +1265,77 @@
     }
   },
   "edit_profile": "프로필 수정",
-  "logout": "로그아웃"
+  "logout": "로그아웃",
+  "statisticsDetailsPage": {
+    "topTitle": "통계 > 이카루스 서비스 오픈 출시 기념",
+    "reportsAreNotRealTime": "보고서는 실시간이 아닙니다.",
+    "lastUpdatedAt": "시간까지 업데이트된 지표입니다.",
+    "noDataMsg": "조회된 내용이 없습니다.",
+    "celebratingMsg": "이카루스 서비스 오픈 출시 기념",
+    "columns": [
+      "no", "등록번호", "차량종류", "운행거리", "운행시간", "상태", "광고기간"
+    ],
+    "standard": "기준",
+    "rangePicker": {
+      "extraFooter": {
+        "daily": "일간",
+        "okBtn": "Ok",
+        "cancelBtn": "취소"
+
+      }
+    }
+  },
+  "adDetailsPage": {
+    "adDetailColumns":["광고이름", "광고기간", "광고유형", "광고상태", "광고지역", "광고금액"],
+    "columns":["no","등록번호", "차량종류", "운행여부", "차량정보", "차량위치",  "인증사진"],
+    "breadCrumb":["광고관리", " 광고 운행차량 상세"],
+    "mockupOptions":["360°로 돌려보기", "이미지로 보기"],
+    "tabs": ["전체", "운행중", "운행정지"]
+  },
+  "verifyPicturesModal":{
+    "title": "차량정보",
+    "viewPhotos": "사진보기",
+    "selectStartDate": "시작일 선택",
+    "selectEndDate": "종료일 선택",
+    "columns": ["날짜", "상태", "비고"],
+    "status": {
+      "complete": "완료",
+      "incomplete": "미완료"
+    }
+  },
+  "adVehicleDetailsPage": {
+    "title": "차량정보",
+    "header": "차량정보",
+    "imagesAreScheduled": "이미지 등록 예정입니다.",
+    "breadcrumb": ["광고관리", "이카루스 신제품 출시", "차량정보"],
+    "badge":{
+      "text": "옆면",
+      "subText": "운전석"
+    },
+    "listItemsLabels": [["제", "호"], "차량종류", "평균 운행거리 (월)", "평균 운행일수 (월)", "일평균 운행시간 (일)", ["일", "시간"], "고정 출발지", "고정 도착지"]
+  },
+  "adVehicleLocDetailsPage": {
+    "pageTitle": "차량위치",
+    "noRecordMsg":"운행 기록이 없습니다.",
+    "refresh": "새로고침"
+  },
+  "adVehicleLocDrawerPage": {
+    "categories" : ["오늘 운행거리","총 운행거리","평균 월 운행거리"],
+    "wolpi":"안산시 상록구 월피동",
+    "checkBtn":"확인",
+    "cancelBtn":"취소",
+    "vehicleSelection": "차량 선택",
+    "drivingRecord": "운행기록",
+    "noRecordMsg":"운행 기록이 없습니다.",
+    "expressWay": "영동고속도로",
+    "avgVehiclesPerDay": "평균(일) 통과차량",
+    "uphill": "상행",
+    "downhill": "하행",
+    "opDetails": "운행내역",
+    "startOfOperation":"운행시작",
+    "opEnd": "운행종료",
+    "drivingDistance": "운행거리",
+    "drivingAchievementRate": "운행 달성률"
+  },
+  "view": "보기"
 }

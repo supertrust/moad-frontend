@@ -17,6 +17,7 @@ import "swiper/css/thumbs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import ArrowBack from "@src/components/icons/ArrowBack";
+import useAuth from '@src/hooks/useAuth';
 
 const imageStyle = {
   objectFit: "cover",
@@ -27,6 +28,7 @@ const imageStyle = {
 
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
+  const { dictionary: { adVehicleDetailsPage } } = useAuth();
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const {pageTitle,setPageTitle} = useIcarusContext()
   const advertisementId = query.ad_id as string;
@@ -44,7 +46,7 @@ export default function VehicleInfoScreen() {
   const images =  advertisementImages || [undefined, undefined, undefined, undefined];
 
   useEffect(()=>{
-    setPageTitle("차량정보")
+    setPageTitle(adVehicleDetailsPage.title)
   },[])
 
   const showImage = (image?:  ICargoImage) => {
@@ -72,12 +74,12 @@ export default function VehicleInfoScreen() {
           height={24}
         />
         <p className="text-center pt-1 font-medium text-[#9E9E9E]">
-          이미지 등록 예정입니다.
+          {adVehicleDetailsPage.imagesAreScheduled}
         </p>
       </div>
     );
   };
-  
+
   const router = useRouter();
   const onBack = () => {
     router.back();
@@ -90,7 +92,7 @@ export default function VehicleInfoScreen() {
         <div className={`only-mb`}>
               <div className={`${styles["mobile-top-header"]}`}>
                 <ArrowBack handleAction={onBack} />
-                <div className={styles["header"]}>차량정보</div>
+                <div className={styles["header"]}>{adVehicleDetailsPage.header}</div>
                 <div></div>
               </div>
             </div>
@@ -98,10 +100,10 @@ export default function VehicleInfoScreen() {
                   <div  className={styles.slider}>
 
                   <div className={`${styles.badge} hidden sm:block`}>
-                      <div className={styles.text}>옆면</div>
-                      <div className={styles.text_sub}>(운전석)</div>
+                      <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
+                      <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
                     </div>
-                    
+
                     <Image
                       className={`${styles.img} ${styles.main_img} hidden sm:block`}
                       src={!isImagesLoading && images?.length && images[0]?.image_path || '/images/ad-detail-list/no-image.png'}
@@ -134,8 +136,8 @@ export default function VehicleInfoScreen() {
                     modules={[FreeMode, Navigation, Thumbs]}
                     className={styles.thumbs_slider}
                   >
-                    {images.map( (image, index) => 
-                      <SwiperSlide className={styles.swiperslide}  
+                    {images.map( (image, index) =>
+                      <SwiperSlide className={styles.swiperslide}
                         key={index}
                         onClick={(e) => {
                           e.preventDefault();
@@ -143,8 +145,8 @@ export default function VehicleInfoScreen() {
                         }}
                       >
                         <div className={styles.badge}>
-                      <div className={styles.text}>옆면</div>
-                      <div className={styles.text_sub}>(운전석)</div>
+                      <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
+                      <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
                     </div>
                         {showImage(image)}
                       </SwiperSlide>
@@ -152,35 +154,35 @@ export default function VehicleInfoScreen() {
                   </Swiper>
                 </div>
           <div className={styles.vehicle_information_content}>
-            <Breadcrumb 
+            <Breadcrumb
               separator='>'
               items={[
                 {
                   href: "/dashboard/ad-management",
-                  title: "광고관리",
+                  title: adVehicleDetailsPage.breadcrumb[0],
                 },  {
                   href: `/dashboard/advertisement-detail/${advertisementId}`,
-                  title: "이카루스 신제품 출시",
+                  title: adVehicleDetailsPage.breadcrumb[1],
                 },{
-                  title: "차량정보",
+                  title: adVehicleDetailsPage.breadcrumb[2],
                 }
               ]}
               className={`text-[#2c324c] mb-[25px] ${styles.breadcrumb}`}
             />
 
-            {isLoading ? 
+            {isLoading ?
               <Loader size="lg" className="flex flex-row"/> :
               <div className={styles.content_inner}>
                 <div className={`${styles.slide_box} ${styles.pc_slider} ${styles.content_body} flex flex-col !gap-5`}>
                   <div  className={styles.slider}>
 
-                  
-                    
-                   {!isImagesLoading && images?.length && images[0]?.image_path ? 
+
+
+                   {!isImagesLoading && images?.length && images[0]?.image_path ?
                    <React.Fragment>
                     <div className={`${styles.badge} hidden sm:block`}>
-                      <div className={styles.text}>옆면</div>
-                      <div className={styles.text_sub}>(운전석)</div>
+                      <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
+                      <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
                     </div>
                      <Image
                         className={`${styles.img} ${styles.main_img} hidden sm:block`}
@@ -193,7 +195,7 @@ export default function VehicleInfoScreen() {
                    </React.Fragment>
                     :
                     <ShowNoImage classname={'min-h-[428px]'}/>
-                  
+
                   }
                   </div>
                   {images.length > 0 ?
@@ -221,8 +223,8 @@ export default function VehicleInfoScreen() {
                   className={styles.thumbs_slider}
                 >
 
-                  {images.map( (image, index) => 
-                    <SwiperSlide className={styles.swiperslide}  
+                  {images.map( (image, index) =>
+                    <SwiperSlide className={styles.swiperslide}
                       key={index}
                       onClick={(e) => {
                         e.preventDefault();
@@ -230,8 +232,8 @@ export default function VehicleInfoScreen() {
                       }}
                     >
                       {/* <div className={styles.badge}>
-                    <div className={styles.text}>옆면</div>
-                    <div className={styles.text_sub}>(운전석)</div>
+                    <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
+                    <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
                   </div> */}
                       {showImage(image)}
                     </SwiperSlide>
@@ -241,18 +243,18 @@ export default function VehicleInfoScreen() {
                 : (
                   <div className="flex justify-between gap-2">
 
-                    {[0,1,2,3].map((data,index) => 
+                    {[0,1,2,3].map((data,index) =>
                         <ShowNoImage key={index} classname={'min-h-[136px]'}/>
                       )}
                   </div>
                 )
                   }
-                  
+
                 </div>
 
                 <div className={`${styles.table_box} ${styles.content_body}`}>
                   <div className="vehicle_number">
-                    제 {advertisement?.car_number} 호
+                    {adVehicleDetailsPage.listItemsLabels[0][0]} {advertisement?.car_number} {adVehicleDetailsPage.listItemsLabels[0][1]}
                     <style jsx>{`
                     .vehicle_number {
                       padding: 38px 30px;
@@ -266,7 +268,7 @@ export default function VehicleInfoScreen() {
                   <ul className={styles.list_wrap}>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                        차량종류
+                      {adVehicleDetailsPage.listItemsLabels[1]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                         {
@@ -277,7 +279,7 @@ export default function VehicleInfoScreen() {
                     </li>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                        평균 운행거리 (월)
+                      {adVehicleDetailsPage.listItemsLabels[2]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                         {
@@ -288,7 +290,7 @@ export default function VehicleInfoScreen() {
                     </li>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                        평균 운행일수 (월)
+                      {adVehicleDetailsPage.listItemsLabels[3]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                         {
@@ -299,33 +301,33 @@ export default function VehicleInfoScreen() {
                     </li>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                        일평균 운행시간 (일)
+                      {adVehicleDetailsPage.listItemsLabels[4]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
-                        일{" "}
+                      {adVehicleDetailsPage.listItemsLabels[5][0]}{" "}
                         {advertisement?.daily_avg_drive_time}{" "}
-                        시간
+                        {adVehicleDetailsPage.listItemsLabels[5][1]}
                       </div>
                     </li>
                     <li className={styles.list}>
-                                <div className={`${styles.title} ${styles.text}`}>
-                                  고정 출발지
-                                </div>
-                                <div className={`${styles.value} ${styles.text}`}>
-                                  {
-                                    advertisement
-                                        ?.start_point
-                                  }
-                                </div>
-                              </li>
-                              <li className={styles.list}>
-                                <div className={`${styles.title} ${styles.text}`}>
-                                  고정 도착지
-                                </div>
-                                <div className={`${styles.value} ${styles.text}`}>
-                                  {advertisement?.end_point}
-                                </div>
-                              </li>
+                      <div className={`${styles.title} ${styles.text}`}>
+                      {adVehicleDetailsPage.listItemsLabels[6]}
+                      </div>
+                      <div className={`${styles.value} ${styles.text}`}>
+                        {
+                          advertisement
+                              ?.start_point
+                        }
+                      </div>
+                    </li>
+                    <li className={styles.list}>
+                      <div className={`${styles.title} ${styles.text}`}>
+                      {adVehicleDetailsPage.listItemsLabels[7]}
+                      </div>
+                      <div className={`${styles.value} ${styles.text}`}>
+                        {advertisement?.end_point}
+                      </div>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -333,24 +335,24 @@ export default function VehicleInfoScreen() {
           </div>
         </div>
       </div>
-        <Modal 
-          show={fullSize && !!advertisementImages?.length} 
-          centered size="lg" 
+        <Modal
+          show={fullSize && !!advertisementImages?.length}
+          centered size="lg"
           className="gallery"
           contentClassName="bg-transparent m-0 border-none"
         >
           <Modal.Body className="m-0 flex-1">
-            <XMarkIcon 
-              width={25} 
+            <XMarkIcon
+              width={25}
               className="p-1 bg-[#000] bg-opacity-70 text-white absolute right-6 top-6 z-50 rounded-sm cursor-pointer"
-              onClick={() => showFullSize(false)} 
+              onClick={() => showFullSize(false)}
             />
             <Carousel>
               {images.map((item, index) => (
                   <Carousel.Item key={index}>
                     <div className={styles.badge}>
-                      <div className={styles.text}>옆면</div>
-                      <div className={styles.text_sub}>(운전석)</div>
+                      <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
+                      <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
                     </div>
                     {showImage(item)}
                   </Carousel.Item>

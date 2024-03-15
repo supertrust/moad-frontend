@@ -24,6 +24,7 @@ import { TypeOfVechicle } from "@src/sections/dashboard/SaveAdModel/SaveAdForm";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
 import { formatDate, formatNumberWithCommas } from "@src/utils/formatter";
+import useAuth from '@src/hooks/useAuth';
 
 export const DateRangePickerCtrls = [
   {
@@ -65,6 +66,7 @@ endDate : Date | string
 }
 const currentYearStart = new Date(new Date().getFullYear(), 0, 1);
 function StatisticsDetailsPage() {
+  const { dictionary: { dateRangePickerCtrls, statisticsDetailsPage } } = useAuth();
   const router = useRouter();
   const { RangePicker } = DatePicker;
   const { id } = router.query;
@@ -136,7 +138,7 @@ function StatisticsDetailsPage() {
     newElementOuter.classList.add(styles['ant-picker-custom-header']);
     var newElement = document.createElement("div");
 
-    DateRangePickerCtrls.forEach((item) => {
+    dateRangePickerCtrls.forEach((item) => {
       var newButton = document.createElement("button");
       newButton.textContent = item.label;
       newButton.onclick = () => {
@@ -156,7 +158,7 @@ function StatisticsDetailsPage() {
     return () => {
       dateRangePicker?.removeChild(newElementOuter);
     };
-  }, [datePickerOpen]);
+  }, [datePickerOpen, dateRangePickerCtrls]);
 
   const bufferStartDate = !Array.isArray(bufferdDate) ? bufferdDate.startDate : new Date();
   const bufferEndDate   = !Array.isArray(bufferdDate) ? bufferdDate.endDate : new Date();
@@ -181,7 +183,7 @@ function StatisticsDetailsPage() {
       <div className={clsx("only-pc", "mx-[30px]")}>
         <div className={"py-[20px]"}>
           <span className={styles["top-title"]}>
-            {"통계 > 이카루스 서비스 오픈 출시 기념 "}
+            {statisticsDetailsPage.topTitle}
           </span>
         </div>
 
@@ -263,7 +265,7 @@ function StatisticsDetailsPage() {
                               {
                               <p>{ISOformatDate(bufferStartDate as Date)} ~
                               {ISOformatDate(bufferEndDate as Date)} {' '}
-                              <span className="text-[#2F48D1] font-medium	">({totalDays(bufferStartDate,bufferEndDate)}일간)</span>
+                              <span className="text-[#2F48D1] font-medium	">({totalDays(bufferStartDate,bufferEndDate)}{statisticsDetailsPage.rangePicker.daily})</span>
                               </p>
                               }
                             </div>
@@ -275,7 +277,7 @@ function StatisticsDetailsPage() {
                                   setDatePickerOpen(false)
                                 }}
                               >
-                                Ok
+                                {statisticsDetailsPage.rangePicker.okBtn}
                               </button>
                               <button
                                 className=" bg-[#fff] text-[#999] px-[12px] py-[5px] rounded text-[12px] leading-normal"
@@ -283,7 +285,7 @@ function StatisticsDetailsPage() {
                                   setDatePickerOpen(false);
                                 }}
                               >
-                                취소
+                                {statisticsDetailsPage.rangePicker.cancelBtn}
                               </button>
                             </div>
                           </div>
@@ -299,7 +301,7 @@ function StatisticsDetailsPage() {
                 <div className={"h-[40px] w-[1px] bg-[#EBEDF4]"}></div>
               </div>
               <span className={styles["selected-date"]}>
-                {`보고서는 실시간이 아닙니다. ${currentTimestamp} 기준, ${currentTimestamp.split(' ')[0]} 00:00 시간까지 업데이트된 지표입니다.`}
+                {`${statisticsDetailsPage.reportsAreNotRealTime} ${currentTimestamp} ${statisticsDetailsPage.standard}, ${currentTimestamp.split(' ')[0]} 00:00 ${statisticsDetailsPage.lastUpdatedAt}`}
               </span>
             </div>
             {isLoading ? (
@@ -312,28 +314,28 @@ function StatisticsDetailsPage() {
                        <TableHead className="bg-[#f5f7fb]">
                 <TableRow className={"!h-[60px]"}>
                   <TableCell className={clsx(styles["table-title"])}>
-                    no
+                    {statisticsDetailsPage.columns[0]}
                   </TableCell>
                   <TableCell className={clsx(styles["table-title"])}>
-                    등록번호
+                  {statisticsDetailsPage.columns[1]}
                   </TableCell>
                   <TableCell className={clsx(styles["table-title"])}>
-                    차량종류
+                  {statisticsDetailsPage.columns[2]}
                   </TableCell>
                   <TableCell className={clsx(styles["table-title"])}>
-                    운행거리
+                  {statisticsDetailsPage.columns[3]}
                   </TableCell>
                   <TableCell className={clsx(styles["table-title"])}>
-                    운행시간
+                  {statisticsDetailsPage.columns[4]}
                   </TableCell>
                   {/*<TableCell className={clsx(styles["table-title"])}>*/}
                   {/*  달성률*/}
                   {/*</TableCell>*/}
                   <TableCell className={clsx(styles["table-title"])}>
-                    상태
+                  {statisticsDetailsPage.columns[5]}
                   </TableCell>
                   <TableCell className={clsx(styles["table-title"])}>
-                    광고기간
+                  {statisticsDetailsPage.columns[6]}
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -422,7 +424,7 @@ function StatisticsDetailsPage() {
                     <div
                       className={'w-full p-[150px] text-center'}
                     >
-                      조회된 내용이 없습니다.
+                      {statisticsDetailsPage.noDataMsg}
                     </div>
                   )
                 )}
@@ -450,7 +452,7 @@ function StatisticsDetailsPage() {
       >
         <div className={`${styles["mobile-top-header"]}`}>
           <ArrowBack handleAction={() => router.back()} />
-          <div className={styles["header"]}>이카루스 서비스 오픈 출시 기념</div>
+          <div className={styles["header"]}>{statisticsDetailsPage.celebratingMsg}</div>
           <div></div>
         </div>
 

@@ -45,6 +45,7 @@ import localeData from 'dayjs/plugin/localeData'
 import weekday from 'dayjs/plugin/weekday'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import weekYear from 'dayjs/plugin/weekYear'
+import useAuth from '@src/hooks/useAuth';
 
 dayjs.extend(customParseFormat)
 dayjs.extend(advancedFormat)
@@ -78,6 +79,7 @@ const DisabledButton = ({children})=>{
 
 function AdvertisementDetailScreen() {
   const router = useRouter();
+  const { dictionary: { types, view, operationStatus, adDetailsPage } } = useAuth();
   const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState<{ page: number; status: string }>({
     page: 1,
@@ -185,35 +187,35 @@ function AdvertisementDetailScreen() {
   ];
   const ad_detail_arr = [
     {
-      title: "광고이름",
+      title: adDetailsPage.adDetailColumns[0],
       value: advertisement?.ad_name,
     },
     {
-      title: "광고기간",
+      title: adDetailsPage.adDetailColumns[1],
       value:
         advertisement?.start_date && advertisement?.end_date
           ? `${advertisement?.start_date} ~ ${advertisement?.end_date} (${advertisement.ad_period}개월)`
           : "--",
     },
     {
-      title: "광고유형",
+      title: adDetailsPage.adDetailColumns[2],
       value: advertisement?.type
-        ? Types[advertisement.type]
+        ? types[advertisement.type]
         : advertisement?.type,
     },
     {
-      title: "광고상태",
+      title: adDetailsPage.adDetailColumns[3],
       value: advertisement?.status
         ? allStatuses.find((status) => advertisement?.status === status.value)
             ?.label
         : advertisement?.status,
     },
     {
-      title: "광고지역",
+      title: adDetailsPage.adDetailColumns[4],
       value: operationAreas?.map((item) => item.area).join(', '),
     },
     {
-      title: "광고금액",
+      title: adDetailsPage.adDetailColumns[5],
       value: `${advertisement?.amount.toLocaleString()}원`,
     },
   ];
@@ -233,19 +235,19 @@ function AdvertisementDetailScreen() {
             car_number: item?.user_cargo?.car_number,
             vehicle_type: item.vehicle?.vehicle_type,
             vehicle_status: item.status,
-            vehicle_information: "보기",
-            vehicle_location: "보기",
+            vehicle_information: view,
+            vehicle_location: view,
             show_links: item.status == null ? false : true,
             cargo_vehicle_id: item.cargo_vehicle_id,
             advertisement_id: item.advertisement_id,
           })),
-    [cargoItems]
+    [cargoItems, view]
   );
 
   const columns = [
     {
       dataIndex: "no",
-      title: "no",
+      title: adDetailsPage.columns[0],
       formatter: (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
         return rowIndex + 1;
       },
@@ -259,7 +261,7 @@ function AdvertisementDetailScreen() {
     },
     {
       dataIndex: "car_number",
-      title: "등록번호",
+      title: adDetailsPage.columns[1],
       sort: true,
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
@@ -269,7 +271,7 @@ function AdvertisementDetailScreen() {
     },
     {
       dataIndex: "vehicle_type",
-      title: "차량종류",
+      title: adDetailsPage.columns[2],
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -277,19 +279,19 @@ function AdvertisementDetailScreen() {
       },
     },
     {
-      title: "운행여부",
+      title: adDetailsPage.columns[3],
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
         paddingBottom: "20px",
       },
       render: ({ vehicle_status }) => {
-        return vehicle_status && OperationStatus[vehicle_status.toLowerCase()];
+        return vehicle_status && operationStatus[vehicle_status.toLowerCase()];
       },
     },
     {
       dataIndex: "vehicle_information",
-      title: "차량정보",
+      title: adDetailsPage.columns[4],
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -308,7 +310,7 @@ function AdvertisementDetailScreen() {
     },
     {
       dataIndex: "vehicle_location",
-      title: "차량위치",
+      title: adDetailsPage.columns[5],
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -329,7 +331,7 @@ function AdvertisementDetailScreen() {
     },
     {
       dataIndex: "vehicle_location",
-      title: "인증사진",
+      title: adDetailsPage.columns[6],
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -421,10 +423,10 @@ function AdvertisementDetailScreen() {
                 items={[
                   {
                     href: "/dashboard",
-                    title: "광고관리",
+                    title: adDetailsPage.breadCrumb[0],
                   },
                   {
-                    title: " 광고 운행차량 상세",
+                    title: adDetailsPage.breadCrumb[1],
                   },
                 ]}
                 className="text-[#2c324c] mb-[20px] hidden sm:block"
@@ -547,7 +549,7 @@ function AdvertisementDetailScreen() {
                       <i
                         className={`${styles.ic_3d_rotation} ${styles.icons}`}
                       ></i>{" "}
-                      <span className={styles.text}>360°로 돌려보기</span>
+                      <span className={styles.text}>{adDetailsPage.mockupOptions[0]}</span>
                     </button>
                     <button
                       onClick={() => {
@@ -558,7 +560,7 @@ function AdvertisementDetailScreen() {
                       className={styles.btns}
                     >
                       <i className={`${styles.ic_img} ${styles.icons}`}></i>{" "}
-                      <span className={styles.text}>이미지로 보기</span>
+                      <span className={styles.text}>{adDetailsPage.mockupOptions[1]}</span>
                     </button>
                   </div>
                 </div>
@@ -663,7 +665,7 @@ function AdvertisementDetailScreen() {
                     )}
                     onClick={() => setFilters({ ...filters, status: "" })}
                   >
-                    전체
+                    {adDetailsPage.tabs[0]}
                   </div>
                   <div
                     className={clsx(
@@ -675,7 +677,7 @@ function AdvertisementDetailScreen() {
                       setFilters({ ...filters, status: "running" })
                     }
                   >
-                    운행중
+                    {adDetailsPage.tabs[1]}
                   </div>
                   <div
                     className={clsx(
@@ -687,7 +689,7 @@ function AdvertisementDetailScreen() {
                       setFilters({ ...filters, status: "suspended" })
                     }
                   >
-                    운행정지
+                    {adDetailsPage.tabs[2]}
                   </div>
                 </div>
                 <DataGrid
@@ -730,6 +732,7 @@ const VerifyPicturesModal = ({
 }) => {
   const [index, setIndex] = useState(0);
   const [step, setStep] = useState(0);
+  const { dictionary: { verifyPicturesModal } } = useAuth();
   const [{start_date, end_date}, setDate] = useState({start_date:'', end_date: ''});
   const [selectedRow, setSelectedRow] = useState(0);
   const { data, isLoading } = useGetCargoVerificationImages({
@@ -749,7 +752,7 @@ const VerifyPicturesModal = ({
   const columns = [
     {
       dataIndex: "date",
-      title: "날짜",
+      title: verifyPicturesModal.columns[0],
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -763,7 +766,7 @@ const VerifyPicturesModal = ({
     },
     {
       dataIndex: "status",
-      title: "상태",
+      title: verifyPicturesModal.columns[1],
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -772,13 +775,13 @@ const VerifyPicturesModal = ({
       render: (text: any, record: any) => {
         const completed = text === '완전한'
         return <div className={`text-center ${completed ? 'text-[#30CD2C]' : 'text-[#CE3A54]'}`}>
-          {completed ? '완료' : '미완료'}
+          {completed ? verifyPicturesModal.status.complete : verifyPicturesModal.status.incomplete}
         </div>
       },
     },
     {
       dataIndex: "date",
-      title: "비고",
+      title: verifyPicturesModal.columns[2],
       headerStyle: {
         backgroundColor: "rgb(244 247 251)",
         paddingTop: "20px",
@@ -796,7 +799,7 @@ const VerifyPicturesModal = ({
             setSelectedRow(index)
           }
         }}
-        >사진보기</div>
+        >{verifyPicturesModal.viewPhotos}</div>
       }
     }
   ];
@@ -807,7 +810,7 @@ const VerifyPicturesModal = ({
       onCancel={close}
       title={
         <p className="text-2xl font-bold text-center text-[#29293E] py-2 border-b border-white">
-          차량정보
+          {verifyPicturesModal.title}
         </p>
       }
       footer={false}
@@ -846,7 +849,7 @@ const VerifyPicturesModal = ({
             <DatePicker
               suffixIcon={<DateIcon/>}
               popupClassName={"admin-advertisement-date-picker"}
-              placeholder={"시작일 선택"}
+              placeholder={verifyPicturesModal.selectStartDate}
               className={clsx(
                   styles['date-picker'],
               )}
@@ -856,7 +859,7 @@ const VerifyPicturesModal = ({
             <DatePicker
               suffixIcon={<DateIcon/>}
               popupClassName={"admin-advertisement-date-picker"}
-              placeholder={"종료일 선택"}
+              placeholder={verifyPicturesModal.selectEndDate}
               className={clsx(
                   styles['date-picker'],
               )}

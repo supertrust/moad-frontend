@@ -12,6 +12,7 @@ import PrevIcon from "@src/components/icons/PrevIcon";
 import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, getNextPrevDates, totalDays } from "@src/helpers";
 import dayjs, { Dayjs } from "dayjs";
 import type { CellRenderInfo } from 'rc-picker/es/interface';
+import useAuth from '@src/hooks/useAuth';
 import koKR from 'antd/locale/ko_KR';
 import 'dayjs/locale/ko';
 
@@ -71,6 +72,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChangeHandler,rideChangeHandler,locationIds }: DrawerProps) {
 
   const { RangePicker } = DatePicker;
+  const { dictionary: { adVehicleLocDrawerPage } } = useAuth();
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
   const [selectedRide, setSelectedRide] = useState<number|undefined>(vehicle?.id);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -162,7 +164,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
   let endMonth = end ? end[0].split('-')[1] : null
   let endDate = end ? end[0].split('-')[2] : null
   let endTime = end ? end[1].split(':') : null
-  const categories = ['오늘 운행거리','총 운행거리','평균 월 운행거리'];
+  const categories = adVehicleLocDrawerPage.categories;
   const data = [today_distance||0,total_distance||0,avarageMonthlyDistance||0];
 
   const style: React.CSSProperties = {
@@ -208,7 +210,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
             </div>
         </div>
         <div className='px-2 py-3 text-secondary font-bold bg-white'>
-          안산시 상록구 월피동
+          {adVehicleLocDrawerPage.wolpi}
         </div>
       </div>
       <div className={`${styles.vehicle_location_content} h-[calc(100vh-120px)]`}>
@@ -283,7 +285,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                                       setDatePickerOpen(false)
                                     }}
                                   >
-                                    확인
+                                    {adVehicleLocDrawerPage.checkBtn}
                                   </button>
                                   <button
                                     className=" bg-[#fff] text-[#999] px-[12px] py-[5px] rounded text-[12px] leading-normal"
@@ -291,7 +293,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                                       setDatePickerOpen(false);
                                     }}
                                   >
-                                    취소
+                                    {adVehicleLocDrawerPage.cancelBtn}
                                   </button>
                                 </div>
                               </div>
@@ -310,7 +312,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                   </div>
                 </div>
                   {/* DatesPicker end */}
-                  <div className={styles.title}>차량 선택</div>
+                  <div className={styles.title}>{adVehicleLocDrawerPage.vehicleSelection}</div>
                   {/* <Image
                     src="/images/img-location.png"
                     alt=""
@@ -332,25 +334,25 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                       locationIds?.map((ride, index) => {
                         return (
                           <Select.Option key={index} value={ride?.id}>
-                            운행기록 {index + 1}
+                            {adVehicleLocDrawerPage.drivingRecord} {index + 1}
                           </Select.Option>
                         );
                       })
                     ) : (
-                      <Select.Option value={0}>운행 기록이 없습니다.</Select.Option>
+                      <Select.Option value={0}>{adVehicleLocDrawerPage.noRecordMsg}</Select.Option>
                     )}
                   </Select>
 
-                  <div className={styles.location_name}>영동고속도로</div>
+                  <div className={styles.location_name}>{adVehicleLocDrawerPage.expressWay}</div>
                   <div className={styles.text_wrap}>
-                    <div className={styles.text}>평균(일) 통과차량</div>
-                    <div className={styles.text}>상행 : {passing_vehicle_up || '- '}대</div>
-                    <div className={styles.text}>하행 : {passing_vehicle_descent || '- '}대</div>
+                    <div className={styles.text}>{adVehicleLocDrawerPage.avgVehiclesPerDay}</div>
+                    <div className={styles.text}>{adVehicleLocDrawerPage.uphill} : {passing_vehicle_up || '- '}대</div>
+                    <div className={styles.text}>{adVehicleLocDrawerPage.downhill} : {passing_vehicle_descent || '- '}대</div>
                   </div>
                 </div>
 
                 <div className={clsx(styles.section, styles.operation_history)}>
-                  <div className={`${styles.text}  mb-[16px]`}>운행내역</div>
+                  <div className={`${styles.text}  mb-[16px]`}>{adVehicleLocDrawerPage.opDetails}</div>
                   <ul className={styles.history}>
                     <li className={styles.list}>
                       <div>
@@ -359,7 +361,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                         </div>
                         <div>
                       <div className={styles.data}>{startTime ? `${startTime[0]}:${startTime[1]}` : '-'}</div>
-                      <div className={styles.text}>운행시작</div>
+                      <div className={styles.text}>{adVehicleLocDrawerPage.startOfOperation}</div>
                         </div>
                     </li>
                     <li className={styles.list}>
@@ -371,7 +373,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                       <div className={styles.data}>
                         {endTime ? `${endTime[0]}:${endTime[1]}` : (startTime ? '운행중' : '-')}
                       </div>
-                      <div className={styles.text}>운행종료</div>
+                      <div className={styles.text}>{adVehicleLocDrawerPage.opEnd}</div>
                       </div>
                     </li>
                     <li className={styles.list}>
@@ -381,7 +383,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                       </div>
                       <div>
                       <div className={styles.data}>{`${today_distance || 0}km`}</div>
-                      <div className={styles.text}>운행거리</div>
+                      <div className={styles.text}>{adVehicleLocDrawerPage.drivingDistance}</div>
                       </div>
                     </li>
                   </ul>
@@ -390,7 +392,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                 <div
                   className={`${styles.section} ${styles.accomplishment_rate} !pb-0`}
                 >
-                  <div className={`${styles.title} !mb-[7px]`}>운행 달성률</div>
+                  <div className={`${styles.title} !mb-[7px]`}>{adVehicleLocDrawerPage.drivingAchievementRate}</div>
                   <ul className={`${styles.list_wrap} !m-0`}>
                     <Chart
               options={

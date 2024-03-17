@@ -4,7 +4,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+import useAuth from "@src/hooks/useAuth";
+
 export default function Login() {
+  const { dictionary:{ login } } = useAuth();
   const [findId, SetFindId] = useState(false);
   const [findPass, SetFindPass] = useState(false);
   const router = useRouter();
@@ -15,8 +18,8 @@ export default function Login() {
   return (
     <>
     <Head>
-      <title>이카루스 광고주</title>
-      <meta property="og:title" content="이카루스 광고주" key="title" />
+      <title>{login.title}</title>
+      <meta property="og:title" content={login.title} key="title" />
     </Head>
     <main className="min-h-screen">
       <div id="login" className="login">
@@ -38,19 +41,19 @@ export default function Login() {
                 WELCOME TO <strong>ICARUS</strong>
               </div>
               <div className="text">
-                이카루스 광고주 페이지에 오신걸 환영합니다.
+                {login.welcomeMsg}
               </div>
               <div className="max-w-[380px] w-full h-[1px] bg-[#EEEEEE] mt-[16px]"></div>
             </div>
             <LoginForm enabledSubmit = {!findPass && !findId}/>
-            <button className='signup_btn' onClick={handleSignup} > 회원가입 </button>
+            <button className='signup_btn' onClick={handleSignup} > {login.signupBtn} </button>
             <div className="link-wrap gap-[10px]">
               <div onClick={() => SetFindId(true)} id="find_id_btn" className="link text">
-                아이디 찾기
+                {login.findIdBtn}
               </div>
               <span className="bar text">|</span>
               <div onClick={() => SetFindPass(true)} id="find_pw_btn" className="link text">
-                비밀번호 찾기
+                {login.findPwBtn}
               </div>
             </div>
           </div>

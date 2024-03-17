@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSendOTP, useVerifyOTP } from "@src/apis/auth";
 import { toast } from "react-toastify";
 import { Button } from "@src/components/common";
+import useAuth from "@src/hooks/useAuth";
 
 type Step2Props = {
   step: number;
@@ -12,6 +13,7 @@ type Step2Props = {
 };
 
 const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
+  const { dictionary:{ login:{ findPasswordModal: { step2 } } } } = useAuth();
   const [timer, setTimer] = useState<boolean>(false);
   const [minutes, setMinutes] = useState(3);
   const [seconds, setSeconds] = useState(0);
@@ -92,14 +94,14 @@ const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
         step === 2 ? styles.active : null
       }`}
     >
-      <div className={styles.model_title}>비밀번호 찾기</div>
+      <div className={styles.model_title}>{step2.title}</div>
       <div className={styles.modal_text}>
-        이메일로 인증 번호를 받아 입력해주세요.
+        {step2.text}
         <br />
       </div>
       <div className={styles.input_content}>
         <div className={styles.input_wrap}>
-          <div className={styles.input_text}>인증 번호를 받을 이메일주소</div>
+          <div className={styles.input_text}>{step2.emailInputText}</div>
           <div className={styles.certification_wrap}>
             <div className={styles.certification_email}>{email}</div>
             <Button
@@ -110,20 +112,20 @@ const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
                 isLoadingSendOTP && styles.confirm_btn_loading
               }`}
             >
-              인증번호받기
+              {step2.sendOtpBtn}
             </Button>
           </div>
         </div>
         <div className={styles.input_wrap}>
           <div className={styles.input_text}>
-            이메일로 받은 인증번호 (숫자 6자리)
+            {step2.authNoLabel}
           </div>
           <div className={styles.certification_num}>
             <input
               type="text"
               id="certification_num"
               className={`${styles.input_num} ${styles.input}`}
-              placeholder="인증번호 입력"
+              placeholder={step2.authNoPlaceholder}
               onChange={(e) => setOTP(e.target.value)}
             />
             <div className={styles.certification_time}>
@@ -131,11 +133,11 @@ const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
             </div>
           </div>
           <div className={`${styles.certification_error} ${styles.error_text}`}>
-            인증번호를 다시 한번 확인해 주세요.
+            {step2.certification_error}
           </div>
 
           <div className={`${styles.time_error} ${styles.error_text}`}>
-            인증번호 입력가능 시간이 초과되었습니다.
+            {step2.time_error}
           </div>
         </div>
       </div>
@@ -150,14 +152,14 @@ const Step2 = ({ step, email, onClose, onVerifyOTPSuccess }: Step2Props) => {
             isLoadingVerifyOTP && styles.confirm_btn_loading
           }`}
         >
-          인증번호 확인
+         {step2.confirm_btn}
         </Button>
         <button
           type="button"
           onClick={onClose}
           className={`${styles.pw_modal_close} ${styles.cancel_btn} ${styles.btns}`}
         >
-          취소
+         {step2.cancel_btn}
         </button>
       </div>
     </div>

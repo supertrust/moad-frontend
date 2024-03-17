@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Button } from '@src/components/common';
 import PrivacyPolicy from './privacyPolicy';
 import TermsOfUse from './termsOfUse';
+import useAuth from "@src/hooks/useAuth";
 
 interface Step1Props {
 	onNextStep: () => void;
@@ -12,6 +13,7 @@ interface Step1Props {
 
 const Step1 = ({ onNextStep }: Step1Props) => {
 	const router = useRouter();
+  const { dictionary:{ signup: { step1 } } } = useAuth();
 	const [privacyPolicy, setPrivacyPolicy] = useState<boolean>(false);
 	const [termsAndConditions, setTermsAndConditions] = useState<boolean>(false);
 	const [error, setError] = useState(false);
@@ -96,17 +98,17 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 					<div className='right-content'>
 						<div onClick={handleBackButton} className='back-btn'></div>
 						<div className='step-title'>
-							서비스 이용약관 및<br />
-							개인정보 이용약관 동의
+							{step1.stepTitle[0]}<br />
+							{step1.stepTitle[1]}
 						</div>
 						<div className='step-text'>
-							필수항목 및 선택항목 약관에 동의주해주세요
+							{step1.stepText}
 						</div>
 						<div
 							className={`text-red-600 mb-2 ${
 								(!termsAndConditions || !privacyPolicy) && error ? '' : 'hidden'
 							}`}>
-							둘 다 확인해야합니다
+							{step1.checkBothMsg}
 						</div>
 						<div className='agree-content'>
 							<ul className='agree-wrap'>
@@ -119,14 +121,14 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 											className='terms-chk'
 											onChange={() => setPrivacyPolicy(!privacyPolicy)}
 										/>
-										<div className='chk-text'>(필수) 개인정보처리방침</div>
+										<div className='chk-text'>{step1.chk_1Label}</div>
 									</label>
 									<div className='terms-content'>
 										<button
 											onClick={() => handleShow('chk_1')}
 											type='button'
 											className='more-btn'>
-											보기
+											{step1.chk_1Btn}
 										</button>
 									</div>
 								</li>
@@ -141,14 +143,14 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 												setTermsAndConditions(!termsAndConditions)
 											}
 										/>
-										<div className='chk-text'>(필수) 이카루스 이용약관</div>
+										<div className='chk-text'>{step1.chk_2Label}</div>
 									</label>
 									<div className='terms-content'>
 										<button
 											type='button'
 											className='more-btn'
 											onClick={() => handleShow('chk_2')}>
-											보기
+											{step1.chk_2Btn}
 										</button>
 									</div>
 								</li>
@@ -165,7 +167,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 									onNextStep();
 								}
 							}}>
-							다음
+							{step1.nextBtn}
 						</Button>
 					</div>
 				</div>
@@ -178,13 +180,13 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 				onHide={handleClose}>
 				<Modal.Header>
 					<Modal.Title className='text-center'>
-						{show.name == 'chk_2' ? '서비스 이용약관' : '개인정보처리방침'}
+						{show.name == 'chk_2' ? step1.modal.title[0] : step1.modal.title[1]}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className='h-auto'>
 					<div className='terms-text'>
 						<div className='inner-title'>
-							{show.name == 'chk_2' ? '서비스 이용약관' : '개인정보처리방침'}
+							{show.name == 'chk_2' ? step1.modal.innerTitle[0] : step1.modal.innerTitle[1]}
 						</div>
 						{show.name == 'chk_2' ? (
 							// <div>
@@ -243,7 +245,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 
 							handleClose();
 						}}>
-						취소
+						{step1.modal.cancelBtn}
 					</Button>
 					<Button
 						className='primary border-solid border-[1px] border-[transparent] bg-[#0868FD] text-[#fff] !py-[5px]'
@@ -253,7 +255,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 
 							handleClose();
 						}}>
-						동의
+						{step1.modal.agreeBtn}
 					</Button>
 				</Modal.Footer>
 			</Modal>

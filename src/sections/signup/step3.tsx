@@ -96,7 +96,7 @@ const Step3 = ({
 	setMembershipInformation,
 }: Step3Props) => {
 	const { mutateAsync: verifyInput } = useVerifyInput();
-	const { register } = useAuth();
+	const { register, dictionary:{ signup: { step3 } } } = useAuth();
 	const [showModal, setShowModal] = useState(false);
 	const [isReadonly, setReadonly] = useState(false);
 	const [verifybtnclick, setverifybtn] = useState(false);
@@ -146,7 +146,7 @@ const Step3 = ({
 				{
 					onSuccess: () => {
 						setValue('verify_business_registration_number', true);
-						cb ? cb() : toast.success('국세청에 등록된 사업자등록번호입니다.');
+						cb ? cb() : toast.success(step3.verifyBusinessNumber.successToast);
 						setReadonly(true);
 					},
 					onError: (error) => {
@@ -161,7 +161,7 @@ const Step3 = ({
 	const onSubmit = handleSubmit(async (props) => {
 
 		if (!verifybtnclick) {
-			ModalhandleShow('사업자등록번호를 확인해주세요.');
+			ModalhandleShow(step3.onSubmit.modalHandleShow);
 			return false;
 		}
 		try {
@@ -171,7 +171,7 @@ const Step3 = ({
 				async () => {
 					const res = await register({ ...membershipInformation, ...props });
 					if (res !== null && res === true) {
-						toast('사용자 등록 성공', { type: 'success' });
+						toast(step3.onSubmit.successToast, { type: 'success' });
 						onNextStep();
 					}
 				},
@@ -218,28 +218,28 @@ const Step3 = ({
 				<div className='right-wrap'>
 					<div className='right-content'>
 						<div onClick={onPrevStep} className='back-btn'></div>
-						<div className='step-title'>회사 정보를 입력해주세요</div>
+						<div className='step-title'>{step3.stepTitle}</div>
 						<div className='step-text'>
-							기입정보를 입력 후 완료버튼을 눌러주세요
+							{step3.stepText}
 							<br />
-							<span className='text-danger'>*표시는 필수 입력값 입니다</span>
+							<span className='text-danger'>*{step3.stepTextRequired}</span>
 						</div>
 						<div className='user-info'>
 							<FormProvider methods={methods}>
 								<RHFInput
 									wrapperClassName='company-name'
-									label='회사명'
+									label={step3.companyNameLabel}
 									required
 									type='text'
 									id='company_name'
 									name='company_name'
 									className='company-input'
-									placeholder='회사명 입력'
+									placeholder={step3.companyNamePlaceholder}
 									maxLength={30}
 									spellCheck='false'
 									data-ms-editor='true'
 									caption={
-										<div className='error-text'>이미 사용중인 회사명입니다</div>
+										<div className='error-text'>{step3.companyNameCaption}</div>
 									}
 									onBlur={(event) => {
 										event.target.value &&
@@ -251,7 +251,7 @@ const Step3 = ({
 													},
 													onError: (error) => {
 														setError('company_name', {
-															message: '이미 사용중인 회사명입니다.',
+															message: step3.companyNameErrorMsg,
 														});
 													},
 												},
@@ -260,19 +260,19 @@ const Step3 = ({
 								/>
 								<RHFInput
 									wrapperClassName='company-tel'
-									label='회사 전화번호'
+									label={step3.companyPhoneNumberLabel}
 									required
 									type='number'
 									id='company_phone_number'
 									name='company_phone_number'
 									className='company-input'
 									maxLength={30}
-									placeholder='회사 전화번호 입력'
+									placeholder={step3.companyPhoneNumberPlaceholder}
 									spellCheck='false'
 									data-ms-editor='true'
 									caption={
 										<div className='error-text'>
-											전화번호 형식이 잘못되었습니다
+											{step3.companyPhoneNumberCaption}
 										</div>
 									}
 									onBlur={(event) => {
@@ -297,20 +297,20 @@ const Step3 = ({
 								/>
 								<RHFInput
 									wrapperClassName='manager-name'
-									label='담당자 성함'
+									label={step3.managerNameLabel}
 									required
 									type='text'
 									id='employee_name'
 									name='employee_name'
 									className='company-input'
-									placeholder='담당자 성함 입력'
+									placeholder={step3.managerNamePlaceholder}
 									spellCheck='false'
 									data-ms-editor='true'
 								/>
 
 								<RHFSelect
 									wrapperClassName='manager-tel'
-									label='담당자 직위'
+									label={step3.contactPositionLabel}
 									required
 									id='contact_position'
 									name='contact_position'
@@ -319,7 +319,7 @@ const Step3 = ({
 								/>
 								<RHFInput
 									wrapperClassName='manager-tel'
-									label='담당자 전화번호'
+									label={step3.employeePhoneNumberLabel}
 									required
 									type='number'
 									minLength={11}
@@ -327,40 +327,40 @@ const Step3 = ({
 									id='employee_phone_number'
 									name='employee_phone_number'
 									className='company-input'
-									placeholder='01012345678'
+									placeholder={step3.employeePhoneNumberPlaceholder}
 									spellCheck={false}
 									data-ms-editor='true'
 									caption={
-										<div className='error-text'>핸드폰번호를 입력해주세요</div>
+										<div className='error-text'>{step3.employeePhoneNumberCaption}</div>
 									}
 								/>
 
 								<RHFInput
 									wrapperClassName='manager-email'
-									label='담당자 이메일(계산서 발행)'
+									label={step3.employeeEmailLabel}
 									required
 									type='text'
 									id='employee_email'
 									name='employee_email'
 									className='company-input'
-									placeholder='담당자 이메일 입력'
+									placeholder={step3.employeeEmailPlaceholder}
 									spellCheck='false'
 									data-ms-editor='true'
 									caption={
 										<div className='error-text'>
-											이메일 형식을 확인해주세요.
+											{step3.employeeEmailCaption}
 										</div>
 									}
 								/>
 								<RHFInput
 									wrapperClassName='manager-email'
-									label='업종'
+									label={step3.sectorLabel}
 									required
 									type='text'
 									id='sector'
 									name='sector'
 									className='company-input'
-									placeholder='업태/업종 입력'
+									placeholder={step3.sectorPlaceholder}
 									spellCheck='false'
 									data-ms-editor='true'
 									caption={
@@ -372,20 +372,20 @@ const Step3 = ({
 									<RHFInput
 										wrapperClassName='business-num  flex-1'
 										required
-										label='사업자 등록번호 (10자리)'
+										label={step3.businessRegistrationNumberLabel}
 										type='phoneNumber'
 										minLength={12}
 										maxLength={12}
 										id='business_registration_number'
 										name='business_registration_number'
 										className='company-input'
-										placeholder='사업자 번호 입력 (-없이 입력)'
+										placeholder={step3.businessRegistrationNumberPlaceholder}
 										spellCheck={false}
 										data-ms-editor='true'
 										readOnly={isReadonly}
 										caption={
 											<div className='error-text'>
-												이미 사용중인 사업자 번호입니다.
+												{step3.businessRegistrationNumberCaption}
 											</div>
 										}
 										right={
@@ -405,7 +405,7 @@ const Step3 = ({
 															);
 													});
 												}}>
-												확인
+												{step3.businessRegistrationNumberBtn}
 											</button>
 										}
 									/>
@@ -420,7 +420,7 @@ const Step3 = ({
 								<div className='input-wrap business-license'>
 									<div className='flex flex-row justify-between gap-3'>
 										<div className='input-text'>
-											사업자 등록증 첨부<span className='essential text-danger'>*</span>
+											{step3.attachBusinessLicense}<span className='essential text-danger'>*</span>
 										</div>
 										{errors?.business_license && (
 											<span className='text-danger'>
@@ -430,7 +430,7 @@ const Step3 = ({
 									</div>
 									<div className='file-wrap'>
 										<div className='error-text'>
-											사업자 등록증을 첨부해주세요
+											{step3.plsAttachBusinessLicense}
 										</div>
 										<div
 											className={clsx(
@@ -440,7 +440,7 @@ const Step3 = ({
 											{file?.name || 'png, pdf, jpeg, jpg 확장자 가능'}
 										</div>
 										<label htmlFor='business_license' className='file-label'>
-											찾아보기
+										{step3.browse}
 										</label>
 										<input
 											required={true}
@@ -465,7 +465,7 @@ const Step3 = ({
 										/>
 									</div>
 									<div className='file-info'>
-										추가 서류 필요시 추가 요청이 있을 수 있습니다.
+										{step3.additionalReqsMsg}
 									</div>
 								</div>
 								<Button
@@ -475,7 +475,7 @@ const Step3 = ({
 									disabled={
 										!(Object.keys(dirtyFields).length > 7 && imageUploaded)
 									}>
-									다음
+									{step3.next}
 								</Button>
 							</FormProvider>
 						</div>
@@ -488,16 +488,16 @@ const Step3 = ({
 				centered
 				className='bussiness-modal'>
 				<Modal.Header className='!pb-[20px] p-0 '>
-					<Modal.Title>확인사항</Modal.Title>
+					<Modal.Title>{step3.modal.title}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className='text-center py-[10px]'>
-					{message || '존재하지 않는 사업자 번호입니다.'}
+					{message || step3.modal.body}
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
 						className=' bg-primary text-white px-4'
 						onClick={ModalhandleClose}>
-						확인
+						{step3.modal.btn}
 					</Button>
 				</Modal.Footer>
 			</Modal>

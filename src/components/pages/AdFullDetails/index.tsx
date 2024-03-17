@@ -34,7 +34,7 @@ export const allStatuses = {
 
 function AdFullDetails() {
   const { query } = useRouter();
-  const { dictionary, setLang, lang } = useAuth();
+  const { dictionary } = useAuth();
 
   const advertisementId = query.ad_id as string;
   const { data: advertisement, isLoading: isAdvertisementLoading } =

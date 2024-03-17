@@ -1368,5 +1368,183 @@
     "drivingDistance": "Driving Distance",
     "drivingAchievementRate": "Driving Achievement Rate"
   },
+  "login":{
+    "title":"Icarus Advertiser",
+    "welcomeMsg": "Welcome to the Icarus advertiser page.",
+    "signupBtn": "Sign up",
+    "findIdBtn": "Find ID",
+    "findPwBtn":"Find password",
+    "loginForm": {
+      "emailLabel": "ID (email)",
+      "emailPlaceholder": "Enter your email",
+      "passwordLabel": "password",
+      "passwordPlaceholder": "Enter password",
+      "rememberIdLabel": "Remember ID",
+      "errorMsg": "Please check your ID or password",
+      "loginBtn" : "Login",
+      "onSubmit":{
+        "successToast": "You have successfully logged in",
+        "errorToast": "Login failed. Please check your credentials."
+      },
+      "validations": {
+        "password":{
+          "required": "Please enter your password."
+        },
+        "email":{
+          "format": "Please enter a valid email.",
+          "required": "Please check your ID (email)."
+        }
+      }
+    },
+    "findIdModal":{
+      "title": "Find ID",
+      "text": "Please enter the information you registered when signing up.",
+      "regNoLabel":"Business registration number",
+      "regNoPlaceholder":"Enter business registration number",
+      "idMsg": ["Your ID is", "is"],
+      "noProfileMsg": ["No registered information.", "Please register as a member."],
+      "signUpLink": "Sign Up",
+      "modalFindBtn": "Find",
+      "modalCloseBtn": "Cancel",
+      "onSubmit": {
+        "successToast": "You have successfully logged in",
+        "errorToast": "You have logged in successfully"
+      }
+    },
+    "findPasswordModal": {
+      "step1": {
+        "title":"Find your password",
+        "text":["Please enter the information you registered when signing up.", "Forgot your ID (email)?"],
+        "findIdBtn": "Find ID",
+        "emailLabel":"ID (email)",
+        "emailPlaceholder":"Enter email",
+        "emailErrorText":"Please check your ID (email)",
+        "confirmBtn": "Confirm",
+        "cancelBtn": "Cancel",
+        "validations": {
+          "email": {
+            "required": "required email is required"
+          }
+        }
+      },
+      "step2": {
+        "title": "Find your password",
+        "text": "Please receive the verification number by email and enter it.",
+        "emailInputText": "Email address to receive authentication number",
+        "sendOtpBtn": "Receive authentication number",
+        "authNoLabel": "Authentication number received by email (6 digits)",
+        "authNoPlaceholder": "Enter authentication number",
+        "certification_error":"Please check your authentication number again.",
+        "time_error": "The time limit for entering the authentication number has expired.",
+        "confirm_btn": "Confirm authentication number",
+        "cancel_btn":"Cancel"
+      },
+      "step3": {
+        "title": "Find your password",
+        "text": "Please reset your password.",
+        "emailLabel": "ID (email)",
+        "passwordLabel": "password",
+        "passwordPlaceholder": "password",
+        "confirmPasswordLabel": "Confirm password",
+        "confirmPasswordPlaceholder": "password",
+        "confirm_btn":"Completed",
+        "cancel_btn":"Cancel"
+      }
+    }
+  },
+  "signup": {
+    "title": "Icarus Advertiser",
+    "step1":{
+      "stepTitle": ["Service Terms and Conditions", "Agree to Personal Information Terms and Conditions"],
+      "stepText": "Please agree to the terms and conditions for required and optional items",
+      "checkBothMsg" : "Both must be checked",
+      "chk_1Label": "(Required) Privacy Policy",
+      "chk_1Btn": "View",
+      "chk_2Label": "(Required) Icarus Terms of Use",
+      "chk_2Btn": "View",
+      "nextBtn": "Next",
+      "modal": {
+        "title": ["Terms of Service", "Privacy Policy"],
+        "innerTitle": ["Terms of Service", "Privacy Policy"],
+        "cancelBtn" : "Cancel",
+        "agreeBtn" : "agree"
+      }
+    },
+    "step2":{
+      "stepTitle":["Please enter membership registration information"],
+      "stepText":"Check membership status and sign up",
+      "emailLabel": "ID (email)",
+      "emailPlaceholder": "Enter your email",
+      "emailOnErrorMsg": "This ID is already in use.",
+      "passwordLabel": "password",
+      "passwordPlaceholder": "Enter password",
+      "passwordCaption": "Please use at least 8 characters using a combination of letters, numbers, and symbols",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Re-enter password",
+      "btn":"Next",
+      "validations": {
+        "email":{
+          "format": "Please check your ID (email).",
+          "required": "Please check your ID (email)"
+        },
+        "password": {
+          "required": "A password is required.",
+          "format": "Password must be at least 8 characters and contain a combination of letters, numbers, and special characters.",
+          "checkLength": "Password must be at least 8 characters long."
+        },
+        "confirm_password":{
+          "required": "You need to confirm your password.",
+          "oneOf": "Passwords do not match."
+        }
+      },
+      "onSubmit":{
+        "error": "This ID is already in use."
+      }
+    },
+    "step3":{
+      "stepTitle": "Please enter company information",
+      "stepText":"Please enter the information and press the finish button",
+      "stepTextRequired":"The mark is a required input value",
+      "companyNameLabel":"Company Name",
+      "companyNameCaption":"This company name is already in use",
+      "companyNameErrorMsg" : "The company name is already in use.",
+      "companyNamePlaceholder":"Enter company name",
+      "companyPhoneNumberLabel":"Company phone number",
+      "companyPhoneNumberPlaceholder":"Enter your company phone number",
+      "companyPhoneNumberCaption":"Phone number format is incorrect",
+      "managerNameLabel":"Name of person in charge",
+      "contactPositionLabel":"Contact position",
+      "employeePhoneNumberLabel":"Employee phone number",
+      "employeePhoneNumberPlaceholder":"01012345678",
+      "employeePhoneNumberCaption":"Please enter your cell phone number",
+      "employeeEmailLabel":"Email of person in charge (invoice issuance)",
+      "sectorLabel":"Sector",
+      "sectorPlaceholder":"Enter business type/industry",
+      "employeeEmailPlaceholder":"Enter employee email",
+      "employeeEmailCaption":"Please check your email format.",
+      "businessRegistrationNumberLabel":"Business registration number (10 digits)",
+      "attachBusinessLicense":"Attach business license",
+      "plsAttachBusinessLicense":"Please attach your business registration",
+      "browse": "Browse",
+      "additionalReqsMsg": "Additional requests may be made if additional documents are required.",
+      "next": "Next",
+      "modal": {
+        "title": "Confirmation",
+        "body": "The business number does not exist.",
+        "btn": "OK"
+      },
+      "businessRegistrationNumberPlaceholder":"Enter business registration number (enter without -)",
+      "businessRegistrationNumberCaption":"This business number is already in use.",
+      "businessRegistrationNumberBtn":"Confirmation",
+      "managerNamePlaceholder":"Enter the person in charge's name",
+      "verifyBusinessNumber": {
+        "successToast": "This is the business registration number registered with the National Tax Service."
+      },
+      "onSubmit":{
+        "modalHandleShow": "Please check your business registration number.",
+        "successToast": "User registration successful"
+      }
+    }
+  },
   "view": "View"
 }

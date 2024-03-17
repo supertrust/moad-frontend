@@ -18,17 +18,10 @@ const defaultValues = {
 	password: '',
 };
 
-const LoginSchema = Yup.object({
-	email: Yup.string()
-		.matches(EMAIL_REGEX, '유효한 이메일을 입력하세요.')
-		.required('아이디(이메일)를 확인해주세요.'),
-	password: Yup.string().required('비밀번호를 입력해주세요.'),
-});
-
 const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
-	const { login } = useAuth();
 	const router = useRouter();
 	const {returnUrl} = router.query;
+	const { login, dictionary:{ login:{ loginForm } } } = useAuth();
 	const [remeberId, setRemeberId] = useState<boolean>(false);
 	const [error, setFormError] = useState<boolean>(false);
 	const [email, setEmail] = useState('');
@@ -48,6 +41,13 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 		}
 	};
 
+	const LoginSchema = Yup.object({
+		email: Yup.string()
+			.matches(EMAIL_REGEX, loginForm.validations.email.format)
+			.required(loginForm.validations.email.required),
+		password: Yup.string().required(loginForm.validations.password.required),
+	});
+
 	// useEffect(() => canBeSubmitted());
 	const methods = useForm({
 		defaultValues,
@@ -64,11 +64,11 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 		try {
 			await login(props);
 			setFormError(false);
-			toast('성공적으로 로그인했습니다', { type: 'success' });
+			toast(loginForm.onSubmit.successToast, { type: 'success' });
 			await router.replace(returnUrl as string || "/dashboard")
 		} catch (error) {
 			setFormError(true);
-			toast('로그인에 실패했습니다. 자격 증명을 확인하십시오.', {
+			toast(loginForm.onSubmit.errorToast, {
 				type: 'error',
 			});
 		}
@@ -94,17 +94,17 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 					name='email'
 					className={`user-input ${error ? 'error' : 'active'}`}
 					type='text'
-					placeholder='이메일 입력'
-					label='아이디 (이메일)'
+					placeholder={loginForm.emailPlaceholder}
+					label={loginForm.emailLabel}
 					// value={email}
 					// onChange={(e) => setEmail(e.target.value)}
 				/>
 				<i className='icon pw-show'></i>
 				<RHFInput
 					type={visiblePassword ? 'text' : 'password'}
-					placeholder='비밀번호 입력'
+					placeholder={loginForm.passwordPlaceholder}
 					name='password'
-					label='비밀번호'
+					label={loginForm.passwordLabel}
 					className={`user-input ${error ? 'error' : 'active'}`}
 					// value={password}
 					// onChange={(e) => setpassword(e.target.value)}
@@ -138,13 +138,13 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 							className={`${styles.remeber_chk}`}
 							onChange={() => setRemeberId(!remeberId)}
 						/>
-						<div className='chk-text'>아이디기억하기</div>
+						<div className='chk-text'>{loginForm.rememberIdLabel}</div>
 					</label>
 					<div
 						className={`${
 							error ? 'block' : 'hidden'
 						} text-sm text-[#F24747] mt-[22px] mb-[30px]`}>
-						아이디또는 비밀번호를 확인하세요
+						{loginForm.errorMsg}
 					</div>
 				</div>
 				<Button
@@ -159,7 +159,7 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 						!isSubmitting &&
 						!enabledSubmit
 					}>
-					로그인
+					{loginForm.loginBtn}
 				</Button>
 			</form>
 		</FormProvider>

@@ -1337,5 +1337,183 @@
     "drivingDistance": "운행거리",
     "drivingAchievementRate": "운행 달성률"
   },
+  "login":{
+    "title":"이카루스 광고주",
+    "welcomeMsg": "이카루스 광고주 페이지에 오신걸 환영합니다.",
+    "signupBtn": "회원가입",
+    "findIdBtn": "아이디 찾기",
+    "findPwBtn":"비밀번호 찾기",
+    "loginForm": {
+      "emailLabel": "아이디 (이메일)",
+      "emailPlaceholder": "이메일 입력",
+      "passwordLabel": "비밀번호",
+      "passwordPlaceholder": "비밀번호 입력",
+      "rememberIdLabel": "아이디기억하기",
+      "errorMsg": "아이디또는 비밀번호를 확인하세요",
+      "loginBtn" : "로그인",
+      "onSubmit":{
+        "successToast": "성공적으로 로그인했습니다",
+        "errorToast": "로그인에 실패했습니다. 자격 증명을 확인하십시오."
+      },
+      "validations": {
+        "password":{
+          "required": "비밀번호를 입력해주세요."
+        },
+        "email":{
+          "format": "유효한 이메일을 입력하세요.",
+          "required": "아이디(이메일)를 확인해주세요."
+        }
+      }
+    },
+    "findIdModal":{
+      "title": "아이디 찾기",
+      "text": "가입시 등록했던 정보를 입력해주세요.",
+      "regNoLabel":"사업자등록번호",
+      "regNoPlaceholder":"사업자등록번호 입력",
+      "idMsg": ["고객님의 아이디는", "입니다"],
+      "noProfileMsg": ["등록된 정보가 없습니다.", "회원가입을 해주세요."],
+      "signUpLink": "회원가입",
+      "modalFindBtn": "찾기",
+      "modalCloseBtn": "취소",
+      "onSubmit": {
+        "successToast": "성공적으로 로그인했습니다",
+        "errorToast": "성공적으로 로그인했습니다"
+      }
+    },
+    "findPasswordModal": {
+      "step1": {
+        "title":"비밀번호 찾기",
+        "text":["가입시 등록했던 정보를 입력해주세요.", "아이디(이메일)을 잊으셨나요?"],
+        "findIdBtn": "아이디찾기",
+        "emailLabel":"아이디 (이메일)",
+        "emailPlaceholder":"이메일 입력",
+        "emailErrorText":"아이디(이메일)를 확인해주세요",
+        "confirmBtn": "확인",
+        "cancelBtn": "취소",
+        "validations": {
+          "email": {
+            "required": "required이메일이 필요합니다"
+          }
+        }
+      },
+      "step2": {
+        "title": "비밀번호 찾기",
+        "text": "이메일로 인증 번호를 받아 입력해주세요.",
+        "emailInputText": "인증 번호를 받을 이메일주소",
+        "sendOtpBtn": "인증번호받기",
+        "authNoLabel": "이메일로 받은 인증번호 (숫자 6자리)",
+        "authNoPlaceholder": "인증번호 입력",
+        "certification_error":"인증번호를 다시 한번 확인해 주세요.",
+        "time_error": "인증번호 입력가능 시간이 초과되었습니다.",
+        "confirm_btn": "인증번호 확인",
+        "cancel_btn":"취소"
+      },
+      "step3": {
+        "title": "비밀번호 찾기",
+        "text": "비밀번호를 재설정해주세요.",
+        "emailLabel": "아이디 (이메일)",
+        "passwordLabel": "비밀번호",
+        "passwordPlaceholder": "비밀번호",
+        "confirmPasswordLabel": "비밀번호 확인",
+        "confirmPasswordPlaceholder": "비밀번호",
+        "confirm_btn":"완료",
+        "cancel_btn":"취소"
+      }
+    }
+  },
+  "signup": {
+    "title": "이카루스 광고주",
+    "step1":{
+      "stepTitle": ["서비스 이용약관 및", "개인정보 이용약관 동의"],
+      "stepText": "필수항목 및 선택항목 약관에 동의주해주세요",
+      "checkBothMsg" : "둘 다 확인해야합니다",
+      "chk_1Label": "(필수) 개인정보처리방침",
+      "chk_1Btn": "보기",
+      "chk_2Label": "(필수) 이카루스 이용약관",
+      "chk_2Btn": "보기",
+      "nextBtn": "다음",
+      "modal": {
+        "title": ["서비스 이용약관", "개인정보처리방침"],
+        "innerTitle": ["서비스 이용약관", "개인정보처리방침"],
+        "cancelBtn" : "취소",
+        "agreeBtn" : "동의"
+      }
+    },
+    "step2":{
+      "stepTitle":["회원가입 정보를", "입력해주세요"],
+      "stepText":"회원여부 확인 및 가입을 진행합니다",
+      "emailLabel": "아이디 (이메일)",
+      "emailPlaceholder": "이메일 입력",
+      "emailOnErrorMsg": "이미 사용중인 아이디입니다.",
+      "passwordLabel": "비밀번호",
+      "passwordPlaceholder": "비밀번호 입력",
+      "passwordCaption": "문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요",
+      "confirmPasswordLabel": "비밀번호 확인",
+      "confirmPasswordPlaceholder": "비밀번호 재입력",
+      "btn":"다음",
+      "validations": {
+        "email":{
+          "format": "아이디(이메일)를 확인해주세요.",
+          "required": "아이디(이메일)를 확인해주세요"
+        },
+        "password": {
+          "required": "비밀번호가 필요합니다.",
+          "format": "비밀번호는 문자, 숫자, 특수 문자를 조합하여 8자 이상이어야 합니다.",
+          "checkLength": "비밀번호는 8자 이상이어야 합니다."
+        },
+        "confirm_password":{
+          "required": "비밀번호 확인이 필요합니다.",
+          "oneOf": "비밀번호가 일치하지 않습니다."
+        }
+      },
+      "onSubmit":{
+        "error": "이미 사용중인 아이디입니다."
+      }
+    },
+    "step3":{
+      "stepTitle": "회사 정보를 입력해주세요",
+      "stepText":"기입정보를 입력 후 완료버튼을 눌러주세요",
+      "stepTextRequired":"표시는 필수 입력값 입니다",
+      "companyNameLabel":"회사명",
+      "companyNameCaption":"이미 사용중인 회사명입니다",
+      "companyNameErrorMsg" : "이미 사용중인 회사명입니다.",
+      "companyNamePlaceholder":"회사명 입력",
+      "companyPhoneNumberLabel":"회사 전화번호",
+      "companyPhoneNumberPlaceholder":"회사 전화번호 입력",
+      "companyPhoneNumberCaption":"전화번호 형식이 잘못되었습니다",
+      "managerNameLabel":"담당자 성함",
+      "contactPositionLabel":"담당자 직위",
+      "employeePhoneNumberLabel":"담당자 전화번호",
+      "employeePhoneNumberPlaceholder":"01012345678",
+      "employeePhoneNumberCaption":"핸드폰번호를 입력해주세요",
+      "employeeEmailLabel":"담당자 이메일(계산서 발행)",
+      "sectorLabel":"업종",
+      "sectorPlaceholder":"업태/업종 입력",
+      "employeeEmailPlaceholder":"담당자 이메일 입력",
+      "employeeEmailCaption":"이메일 형식을 확인해주세요.",
+      "businessRegistrationNumberLabel":"사업자 등록번호 (10자리)",
+      "attachBusinessLicense":"사업자 등록증 첨부",
+      "plsAttachBusinessLicense":"사업자 등록증을 첨부해주세요",
+      "browse": "찾아보기",
+      "additionalReqsMsg": "추가 서류 필요시 추가 요청이 있을 수 있습니다.",
+      "next": "다음",
+      "modal": {
+        "title": "확인사항",
+        "body": "존재하지 않는 사업자 번호입니다.",
+        "btn": "확인"
+      },
+      "businessRegistrationNumberPlaceholder":"사업자 번호 입력 (-없이 입력)",
+      "businessRegistrationNumberCaption":"이미 사용중인 사업자 번호입니다.",
+      "businessRegistrationNumberBtn":"확인",
+      "managerNamePlaceholder":"담당자 성함 입력",
+      "verifyBusinessNumber": {
+        "successToast": "국세청에 등록된 사업자등록번호입니다."
+      },
+      "onSubmit":{
+        "modalHandleShow": "사업자등록번호를 확인해주세요.",
+        "successToast": "사용자 등록 성공"
+      }
+    }
+  },
   "view": "보기"
 }

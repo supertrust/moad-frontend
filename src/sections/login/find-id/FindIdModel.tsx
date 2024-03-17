@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { FindIdProps } from '@src/types/auth';
 import { useRouter } from 'next/router';
+import useAuth from "@src/hooks/useAuth";
 
 const defaultValues: FindIdProps = {
 	business_registration_number : '',
@@ -22,6 +23,7 @@ const LoginSchema = Yup.object({
 });
 const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 	const router = useRouter();
+  const { dictionary:{ login:{findIdModal} } } = useAuth();
 	const { mutateAsync: findId, isLoading } = useFindId();
 	const [id, setId] = useState<string | boolean>();
 
@@ -47,11 +49,11 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 					},
 				},
 			);
-			toast('성공적으로 로그인했습니다', { type: 'success' });
+			toast(findIdModal.onSubmit.successToast, { type: 'success' });
 			router.push('/login');
 		} catch (error) {
 			setId(false);
-			toast('로그인에 실패했습니다. 자격 증명을 확인하십시오.', {
+			toast(findIdModal.onSubmit.errorToast, {
 				type: 'error',
 			});
 		}
@@ -74,9 +76,9 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 		<>
 			<div id={styles.id_find_modal} className='id-find-modal'>
 				<div className={styles.modal_wrap}>
-					<div className={styles.modal_title}>아이디 찾기</div>
+					<div className={styles.modal_title}>{findIdModal.title}</div>
 					<div className={styles.modal_text}>
-						가입시 등록했던 정보를 입력해주세요.
+						{findIdModal.text}
 					</div>
 					<form
 						action='/login'
@@ -86,7 +88,7 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 							<div className={styles.input_content}>
 								<div className={styles.input_wrap}>
 									<div className={styles.input_text}>
-									사업자등록번호<span className={styles.essential}>*</span>
+									{findIdModal.regNoLabel}<span className={styles.essential}>*</span>
 									</div>
 									<RHFInput
 										required
@@ -94,7 +96,7 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 										id='id_find_business_registration_number'
 										name='business_registration_number'
 										className={`${styles.user_company} ${styles.input} `}
-										placeholder='사업자등록번호 입력'
+										placeholder={findIdModal.regNoPlaceholder}
 										spellCheck='false'
 										data-ms-editor='true'
 									/>
@@ -118,17 +120,17 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 
 							{id && (
 								<div className={styles.id_message}>
-									고객님의 아이디는
+									{findIdModal.idMsg[0]}
 									<br />
-									<span className={styles.user_mail}>{id}</span> 입니다.
+									<span className={styles.user_mail}>{id}</span> {findIdModal.idMsg[1]}.
 								</div>
 							)}
 
 							{id === false && (
 								<div className={styles.none_profile}>
-									<span className={styles.text}>등록된 정보가 없습니다.</span>
+									<span className={styles.text}>{findIdModal.noProfileMsg[0]}</span>
 									<br />
-									회원가입을 해주세요.
+									{findIdModal.noProfileMsg[1]}
 								</div>
 							)}
 
@@ -136,7 +138,7 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 								<a
 									href='sign-up'
 									className={`${styles.btns} ${styles.sign_up_link}`}>
-									회원가입
+									{findIdModal.signUpLink}
 								</a>
 								<Button
 									id='id_modal_find'
@@ -147,14 +149,14 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 									className={`${styles.id_model_find} ${styles.btns} ${
 										isLoading && styles.btns_loading
 									}`}>
-									찾기
+									{findIdModal.modalFindBtn}
 								</Button>
 								<button
 									type='button'
 									id='id_modal_close'
 									className={`${styles.id_model_close} ${styles.btns}`}
 									onClick={() => SetFindId(false)}>
-									취소
+									{findIdModal.modalCloseBtn}
 								</button>
 							</div>
 						</FormProvider>

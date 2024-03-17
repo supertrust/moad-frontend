@@ -12,6 +12,7 @@ import {
 	Button,
 } from '@src/components/common';
 import { ResetPasswordProps } from '@src/types/auth';
+import useAuth from "@src/hooks/useAuth";
 
 type Step3Props = {
 	step: number;
@@ -45,6 +46,7 @@ const Step3 = ({ step, email, onClose }: Step3Props) => {
 	const [show_password, setPasswordStatus] = useState(false);
 	const [show_confirmPassword, setConfirmPassStatus] = useState(false);
 	const { mutateAsync: resetPassword, isLoading } = useResetPassword();
+  const { dictionary:{ login:{ findPasswordModal: { step3 } } } } = useAuth();
 
 	const methods = useForm<ResetPasswordProps>({
 		defaultValues,
@@ -81,24 +83,24 @@ const Step3 = ({ step, email, onClose }: Step3Props) => {
 			className={`${styles.step03_modal} ${styles.model_wrap} ${
 				step === 3 ? styles.active : null
 			}`}>
-			<div className={styles.model_title}>비밀번호 찾기</div>
-			<div className={styles.modal_text}>비밀번호를 재설정해주세요.</div>
+			<div className={styles.model_title}>{step3.title}</div>
+			<div className={styles.modal_text}>{step3.text}</div>
 			<FormProvider methods={methods}>
 				<div className={styles.input_content}>
 					<div className={styles.input_wrap}>
-						<div className={styles.input_text}>아이디 (이메일)</div>
+						<div className={styles.input_text}>{step3.emailLabel}</div>
 						<div id='pw_find_email02' className={styles.pw_find_email02}>
 							{email}
 						</div>
 					</div>
 					<div className={styles.input_wrap}>
-						<div className={styles.input_text}>비밀번호</div>
+						<div className={styles.input_text}>{step3.passwordLabel}</div>
 						<RHFInput
 							type={show_password ? 'text' : 'password'}
 							className={`${styles.user_pw} ${styles.input}`}
 							name='password'
 							id='pw_find_password'
-							placeholder='비밀번호'
+							placeholder={step3.passwordPlaceholder}
 						/>
 						<i
 							onClick={() => setPasswordStatus(!show_password)}
@@ -107,13 +109,13 @@ const Step3 = ({ step, email, onClose }: Step3Props) => {
 							}`}></i>
 					</div>
 					<div className={styles.input_wrap}>
-						<div className={styles.input_text}>비밀번호 확인</div>
+						<div className={styles.input_text}>{step3.confirmPasswordLabel}</div>
 						<RHFInput
 							type={show_confirmPassword ? 'text' : 'password'}
 							className={`${styles.user_pw_confirm} ${styles.input}`}
 							name='confirm_password'
 							id='pw_find_password_confirm'
-							placeholder='비밀번호'
+							placeholder= {step3.confirmPasswordPlaceholder}
 						/>
 						<i
 							onClick={() => setConfirmPassStatus(!show_confirmPassword)}
@@ -131,13 +133,13 @@ const Step3 = ({ step, email, onClose }: Step3Props) => {
 						className={`${styles.confirm_btn} ${styles.btns} ${
 							isLoading && styles.confirm_btn_loading
 						}`}>
-						완료
+						{step3.confirm_btn}
 					</Button>
 					<button
 						type='button'
 						onClick={onClose}
 						className={`${styles.pw_modal_close} ${styles.cancel_btn} ${styles.btns}`}>
-						취소
+						{step3.cancel_btn}
 					</button>
 				</div>
 			</FormProvider>

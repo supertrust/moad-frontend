@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import { CheckUserProps } from '@src/types/auth';
 import { toast } from 'react-toastify';
 import { useCheckUser } from '@src/apis/auth';
+import useAuth from "@src/hooks/useAuth";
 
 type Step1Props = {
 	step: number;
@@ -23,12 +24,14 @@ const defaultValues: CheckUserProps = {
 	email: '',
 };
 
-const CheckUserSchema = Yup.object({
-	email: Yup.string().required('이메일이 필요합니다'),
-});
 
 const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
+	const { dictionary:{ login:{ findPasswordModal: { step1 } } } } = useAuth();
 	const { mutateAsync: checkUser, isLoading } = useCheckUser();
+
+	const CheckUserSchema = Yup.object({
+		email: Yup.string().required(step1.validations.email.required),
+	});
 
 	const methods = useForm<CheckUserProps>({
 		defaultValues,
@@ -77,24 +80,24 @@ const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
 			className={`${styles.step01_modal} ${styles.model_wrap} ${
 				step === 1 ? styles.active : null
 			}`}>
-			<div className={styles.model_title}>비밀번호 찾기</div>
+			<div className={styles.model_title}>{step1.title}</div>
 			<div className={styles.modal_text}>
-				가입시 등록했던 정보를 입력해주세요.
+				{step1.text[0]}
 				<br />
-				아이디(이메일)을 잊으셨나요?
+				{step1.text[1]}
 				<button
 					onClick={onFindId}
 					type='button'
 					id='id_find_link'
 					className={styles.id_find_link}>
-					아이디찾기
+					{step1.findIdBtn}
 				</button>
 			</div>
 			<FormProvider methods={methods}>
 				<div className={styles.input_content}>
 					<div className={styles.input_wrap}>
 						<div className={styles.input_text}>
-							아이디 (이메일)<span className={styles.essential}>*</span>
+							{step1.emailLabel}<span className={styles.essential}>*</span>
 						</div>
 						<RHFInput
 							required
@@ -102,10 +105,10 @@ const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
 							name='email'
 							className={`${styles.user_email} ${styles.input}`}
 							type='text'
-							placeholder='이메일 입력'
+							placeholder={step1.emailPlaceholder}
 						/>
 						<div className={`${styles.email_error_text} ${styles.error_text}`}>
-							아이디(이메일)를 확인해주세요
+							{step1.emailErrorText}
 						</div>
 					</div>
 					{/* <div className={styles.input_wrap}>
@@ -151,13 +154,13 @@ const Step1 = ({ step, onCheckUserSuccess, onClose, onFindId }: Step1Props) => {
 						className={`${styles.confirm_btn} ${styles.btns} ${
 							isLoading && styles.confirm_btn_loading
 						}`}>
-						확인
+						{step1.confirmBtn}
 					</Button>
 					<button
 						type='button'
 						onClick={onClose}
 						className={`${styles.pw_modal_close} ${styles.cancel_btn} ${styles.btns}`}>
-						취소
+						{step1.cancelBtn}
 					</button>
 				</div>
 			</FormProvider>

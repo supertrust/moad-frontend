@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '@src/constants';
 import Image from 'next/image';
+import useAuth from "@src/hooks/useAuth";
 import { RegisterPropsType } from '@src/types/auth';
 import { useVerifyInput } from '@src/apis/auth';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -25,32 +26,34 @@ const defaultValues = {
 	password: '',
 };
 
-const RegisterSchema = Yup.object({
-	email: Yup.string()
-		.matches(EMAIL_REGEX, '아이디(이메일)를 확인해주세요.')
-		.required('아이디(이메일)를 확인해주세요'),
-	password: Yup.string()
-		.required('비밀번호가 필요합니다.')
-		.matches(
-			PASSWORD_REGEX,
-			'비밀번호는 문자, 숫자, 특수 문자를 조합하여 8자 이상이어야 합니다.',
-		)
-		.min(8, '비밀번호는 8자 이상이어야 합니다.'),
-	confirm_password: Yup.string()
-		.required('비밀번호 확인이 필요합니다.')
-		.oneOf(
-			// @ts-ignore
-			[Yup.ref('password'), null],
-			'비밀번호가 일치하지 않습니다.',
-		),
-});
-
 const Step2 = ({
 	onPrevStep,
 	onNextStep,
 	setMembershipInformation,
 }: Step2Props) => {
+  const { dictionary:{ signup: { step2 } } } = useAuth();
 	const { mutateAsync: verifyInput } = useVerifyInput();
+
+	const RegisterSchema = Yup.object({
+		email: Yup.string()
+			.matches(EMAIL_REGEX, step2.validations.email.format)
+			.required(step2.validations.email.required),
+		password: Yup.string()
+			.required(step2.validations.password.required)
+			.matches(
+				PASSWORD_REGEX,
+				step2.validations.password.format,
+			)
+			.min(8, step2.validations.password.checkLength),
+		confirm_password: Yup.string()
+			.required(step2.validations.confirm_password.required)
+			.oneOf(
+				// @ts-ignore
+				[Yup.ref('password'), null],
+				step2.validations.confirm_password.oneOf,
+			),
+	});
+
 	const methods = useForm<RegisterPropsType>({
 		defaultValues,
 		//@ts-ignore
@@ -76,7 +79,7 @@ const Step2 = ({
 					onNextStep();
 				},
 				onError: (error) => {
-					setError('email', { message: '이미 사용중인 아이디입니다.' });
+					setError('email', { message: step2.onSubmit.error });
 					setFocus('email');
 				},
 			},
@@ -115,20 +118,20 @@ const Step2 = ({
 					<div className='right-content'>
 						<div onClick={onPrevStep} className='back-btn'></div>
 						<div className='step-title'>
-							회원가입 정보를
+							{step2.stepTitle[0]}
 							<br />
-							입력해주세요
+							{step2.stepTitle[1]}
 						</div>
-						<div className='step-text'>회원여부 확인 및 가입을 진행합니다</div>
+						<div className='step-text'>{step2.stepText}</div>
 						<FormProvider methods={methods}>
 							<div className='user-info'>
 								<RHFInput
 									type='text'
 									className='user-input'
-									placeholder='이메일 입력'
+									placeholder={step2.emailPlaceholder}
 									name='email'
 									id='email'
-									label='아이디 (이메일)'
+									label={step2.emailLabel}
 									errorPosition="bottom"
 									onBlur={(event) => {
 										if (errors.email) return;
@@ -141,7 +144,7 @@ const Step2 = ({
 													},
 													onError: (error) => {
 														setError('email', {
-															message: '이미 사용중인 아이디입니다.',
+															message: step2.emailOnErrorMsg,
 														});
 														//   setFocus("email");
 													},
@@ -154,12 +157,12 @@ const Step2 = ({
 									className='user-input'
 									name='password'
 									id='password'
-									label='비밀번호'
+									label={step2.passwordLabel}
 									errorPosition="bottom"
-									placeholder='비밀번호 입력'
+									placeholder={step2.passwordPlaceholder}
 									caption={
 										<p className='pw-info-text'>
-											문자, 숫자, 기호를 조합하여 8자 이상을 사용하세요
+											{step2.passwordCaption}
 										</p>
 									}
 									right={
@@ -175,8 +178,8 @@ const Step2 = ({
 									className='user-input'
 									name='confirm_password'
 									errorPosition="bottom"
-									placeholder='비밀번호 재입력'
-									label='비밀번호 확인'
+									placeholder={step2.confirmPasswordPlaceholder}
+									label={step2.confirmPasswordLabel}
 									right={
 										<span
 											className={`icon pw-show ${!visiblePasswordConfirmation && 'active'}`}
@@ -192,7 +195,7 @@ const Step2 = ({
 									className='link link-step01'
 									onClick={onSubmit}
 									disabled={Object.keys(dirtyFields).length !== 3}>
-									다음
+									{step2.btn}
 								</Button>
 							</div>
 						</FormProvider>

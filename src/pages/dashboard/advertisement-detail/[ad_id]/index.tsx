@@ -79,7 +79,7 @@ const DisabledButton = ({children})=>{
 
 function AdvertisementDetailScreen() {
   const router = useRouter();
-  const { dictionary: { types, view, operationStatus, adDetailsPage } } = useAuth();
+  const { dictionary: { types, view, operationStatus, adDetailsPage,common } } = useAuth();
   const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState<{ page: number; status: string }>({
     page: 1,
@@ -216,8 +216,15 @@ function AdvertisementDetailScreen() {
     },
     {
       title: adDetailsPage.adDetailColumns[5],
-      value: `${advertisement?.amount.toLocaleString()}원`,
+      value: `${advertisement?.total_cost.toLocaleString()} 원`,
     },
+    {
+      title: adDetailsPage.adDetailColumns[6],
+      value: advertisement?.advertising_contract ?
+          <button className="bg-[#5F7FB9] px-4 py-2 text-center justify-center rounded-md h-9 text-white">
+            <a target={"_blank"} className={'!no-underline !text-[#FFFFFF]'} href={advertisement?.advertising_contract}>{common?.download}</a></button> : "-",
+    },
+
   ];
 
   const [index, setIndex] = useState(0);

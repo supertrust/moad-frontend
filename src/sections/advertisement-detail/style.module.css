@@ -496,8 +496,8 @@
   .table_box
   .table_line
   .title {
-  /* height: 78px;
-  width: 119px; */
+
+  width: 145px;
   padding: 27px;
   display: flex;
   justify-content: center;

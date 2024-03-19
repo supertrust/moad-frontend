@@ -87,6 +87,7 @@ export interface IAdvertisement {
     situation: string,
     content: string,
     operating_areas: string[]
+    advertising_contract : string
     vehicles_in_operation:   {
         number_of_vehicles: number,
         vehicle_type: string

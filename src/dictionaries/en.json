@@ -37,7 +37,8 @@
     "operating_area": "Operating Area",
     "advertisement_images": "Advertisement Images",
     "min_max_number_vehicales": "Minimum number of operating vehicles / Maximum number of operating vehicles",
-    "advertisement_details": "Advertisement Details"
+    "advertisement_details": "Advertisement Details",
+    "download" : "Download"
   },
   "operationStatus": {
     "active": "Waiting for operation",
@@ -1317,7 +1318,7 @@
     }
   },
   "adDetailsPage": {
-    "adDetailColumns":["Ad name", "Ad period", "Ad type", "Ad status", "Ad area", "Ad amount"],
+    "adDetailColumns":["Ad name", "Ad period", "Ad type", "Ad status", "Ad area", "Ad amount", "Advertising contract"],
     "columns":["no","Registration number", "Vehicle type", "Driving status", "Vehicle information", "Vehicle location", "Authentication photo"],
     "breadCrumb":["Ad Management", "Advertising Vehicle Details"],
     "mockupOptions":["Rotate 360°", "View as image"],

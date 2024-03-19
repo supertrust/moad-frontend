@@ -37,7 +37,8 @@
     "operating_area": "운행 지역",
     "advertisement_images": "광고 이미지",
     "min_max_number_vehicales": "최소 운행차량수 / 최대 운행차량수",
-    "advertisement_details": "광고 상세"
+    "advertisement_details": "광고 상세",
+    "download" : "다운로드"
   },
   "operationStatus": {
     "active": "운행대기중",
@@ -1286,7 +1287,7 @@
     }
   },
   "adDetailsPage": {
-    "adDetailColumns":["광고이름", "광고기간", "광고유형", "광고상태", "광고지역", "광고금액"],
+    "adDetailColumns":["광고이름", "광고기간", "광고유형", "광고상태", "광고지역", "광고금액","광고 계약서"],
     "columns":["no","등록번호", "차량종류", "운행여부", "차량정보", "차량위치",  "인증사진"],
     "breadCrumb":["광고관리", " 광고 운행차량 상세"],
     "mockupOptions":["360°로 돌려보기", "이미지로 보기"],

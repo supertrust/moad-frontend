@@ -1251,9 +1251,9 @@ const SaveAdForm = ({
                       className='!font-medium !p-[7px] hidden sm:block sm:w-full'>
                       {dictionary.adForm.standard}
                     </td>
-                    <td width={'27%'} className='!font-medium !p-[7px]'>
-                      {dictionary.adForm.price}
-                    </td>
+                    {/*<td width={'27%'} className='!font-medium !p-[7px]'>*/}
+                    {/*  {dictionary.adForm.price}*/}
+                    {/*</td>*/}
                   </tr>
                 </thead>
                 <tbody>
@@ -1375,24 +1375,24 @@ const SaveAdForm = ({
                                 {item.vehicle_standard}
                               </span>
                             </td>
-                            <td
-                              className={`${styles.spot_add} ${styles.price_wrap} !p-[7px]`}>
-                              <span
-                                className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`}>
-                                {value[item.id] && item.expenses[period]
-                                  ? Number(
-                                      (value[item.id] &&
-                                        item.expenses[period] &&
-                                        Number(value[item.id]) *
-                                          item.expenses[period]) ||
-                                        0,
-                                    ).toLocaleString()
-                                  : null}
-                              </span>
-                              <span className={`${styles.text} ${styles.won}`}>
-                                {dictionary.adForm.won}
-                              </span>
-                            </td>
+                            {/*<td*/}
+                            {/*  className={`${styles.spot_add} ${styles.price_wrap} !p-[7px]`}>*/}
+                            {/*  <span*/}
+                            {/*    className={`${styles.text} ${styles.price_input} ${styles.spot_input_add}`}>*/}
+                            {/*    {value[item.id] && item.expenses[period]*/}
+                            {/*      ? Number(*/}
+                            {/*          (value[item.id] &&*/}
+                            {/*            item.expenses[period] &&*/}
+                            {/*            Number(value[item.id]) **/}
+                            {/*              item.expenses[period]) ||*/}
+                            {/*            0,*/}
+                            {/*        ).toLocaleString()*/}
+                            {/*      : null}*/}
+                            {/*  </span>*/}
+                            {/*  <span className={`${styles.text} ${styles.won}`}>*/}
+                            {/*    {dictionary.adForm.won}*/}
+                            {/*  </span>*/}
+                            {/*</td>*/}
                           </tr>
                         ))}
                       </>
@@ -1527,52 +1527,52 @@ const SaveAdForm = ({
                 </>
               </div>
             </div>
-            <div className={styles.price_section}>
-              <div className='border border-gray-300 rounded p-0 bg-white'>
-                <div className={`${styles.price_box} ${styles.spot_add}`}>
-                  <div
-                    className={`${styles.price_text} !text-[#222222] p-[16px] !text-[18px]`}>
-                    {dictionary.adForm.ad_cost}
-                  </div>
-                  <div
-                    id='total_price'
-                    className={`${styles.price_text} ${styles.total_price} ${styles.total_price} !text-[#2F48D1]`}>
-                    <span>
-                      {totalPrice && (totalPrice * period).toLocaleString()}
-                    </span>
-                    <span className={`${styles.text_won} !text-[#999999]`}>
-                      {dictionary.adForm.won}
-                    </span>
-                  </div>
-                  {/* <div
-									className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>
-									{dictionary.adForm.won}
-								</div> */}
-                </div>
-                <div
-                  className={`${styles.price_box} ${styles.spot_add} border-solid border-t border-[#EBEDF4]`}>
-                  <div
-                    className={`${styles.price_text} !text-[#606060] !text-[14px]  p-[16px]`}>
-                    {dictionary.adForm.monthly_ad_cost}
-                  </div>
-                  <div
-                    id='total_month_price'
-                    className={`${styles.price_text} ${styles.total_price} ${styles.total_price} !text-[#2F48D1]`}>
-                    <span>{totalPrice && totalPrice.toLocaleString()}</span>
-                    <span className={`${styles.text_won} !text-[#606060]`}>
-                      {dictionary.adForm.won}
-                    </span>
-                  </div>
-                  {/* <div
-									className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>
-									{dictionary.adForm.won}
-								</div> */}
-                </div>
-              </div>
-              <div className={styles.price_info}>
-                {dictionary.adForm.cost_description}
-              </div>
-            </div>
+            {/*<div className={styles.price_section}>*/}
+              {/*<div className='border border-gray-300 rounded p-0 bg-white'>*/}
+              {/*  <div className={`${styles.price_box} ${styles.spot_add}`}>*/}
+              {/*    <div*/}
+              {/*      className={`${styles.price_text} !text-[#222222] p-[16px] !text-[18px]`}>*/}
+              {/*      {dictionary.adForm.ad_cost}*/}
+              {/*    </div>*/}
+              {/*    <div*/}
+              {/*      id='total_price'*/}
+              {/*      className={`${styles.price_text} ${styles.total_price} ${styles.total_price} !text-[#2F48D1]`}>*/}
+              {/*      <span>*/}
+              {/*        {totalPrice && (totalPrice * period).toLocaleString()}*/}
+              {/*      </span>*/}
+              {/*      <span className={`${styles.text_won} !text-[#999999]`}>*/}
+              {/*        {dictionary.adForm.won}*/}
+              {/*      </span>*/}
+              {/*    </div>*/}
+              {/*    /!* <div*/}
+				{/*					className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>*/}
+				{/*					{dictionary.adForm.won}*/}
+				{/*				</div> *!/*/}
+              {/*  </div>*/}
+              {/*  <div*/}
+              {/*    className={`${styles.price_box} ${styles.spot_add} border-solid border-t border-[#EBEDF4]`}>*/}
+              {/*    <div*/}
+              {/*      className={`${styles.price_text} !text-[#606060] !text-[14px]  p-[16px]`}>*/}
+              {/*      {dictionary.adForm.monthly_ad_cost}*/}
+              {/*    </div>*/}
+              {/*    <div*/}
+              {/*      id='total_month_price'*/}
+              {/*      className={`${styles.price_text} ${styles.total_price} ${styles.total_price} !text-[#2F48D1]`}>*/}
+              {/*      <span>{totalPrice && totalPrice.toLocaleString()}</span>*/}
+              {/*      <span className={`${styles.text_won} !text-[#606060]`}>*/}
+              {/*        {dictionary.adForm.won}*/}
+              {/*      </span>*/}
+              {/*    </div>*/}
+              {/*    /!* <div*/}
+				{/*					className={`${styles.price_text} ${styles.text_won} !text-[#999999]`}>*/}
+				{/*					{dictionary.adForm.won}*/}
+				{/*				</div> *!/*/}
+              {/*  </div>*/}
+              {/*</div>*/}
+            {/*  <div className={styles.price_info}>*/}
+            {/*    {dictionary.adForm.cost_description}*/}
+            {/*  </div>*/}
+            {/*</div>*/}
           </div>
           {allError ? (
             <div

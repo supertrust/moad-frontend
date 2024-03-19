@@ -885,7 +885,7 @@
     "vehicle": "Vehicle",
     "num_of_vehicles": "Number of Vehicles",
     "min_vehicles": "Minimum number of vehicles required",
-    "standard": "standard",
+    "standard": "Expected specification",
     "price": "price",
     "big": "Big",
     "rear": "Rear (free service)",

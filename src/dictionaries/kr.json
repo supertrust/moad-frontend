@@ -226,6 +226,7 @@
     "noNotification": "알림이 없습니다."
   },
   "adList": {
+    "noAdsMsg": "진행중인 광고가 없습니다.",
     "title": "광고 목록",
     "applyForAdBtn": "광고 신청",
     "deleteAdBtn": "삭제",

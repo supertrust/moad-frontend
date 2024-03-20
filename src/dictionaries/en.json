@@ -226,6 +226,7 @@
     "noNotification": "There are no notifications."
   },
   "adList": {
+    "noAdsMsg": "There are no ads running.",
     "title": "Advertisement List",
     "applyForAdBtn": "Apply for Ad",
     "deleteAdBtn": "Delete",

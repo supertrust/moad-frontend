@@ -1082,8 +1082,9 @@
     }
   },
   "buttons": {
+    "cancel" : "취소",
     "previous": "Previous",
-    "confirm": "확인하다"
+    "confirm": "확인"
   },
   "adTypes": [
     {

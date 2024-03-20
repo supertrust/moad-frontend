@@ -800,7 +800,7 @@ function AdAgreementForm({
                   id={styles.ad_apply_cancel}
                   className={`${styles.btns} ${styles.cancel_btn}`}
                   onClick={onClose}>
-                  {dictionary.buttons.previous}
+                  {dictionary.buttons.cancel}
                 </button>
                 <button
                   type='button'

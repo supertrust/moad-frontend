@@ -236,7 +236,7 @@
       "noOfVehiclesInOp": "Number of vehicles in operation",
       "adPeriod": "Advertisement period",
       "recruitmentPeriod": "Recruitment Period",
-      "status": "status"
+      "status": "Status"
     },
     "adTypes": {
       "all": "All",
@@ -1113,6 +1113,7 @@
     }
   },
   "buttons": {
+    "cancel" : "Cancel",
     "previous": "Previous",
     "confirm": "Confirm"
   },

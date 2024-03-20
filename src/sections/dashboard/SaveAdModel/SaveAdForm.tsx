@@ -151,7 +151,7 @@ const minimumNumberVehicleValidation = (watch) => {
     const ve = watch['vehicle_details'][key];
     const minV = watch['vehicle_min'][key];
 
-    if(minV===undefined || minV>=ve )
+    if(minV===undefined || minV>ve )
       res=false;
   });
 
@@ -575,6 +575,8 @@ const SaveAdForm = ({
     agreemenetFormClose();
     setIstermschecked(true);
   };
+
+  console.log('ok',watch('vehicle_min')[1], watch('vehicle_details')[1])
 
   return (
     <FormProvider methods={methods}>
@@ -1332,7 +1334,7 @@ const SaveAdForm = ({
                                   // className={styles.input_num}
                                   className={
                                     `!w-[78px] h-[20px] border  text-gray-500 text-right mr-[3px] text-[12px] p-[3px]
-                                  ${(watch('vehicle_details')[item.id]>watch('vehicle_min')[item.id] || watch('vehicle_details')[item.id]==undefined) ? '!border-[#ebedf4]' : '!border-[#ff0000]'}
+                                  ${(watch('vehicle_details')[item.id]>=watch('vehicle_min')[item.id] || !watch('vehicle_details')[item.id]) ? '!border-[#ebedf4]' : '!border-[#ff0000]'}
                                   `
                                   }
                                   value={watch('vehicle_min')[item.id]}

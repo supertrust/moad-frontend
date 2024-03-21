@@ -147,7 +147,7 @@ function removeValueNotExistInOtherObject(obj, otherObj) {
 const minimumNumberVehicleValidation = (watch) => {
   let res = true;
   Object.keys(watch['vehicle_details']).forEach(function (key) {
-    // console.log(key + ': ' + myObject[key]);
+    // //console.log(key + ': ' + myObject[key]);
     const ve = watch['vehicle_details'][key];
     const minV = watch['vehicle_min'][key];
 
@@ -422,7 +422,7 @@ const SaveAdForm = ({
         return;
       }
       if (!minimumNumberVehicleValidation({ ...watch() })) {
-        setErrors('필요한 최소 차량은 차량 수보다 적어야 합니다.');
+        setErrors('필요한 최소 차량 수는 차량 수와 작거나 같아야 합니다.');
         return;
       }
 
@@ -435,8 +435,6 @@ const SaveAdForm = ({
       };
       removeZeroValueKeys(v.vehicle_details);
       removeValueNotExistInOtherObject(v.vehicle_min, v.vehicle_details);
-
-      console.log('hasv', values);
 
       if (images.length > 0 && validationOfDisplayingTime().length === 0) {
         setErrors('');
@@ -543,7 +541,7 @@ const SaveAdForm = ({
     return '';
   };
 
-  // console.log('hash', watch('vehicle_details')[1],watch('vehicle_min')[1])
+  // //console.log('hash', watch('vehicle_details')[1],watch('vehicle_min')[1])
 
   const agreemenetFormClose = () => setIsAggrementFormOpen(false);
 
@@ -575,8 +573,6 @@ const SaveAdForm = ({
     agreemenetFormClose();
     setIstermschecked(true);
   };
-
-  console.log('ok',watch('vehicle_min')[1], watch('vehicle_details')[1])
 
   return (
     <FormProvider methods={methods}>
@@ -1203,7 +1199,7 @@ const SaveAdForm = ({
                           name={'ad_recruitment_period_end_date'}
                           dateFormat='yyyy-mm-dd'
                           onChange={(date: string) => {
-                            console.log('date', new Date(date));
+                            //console.log('date', new Date(date));
                             setValue(
                               'ad_recruitment_period_end_date',
                               convertDate(date),
@@ -1321,6 +1317,7 @@ const SaveAdForm = ({
                                     e.preventDefault();
                                   }
                                 }}
+                                onWheel={ event => event.currentTarget.blur() }
                               />
                               <span className={styles.text}>
                                 {dictionary.adForm.big}
@@ -1330,14 +1327,14 @@ const SaveAdForm = ({
                               className={`${styles.vehicles_num_wrap} ${styles.cell} !p-[7px]`}>
                               <input
                                   type="number"
-                                  name="vehicles_1"
+                                  name="vehicles_min_req"
                                   // className={styles.input_num}
                                   className={
                                     `!w-[78px] h-[20px] border  text-gray-500 text-right mr-[3px] text-[12px] p-[3px]
                                   ${(watch('vehicle_details')[item.id]>=watch('vehicle_min')[item.id] || !watch('vehicle_details')[item.id]) ? '!border-[#ebedf4]' : '!border-[#ff0000]'}
                                   `
                                   }
-                                  value={watch('vehicle_min')[item.id]}
+                                  value={watch('vehicle_min')[item.id]===undefined? "" : watch('vehicle_min')[item.id]}
                                   onChange={(e) =>
                                     {
                                       let prevValue = watch('vehicle_min') || {}
@@ -1366,6 +1363,7 @@ const SaveAdForm = ({
                                     //   e.preventDefault();
                                     // }
                                   }}
+                                  onWheel={ event => event.currentTarget.blur() }
                               />
                               <span className={styles.text}>
                                 {dictionary.adForm.big}

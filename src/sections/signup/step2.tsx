@@ -116,7 +116,7 @@ const Step2 = ({
 			<div className='right'>
 				<div className='right-wrap'>
 					<div className='right-content'>
-						<div onClick={onPrevStep} className='back-btn'></div>
+						<div onClick={onPrevStep} className='back-btn cursor-pointer'></div>
 						<div className='step-title'>
 							{step2.stepTitle[0]}
 							<br />

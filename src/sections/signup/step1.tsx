@@ -96,7 +96,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 				</h1>
 				<div className='right-wrap'>
 					<div className='right-content'>
-						<div onClick={handleBackButton} className='back-btn'></div>
+						<div onClick={handleBackButton} className='back-btn cursor-pointer'></div>
 						<div className='step-title'>
 							{step1.stepTitle[0]}<br />
 							{step1.stepTitle[1]}

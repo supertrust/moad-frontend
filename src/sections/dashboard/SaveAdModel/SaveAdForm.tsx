@@ -1301,7 +1301,7 @@ const SaveAdForm = ({
                                     });
                                   }
                                 }}
-                                id={item.vehicle_type}
+                                id={`vehicles_num_${item.vehicle_type}`}
                                 placeholder='직접입력'
                                 min={0}
                                 onKeyDown={(e) => {
@@ -1348,7 +1348,7 @@ const SaveAdForm = ({
                                       setValue('vehicle_min', prevValue)
                                     }
                                   }
-                                  id={item.vehicle_type}
+                                  id={`vehicle_min_${item.vehicle_type}`}
                                   placeholder="직접입력"
                                   min={0}
                                   onKeyDown={(e) => {

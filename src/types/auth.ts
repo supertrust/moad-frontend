@@ -48,6 +48,7 @@ export type AuthContextType = {
     isUserLoading : boolean,
     isRoleLoading : boolean,
     localDataUpdated : VoidFunction
+    changeLocale : (lang : Langs) => {}
 }
 
 export type VerifyInputPropsType = {

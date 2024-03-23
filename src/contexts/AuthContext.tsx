@@ -1,18 +1,16 @@
-import { useCargoLogin } from "@src/apis/cargo/cargo-auth";
-import { isAdminRoute, isAuthenticateRoute, isCargoRoute, isWithoutAuthenticateRoute } from "@src/utils/route";
-import { useRouter } from "next/router";
-import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-
-import { AuthContextType, Dictionary, Langs, LoginPropsType, RegisterPropsType } from '@src/types/auth';
-import { useLogin, useRegister, useLogout } from '@src/apis/auth';
-import { removeAxiosToken, setAxiosToken } from '@src/utils/axios';
-import { useGetUser, useGetUserRole } from '@src/apis/user';
-import { queryClient } from '@src/services/ReactQueryClient';
-import { parseJwt } from '@src/helpers';
-import { toast } from "react-toastify";
+import { useLogin, useLogout, useRegister } from '@src/apis/auth';
+import { useGetUser } from '@src/apis/user';
 import en from "@src/dictionaries/en.json";
 import kr from "@src/dictionaries/kr.json";
-import { useAdminAdvertiserLogin } from "@src/apis/admin";
+import { parseJwt } from '@src/helpers';
+import { queryClient } from '@src/services/ReactQueryClient';
+
+import { AuthContextType, Dictionary, Langs, LoginPropsType, RegisterPropsType } from '@src/types/auth';
+import axios, { removeAxiosToken, setAxiosToken } from '@src/utils/axios';
+import { isCargoRoute } from "@src/utils/route";
+import { useRouter } from "next/router";
+import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { toast } from "react-toastify";
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -38,14 +36,32 @@ function AuthProvider({ children }: AuthProviderProps) {
     const [dictionary, setDictionary] = useState<Dictionary>();
     const [token, setToken] = useState<string | null>(null);
 
-    const { data: userData, refetch: refetchUserData,isLoading : isUserLoading } = useGetUser({ isAuthenticated: false });
+    const {
+        data: userData,
+        refetch: refetchUserData,
+        isLoading: isUserLoading
+    } = useGetUser({ isAuthenticated: false });
     const [user, setUser] = useState(null);
 
-    useEffect(() => {
+    const changeLangState = (_locale: Langs) => {
+        setLang(_locale);
         const dictionaries = { en, kr }
+        setDictionary(dictionaries[_locale])
+        axios.defaults.headers['Accept-Language'] = _locale === 'en' ? 'en' : 'kr';
+    };
 
-        setDictionary(dictionaries[lang])
-    }, [lang]);
+    const changeLocale = async (_locale: Langs) => {
+        changeLangState(_locale);
+        localStorage.setItem("lang", _locale);
+        toast.success(_locale === 'en' ? 'Language updated successfully' : "언어가 성공적으로 업데이트되었습니다", {
+            position: "top-center"
+        })
+    };
+
+    useEffect(() => {
+        const lang: Langs = localStorage.getItem("lang") === 'en' ? 'en' : 'kr';
+        changeLangState(lang)
+    }, []);
 
     const localDataUpdated = async (currentUser: any = {}) => {
         const res = await refetchUserData()
@@ -120,15 +136,16 @@ function AuthProvider({ children }: AuthProviderProps) {
     const value = useMemo(() => ({
         user: user || null,
         userRole: ADVERTISER_ROLE,
-        isAuthenticated : !!user,
+        isAuthenticated: !!user,
         token,
         login,
         register,
         logout,
         lang,
         setLang,
+        changeLocale,
         dictionary,
-        loading : loading,
+        loading: loading,
         isUserLoading: !user && isUserLoading,
         isRoleLoading: false,
         localDataUpdated

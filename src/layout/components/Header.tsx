@@ -22,7 +22,7 @@ const langOptions: { value: Langs; label: string }[] = [
 ];
 
 function Header(props: HeaderProps) {
-  const { logout, user, isUserLoading, dictionary, setLang, lang } = useAuth();
+  const { logout, user, isUserLoading, dictionary, changeLocale, lang } = useAuth();
   const [showMobileNav, setShowMobileNav] = useState(false);
   const router = useRouter();
 
@@ -63,7 +63,7 @@ function Header(props: HeaderProps) {
                     <Dropdown.Item
                       key={key}
                       onClick={() => {
-                        setLang(op.value);
+                        changeLocale(op.value);
                       }}>
                       {op.label}
                     </Dropdown.Item>

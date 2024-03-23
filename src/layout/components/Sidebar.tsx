@@ -172,7 +172,7 @@ function Sidebar({ msg }: SidebarProps) {
                         msg("공지사항");
                       }}
                     >
-                      {dictionary.sidebar.customerService}
+                      {dictionary.sidebar.notice}
                     </Link>
                   </li>
                   <li className="sub-list guide ">

@@ -1,16 +1,16 @@
+import { DownOutlined } from '@ant-design/icons';
 import { Skeleton } from '@mui/material';
-import { useRouter } from 'next/router';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { useEffect, useState } from 'react';
-import MobileNav from './MobileNav';
+import { Button } from '@src/components/common';
+import useAuth from '@src/hooks/useAuth';
+import { Langs } from '@src/types/auth';
 import Image from 'next/image';
 import Link from 'next/link';
-import useAuth from '@src/hooks/useAuth';
-import { Button } from '@src/components/common';
-import { getFileUrl } from '@src/helpers';
-import { DownOutlined } from '@ant-design/icons';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
 import langIcon from '../../../public/assets/images/icons/lang.svg';
-import { Langs } from '@src/types/auth';
+import MobileNav from './MobileNav';
+
 interface HeaderProps {
   text: string;
   profileImage?: File;

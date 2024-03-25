@@ -36,8 +36,9 @@ function AdImage({
         src={src}
         alt={alt || ""}
         className="h-full w-full"
-        width={20}
-        height={20}
+        width={1000} // Set a larger width for higher resolution
+        height={600} // Optionally set the height
+        quality={100} // Increase the quality for better resolution
       />
     </div>
   );

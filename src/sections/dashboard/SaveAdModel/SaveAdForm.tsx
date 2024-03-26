@@ -1521,7 +1521,7 @@ const SaveAdForm = ({
                 <>
                   <span
                     onClick={() => setIsAggrementFormOpen(true)}
-                    className='underline ml-[16px] cursor-pointer text-[#2F48D1]'>
+                    className='underline ml-[16px] cursor-pointer'>
                     {dictionary.adForm.look}
                   </span>
                 </>

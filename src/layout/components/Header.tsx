@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import langIcon from '../../../public/assets/images/icons/lang.svg';
+import LanguageChange from "../../components/common/LanguageChange/LanguageChange";
 import MobileNav from './MobileNav';
 
 interface HeaderProps {
@@ -47,29 +48,30 @@ function Header(props: HeaderProps) {
               {!props.text ? dictionary.dashboard.title : props.text}
             </div>
             <div className='flex items-center'>
-              <Dropdown className='drop-btns'>
-                <Dropdown.Toggle
-                  id='dropdown-basic'
-                  className='d-flex items-center	'>
-                  <div className='flex gap-1 !text-[#606060]'>
-                    <Image src={langIcon} alt='' />
-                    {langOptions.find((op) => op.value == lang)?.label}
-                    <DownOutlined className='m-auto' />
-                  </div>
-                </Dropdown.Toggle>
-                <Dropdown.Menu
-                  style={{ width: '20px !important', border: 'none' }}>
-                  {langOptions.map((op, key) => (
-                    <Dropdown.Item
-                      key={key}
-                      onClick={() => {
-                        changeLocale(op.value);
-                      }}>
-                      {op.label}
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
+              {/*<Dropdown className='drop-btns'>*/}
+              {/*  <Dropdown.Toggle*/}
+              {/*    id='dropdown-basic'*/}
+              {/*    className='d-flex items-center	'>*/}
+              {/*    <div className='flex gap-1 !text-[#606060]'>*/}
+              {/*      <Image src={langIcon} alt='' />*/}
+              {/*      {langOptions.find((op) => op.value == lang)?.label}*/}
+              {/*      <DownOutlined className='m-auto' />*/}
+              {/*    </div>*/}
+              {/*  </Dropdown.Toggle>*/}
+              {/*  <Dropdown.Menu*/}
+              {/*    style={{ width: '20px !important', border: 'none' }}>*/}
+              {/*    {langOptions.map((op, key) => (*/}
+              {/*      <Dropdown.Item*/}
+              {/*        key={key}*/}
+              {/*        onClick={() => {*/}
+              {/*          changeLocale(op.value);*/}
+              {/*        }}>*/}
+              {/*        {op.label}*/}
+              {/*      </Dropdown.Item>*/}
+              {/*    ))}*/}
+              {/*  </Dropdown.Menu>*/}
+              {/*</Dropdown>*/}
+              <LanguageChange/>
               <div className='my-info'>
                 <div className='info-wrap'>
                   <Dropdown className='drop-btns'>
@@ -162,6 +164,9 @@ function Header(props: HeaderProps) {
                   />
                 )}
               </Link>
+              <div className={'ml-2'}>
+                <LanguageChange dropClassName={'!pr-2'} iconShow={false}/>
+              </div>
               <Button
                 onClick={toggle}
                 type='button'

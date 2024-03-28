@@ -1,3 +1,4 @@
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { useLogin, useLogout, useRegister } from '@src/apis/auth';
 import { useGetUser } from '@src/apis/user';
 import en from "@src/dictionaries/en.json";
@@ -26,6 +27,8 @@ const ADVERTISER_ROLE = {
 }
 
 function AuthProvider({ children }: AuthProviderProps) {
+
+    const isPcOnly = useMediaQuery('(min-width:1025px)');
     const { mutateAsync: _login } = useLogin();
     const { mutateAsync: _register } = useRegister();
     const { mutateAsync: _logout } = useLogout();
@@ -53,8 +56,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     const changeLocale = async (_locale: Langs) => {
         changeLangState(_locale);
         localStorage.setItem("lang", _locale);
-        toast.success(_locale === 'en' ? 'Language updated successfully' : "언어가 성공적으로 업데이트되었습니다", {
-            position: "top-center"
+        isPcOnly && toast.success(_locale === 'en' ? 'Language updated successfully' : "언어가 성공적으로 업데이트되었습니다", {
+            position: isPcOnly? "top-center" : "bottom-center"
         })
     };
 

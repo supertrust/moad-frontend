@@ -5,7 +5,6 @@ import en from "@src/dictionaries/en.json";
 import kr from "@src/dictionaries/kr.json";
 import { parseJwt } from '@src/helpers';
 import { queryClient } from '@src/services/ReactQueryClient';
-
 import { AuthContextType, Dictionary, Langs, LoginPropsType, RegisterPropsType } from '@src/types/auth';
 import axios, { removeAxiosToken, setAxiosToken } from '@src/utils/axios';
 import { isCargoRoute } from "@src/utils/route";

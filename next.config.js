@@ -4,6 +4,7 @@ const hostnames = [
   "dev-icarus.mufin.lol",
   "dev-backend.icarus.mufin.lol",
   "dev-static.icarus.mufin.lol",
+  "dev-static.moad.live"
 ];
 /** @type {import('next').NextConfig} */
 const nextConfig = {

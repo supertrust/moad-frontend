@@ -216,7 +216,7 @@ function AdvertisementDetailScreen() {
     },
     {
       title: adDetailsPage.adDetailColumns[5],
-      value: `${advertisement?.total_cost.toLocaleString()} 원`,
+      value: `${advertisement?.total_cost?.toLocaleString()} 원`,
     },
     {
       title: adDetailsPage.adDetailColumns[6],

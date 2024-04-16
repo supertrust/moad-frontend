@@ -4,7 +4,7 @@ const hostnames = [
   "dev-icarus.mufin.lol",
   "dev-backend.icarus.mufin.lol",
   "dev-static.icarus.mufin.lol",
-  "dev-static.moad.live"
+  process.env.STATIC_IMAGE_HOST
 ];
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,6 +14,7 @@ const nextConfig = {
     KOKAO_MAP_URL: process.env.KOKAO_MAP_URL,
     KAKAO_MAP_API_KEY: process.env.KAKAO_MAP_API_KEY,
     KAKAO_REST_API_KEY: process.env.KAKAO_REST_API_KEY,
+    STATIC_IMAGE_HOST: process.env.STATIC_IMAGE_HOST
   },
   images: {
     remotePatterns: hostnames.map((hostname) => ({

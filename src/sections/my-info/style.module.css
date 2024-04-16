@@ -210,15 +210,16 @@
 
 .modify_btn {
     width: 92px;
-    margin: 15px 343px 1px;
     font-weight: 400;
     font-size: 14px;
-    line-height: 35px;
+    height: 35px;
     color: #ffffff;
     background: #2f48d1;
     border-radius: 5px;
     display: inherit;
+    justify-content: inherit;
     cursor: pointer;
+    align-items: center;
 
 }
 

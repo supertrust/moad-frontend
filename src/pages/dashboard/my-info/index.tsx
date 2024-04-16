@@ -376,14 +376,16 @@ export default function MyInfoScreen() {
 													/>
 												</li>
 											</ul>
-											<Button
-												loading={isLoading || isProfilePicUpdating}
-												type='submit'
-												className={`${styles.modify_btn} p-0 mx-auto`}
-												onClick={onSubmit}
-												disabled={disabledSubmit}>
-												{myInfo.modificationsCompleted}
-											</Button>
+											<div className={'flex justify-center'}>
+												<Button
+													loading={isLoading || isProfilePicUpdating}
+													type='submit'
+													className={`${styles.modify_btn} p-0 `}
+													onClick={onSubmit}
+													disabled={disabledSubmit}>
+													{myInfo.modificationsCompleted}
+												</Button>
+											</div>
 										</div>
 									</div>
 								</div>

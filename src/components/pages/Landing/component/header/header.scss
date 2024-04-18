@@ -137,7 +137,7 @@ header nav {
   }
   #header .header-continer ._nav .menu .menu-list.active .menu-link {
     font-weight: 500;
-    color: #0868fd;
+    color: var(--primary-color);
   }
   #header .header-continer ._nav .menu-terms-wrap {
     margin: 0 20px;

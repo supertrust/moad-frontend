@@ -65,12 +65,12 @@ body .div{
 	letter-spacing: -0.015em;
 	color: #2C324C;
 	border-radius: 5px 5px 0 0;
-	background-color: #E1ECFF
+	background-color: var(--light-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info {
 	margin: 30px 30px 40px;
-	border: 1px solid #2F48D1;
+	border: 1px solid var(--primary-color);
 	border-radius: 5px;
 	display: flex;
 	justify-content: flex-start;
@@ -80,7 +80,7 @@ body .div{
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content {
 	width: 100%;
 	padding: 20px;
-	border-right: 1px solid #2F48D1
+	border-right: 1px solid var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .info_text {
@@ -88,7 +88,7 @@ body .div{
 	font-size: 13px;
 	line-height: 19px;
 	letter-spacing: -0.015em;
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap {
@@ -103,7 +103,7 @@ body .div{
 	font-size: 13px;
 	line-height: 20px;
 	letter-spacing: -0.015em;
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_list_wrap .list::before {
@@ -115,7 +115,7 @@ body .div{
 	width: 4px;
 	height: 4px;
 	border-radius: 50%;
-	background-color: #2F48D1
+	background-color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap {
@@ -172,7 +172,7 @@ body .div{
 	font-weight: 400;
 	font-size: 13px;
 	line-height: 19px;
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .more_btn .text_wrap .ic_down_blue {
@@ -291,7 +291,7 @@ body .div{
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active {
-	border: 1px solid #2F48D1
+	border: 1px solid var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .ic_radio {
@@ -299,7 +299,7 @@ body .div{
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .detail_desc {
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .box_icon.box_icon01 {
@@ -315,7 +315,7 @@ body .div{
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .text {
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .input_section {
@@ -372,7 +372,7 @@ body .div{
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .title_section .input_ad_title:focus {
-	border: 1px solid #2F48D1
+	border: 1px solid var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section {
@@ -648,7 +648,7 @@ body .div{
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap .chk_input:checked+.chk_area {
 	color: #ffffff;
-	background: #2F48D1
+	background: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal {
@@ -710,7 +710,7 @@ body .div{
 	font-size: 14px;
 	line-height: 20px;
 	color: #FFFFFF;
-	background: #0868FD;
+	background: var(--primary-color);
 	border-radius: 4px;
 	cursor: pointer
 }
@@ -725,8 +725,8 @@ body .div{
 	font-size: 14px;
 	line-height: 20px;
 	background-color: #FFFFFF;
-	color: #0868FD;
-	border: 1px solid #0868FD;
+	color: var(--primary-color);
+	border: 1px solid var(--primary-color);
 	border-radius: 4px;
 	cursor: pointer
 }
@@ -756,7 +756,7 @@ body .div{
 	font-size: 18px;
 	line-height: 26px;
 	letter-spacing: -0.015em;
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box .total_price {
@@ -771,7 +771,7 @@ body .div{
 	font-size: 18px;
 	line-height: 26px;
 	letter-spacing: -0.015em;
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box.on {
@@ -862,7 +862,7 @@ body .div{
 	font-size: 14px;
 	line-height: 20px;
 	text-align: center;
-	color: #2F48D1;
+	color: var(--primary-color);
 	cursor: pointer;
 	color: #ffffff;
 	border-radius: 5px;
@@ -871,13 +871,13 @@ body .div{
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.line {
-	border: 1px solid #2F48D1;
+	border: 1px solid var(--primary-color);
 	background-color: #ffffff;
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.active {
-	background: #2F48D1
+	background: var(--primary-color)
 }
 
 /* Notification section */

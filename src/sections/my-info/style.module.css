@@ -214,7 +214,7 @@
     font-size: 14px;
     height: 35px;
     color: #ffffff;
-    background: #2f48d1;
+    background: var(--primary-color);
     border-radius: 5px;
     display: inherit;
     justify-content: inherit;
@@ -291,8 +291,8 @@
 
 .cancel_btn {
     line-height: 33px;
-    color: #2f48d1;
-    border: 1px solid #2f48d1;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
 .btns {
@@ -307,7 +307,7 @@
 
 .modify_btn {
     color: #ffffff;
-    background-color: #2f48d1;
+    background-color: var(--primary-color);
     cursor: pointer;
 }
 

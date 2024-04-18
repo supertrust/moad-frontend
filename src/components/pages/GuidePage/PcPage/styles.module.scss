@@ -113,7 +113,7 @@ $background-color_2: #456192;
   }
   h4 {
     font-weight: bold;
-    color: #2f48d1;
+    color: var(--primary-color);
   }
 }
 ._root__text_img {
@@ -137,7 +137,7 @@ $background-color_2: #456192;
       line-height: 1.38;
       letter-spacing: normal;
       text-align: left;
-      color: #2f48d1;
+      color: var(--primary-color);
     }
     p {
       margin-top: 12px;

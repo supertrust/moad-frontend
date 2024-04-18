@@ -61,12 +61,12 @@ function NoticePage() {
                 <Card variant="elevation" elevation={3} className="flex flex-col justify-between min-h-[660px] h-full gap-2 !shadow-[0px_2px_8px_0px_rgba(38,51,77,0.05)]">
                     {isLoading ? (
                         <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
-                            <CircularProgress color="primary" />
+                            <CircularProgress  />
                         </div>
                     ) : (
                         <Table width={`100%`} className="mb-[0px] relative" id="notice-table">
                             {/* <TableHead className={`bg-sky-100 bg-[#E1ECFF] ${pin?'table-head-notice' : ''}`}> */}
-                            <TableHead className={`bg-sky-100 bg-[#E1ECFF]`}>
+                            <TableHead className={`bg-advertiser-light`}>
                                 <TableRow>
                                     <TableCell className="!text-center">{noticePage.columns[0]}</TableCell>
                                     <TableCell className="!text-center">{noticePage.columns[1]}</TableCell>

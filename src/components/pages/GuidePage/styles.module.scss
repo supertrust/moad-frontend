@@ -256,7 +256,7 @@ $background-color_2: #456192;
   }
   h4 {
     font-weight: bold;
-    color: #2f48d1;
+    color: var(--primary-color);
     margin-top: 4px;
     margin-bottom: 20px;
     @media (max-width: 767px) {
@@ -320,7 +320,7 @@ $background-color_2: #456192;
       line-height: normal;
       letter-spacing: -0.45px;
       text-align: left;
-      color: #2f48d1;
+      color: var(--primary-color);
     }
     h4 {
       font-size: 26px;
@@ -514,7 +514,7 @@ $background-color_2: #456192;
   }
   h4 {
     font-weight: bold;
-    color: #2f48d1;
+    color: var(--primary-color);
     margin-top: 4px;
     margin-bottom: 20px;
     @media (max-width: 767px) {
@@ -571,7 +571,7 @@ $background-color_2: #456192;
       line-height: normal;
       letter-spacing: -0.36px;
       text-align: left;
-      color: #2f48d1;
+      color: var(--primary-color);
     }
 
     p {
@@ -655,7 +655,7 @@ $background-color_2: #456192;
 
     h4 {
       font-weight: bold !important;
-      color: #2f48d1 !important;
+      color: var(--primary-color) !important;
       margin-bottom: 1px !important;
       margin-top: 5px;
       font-size: 16px !important;
@@ -668,7 +668,7 @@ $background-color_2: #456192;
       }
       h4 {
         font-weight: bold !important;
-        color: #2f48d1 !important;
+        color: var(--primary-color) !important;
         margin-left: 2px !important;
         margin-bottom: 1px !important;
         margin-top: 8px;

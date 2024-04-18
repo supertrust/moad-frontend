@@ -329,7 +329,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: #e1ecff;
+    background-color: var(--light-color);
   }
   
   #statistics_driving
@@ -796,7 +796,7 @@
     tr
     td
     .ui_state_active {
-    background: #2f48d1;
+    background: var(--primary-color);
     color: #ffffff;
   }
   
@@ -811,7 +811,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px 30px;
-    background-color: #e1ecff;
+    background-color: var(--light-color);
   }
   
   #statistics_driving
@@ -872,7 +872,7 @@
     .btn_wrap
     .apply_btn {
     color: #ffffff;
-    background: #2f48d1;
+    background: var(--primary-color);
     border-radius: 5px;
   }
   

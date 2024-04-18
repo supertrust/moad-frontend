@@ -238,7 +238,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
-						className='outline-primary border-solid border-[1px] border-[#0868FD] text-[#0868FD] !py-[5px]'
+						className='outline-primary border-solid border-[1px] border-advertiser-primary text-advertiser-primary !py-[5px]'
 						onClick={() => {
 							if (show.name === 'chk_1') setPrivacyPolicy(false);
 							else setTermsAndConditions(false);
@@ -248,7 +248,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 						{step1.modal.cancelBtn}
 					</Button>
 					<Button
-						className='primary border-solid border-[1px] border-[transparent] bg-[#0868FD] text-[#fff] !py-[5px]'
+						className='primary border-solid border-[1px] border-[transparent] bg-advertiser-primary text-[#fff] !py-[5px]'
 						onClick={() => {
 							if (show.name === 'chk_1') setPrivacyPolicy(true);
 							else setTermsAndConditions(true);

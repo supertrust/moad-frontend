@@ -1139,7 +1139,7 @@
     "rangePicker": {
       "extraFooter": {
         "daily": "일간",
-        "okBtn": "Ok",
+        "okBtn": "적용",
         "cancelBtn": "취소"
 
       }

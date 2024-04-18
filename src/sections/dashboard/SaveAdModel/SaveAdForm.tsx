@@ -801,7 +801,7 @@ const SaveAdForm = ({
                   <div className='flex justify-end'>
                     <ErrorMessage error={error?.message} />
                     <div className={styles.text_count}>
-                      (<span className='text-[#0868FD]'>{value.length}</span>
+                      (<span className='text-advertiser-primary'>{value.length}</span>
                       /25)
                     </div>
                   </div>
@@ -849,7 +849,7 @@ const SaveAdForm = ({
                     <ErrorMessage error={error?.message} />
                     <div className={styles.text_count}>
                       (
-                      <span className='text-[#3772FF]'>
+                      <span className='text-advertiser-primary'>
                         {(value as string)?.length ?? 0}
                       </span>
                       {`/600`})
@@ -895,7 +895,7 @@ const SaveAdForm = ({
                     <div className='flex flex-row gap-1'>
                       <button
                         className={
-                          'bg-[#5F7FB9] px-4 py-2 text-center justify-center rounded-md h-9 text-white'
+                          'bg-advertiser-deep px-4 py-2 text-center justify-center rounded-md h-9 text-white'
                         }
                         onClick={() => setUpdateImage(true)}>
                         <span>{dictionary.adForm.select_file}</span>
@@ -1231,9 +1231,9 @@ const SaveAdForm = ({
               </div>
               <Table
                 bordered
-                className='text-center rounded-sm border-gray-500 bg-[#FFFFFF] !m-0'
+                className='text-center rounded-sm  bg-[#FFFFFF] !m-0'
                 responsive>
-                <thead className='rounded-sm'>
+                <thead className='rounded-sm !bg-advertiser-light border-advertiser-light'>
                   <tr className='rounded-r-sm text-[#2C324C]'>
                     <td width={'18%'} className='!font-medium !p-[7px]'>
                       {dictionary.adForm.vehicle}
@@ -1514,7 +1514,7 @@ const SaveAdForm = ({
                 />
               </div>
               <div>
-                <span className='text-[#2F48D1]'>
+                <span className='text-advertiser-primary'>
                   ({dictionary.adForm.required})
                 </span>{' '}
                 {dictionary.adForm.icarus_toc}

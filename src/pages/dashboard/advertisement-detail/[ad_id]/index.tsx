@@ -221,7 +221,7 @@ function AdvertisementDetailScreen() {
     {
       title: adDetailsPage.adDetailColumns[6],
       value: advertisement?.advertising_contract ?
-          <button className="bg-[#5F7FB9] px-4 py-2 text-center justify-center rounded-md h-9 text-white">
+          <button className="bg-advertiser-deep px-4 py-2 text-center justify-center rounded-md h-9 text-white">
             <a target={"_blank"} className={'!no-underline !text-[#FFFFFF]'} href={advertisement?.advertising_contract}>{common?.download}</a></button> : "-",
     },
 
@@ -309,7 +309,7 @@ function AdvertisementDetailScreen() {
            legacyBehavior
            href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}
        >
-         <a  className="hover:no-underline">
+         <a  className="text-advertiser-primary hover:no-underline">
            {text}
          </a>
        </Link>
@@ -329,7 +329,7 @@ function AdvertisementDetailScreen() {
           legacyBehavior
           href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle-location/${record.cargo_vehicle_id}`}
         >
-          <a  className="hover:no-underline">
+          <a  className="text-advertiser-primary hover:no-underline">
             {text}
           </a>
         </Link>
@@ -347,7 +347,7 @@ function AdvertisementDetailScreen() {
       render: (text: any, record: any) => (
           record?.vehicle_status==="end" ? <DisabledButton>{text}</DisabledButton> :
         <div
-          className="text-[#1675e0] cursor-pointer"
+          className="text-advertiser-primary cursor-pointer"
           onClick={() => {
             setVerifyPicturesModalData({
               advertisement_id: record.advertisement_id,
@@ -797,7 +797,7 @@ const VerifyPicturesModal = ({
       render: (text: any, record: any, index) => {
         const enabled = record.image_path.length > 0
         return <div
-        className={`text-center underline ${enabled ? 'text-[#1675e0]' : 'text-[#999999]'}`}
+        className={`text-center underline ${enabled ? 'text-advertiser-primary' : 'text-[#999999]'}`}
         onClick={()=>{
           if(enabled) {
             setStep(1)

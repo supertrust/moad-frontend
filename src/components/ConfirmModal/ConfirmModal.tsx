@@ -48,7 +48,7 @@ export default function ConfirmModal({
               className={"w-[92px] h-[35px]"}
               variant="outlined"
               sx={{
-                color: "#2f48d1",
+                color: "var(--primary-color)",
               }}
               onClick={reject}
             >
@@ -59,7 +59,7 @@ export default function ConfirmModal({
             <Button
               className={"w-[92px] h-[35px]"}
               variant="contained"
-              sx={{ background: "#2f48d1" }}
+              sx={{ background: "var(--primary-color)" }}
               onClick={handleAccept}
               disabled={accepted}
             >

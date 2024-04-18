@@ -139,7 +139,7 @@
 #id_find_modal .modal_wrap .id_find_form .btn_wrap .id_model_find {
 	margin-bottom: 10px;
 	color: #ffffff;
-	background-color: #0868FD
+	background-color: var(--primary-color)
 }
 
 #id_find_modal .modal_wrap .id_find_form .btn_wrap .id_model_find.disabled {
@@ -149,8 +149,8 @@
 }
 
 #id_find_modal .modal_wrap .id_find_form .btn_wrap .id_model_close {
-	border: 1px solid #0868FD;
-	color: #0868FD
+	border: 1px solid var(--primary-color);
+	color: var(--primary-color)
 }
 
 @media (max-width:768px) {

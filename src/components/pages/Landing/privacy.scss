@@ -12,7 +12,7 @@
     margin-bottom: 73px;
   }
   #privacy_policy .privacy-policy-section01 {
-    background: #e1ecff;
+    background: var(--light-color);
     border-top: 1px solid #999999;
   }
   #privacy_policy .privacy-policy-section01 .section01-info-text {
@@ -61,7 +61,7 @@
     .privacy-policy-section02
     .policy-list-grid
     .policy-box:hover {
-    background-color: #2f48d1;
+    background-color: var(--primary-color);
     color: #ffffff;
   }
   #privacy_policy .privacy-policy-section03 {

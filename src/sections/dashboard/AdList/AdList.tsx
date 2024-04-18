@@ -1,29 +1,17 @@
-import { PushPin } from "@mui/icons-material";
 import { CircularProgress, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { useDeleteAdvertisement, useGetAdvertisements, useUpdateAdStatus, } from '@src/apis/advertisement';
+import { Types } from "@src/components/pages/AdFullDetails";
+import useAuth from '@src/hooks/useAuth';
+import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
+import { AdStatusesType, AdTypesType, IAdvertisement, } from '@src/types/advertisement';
+import { Pagination, Tooltip } from 'antd';
+import { clsx } from 'clsx';
+import Link from "next/link";
 import React, { useRef, useState } from 'react';
 import { Form, Table } from 'react-bootstrap';
-import { Pagination, Tooltip } from 'antd';
+import { toast } from 'react-toastify';
 import AdModel, { AdModelRef } from '../SaveAdModel';
 import styles from './style.module.css';
-import {
-    useDeleteAdvertisement,
-    useGetAdvertisements,
-    useUpdateAdStatus,
-} from '@src/apis/advertisement';
-import {
-    AdStatusesType,
-    AdTypesType,
-    IAdvertisement,
-} from '@src/types/advertisement';
-import { toast } from 'react-toastify';
-import useAuth from '@src/hooks/useAuth';
-import RoleBasedGuard from '@src/guards/RoleBasedGuard';
-import { clsx } from 'clsx';
-import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
-import { Button } from '@src/components/common';
-import { Arrow } from '@src/components/icons';
-import Link from "next/link";
-import { Types } from "@src/components/pages/AdFullDetails";
 
 export const allStatuses = [
     { label: '광고진행중', value: 'in_progress' },
@@ -38,7 +26,7 @@ export const allStatuses = [
 
 export default function AdListModule() {
     const { userRole, dictionary: { adList, noticePage }, lang } = useAuth();
-    const { adStatuses, allAdStatuses, deleteAdsModal, adTypes, columns,noAdsMsg } = adList
+    const { adStatuses, allAdStatuses, deleteAdsModal, adTypes, columns, noAdsMsg } = adList
     const statuses = [
         { label: adStatuses.all, value: undefined },
         { label: adStatuses.inProgress, value: 'in_progress' },
@@ -185,7 +173,7 @@ export default function AdListModule() {
                                 className={styles.tabTitle}>
 								<span
                                     className={clsx(
-                                        item.value === status && 'text-[16px] sm:text-[20px] text-[#2F48D1] font-bold',
+                                        item.value === status && 'text-[16px] sm:text-[20px] text-advertiser-primary font-bold',
                                     )}>
 									{item.label}
 								</span>
@@ -196,7 +184,7 @@ export default function AdListModule() {
                         <button
                             onClick={openModal}
                             id={styles.adAddBtn}
-                            className={clsx(styles.adAddBtn,styles.buttonfont,"font-[Inter] items-center md:!w-[138px]",lang==="kr" ? " !w-[90px]" : " !w-[120px]")}>
+                            className={clsx(styles.adAddBtn, styles.buttonfont, "font-[Inter] items-center md:!w-[138px]", lang === "kr" ? " !w-[90px]" : " !w-[120px]")}>
                             <i className='ic-plus'></i>
                             {adList.applyForAdBtn}
                         </button>
@@ -204,7 +192,7 @@ export default function AdListModule() {
                             <Form.Select
                                 onChange={(e) => setType(e.target.value as AdTypesType)}
                                 aria-label='광고 유형 선택'
-                                className='font-medium custom-select  border-1 border-[#2F48D1] text-[#2F48D1] h-[36px]'
+                                className='font-medium custom-select  border-1 border-advertiser-primary text-advertiser-primary h-[36px]'
                             >
                                 {/* <option value="" >광고 유형 선택</option> */}
                                 <option value=''>{adTypes.all}</option>
@@ -216,7 +204,7 @@ export default function AdListModule() {
                         <button
                             disabled={!selectedAds.length}
                             onClick={handleDeleteAds}
-                            className={`${styles.adDeleteBtn} border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-[#2F48D1] !text-[#2F48D1]`}>
+                            className={`${styles.adDeleteBtn} border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-advertiser-primary !text-advertiser-primary`}>
                             {adList.deleteAdBtn}
                         </button>
                     </div>
@@ -224,10 +212,10 @@ export default function AdListModule() {
                 <div>
                     <div className='overflow-auto'>
                         <Table width={`100%`} className="mb-[0px] relative" id="notice-table">
-                            <TableHead className={`bg-sky-100 bg-[#E1ECFF] !h-[60px]`}>
+                            <TableHead className={`bg-advertiser-light !h-[60px]`}>
                                 <TableRow>
                                     <TableCell className="!text-center" style={{ width: '55px' }}>
-                                        <div className={clsx(styles.form_group,'!w-[55px]')}>
+                                        <div className={clsx(styles.form_group, '!w-[55px]')}>
                                             <input
                                                 type='checkbox'
                                                 onChange={handleSelectAll}
@@ -245,7 +233,7 @@ export default function AdListModule() {
                                                className="!text-center">{columns.adName}</TableCell>
                                     <TableCell style={{ minWidth: '100px' }} className="!text-center">
                                         <Tooltip placement="top" title={columns.noOfVehiclesInOp} color={"#ECECEC"}>
-                                           <span  className={'!font-medium'}>
+                                           <span className={'!font-medium'}>
                                                 {columns.noOfVehiclesInOp}
                                            </span>
                                         </Tooltip>
@@ -267,7 +255,7 @@ export default function AdListModule() {
                                             return (
                                                 <TableRow key={index} style={{ height: "50px" }}>
                                                     <TableCell className="!text-center !text-[14px] !w-[55px]">
-                                                        <div className={clsx(styles.form_group,'!w-[55px]')}>
+                                                        <div className={clsx(styles.form_group, '!w-[55px]')}>
                                                             <input
                                                                 type='checkbox'
                                                                 onChange={handleToggleSelect(item, selected)}
@@ -338,11 +326,12 @@ export default function AdListModule() {
 
                     <div className={'!text-center justify-center flex w-[100%] pt-2 pb-2'}>
                         {isLoading && <div className="flex justify-center items-center w-full h-15 backdrop-blur-sm">
-                            <CircularProgress color="primary" />
+                            <CircularProgress color="primary"/>
                         </div>}
 
                         {
-                            ( (!sortedAdvertisements || sortedAdvertisements?.length === 0) && !isLoading) && <div>{noAdsMsg}</div>
+                            ((!sortedAdvertisements || sortedAdvertisements?.length === 0) && !isLoading) &&
+                            <div>{noAdsMsg}</div>
                         }
                     </div>
 

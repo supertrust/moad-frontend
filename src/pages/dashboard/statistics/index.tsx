@@ -152,7 +152,7 @@ export default function StatisticsScreen() {
     <div className='relative'>
       <Form.Select
         aria-label='Default select example'
-        className={`border-[0px] !bg-[#f5f7fb] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
+        className={`border-[0px] !bg-[#f5f7fb] text-advertiser-primary text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
 			${styles.selectOption} cursor-pointer`}
         onChange={(e) => filterDate(e.target.value)}>
         {dateRangePickerCtrls.map((data) => (
@@ -265,7 +265,7 @@ export default function StatisticsScreen() {
                           <span
                             className={clsx(
                               item.value === status
-                                ? 'text-[16px] sm:text-[20px] text-[#2F48D1] font-bold'
+                                ? 'text-[16px] sm:text-[20px] text-advertiser-primary  font-bold'
                                 : 'text-[14px] sm:text-[16px] text-[#2C324C]',
                               'cursor-pointer',
                             )}>
@@ -282,7 +282,7 @@ export default function StatisticsScreen() {
                         <div className={styles.selectDropdown}>
                           <Form.Select
                             aria-label='Default select example'
-                            className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
+                            className={`border-[1px] border-advertiser-primary text-advertiser-primary text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
 													${styles.selectOption} cursor-pointer`}>
                             <option selected>
                               {statistics.drivingDstTime.chooseAdType}
@@ -300,7 +300,7 @@ export default function StatisticsScreen() {
                         <div className={styles.selectDropdown}>
                           <Form.Select
                             aria-label='Default select example'
-                            className={`border-[1px] border-[#2F48D1] text-[#2F48D1] text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
+                            className={`border-[1px]  border-advertiser-primary text-advertiser-primary  text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
 													${styles.selectOption} cursor-pointer`}>
                             {dateRangePickerCtrls.map((data) => (
                               <option key={data.value} value={data.value}>
@@ -317,7 +317,7 @@ export default function StatisticsScreen() {
                           // onClick={handleDeleteAds}
                           className={clsx(
                             styles.adDeleteBtn,
-                            'border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-[#2F48D1] !text-[#2F48D1]',
+                            'border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-advertiser-primary !text-advertiser-primary ',
                           )}>
                           {statistics.drivingDstTime.delete}
                         </button>

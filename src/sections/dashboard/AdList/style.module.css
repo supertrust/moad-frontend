@@ -40,7 +40,7 @@
     height: 15px;
 }
 .btn{
-    background-color: #0868FD !important;
+    background-color: var(--primary-color) !important;
     color: #fff !important;
 }
 .heading {
@@ -72,7 +72,6 @@
     /*font-weight: 700;*/
     /*font-size: 20px;*/
     /*line-height: 29px;*/
-    /*color: #2f48d1;*/
 }
 
 .tabTitle {
@@ -105,7 +104,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #ffffff;
-    background: #2f48d1;
+    background: var(--primary-color);
     border-radius: 7px;
     cursor: pointer;
 }
@@ -242,7 +241,7 @@
 }
 
 .form_group input:checked+label:before {
-    border: 2px solid #2F48D1 !important;
+    border: 2px solid  var(--primary-color) !important;
 }
 
 .form_group input:checked+label:after {
@@ -253,7 +252,7 @@
     left: 40%;
     width: 4px;
     height: 10px;
-    border: solid #2F48D1;
+    border: solid  var(--primary-color);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
@@ -342,7 +341,7 @@
         position: relative;
     }
     .listHd{
-        background: #E1ECFF;
+        background: var(--light-color);
         height: 50px;
     }
 

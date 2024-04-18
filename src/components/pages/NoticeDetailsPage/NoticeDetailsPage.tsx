@@ -71,7 +71,7 @@ function NoticeDetailsPage() {
                                     <button
                                         disabled={data?.prev === null}
                                         type="button"
-                                        className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
+                                        className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-advertiser-primary transition-all duration-200"
                                     >
                                        <PrevIcon/> <span className={styles['next-prev']}>{noticeDetailPage.prevBtnText}</span>
                                     </button>
@@ -79,7 +79,7 @@ function NoticeDetailsPage() {
                                 <Link href={`/dashboard/customer-service/notice`} className="hidden sm:block">
                                     <button
                                         type="button"
-                                        className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-[#2F48D1] !border-solid w-[92px] h-9 flex justify-center text-[#2F48D1]"
+                                        className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-advertiser-primary !border-solid w-[92px] h-9 flex justify-center text-advertiser-primary"
                                     >
                                         <span className={styles['list']} >{noticeDetailPage.listBtnText}</span>
                                     </button>
@@ -91,7 +91,7 @@ function NoticeDetailsPage() {
                                         disabled={data?.next === null}
                                         type="button"
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C]
-                                        disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
+                                        disabled:hover:text-gray-200 hover:text-advertiser-primary transition-all duration-200"
                                     >
                                         <span className={styles['next-prev']}>{noticeDetailPage.nextBtnText}</span> <NextIcon/>
                                     </button>
@@ -159,7 +159,7 @@ function NoticeDetailsPage() {
                                     <button
                                         disabled={data?.prev === null}
                                         type="button"
-                                        className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
+                                        className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-advertiser-primary transition-all duration-200"
                                     >
                                         <PrevIcon/> <span className={styles['next-prev']}>{noticeDetailPage.prevBtnText}</span>
                                     </button>
@@ -167,7 +167,7 @@ function NoticeDetailsPage() {
                                 <Link href={`/dashboard/customer-service/notice`} className="hidden sm:block">
                                     <button
                                         type="button"
-                                        className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-[#2F48D1] !border-solid w-[92px] h-9 flex justify-center text-[#2F48D1]"
+                                        className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-advertiser-primary !border-solid w-[92px] h-9 flex justify-center text-advertiser-primary"
                                     >
                                         <span className={styles['list']} >{noticeDetailPage.listBtnText}</span>
                                     </button>
@@ -179,7 +179,7 @@ function NoticeDetailsPage() {
                                         disabled={data?.next === null}
                                         type="button"
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C]
-                                        disabled:hover:text-gray-200 hover:text-[#2F48D1] transition-all duration-200"
+                                        disabled:hover:text-gray-200 hover:text-advertiser-primary transition-all duration-200"
                                     >
                                         <span className={styles['next-prev']}>{noticeDetailPage.nextBtnText}</span> <NextIcon
                                     />

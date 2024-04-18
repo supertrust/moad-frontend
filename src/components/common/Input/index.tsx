@@ -69,7 +69,7 @@ function Input(props: InputProps, ref: Ref<any>) {
           <span className="text-danger text-xs">{error}</span>
         )}
         {caption && captionPosition == "top" && (
-          <span className="text-[#3772FF] font-medium">{caption}</span>
+          <span className="text-advertiser-primary font-medium">{caption}</span>
         )}
       </div>
       <div className={"flex flex-row items-center"}>
@@ -85,8 +85,8 @@ function Input(props: InputProps, ref: Ref<any>) {
           )}
         />
         {showCount && typeof value !== "number" && (
-          <span className={clsx(countClassName, "text-sm ml-[-50px]")}>
-            (<span className="text-secondary">{value?.length}</span>
+          <span className={clsx(countClassName, "text-sm ml-[-50px] font-medium text-[#999999]")}>
+            (<span className="text-advertiser-primary font-medium">{value?.length}</span>
             {maxCount && "/" + maxCount})
           </span>
         )}

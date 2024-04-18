@@ -14,7 +14,7 @@ interface DataRowProps {
 }
 const labelColClass =
   "w-[35%] sm:w-[25%] md:w-[20%] lg:w-[15%] px-3 " +
-  " bg-admin-light border border-admin-stroke font-medium";
+  "!bg-advertiser-light border border-admin-stroke font-medium";
 
 const DataRow = ({
   title,

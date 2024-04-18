@@ -44,7 +44,7 @@
 	font-size: 14px;
 	line-height: 20px;
 	text-decoration-line: underline;
-	color: #0868FD;
+	color: var(--primary-color);
 	cursor: pointer
 }
 
@@ -133,7 +133,7 @@
 
 #pw_find_modal .pw_find_form .model_wrap .btn_wrap .confirm_btn {
 	margin-bottom: 10px;
-	background-color: #0868FD;
+	background-color: var(--primary-color);
 	color: #ffffff
 }
 
@@ -144,12 +144,12 @@
 #pw_find_modal .pw_find_form .model_wrap .btn_wrap .confirm_btn.disabled {
 	cursor: auto;
 	pointer-events: none;
-	background-color: #6191F2
+	background-color: var(--primary-color)
 }
 
 #pw_find_modal .pw_find_form .model_wrap .btn_wrap .cancel_btn {
-	border: 1px solid #6191F2;
-	color: #6191F2
+	border: 1px solid var(--primary-color);
+	color: var(--primary-color)
 }
 
 #pw_find_modal .pw_find_form .step01_modal .input_content .input_wrap {
@@ -201,7 +201,7 @@
 	color: #FFFFFF;
 	text-align: center;
 	justify-content: center;
-	background: #6191F2;
+	background: var(--primary-color);
 	border-radius: 4px
 }
 
@@ -235,7 +235,7 @@
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 20px;
-	color: #0868FD
+	color: var(--primary-color)
 }
 
 #pw_find_modal .pw_find_form .step03_modal {

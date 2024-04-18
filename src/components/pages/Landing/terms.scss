@@ -37,7 +37,7 @@
     transition: all 0.3s;
   }
   #terms .terms-list-grid .terms-box:hover {
-    background-color: #2f48d1;
+    background-color: var(--primary-color);
     color: #ffffff;
   }
   #terms .terms-content {

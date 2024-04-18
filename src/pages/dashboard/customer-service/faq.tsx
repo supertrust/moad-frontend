@@ -77,7 +77,7 @@ export default function FaqScreen() {
                     <div className="title">{item.question}</div>
                   </div>
                 </Accordion.Header>
-                <Accordion.Body className="bg-[#E1ECFF] lg:bg-[rgba(225,236,255,0.25)]"
+                <Accordion.Body className="bg-advertiser-light lg:bg-[rgba(225,236,255,0.25)]"
                 dangerouslySetInnerHTML={{ __html: item.answer || '' }}/>
               </Accordion.Item>
             );

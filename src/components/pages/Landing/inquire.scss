@@ -137,7 +137,7 @@
     line-height: 54px;
     text-align: center;
     color: #ffffff;
-    background: #0868fd;
+    background: var(--primary-color);
     border-radius: 40px;
     cursor: pointer;
   }
@@ -257,7 +257,7 @@
       color: #ffffff;
       font-size: 14px;
       border-radius: 4px;
-      background-color: #0868fd;
+      background-color: var(--primary-color);
     }
     #inquire .inquire-content .file-placeholder {
       display: block;

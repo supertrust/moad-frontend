@@ -6,7 +6,7 @@ const Arrow: React.FC<CustomIcon> = ({
 	height = 8,
 	viewBox = '0 0 12 8',
 	className = '',
-	fill = '#2F48D1'
+	fill = 'var(--primary-color)'
 }) => {
 	return (
 		<svg width={width}

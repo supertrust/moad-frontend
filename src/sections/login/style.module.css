@@ -15,7 +15,7 @@
     cursor: pointer;
     color: #ffffff;
     /* margin-top: 20px; */
-    background-color: #0868fd;
+    background-color: var(--primary-color);
     justify-content: center;
 }
 
@@ -51,6 +51,6 @@
     cursor: pointer;
     color: #ffffff;
     margin-top: 20px;
-    border-color: #0868fd;
+    border-color: var(--primary-color);
     justify-content: center;
 }

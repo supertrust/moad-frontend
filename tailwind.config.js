@@ -17,10 +17,10 @@ module.exports = {
       },
     },
     colors: {
-      primary: '#0868FD !important',
-      secondary: '#2f48d1 !important',
+      primary: 'var(--primary-color) !important',
+      secondary: 'var(--primary-color) !important',
       danger : '#F24747!important' ,
-      'admin-primary': '#3772FF!important', 
+      'admin-primary': 'var(--primary-color) !important',
       'admin-secondary': "#EBEFF6!important",
       'admin-light' : '#F8FAFF!important',
       "admin-error" : "#FF3252!important",
@@ -40,7 +40,11 @@ module.exports = {
       "admin-placeholder":"#CDD1D9",
       "admin-dark-1": "#1D2025",
       "admin-grey-50" : "#6B7280",
-    }
+      "advertiser-primary" : 'var(--primary-color)',
+      "advertiser-light" : 'var(--light-color)',
+      "advertiser-light-border" : 'var(--light-border)',
+      'advertiser-deep' : 'var(--deep-color)',
+    },
   },
   plugins: [],
 }

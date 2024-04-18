@@ -18,10 +18,6 @@ import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
 import useAuth from '@src/hooks/useAuth';
 import RHFTextarea from '@src/components/common/Form/RHFTextarea';
 
-
-
-
-
 function MembershipWithdrawalScreen() {
 	const { mutateAsync: memberWithdrawal, isLoading } = useMemberWithdrawal();
 	const { confirm } = useConfirmDialog();
@@ -165,7 +161,7 @@ function MembershipWithdrawalScreen() {
 											render={({ field: { onChange, onBlur, value}, fieldState : {error}}) => (
 												<>
 													<div className='mt-2 mb-4'>
-														<label className='text-[#999999] flex flex-row items-center'>
+														<label className='text-[#999999] flex flex-row items-center cursor-pointer'>
 															<RHFInput
 																name=''
 																type='checkbox'

@@ -170,7 +170,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
   const style: React.CSSProperties = {
     border: `1px solid #2F48D1`,
     lineHeight: 'normal',
-    background : '#2F48D1',
+    background : 'var(--primary-color)',
     color: '#FFFF'
   };
   const cellRender = React.useCallback((current: number | Dayjs, info: CellRenderInfo<Dayjs>) => {
@@ -276,10 +276,10 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                               setDatePickerOpen(datePickerOpen)
                             }
                             renderExtraFooter={() => (
-                              <div className="flex justify-end px-[20px] bg-[#E1ECFF] py-[15px] items-center">
+                              <div className="flex justify-end px-[20px] bg-advertiser-light py-[15px] items-center">
                                 <div className="flex gap-[4px]">
                                   <button
-                                    className=" bg-[#2F48D1] text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
+                                    className=" bg-advertiser-primary text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
                                     onClick={() => {
                                       setSelectedDate(bufferStartDate);
                                       setDatePickerOpen(false)
@@ -439,7 +439,7 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                 colors: [
                   function ({ value, seriesIndex, dataPointIndex, w }) {
                       if (dataPointIndex == 0) {
-                        return "#2F48D1";
+                        return "var(--primary-color)";
                       } else if (dataPointIndex == 1){
                         return "#515E93";
                       } else {

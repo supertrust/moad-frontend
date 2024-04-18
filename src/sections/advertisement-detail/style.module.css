@@ -586,7 +586,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_detail_list
@@ -706,7 +706,7 @@
   .list-wrap
   .grid
   .grid-box.info-wrap {
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_detail_list
@@ -719,7 +719,7 @@
   .list-wrap
   .grid
   .grid-box.location-wrap {
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_detail_list
@@ -1141,7 +1141,7 @@
     .ad_contents
     .tab-wrap
     .list-hd {
-    background: #e1ecff;
+    background: var(--light-color);
   }
 
   #ad_detail_list
@@ -1190,7 +1190,7 @@
     .list-wrap
     .grid
     .grid-box.location-wrap {
-    color: #0868fd;
+    color: var(--primary-color);
   }
 
   .only-pc {
@@ -1251,12 +1251,12 @@
 
 #ad_detail_list span.carousel-control-next-icon,
 span.carousel-control-prev-icon {
-  background: #e1ecff !important;
+  background: var(--light-color) !important;
 }
 
 #ad_detail_list span.carousel-control-next-icon,
 span.carousel-control-prev-icon {
-  background: #e1ecff;
+  background: var(--light-color);
   border-radius: 35px;
   width: 26px;
   height: 26px;

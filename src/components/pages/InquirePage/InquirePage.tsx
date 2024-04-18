@@ -36,7 +36,7 @@ function InquirePage() {
       "border-radius": "5px",
     },
     ".Mui-selected": {
-      backgroundColor: "#4D5E80 !important",
+      backgroundColor: "var(--primary-color) !important",
       color: "#fff",
     },
   };
@@ -60,7 +60,7 @@ function InquirePage() {
       <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px] only-pc">
         <div className="flex gap-[20px] items-center p-[20px] sm:p-[0]">
           <Link href={`/dashboard/customer-service/inquire`}>
-            <button className="font-bold text-[20px] text-secondary">
+            <button className="font-bold text-[20px] text-advertiser-primary">
               {inquiryPage.checkInquiryDetailsBtn}
             </button>
           </Link>
@@ -81,21 +81,21 @@ function InquirePage() {
             </div>
           ) : (
             <Table width={`100%`} className="m-0 !text-[16px]">
-              <TableHead className="bg-[#E1ECFF]">
+              <TableHead className="bg-advertiser-light">
                 <TableRow className={"!h-[3rem]"}>
-                  <TableCell className="!text-center !bg-[#E1ECFF]">
+                  <TableCell className="!text-center">
                   {inquiryPage.columns[0]}
                   </TableCell>
-                  <TableCell className="!text-center !bg-[#E1ECFF]">
+                  <TableCell className="!text-center">
                   {inquiryPage.columns[1]}
                   </TableCell>
-                  <TableCell className="!text-center !bg-[#E1ECFF]">
+                  <TableCell className="!text-center">
                   {inquiryPage.columns[2]}
                   </TableCell>
-                  <TableCell className="!text-center !bg-[#E1ECFF]">
+                  <TableCell className="!text-center">
                   {inquiryPage.columns[3]}
                   </TableCell>
-                  <TableCell className="!text-center !bg-[#E1ECFF]">
+                  <TableCell className="!text-center">
                   {inquiryPage.columns[4]}
                   </TableCell>
                 </TableRow>
@@ -125,7 +125,7 @@ function InquirePage() {
                         </TableCell>
                         <TableCell className="!text-center !text-[16px] w-[150px]">
                           {inq.inquiry_answer ? (
-                            <span className="text-[#2F48D1]">{inquiryPage.answerCompletedBtn}</span>
+                            <span className="text-advertiser-primary">{inquiryPage.answerCompletedBtn}</span>
                           ) : (
                             <span className="!text-[#D12953]">{inquiryPage.answerBtn}</span>
                           )}
@@ -227,7 +227,7 @@ function InquirePage() {
               </div>
               <div style={{ width: "98px" }} className={"flex justify-end"}>
                 {inq.inquiry_answer ? (
-                  <span className="text-[#2F48D1]">{inquiryPage.answerCompletedBtn}</span>
+                  <span className="text-advertiser-primary">{inquiryPage.answerCompletedBtn}</span>
                 ) : (
                   <span className="!text-[#D12953]">{inquiryPage.answerBtn}</span>
                 )}

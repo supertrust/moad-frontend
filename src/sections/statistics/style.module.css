@@ -31,7 +31,7 @@
 }
 .listHd {
     height: 60px;
-    background: #f5f7fb;
+    background:  var(--light-color);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -87,18 +87,18 @@
 }
 
 .form_group input:checked+label:before {
-    border: 2px solid #2F48D1 !important;
+    border: 2px solid  var(--primary-color) !important;
 }
 
 .form_group input:checked+label:after {
     content: '';
     display: block;
     position: absolute;
-    top: 6px;
-    left: 6px;
+    top: 5px;
+    left: 5px;
     width: 6px;
     height: 10px;
-    border: solid #2F48D1;
+    border: solid  var(--primary-color);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
@@ -358,7 +358,7 @@
 	font-weight: 700;
 	font-size: 20px;
 	line-height: 29px;
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #statistics .container .board_content .statistics_content .step_02 .ad-content .menu-hd .right-menu {
@@ -391,7 +391,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 13px;
-	border: 1px solid #2F48D1;
+	border: 1px solid var(--primary-color);
 	border-radius: 5px;
 	cursor: pointer
 }
@@ -400,7 +400,7 @@
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 20px;
-	color: #2F48D1
+	color: var(--primary-color)
 }
 
 #statistics .container .board_content .statistics_content .step_02 .ad-content .menu-hd .right-menu .select-box .select-text .ic-arrow-down {
@@ -418,7 +418,7 @@
 	right: 0;
 	padding: 13px 0;
 	background: #FFFFFF;
-	border: 1px solid #2F48D1;
+	border: 1px solid var(--primary-color);
 	border-radius: 5px;
 	z-index: 10
 }
@@ -691,7 +691,7 @@
 	font-size: 14px;
 	line-height: 20px;
 	color: #FFFFFF;
-	background: #0868FD;
+	background: var(--primary-color);
 	border-radius: 4px;
 	cursor: pointer
 }
@@ -706,8 +706,8 @@
 	font-size: 14px;
 	line-height: 20px;
 	background-color: #FFFFFF;
-	color: #0868FD;
-	border: 1px solid #0868FD;
+	color: var(--primary-color);
+	border: 1px solid var(--primary-color);
 	border-radius: 4px;
 	cursor: pointer
 }
@@ -932,7 +932,7 @@
 
 	#statistics .container .board_content .statistics_content .step_02 .ad-content .tab-wrap .list-hd {
 		height: auto;
-		background-color: #E1ECFF
+		background-color: var(--light-color)
 	}
 
 	#statistics .container .board_content .statistics_content .step_02 .ad-content .tab-wrap .list-hd .grid .grid-box {
@@ -1052,7 +1052,7 @@
 		width: 100%;
 	}
 	.listHd {
-		background: #E1ECFF;
+		background: var(--light-color);
 	}
 }
 

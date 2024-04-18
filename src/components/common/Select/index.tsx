@@ -63,7 +63,7 @@ function Select(props: SelectProps, ref: Ref<any>) {
           <span className="text-danger">{error}</span>
         )}
         {caption && captionPosition == "top" && (
-          <span className="text-[#3772FF] font-medium">{caption}</span>
+          <span className="text-advertiser-primary font-medium">{caption}</span>
         )}
       </div>
       <div className="flex flex-row items-center select-section">

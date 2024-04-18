@@ -74,13 +74,13 @@ function InquireDetailsPage() {
             href={`/dashboard/customer-service/inquire`}
             className="hover:no-underline"
           >
-            <button className="font-bold text-[20px] text-blue-700">
+            <button className="font-bold text-[20px] text-advertiser-primary">
               {dictionary.InquireDetailsPage.inquire_history}
             </button>
           </Link>
           {user?.role === "Advertiser" && (
             <Link href={`form`} className="text-[16px] hover:no-underline">
-              <button>{dictionary.InquireDetailsPage.inquire}</button>
+              <button className={'text-advertiser-primary'}>{dictionary.InquireDetailsPage.inquire}</button>
             </Link>
           )}
         </div>
@@ -267,7 +267,7 @@ function InquireDetailsPage() {
               <div className="sm:py-[25px] p-[20px] px-[70px] pb-7 flex justify-between sm:justify-around items-center gap-5 border-t">
                 <Link
                   href={data?.prev !== null ? `${data?.prev}` : "#"}
-                  className="hover:no-underline text-[#2C324C] hover:!text-[#2F48D1]"
+                  className="hover:no-underline text-[#2C324C] hover:!text-advertiser-primary"
                 >
                   <button
                     disabled={data?.prev === null}
@@ -282,18 +282,18 @@ function InquireDetailsPage() {
                 </Link>
                 <Link
                   href={`/dashboard/customer-service/inquire`}
-                  className="hidden sm:block"
+                  className="hidden sm:block text-advertiser-primary"
                 >
                   <button
                     type="button"
-                    className="px-8 py-2 border-solid border-[1px] border-[#2F48D1] hover:bg-blue-600 hover:text-gray-50 transition-all duration-200"
+                    className="px-8 py-2 border-solid border-[1px] border-advertiser-primary hover:bg-blue-600 hover:text-gray-50 transition-all duration-200"
                   >
                     <span>{dictionary.InquireDetailsPage.list}</span>
                   </button>
                 </Link>
                 <Link
                   href={data?.next !== null ? `${data?.next}` : "#"}
-                  className="hover:no-underline text-[#2C324C] hover:!text-[#2F48D1]"
+                  className="hover:no-underline text-[#2C324C] hover:!text-advertiser-primary"
                 >
                   <button
                     disabled={data?.next === null}
@@ -521,7 +521,7 @@ function InquireDetailsPage() {
               <div className="py-[20px] px-[15px] pb-7 flex justify-between sm:justify-around items-center border-t border-[#EBEDF4]">
                 <Link
                   href={data?.prev !== null ? `${data?.prev}` : "#"}
-                  className="hover:no-underline text-[#2C324C] hover:!text-[#2F48D1]"
+                  className="hover:no-underline text-[#2C324C] hover:!text-advertiser-primary"
                 >
                   <button
                     disabled={data?.prev === null}
@@ -537,7 +537,7 @@ function InquireDetailsPage() {
                 </Link>
                 <Link
                   href={data?.next !== null ? `${data?.next}` : "#"}
-                  className="hover:no-underline text-[#2C324C] hover:!text-[#2F48D1]"
+                  className="hover:no-underline text-[#2C324C] hover:!text-advertiser-primary"
                 >
                   <button
                     disabled={data?.next === null}

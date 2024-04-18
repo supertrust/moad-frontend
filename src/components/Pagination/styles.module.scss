@@ -11,8 +11,8 @@
     }
 
     li.ant-pagination-item.ant-pagination-item-active{
-        background-color: #3772FF ;
-        border-color:#3772FF ;
+        background-color: var(--primary-color) ;
+        border-color:var(--primary-color) ;
         color: white;
     }
 }

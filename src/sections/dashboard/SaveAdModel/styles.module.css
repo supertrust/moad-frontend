@@ -58,12 +58,12 @@ body .div {
   letter-spacing: -0.015em;
   color: #2c324c;
   border-radius: 5px 5px 0 0;
-  background-color: #e1ecff;
+  background-color: var(--light-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info {
   margin: 30px 30px 40px;
-  border: 1px solid #2f48d1;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   display: flex;
   justify-content: flex-start;
@@ -73,7 +73,7 @@ body .div {
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content {
   width: 100%;
   padding: 20px 20px 20px 20px;
-  border-right: 1px solid #2f48d1;
+  border-right: 1px solid var(--primary-color);
   border-radius: 5px 0px 0 5px;
 }
 
@@ -82,7 +82,7 @@ body .div {
   font-size: 13px;
   line-height: 19px;
   letter-spacing: -0.015em;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap {
@@ -98,7 +98,7 @@ body .div {
   font-size: 13px;
   line-height: 20px;
   letter-spacing: -0.015em;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_list_wrap .list::before {
@@ -110,7 +110,7 @@ body .div {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #2f48d1;
+  background-color: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .info_content .slide_wrap .info_img_wrap {
@@ -167,7 +167,7 @@ body .div {
   font-weight: 400;
   font-size: 13px;
   line-height: 19px;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_info .more_btn .text_wrap .ic_down_blue {
@@ -180,7 +180,7 @@ body .div {
 }
 
 /* #ad_apply_modal .ad_modal_wrap .ad_apply_info.active .info_content {
-  border: 1px solid #2f48d1;
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
 } */
 
@@ -292,7 +292,7 @@ body .div {
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active {
-  border: 1px solid #2f48d1;
+  border: 1px solid var(--primary-color);
 }
 
 .bg_Head_ {
@@ -309,7 +309,7 @@ body .div {
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .detail_desc {
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .box_icon.box_icon01 {
@@ -341,7 +341,7 @@ body .div {
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .radio_wrap .modal_select_wrap .modal_select.active .select_box .text {
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .input_section {
@@ -399,7 +399,7 @@ body .div {
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .title_section .input_ad_title:focus {
-  border: 1px solid #2f48d1;
+  border: 1px solid var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section {
@@ -676,7 +676,7 @@ body .div {
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .chk_grid .chk_wrap .chk_input:checked+.chk_area {
   color: #ffffff;
-  background: #2f48d1;
+  background: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .area_section .area_modal {
@@ -738,7 +738,7 @@ body .div {
   font-size: 14px;
   line-height: 20px;
   color: #ffffff;
-  background: #0868fd;
+  background: var(--primary-color);
   border-radius: 4px;
   cursor: pointer;
 }
@@ -753,8 +753,8 @@ body .div {
   font-size: 14px;
   line-height: 20px;
   background-color: #ffffff;
-  color: #0868fd;
-  border: 1px solid #0868fd;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
   border-radius: 4px;
   cursor: pointer;
 }
@@ -800,7 +800,7 @@ body .div {
   font-size: 18px;
   line-height: 26px;
   letter-spacing: -0.015em;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .price_section .price_box.on {
@@ -892,7 +892,7 @@ body .div {
   font-size: 14px;
   line-height: 20px;
   text-align: center;
-  color: #2f48d1;
+  color: var(--primary-color);
   cursor: pointer;
   color: #ffffff;
   border-radius: 5px;
@@ -902,13 +902,13 @@ body .div {
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.line {
-  border: 1px solid #2f48d1;
+  border: 1px solid var(--primary-color);
   background-color: #ffffff;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .btn_section .btns.active {
-  background: #2f48d1;
+  background: var(--primary-color);
 }
 
 .error {
@@ -982,7 +982,7 @@ body .div {
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 .popup_success_text {
@@ -1010,7 +1010,7 @@ body .div {
   color: #ffffff;
   cursor: pointer;
   border-radius: 5px;
-  background: #2f48d1!important;
+  background: var(--primary-color)!important;
   margin: auto;
 }
 
@@ -1046,7 +1046,7 @@ body .div {
   border-radius: 5px;
   border: 1px solid #EBEDF4;
   background: #FFF;
-    color: #2F48D1;
+    color: var(--primary-color);
     font-family: Noto Sans KR;
     font-size: 14px;
     font-style: normal;

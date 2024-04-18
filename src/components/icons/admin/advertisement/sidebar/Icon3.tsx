@@ -3,7 +3,7 @@ import React from 'react';
 
 const Icon3 = ({ isSelected = false} : IconType) => {
     const background = isSelected ? "#EFF4FD" : "white";
-    const color = isSelected ? "#3772FF" : "#9CA3AF"
+    const color = isSelected ? "var(--primary-color)" : "#9CA3AF"
     return (
         <svg width="50" height="32" viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="50" height="32" rx="8" fill={background}/>

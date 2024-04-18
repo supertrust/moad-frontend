@@ -260,24 +260,24 @@ function StatisticsDetailsPage() {
                           setDatePickerOpen(datePickerOpen)
                         }
                         renderExtraFooter={() => (
-                          <div className="flex justify-between px-[20px] bg-[#E1ECFF] py-[15px] items-center">
+                          <div className="flex justify-between px-[20px] bg-advertiser-light py-[15px] items-center">
                             <div>
                               {
                               <p>{ISOformatDate(bufferStartDate as Date)} ~
                               {ISOformatDate(bufferEndDate as Date)} {' '}
-                              <span className="text-[#2F48D1] font-medium	">({totalDays(bufferStartDate,bufferEndDate)}{statisticsDetailsPage.rangePicker.daily})</span>
+                              <span className="text-advertiser-primary font-medium	">({totalDays(bufferStartDate,bufferEndDate)}{statisticsDetailsPage.rangePicker.daily})</span>
                               </p>
                               }
                             </div>
                             <div className="flex gap-[4px]">
                               <button
-                                className=" bg-[#2F48D1] text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
+                                className=" bg-advertiser-primary text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
                                 onClick={() => {
                                   setSelectedDate({startDate:bufferStartDate as Date,endDate:bufferEndDate as Date});
                                   setDatePickerOpen(false)
                                 }}
                               >
-                                {statisticsDetailsPage.rangePicker.okBtn}
+                                {statisticsDetailsPage.rangePicker.extraFooter.okBtn}
                               </button>
                               <button
                                 className=" bg-[#fff] text-[#999] px-[12px] py-[5px] rounded text-[12px] leading-normal"
@@ -285,7 +285,7 @@ function StatisticsDetailsPage() {
                                   setDatePickerOpen(false);
                                 }}
                               >
-                                {statisticsDetailsPage.rangePicker.cancelBtn}
+                                {statisticsDetailsPage.rangePicker.extraFooter.cancelBtn}
                               </button>
                             </div>
                           </div>
@@ -306,12 +306,12 @@ function StatisticsDetailsPage() {
             </div>
             {isLoading ? (
                   <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
-                    <CircularProgress color="primary" />
+                    <CircularProgress />
                   </div>
                 ) :(
                   vehicle_advertisement_stats_details?.data?.length ? (
                     <Table width={`100%`} className="m-0 !text-[16px]">
-                       <TableHead className="bg-[#f5f7fb]">
+                       <TableHead className="bg-advertiser-light">
                 <TableRow className={"!h-[60px]"}>
                   <TableCell className={clsx(styles["table-title"])}>
                     {statisticsDetailsPage.columns[0]}

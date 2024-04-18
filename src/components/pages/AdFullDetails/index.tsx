@@ -13,7 +13,7 @@ import { Carousel } from "react-bootstrap";
 import Image from "next/image";
 import useAuth from "@src/hooks/useAuth";
 
-const labelColClass = " bg-admin-light font-medium";
+const labelColClass = " bg-advertiser-light font-medium";
 
 export const Types = {
   fixed_ad: "고정",

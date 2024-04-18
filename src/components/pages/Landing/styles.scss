@@ -217,7 +217,7 @@
     }
     #header .header-continer ._nav .menu .menu-list.active .menu-link {
       font-weight: 500;
-      color: #0868fd;
+      color: var(--primary-color);
     }
     #header .header-continer ._nav .menu-terms-wrap {
       margin: 0 20px;
@@ -361,7 +361,7 @@
     line-height: 54px;
     text-align: center;
     color: #ffffff;
-    background: #0868fd;
+    background: var(--primary-color);
     border-radius: 40px;
   }
   @keyframes section01 {
@@ -406,7 +406,7 @@
   }
   #mian .section02 .text-blue {
     font-weight: 700;
-    color: #0868fd;
+    color: var(--primary-color);
   }
   #mian .section02 ._sub-text {
     margin-top: 20px;
@@ -468,7 +468,7 @@
   }
   #mian .section03 .container ._list-wrap ._list:hover {
     transition: all 0.5s;
-    background: #0868fd;
+    background: var(--primary-color);
     box-shadow: 12px 12px 50px rgba(8, 104, 253, 0.35);
   }
   #mian .section03 .container ._list-wrap ._list:hover .list-title {
@@ -551,7 +551,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0868fd;
+    background: var(--primary-color);
     box-shadow: 12px 12px 50px rgba(8, 104, 253, 0.35);
     border-radius: 20px;
   }
@@ -718,7 +718,7 @@
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
-      color: #0868fd;
+      color: var(--primary-color);
       background-color: #ffffff;
     }
     @keyframes section01 {
@@ -783,7 +783,7 @@
       margin-bottom: 30px;
     }
     #mian .section03 .container ._text strong {
-      color: #0868fd;
+      color: var(--primary-color);
     }
     #mian .section03 .container ._list-wrap {
       display: none;
@@ -804,7 +804,7 @@
       font-size: 22px;
       font-style: normal;
       font-weight: 900;
-      color: #0868fd;
+      color: var(--primary-color);
       line-height: 31px;
     }
     #mian .section03 .container .mb-slide .list-wrap-mb ._list .list-title {
@@ -844,7 +844,7 @@
       height: 260px;
       font-size: 18px;
       line-height: 26px;
-      color: #0868fd;
+      color: var(--primary-color);
       text-align: center;
       background: url(../../../../public/images/landing/main/img-section-4.svg)
         no-repeat center bottom -35px/300px;
@@ -882,7 +882,7 @@
       color: #373737;
     }
     #mian .section04 .container ._list-wrap ._list ._text-wrap ._text strong {
-      color: #0868fd;
+      color: var(--primary-color);
     }
     #mian .section05 {
       padding: 40px 0;

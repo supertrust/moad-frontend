@@ -53,12 +53,12 @@ $font-family: "Noto Sans KR", sans-serif;
 }
 
 .vehicle_location_content .location_detail_wrap .address {
-  background: #e1ecff;
+  background: var(--light-color);
   padding: 12px 20px;
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 .button_wrap .arrow_wrap {
@@ -329,7 +329,7 @@ $font-family: "Noto Sans KR", sans-serif;
   .bar_wrap
   .bar.today {
   height: 20%;
-  background-color: #2f48d1;
+  background-color: var(--primary-color);
 }
 
 .vehicle_location_content

@@ -88,7 +88,7 @@ $font-family: "Noto Sans KR", sans-serif;
   width: 92px;
   height: 35px;
   border-radius: 5px;
-  background-color: #2f48d1;
+  background-color: var(--primary-color);
   text-align: center;
   display : flex;
   flex-direction: column;
@@ -108,7 +108,7 @@ $font-family: "Noto Sans KR", sans-serif;
   line-height: normal;
   letter-spacing: -0.16px;
   text-align: left;
-  color: #2f48d1;
+  color: var(--primary-color);
 }
 
 .tab2-mb{

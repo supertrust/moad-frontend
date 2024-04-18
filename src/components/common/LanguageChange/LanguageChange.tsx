@@ -19,7 +19,7 @@ const LanguageChange = ({iconShow =true,dropClassName =''}) => {
     const items: MenuProps['items'] = languageChoices.map(obj=>{
         return {
             ...obj,
-            label : <span onClick={()=>changeLocale(obj.value)} className={clsx(locale===obj.value && 'text-[#2F48D1]')}>{obj.label}</span>
+            label : <span onClick={()=>changeLocale(obj.value)} className={clsx(locale===obj.value && 'text-advertiser-primary')}>{obj.label}</span>
         }
     })
 

@@ -195,7 +195,7 @@ export default function Index({ id }: { id: string }) {
           </Link>
           {user?.role === "Advertiser" && (
             <Link href={`form`}>
-              <button className="font-bold text-[20px] text-secondary">
+              <button className="font-bold text-[20px] text-advertiser-primary">
                 {inquireFormPage.contactUsBtn}
               </button>
             </Link>
@@ -258,7 +258,7 @@ export default function Index({ id }: { id: string }) {
                             },
                             '.Mui-selected' :{
                               background: "#FFFFFF",
-                              color: "#2F48D1",
+                              color: 'var(--primary-color)',
                             }
                           },
                         },
@@ -328,7 +328,7 @@ export default function Index({ id }: { id: string }) {
                       disabled={submitting || (id !== null && id !== undefined)}
                     />
                   </div>
-                  <div className="text-sm text-right">(<span className="text-secondary">{value?.length || "0"}</span>/300)</div>
+                  <div className="text-sm text-right">(<span className="text-advertiser-primary">{value?.length || "0"}</span>/300)</div>
                 </div>
                 )}
                 />
@@ -411,7 +411,7 @@ export default function Index({ id }: { id: string }) {
                                   "bg-[#fff] rounded border border-[#EBEDF4] py-1 px-2 "
                                 )}
                               >
-                                <span className="text-secondary">{doc.name}</span>
+                                <span className="text-advertiser-primary">{doc.name}</span>
                                 <Clear className="text-[#7B756B] cursor-pointer" onClick={() => removeFile(index)}/>
                               </div>
                             ))}
@@ -425,7 +425,7 @@ export default function Index({ id }: { id: string }) {
                 <Button
                 disabled={submitting}
                 loading={submitting}
-                className="w-full bg-[#2F48D1] text-[#fff] p-[13px] h-[50px] items-center	justify-center"
+                className="w-full bg-advertiser-primary text-[#fff] p-[13px] h-[50px] items-center	justify-center"
                   onClick={onSubmit}
                 >
                   {inquireFormPage.btnText}

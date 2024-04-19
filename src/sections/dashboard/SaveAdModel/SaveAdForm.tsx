@@ -1,41 +1,27 @@
-import AdAgreementForm from '@src/sections/dashboard/SaveAdModel/AdAgreementForm';
-import SaveAdSuccessPopup from '@src/sections/dashboard/SaveAdModel/SaveAdSuccessPopup';
-import { getImagePreviewUrl } from '@src/utils/formatter';
-import React, { useEffect, useMemo, useState, useRef, forwardRef } from 'react';
-import {
-  Controller,
-  FormProvider,
-  Yup,
-  yupResolver,
-  useForm,
-  Button,
-  RHFInput,
-} from '@src/components/common';
-import ArrowBack from '@src/components/icons/ArrowBack';
-import { ThreeDots } from 'react-loader-spinner';
-import { useGetOperatingAreas, useGetVehicles } from '@src/apis/advertisement';
-import { toast } from 'react-toastify';
-import styles from './styles.module.css';
-import { Form, Modal, Table } from 'react-bootstrap';
-import { SaveAdvertisementType } from '@src/types/advertisement';
-import Image from 'next/image';
+import IconPlus from '@images/admin-ad-details/ic-add-plus.png';
+import ImagePlaceholder from '@images/admin-ad-details/ic-image-placeholder.png';
 import Truck01 from '@images/advertising/img-car01.png';
 import Truck02 from '@images/advertising/img-car02.png';
 import Truck03 from '@images/advertising/img-car03.png';
-import clsx from 'clsx';
-import { Loader } from 'rsuite';
-import Link from 'next/link';
-import { addWeeks } from '@src/helpers';
-import DatePicker from 'react-datepicker';
-import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
-import IconPlus from '@images/admin-ad-details/ic-add-plus.png';
-import { AdImage } from '@src/components/common';
-import ImagePlaceholder from '@images/admin-ad-details/ic-image-placeholder.png';
-import adStyles from '@src/sections/dashboard/AdList/style.module.css';
-import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
+import { useGetOperatingAreas, useGetVehicles } from '@src/apis/advertisement';
+import { AdImage, Button, Controller, FormProvider, useForm, Yup, yupResolver, } from '@src/components/common';
+import ArrowBack from '@src/components/icons/ArrowBack';
 import { adDetailsData } from '@src/constants';
-import { Divider } from 'antd';
+import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
+import { addWeeks } from '@src/helpers';
 import useAuth from '@src/hooks/useAuth';
+import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
+import AdAgreementForm from '@src/sections/dashboard/SaveAdModel/AdAgreementForm';
+import { SaveAdvertisementType } from '@src/types/advertisement';
+import { Divider } from 'antd';
+import clsx from 'clsx';
+import Image from 'next/image';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Modal, Table } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import { ThreeDots } from 'react-loader-spinner';
+import { Loader } from 'rsuite';
+import styles from './styles.module.css';
 
 const convertDate = (d: string) => {
   let currentDate = new Date(d);

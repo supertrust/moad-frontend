@@ -296,7 +296,8 @@ body .div {
 }
 
 .bg_Head_ {
-  background-image: url(../../../../public//images/b12.svg);
+  background-color: transparent!important;
+  background-image: url(../../../../public//images/b12.svg) !important;
   height: 180px;
   display: flex;
   flex-direction: column;

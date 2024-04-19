@@ -68,7 +68,7 @@
     "loaded": "Loaded"
   },
   "process_page": {
-    "titles": "Icarus Advertiser",
+    "titles": "MOAD",
     "headers": "Guide",
     "steps": [
       {
@@ -79,12 +79,12 @@
       {
         "number": "STEP 2",
         "title": "Consultation for Advertisement",
-        "description": "An Icarus representative will contact you after confirmation. They will assist you with detailed consultations regarding the progress of the advertisement."
+        "description": "An MOAD representative will contact you after confirmation. They will assist you with detailed consultations regarding the progress of the advertisement."
       },
       {
         "number": "STEP 3",
         "title": "Vehicle Recruitment",
-        "description": "Recruit vehicles that have been verified by Icarus, and recruit vehicles to attach the advertisement."
+        "description": "Recruit vehicles that have been verified by MOAD, and recruit vehicles to attach the advertisement."
       },
       {
         "number": "STEP 4",
@@ -97,7 +97,7 @@
     "title": "Guide",
     "starting_guide": {
       "title": "Starting Guide",
-      "subtitle": "Are you new to Icarus? Here are some helpful tips for new advertisers."
+      "subtitle": "Are you new to MOAD? Here are some helpful tips for new advertisers."
     },
     "boxes": [
       {
@@ -127,7 +127,7 @@
     ]
   },
   "confirm_page": {
-    "titles": "Icarus Advertiser",
+    "titles": "MOAD",
     "headers": "Guide",
     "steps": [
       {
@@ -148,7 +148,7 @@
     ]
   },
   "pc_page": {
-    "titles": "Icarus Advertiser",
+    "titles": "MOAD",
     "headers": "Guide",
     "subheaders": "What is Wrapping Advertisement?",
     "content": [
@@ -202,7 +202,7 @@
     "downloaded_documents": "Downloaded",
     "case": "case",
     "delete": "Delete",
-    "Icarus": "Icarus",
+    "Icarus": "MOAD",
     "no_written_answer": "There are no written answers.",
     "inquire_details": "Inquiry details",
     "correction": "correction",
@@ -375,7 +375,7 @@
   },
   "membershipWithdrawal": {
     "title": "Cancel membership",
-    "heading": "When canceling your Icarus membership, please be sure to read the precautions below.",
+    "heading": "When canceling your MOAD membership, please be sure to read the precautions below.",
     "precautionaryMeasures": [
       "1. The existing ID will be permanently suspended, so re-registration using the previously used ID is not possible.",
       "2. Membership information is stored for one year, after which the information is deleted in batches.",
@@ -386,7 +386,7 @@
       ],
       "4. 1:1 inquiries and posts made will not be deleted and will be permanently preserved.",
       "5. Please note that cancellation of membership withdrawal is absolutely impossible.",
-      "6. For further inquiries, please contact Icarus Customer Center."
+      "6. For further inquiries, please contact MOAD Customer Center."
     ],
     "reasonForWithdrawal": "Reason for withdrawal",
     "placeholderReason": "Please enter a reason for withdrawal.",
@@ -451,15 +451,15 @@
   },
   "noticePage": {
     "pageTitle": "Notice",
-    "title": "Icarus Advertiser",
-    "heading": "Notice from Icarus.",
+    "title": "MOAD",
+    "heading": "Notice from MOAD.",
     "columns": ["no", "Title", "Creation date"],
     "noAdsMsg": "There are no registered announcements."
   },
   "noticeDetailPage": {
     "pageTitle": "Notice",
-    "title": "Notice from Icarus.",
-    "postBy": "By. Icarus",
+    "title": "Notice from MOAD.",
+    "postBy": "By. MOAD",
     "prevBtnText": "Previous post",
     "nextBtnText": "Next post",
     "listBtnText": "list"
@@ -470,7 +470,7 @@
   },
   "inquiryPage": {
     "pageTitle": "Inquiry Details",
-    "title": "Icarus Advertiser",
+    "title": "MOAD",
     "checkInquiryDetailsBtn": "Check inquiry details",
     "contactUsBtn": "Contact Us",
     "columns": ["no", "Category", "Title", "Creation date", "Status"],
@@ -486,7 +486,7 @@
   },
   "inquireFormPage": {
     "pageTitle": "Inquiry Details",
-    "title": "Icarus Advertiser",
+    "title": "MOAD",
     "checkInquiryDetailsBtn": "Check inquiry details",
     "contactUsBtn": "Contact Us",
     "inquiryType": "Inquiry Type",
@@ -564,7 +564,7 @@
 
   "privacy": {
     "pageTitle": "Privacy Policy",
-    "section01InfoText": "Icarus Co., Ltd. (hereinafter referred to as “Company”) considers the personal information of users who use the Internet site (homepage URL, hereinafter referred to as “Icarus”) operated by the company to be very important and has the following personal information processing policy. This personal information processing policy will be updated if there are changes in laws or guidelines related to personal information, and may vary depending on changes in the policy, so users are advised to check it frequently when visiting the Icarus Marketing Platform site. Icarus Marketing Platform's privacy policy contains the following contents.",
+    "section01InfoText": "MOAD Co., Ltd. (hereinafter referred to as “Company”) considers the personal information of users who use the Internet site (homepage URL, hereinafter referred to as “MOAD”) operated by the company to be very important and has the following personal information processing policy. This personal information processing policy will be updated if there are changes in laws or guidelines related to personal information, and may vary depending on changes in the policy, so users are advised to check it frequently when visiting the MOAD Marketing Platform site. MOAD Marketing Platform's privacy policy contains the following contents.",
     "policyList": {
       "policyItem01": {
         "title": "Article 1. Collection and Use of Personal Information",
@@ -694,7 +694,7 @@
             },
             {
               "subItem": "b.",
-              "text": "Users can request the suspension of processing of their personal information on the Icarus Marketing Platform site at any time. However, a request for suspension of processing may be rejected in the following cases:\n1) When it is unavoidable to comply with special provisions of the law or fulfill legal obligations.\n2) When there is a risk of harming another person's life or body, or unfairly infringing on another person's property and other interests.\n3) When it is difficult to fulfill the contract, such as providing services agreed upon with the information subject, unless the information subject clearly expresses their intention to terminate the contract."
+              "text": "Users can request the suspension of processing of their personal information on the MOAD Marketing Platform site at any time. However, a request for suspension of processing may be rejected in the following cases:\n1) When it is unavoidable to comply with special provisions of the law or fulfill legal obligations.\n2) When there is a risk of harming another person's life or body, or unfairly infringing on another person's property and other interests.\n3) When it is difficult to fulfill the contract, such as providing services agreed upon with the information subject, unless the information subject clearly expresses their intention to terminate the contract."
             },
             {
               "subItem": "c.",
@@ -903,7 +903,7 @@
     "content": "주식회사애드메타(이하 “대행사”라 한다)와 (이하 “차주”라 한다)하기조항에 의거하여 광고계약을 체결한다. 제 1 조【 계약의 목적 】 \"대행사\"는 제2조에 명시된 광고물을 \"차주\"에게 위임하여 \"차주\"가 관리자로서 의무를 성실히 이행하여 본 광고가 효과적으로 집행될 수 있도록 \"대행사\", \"차주\" 간의 책무 관계를 명확히 하는데 있다. 제 2 조【 계약목적물 】 매체명, 매체종류, 광고위치, 수량, 기타사항 제 3 조【 광고료 및 지불방법 】 1. \"대행사\"는 매월 광고료 일금 원정 ( )을 3조2항이 지켜진 익월 2번째주화요일에 계좌이체로 \"차주\"에게 지급한다. 2. \"차주\"는 매월(4번째주월요일~ 금요일사이) 날짜, 운행거리(계기판) 식별이 가능한 사진(차량의 좌우,후면)을 \"대행사\"에게 제공하여 광고 게재 확인이 가능하도록 하여야 한다. 3. 위의 3조2항이 지켜지지 않을 시에 “대행사”는 “차주”에게 광고료를 지급하지 아니한다. 제 4 조【 계약기간 】 1. 본 광고의 계약기간은 게첨 일로부터 개월까지 로 하며, 계약만료 1개월 전에 \"대행사\", \"차주\" 협의 하에 연장키로 하며, 동일조건에서는 \"대행 사\"에게 광고 우선권을 주기로 한다. 단, 계약만료 시 광고주 또는 대행사가 바뀔 경우에 본 계약은 자동 만료되는 것으로 간주한다."
   },
   "toc": {
-    "terms_and_conditions": "Terms and Conditions of Icarus Advertising Application Agreement",
+    "terms_and_conditions": "Terms and Conditions of MOAD Advertising Application Agreement",
     "contract_agreement": "This Agreement",
     "purpose_of_contract": "Article 1 (Purpose of the Contract)",
     "compliance_with_laws": "Article 2 (Compliance with Laws)",
@@ -921,7 +921,7 @@
     "jurisdiction": "Article 14 (Jurisdiction)",
     "contract_effectiveness": "Article 15 (Effectiveness of the Contract)",
     "consignor": {
-      "corporate_name": "Corporate Name: Icarus",
+      "corporate_name": "Corporate Name: MOAD",
       "ceo": "CEO: Chah Juheon (Signature or Seal)",
       "address": "Address: 1115, 1116, Dabong Building, Daechi-dong, Gangnam-gu, Seoul, 418 Teheran-ro",
       "phone_number": "Phone Number: "
@@ -937,10 +937,10 @@
     "title": "Advertisement Application",
     "content": {
       "first": "Welcome!",
-      "second": "Thank you for using Icarus.",
-      "third": "Icarus will do its best to ensure the safe operation of cargo carriers and the proper use of services. The following are the items to check before using the service. You may choose not to agree to these terms, but please note that refusal to agree will render the service unavailable. After applying for advertisement, Mode will contact you via the phone number and email you provided to prepare the advertisement contract. Before applying for an advertisement, please confirm once again that the information provided is correct.",
+      "second": "Thank you for using MOAD.",
+      "third": "MOAD will do its best to ensure the safe operation of cargo carriers and the proper use of services. The following are the items to check before using the service. You may choose not to agree to these terms, but please note that refusal to agree will render the service unavailable. After applying for advertisement, Mode will contact you via the phone number and email you provided to prepare the advertisement contract. Before applying for an advertisement, please confirm once again that the information provided is correct.",
       "fourth": "Users (hereinafter referred to as 'Users') using this service acknowledge and agree that they are solely responsible for all consequences arising from attaching advertisements to cargo vehicles and operating them through this service (such as vehicle accidents, personnel, and operation failure due to vehicle breakdown). Furthermore, it is the responsibility of the cargo owner to comply with safety regulations and ensure smooth traffic flow during operation. Additionally, advertisers must cooperate properly to fulfill these obligations.",
-      "fifth": "Please contact the Icarus customer center if there are any issues during operation or if any special circumstances arise. Thank you."
+      "fifth": "Please contact the MOAD customer center if there are any issues during operation or if any special circumstances arise. Thank you."
     }
   },
   "buttons": {
@@ -993,7 +993,7 @@
     "section14": "Article 14. Dispute Resolution",
     "section15": "Article 15. Obligations and Confidentiality of Personal Information Protection",
     "det_section1": "Article 1. Purpose",
-    "section1Detail": "This agreement aims to regulate the rights, obligations, and responsibilities of the 'Company' and 'Advertiser' in providing advertising services (defined below) by ㈜Icarus ('Company').",
+    "section1Detail": "This agreement aims to regulate the rights, obligations, and responsibilities of the 'Company' and 'Advertiser' in providing advertising services (defined below) by ㈜MOAD ('Company').",
     "det_section2": {
       "title": "Article 1. Definitions",
       "points": [
@@ -1002,7 +1002,7 @@
         "The term 'Advertisement Product' refers to the product sold by the 'Company' to the 'Advertiser' to publish the 'Advertiser's' 'Advertisement Materials' on the 'Advertisement Media'. The specific contents such as the type, exposure form, and location of the advertisement product are as per the criteria for charging advertisement service fees (Attachment 1).",
         "The term 'Advertisement Service' refers to the service provided by the 'Company' to expose the 'Advertiser's' 'Advertisement Materials' on the 'Advertisement Media' according to the contents of the advertisement products purchased by the 'Advertiser', and to provide various services such as advertisement registration, advertisement management, and reports.",
         "The term 'Advertiser' refers to a person who applies for and uses the service according to the procedures specified in this agreement.",
-        "The term 'Icarus Advertisement Center' refers to the service page (homepage URL) provided by the 'Company' to the 'Advertiser' for advertisement application, publication, management, cancellation, etc.",
+        "The term 'MOAD Advertisement Center' refers to the service page (homepage URL) provided by the 'Company' to the 'Advertiser' for advertisement application, publication, management, cancellation, etc.",
         "The term 'Service Usage Fee' refers to the amount paid by the 'Advertiser' to the 'Company' as the service usage fee.",
         "The term 'External Platform Advertisement' refers to the 'Advertisement Service' provided by the 'Company' through the internet and mobile advertisement platforms designated by the 'Company' to provide 'Advertisement Media'.",
         "The term 'Advertisement Money' refers to the electronic payment means issued by the 'Company' to the 'Advertiser' for promotional benefits or for compensation and refunds. Unless otherwise specified, 'Advertisement Money' is valid for 3 months from the date of issue and can only be used when paying for 'Advertisement Products'."
@@ -1011,7 +1011,7 @@
     "3": {
       "title": "Article 3. Posting and Composition of Terms",
       "points": [
-        "\"Company\" shall post the contents of these Terms on \"Icarus (homepage URL)\" to make it easily accessible to the \"Advertiser\".",
+        "\"Company\" shall post the contents of these Terms on \"MOAD (homepage URL)\" to make it easily accessible to the \"Advertiser\".",
         "In the event of any amendment to these Terms by the \"Company\", the \"Company\" shall give notice by posting the effective date and reasons for the amendment together with the current Terms at least seven (7) days prior to the effective date, up to the day before the effective date, in the manner specified in paragraph 1. However, in the event of any amendment to the Terms that is disadvantageous to the \"Advertiser\", the Company shall give notice with a minimum prior notice period of thirty (30) days.",
         "If the \"Company\" has given notice or notification of the amended Terms in accordance with the preceding paragraph, and the \"Advertiser\" does not express its intention within the period specified in the preceding paragraph, it shall be deemed that the \"Advertiser\" has agreed to the amended Terms, even if the \"Advertiser\" has not explicitly expressed its refusal."
       ]
@@ -1031,7 +1031,7 @@
     "5": {
       "title": "Article 5. Registration, Restriction, and Management of Advertisements",
       "points": [
-        "\"Company\" shall announce the types of advertising products, advertising areas, registration procedures, billing methods, etc., in accordance with the advertising product and advertising service usage fee criteria (Attachment 1) and on the \"Icarus Advertising Center\". \"Advertisers\" must carefully review this before applying for advertising.",
+        "\"Company\" shall announce the types of advertising products, advertising areas, registration procedures, billing methods, etc., in accordance with the advertising product and advertising service usage fee criteria (Attachment 1) and on the \"MOAD Advertising Center\". \"Advertisers\" must carefully review this before applying for advertising.",
         "\"Company\" only examines whether the \"Advertiser\"'s applied \"advertisement\" and \"advertisement material\" conform to the procedures, criteria, and methods set by the \"Company\", and does not conduct a substantive review of the substantive rights validity, scope, rights holders, related contracts, etc., between the \"advertisement\" and the \"advertisement material\". \"Company\" shall not be liable for the cancellation, deletion, or temporary suspension of the \"advertisement\" or \"advertisement material\" due to a report or request from a claimant, and this shall be resolved between the claimant and the \"Advertiser\". The \"Company\" will publish the advertisement approved by the Company on the \"advertisement material\" of the \"Advertiser\" to the \"advertisement media\"."
       ]
     },
@@ -1039,8 +1039,8 @@
       "title": "Article 6. Changes and Discontinuation of Advertising Services",
       "points": [
         "\"Company\" has the authority to determine and change or add the scope of advertising media, advertising areas, posting order, posting information, UI, etc. (hereinafter referred to as \"advertising area, etc.\").",
-        "If there are any changes to the content of the \"advertising area, etc.\", the \"Company\" will announce it on the bulletin board within \"Icarus\" before the change. If the \"Advertiser\" does not agree to the changes in the advertising service, they may suspend the exposure of the \"advertisement\" on \"Icarus\" at any time.",
-        "\"Company\" may conduct tests targeting certain keywords and traffic without separate notice to enhance the quality of the \"advertising service\" and increase the effectiveness of the \"advertisement\". However, if the test falls under any of the following items, the details of the test will be announced separately at least 7 days in advance through the Icarus notice board."
+        "If there are any changes to the content of the \"advertising area, etc.\", the \"Company\" will announce it on the bulletin board within \"MOAD\" before the change. If the \"Advertiser\" does not agree to the changes in the advertising service, they may suspend the exposure of the \"advertisement\" on \"MOAD\" at any time.",
+        "\"Company\" may conduct tests targeting certain keywords and traffic without separate notice to enhance the quality of the \"advertising service\" and increase the effectiveness of the \"advertisement\". However, if the test falls under any of the following items, the details of the test will be announced separately at least 7 days in advance through the MOAD notice board."
       ]
     },
     "7": {
@@ -1048,14 +1048,14 @@
       "points": [
         "\"Advertisers\" shall pay the fees to the \"Company\" as the consideration for using this advertising service according to the 'Advertising Service Usage Fee Criteria' (Attachment 1). However, in the case of Cost per Click (CPC) advertising products, service fees shall be imposed even if the user of the \"advertisement media\" who clicked on the advertisement material did not check the content of the advertisement material.",
         "\"Company\" shall deduct the advertising service usage fee mentioned in the preceding clause from the sales deposit deposited by the \"Advertiser\" on the advertisement media on a daily basis. However, if the \"Advertiser\" holds \"advertising money\", it shall be deducted first.",
-        "\"Company\" issues a tax invoice for the actual advertising service usage fee executed by the \"Advertiser\", and the \"Advertiser\" can print out the tax invoice through \"Icarus\".",
-        "The advertising service usage fee in paragraph 1 of this article may be changed, and in such case, the \"Company\" shall post it on the initial screen of the \"Icarus Advertising Center\"."
+        "\"Company\" issues a tax invoice for the actual advertising service usage fee executed by the \"Advertiser\", and the \"Advertiser\" can print out the tax invoice through \"MOAD\".",
+        "The advertising service usage fee in paragraph 1 of this article may be changed, and in such case, the \"Company\" shall post it on the initial screen of the \"MOAD Advertising Center\"."
       ]
     },
     "8": {
       "title": "Article 8. Notification to Advertisers",
       "points": [
-        "\"Company\" may notify the \"Advertiser\" by providing one of the electronic mail addresses, (mobile) phone numbers, or addresses provided by the \"Advertiser\" to \"Icarus Advertising Center\" unless otherwise specified in the 'Basic Terms' and 'These Terms'. Alternatively, notifications may be made through means such as notification windows when the \"Advertiser\" logs into the \"Icarus Advertising Center\".",
+        "\"Company\" may notify the \"Advertiser\" by providing one of the electronic mail addresses, (mobile) phone numbers, or addresses provided by the \"Advertiser\" to \"MOAD Advertising Center\" unless otherwise specified in the 'Basic Terms' and 'These Terms'. Alternatively, notifications may be made through means such as notification windows when the \"Advertiser\" logs into the \"MOAD Advertising Center\".",
         "\"Advertiser\" shall provide the \"Company\" with contact information such as an email address, (mobile) phone number, and address that can actually be reached, and shall keep such information up-to-date. The \"Advertiser\" must check the notifications from the \"Company\".",
         "\"Company\" shall not be liable for any disadvantages arising from the negligence of the \"Advertiser\" in fulfilling the obligations of the preceding clause."
       ]
@@ -1063,7 +1063,7 @@
     "9": {
       "title": "Article 9. Termination, End, and Refund of Service Agreement",
       "points": [
-        "\"Advertisers\" may terminate the advertising service agreement by accessing the \"Icarus Advertising Center\" at any time.",
+        "\"Advertisers\" may terminate the advertising service agreement by accessing the \"MOAD Advertising Center\" at any time.",
         "\"Company\" may terminate the service agreement if any of the following reasons occur. In this case, the \"Company\" shall notify the \"Advertiser\" of the reason for termination by email, telephone, fax, or other means. However, the \"Company\" may give the \"Advertiser\" an opportunity to express their opinion on the reason for termination in advance.",
         "If the service agreement is terminated by the \"Company\", the service application requested by the \"Advertiser\" will be automatically canceled, and the remaining amount including advertising credits (excluding those issued free of charge) will be refunded to the \"Advertiser\" in the form of a sales deposit."
       ]
@@ -1073,7 +1073,7 @@
       "points": [
         "\"Company\" shall comply with relevant laws and these Terms and Conditions, and shall make continuous and stable efforts to provide the \"Advertising Service\".",
         "\"Company\" shall establish a security system to protect personal information (including credit information) in order to ensure that \"Advertisers\" can use the \"Advertising Service\" stably, and shall disclose and comply with the privacy policy.",
-        "If opinions or complaints are raised by the \"Advertisers\" related to relevant laws, the \"Company\" shall process them if they are deemed legitimate, and may notify the \"Advertisers\" of the processing process and results through the bulletin board on the \"Icarus Advertising Center\", email, etc.",
+        "If opinions or complaints are raised by the \"Advertisers\" related to relevant laws, the \"Company\" shall process them if they are deemed legitimate, and may notify the \"Advertisers\" of the processing process and results through the bulletin board on the \"MOAD Advertising Center\", email, etc.",
         "\"Company\" may provide advertising setting functions to \"Advertisers\" to improve advertising effectiveness, and shall make best efforts to ensure that advertisements are displayed according to the conditions set by the \"Advertisers\"."
       ]
     },
@@ -1081,10 +1081,10 @@
       "title": "Article 11. Obligations of Advertisers",
       "points": [
         "\"Advertisers\" shall comply with relevant laws, these Terms and Conditions, individual agreements, and seller operation policies, as well as other policies established and disclosed by the Company for customer protection and service reliability enhancement, when registering advertising materials with keywords on advertising media.",
-        "\"Advertisers\" shall regularly check notices such as those posted on the Icarus Advertising Center or delivered to their email addresses notified to the Company for smooth service provision.",
+        "\"Advertisers\" shall regularly check notices such as those posted on the MOAD Advertising Center or delivered to their email addresses notified to the Company for smooth service provision.",
         "\"Advertisers\" may use the service only for advertising purposes and shall not provide or leak information provided by the service to third parties.",
         "If disputes arise between the \"Company\" and the \"Advertisers\", customers, or third parties due to the \"Advertisers'\" own reasons, the \"Advertisers\" shall immediately indemnify the Company at their own expense and responsibility, and shall immediately compensate the Company, customers, or third parties for any damages incurred.",
-        "\"Advertisers\" shall not rent or transfer the service usage rights under these Terms and Conditions to any third party. However, with the consent of the \"Advertisers\", the Company may grant the right to use the Icarus Advertising Center and related systems to an advertising agency designated by the \"Advertisers\" (\"Advertising Agency\"). The supervision responsibility for the Advertising Agency shall belong to the Advertisers. If the Advertisers designate an Advertising Agency, the effects of such designation shall be maintained for the period announced by the Company on the Icarus Advertising Center (hereinafter referred to as the \"Minimum Maintenance Period\"), and the Advertisers may not designate another Advertising Agency within the Minimum Maintenance Period. The Minimum Maintenance Period is confirmable.",
+        "\"Advertisers\" shall not rent or transfer the service usage rights under these Terms and Conditions to any third party. However, with the consent of the \"Advertisers\", the Company may grant the right to use the MOAD Advertising Center and related systems to an advertising agency designated by the \"Advertisers\" (\"Advertising Agency\"). The supervision responsibility for the Advertising Agency shall belong to the Advertisers. If the Advertisers designate an Advertising Agency, the effects of such designation shall be maintained for the period announced by the Company on the MOAD Advertising Center (hereinafter referred to as the \"Minimum Maintenance Period\"), and the Advertisers may not designate another Advertising Agency within the Minimum Maintenance Period. The Minimum Maintenance Period is confirmable.",
         "In the event that the contractual relationship between the Company and the Advertising Agency is terminated or terminated, the Advertisers may choose to directly perform advertising tasks or designate another advertising agency in a contractual relationship with the Company. If the Advertisers do not make a choice, the direct performance of advertising tasks will be automatically changed."
       ]
     },
@@ -1133,11 +1133,11 @@
   "edit_profile": "Edit Profile",
   "logout": "Logout",
   "statisticsDetailsPage": {
-    "topTitle": "Statistics > Icarus Service Open Launch Celebration",
+    "topTitle": "Statistics > MOAD Service Open Launch Celebration",
     "reportsAreNotRealTime": "Reports are not real time.",
     "lastUpdatedAt": "Metric updated by time.",
     "noDataMsg": "No content was viewed.",
-    "celebratingMsg": "Celebrating the launch of the Icarus service",
+    "celebratingMsg": "Celebrating the launch of the MOAD service",
     "columns": [
       "no", "Registration number", "Vehicle type", "Driving distance", "Driving time", "Status", "Advertisement period"
     ],
@@ -1173,7 +1173,7 @@
     "title": "Vehicle Information",
     "header": "Vehicle information",
     "imagesAreScheduled": "Images are scheduled to be registered.",
-    "breadcrumb": ["Advertising Management", "Icarus New Product Release", "Vehicle Information"],
+    "breadcrumb": ["Advertising Management", "MOAD New Product Release", "Vehicle Information"],
     "badge":{
       "text": "side",
       "subText": "Driver's Seat"
@@ -1204,8 +1204,8 @@
     "drivingAchievementRate": "Driving Achievement Rate"
   },
   "login":{
-    "title":"Icarus Advertiser",
-    "welcomeMsg": "Welcome to the Icarus advertiser page.",
+    "title":"MOAD",
+    "welcomeMsg": "Welcome to the MOAD page.",
     "signupBtn": "Sign up",
     "findIdBtn": "Find ID",
     "findPwBtn":"Find password",
@@ -1288,14 +1288,14 @@
     }
   },
   "signup": {
-    "title": "Icarus Advertiser",
+    "title": "MOAD",
     "step1":{
       "stepTitle": ["Service Terms and Conditions", "Agree to Personal Information Terms and Conditions"],
       "stepText": "Please agree to the terms and conditions for required and optional items",
       "checkBothMsg" : "Both must be checked",
       "chk_1Label": "(Required) Privacy Policy",
       "chk_1Btn": "View",
-      "chk_2Label": "(Required) Icarus Terms of Use",
+      "chk_2Label": "(Required) MOAD Terms of Use",
       "chk_2Btn": "View",
       "nextBtn": "Next",
       "modal": {

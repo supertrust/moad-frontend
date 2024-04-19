@@ -1,9 +1,11 @@
 <svg width="1075" height="250" viewBox="0 0 1075 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1075" height="250" fill="#446192"/>
-<mask id="mask0_5569_3966" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1075" height="250">
-<rect width="1075" height="250" fill="#446192"/>
-</mask>
-<g mask="url(#mask0_5569_3966)">
-<ellipse cx="202" cy="264" rx="556" ry="303" fill="#3C5B8F"/>
-</g>
+    <g clip-path="url(#clip0_13236_35286)">
+        <rect width="1075" height="250" fill="#EDEDFC"/>
+        <ellipse opacity="0.2" cx="202" cy="264" rx="556" ry="303" fill="white"/>
+    </g>
+    <defs>
+        <clipPath id="clip0_13236_35286">
+            <rect width="1075" height="250" fill="white"/>
+        </clipPath>
+    </defs>
 </svg>

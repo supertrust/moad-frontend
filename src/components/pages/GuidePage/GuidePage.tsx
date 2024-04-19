@@ -39,10 +39,10 @@ function ProcessPage() {
         >
           <div style={{ backgroundColor: "white" }}>
             <div className={`${styles["bg_Head_"]}`}>
-              <div className="font-bold text-[30px] text-[#373737]">
+              <div className="font-medium text-[24px] text-[#2C324C]">
                 {dictionary.process_page.headers}
               </div>
-              <div className="font-bold text-[40px] text-[#373737]">
+              <div className="font-bold text-[44px] text-[#2C324C]">
                 {dictionary.process_page.titles}
               </div>
             </div>

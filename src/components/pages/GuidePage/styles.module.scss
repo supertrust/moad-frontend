@@ -175,12 +175,14 @@ $background-color_2: #456192;
   padding-top: 42px;
   & div:nth-child(1) {
     font-size: 24px;
-    color: white;
+    color: #2C324C;
     margin-bottom: 10px;
+    font-weight: 500;
   }
   & div:nth-child(2) {
     font-size: 44px;
-    color: white;
+    color: #2C324C;
+    font-weight: 700;
   }
   @media (max-width: 767px) {
     padding: 0px 18px;

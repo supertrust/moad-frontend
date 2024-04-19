@@ -12,9 +12,9 @@ export default function Document() {
 					rel='stylesheet'
 					href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'
 				/>
-				<link rel="shortcut icon" href="/favicon.png" />
+				<link rel="shortcut icon" href="/favicon.svg" />
 			</Head>
-			<title>이카루스 광고주</title>
+			<title>MOAD</title>
 			<body>
 				<Main />
 				<NextScript />

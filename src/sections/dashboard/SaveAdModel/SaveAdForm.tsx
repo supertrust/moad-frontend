@@ -704,7 +704,7 @@ const SaveAdForm = ({
                   <>
                     <div
                       id='imput_ad_type'
-                      className={styles.modal_select_wrap}>
+                      className={clsx(styles.modal_select_wrap)}>
                       {adTypes.map((item, index) => (
                         <div
                           key={item.type}
@@ -727,12 +727,12 @@ const SaveAdForm = ({
                           className={`${
                             value === item.type ? styles.active : ''
                           } ${styles.modal_select} h-auto sm:h-[204px]`}>
-                          <label className={styles.select_box}>
+                          <label className={clsx(styles.select_box,'cursor-pointer')}>
                             <input
                               type='radio'
                               name='ad_type'
                               id={item.type}
-                              className={styles.hidden}
+                              className={clsx(styles.hidden,'cursor-pointer')}
                             />
                             <i className={styles.ic_radio}></i>
                             {item.faq && (
@@ -740,7 +740,7 @@ const SaveAdForm = ({
                                 // href="/dashboard/customer-service/faq"
                                 className={clsx(
                                   styles.detail_desc,
-                                  'md:mt-[10px] md:mr-[10px] underline',
+                                  'md:mt-[10px] md:mr-[10px] underline cursor-pointer',
                                 )}
                                 onClick={() => {
                                   setDetailModal(index + 1);
@@ -1728,8 +1728,8 @@ const DetailModal = ({
       <Modal.Header className={styles.bg_Head_}>
         <Modal.Title className='w-full text-left px-4'>
           <div>
-            <div>{mainTitle}</div>
-            <div className='text-3xl font-bold'>{subTitle}</div>
+            <div className={'!text-[24px] !text-[#2C324C] !font-medium'}>{mainTitle}</div>
+            <div className='!text-[44px] !text-[#2C324C] font-bold'>{subTitle}</div>
           </div>
         </Modal.Title>
       </Modal.Header>

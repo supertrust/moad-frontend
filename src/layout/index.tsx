@@ -25,7 +25,7 @@ function Layout(props: LayoutProps) {
   return (
     <div id="dashboard" className="dashboard page">
       <Head>
-        <title>이카루스 광고주</title>
+        <title>MOAD</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
       <div className="sidebar_menu only-pc">

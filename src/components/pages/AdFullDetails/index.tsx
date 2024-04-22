@@ -2,6 +2,7 @@ import Loader from "@src/components/Loader";
 import { DataRow, AdImage } from "@src/components/common";
 import HeaderLine from "@src/components/common/HeaderLine";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
+import { clsx } from "clsx";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import style from "./style.module";
@@ -121,7 +122,7 @@ function AdFullDetails() {
             firstColumClass={style.firstColumnClass}
             colSpan={2}
           >
-            <textarea readOnly rows={5} className={style.textArea}>
+            <textarea readOnly rows={5} className={clsx(style.textArea,'textarea-input')}>
               {advertisement?.content}
             </textarea>
           </DataRow>

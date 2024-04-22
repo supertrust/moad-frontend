@@ -97,7 +97,7 @@ const InquireComp = () => {
                 <textarea
                   name='inquire_content_textarea'
                   id='inquire_content_textarea'
-                  className='input-textarea-style input-default-style'
+                  className='input-textarea-style input-default-style textarea-input'
                   placeholder='내용을 입력해 주세요'
                   required></textarea>
               </div>

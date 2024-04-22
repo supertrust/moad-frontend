@@ -14,7 +14,7 @@ export default function Document() {
 				/>
 				<link rel="shortcut icon" href="/favicon.svg" />
 			</Head>
-			<title>MOAD</title>
+			<title>모드 광고플랫폼</title>
 			<body>
 				<Main />
 				<NextScript />

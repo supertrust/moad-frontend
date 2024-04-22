@@ -62,7 +62,7 @@ function Textarea(props: TextareaProps, ref: Ref<any>) {
         {...rest}
         value={value}
         className={clsx(
-          `w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded`,
+          `w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded textarea-input`,
           error && "!border-[#F24747]",
           error && placeholderError && "placeholder:!text-[#F24747]",
           className

@@ -810,7 +810,7 @@ const SaveAdForm = ({
                   <textarea
                     name='content'
                     placeholder={`${dictionary.adForm.advertisement_content}`}
-                    className='w-full px-[12px] py-[16px]'
+                    className='w-full px-[12px] py-[16px] textarea-input'
                     cols={30}
                     rows={10}
                     value={value.slice(0, 600) || ''} // Bind the value

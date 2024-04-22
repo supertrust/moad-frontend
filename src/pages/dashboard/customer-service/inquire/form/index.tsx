@@ -320,7 +320,7 @@ export default function Index({ id }: { id: string }) {
                       rows={9}
                       id="inquiry_question"
                       name="inquiry_question"
-                      className={`w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded ${errors.inquiry_question? "!border-[#F24747]" : ''} `}
+                      className={`w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 border border-gray-300 rounded textarea-input ${errors.inquiry_question? "!border-[#F24747]" : ''} `}
                       placeholder={inquireFormPage.inquiryPlaceHolder}
                       value={value}
                       // onChange={handleInput}
@@ -352,7 +352,7 @@ export default function Index({ id }: { id: string }) {
                         rows={9}
                         id="inquiry_answer"
                         name="inquiry_answer"
-                        className="w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 rounded"
+                        className="w-full text-gray-600 outline-[#EBEDF4] py-2 px-3 rounded textarea-input"
                         placeholder={inquireFormPage.inquiryResponsePlaceholder}
                         value={value}
                         onChange={e => onChange(e.target.value)}

@@ -1,4 +1,5 @@
 import { Skeleton } from "@mui/material";
+import { Icon2, Icon1, Icon3, Icon4 } from "@src/components/icons";
 import useAuth from "@src/hooks/useAuth";
 import { PageRouting } from "@src/utils/values";
 import Image from "next/image";
@@ -7,246 +8,261 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 interface SidebarProps {
-  msg: (msg: string) => void;
+    msg: (msg: string) => void;
 }
 
 const sideBarPath = {
-  "/dashboard" : {en:"Dashboard",ko : '광고관리'},
-  "/dashboard/my-info" : "My Page",
-  "/dashboard/ad-management" : "Ad Management",
-  "/dashboard/statistics/[id]" : "Statistics",
-  "/dashboard/statistics" : {en: "Statistics", ko: '통계'},
-  "/dashboard/customer-service/notice" : "Announcement",
-  "/dashboard/customer-service/guide" : "Guide",
-  "/dashboard/customer-service/faq" : "FAQ",
-  "/dashboard/customer-service/inquire" : "Inquiry",
-  "/dashboard/customer-service/inquire/form" : "Inquiry",
-  "/dashboard/customer-service/terms" : {en: "Policies and Terms", ko: '정책 및 약관'}, //"Policies and Terms"
+    "/dashboard": "top_bar_dashboard",
+    "/dashboard/my-info": "top_bar_my_page",
+    "/dashboard/ad-management": "top_bar_ad_management",
+    "/dashboard/statistics/[id]": "top_bar_statistics",
+    "/dashboard/statistics": "top_bar_statistics",
+    "/dashboard/customer-service/notice": "top_bar_announcement",
+    "/dashboard/customer-service/guide": "top_bar_guide",
+    "/dashboard/customer-service/faq": "top_bar_faq",
+    "/dashboard/customer-service/inquire": "top_bar_inquiry",
+    "/dashboard/customer-service/inquire/form": "top_bar_inquiry",
+    "/dashboard/customer-service/terms": "top_bar_policies_and_terms", //"Policies and Terms"
 }
 
+// const sideBarPath = {
+//   "/dashboard" : {en:"Dashboard",ko : '광고관리'},
+//   "/dashboard/my-info" : "My Page",
+//   "/dashboard/ad-management" : "Ad Management",
+//   "/dashboard/statistics/[id]" : "Statistics",
+//   "/dashboard/statistics" : {en: "Statistics", ko: '통계'},
+//   "/dashboard/customer-service/notice" : "Announcement",
+//   "/dashboard/customer-service/guide" : "Guide",
+//   "/dashboard/customer-service/faq" : "FAQ",
+//   "/dashboard/customer-service/inquire" : "Inquiry",
+//   "/dashboard/customer-service/inquire/form" : "Inquiry",
+//   "/dashboard/customer-service/terms" : {en: "Policies and Terms", ko: '정책 및 약관'}, //"Policies and Terms"
+// }
+
 function Sidebar({ msg }: SidebarProps) {
-  const { logout, user, dictionary } = useAuth();
-  const [tab, setTab] = useState("Advertising Management");
-  const router = useRouter();
+    const { logout, user, dictionary } = useAuth();
+    const [tab, setTab] = useState("top_bar_dashboard");
+    const router = useRouter();
 
-  const barStatus = (status: string) => {
-    setTab(status);
-    msg(status);
-  };
+    const barStatus = (status: string) => {
+        setTab(status);
+        msg(dictionary?.pageTitle[status]);
+    };
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
+    const handleLogout = async () => {
+        try {
+            await logout();
+        } catch (error) {
+            console.error("Error logging out:", error);
+        }
+    };
 
-  const Tabs = {
-    "fixed_ad" : '고정',
-    "national_ad" : '전국',
-    "spot_ad" : "스팟"
-  };
-
-
-  useEffect(()=>
-  {
-    if(router.pathname && sideBarPath[router.pathname])
-    {
-
-      setTab(sideBarPath[router.pathname]?.en || sideBarPath[router.pathname])
-      barStatus(sideBarPath[router.pathname]?.en || sideBarPath[router.pathname]);
-      msg(sideBarPath[router.pathname].ko || sideBarPath[router.pathname]);
-    }
-  },[router.pathname])
-
-  return (
-    <div className="content">
-      <h1 className="side-logo cursor-pointer" onClick = {()=>router.push("/dashboard")}>
-        <Image
-          src="/images/logo-pc.svg"
-          alt="logo-pc"
-          width={150}
-          height={50}
-        />
-      </h1>
-      <div className="sidemenu-wrap">
-        <ul className="menu-wrap">
-          {
-              !user &&    [1,2,3,4].map((each, index) =>{
-                return <li key={index} className={"menu-list"}>
-                  <p className="link">
-                    <Skeleton className={'icon'} variant={"rectangular"} width={25} height={25}></Skeleton>
-                    <Skeleton variant={"text"} sx={{fontSize : "14px"}} width={80} height={25}></Skeleton>
-                  </p>
-                </li>
-              })
-          }
+    const Tabs = {
+        "fixed_ad": '고정',
+        "national_ad": '전국',
+        "spot_ad": "스팟"
+    };
 
 
-          {user?.role === "Advertiser" && (
-            <>
-              <li
-                className={
-                  tab === "Ad Management" || tab === "Dashboard" ? "menu-list active" : "menu-list"
-                }
-              >
-                <Link
-                  href={PageRouting.dashboard}
-                  className="link"
-                  onClick={() => {
-                    barStatus("Ad Management");
-                    msg("광고관리");
-                  }}
-                >
-                  <i className="icon home"></i>
-                  <div className="name">{dictionary.sidebar.advertisementManagement}</div>
-                </Link>
-                <ul className="sub-wrap"></ul>
-              </li>
-              <li
-                className={
-                  tab === "Statistics" ? "menu-list active" : "menu-list"
-                }
-              >
-                <Link
-                  href={PageRouting.statistics}
-                  className="link"
-                  onClick={() => {
-                    barStatus("Statistics");
-                    msg("통계");
-                  }}
-                >
-                  <i className="icon statistics"></i>
-                  <div className="name">{dictionary.sidebar.statistics}</div>
-                </Link>
-                <ul className="sub-wrap"></ul>
-              </li>
-              <li
-                className={tab === "My Page" ? "menu-list active" : "menu-list"}
-              >
-                <Link
-                  href={PageRouting.myInfo}
-                  className="link"
-                  onClick={() => {
-                    barStatus("My Page");
-                    msg("내 정보");
-                  }}
-                >
-                  <i className="icon mypage"></i>
-                  <div className="name">{dictionary.sidebar.myInfo}</div>
-                </Link>
-                <ul className="sub-wrap nav"></ul>
-              </li>
-              <li
-                className={
-                  tab === "Announcement" ||
-                  tab === "Guide" ||
-                  tab === "FAQ" ||
-                  tab === "Inquiry" ||
-                  tab === "Policies and Terms"
-                    ? "menu-list active"
-                    : "menu-list"
-                }
-              >
-                <Link
-                  className="link"
-                  href={PageRouting.notice}
-                  onClick={() => {
-                    barStatus("Announcement");
-                    msg("공지사항");
-                  }}
-                >
-                  <i className="icon center"></i>
-                  <div className="name">{dictionary.sidebar.customerService}</div>
-                </Link>
-                <ul className="sub-wrap ">
-                  <li className="sub-list notice ">
-                    <Link
-                      href={PageRouting.notice}
-                      className={
-                        tab === "Announcement" ? "sub-link active" : "sub-link "
-                      }
-                      onClick={() => {
-                        barStatus("Announcement");
-                        msg("공지사항");
-                      }}
-                    >
-                      {dictionary.sidebar.notice}
-                    </Link>
-                  </li>
-                  <li className="sub-list guide ">
-                    <Link
-                      href={PageRouting.guide}
-                      className={
-                        tab === "Guide" ? "sub-link active" : "sub-link "
-                      }
-                      onClick={() => {
-                        barStatus("Guide");
-                        msg("가이드");
-                      }}
-                    >
-                      {dictionary.sidebar.guide}
-                    </Link>
-                  </li>
-                  <li className="sub-list faq ">
-                    <Link
-                      href={PageRouting.faq}
-                      className={
-                        tab === "FAQ" ? "sub-link active" : "sub-link "
-                      }
-                      onClick={() => {
-                        barStatus("FAQ");
-                        msg("FAQ");
-                      }}
-                    >
-                      {dictionary.sidebar.faq}
-                    </Link>
-                  </li>
-                  <li className="sub-list inquire active">
-                    <Link
-                      href={PageRouting.inquire}
-                      className={
-                        tab === "Inquiry" ? "sub-link active" : "sub-link "
-                      }
-                      onClick={() => {
-                        barStatus("Inquiry");
-                        msg("문의내역");
-                      }}
-                    >
-                      {dictionary.sidebar.inquiry}
-                    </Link>
-                  </li>
-                  <li className="sub-list terms ">
-                    <Link
-                      href={PageRouting.terms}
-                      className={
-                        tab === "Policies and Terms"
-                          ? "sub-link active"
-                          : "sub-link "
-                      }
-                      onClick={() => {
-                        barStatus("Policies and Terms");
-                        msg("정책 및 약관");
-                      }}
-                    >
-                      {dictionary.sidebar.termsAndPolicies}
-                    </Link>
-                  </li>
+    useEffect(() => {
+        if (router.pathname && sideBarPath[router.pathname]) {
+
+            setTab(sideBarPath[router.pathname])
+            barStatus(sideBarPath[router.pathname]);
+            msg(dictionary.pageTitle[sideBarPath[router.pathname]]);
+        }
+    }, [])
+
+    return (
+        <div className="content">
+            <h1 className="side-logo cursor-pointer" onClick={() => router.push("/dashboard")}>
+                <Image
+                    src="/images/logo-pc.svg"
+                    alt="logo-pc"
+                    width={150}
+                    height={50}
+                />
+            </h1>
+            <div className="sidemenu-wrap">
+                <ul className="menu-wrap">
+                    {
+                        !user && [1, 2, 3, 4].map((each, index) => {
+                            return <li key={index} className={"menu-list"}>
+                                <p className="link">
+                                    <Skeleton className={'icon'} variant={"rectangular"} width={25} height={25}></Skeleton>
+                                    <Skeleton variant={"text"} sx={{ fontSize: "14px" }} width={80} height={25}></Skeleton>
+                                </p>
+                            </li>
+                        })
+                    }
+
+
+                    {user?.role === "Advertiser" && (
+                        <>
+                            <li
+                                className={
+                                    tab === "top_bar_ad_management" || tab === "top_bar_dashboard" ? "menu-list active" : "menu-list"
+                                }
+                            >
+                                <Link
+                                    href={PageRouting.dashboard}
+                                    className="link"
+                                    onClick={() => {
+                                        barStatus("top_bar_ad_management");
+                                        //msg("광고관리");
+                                    }}
+                                >
+                                    <Icon1 selected={tab === "top_bar_ad_management" || tab === "top_bar_dashboard"}/>
+                                    <div className="name">{dictionary.sidebar.advertisementManagement}</div>
+                                </Link>
+                                <ul className="sub-wrap"></ul>
+                            </li>
+                            <li
+                                className={
+                                    tab === "top_bar_statistics" ? "menu-list active" : "menu-list"
+                                }
+                            >
+                                <Link
+                                    href={PageRouting.statistics}
+                                    className="link"
+                                    onClick={() => {
+                                        barStatus("top_bar_statistics");
+                                        //msg("통계");
+                                    }}
+                                >
+                                    {/*<i className="icon statistics"></i>*/}
+                                    <Icon2 selected={tab === "top_bar_statistics"}/>
+                                    <div className="name">{dictionary.sidebar.statistics}</div>
+                                </Link>
+                                <ul className="sub-wrap"></ul>
+                            </li>
+                            <li
+                                className={tab === "top_bar_my_page" ? "menu-list active" : "menu-list"}
+                            >
+                                <Link
+                                    href={PageRouting.myInfo}
+                                    className="link"
+                                    onClick={() => {
+                                        barStatus("top_bar_my_page");
+                                        //msg("내 정보");
+                                    }}
+                                >
+                                    <Icon3 selected={tab === "top_bar_my_page"}/>
+                                    <div className="name">{dictionary.sidebar.myInfo}</div>
+                                </Link>
+                                <ul className="sub-wrap nav"></ul>
+                            </li>
+                            <li
+                                className={
+                                    tab === "top_bar_announcement" ||
+                                    tab === "top_bar_guide" ||
+                                    tab === "top_bar_faq" ||
+                                    tab === "top_bar_inquiry" ||
+                                    tab === "top_bar_policies_and_terms"
+                                        ? "menu-list active"
+                                        : "menu-list"
+                                }
+                            >
+                                <Link
+                                    className="link"
+                                    href={PageRouting.notice}
+                                    onClick={() => {
+                                        barStatus("top_bar_announcement");
+                                        //msg("공지사항");
+                                    }}
+                                >
+                                   <Icon4 selected={tab === "top_bar_announcement" ||
+                                       tab === "top_bar_guide" || tab === "top_bar_faq" ||
+                                       tab === "top_bar_inquiry" || tab === "top_bar_policies_and_terms"}/>
+                                    <div className="name">{dictionary.sidebar.customerService}</div>
+                                </Link>
+                                <ul className="sub-wrap ">
+                                    <li className="sub-list notice ">
+                                        <Link
+                                            href={PageRouting.notice}
+                                            className={
+                                                tab === "top_bar_announcement" ? "sub-link active" : "sub-link "
+                                            }
+                                            onClick={() => {
+                                                barStatus("top_bar_announcement");
+                                                //msg("공지사항");
+                                            }}
+                                        >
+                                            {dictionary.sidebar.notice}
+                                        </Link>
+                                    </li>
+                                    <li className="sub-list guide ">
+                                        <Link
+                                            href={PageRouting.guide}
+                                            className={
+                                                tab === "top_bar_guide" ? "sub-link active" : "sub-link "
+                                            }
+                                            onClick={() => {
+                                                barStatus("top_bar_guide");
+                                                //msg("가이드");
+                                            }}
+                                        >
+                                            {dictionary.sidebar.guide}
+                                        </Link>
+                                    </li>
+                                    <li className="sub-list faq ">
+                                        <Link
+                                            href={PageRouting.faq}
+                                            className={
+                                                tab === "top_bar_faq" ? "sub-link active" : "sub-link "
+                                            }
+                                            onClick={() => {
+                                                barStatus("top_bar_faq");
+                                                //msg("FAQ");
+                                            }}
+                                        >
+                                            {dictionary.sidebar.faq}
+                                        </Link>
+                                    </li>
+                                    <li className="sub-list inquire active">
+                                        <Link
+                                            href={PageRouting.inquire}
+                                            className={
+                                                tab === "top_bar_inquiry" ? "sub-link active" : "sub-link "
+                                            }
+                                            onClick={() => {
+                                                barStatus("top_bar_inquiry");
+                                                //msg("문의내역");
+                                            }}
+                                        >
+                                            {dictionary.sidebar.inquiry}
+                                        </Link>
+                                    </li>
+                                    <li className="sub-list terms ">
+                                        <Link
+                                            href={PageRouting.terms}
+                                            className={
+                                                tab === "top_bar_policies_and_terms"
+                                                    ? "sub-link active"
+                                                    : "sub-link "
+                                            }
+                                            onClick={() => {
+                                                barStatus("top_bar_policies_and_terms");
+                                                //msg("정책 및 약관");
+                                            }}
+                                        >
+                                            {dictionary.sidebar.termsAndPolicies}
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </li>
+                        </>
+                    )}
                 </ul>
-              </li>
-            </>
-          )}
-        </ul>
-      </div>
-      <div className="side-logout d-flex align-items-center">
-        <a  onClick={handleLogout} className="logout-btn">
-          <i className="ic-logout"></i>
-          <div className="text-white">{dictionary.sidebar.logout}</div>
-        </a>
-      </div>
-    </div>
-  );
+            </div>
+            <div className="side-logout d-flex align-items-center">
+                <a onClick={handleLogout} className="logout-btn">
+                    <i className="ic-logout"></i>
+                    <div className="text-white">{dictionary.sidebar.logout}</div>
+                </a>
+            </div>
+        </div>
+    );
 }
 
 export default Sidebar;

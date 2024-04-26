@@ -14,6 +14,17 @@
     "minutes": "분",
     "notification_center": "알림 센터"
   },
+  "pageTitle" : {
+    "top_bar_dashboard" : "광고관리",
+    "top_bar_my_page" : "내 정보",
+    "top_bar_ad_management" : "광고관리",
+    "top_bar_statistics" : "통계",
+    "top_bar_announcement" : "공지사항",
+    "top_bar_guide" : "가이드",
+    "top_bar_faq" : "FAQ",
+    "top_bar_inquiry" : "문의내역",
+    "top_bar_policies_and_terms" : "정책 및 약관"
+  },
   "confirm_modal": {
     "cancel": "취소",
     "delete": "삭제하기"

@@ -14,6 +14,17 @@
     "minutes": "minute",
     "notification_center": "Notification Center"
   },
+  "pageTitle" : {
+    "top_bar_dashboard" : "Ad Management",
+    "top_bar_my_page" : "My Page",
+    "top_bar_ad_management" : "Ad Management",
+    "top_bar_statistics" : "Statistics",
+    "top_bar_announcement" : "Announcement",
+    "top_bar_guide" : "Guide",
+    "top_bar_faq" : "FAQ",
+    "top_bar_inquiry" : "Inquiry",
+    "top_bar_policies_and_terms" : "Policies and Terms"
+  },
   "confirm_modal": {
     "cancel": "Cancel",
     "delete": "Delete"

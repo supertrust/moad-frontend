@@ -33,6 +33,8 @@
     "cart": "Toevoegen aan Winkelwagen"
   },
   "common": {
+    "selected_count_prefix": "Selected",
+    "selected_count_suffix": " items",
     "ad_details": "Ad Details",
     "advertisement_management": "Advertising Management",
     "advertisement_status": "Advertisement Status",

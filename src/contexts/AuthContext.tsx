@@ -150,14 +150,16 @@ function AuthProvider({ children }: AuthProviderProps) {
         loading: loading,
         isUserLoading: !user && isUserLoading,
         isRoleLoading: false,
-        localDataUpdated
+        localDataUpdated,
+        isPcOnly
     }), [
         lang,
         user,
         token,
         loading,
         dictionary,
-        isUserLoading
+        isUserLoading,
+        isPcOnly
     ]);
 
     return (

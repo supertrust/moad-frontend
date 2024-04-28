@@ -111,7 +111,7 @@
 
 
 .adDeleteBtn {
-    padding: 8px 24px;
+    padding: 4px 8px;
     font-weight: 600;
     font-size: 14px;
     line-height: normal;
@@ -121,6 +121,7 @@
     border-radius: 5px;
     cursor: pointer;
     height: 36px;
+    background : white;
 }
 
 .listHd {
@@ -204,9 +205,9 @@
     transform: none !important;
 }
 .adDeleteBtn{
-    width: 74px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 4px 8px;
+    border-radius : 5px!important;
+    border : 1px solid white;
     text-align: center;
     display: inline-block;
 }
@@ -330,7 +331,6 @@
         width: 16px;
        height: 16px;
     }
-    .adDeleteBtn,
     .chkBox,.only_pc {
         display: none;
     }
@@ -365,4 +365,10 @@
 }
 .buttonfont{
  font-family: inherit !important;
+}
+
+.selectedCount{
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-color);
 }

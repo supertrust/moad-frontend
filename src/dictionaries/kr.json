@@ -33,6 +33,8 @@
     "cart": "Toevoegen aan Winkelwagen"
   },
   "common": {
+    "selected_count_prefix" : "선택",
+    "selected_count_suffix" : "건",
     "ad_details": "광고 상세",
     "advertisement_management": "광고 관리",
     "advertisement_status": "광고 진행 상태",

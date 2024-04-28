@@ -25,7 +25,8 @@ export const allStatuses = [
 ]
 
 export default function AdListModule() {
-    const { userRole, dictionary: { adList, noticePage }, lang } = useAuth();
+
+    const { userRole, dictionary: { adList, noticePage, common }, lang, isPcOnly } = useAuth();
     const { adStatuses, allAdStatuses, deleteAdsModal, adTypes, columns, noAdsMsg } = adList
     const statuses = [
         { label: adStatuses.all, value: undefined },
@@ -165,48 +166,69 @@ export default function AdListModule() {
             </div>
             <div className={styles.adContents}>
                 <div className={styles.menuHd}>
-                    <div className={styles.tabMenu}>
-                        {statuses.map((item) => (
-                            <div
-                                onClick={() => setStatus(item.value as AdStatusesType)}
-                                key={item.label}
-                                className={styles.tabTitle}>
+                    <div className={clsx(styles.tabMenu, !isPcOnly && 'w-[100%] flex !justify-between items-center')}>
+                        <div className={'flex gap-[20px]'}>
+                            {statuses.map((item) => (
+                                <div
+                                    onClick={() => setStatus(item.value as AdStatusesType)}
+                                    key={item.label}
+                                    className={styles.tabTitle}>
 								<span
                                     className={clsx(
                                         item.value === status && 'text-[16px] sm:text-[20px] text-advertiser-primary font-bold',
                                     )}>
 									{item.label}
 								</span>
-                            </div>
-                        ))}
-                    </div>
-                    <div className={styles.rightMenu}>
-                        <button
-                            onClick={openModal}
-                            id={styles.adAddBtn}
-                            className={clsx(styles.adAddBtn, styles.buttonfont, "font-[Inter] items-center md:!w-[138px]", lang === "kr" ? " !w-[90px]" : " !w-[120px]")}>
-                            <i className='ic-plus'></i>
-                            {adList.applyForAdBtn}
-                        </button>
-                        <div className='select-box only-pc md:w-[149px]'>
-                            <Form.Select
-                                onChange={(e) => setType(e.target.value as AdTypesType)}
-                                aria-label='광고 유형 선택'
-                                className='font-medium custom-select  border-1 border-advertiser-primary text-advertiser-primary h-[36px]'
-                            >
-                                {/* <option value="" >광고 유형 선택</option> */}
-                                <option value=''>{adTypes.all}</option>
-                                <option value='fixed_ad'>{adTypes.fixed}</option>
-                                <option value='national_ad'>{adTypes.national}</option>
-                                <option value='spot_ad'>{adTypes.spot}</option>
-                            </Form.Select>
+                                </div>
+                            ))}
                         </div>
-                        <button
-                            disabled={!selectedAds.length}
-                            onClick={handleDeleteAds}
-                            className={`${styles.adDeleteBtn} border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-advertiser-primary !text-advertiser-primary`}>
-                            {adList.deleteAdBtn}
-                        </button>
+
+                        {
+                            !isPcOnly ?
+                                <button
+                                    onClick={openModal}
+                                    id={styles.adAddBtn}
+                                    className={clsx(styles.adAddBtn, styles.buttonfont, "font-[Inter] items-center md:!w-[138px]", lang === "kr" ? " !w-[90px]" : " !w-[120px]")}>
+                                    <i className='ic-plus'></i>
+                                    {adList.applyForAdBtn}
+                                </button>
+                                : <></>
+                        }
+                    </div>
+                    <div
+                        className={clsx(styles.rightMenu, !isPcOnly && 'w-[100%] flex items-center !justify-between pt-[10px]')}>
+                        {
+                            isPcOnly ? <button
+                                onClick={openModal}
+                                id={styles.adAddBtn}
+                                className={clsx(styles.adAddBtn, styles.buttonfont, "font-[Inter] items-center md:!w-[138px]", lang === "kr" ? " !w-[90px]" : " !w-[120px]")}>
+                                <i className='ic-plus'></i>
+                                {adList.applyForAdBtn}
+                            </button> : <div className={styles.selectedCount}>{common?.selected_count_prefix} <span
+                                className={clsx(selectedAds?.length && "text-advertiser-primary")}>{selectedAds.length || 0}</span>{common?.selected_count_suffix}
+                            </div>
+                        }
+                        <div className={'flex gap-2 items-center'}>
+                            <div className='select-box  md:w-[149px]'>
+                                <Form.Select
+                                    onChange={(e) => setType(e.target.value as AdTypesType)}
+                                    aria-label='광고 유형 선택'
+                                    className='font-medium custom-select  border-1 border-advertiser-primary text-advertiser-primary h-[36px]'
+                                >
+                                    {/* <option value="" >광고 유형 선택</option> */}
+                                    <option value=''>{adTypes.all}</option>
+                                    <option value='fixed_ad'>{adTypes.fixed}</option>
+                                    <option value='national_ad'>{adTypes.national}</option>
+                                    <option value='spot_ad'>{adTypes.spot}</option>
+                                </Form.Select>
+                            </div>
+                            <button
+                                disabled={!selectedAds.length}
+                                onClick={handleDeleteAds}
+                                className={`${styles.adDeleteBtn} border disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-advertiser-primary !text-advertiser-primary`}>
+                                {adList.deleteAdBtn}
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div>

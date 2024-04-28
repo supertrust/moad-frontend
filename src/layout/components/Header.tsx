@@ -1,14 +1,11 @@
-import { DownOutlined } from '@ant-design/icons';
 import { Skeleton } from '@mui/material';
 import { Button } from '@src/components/common';
 import useAuth from '@src/hooks/useAuth';
-import { Langs } from '@src/types/auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import langIcon from '../../../public/assets/images/icons/lang.svg';
 import LanguageChange from "../../components/common/LanguageChange/LanguageChange";
 import MobileNav from './MobileNav';
 
@@ -16,11 +13,6 @@ interface HeaderProps {
   text: string;
   profileImage?: File;
 }
-
-const langOptions: { value: Langs; label: string }[] = [
-  { value: 'en', label: 'ENG' },
-  { value: 'kr', label: 'KOR' },
-];
 
 function Header(props: HeaderProps) {
   const { logout, user, isUserLoading, dictionary, changeLocale, lang } = useAuth();
@@ -48,29 +40,6 @@ function Header(props: HeaderProps) {
               {!props.text ? dictionary.dashboard.title : props.text}
             </div>
             <div className='flex items-center'>
-              {/*<Dropdown className='drop-btns'>*/}
-              {/*  <Dropdown.Toggle*/}
-              {/*    id='dropdown-basic'*/}
-              {/*    className='d-flex items-center	'>*/}
-              {/*    <div className='flex gap-1 !text-[#606060]'>*/}
-              {/*      <Image src={langIcon} alt='' />*/}
-              {/*      {langOptions.find((op) => op.value == lang)?.label}*/}
-              {/*      <DownOutlined className='m-auto' />*/}
-              {/*    </div>*/}
-              {/*  </Dropdown.Toggle>*/}
-              {/*  <Dropdown.Menu*/}
-              {/*    style={{ width: '20px !important', border: 'none' }}>*/}
-              {/*    {langOptions.map((op, key) => (*/}
-              {/*      <Dropdown.Item*/}
-              {/*        key={key}*/}
-              {/*        onClick={() => {*/}
-              {/*          changeLocale(op.value);*/}
-              {/*        }}>*/}
-              {/*        {op.label}*/}
-              {/*      </Dropdown.Item>*/}
-              {/*    ))}*/}
-              {/*  </Dropdown.Menu>*/}
-              {/*</Dropdown>*/}
               <LanguageChange/>
               <div className='my-info'>
                 <div className='info-wrap'>

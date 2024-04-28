@@ -22,22 +22,8 @@ const sideBarPath = {
     "/dashboard/customer-service/faq": "top_bar_faq",
     "/dashboard/customer-service/inquire": "top_bar_inquiry",
     "/dashboard/customer-service/inquire/form": "top_bar_inquiry",
-    "/dashboard/customer-service/terms": "top_bar_policies_and_terms", //"Policies and Terms"
+    "/dashboard/customer-service/terms": "top_bar_policies_and_terms"
 }
-
-// const sideBarPath = {
-//   "/dashboard" : {en:"Dashboard",ko : '광고관리'},
-//   "/dashboard/my-info" : "My Page",
-//   "/dashboard/ad-management" : "Ad Management",
-//   "/dashboard/statistics/[id]" : "Statistics",
-//   "/dashboard/statistics" : {en: "Statistics", ko: '통계'},
-//   "/dashboard/customer-service/notice" : "Announcement",
-//   "/dashboard/customer-service/guide" : "Guide",
-//   "/dashboard/customer-service/faq" : "FAQ",
-//   "/dashboard/customer-service/inquire" : "Inquiry",
-//   "/dashboard/customer-service/inquire/form" : "Inquiry",
-//   "/dashboard/customer-service/terms" : {en: "Policies and Terms", ko: '정책 및 약관'}, //"Policies and Terms"
-// }
 
 function Sidebar({ msg }: SidebarProps) {
     const { logout, user, dictionary } = useAuth();

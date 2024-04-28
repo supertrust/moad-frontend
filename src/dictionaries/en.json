@@ -1279,12 +1279,12 @@
         "title": "Find your password",
         "text": "Please receive the verification number by email and enter it.",
         "emailInputText": "Email address to receive authentication number",
-        "sendOtpBtn": "Receive authentication number",
+        "sendOtpBtn": "Resend",
         "authNoLabel": "Authentication number received by email (6 digits)",
         "authNoPlaceholder": "Enter authentication number",
         "certification_error":"Please check your authentication number again.",
         "time_error": "The time limit for entering the authentication number has expired.",
-        "confirm_btn": "Confirm authentication number",
+        "confirm_btn": "Find",
         "cancel_btn":"Cancel"
       },
       "step3": {

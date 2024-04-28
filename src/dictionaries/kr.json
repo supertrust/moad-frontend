@@ -1273,12 +1273,12 @@
         "title": "비밀번호 찾기",
         "text": "이메일로 인증 번호를 받아 입력해주세요.",
         "emailInputText": "인증 번호를 받을 이메일주소",
-        "sendOtpBtn": "인증번호받기",
+        "sendOtpBtn": "재발송",
         "authNoLabel": "이메일로 받은 인증번호 (숫자 6자리)",
         "authNoPlaceholder": "인증번호 입력",
         "certification_error":"인증번호를 다시 한번 확인해 주세요.",
         "time_error": "인증번호 입력가능 시간이 초과되었습니다.",
-        "confirm_btn": "인증번호 확인",
+        "confirm_btn": "찾기",
         "cancel_btn":"취소"
       },
       "step3": {

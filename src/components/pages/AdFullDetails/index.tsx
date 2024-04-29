@@ -1,10 +1,13 @@
+import ArrowBack from "@src/components/icons/ArrowBack";
 import Loader from "@src/components/Loader";
 import { DataRow, AdImage } from "@src/components/common";
 import HeaderLine from "@src/components/common/HeaderLine";
+import styles from "@src/components/pages/GuidePage/styles.module.scss";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { clsx } from "clsx";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import PageTitleBackButton from "../../common/PageTitleBackButton/PageTitleBackButton";
 import style from "./style.module";
 import { useGetAdvertisementDetail } from "@src/apis/advertisement";
 import Modal from "@mui/material/Modal";
@@ -35,7 +38,7 @@ export const allStatuses = {
 
 function AdFullDetails() {
   const { query } = useRouter();
-  const { dictionary } = useAuth();
+  const { dictionary,isPcOnly } = useAuth();
 
   const advertisementId = query.ad_id as string;
   const { data: advertisement, isLoading: isAdvertisementLoading } =
@@ -54,19 +57,19 @@ function AdFullDetails() {
   }, []);
 
   const getVehicleTypeCount = (type: string) => {
-    if (!advertisement?.vehicles_in_operation) return "0대";
+    if (!advertisement?.vehicles_in_operation) return `0${dictionary.dashboard.big}`;
     const vType = advertisement?.vehicles_in_operation?.filter(
       (value) => value.vehicle_type == type
     );
-    return `${vType.length ? vType[0].number_of_vehicles : 0}대`;
+    return `${vType.length ? vType[0].number_of_vehicles : 0}${dictionary.dashboard.big}`;
   };
 
   const getMinVehicleTypeCount = (type: string) => {
-    if (!advertisement?.vehicles_in_operation) return "0대";
+    if (!advertisement?.vehicles_in_operation) return `0${dictionary.dashboard.big}`;
     const vType = advertisement?.vehicles_in_operation?.filter(
       (value) => value.vehicle_type == type
     );
-    return `${vType.length ? vType[0].min_num_of_vehicle : 0}대`;
+    return `${vType.length ? vType[0].min_num_of_vehicle : 0}${dictionary.dashboard.big}`;
   };
 
   const modalstyle = {
@@ -87,16 +90,20 @@ function AdFullDetails() {
   ];
   return (
     <div className="px-4 py-3">
-      <HeaderLine title={dictionary.common.advertisement_details} />
+      <div className={"only-mb"}>
+       <PageTitleBackButton title={dictionary.common.advertisement_details}></PageTitleBackButton>
+      </div>
+      {isPcOnly && <HeaderLine title={dictionary.common.advertisement_details} />}
       {isAdvertisementLoading ? (
         <Loader />
       ) : (
-        <table className="mt-3 w-full text-[16px]">
+        <table className="mt-3 w-full text-[14px] md:text-[16px]">
           <DataRow
             title={dictionary.common.advertisement_status}
             className={style.className}
             firstColumClass={style.firstColumnClass}
             colSpan={2}
+            
           >
             {dictionary.statuses[advertisement?.status || "in_progress"]}
           </DataRow>
@@ -105,6 +112,7 @@ function AdFullDetails() {
             className={style.className}
             firstColumClass={style.firstColumnClass}
             colSpan={2}
+            
           >
             {advertisement?.type && dictionary.types[advertisement?.type]}
           </DataRow>
@@ -113,6 +121,7 @@ function AdFullDetails() {
             className={style.className}
             firstColumClass={style.firstColumnClass}
             colSpan={2}
+            
           >
             {advertisement?.ad_name}
           </DataRow>
@@ -121,6 +130,7 @@ function AdFullDetails() {
             className={style.className}
             firstColumClass={style.firstColumnClass}
             colSpan={2}
+            
           >
             <textarea readOnly rows={5} className={clsx(style.textArea,'textarea-input')}>
               {advertisement?.content}
@@ -154,15 +164,16 @@ function AdFullDetails() {
             className={style.className}
             firstColumClass={style.firstColumnClass}
             colSpan={2}
+            
           >
-            {advertisement?.number_of_cargo || 0}대
+            {advertisement?.number_of_cargo || 0}{dictionary.dashboard.big}
           </DataRow>
           <DataRow
             title={
               <p className={labelColClass}>
                 {dictionary.common.min_vehicle_count}
                 <br />{" "}
-                <span className={"!text-[14px] font-normal"}>
+                <span className={"text-[12px] md:text-[14px] font-normal"}>
                   ({dictionary.common.min_max_number_vehicales})
                 </span>
               </p>
@@ -196,6 +207,7 @@ function AdFullDetails() {
             className={style.className}
             firstColumClass={style.firstColumnClass}
             colSpan={2}
+
           >
             {advertisement?.start_date} ~ {advertisement?.end_date}
           </DataRow>
@@ -212,10 +224,12 @@ function AdFullDetails() {
             className={style.className}
             firstColumClass={style.firstColumnClass}
             colSpan={2}
+
           >
             <div className="sm:flex sm:flex-row gap-1">
               {advertisement?.images.map((value, key) => (
                 <AdImage
+                    className={'w-[180px] md:w-[210px] py-[4px]'}
                   src={value.image_path}
                   key={key}
                   onView={() => {

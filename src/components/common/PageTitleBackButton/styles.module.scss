@@ -1,0 +1,26 @@
+$color_1: #2c324c;
+$color_2: #ffffff;
+$font-family_1: "Noto Sans KR", sans-serif;
+$background-color_1: #ffffff;
+$background-color_2: #456192;
+
+.mobile-top-header {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 34px;
+  padding-right: 18px;
+
+  .header {
+    font-family: $font-family_1;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.2px;
+    text-align: center;
+    color: #2c324c;
+  }
+}

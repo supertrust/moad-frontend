@@ -1169,7 +1169,8 @@
     "columns":["no","Registration number", "Vehicle type", "Driving status", "Vehicle information", "Vehicle location", "Authentication photo"],
     "breadCrumb":["Ad Management", "Advertising Vehicle Details"],
     "mockupOptions":["Rotate 360°", "View as image"],
-    "tabs": ["All", "In operation", "In operation"]
+    "tabs": ["All", "In operation", "In operation"],
+    "ViewAllCargoLocation": "Voir all cargo locations"
   },
   "verifyPicturesModal":{
     "title": "Vehicle Information",

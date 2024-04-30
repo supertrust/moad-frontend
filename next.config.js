@@ -5,7 +5,8 @@ const hostnames = [
   "dev-backend.icarus.mufin.lol",
   "dev-static.icarus.mufin.lol",
   process.env.STATIC_IMAGE_HOST,
-    "dev-api.moad.live"
+  "dev-api.moad.live",
+  "dev-static.moad.live"
 ];
 /** @type {import('next').NextConfig} */
 const nextConfig = {

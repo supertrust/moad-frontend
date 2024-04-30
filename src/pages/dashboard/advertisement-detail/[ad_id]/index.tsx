@@ -10,7 +10,7 @@ import {
   useGetCargoVerificationImages,
   useGetDraftAdvertisementImages,
 } from "@src/apis/advertisement";
-import { DataGrid } from "@src/components/common";
+import { Button, DataGrid } from "@src/components/common";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import TruckModel from "@src/models/truck";
@@ -70,16 +70,16 @@ const OperationStatus = {
   service: "점검중",
   suspended: "강제종료",
   running: "운행중",
-  end : "종료됨"
+  end: "종료됨"
 };
 
-const DisabledButton = ({children})=>{
-  return  <div className={'flex justify-center'}><button disabled={true} className={'text-[black] !opacity-80'}>{children}</button></div>
+const DisabledButton = ({ children }) => {
+  return <div className={'flex justify-center'}><button disabled={true} className={'text-[black] !opacity-80'}>{children}</button></div>
 }
 
 function AdvertisementDetailScreen() {
   const router = useRouter();
-  const { dictionary: { types, view, operationStatus, adDetailsPage,common } } = useAuth();
+  const { dictionary: { types, view, operationStatus, adDetailsPage, common } } = useAuth();
   const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState<{ page: number; status: string }>({
     page: 1,
@@ -117,7 +117,7 @@ function AdvertisementDetailScreen() {
   const [verifyPicturesModalData, setVerifyPicturesModalData] = useState<{
     advertisement_id: number;
     cargo_vehicle_id: number;
-  }>({advertisement_id: 0, cargo_vehicle_id: 0});
+  }>({ advertisement_id: 0, cargo_vehicle_id: 0 });
 
   const [modelImages, setModelImages] = useState({
     left: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
@@ -207,7 +207,7 @@ function AdvertisementDetailScreen() {
       title: adDetailsPage.adDetailColumns[3],
       value: advertisement?.status
         ? allStatuses.find((status) => advertisement?.status === status.value)
-            ?.label
+          ?.label
         : advertisement?.status,
     },
     {
@@ -221,8 +221,8 @@ function AdvertisementDetailScreen() {
     {
       title: adDetailsPage.adDetailColumns[6],
       value: advertisement?.advertising_contract ?
-          <button className="bg-advertiser-deep px-4 py-2 text-center justify-center rounded-md h-9 text-white">
-            <a target={"_blank"} className={'!no-underline !text-[#FFFFFF]'} href={advertisement?.advertising_contract}>{common?.download}</a></button> : "-",
+        <button className="bg-advertiser-deep px-4 py-2 text-center justify-center rounded-md h-9 text-white">
+          <a target={"_blank"} className={'!no-underline !text-[#FFFFFF]'} href={advertisement?.advertising_contract}>{common?.download}</a></button> : "-",
     },
 
   ];
@@ -237,17 +237,17 @@ function AdvertisementDetailScreen() {
       !cargoItems?.length
         ? []
         : cargoItems?.filter(item => item?.user_cargo).map((item) => ({
-            key: item.id,
-            no: item.id,
-            car_number: item?.user_cargo?.car_number,
-            vehicle_type: item.vehicle?.vehicle_type,
-            vehicle_status: item.status,
-            vehicle_information: view,
-            vehicle_location: view,
-            show_links: item.status == null ? false : true,
-            cargo_vehicle_id: item.cargo_vehicle_id,
-            advertisement_id: item.advertisement_id,
-          })),
+          key: item.id,
+          no: item.id,
+          car_number: item?.user_cargo?.car_number,
+          vehicle_type: item.vehicle?.vehicle_type,
+          vehicle_status: item.status,
+          vehicle_information: view,
+          vehicle_location: view,
+          show_links: item.status == null ? false : true,
+          cargo_vehicle_id: item.cargo_vehicle_id,
+          advertisement_id: item.advertisement_id,
+        })),
     [cargoItems, view]
   );
 
@@ -305,14 +305,14 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-          record?.vehicle_status==="end" ? <DisabledButton>{text}</DisabledButton> :  <Link
-           legacyBehavior
-           href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}
-       >
-         <a  className="text-advertiser-primary hover:no-underline">
-           {text}
-         </a>
-       </Link>
+        record?.vehicle_status === "end" ? <DisabledButton>{text}</DisabledButton> : <Link
+          legacyBehavior
+          href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}
+        >
+          <a className="text-advertiser-primary hover:no-underline">
+            {text}
+          </a>
+        </Link>
       ),
     },
     {
@@ -324,15 +324,15 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-          record?.vehicle_status==="end" ? <DisabledButton>{text}</DisabledButton> :
-        <Link
-          legacyBehavior
-          href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle-location/${record.cargo_vehicle_id}`}
-        >
-          <a  className="text-advertiser-primary hover:no-underline">
-            {text}
-          </a>
-        </Link>
+        record?.vehicle_status === "end" ? <DisabledButton>{text}</DisabledButton> :
+          <Link
+            legacyBehavior
+            href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle-location/${record.cargo_vehicle_id}`}
+          >
+            <a className="text-advertiser-primary hover:no-underline">
+              {text}
+            </a>
+          </Link>
 
       ),
     },
@@ -345,19 +345,19 @@ function AdvertisementDetailScreen() {
         paddingBottom: "20px",
       },
       render: (text: any, record: any) => (
-          record?.vehicle_status==="end" ? <DisabledButton>{text}</DisabledButton> :
-        <div
-          className="text-advertiser-primary cursor-pointer"
-          onClick={() => {
-            setVerifyPicturesModalData({
-              advertisement_id: record.advertisement_id,
-              cargo_vehicle_id: record.cargo_vehicle_id
-            })
-            setOpen(true)
-          }}
-        >
-        {text}
-        </div>
+        record?.vehicle_status === "end" ? <DisabledButton>{text}</DisabledButton> :
+          <div
+            className="text-advertiser-primary cursor-pointer"
+            onClick={() => {
+              setVerifyPicturesModalData({
+                advertisement_id: record.advertisement_id,
+                cargo_vehicle_id: record.cargo_vehicle_id
+              })
+              setOpen(true)
+            }}
+          >
+            {text}
+          </div>
       ),
     },
   ];
@@ -443,9 +443,8 @@ function AdvertisementDetailScreen() {
                 <div className={styles.slide_box}>
                   {draftAdvertisementImages?.length ? (
                     <div
-                      className={`${model === "image" ? styles.active : ""} ${
-                        styles.detail_slide
-                      } ${styles.box}`}
+                      className={`${model === "image" ? styles.active : ""} ${styles.detail_slide
+                        } ${styles.box}`}
                       id="div3d"
                     >
                       <CarouselWrapper className={styles.swiper_wrapper}>
@@ -471,9 +470,8 @@ function AdvertisementDetailScreen() {
                     </div>
                   ) : null}
                   <div
-                    className={`${model === "model" ? styles.active : ""} ${
-                      styles.detail_3d
-                    } ${styles.box}`}
+                    className={`${model === "model" ? styles.active : ""} ${styles.detail_3d
+                      } ${styles.box}`}
                     id="div2d"
                   >
                     <Canvas
@@ -494,8 +492,8 @@ function AdvertisementDetailScreen() {
                             Image3D={
                               draftAdvertisementImages
                                 ? draftAdvertisementImages.find(
-                                    (item) => item?.is_3d == "1"
-                                  )?.completed_url
+                                  (item) => item?.is_3d == "1"
+                                )?.completed_url
                                 : ""
                             }
                             images={modelImages}
@@ -541,9 +539,8 @@ function AdvertisementDetailScreen() {
                   </Swiper>
 
                   <div
-                    className={`${swiper ? styles.active : ""} ${
-                      styles.mockup_btn
-                    }`}
+                    className={`${swiper ? styles.active : ""} ${styles.mockup_btn
+                      }`}
                   >
                     <button
                       onClick={() => {
@@ -579,6 +576,17 @@ function AdvertisementDetailScreen() {
                         <div className={styles.text}>{data.value}</div>
                       </div>
                     ))}
+                    <div key={index} className={styles.table_line}>
+                      <div className={styles.title}></div>
+                      <div className={styles.text}>
+                        <Link
+                          className="bg-primary px-4 py-3 text-white rounded hover:!text-[#FFFFFF]"
+                          href={`/dashboard/advertisement-detail/${advertisementId}/vehicle-location`}
+                        >
+                          {adDetailsPage.ViewAllCargoLocation}
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                   <div className={styles.model_contents_container}>
                     {/*<div className={styles.model_content}>*/}
@@ -740,10 +748,10 @@ const VerifyPicturesModal = ({
   const [index, setIndex] = useState(0);
   const [step, setStep] = useState(0);
   const { dictionary: { verifyPicturesModal } } = useAuth();
-  const [{start_date, end_date}, setDate] = useState({start_date:'', end_date: ''});
+  const [{ start_date, end_date }, setDate] = useState({ start_date: '', end_date: '' });
   const [selectedRow, setSelectedRow] = useState(0);
   const { data, isLoading } = useGetCargoVerificationImages({
-    ...verifyPicturesModalData,start_date, end_date
+    ...verifyPicturesModalData, start_date, end_date
   });
 
   const handleSelect = (selectedIndex: any, e: any) => {
@@ -766,7 +774,7 @@ const VerifyPicturesModal = ({
         paddingBottom: "20px",
       },
       render: (text: string) => {
-        return  <div className='text-center'>
+        return <div className='text-center'>
           {formatDate(text, false, "YYYY.MM.DD")}
         </div>
       }
@@ -797,15 +805,15 @@ const VerifyPicturesModal = ({
       render: (text: any, record: any, index) => {
         const enabled = record.image_path.length > 0
         return <div
-        className={`text-center underline ${enabled ? 'text-advertiser-primary' : 'text-[#999999]'}`}
-        onClick={()=>{
-          if(enabled) {
-            setStep(1)
-            console.log('index: ', index);
+          className={`text-center underline ${enabled ? 'text-advertiser-primary' : 'text-[#999999]'}`}
+          onClick={() => {
+            if (enabled) {
+              setStep(1)
+              console.log('index: ', index);
 
-            setSelectedRow(index)
-          }
-        }}
+              setSelectedRow(index)
+            }
+          }}
         >{verifyPicturesModal.viewPhotos}</div>
       }
     }
@@ -830,10 +838,10 @@ const VerifyPicturesModal = ({
             className={`!w-[550px] overflow-hidden ${styles.active} ${styles.detail_slide} ${styles.box}`}
             id="div3d"
           >
-             <ArrowBack
-                className={"ml-4 mb-4"}
-                handleAction={() => setStep(0)}
-              />
+            <ArrowBack
+              className={"ml-4 mb-4"}
+              handleAction={() => setStep(0)}
+            />
             <CarouselWrapper className={styles.swiper_wrapper}>
               <Carousel activeIndex={index} onSelect={handleSelect}>
                 {data[selectedRow].image_path?.map((item, index) => (
@@ -851,41 +859,41 @@ const VerifyPicturesModal = ({
           </div>
         )}
         {step === 0 &&
-        <div>
-          <div className="flex justify-between pb-4 w-[483px]">
-            <DatePicker
-              suffixIcon={<DateIcon/>}
-              popupClassName={"admin-advertisement-date-picker"}
-              placeholder={verifyPicturesModal.selectStartDate}
-              className={clsx(
+          <div>
+            <div className="flex justify-between pb-4 w-[483px]">
+              <DatePicker
+                suffixIcon={<DateIcon />}
+                popupClassName={"admin-advertisement-date-picker"}
+                placeholder={verifyPicturesModal.selectStartDate}
+                className={clsx(
                   styles['date-picker'],
-              )}
-              onChange={(date, dateString) => setDate({end_date, start_date: dateString})}
-              value={start_date ? dayjs(start_date, "YYYY-MM-DD") : undefined}
-            />
-            <DatePicker
-              suffixIcon={<DateIcon/>}
-              popupClassName={"admin-advertisement-date-picker"}
-              placeholder={verifyPicturesModal.selectEndDate}
-              className={clsx(
+                )}
+                onChange={(date, dateString) => setDate({ end_date, start_date: dateString })}
+                value={start_date ? dayjs(start_date, "YYYY-MM-DD") : undefined}
+              />
+              <DatePicker
+                suffixIcon={<DateIcon />}
+                popupClassName={"admin-advertisement-date-picker"}
+                placeholder={verifyPicturesModal.selectEndDate}
+                className={clsx(
                   styles['date-picker'],
-              )}
-              onChange={(date, dateString) => setDate({start_date, end_date: dateString})}
-              value={end_date ? dayjs(end_date, "YYYY-MM-DD") : undefined}
-            />
-          </div>
-          <DataGrid
-            columns={columns}
-            rows={data||[]}
-            loading={isLoading}
-            additionalTableProps={{scroll:{ y: 500 }}}
+                )}
+                onChange={(date, dateString) => setDate({ start_date, end_date: dateString })}
+                value={end_date ? dayjs(end_date, "YYYY-MM-DD") : undefined}
+              />
+            </div>
+            <DataGrid
+              columns={columns}
+              rows={data || []}
+              loading={isLoading}
+              additionalTableProps={{ scroll: { y: 500 } }}
             // showPagination
             // currentPage={currentPage}
             // itemsPerPage={per_page}
             // totalItems={totalRecords}
             // onChangePage={(page) => setFilters({ ...filters, page })}
-          />
-        </div>
+            />
+          </div>
         }
       </div>
     </Modal>

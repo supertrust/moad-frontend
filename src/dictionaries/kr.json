@@ -1163,7 +1163,8 @@
     "columns":["no","등록번호", "차량종류", "운행여부", "차량정보", "차량위치",  "인증사진"],
     "breadCrumb":["광고관리", " 광고 운행차량 상세"],
     "mockupOptions":["360°로 돌려보기", "이미지로 보기"],
-    "tabs": ["전체", "운행중", "운행정지"]
+    "tabs": ["전체", "운행중", "운행정지"],
+    "ViewAllCargoLocation": "모든 화물위치 보기"
   },
   "verifyPicturesModal":{
     "title": "차량정보",

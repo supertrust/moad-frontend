@@ -1,3 +1,4 @@
+import { logoMobileSize } from "@src/utils/values";
 import { Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -87,12 +88,7 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 
 			<div className={'right'}>
 				<h1 className='logo-mb'>
-					<Image
-						src='assets/images/icons/logo-mb.svg'
-						alt=''
-						width={120}
-						height={50}
-					/>
+					<Image src="/images/logo-mb.svg" alt='logo-mb' width={logoMobileSize.width} height={logoMobileSize.height} />
 				</h1>
 				<div className='right-wrap'>
 					<div className='right-content'>

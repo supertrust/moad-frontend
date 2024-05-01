@@ -229,7 +229,7 @@ function AdFullDetails() {
             <div className="sm:flex sm:flex-row gap-1">
               {advertisement?.images.map((value, key) => (
                 <AdImage
-                    className={'w-[180px] md:w-[210px] py-[4px]'}
+                    className={'!w-[165px] !md:w-[210px] py-[4px]'}
                   src={value.image_path}
                   key={key}
                   onView={() => {

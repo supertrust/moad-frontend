@@ -1,4 +1,5 @@
 import { FindIdModel, FindPassModel, LoginForm } from "@src/sections/login";
+import { logoMobileSize } from "@src/utils/values";
 import clsx from "clsx";
 import Head from "next/head";
 import Image from "next/image";
@@ -41,8 +42,8 @@ export default function Login() {
          </div>
          <div className={clsx(isPcOnly? "" : 'flex w-[100%] h-[100%] !flex-col justify-between')}  style={{justifyContent: "space-between"}}>
            <div className={'logo-mb only-mb !flex justify-between w-[93%]'}>
-             <h1 className="noly-mb">
-               <Image src="/images/logo-mb.svg" alt='logo-mb' width={120} height={50} />
+             <h1 className="only-mb">
+               <Image src="/images/logo-mb.svg" alt='logo-mb' width={logoMobileSize.width} height={logoMobileSize.height} />
              </h1>
              <LanguageChange/>
            </div>

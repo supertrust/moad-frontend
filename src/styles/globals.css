@@ -1905,7 +1905,7 @@ a {
 		margin: auto;
 		padding: 2em 20px;
 		overflow: auto;
-		row-gap: 37px;
+		/*row-gap: 37px;*/
 	}
 
 	#sign_up .step-section .right .right-wrap {

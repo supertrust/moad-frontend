@@ -1,23 +1,18 @@
-import {
-	FormProvider,
-	RHFInput,
-	useForm,
-	yupResolver,
-	Button,
-} from '@src/components/common';
-import React, { useEffect, useState } from 'react';
-import * as Yup from 'yup';
-import { toast } from 'react-toastify';
 import { useVerifyInput } from '@src/apis/auth';
-import useAuth from '@src/hooks/useAuth';
-import { Modal } from 'react-bootstrap';
-import Image from 'next/image';
-import { RegisterPropsType } from '@src/types/auth';
-import { File } from 'buffer';
-import clsx from 'clsx';
-import { isHangul } from '@src/helpers';
+import { Button, FormProvider, RHFInput, useForm, yupResolver, } from '@src/components/common';
 import RHFSelect from '@src/components/common/Form/RHFSelect';
 import { EMAIL_REGEX } from '@src/constants';
+import { isHangul } from '@src/helpers';
+import useAuth from '@src/hooks/useAuth';
+import { RegisterPropsType } from '@src/types/auth';
+import { logoMobileSize } from "@src/utils/values";
+import { File } from 'buffer';
+import clsx from 'clsx';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import { Modal } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 
 interface Step3Props {
 	onPrevStep: () => void;
@@ -96,7 +91,7 @@ const Step3 = ({
 	setMembershipInformation,
 }: Step3Props) => {
 	const { mutateAsync: verifyInput } = useVerifyInput();
-	const { register, dictionary:{ signup: { step3 } } } = useAuth();
+	const { register, dictionary:{ signup: { step3 } },isPcOnly } = useAuth();
 	const [showModal, setShowModal] = useState(false);
 	const [isReadonly, setReadonly] = useState(false);
 	const [verifybtnclick, setverifybtn] = useState(false);
@@ -215,9 +210,18 @@ const Step3 = ({
 				</div>
 			</div>
 			<div className='right'>
+				{
+					!isPcOnly &&
+					<div
+						className={'pb-[44.4px]'}>
+						<Image src="/images/logo-mb.svg" alt='logo-mb' width={logoMobileSize.width} height={
+							logoMobileSize.height
+						}/>
+					</div>
+				}
 				<div className='right-wrap'>
 					<div className='right-content'>
-						<div onClick={onPrevStep} className='cursor-pointer back-btn mt-[100px]'></div>
+						<div onClick={onPrevStep} className='cursor-pointer back-btn lg:mt-[181px] mt-[65.4px]'></div>
 						<div className='step-title'>{step3.stepTitle}</div>
 						<div className='step-text'>
 							{step3.stepText}
@@ -470,7 +474,7 @@ const Step3 = ({
 								</div>
 								<Button
 									loading={isSubmitting}
-									className='link link-step01'
+									className='link link-step01 !mb-[42px]'
 									onClick={onSubmit}
 									disabled={
 										!(Object.keys(dirtyFields).length > 7 && imageUploaded)

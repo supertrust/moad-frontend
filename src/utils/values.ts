@@ -10,3 +10,8 @@ export const PageRouting = {
     "terms" : "/dashboard/customer-service/terms",
 
 }
+
+export const logoMobileSize = {
+    height: 26,
+    width: 80
+}

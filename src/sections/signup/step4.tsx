@@ -6,7 +6,7 @@ import React from "react";
 
 const Step4 = () => {
 
-    const { isPcOnly  } = useAuth()
+    const { isPcOnly,dictionary : { signup : {step4}}  } = useAuth()
 
     return (
         <div className="step04 step-section">
@@ -29,12 +29,12 @@ const Step4 = () => {
                 }
                 <div className="right-wrap">
                     <div className="right-content">
-                        <div className="step-title">회원가입이 완료되었습니다.</div>
+                        <div className="step-title">{step4.title}</div>
                         <div className="step-text">
-                            로그인 버튼을 클릭 후 로그인 해주세요.
+                            {step4.subtitle}
                         </div>
                         <Link href="/login" className="link link-step01">
-                            로그인
+                            {step4.login}
                         </Link>
                     </div>
                 </div>

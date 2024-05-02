@@ -1,9 +1,8 @@
 import { useVerifyInput } from '@src/apis/auth';
 import { Button, FormProvider, RHFInput, useForm, yupResolver, } from '@src/components/common';
 import RHFSelect from '@src/components/common/Form/RHFSelect';
-import { EMAIL_REGEX } from '@src/constants';
-import { isHangul } from '@src/helpers';
 import useAuth from '@src/hooks/useAuth';
+import useSchema from "@src/hooks/useSchema";
 import { RegisterPropsType } from '@src/types/auth';
 import { logoMobileSize } from "@src/utils/values";
 import { File } from 'buffer';
@@ -12,7 +11,6 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import * as Yup from 'yup';
 
 interface Step3Props {
 	onPrevStep: () => void;
@@ -34,62 +32,14 @@ const defaultValues = {
 	verify_business_registration_number: false,
 };
 
-const allowedFiles = [
-	'application/msword',
-	'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-	'application/pdf',
-	'image/jpeg',
-	'image/png',
-];
-
-const RegisterSchema = Yup.object({
-	company_name: Yup.string()
-		.required('회사명은 필수 입력 사항입니다.')
-		.test('isKorean', '올바른 한글 이름 입력' , isHangul),
-	employee_name: Yup.string()
-		.required('직원 이름을 입력하세요.')
-		.max(10, '담당자 이름은 10자를 넘지 않아야 합니다.')
-		.test('isKorean', '올바른 한글 이름 입력' , isHangul),
-	company_phone_number: Yup.string()
-		.required('핸드폰번호를 입력해주세요')
-		.matches(/^[0-9]{11}$/, '전화번호는 11자리여야 합니다.'),
-	employee_phone_number: Yup.string()
-		.required('직원 전화번호를 입력하세요.')
-		.matches(/^[0-9]{11}$/, '전화번호는 11자리여야 합니다.'),
-	business_registration_number: Yup.string()
-		.required('사업자 등록 번호를 입력하세요.')
-		.matches(/^[0-9]{10}$/, '10자리여야 합니다.'),
-	verify_business_registration_number:
-		Yup.boolean().required('사업자등록번호를 확인해 주세요.'),
-	employee_email: Yup.string()
-		.matches(EMAIL_REGEX, '유효한 이메일을 입력하세요.')
-		.required('직원 이메일을 입력하세요.'),
-	business_license: Yup.mixed()
-		.required('사업자 등록증을 업로드하세요.')
-		.test(
-			'fileFormat',
-			'.pdf, .jpg, .jpeg, .png 파일만 허용됩니다.',
-			(value: any) => {
-				if (value) {
-					return allowedFiles.includes(value.type);
-				}
-				return true;
-			},
-		)
-		.test('fileSize', '파일 크기는 10MB 미만이어야 합니다.', (value: any) => {
-			if (value) {
-				return value.size <= 10 * 1024 * 1024;
-			}
-			return true;
-		}),
-});
-
 const Step3 = ({
 	onPrevStep,
 	onNextStep,
 	membershipInformation,
 	setMembershipInformation,
 }: Step3Props) => {
+
+	const { RegisterSchema, allowedFiles } = useSchema()
 	const { mutateAsync: verifyInput } = useVerifyInput();
 	const { register, dictionary:{ signup: { step3 } },isPcOnly } = useAuth();
 	const [showModal, setShowModal] = useState(false);
@@ -98,15 +48,15 @@ const Step3 = ({
 	const [message, setMessage] = useState('');
 	const ModalhandleClose = () => setShowModal(false);
 	const options = [
-		{value : '', text : '담당자 직위'},
-		{value : '사원', text : '사원'},
-		{value : '주임', text : '주임'},
-		{value : '대리', text : '대리'},
-		{value : '과장', text : '과장'},
-		{value : '차장', text : '차장'},
-		{value : '부장', text : '부장'},
-		{value : '임원', text : '임원'},
-		{value : '기타', text : '기타'}
+		{value : '', text : step3?.contact_position?.contact_person_position},
+		{value : '사원', text : step3?.contact_position?.employee},
+		{value : '주임', text : step3?.contact_position?.team_leader},
+		{value : '대리', text : step3?.contact_position?.manager},
+		{value : '과장', text : 	step3?.contact_position?.director},
+		{value : '차장', text : step3?.contact_position?.vice_president},
+		{value : '부장', text : step3?.contact_position?.executive_director},
+		{value : '임원', text : step3?.contact_position?.executive},
+		{value : '기타', text : step3?.contact_position?.other},
 	];
 	const ModalhandleShow = (error: string) => {
 		setShowModal(true);
@@ -320,6 +270,7 @@ const Step3 = ({
 									name='contact_position'
 									options={options}
 									className='company-input'
+									placeholder={ step3?.contact_position?.contact_person_position}
 								/>
 								<RHFInput
 									wrapperClassName='manager-tel'
@@ -441,7 +392,7 @@ const Step3 = ({
 												'file-name',
 												errors?.business_license && 'border-danger',
 											)}>
-											{file?.name || 'png, pdf, jpeg, jpg 확장자 가능'}
+											{file?.name || step3?.file_placeholder}
 										</div>
 										<label htmlFor='business_license' className='file-label'>
 										{step3.browse}

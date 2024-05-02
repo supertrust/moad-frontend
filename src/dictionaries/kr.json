@@ -1386,7 +1386,42 @@
       "onSubmit":{
         "modalHandleShow": "사업자등록번호를 확인해주세요.",
         "successToast": "사용자 등록 성공"
+      },
+      "contact_position" : {
+        "contact_person_position": "",
+        "employee": "사원",
+        "team_leader": "주임",
+        "manager": "대리",
+        "director": "과장",
+        "vice_president": "차장",
+        "executive_director": "부장",
+        "executive": "임원",
+        "other": "기타"
+      },
+        "file_placeholder" : "png, pdf, jpeg, jpg 확장자 가능",
+       "registerSchemaValidation" : {
+        "is_korean" : "올바른 한글 이름 입력",
+        "phone_number_validation" : "전화번호는 11자리여야 합니다.",
+        "company_name" : "회사명은 필수 입력 사항입니다.",
+        "employee_name" : "직원 이름을 입력하세요.",
+        "employee_max_len" : "담당자 이름은 10자를 넘지 않아야 합니다.",
+        "company_phone_number" : "핸드폰번호를 입력해주세요",
+        "employee_phone_number" : "직원 전화번호를 입력하세요.",
+        "business_registration_number" : "사업자 등록 번호를 입력하세요.",
+        "business_registration_number_validation" : "10자리여야 합니다.",
+        "verify_business_reg_num" : "사업자등록번호를 확인해 주세요.",
+        "employee_email" : "직원 이메일을 입력하세요.",
+        "employee_email_validation" : "유효한 이메일을 입력하세요.",
+        "business_license" : "사업자 등록증을 업로드하세요.",
+        "business_license_file_format" : ".pdf, .jpg, .jpeg, .png 파일만 허용됩니다.",
+        "business_license_file_size" : "파일 크기는 10MB 미만이어야 합니다."
+
       }
+    },
+    "step4" : {
+      "title" : "회원가입이 완료되었습니다.",
+      "subtitle" : "로그인 버튼을 클릭 후 로그인 해주세요.",
+      "login" : "로그인"
     }
   },
   "view": "보기"

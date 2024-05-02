@@ -1316,7 +1316,7 @@
         "title": ["Terms of Service", "Privacy Policy"],
         "innerTitle": ["Terms of Service", "Privacy Policy"],
         "cancelBtn" : "Cancel",
-        "agreeBtn" : "agree"
+        "agreeBtn" : "Agree"
       }
     },
     "step2":{
@@ -1392,7 +1392,41 @@
       "onSubmit":{
         "modalHandleShow": "Please check your business registration number.",
         "successToast": "User registration successful"
+      },
+      "contact_position" : {
+        "contact_person_position": "",
+        "employee": "Employee",
+        "team_leader": "Team Leader",
+        "manager": "Manager",
+        "director": "Director",
+        "vice_president": "Vice President",
+        "executive_director": "Executive Director",
+        "executive": "Executive",
+        "other": "Other"
+      },
+      "file_placeholder": "png, pdf, jpeg, jpg extensions are allowed",
+      "registerSchemaValidation": {
+        "is_korean": "Please enter a valid Korean name.",
+        "phone_number_validation": "Phone number should be 11 digits.",
+        "company_name": "Company name is required.",
+        "employee_name": "Please enter employee name.",
+        "employee_max_len": "Employee name should not exceed 10 characters.",
+        "company_phone_number": "Please enter the company phone number.",
+        "employee_phone_number": "Please enter employee phone number.",
+        "business_registration_number": "Please enter the business registration number.",
+        "business_registration_number_validation": "It should be 10 digits.",
+        "verify_business_reg_num": "Please verify the business registration number.",
+        "employee_email": "Please enter employee email.",
+        "employee_email_validation": "Please enter a valid email address.",
+        "business_license": "Please upload the business license.",
+        "business_license_file_format": "Only .pdf, .jpg, .jpeg, .png files are allowed.",
+        "business_license_file_size": "File size should be less than 10MB."
       }
+    },
+    "step4": {
+      "title": "Registration completed.",
+      "subtitle": "Please click the login button to log in.",
+      "login": "Login"
     }
   },
   "view": "View"

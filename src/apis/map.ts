@@ -24,6 +24,14 @@ export const useAllVehicleLocationDetails = (cargo_vehicle_id: string, date_filt
     retry: 0,
 })
 
+export const useAllAdvertisementVehicleLocationDetails = (date_filter: string | null )  => useQuery<any[], string>({
+    queryKey: ["all-advertisement-vehicle-location",date_filter],
+    queryFn: async () => (await axios.get(`/api/get-advertiser-all-vehicle-location`,  {
+        params : {  date_filter }
+    })).data.data,
+    retry: 0,
+})
+
 export const useAllVehicleLocationDate = (cargo_vehicle_id: string )  => useQuery<string[], string>({
     queryKey: ["all-vehicle-location", cargo_vehicle_id],
     queryFn: async () => (await axios.get(`/api/get-all-vehicle-date`,  {

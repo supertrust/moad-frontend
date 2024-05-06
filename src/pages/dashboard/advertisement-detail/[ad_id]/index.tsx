@@ -79,6 +79,7 @@ const DisabledButton = ({ children }) => {
 
 function AdvertisementDetailScreen() {
   const router = useRouter();
+  const [isAllCargoButtonShow,setIsAllCargoButtonShow] = useState(false);
   const { dictionary: { types, view, operationStatus, adDetailsPage, common } } = useAuth();
   const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState<{ page: number; status: string }>({
@@ -104,7 +105,7 @@ function AdvertisementDetailScreen() {
       advertisement_id: advertisementId,
     });
 
-  const { data: cargoList, isLoading } = useGetAdvertisementCargoList({
+  const { data: cargoList, isLoading, isFetchedAfterMount } = useGetAdvertisementCargoList({
     advertisement_id: advertisementId,
     ...filters,
   });
@@ -128,6 +129,12 @@ function AdvertisementDetailScreen() {
     doorRight:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
   });
+
+  useEffect(()=>{
+     if(isFetchedAfterMount && totalRecords) {
+       setIsAllCargoButtonShow(true);
+     }
+  },[isFetchedAfterMount])
 
   useEffect(() => {
     const modalImagesArr = modelImages;
@@ -438,8 +445,8 @@ function AdvertisementDetailScreen() {
                 ]}
                 className="text-[#2c324c] mb-[20px] hidden sm:block"
               />
-
-              <div className={styles.detail_content}>
+             <div className={'flex flex-col gap-[10px]'}>
+              <div className={clsx(styles.detail_content,'h-[100%] w-[100%]')}>
                 <div className={styles.slide_box}>
                   {draftAdvertisementImages?.length ? (
                     <div
@@ -576,99 +583,27 @@ function AdvertisementDetailScreen() {
                         <div className={styles.text}>{data.value}</div>
                       </div>
                     ))}
-                    <div key={index} className={styles.table_line}>
-                      <div className={styles.title}></div>
-                      <div className={styles.text}>
-                        <Link
-                          className="bg-primary px-4 py-3 text-white rounded hover:!text-[#FFFFFF]"
-                          href={`/dashboard/advertisement-detail/${advertisementId}/vehicle-location`}
-                        >
-                          {adDetailsPage.ViewAllCargoLocation}
-                        </Link>
-                      </div>
-                    </div>
                   </div>
-                  <div className={styles.model_contents_container}>
-                    {/*<div className={styles.model_content}>*/}
-                    {/*  <p>Left</p>*/}
-                    {/*  <div className={styles.model_side_image_con}>*/}
-                    {/*    <Image*/}
-                    {/*        className={styles.model_images}*/}
-                    {/*        src={modelImages.left}*/}
-                    {/*        alt="left"*/}
-                    {/*        width={200}*/}
-                    {/*        height={200}*/}
-                    {/*    />*/}
-                    {/*  </div>*/}
-                    {/*  <input*/}
-                    {/*      onChange={handleModelImageChange("left")}*/}
-                    {/*      className={styles.file_input}*/}
-                    {/*      type="file"*/}
-                    {/*      placeholder="file"*/}
-                    {/*  />*/}
-                    {/*</div>*/}
-                    {/*<div className={styles.model_content}>*/}
-                    {/*  <p>Right</p>*/}
-                    {/*  <div className={styles.model_side_image_con}>*/}
-                    {/*    <Image*/}
-                    {/*        className={styles.model_images}*/}
-                    {/*        src={modelImages.right}*/}
-                    {/*        alt="right"*/}
-                    {/*        width={200}*/}
-                    {/*        height={200}*/}
-                    {/*    />*/}
-                    {/*  </div>*/}
-                    {/*  <input*/}
-                    {/*      width={"200px"}*/}
-                    {/*      height={"100px"}*/}
-                    {/*      onChange={handleModelImageChange("right")}*/}
-                    {/*      className={styles.file_input}*/}
-                    {/*      type="file"*/}
-                    {/*      placeholder="file"*/}
-                    {/*  />*/}
-                    {/*</div>*/}
-                    {/*<div className={styles.model_content}>*/}
-                    {/*  <p>Back</p>*/}
-                    {/*  <div className={styles.back_doors_con}>*/}
-                    {/*    <div className={styles.back_door_con}>*/}
-                    {/*      <div className={styles.model_back_image_con}>*/}
-                    {/*        <Image*/}
-                    {/*            className={styles.model_images}*/}
-                    {/*            width={50}*/}
-                    {/*            height={200}*/}
-                    {/*            src={modelImages.doorLeft}*/}
-                    {/*            alt="doorLeft"*/}
-                    {/*        />*/}
-                    {/*      </div>*/}
-                    {/*      <input*/}
-                    {/*          onChange={handleModelImageChange("doorLeft")}*/}
-                    {/*          className={styles.file_input}*/}
-                    {/*          type="file"*/}
-                    {/*          placeholder="file"*/}
-                    {/*      />*/}
-                    {/*    </div>*/}
-                    {/*    <div className={styles.back_door_con}>*/}
-                    {/*      <div className={styles.model_back_image_con}>*/}
-                    {/*        <Image*/}
-                    {/*            className={styles.model_images}*/}
-                    {/*            width={50}*/}
-                    {/*            height={200}*/}
-                    {/*            src={modelImages.doorRight}*/}
-                    {/*            alt="doorRight"*/}
-                    {/*        />*/}
-                    {/*      </div>*/}
-                    {/*      <input*/}
-                    {/*          onChange={handleModelImageChange("doorRight")}*/}
-                    {/*          className={styles.file_input}*/}
-                    {/*          type="file"*/}
-                    {/*          placeholder="file"*/}
-                    {/*      />*/}
-                    {/*    </div>*/}
-                    {/*  </div>*/}
-                    {/*</div>*/}
-                  </div>
+
                 </div>
               </div>
+
+               {
+
+                       <div className={clsx('flex justify-end w-[100%] pt-[70px]',  isAllCargoButtonShow ?
+                       "pt-[100px] 2xl:pt-[70px]" : "")}>
+                         {
+                           isAllCargoButtonShow ?  <div className={styles.text}>
+                             <Link
+                                 className="bg-primary px-4 py-3 text-white rounded hover:!text-[#FFFFFF]"
+                                 href={`/dashboard/advertisement/all-vehicle-location`}
+                             >
+                               {adDetailsPage.ViewAllCargoLocation}
+                             </Link>
+                           </div> : ""}
+                       </div>
+
+               }
               {/* Table */}
               <div className={styles.ad_contents}>
                 <div className={styles.tab_menu}>
@@ -718,6 +653,7 @@ function AdvertisementDetailScreen() {
                   onChangePage={(page) => setFilters({ ...filters, page })}
                 />
               </div>
+             </div>
             </div>
           </div>
         </div>

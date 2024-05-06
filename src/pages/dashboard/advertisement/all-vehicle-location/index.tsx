@@ -1,6 +1,11 @@
+import  MultipleLocationDrawer  from "@src/components/common/Drawer/MultipleLocationDrawer/MultipleLocationDrawer";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import React, { useEffect, useState } from "react";
-import { useAllVehicleLocationDate, useAllVehicleLocationDetails } from "@src/apis/map";
+import {
+  useAllAdvertisementVehicleLocationDetails,
+  useAllVehicleLocationDate,
+  useAllVehicleLocationDetails
+} from "@src/apis/map";
 import { useRouter } from "next/router";
 import { Button } from "@src/components/common";
 import { Map } from "@src/components/Map";
@@ -23,28 +28,32 @@ type DateRange = {
 }
 
 
-const cargoList = [
-  {
-    origin: "36.59602064328006, 127.49743696679992",
-    destination: "36.5784079310275, 127.42903463451763",
-    currentPosition: "36.58974335480901, 127.46645556185162",
-    name: "Cargo1",
-  },
-  {
-    origin: "36.5784079310275, 127.42903463451763",
-    destination: "36.85292608010818, 127.67670661667673",
-    currentPosition: "36.78582763979032, 127.56224513044643",
-    name: "Cargo2",
-  },
-  {
-    origin: "36.60056223670456, 127.5773979376397",
-    destination: "36.47559052342964, 127.59967843804897",
-    currentPosition: "36.54226761556564, 127.56522545444052",
-    name: "Cargo3",
-  },
-]
+// const cargoList = [
+//   {
+//     origin: "36.59602064328006, 127.49743696679992",
+//     destination: "36.5784079310275, 127.42903463451763",
+//     currentPosition: "36.58974335480901, 127.46645556185162",
+//     name: "Cargo1",
+//   },
+//   {
+//     origin: "36.5784079310275, 127.42903463451763",
+//     destination: "36.85292608010818, 127.67670661667673",
+//     currentPosition: "36.78582763979032, 127.56224513044643",
+//     name: "Cargo2",
+//   },
+//   {
+//     origin: "36.60056223670456, 127.5773979376397",
+//     destination: "36.47559052342964, 127.59967843804897",
+//     currentPosition: "36.54226761556564, 127.56522545444052",
+//     name: "Cargo3",
+//   },
+// ]
 
-const VehicleLocationScreen = () => {
+const AllVehicleLocation = () => {
+
+  const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
+  const [cargoList,setCargoList] = useState<any[]>([])
+  const { data: cargoAllLocation, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails( ISOformatDate(selectedDateRange as Date))
   const [loading] = useKakaoLoader({
     appkey: KAKAO_MAP_API_KEY || '',
     libraries: ['services', 'clusterer', 'drawing'],
@@ -56,16 +65,36 @@ const VehicleLocationScreen = () => {
   const [showDrawer, setShowDrawer] = useState(false);
   const { dictionary: { adVehicleLocDetailsPage } } = useAuth();
   const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(null);
-  const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
 
-  const { data: cargoAllLocation, refetch, isLoading, isRefetching } = useAllVehicleLocationDetails(vehicle_id as string,
-    ISOformatDate(selectedDateRange as Date));
 
-  useEffect(() => {
-    const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.length - 1] : null;
-    setCargoLocation(latestLocation)
-  }, [JSON.stringify(cargoAllLocation)])
+
+
+  // useEffect(() => {
+  //   const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.length - 1] : null;
+  //   setCargoLocation(latestLocation)
+  // }, [JSON.stringify(cargoAllLocation)])
+
+
+  useEffect(()=>{
+
+    if(!isFetching && cargoAllLocation){
+      const newCargo = [...cargoAllLocation].map((cargo)=>{
+        const {current_point : currentPosition,end_point : destination,starting_point : origin,cargo_to_advertisment,
+        logs} = cargo;
+        return {
+          currentPosition,
+          destination,
+          origin,
+          name : cargo_to_advertisment?.advertisement?.ad_name,
+          logs
+        }
+      })
+
+      setCargoList([...newCargo])
+
+    }
+  },[isFetching])
 
   useEffect(() => {
     setPageTitle(adVehicleLocDetailsPage.pageTitle);
@@ -77,11 +106,26 @@ const VehicleLocationScreen = () => {
     router.back();
   };
 
+  const handleDateChange = (dateRange:Date) => {
+    setSelectedDateRange(dateRange)
+    // refetch();
+  }
+
+  const handleRideChange = (data:number) => {
+    // const foundObject : IVehicleLocationDetails | null = cargoAllLocation?.find(item => item?.id == data) || null;
+    // setCargoLocation(foundObject)
+  }
+
+  const toggleDrawer = () => {
+    setShowDrawer(!showDrawer);
+  };
+
+
 
 
   const renderCargo = (
-    { origin, destination, currentPosition, name }:
-      { origin?: kakao.maps.LatLng, destination?: kakao.maps.LatLng, currentPosition?: kakao.maps.LatLng, name?: string }
+    { origin, destination, currentPosition, name,logs=[] }:
+      { origin?: kakao.maps.LatLng, destination?: kakao.maps.LatLng, currentPosition?: kakao.maps.LatLng, name?: string,logs?: any[] }
   ) => {
 
     const color = darkenColor(getRandomColor(), 30);
@@ -103,19 +147,20 @@ const VehicleLocationScreen = () => {
           origin={origin}
           destination={destination}
           strokeColor={color}
+          logs={logs}
         />
       </>
     )
   }
   return (
     <div className="relative">
-      {/* {isLoading && (
+       { (isFetching || isLoading) && (
         <div className={`w-full top-[50%] ${showDrawer ? 'w-full' : 'w-[calc(100%-340px)]'}`}>
           <div className="flex flex-row justify-center items-center h-[calc(100vh-170px)]">
             <Loader size="lg" />
           </div>
         </div>
-      )} */}
+      )}
       <div className={`only-mb`}>
         <div className={`mobile-top-header px-[20px] pt-[15px] pb-[16px] mb-0`}>
           <ArrowBack handleAction={onBack} />
@@ -123,20 +168,34 @@ const VehicleLocationScreen = () => {
           <div></div>
         </div>
       </div>
+      {
+        isFetching ? <></>:
+        cargoList?.length || 0 > 0 ?
       <Map
         zoom={5}
         className="!h-[85vh] relative"
-        location={toLatLng(cargoList[0].currentPosition)}
+        location={toLatLng(cargoList?.[0]?.currentPosition)}
         showMarker={false}
         onClick={(map) => console.log(map.getCenter().toString())}
       >
-        {cargoList.map(({ origin, destination, currentPosition, name }) => renderCargo({
+        {cargoList.map(({ origin, destination, currentPosition, name,logs }) => renderCargo({
           origin: toLatLng(origin),
           destination: toLatLng(destination),
           currentPosition: toLatLng(currentPosition),
-          name
+          name,
+          logs
         }))}
-      </Map>
+      </Map> :  !isLoading && <div className={`flex flex-col justify-center items-center align-middle h-[calc(100vh-170px)] ${showDrawer ? 'w-full' : 'w-[calc(100%-340px)]'}`}>
+          <Image
+              src={'/images/location_not_found.png'}
+              width={200}
+              height={200}
+              alt={'no data'}
+              unoptimized
+              className={``}
+          />
+          <p>{adVehicleLocDetailsPage.noRecordMsg}</p>
+        </div>}
       <div className="absolute hidden sm:block bottom-20 left-[50%] sm:left-[50%] lg:left-[60%] z-50">
         <Button
           className="bg-[#2C324C] text-white w-20 hidden"
@@ -146,18 +205,18 @@ const VehicleLocationScreen = () => {
           {adVehicleLocDetailsPage.refresh}
         </Button>
       </div>
-      {/* <Drawer
+   <MultipleLocationDrawer
         open={showDrawer}
         handleClose={toggleDrawer}
         vehicle={cargoLocation}
-        vehicleDate={cargoAllLocationDate}
-        locationIds={allLocationIds}
+        vehicleDate={[]}
+        locationIds={[]}
         isLoading={isLoading}
         dateChangeHandler={handleDateChange}
         rideChangeHandler={handleRideChange}
-      /> */}
+      />
     </div>
   );
 };
 
-export default VehicleLocationScreen;
+export default AllVehicleLocation;

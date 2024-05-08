@@ -1,20 +1,20 @@
-import React, { useState,useEffect } from 'react';
-import styles from '../style.module.scss';
-import Image from 'next/image';
-import { clsx } from 'clsx';
 import CaretUp from '@images/vehicle_location/ic-arrow-up.png'
-import { IVehicleLocationDetails } from '@src/types/map';
-import Loader from '@src/components/Loader';
-import dynamic from "next/dynamic";
-import { DatePicker, Select, ConfigProvider } from "antd";
 import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
-import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, getNextPrevDates, totalDays } from "@src/helpers";
-import dayjs, { Dayjs } from "dayjs";
-import type { CellRenderInfo } from 'rc-picker/es/interface';
+import Loader from '@src/components/Loader';
+import { dateFormat, getNextPrevDates, ISOformatDate } from "@src/helpers";
 import useAuth from '@src/hooks/useAuth';
+import { IVehicleLocationDetails } from '@src/types/map';
+import { ConfigProvider, DatePicker, Select } from "antd";
 import koKR from 'antd/locale/ko_KR';
+import { clsx } from 'clsx';
+import dayjs, { Dayjs } from "dayjs";
 import 'dayjs/locale/ko';
+import dynamic from "next/dynamic";
+import Image from 'next/image';
+import type { CellRenderInfo } from 'rc-picker/es/interface';
+import React, { useEffect, useState } from 'react';
+import styles from '../style.module.scss';
 
 dayjs.locale('ko');
 
@@ -152,15 +152,16 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
     avarageMonthlyDistance,
     today_distance,
     total_distance,
-    current_point_name
+    current_point_name,
+      logs
   } = vehicle || {}
 
-  let start = start_time ? start_time.split('T') : null
+  let start = logs?.length ? logs[0]?.created_at?.split(' '): start_time ? start_time.split('T') : null
   let startMonth = start ? start[0].split('-')[1] : null
   let startDate = start ? start[0].split('-')[2] : null
   let startTime = start ? start[1].split(':') : null
 
-  let end = end_time ? end_time.split('T') : null
+  let end = logs?.length ? logs[logs.length-1]?.created_at?.split(' '): end_time ? end_time.split('T') : null
   let endMonth = end ? end[0].split('-')[1] : null
   let endDate = end ? end[0].split('-')[2] : null
   let endTime = end ? end[1].split(':') : null

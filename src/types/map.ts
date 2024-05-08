@@ -34,7 +34,7 @@ export type IVehicleLocationDetails = {
     today_distance: number,
     total_distance: number,
     avarageMonthlyDistance: number
-    logs: {location:string}[]
+    logs: {location:string, created_at : string}[]
 }
 
 export type LogVehiclLocationProps = {

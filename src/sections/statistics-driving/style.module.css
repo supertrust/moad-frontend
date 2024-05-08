@@ -13,7 +13,7 @@
     width: 100%;
   }
   
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     #statistics_driving {
       min-height: 100%;
       background-color: #f5f7fb;
@@ -1081,7 +1081,7 @@
     color: #ffffff;
   }
   
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     #statistics_driving .container .board_content .statistics_driving_content {
       padding: 0 20px 30px 20px;
     }

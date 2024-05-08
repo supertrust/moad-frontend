@@ -89,7 +89,7 @@ header nav {
 
 .sidebar_menu .content {
 	position: relative;
-	min-height: 900px;
+	min-height: 650px;
 	height: 100%;
 }
 
@@ -1876,7 +1876,7 @@ a {
 	cursor: pointer;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
 	#sign_up .step-section .left {
 		display: none;
 	}
@@ -1967,7 +1967,7 @@ td.react-bs-table-no-data {
 	padding: 100px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
 	#ad_apply_modal
 		.ad-modal-wrap
 		.ad-apply-content
@@ -2128,7 +2128,7 @@ div#slide_wrap .list {
 	border: 0;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
 	.ad-terms-modal .ad-terms .content .btn-wrap .btns {
 		padding: 9px 20px;
 		font-size: 12px;
@@ -2233,7 +2233,7 @@ div#slide_wrap .list {
 	background: var(--primary-color);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
 	.ad-apply-completed .apply-completed-wrap .apply-completed-btn {
 		padding: 9px 20px;
 		font-size: 12px;
@@ -2381,7 +2381,7 @@ div#slide_wrap .list {
 	color: #999999;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
 	#ad_apply_modal {
 		padding: 0;
 		width: 100%;
@@ -2825,7 +2825,7 @@ div#slide_wrap .list {
 	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
 	#ad_apply_modal
 		.ad-modal-wrap
 		.ad-apply-content
@@ -3334,10 +3334,6 @@ ul.pagination .page-item a:focus {
 	height: 26px;
 }
 
-.only-mb {
-	display: none;
-}
-
 .ic-plus {
 	display: block;
 	width: 25px;
@@ -3345,7 +3341,7 @@ ul.pagination .page-item a:focus {
 	background: url(/images/ic-plus.png) no-repeat center center / cover;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
 	.only-pc {
 		display: none;
 	}
@@ -4023,7 +4019,7 @@ input:focus-visible {
 	}
 }
 
-@media (max-width: 1024px) and (min-width: 768px) {
+@media (max-width: 1023px) and (min-width: 1023px) {
 	.chats-con-img div {
 		padding: 20px;
 	}
@@ -4081,7 +4077,7 @@ input:focus-visible {
 	width: 7%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1023px) {
 	.breadcrumb {
 		display: none !important;
 	}
@@ -4359,9 +4355,9 @@ input:focus {
 	border:1px solid var(--primary-color) !important;
 }
 
-@media only screen and (min-width: 768px) {
-	.only-mb{
-		display : none!important;
-	}
-}
+/*@media only screen and (min-width: 1023px) {*/
+/*	.only-mb{*/
+/*		display : none!important;*/
+/*	}*/
+/*}*/
 

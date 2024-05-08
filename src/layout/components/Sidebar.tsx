@@ -1,8 +1,8 @@
 import { Skeleton } from "@mui/material";
-import { Icon2, Icon1, Icon3, Icon4 } from "@src/components/icons";
+import { Icon1, Icon2, Icon3, Icon4 } from "@src/components/icons";
+import LogoPc from "@src/components/icons/LogoPc";
 import useAuth from "@src/hooks/useAuth";
 import { PageRouting } from "@src/utils/values";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -62,12 +62,9 @@ function Sidebar({ msg }: SidebarProps) {
     return (
         <div className="content">
             <h1 className="side-logo cursor-pointer" onClick={() => router.push("/dashboard")}>
-                <Image
-                    src="/images/logo-pc.svg"
-                    alt="logo-pc"
-                    width={150}
-                    height={50}
-                />
+              <div className={'flex justify-center h-[51px]'}>
+                  <LogoPc/>
+              </div>
             </h1>
             <div className="sidemenu-wrap">
                 <ul className="menu-wrap">
@@ -241,7 +238,7 @@ function Sidebar({ msg }: SidebarProps) {
                     )}
                 </ul>
             </div>
-            <div className="side-logout d-flex align-items-center">
+            <div className="side-logout d-flex align-items-center cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300">
                 <a onClick={handleLogout} className="logout-btn">
                     <i className="ic-logout"></i>
                     <div className="text-white">{dictionary.sidebar.logout}</div>

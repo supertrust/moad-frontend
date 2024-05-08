@@ -57,7 +57,7 @@ function InquirePage() {
       <Head>
         <title>{inquiryPage.title}</title>
       </Head>
-      <div className="p-[20px] sm:px-[30px] sm:py-[20px] text-gray-700 flex flex-col gap-[30px] only-pc">
+      <div className="p-[20px] lg:px-[30px] lg:py-[20px] text-gray-700 flex flex-col gap-[30px] only-pc">
         <div className="flex gap-[20px] items-center p-[20px] sm:p-[0]">
           <Link href={`/dashboard/customer-service/inquire`}>
             <button className="font-bold text-[20px] text-advertiser-primary">
@@ -185,7 +185,7 @@ function InquirePage() {
           <div></div>
         </div>
 
-        <div className="flex gap-[18px] items-center p-[20px] pt-0 pb-[16px] sm:p-[0]">
+        <div className="flex gap-[18px] items-center p-[20px] pt-0 pb-[16px] lg:p-[0]">
           <Link href={`/dashboard/customer-service/inquire`}>
             <span className={styles["tab1-mb"]}>{inquiryPage.checkInquiryDetailsBtn}</span>
           </Link>

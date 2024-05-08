@@ -15,7 +15,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   #ad_detail_list {
     min-height: 100%;
     background-color: #f5f7fb;
@@ -964,7 +964,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   #ad_detail_list {
     min-height: 100%;
     background-color: #f5f7fb;
@@ -1202,7 +1202,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) and (max-width: 1024px) {
+@media screen and (max-width: 1023px) and (max-width: 1023px) {
   #ad_detail_list {
     min-height: 100%;
     background-color: #f5f7fb;
@@ -1386,7 +1386,7 @@ span.carousel-control-prev-icon {
   align-items: center;
 }
 
-@media screen and (max-width: 1024px) and (max-width: 1024px) {
+@media screen and (max-width: 1023px) and (max-width: 1023px) {
   .model_contents_container {
     flex-wrap: wrap;
   }

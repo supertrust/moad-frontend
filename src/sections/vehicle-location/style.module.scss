@@ -4,7 +4,7 @@ $font-family: "Noto Sans KR", sans-serif;
   display: none;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .only_pc {
     display: none;
   }
@@ -414,7 +414,7 @@ $font-family: "Noto Sans KR", sans-serif;
   cursor: pointer;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .vehicle_location_content .location_detail_wrap {
     top: 60px;
   }

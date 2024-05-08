@@ -52,12 +52,12 @@ header nav {
     no-repeat center center/cover;
   cursor: pointer;
 }
-@media (min-width: 1024px) {
+@media (min-width: 1023px) {
   .d-none-desktop {
     display: none !important;
   }
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .section04 .container ._list-wrap ._list ._text-wrap {
     text-align: left !important;
     justify-content: flex-start !important;

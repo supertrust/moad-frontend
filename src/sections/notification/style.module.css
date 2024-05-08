@@ -35,7 +35,7 @@
 	color: #2c324c;
   }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1023px) {
 	#notification_center {
 		min-height: 100%;
 		background-color: #F5F7FB
@@ -197,7 +197,7 @@
 	}
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1023px) {
 	.notification_center_content {
 		padding: 20px 20px 41px
 	}

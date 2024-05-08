@@ -27,7 +27,7 @@ const ADVERTISER_ROLE = {
 
 function AuthProvider({ children }: AuthProviderProps) {
 
-    const isPcOnly = useMediaQuery('(min-width:1025px)');
+    const isPcOnly = useMediaQuery('(min-width:1024px)');
     const { mutateAsync: _login } = useLogin();
     const { mutateAsync: _register } = useRegister();
     const { mutateAsync: _logout } = useLogout();

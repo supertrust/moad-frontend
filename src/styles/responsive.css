@@ -1,6 +1,6 @@
 /* only for global responsiveness  */
 /* if you want particular component responsiveness so do it in it's own css file */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   #login {
     display: block;
     position: relative;

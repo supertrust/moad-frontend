@@ -12,7 +12,7 @@
   background-color: #f5f7fb;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   #vehicle_information {
     min-height: 100%;
     background-color: #f5f7fb;
@@ -641,7 +641,7 @@
   
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   #vehicle_information
     .container
     .board_content

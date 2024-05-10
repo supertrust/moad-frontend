@@ -1,5 +1,6 @@
 import  MultipleLocationDrawer  from "@src/components/common/Drawer/MultipleLocationDrawer/MultipleLocationDrawer";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
+import { formatNumberWithCommas } from "@src/utils/formatter";
 import React, { useEffect, useState } from "react";
 import {
   useAllAdvertisementVehicleLocationDetails,
@@ -52,12 +53,16 @@ type DateRange = {
 const AllVehicleLocation = () => {
 
   const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
+  const [values,setValues] = useState({
+    in_total_distance_covered : 0
+  })
   const [cargoList,setCargoList] = useState<any[]>([])
   const { data: cargoAllLocation, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails( ISOformatDate(selectedDateRange as Date))
   const [loading] = useKakaoLoader({
     appkey: KAKAO_MAP_API_KEY || '',
     libraries: ['services', 'clusterer', 'drawing'],
   })
+  const [hover,setHover] = useState<number>(-1)
 
   const { query } = useRouter();
   const { ad_id, vehicle_id } = query;
@@ -81,17 +86,24 @@ const AllVehicleLocation = () => {
     if(!isFetching && cargoAllLocation){
       const newCargo = [...cargoAllLocation].map((cargo)=>{
         const {current_point : currentPosition,end_point : destination,starting_point : origin,cargo_to_advertisment,
-        logs} = cargo;
+        logs,start_time,end_time,total_time_covered,total_distance_covered} = cargo;
         return {
           currentPosition,
           destination,
           origin,
           name : cargo_to_advertisment?.advertisement?.ad_name,
-          logs
+          logs,
+          info : { start_time,end_time,total_time_covered,total_distance_covered }
         }
       })
 
+      let sum = cargoAllLocation.reduce((acc, curr) => acc + curr.total_distance_covered, 0);
+
       setCargoList([...newCargo])
+      setValues({
+        ...values,
+        in_total_distance_covered : sum
+      })
 
     }
   },[isFetching])
@@ -124,11 +136,20 @@ const AllVehicleLocation = () => {
 
 
   const renderCargo = (
-    { origin, destination, currentPosition, name,logs=[] }:
-      { origin?: kakao.maps.LatLng, destination?: kakao.maps.LatLng, currentPosition?: kakao.maps.LatLng, name?: string,logs?: any[] }
+    { origin, destination, currentPosition, name,logs=[],id,info }:
+      { origin?: kakao.maps.LatLng, destination?: kakao.maps.LatLng, currentPosition?: kakao.maps.LatLng, name?: string,logs?: any[],id : number,
+      info : { start_time:string,end_time:string,total_time_covered:string,total_distance_covered:number } }
   ) => {
 
     const color = darkenColor(getRandomColor(), 30);
+    const { start_time,end_time,total_time_covered,total_distance_covered } = info;
+
+    let start = logs?.length ? logs[0]?.created_at?.split(' '): start_time ? start_time.split('T') : null
+    let startTime = start ? start[1].split(':') : null
+
+    let end = logs?.length ? logs[logs.length-1]?.created_at?.split(' '): end_time ? end_time.split('T') : null
+    let endTime = end ? end[1].split(':') : null
+
     return (
       <>
         {currentPosition &&
@@ -141,8 +162,30 @@ const AllVehicleLocation = () => {
             title={name}
           />
         }
-        {origin && <MapMarker position={{ lat: origin.getLat(), lng: origin.getLng() }} title={`Origin ${name}`} />}
-        {destination && <MapMarker position={{ lat: destination.getLat(), lng: destination.getLng() }} title={`Destination ${name}`} />}
+        {origin && <MapMarker position={{ lat: origin.getLat(), lng: origin.getLng() }}  title={`Origin ${name}`} />}
+        {destination && <MapMarker
+         position={{ lat: destination.getLat(), lng: destination.getLng() }} title={ ``} onMouseOut={()=>setHover(-1)} onMouseOver={()=>
+          setHover(id)}>
+          {
+          id===hover &&  <div style={{border: '1px solid #FFFFFF'}}  className={'bg-[#FFFFFF] flex flex-col gap-2 w-[240px] p-4'}>
+                {
+                  [{ title : "총 운행거리", value : formatNumberWithCommas(total_distance_covered,2), extra : <span>km</span>},
+                    { title : "총 운행시간", value : total_time_covered},
+                     { title : "운행 시작시각", value : `${startTime?.[0]}:${startTime?.[1]}`},
+                     { title : "운행 종료시각", value : `${endTime?.[0]}:${endTime?.[1]}`}
+
+                  ].map((item,index)=> <div key={index} className={'flex justify-between'}>
+                    <span className={`text-[16px] text-[#2C324C]`}>{item.title}</span>
+                  <div className={'text-[16px]'}>
+                    <span className={'font-bold text-advertiser-primary'}>{item.value}</span>  {item?.extra && item?.extra}
+                  </div>
+                  </div>)
+                }
+
+              </div>
+          }
+
+        </MapMarker>}
         <DirectionRender
           origin={origin}
           destination={destination}
@@ -178,12 +221,12 @@ const AllVehicleLocation = () => {
         showMarker={false}
         onClick={(map) => console.log(map.getCenter().toString())}
       >
-        {cargoList.map(({ origin, destination, currentPosition, name,logs }) => renderCargo({
+        {cargoList.map(({ origin, destination, currentPosition, name,logs,info },index) => renderCargo({
           origin: toLatLng(origin),
           destination: toLatLng(destination),
           currentPosition: toLatLng(currentPosition),
           name,
-          logs
+          logs,id : index, info
         }))}
       </Map> :  !isLoading && <div className={`flex flex-col justify-center items-center align-middle h-[calc(100vh-170px)] ${showDrawer ? 'w-full' : 'w-[calc(100%-340px)]'}`}>
           <Image
@@ -214,6 +257,7 @@ const AllVehicleLocation = () => {
         isLoading={isLoading}
         dateChangeHandler={handleDateChange}
         rideChangeHandler={handleRideChange}
+        in_total_distance_covered={values?.in_total_distance_covered}
       />
     </div>
   );

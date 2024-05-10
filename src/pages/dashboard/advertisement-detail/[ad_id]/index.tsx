@@ -223,7 +223,7 @@ function AdvertisementDetailScreen() {
     },
     {
       title: adDetailsPage.adDetailColumns[5],
-      value: `${advertisement?.total_cost?.toLocaleString()} 원`,
+      value: `${advertisement?.total_cost?.toLocaleString() || 0} 원`,
     },
     {
       title: adDetailsPage.adDetailColumns[6],
@@ -588,24 +588,25 @@ function AdvertisementDetailScreen() {
                 </div>
               </div>
 
-               {
+               {/*{*/}
 
-                       <div className={clsx('flex justify-end w-[100%] pt-[70px]',  isAllCargoButtonShow ?
-                       "pt-[100px] 2xl:pt-[70px]" : "")}>
-                         {
-                           isAllCargoButtonShow ?  <div className={styles.text}>
-                             <Link
-                                 className="bg-primary px-4 py-3 text-white rounded hover:!text-[#FFFFFF]"
-                                 href={`/dashboard/advertisement/all-vehicle-location`}
-                             >
-                               {adDetailsPage.ViewAllCargoLocation}
-                             </Link>
-                           </div> : ""}
-                       </div>
+               {/*        <div className={clsx('flex justify-end w-[100%] pt-[70px]',  isAllCargoButtonShow ?*/}
+               {/*        "pt-[100px] 2xl:pt-[70px]" : "")}>*/}
+               {/*          {*/}
+               {/*            isAllCargoButtonShow ?  <div className={styles.text}>*/}
+               {/*              <Link*/}
+               {/*                  className="bg-primary px-4 py-3 text-white rounded hover:!text-[#FFFFFF]"*/}
+               {/*                  href={`/dashboard/advertisement/all-vehicle-location`}*/}
+               {/*              >*/}
+               {/*                {adDetailsPage.ViewAllCargoLocation}*/}
+               {/*              </Link>*/}
+               {/*            </div> : ""}*/}
+               {/*        </div>*/}
 
-               }
+               {/*}*/}
               {/* Table */}
               <div className={styles.ad_contents}>
+                <div className={'flex justify-between items-center pr-[20px]'}>
                 <div className={styles.tab_menu}>
                   <div
                     className={clsx(
@@ -613,7 +614,8 @@ function AdvertisementDetailScreen() {
                       styles.tab_title,
                       !filters.status && styles.active
                     )}
-                    onClick={() => setFilters({ ...filters, status: "" })}
+                    onClick={() => setFilters(
+                        { ...filters, status: "" })}
                   >
                     {adDetailsPage.tabs[0]}
                   </div>
@@ -642,6 +644,18 @@ function AdvertisementDetailScreen() {
                     {adDetailsPage.tabs[2]}
                   </div>
                 </div>
+                  {
+                    isAllCargoButtonShow ?  <div className={styles.text}>
+                      <Link
+                          className="bg-primary px-4 py-3 text-white rounded hover:!text-[#FFFFFF]"
+                          href={`/dashboard/advertisement/all-vehicle-location`}
+                      >
+                        {adDetailsPage.ViewAllCargoLocation}
+                      </Link>
+                    </div> : ""}
+                </div>
+
+
                 <DataGrid
                   columns={columns}
                   rows={vehiclesData}

@@ -1,20 +1,22 @@
-import React, { useState,useEffect } from 'react';
-import styles from './style.module.scss';
-import Image from 'next/image';
-import { clsx } from 'clsx';
 import CaretUp from '@images/vehicle_location/ic-arrow-up.png'
-import { IVehicleLocationDetails } from '@src/types/map';
-import Loader from '@src/components/Loader';
-import dynamic from "next/dynamic";
-import { DatePicker, Select, ConfigProvider } from "antd";
+import Skeleton from '@mui/material/Skeleton';
+import AmbulanceIconSvg from "@src/components/icons/AmbulanceIconSvg";
 import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
-import { DateSelected, ISOformatDate, dateFormat, getNextMonthDates, getNextPrevDates, totalDays } from "@src/helpers";
-import dayjs, { Dayjs } from "dayjs";
-import type { CellRenderInfo } from 'rc-picker/es/interface';
+import { dateFormat, getNextPrevDates, ISOformatDate } from "@src/helpers";
 import useAuth from '@src/hooks/useAuth';
+import { IVehicleLocationDetails } from '@src/types/map';
+import { formatNumberWithCommas } from "@src/utils/formatter";
+import { ConfigProvider, DatePicker } from "antd";
 import koKR from 'antd/locale/ko_KR';
+import { clsx } from 'clsx';
+import dayjs, { Dayjs } from "dayjs";
 import 'dayjs/locale/ko';
+import dynamic from "next/dynamic";
+import Image from 'next/image';
+import type { CellRenderInfo } from 'rc-picker/es/interface';
+import React, { useEffect, useState } from 'react';
+import styles from './style.module.scss';
 
 dayjs.locale('ko');
 
@@ -27,6 +29,7 @@ interface DrawerProps {
     locationIds?:{id:number}[]
     dateChangeHandler: (...args: any[]) => void
     rideChangeHandler: (...args: any[]) => void
+    in_total_distance_covered : number
 }
 type DateRange = {
     startDate : Date |string,
@@ -69,7 +72,7 @@ const dateRangePickerCtrls = [
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function MultipleLocationDrawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChangeHandler,rideChangeHandler,locationIds }: DrawerProps) {
+function MultipleLocationDrawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChangeHandler,rideChangeHandler,locationIds,in_total_distance_covered }: DrawerProps) {
 
     const { RangePicker } = DatePicker;
     const { dictionary: { adVehicleLocDrawerPage } } = useAuth();
@@ -270,6 +273,8 @@ function MultipleLocationDrawer({ open, handleClose , isLoading, vehicle,vehicle
                                             <div className={"h-[40px] w-[1px] bg-[#EBEDF4]"}></div>
                                         </div>
                                     </div>
+
+
                                     {/* DatesPicker end */}
                                     {/*<div className={styles.title}>{adVehicleLocDrawerPage.vehicleSelection}</div>*/}
                                     {/* <Image
@@ -417,6 +422,22 @@ function MultipleLocationDrawer({ open, handleClose , isLoading, vehicle,vehicle
                                 {/* <div className={styles.standard}>
                   2023.03.01 ~ 2023.03.28 기준
                 </div> */}
+                                <div className={'flex flex-col gap-2'}>
+                                    <div className={'flex items-center justify-between gap-2 p-3 rounded-lg flex-wrap'} style={{background : "rgba(86, 26, 164, 0.06)"}}>
+                                        <div className={'flex items-center gap-2 flex-1'}>
+                                            <AmbulanceIconSvg/>
+                                                <span className={'font-medium text-base text-[#2C324C]'}>
+                                                    총 운행거리
+                                                </span>
+                                        </div>
+                                        <div className={'font-bold text-advertiser-primary text-xl flex-1 break-all flex justify-end items-center gap-1'}>
+                                            { isLoading ? <Skeleton width={40} animation="wave" /> : formatNumberWithCommas(in_total_distance_covered,2)} <span className={'font-medium text-[#373737] text-base'}>km</span>
+                                        </div>
+                                    </div>
+                                    <div className={'font-normal text-[#999999] text-xs'}>
+                                        *운행이 종료된 차량만 지도에 노출됩니다.
+                                    </div>
+                                </div>
                             </div>
                     </div>
                 </div>

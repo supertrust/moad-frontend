@@ -1172,16 +1172,13 @@
     "tabs": ["All", "In operation", "In operation"],
     "ViewAllCargoLocation": "View all cargo locations"
   },
-  "verifyPicturesModal":{
-    "title": "Vehicle Information",
-    "viewPhotos": "View photos",
-    "selectStartDate": "Select start date",
-    "selectEndDate": "Select end date",
-    "columns": ["Date", "Status", "Remarks"],
-    "status": {
-      "complete": "complete",
-      "incomplete": "incomplete"
-    }
+  "viewAllLocation": {
+    "noteInfo": "Only vehicles that have ended their operation will be displayed on the map.",
+    "in_total_driving_distance": "Total driving distance",
+    "total_driving_distance": "Total driving distance",
+    "total_driving_time": "Total driving time",
+    "operation_start_time": "Operation start time",
+    "operation_end_time": "Operation end time"
   },
   "adVehicleDetailsPage": {
     "title": "Vehicle Information",

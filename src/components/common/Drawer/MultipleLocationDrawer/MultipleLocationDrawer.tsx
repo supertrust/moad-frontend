@@ -30,6 +30,7 @@ interface DrawerProps {
     dateChangeHandler: (...args: any[]) => void
     rideChangeHandler: (...args: any[]) => void
     in_total_distance_covered : number
+    isFetching : boolean
 }
 type DateRange = {
     startDate : Date |string,
@@ -72,10 +73,10 @@ const dateRangePickerCtrls = [
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function MultipleLocationDrawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChangeHandler,rideChangeHandler,locationIds,in_total_distance_covered }: DrawerProps) {
+function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehicle,vehicleDate, dateChangeHandler,rideChangeHandler,locationIds,in_total_distance_covered }: DrawerProps) {
 
     const { RangePicker } = DatePicker;
-    const { dictionary: { adVehicleLocDrawerPage } } = useAuth();
+    const { dictionary: { adVehicleLocDrawerPage,viewAllLocation } } = useAuth();
     const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
     const [selectedRide, setSelectedRide] = useState<number|undefined>(vehicle?.id);
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -156,7 +157,7 @@ function MultipleLocationDrawer({ open, handleClose , isLoading, vehicle,vehicle
         );
     }, [vehicleDate]);
     return (
-        <div>
+        <div >
             <div className={`${styles.button_wrap} z-50`}>
                 <button
                     type="button"
@@ -427,15 +428,15 @@ function MultipleLocationDrawer({ open, handleClose , isLoading, vehicle,vehicle
                                         <div className={'flex items-center gap-2 flex-1'}>
                                             <AmbulanceIconSvg/>
                                                 <span className={'font-medium text-base text-[#2C324C]'}>
-                                                    총 운행거리
+                                                    {viewAllLocation?.in_total_driving_distance}
                                                 </span>
                                         </div>
                                         <div className={'font-bold text-advertiser-primary text-xl flex-1 break-all flex justify-end items-center gap-1'}>
-                                            { isLoading ? <Skeleton width={40} animation="wave" /> : formatNumberWithCommas(in_total_distance_covered,2)} <span className={'font-medium text-[#373737] text-base'}>km</span>
+                                            { isFetching ? <Skeleton width={40} animation="wave" /> : formatNumberWithCommas(in_total_distance_covered,2)} <span className={'font-medium text-[#373737] text-base'}>km</span>
                                         </div>
                                     </div>
                                     <div className={'font-normal text-[#999999] text-xs'}>
-                                        *운행이 종료된 차량만 지도에 노출됩니다.
+                                        *{viewAllLocation?.noteInfo}
                                     </div>
                                 </div>
                             </div>

@@ -1166,6 +1166,14 @@
     "tabs": ["전체", "운행중", "운행정지"],
     "ViewAllCargoLocation": "모든 화물위치 보기"
   },
+  "viewAllLocation" : {
+    "noteInfo" : "운행이 종료된 차량만 지도에 노출됩니다.",
+    "in_total_driving_distance" : "총 운행거리",
+    "total_driving_distance" :  "총 운행거리",
+    "total_driving_time" : "총 운행시간",
+    "operation_start_time" :  "운행 시작시각",
+    "operation_end_time" :  "운행 종료시각"
+  },
   "verifyPicturesModal":{
     "title": "차량정보",
     "viewPhotos": "사진보기",

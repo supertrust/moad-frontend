@@ -4355,7 +4355,7 @@ input:focus {
 	border:1px solid var(--primary-color) !important;
 }
 
-div[style*="border: 1px solid rgb(118, 129, 168); z-index: 0; display: block; width: 240px;"] {
+div[style*="border: 1px solid rgb(118, 129, 168); z-index: 0; display: block; width: 260px;"] {
 	border-color: white !important; /* Change border color to red */
 }
 

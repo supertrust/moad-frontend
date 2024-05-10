@@ -68,7 +68,7 @@ const AllVehicleLocation = () => {
   const { ad_id, vehicle_id } = query;
   const { setPageTitle } = useIcarusContext();
   const [showDrawer, setShowDrawer] = useState(false);
-  const { dictionary: { adVehicleLocDetailsPage } } = useAuth();
+  const { dictionary: { adVehicleLocDetailsPage,viewAllLocation } } = useAuth();
   const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(null);
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
 
@@ -167,16 +167,16 @@ const AllVehicleLocation = () => {
          position={{ lat: destination.getLat(), lng: destination.getLng() }} title={ ``} onMouseOut={()=>setHover(-1)} onMouseOver={()=>
           setHover(id)}>
           {
-          id===hover &&  <div style={{border: '1px solid #FFFFFF'}}  className={'bg-[#FFFFFF] flex flex-col gap-2 w-[240px] p-4'}>
+          id===hover &&  <div style={{border: '1px solid #FFFFFF'}}  className={'bg-[#FFFFFF] flex flex-col gap-2 w-[260px] p-4'}>
                 {
-                  [{ title : "총 운행거리", value : formatNumberWithCommas(total_distance_covered,2), extra : <span>km</span>},
-                    { title : "총 운행시간", value : total_time_covered},
-                     { title : "운행 시작시각", value : `${startTime?.[0]}:${startTime?.[1]}`},
-                     { title : "운행 종료시각", value : `${endTime?.[0]}:${endTime?.[1]}`}
+                  [{ title : viewAllLocation?.total_driving_distance, value : formatNumberWithCommas(total_distance_covered,2), extra : <span>km</span>},
+                    { title : viewAllLocation?.total_driving_time, value : total_time_covered},
+                     { title : viewAllLocation?.operation_start_time, value : `${startTime?.[0]}:${startTime?.[1]}`},
+                     { title : viewAllLocation?.operation_end_time, value : `${endTime?.[0]}:${endTime?.[1]}`}
 
-                  ].map((item,index)=> <div key={index} className={'flex justify-between'}>
-                    <span className={`text-[16px] text-[#2C324C]`}>{item.title}</span>
-                  <div className={'text-[16px]'}>
+                  ].map((item,index)=> <div key={index} className={'flex justify-between items-center gap-2'}>
+                    <span className={`text-[16px] text-[#2C324C] flex-1`}>{item.title}</span>
+                  <div className={'text-[16px] flex-1 flex justify-end gap-1 break-all flex-wrap'}>
                     <span className={'font-bold text-advertiser-primary'}>{item.value}</span>  {item?.extra && item?.extra}
                   </div>
                   </div>)
@@ -255,6 +255,7 @@ const AllVehicleLocation = () => {
         vehicleDate={[]}
         locationIds={[]}
         isLoading={isLoading}
+        isFetching={isFetching}
         dateChangeHandler={handleDateChange}
         rideChangeHandler={handleRideChange}
         in_total_distance_covered={values?.in_total_distance_covered}

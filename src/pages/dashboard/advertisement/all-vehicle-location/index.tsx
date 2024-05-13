@@ -144,20 +144,28 @@ const AllVehicleLocation = () => {
     let end = logs?.length ? logs[logs.length-1]?.created_at?.split(' '): end_time ? end_time.split('T') : null
     let endTime = end ? end[1].split(':') : null
 
+
     return (
       <>
         {currentPosition &&
           <MapMarker
             position={{ lat: currentPosition.getLat(), lng: currentPosition.getLng() }}
             image={{
-              src: "/images/vehicle_location/marker.png",
-              size: { width: 40, height: 40 }
+              src: "/images/vehicle_location/truck-marker.png",
+              size: { width: 40, height: 22,}
             }}
             title={name}
           />
         }
-        {origin && <MapMarker position={{ lat: origin.getLat(), lng: origin.getLng() }}  title={`Origin ${name}`} />}
+        {origin && <MapMarker  image={{
+          src: "",
+          size: { width: 0, height: 0,}
+        }} position={{ lat: origin.getLat(), lng: origin.getLng() }}  title={`Origin ${name}`} />}
         {destination && <MapMarker
+            image={{
+              src: "/images/vehicle_location/truck-marker.png",
+              size: { width: 40, height: 22,}
+            }}
          position={{ lat: destination.getLat(), lng: destination.getLng() }} title={ ``} onMouseOut={()=>setHover(-1)} onMouseOver={()=>
           setHover(id)}>
           {

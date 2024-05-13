@@ -1,4 +1,5 @@
 import { logoMobileSize } from "@src/utils/values";
+import clsx from "clsx";
 import { Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -7,12 +8,14 @@ import { Button } from '@src/components/common';
 import PrivacyPolicy from './privacyPolicy';
 import TermsOfUse from './termsOfUse';
 import useAuth from "@src/hooks/useAuth";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 interface Step1Props {
 	onNextStep: () => void;
 }
 
 const Step1 = ({ onNextStep }: Step1Props) => {
+	const matches = useMediaQuery('(min-width:425px)');
 	const router = useRouter();
   const { dictionary:{ signup: { step1 } } } = useAuth();
 	const [privacyPolicy, setPrivacyPolicy] = useState<boolean>(false);
@@ -91,8 +94,10 @@ const Step1 = ({ onNextStep }: Step1Props) => {
 					<Image src="/images/logo-mb.svg" alt='logo-mb' width={logoMobileSize.width} height={logoMobileSize.height} />
 				</h1>
 				<div className='right-wrap'>
-					<div className='right-content'>
-						<div onClick={handleBackButton} className='back-btn cursor-pointer'></div>
+					<div className={clsx('right-content  flex flex-col', matches && '!w-[380px]')}>
+						<div className={' !flex '}>
+							<div onClick={handleBackButton} className='back-btn cursor-pointer'></div>
+						</div>
 						<div className='step-title'>
 							{step1.stepTitle[0]}<br />
 							{step1.stepTitle[1]}

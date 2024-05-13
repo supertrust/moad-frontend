@@ -1,27 +1,21 @@
-import  MultipleLocationDrawer  from "@src/components/common/Drawer/MultipleLocationDrawer/MultipleLocationDrawer";
-import { useIcarusContext } from "@src/hooks/useIcarusContext";
-import { formatNumberWithCommas } from "@src/utils/formatter";
-import React, { useEffect, useState } from "react";
-import {
-  useAllAdvertisementVehicleLocationDetails,
-  useAllVehicleLocationDate,
-  useAllVehicleLocationDetails
-} from "@src/apis/map";
-import { useRouter } from "next/router";
+import { useAllAdvertisementVehicleLocationDetails } from "@src/apis/map";
 import { Button } from "@src/components/common";
-import { Map } from "@src/components/Map";
-import Drawer from "@src/sections/vehicle-location/Drawer";
-import Loader from "@src/components/Loader";
+import MultipleLocationDrawer from "@src/components/common/Drawer/MultipleLocationDrawer/MultipleLocationDrawer";
 import ArrowBack from "@src/components/icons/ArrowBack";
-import { MapInfoWindow, MapMarker, Polygon, useKakaoLoader } from "react-kakao-maps-sdk";
-import { toLatLng } from "@src/helpers/map";
-import { useGetDirection } from "@src/apis/kakap.map";
+import Loader from "@src/components/Loader";
+import { Map } from "@src/components/Map";
 import DirectionRender from "@src/components/Map/DirectionRender";
-import { ISOformatDate, darkenColor, getRandomColor } from "@src/helpers";
 import { KAKAO_MAP_API_KEY } from "@src/config";
-import { IVehicleLocationDetails } from "@src/types/map";
-import Image from "next/image";
+import { darkenColor, getRandomColor, ISOformatDate } from "@src/helpers";
+import { toLatLng } from "@src/helpers/map";
 import useAuth from '@src/hooks/useAuth';
+import { useIcarusContext } from "@src/hooks/useIcarusContext";
+import { IVehicleLocationDetails } from "@src/types/map";
+import { formatNumberWithCommas } from "@src/utils/formatter";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { MapMarker, useKakaoLoader } from "react-kakao-maps-sdk";
 
 type DateRange = {
   startDate: Date | string,

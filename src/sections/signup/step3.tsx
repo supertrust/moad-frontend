@@ -423,15 +423,17 @@ const Step3 = ({
 										{step3.additionalReqsMsg}
 									</div>
 								</div>
-								<Button
-									loading={isSubmitting}
-									className='link link-step01 !mb-[42px]'
-									onClick={onSubmit}
-									disabled={
-										!(Object.keys(dirtyFields).length > 7 && imageUploaded)
-									}>
-									{step3.next}
-								</Button>
+								<div className={'flex w-[100%] justify-center'}>
+									<Button
+										loading={isSubmitting}
+										className='link link-step01 !mb-[42px]'
+										onClick={onSubmit}
+										disabled={
+											!(Object.keys(dirtyFields).length > 7 && imageUploaded)
+										}>
+										{step3.next}
+									</Button>
+								</div>
 							</FormProvider>
 						</div>
 					</div>

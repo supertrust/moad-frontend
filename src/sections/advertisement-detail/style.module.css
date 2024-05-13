@@ -1392,12 +1392,6 @@ span.carousel-control-prev-icon {
   }
 }
 
-
-
-
-
-
-
 @media screen and (min-width: 1200px) and (max-width: 1500px) {
   .right_side {
     width: 50%;
@@ -1438,6 +1432,7 @@ span.carousel-control-prev-icon {
     width: 100%;
   }
 }
+
 @media screen and (max-width: 1199px) {
 .detail_content{
   display: block !important;

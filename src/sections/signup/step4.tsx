@@ -33,9 +33,11 @@ const Step4 = () => {
                         <div className="step-text">
                             {step4.subtitle}
                         </div>
-                        <Link href="/login" className="link link-step01">
-                            {step4.login}
-                        </Link>
+                       <div className={'flex justify-center w-[100%]'}>
+                           <Link href="/login" className="link link-step01 !mt-[20px]">
+                               {step4.login}
+                           </Link>
+                       </div>
                     </div>
                 </div>
             </div>

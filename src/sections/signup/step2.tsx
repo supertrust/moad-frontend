@@ -204,12 +204,14 @@ const Step2 = ({
                                         />
                                     }
                                 />
-                                <Button
-                                    className='link link-step01'
-                                    onClick={onSubmit}
-                                    disabled={Object.keys(dirtyFields).length !== 3}>
-                                    {step2.btn}
-                                </Button>
+                               <div className={'w-[100%] flex justify-center'}>
+                                   <Button
+                                       className='link link-step01'
+                                       onClick={onSubmit}
+                                       disabled={Object.keys(dirtyFields).length !== 3}>
+                                       {step2.btn}
+                                   </Button>
+                               </div>
                             </div>
                         </FormProvider>
                     </div>

@@ -1,10 +1,9 @@
-import Link from "next/link";
-import React, { useState } from "react";
+import useAuth from "@src/hooks/useAuth";
 import { Step1, Step2, Step3, Step4 } from "@src/sections/signup";
 import { RegisterPropsType } from "@src/types/auth";
 import { File } from "buffer";
 import Head from "next/head";
-import useAuth from "@src/hooks/useAuth";
+import React, { useState } from "react";
 
 export default function SignUpModulePage() {
   const [formStep, setFormStep] = useState(1);

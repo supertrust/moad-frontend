@@ -1171,6 +1171,7 @@ a {
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 8px;
+	max-width : 375px;
 }
 
 #sign_up
@@ -1187,6 +1188,15 @@ a {
 	align-items: center;
 	column-gap: 8px;
 	cursor: pointer;
+}
+
+#sign_up
+.step01
+.right
+.right-wrap
+.right-content
+.agree-content{
+	width : 100%
 }
 
 #sign_up

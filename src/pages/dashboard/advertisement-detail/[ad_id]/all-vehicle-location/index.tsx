@@ -2,6 +2,7 @@ import { useAllAdvertisementVehicleLocationDetails } from "@src/apis/map";
 import { Button } from "@src/components/common";
 import MultipleLocationDrawer from "@src/components/common/Drawer/MultipleLocationDrawer/MultipleLocationDrawer";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import PolygonSvg from "@src/components/icons/polygonSvg";
 import Loader from "@src/components/Loader";
 import { Map } from "@src/components/Map";
 import DirectionRender from "@src/components/Map/DirectionRender";
@@ -46,27 +47,25 @@ type DateRange = {
 
 const AllVehicleLocation = () => {
 
+  const { query } = useRouter();
+  const advertisementId = query.ad_id as string;
   const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
   const [values,setValues] = useState({
     in_total_distance_covered : 0
   })
   const [cargoList,setCargoList] = useState<any[]>([])
-  const { data: cargoAllLocation, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails( ISOformatDate(selectedDateRange as Date))
+  const { data: cargoAllLocation, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails(advertisementId,ISOformatDate(selectedDateRange as Date))
   const [loading] = useKakaoLoader({
     appkey: KAKAO_MAP_API_KEY || '',
     libraries: ['services', 'clusterer', 'drawing'],
   })
   const [hover,setHover] = useState<number>(-1)
 
-  const { query } = useRouter();
-  const { ad_id, vehicle_id } = query;
   const { setPageTitle } = useIcarusContext();
   const [showDrawer, setShowDrawer] = useState(false);
   const { dictionary: { adVehicleLocDetailsPage,viewAllLocation } } = useAuth();
   const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(null);
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
-
-
 
 
   // useEffect(() => {
@@ -87,11 +86,11 @@ const AllVehicleLocation = () => {
           origin,
           name : cargo_to_advertisment?.advertisement?.ad_name,
           logs,
-          info : { start_time,end_time,total_time_covered,total_distance_covered }
+          info : { start_time,end_time,total_time_covered,total_distance_covered, truck_number : cargo_to_advertisment?.vehicle_information?.car_number }
         }
       })
 
-      let sum = cargoAllLocation.reduce((acc, curr) => acc + curr.total_distance_covered, 0);
+      const sum = cargoAllLocation.reduce((acc, curr) => acc +( Number(curr.total_distance_covered) || 0), 0);
 
       setCargoList([...newCargo])
       setValues({
@@ -132,11 +131,11 @@ const AllVehicleLocation = () => {
   const renderCargo = (
     { origin, destination, currentPosition, name,logs=[],id,info }:
       { origin?: kakao.maps.LatLng, destination?: kakao.maps.LatLng, currentPosition?: kakao.maps.LatLng, name?: string,logs?: any[],id : number,
-      info : { start_time:string,end_time:string,total_time_covered:string,total_distance_covered:number } }
+      info : { start_time:string,end_time:string,total_time_covered:string,total_distance_covered:string, truck_number : string } }
   ) => {
 
     const color = darkenColor(getRandomColor(), 30);
-    const { start_time,end_time,total_time_covered,total_distance_covered } = info;
+    const { start_time,end_time,total_time_covered,total_distance_covered,truck_number } = info;
 
     let start = logs?.length ? logs[0]?.created_at?.split(' '): start_time ? start_time.split('T') : null
     let startTime = start ? start[1].split(':') : null
@@ -151,8 +150,8 @@ const AllVehicleLocation = () => {
           <MapMarker
             position={{ lat: currentPosition.getLat(), lng: currentPosition.getLng() }}
             image={{
-              src: "/images/vehicle_location/truck-marker.png",
-              size: { width: 40, height: 22,}
+              src: "",
+              size: { width: 0, height: 0,}
             }}
             title={name}
           />
@@ -163,29 +162,42 @@ const AllVehicleLocation = () => {
         }} position={{ lat: origin.getLat(), lng: origin.getLng() }}  title={`Origin ${name}`} />}
         {destination && <MapMarker
             image={{
-              src: "/images/vehicle_location/truck-marker.png",
-              size: { width: 40, height: 22,}
+              src: "",
+              size: { width: 0, height: 0,}
             }}
-         position={{ lat: destination.getLat(), lng: destination.getLng() }} title={ ``} onMouseOut={()=>setHover(-1)} onMouseOver={()=>
-          setHover(id)}>
-          {
-          id===hover &&  <div style={{border: '1px solid #FFFFFF'}}  className={'bg-[#FFFFFF] flex flex-col gap-2 w-[260px] p-4'}>
-                {
-                  [{ title : viewAllLocation?.total_driving_distance, value : formatNumberWithCommas(total_distance_covered,2), extra : <span>km</span>},
-                    { title : viewAllLocation?.total_driving_time, value : total_time_covered},
-                     { title : viewAllLocation?.operation_start_time, value : `${startTime?.[0]}:${startTime?.[1]}`},
-                     { title : viewAllLocation?.operation_end_time, value : `${endTime?.[0]}:${endTime?.[1]}`}
+         position={{ lat: destination.getLat(), lng: destination.getLng() }} title={ ``}>
 
-                  ].map((item,index)=> <div key={index} className={'flex justify-between items-center gap-2'}>
-                    <span className={`text-[16px] text-[#2C324C] flex-1`}>{item.title}</span>
-                  <div className={'text-[16px] flex-1 flex justify-end gap-1 break-all flex-wrap'}>
-                    <span className={'font-bold text-advertiser-primary'}>{item.value}</span>  {item?.extra && item?.extra}
+          <div className="all-location-truck-tooltip-container">
+            {id===hover && (
+                <div className={'all-location-truck-tooltip flex items-center flex-col'}>
+                  <div  style={{border: '1px solid #FFFFFF'}}  className={'bg-[#FFFFFF] flex flex-col gap-2 w-[260px] p-4'}>
+                    {
+                      [{ title : viewAllLocation?.total_driving_distance, value : formatNumberWithCommas(Number(total_distance_covered),2), extra : <span>km</span>},
+                        { title : viewAllLocation?.total_driving_time, value : total_time_covered},
+                        { title : viewAllLocation?.operation_start_time, value : `${startTime?.[0]}:${startTime?.[1]}`},
+                        { title : viewAllLocation?.operation_end_time, value : `${endTime?.[0]}:${endTime?.[1]}`}
+                      ].map((item,index)=> <div style={{zIndex : 100}} key={index} className={'flex justify-between items-center gap-2'}>
+                        <span className={`text-[16px] text-[#2C324C] flex-1`}>{item.title}</span>
+                        <div className={'text-[16px] flex-1 flex justify-end gap-1 break-all flex-wrap'}>
+                          <span className={'font-bold text-advertiser-primary'}>{item.value}</span>  {item?.extra && item?.extra}
+                        </div>
+                      </div>)
+                    }
                   </div>
-                  </div>)
-                }
-
-              </div>
-          }
+                   <div className={'mt-[-3px]'}>
+                     <PolygonSvg/>
+                   </div>
+                </div>
+            )}
+            <div
+                className="all-location-truck-tooltip-trigger flex gap-1 items-center w-[100%] justify-center"
+                onMouseEnter={() =>  setHover(id)}
+                onMouseLeave={() => setHover(-1)}
+            >
+            <img className={'h-[11px] w-[20px] flex-1'} src={'/images/vehicle_location/truck-marker.png'}/>
+              <div className={'flex-1 text-sm font-normal text-advertiser-primary flex w-[100%] whitespace-nowrap'}>{truck_number}</div>
+            </div>
+          </div>
 
         </MapMarker>}
         <DirectionRender

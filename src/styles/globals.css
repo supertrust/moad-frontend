@@ -4365,8 +4365,45 @@ input:focus {
 	border:1px solid var(--primary-color) !important;
 }
 
-div[style*="border: 1px solid rgb(118, 129, 168); z-index: 0; display: block; width: 260px;"] {
-	border-color: white !important; /* Change border color to red */
+div[style*="border: 1px solid rgb(118, 129, 168); z-index: 0; display: block;"] {
+	/*border-color: transparent !important; !* Change border color to red *!*/
+	margin-top : 4px;
+	min-width: 100%!important;
+	width: inherit !important;
+	background: white;
+	border : none!important;
+}
+
+div[style*='position: absolute; width: 11px; height: 9px; background: url("http://t1.daumcdn.net/localimg/localimages/07/mapjsapi/triangle.png")'] {
+	display: none !important;
+}
+
+
+.all-location-truck-tooltip-container {
+	position: relative;
+	display: inline-block;
+	width : 100%
+}
+
+.all-location-truck-tooltip-trigger {
+	background-color: white;
+	color: black;
+	padding: 8px 20px;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	border-radius: 100px;
+	flex-wrap : nowrap;
+	z-index : -1
+}
+
+.all-location-truck-tooltip {
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 4px;
+	opacity: 2;
 }
 
 

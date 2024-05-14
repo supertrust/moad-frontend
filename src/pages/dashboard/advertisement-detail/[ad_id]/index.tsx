@@ -648,7 +648,7 @@ function AdvertisementDetailScreen() {
                     isAllCargoButtonShow ?  <div className={styles.text}>
                       <Link
                           className="bg-primary px-4 py-3 text-white rounded hover:!text-[#FFFFFF]"
-                          href={`/dashboard/advertisement/all-vehicle-location`}
+                          href={`/dashboard/advertisement-detail/${advertisementId}/all-vehicle-location`}
                       >
                         {adDetailsPage.ViewAllCargoLocation}
                       </Link>

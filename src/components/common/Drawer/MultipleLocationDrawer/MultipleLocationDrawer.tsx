@@ -134,10 +134,10 @@ function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehi
     const data = [today_distance||0,total_distance||0,avarageMonthlyDistance||0];
 
     const style: React.CSSProperties = {
-        border: `1px solid #2F48D1`,
+        border: `1px solid rgba(86, 26, 164, 0.2)`,
         lineHeight: 'normal',
-        background : 'var(--primary-color)',
-        color: '#FFFF'
+        background : 'rgba(86, 26, 164, .2)',
+        color: '#606060'
     };
     const cellRender = React.useCallback((current: number | Dayjs, info: CellRenderInfo<Dayjs>) => {
         if (info.type !== 'date') {

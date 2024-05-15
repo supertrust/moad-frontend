@@ -1,4 +1,4 @@
-import { useAllAdvertisementVehicleLocationDetails } from "@src/apis/map";
+import { useAllAdvertisementVehicleLocationDetails, useGetAdvertisementAllVehicleLocationDate } from "@src/apis/map";
 import { Button } from "@src/components/common";
 import MultipleLocationDrawer from "@src/components/common/Drawer/MultipleLocationDrawer/MultipleLocationDrawer";
 import ArrowBack from "@src/components/icons/ArrowBack";
@@ -55,6 +55,8 @@ const AllVehicleLocation = () => {
   })
   const [cargoList,setCargoList] = useState<any[]>([])
   const { data: cargoAllLocation, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails(advertisementId,ISOformatDate(selectedDateRange as Date))
+  const { data: cargoAllLocationDate} = useGetAdvertisementAllVehicleLocationDate(advertisementId as string);
+
   const [loading] = useKakaoLoader({
     appkey: KAKAO_MAP_API_KEY || '',
     libraries: ['services', 'clusterer', 'drawing'],
@@ -64,15 +66,6 @@ const AllVehicleLocation = () => {
   const { setPageTitle } = useIcarusContext();
   const [showDrawer, setShowDrawer] = useState(false);
   const { dictionary: { adVehicleLocDetailsPage,viewAllLocation } } = useAuth();
-  const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(null);
-  const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
-
-
-  // useEffect(() => {
-  //   const latestLocation = cargoAllLocation ? cargoAllLocation[cargoAllLocation?.length - 1] : null;
-  //   setCargoLocation(latestLocation)
-  // }, [JSON.stringify(cargoAllLocation)])
-
 
   useEffect(()=>{
 
@@ -273,8 +266,8 @@ const AllVehicleLocation = () => {
    <MultipleLocationDrawer
         open={showDrawer}
         handleClose={toggleDrawer}
-        vehicle={cargoLocation}
-        vehicleDate={[]}
+        vehicle={null}
+        vehicleDate={cargoAllLocationDate || []}
         locationIds={[]}
         isLoading={isLoading}
         isFetching={isFetching}

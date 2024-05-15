@@ -4290,6 +4290,7 @@ a.ant-picker-today-btn:after {
 
 .ant-picker-cell-selected .ant-picker-cell-inner{
 	background-color : var(--primary-color) !important;
+	color : #FFFFFF!important;
 }
 
 .ant-picker-cell-today .ant-picker-cell-inner::before{

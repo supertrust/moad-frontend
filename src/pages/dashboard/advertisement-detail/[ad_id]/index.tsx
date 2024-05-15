@@ -1,43 +1,27 @@
+import styled from "@emotion/styled";
 import { CircularProgress } from "@mui/material";
 import { Center, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { DateIcon } from "@src/components/icons";
 import {
   useGetAdvertisementCargoList,
   useGetAdvertisementDetail,
   useGetAdvertisementOperationArea,
-  useGetAdvertisementVehicles,
   useGetCargoVerificationImages,
   useGetDraftAdvertisementImages,
 } from "@src/apis/advertisement";
-import { Button, DataGrid } from "@src/components/common";
+import { DataGrid } from "@src/components/common";
+import { DateIcon } from "@src/components/icons";
+import ArrowBack from "@src/components/icons/ArrowBack";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
+import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import TruckModel from "@src/models/truck";
 import { styles } from "@src/sections/advertisement-detail";
+import { allStatuses } from "@src/sections/dashboard/AdList/AdList";
 import { IAdvertisementCargo } from "@src/types/advertisement";
+import { formatDate } from "@src/utils/formatter";
 import { Breadcrumb, DatePicker, Modal } from "antd";
 import { clsx } from "clsx";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import styled from "@emotion/styled";
-import React, {
-  ChangeEvent,
-  Suspense,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import { Carousel } from "react-bootstrap";
-import { Autoplay } from "swiper";
-import "swiper/css";
-import "swiper/css/autoplay";
-import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
-import ArrowBack from "@src/components/icons/ArrowBack";
-import { allStatuses } from "@src/sections/dashboard/AdList/AdList";
-import { formatDate } from "@src/utils/formatter";
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
@@ -45,7 +29,16 @@ import localeData from 'dayjs/plugin/localeData'
 import weekday from 'dayjs/plugin/weekday'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import weekYear from 'dayjs/plugin/weekYear'
-import useAuth from '@src/hooks/useAuth';
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { ChangeEvent, Suspense, useEffect, useMemo, useState, } from "react";
+import { Carousel } from "react-bootstrap";
+import { Autoplay } from "swiper";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 dayjs.extend(customParseFormat)
 dayjs.extend(advancedFormat)

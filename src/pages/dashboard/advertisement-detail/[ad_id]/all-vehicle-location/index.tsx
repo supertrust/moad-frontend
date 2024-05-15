@@ -77,16 +77,24 @@ const AllVehicleLocation = () => {
   useEffect(()=>{
 
     if(!isFetching && cargoAllLocation){
+      const mp = {}
       const newCargo = [...cargoAllLocation].map((cargo)=>{
+        if(!mp[cargo?.cargo_to_advertisment?.vehicle_information?.car_number])
+            mp[cargo?.cargo_to_advertisment?.vehicle_information?.car_number] = darkenColor(getRandomColor(), 30);
+
         const {current_point : currentPosition,end_point : destination,starting_point : origin,cargo_to_advertisment,
         logs,start_time,end_time,total_time_covered,total_distance_covered} = cargo;
+
         return {
           currentPosition,
           destination,
           origin,
           name : cargo_to_advertisment?.advertisement?.ad_name,
           logs,
-          info : { start_time,end_time,total_time_covered,total_distance_covered, truck_number : cargo_to_advertisment?.vehicle_information?.car_number }
+          info : { start_time,end_time,total_time_covered,total_distance_covered, truck_number : cargo_to_advertisment?.vehicle_information?.car_number,
+            color : mp[cargo_to_advertisment?.vehicle_information?.car_number]
+          },
+
         }
       })
 
@@ -131,11 +139,11 @@ const AllVehicleLocation = () => {
   const renderCargo = (
     { origin, destination, currentPosition, name,logs=[],id,info }:
       { origin?: kakao.maps.LatLng, destination?: kakao.maps.LatLng, currentPosition?: kakao.maps.LatLng, name?: string,logs?: any[],id : number,
-      info : { start_time:string,end_time:string,total_time_covered:string,total_distance_covered:string, truck_number : string } }
+      info : { start_time:string,end_time:string,total_time_covered:string,total_distance_covered:string, truck_number : string, color : string } }
   ) => {
 
-    const color = darkenColor(getRandomColor(), 30);
-    const { start_time,end_time,total_time_covered,total_distance_covered,truck_number } = info;
+    // const color = darkenColor(getRandomColor(), 30);
+    const { start_time,end_time,total_time_covered,total_distance_covered,truck_number,color } = info;
 
     let start = logs?.length ? logs[0]?.created_at?.split(' '): start_time ? start_time.split('T') : null
     let startTime = start ? start[1].split(':') : null
@@ -203,7 +211,7 @@ const AllVehicleLocation = () => {
         <DirectionRender
           origin={origin}
           destination={destination}
-          strokeColor={color}
+          strokeColor={color  || darkenColor(getRandomColor(), 30)}
           logs={logs}
         />
       </>

@@ -1,10 +1,8 @@
-import React, { Ref, forwardRef, useEffect, useState } from "react";
-import Input from "@src/components/common/Input";
-import { clsx } from "clsx";
+import { usePlaceSearchByKeyword } from "@src/apis/kakap.map";
 import { AutoComplete } from "antd";
-import { usePlaceSearchByKeyword, useSearchAddress } from "@src/apis/kakap.map";
 import { DefaultOptionType } from "antd/es/select";
-import { ILocation } from "@src/types/kakao.map";
+import { clsx } from "clsx";
+import React, { forwardRef, Ref, useEffect, useState } from "react";
 
 interface PlaceAutoCompleteProps {
   map?: kakao.maps.Map;

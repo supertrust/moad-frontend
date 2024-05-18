@@ -1,3 +1,4 @@
+import { API_URL } from "@src/apis/urls";
 import { GetVehicleDetailsPropsType, GetVehicleDetailsResponseType } from "@src/types/vehicle";
 import axios from "@src/utils/axios";
 import {
@@ -33,7 +34,7 @@ export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) =>
     useQuery<IAdvertisementData, string>({
         queryKey: ["advertisements", ...Object.values(props).filter(value => value != undefined && value != null)],
         queryFn: async () =>
-            (await axios.get("/api/get-advertisement", { params: props })).data,
+            (await axios.get(API_URL.getAdvertisements(), { params: props })).data,
         retry: 0, // Disable retries
     });
 
@@ -43,7 +44,7 @@ export const useGetAdvertisementDetail = (
     useQuery<IAdvertisement, string>({
         queryKey: ["advertisement-detail", props.id],
         queryFn: async () =>
-            (await axios.get("/api/get-advertisement", { params: { id: props.id } }))
+            (await axios.get( API_URL.getAdvertisements(), { params: { id: props.id } }))
                 .data.data?.[0],
         enabled : !!props.id
     });
@@ -55,7 +56,7 @@ export const useGetAdvertisementAllDetail = ({
         queryFn: async () =>
             (
                 await axios.get(
-                    `/api/get-all-advertisement-vehicles/${advertisement_id}`
+                    API_URL.getAdvertisementDetails(advertisement_id)
                 )
             ).data.data,
     });
@@ -70,7 +71,7 @@ export const useGetVehicleDetail = ({
         queryFn: async () =>
             (
                 await axios.get(
-                    `/api/get-detail-advertisement-vehicles?advertisement_id=${advertisement_id}&cargo_vehicle_id=${cargo_vehicle_id}`
+                    API_URL.getVehicleDetails(advertisement_id, cargo_vehicle_id)
                 )
             ).data.data,
         enabled : !!cargo_vehicle_id && !!advertisement_id
@@ -83,7 +84,7 @@ export const useGetAdvertisementImages = ({
     useQuery<IAdvertisementOperatingArea[], string>({
         queryKey: ["advertisement-images", advertisement_id],
         queryFn: async () =>
-            (await axios.get(`/api/show-cargo-pictures?id=${advertisement_id}`)).data
+            (await axios.get(API_URL.getAdvertisementImages(advertisement_id))).data
                 .data,
         enabled : !!advertisement_id
     });
@@ -91,13 +92,13 @@ export const useGetAdvertisementImages = ({
 export const useGetVehicles = () =>
     useQuery<IVehicle[], string>({
         queryKey: ["vehicles"],
-        queryFn: async () => (await axios.get("/api/get-vehicle-list")).data.data,
+        queryFn: async () => (await axios.get(API_URL.getVehicleList())).data.data,
     });
 
 export const useGetOperatingAreas = () =>
     useQuery<IOperatingArea[], string>({
         queryKey: ["operating-areas"],
-        queryFn: async () => (await axios.get("/api/get-operatingArea")).data.data,
+        queryFn: async () => (await axios.get(API_URL.getOperatingAreas())).data.data,
     });
 
 export const useSaveAdvertisement = () =>   useMutation<IAdvertisement, string, SaveAdvertisementType>({
@@ -106,7 +107,7 @@ export const useSaveAdvertisement = () =>   useMutation<IAdvertisement, string, 
         Object.entries(props).forEach(([key, value]) =>
             !!value && formData.append(key, value as string | Blob)
         );
-        return(await axios.post("/api/save-advertisement", formData, {
+        return(await axios.post(API_URL.saveAdvertisement(), formData, {
             headers: { "Content-Type": "multipart/form-data"}
         })).data.data},
     onSuccess: () => {
@@ -121,7 +122,7 @@ export const useGetAdvertisementVehicles = ({
     useQuery<IAdvertisementVehicle[], string>({
         queryKey: ["advertisement-vehicles", advertisement_id],
         queryFn: async () =>
-            (await axios.get("/api/get-advehicles", { params: { advertisement_id } }))
+            (await axios.get(API_URL.getAdvertisementVehicles(), { params: { advertisement_id } }))
                 .data.data,
         enabled: !!advertisement_id,
     });
@@ -130,7 +131,7 @@ export const useGetAdvertiserVehiclesStats = (props:{notfication?: boolean }={})
     useQuery<IAdvertisementVehicle[], string>({
         queryKey: ["advertisement-vehicles-stats",...Object.values(props)],
         queryFn: async () =>
-            (await axios.get("/api/get-advertiser-dashboard-stats",{
+            (await axios.get(API_URL.getAdvertiserVehicleStats(),{
                 params: {
                     ...props
                 }
@@ -143,14 +144,14 @@ export const useGetShowAdvertisementStats = (
     { status, page } : {status?: AdStatusesType, page: number}
 ) => useQuery<IAdvertisementStat[], string>({
     queryKey: ["show-advertisement-stats", status, page],
-    queryFn: async () => (await axios.get("/api/show-advertisement-stats", { params: { status, page } })).data.data
+    queryFn: async () => (await axios.get(API_URL.getAdvertisementStats(), { params: { status, page } })).data.data
 });
 
 export const useGetVehicleAdvertisementStatsDetails = (
     { to, from, advertisement_id, page } : {to: string,from: string, advertisement_id:string, page: number}
 ) => useQuery<VehicleAdvertisementStatsResponse, string>({
     queryKey: ["show-advertisement-stats-details", advertisement_id, page,to, from],
-    queryFn: async () => (await axios.get("/api/vehicles-advertisement-stats", { params: { to, from, advertisement_id, page } })).data,
+    queryFn: async () => (await axios.get(API_URL.getVehiclesAdvertisementStats(), { params: { to, from, advertisement_id, page } })).data,
     enabled : !!advertisement_id
 });
 
@@ -162,7 +163,7 @@ export const useGetAdvertisementOperationArea = ({
         queryFn: async () =>
             (
                 await axios.get(
-                    `/api/get-advertisement-operating-area/${advertisement_id}`
+                    API_URL.getAdvertisementOperationArea(advertisement_id)
                 )
             ).data.data,
         enabled: !!advertisement_id,
@@ -170,44 +171,44 @@ export const useGetAdvertisementOperationArea = ({
 export const useDeleteAdvertisement = () =>
   useMutation<void, string, { id: string }>({
     mutationFn: async ({ id }) =>
-      await axios.delete(`/api/delete-advertisement/${id}`),
+      await axios.delete(API_URL.deleteAdvertisement(id)),
   });
 
 export const useUpdateAdStatus = () =>
   useMutation<void, string, UpdateAdvertisementStatusType>({
     mutationFn: (props) =>
-      axios.post("/api/update-advertisement-status", props),
+      axios.post(API_URL.updateAdvertisementStatus(), props),
   });
 
 
 export const useGetAdvertisementCargoList = (props: GetAdvertisementCargoPropsType) =>
 useQuery<IAdvertissementCargoResponse, string>({
     queryKey: ["advertisement-cargo-list", {...Object.values(props)}],
-    queryFn: async () => (await axios.get("/api/get-advehicles-list", { params: props })).data,
+    queryFn: async () => (await axios.get(API_URL.getAdvertisementCargoList(), { params: props })).data,
     enabled: !!props.advertisement_id,
 });
 
 
 export const useGetCargoImage = (props: GetCargoImageListProps) => useQuery<ICargoImage[], string>({
     queryKey: ["advertisement-cargo-image", {...Object.values(props)}],
-    queryFn: async () => (await axios.get("/api/get-cargo-images", { params: props })).data.data,
+    queryFn: async () => (await axios.get(API_URL.getCargoImages(), { params: props })).data.data,
     enabled: !!props.cargo_vehicle_id && !!props.advertisement_id,
 });
 
 
 export const useGetStatBasedAdvertisment = (props : GetTotalAdvertisementStatProps) => useQuery<ITotalAdvertisementStat, string>({
     queryKey: ["stats-based-advertisement",{...Object.values(props)}],
-    queryFn: async () => (await axios.get("/api/stats-based-advertisement",{ params: props })).data.data,
+    queryFn: async () => (await axios.get(API_URL.getStatBasedAdvertisement(),{ params: props })).data.data,
 });
 
 export const useGetDraftAdvertisementImages = (id:string) => useQuery<DraftAdvertisementImage[], string>({
     queryKey: ["draft-advertisement-images",id],
-    queryFn: async () => (await axios.get(`/api/get-advertisement-images/${id}/draft`)).data.data,
+    queryFn: async () => (await axios.get(API_URL.getDraftAdvertisementImages(id))).data.data,
     enabled : !!id
 });
 
 export const useGetCargoVerificationImages = (props:GetCargoVerificationImagesProps) => useQuery<CargoVerificationImage[], string>({
     queryKey: ["get-cargo-verification-images", props ],
-    queryFn: async () => (await axios.get(`/api/get-cargo-verification-images`, { params: props })).data.data,
+    queryFn: async () => (await axios.get(API_URL.getCargoVerificationImages(), { params: props })).data.data,
     retry: 0
 });

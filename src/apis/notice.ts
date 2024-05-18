@@ -1,3 +1,4 @@
+import { API_URL } from "@src/apis/urls";
 import {
   GetNoticeDetailPropsType,
   GetNoticesPropsType,
@@ -10,15 +11,16 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetNotices = ({ page }: GetNoticesPropsType) => useQuery<INotice[], string>({
   queryKey: ["notices", page],
-  queryFn: async () => (await axios.get("/api/get-notices", { params: { page } })).data.data
+  queryFn: async () => (await axios.get(API_URL.getNotices(), { params: { page } })).data.data
 })
 
 export const useGetNoticeDetail = ({ id }: GetNoticeDetailPropsType) => useQuery<INoticeDetail, string>({
   queryKey: ["notice", id],
-  queryFn: async () => (await axios.get(`/api/notice/${id}`)).data.data,
+  queryFn: async () => (await axios.get(API_URL.getNoticeDetails(id))).data.data,
 })
+
 export const useGetAllNotification = (props = {}) => useQuery<INotificationResponse, string>({
   queryKey: ["notices-all",],
-  queryFn: async () => (await axios.get("/api/notifications",{ params: props })).data.data
+  queryFn: async () => (await axios.get(API_URL.getAllNotifications(),{ params: props })).data.data
 })
 

@@ -1,29 +1,15 @@
+import { API_URL } from "@src/apis/urls";
 import { CategoryType, IFaq, IGetCategoriesResp } from "@src/types/faq";
 import axios from "@src/utils/axios";
 import { useQuery } from "@tanstack/react-query";
 
-const getCategories= (type = '', limit = 100) => `api/get-post-categories?type=${type}&limit=${limit}`
-
 export const useGetCategories = ({ type }: { type?: CategoryType }) =>
     useQuery<IGetCategoriesResp>({
         queryKey: ['categories', type],
-        queryFn: async () => (await axios.get(getCategories(type))).data,
+        queryFn: async () => (await axios.get(API_URL.getPostCategories(type))).data,
         enabled: !!type
 })
 export const useGetFaq = (currentPage:number, filter?: string) => useQuery<IFaq[], string>({
     queryKey: ["faq" , filter ],
-    queryFn: async () => (await axios.get(`/api/get-faq/${filter || '{filter}'}?page=${currentPage}&limit=10`)).data.data,
-})
-
-export const useGetFaqUse = () => useQuery<IFaq[], string>({
-    queryKey: ["faq-use"],
-    queryFn: async () => (await axios.get("/api/get-faq/service_use")).data.data,
-})
-export const useGetFaqRefund = () => useQuery<IFaq[], string>({
-    queryKey: ["faq-refund"],
-    queryFn: async () => (await axios.get("/api/get-faq/payment_refund")).data.data,
-})
-export const useGetFaqEtc = () => useQuery<IFaq[], string>({
-    queryKey: ["faq-etc"],
-    queryFn: async () => (await axios.get("/api/get-faq/etc")).data.data,
+    queryFn: async () => (await axios.get(API_URL.getFaqList(currentPage,filter))).data.data,
 })

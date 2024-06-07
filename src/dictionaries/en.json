@@ -1180,6 +1180,17 @@
     "operation_start_time": "Operation start time",
     "operation_end_time": "Operation end time"
   },
+  "verifyPicturesModal": {
+    "title": "Vehicle Information",
+    "viewPhotos": "View Photos",
+    "selectStartDate": "Select Start Date",
+    "selectEndDate": "Select End Date",
+    "columns": ["Date", "Status", "Remarks"],
+    "status": {
+      "complete": "Complete",
+      "incomplete": "Incomplete"
+    }
+  },
   "adVehicleDetailsPage": {
     "title": "Vehicle Information",
     "header": "Vehicle information",

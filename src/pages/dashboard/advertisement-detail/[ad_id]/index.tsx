@@ -90,9 +90,7 @@ function AdvertisementDetailScreen() {
     data: draftAdvertisementImages,
     isLoading: isDraftAdvertisementImagesLoading,
   } = useGetDraftAdvertisementImages(advertisementId);
-  // const { data: vehicles } = useGetAdvertisementVehicles({
-  // 	advertisement_id: advertisementId,
-  // });
+
   const { data: operationAreas, isLoading: isOperationAreasLoading } =
     useGetAdvertisementOperationArea({
       advertisement_id: advertisementId,

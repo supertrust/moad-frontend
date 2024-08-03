@@ -18,9 +18,11 @@ const sideBarPath = {
     "/dashboard/statistics/[id]": "top_bar_statistics",
     "/dashboard/statistics": "top_bar_statistics",
     "/dashboard/customer-service/notice": "top_bar_announcement",
+    "/dashboard/customer-service/notice/[id]": "top_bar_announcement",
     "/dashboard/customer-service/guide": "top_bar_guide",
     "/dashboard/customer-service/faq": "top_bar_faq",
     "/dashboard/customer-service/inquire": "top_bar_inquiry",
+    "/dashboard/customer-service/inquire/[id]": "top_bar_inquiry",
     "/dashboard/customer-service/inquire/form": "top_bar_inquiry",
     "/dashboard/customer-service/terms": "top_bar_policies_and_terms"
 }

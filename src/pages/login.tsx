@@ -48,7 +48,7 @@ export default function Login() {
            <div className="right-wrap">
              <div className="title-wrap-login mb-[20px]">
                <div className="title">
-                 WELCOME TO <strong>ICARUS</strong>
+                 WELCOME TO <strong>MOAD</strong>
                </div>
                <div className="text">
                  {login.welcomeMsg}

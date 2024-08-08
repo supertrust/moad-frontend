@@ -54,7 +54,7 @@ export default function StatisticsScreen() {
 									</a>
 									<span className={styles.link}>&gt;</span>
 									<a href='/statistics-driving' className={styles.link}>
-										이카루스 서비스 오픈 출시 기념
+										모아드 서비스 오픈 출시 기념
 									</a>
 								</div>
 							</div>

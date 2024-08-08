@@ -14,13 +14,8 @@ import { useEffect } from "react";
 import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import 'rsuite/dist/rsuite.css';
-import "../components/pages/Landing/about.scss";
-import "../components/pages/Landing/inquire.scss";
-import "../components/pages/Landing/privacy.scss";
-import "../components/pages/Landing/styles.scss";
-import "../components/pages/Landing/terms.scss";
+
 
 const notoSansKR = Noto_Sans_KR({
 	weight: '400',

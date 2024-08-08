@@ -32,19 +32,19 @@ export default function PolicyModulePage() {
               <Accordion className='accordion-section'>
                 <div className='content-terms'>
                   <div className='content !bg-advertiser-light'>
-                    {/* ㈜이카루스(이하 “회사”)는 회사가 운영하는
+                    {/* ㈜모드(이하 “회사”)는 회사가 운영하는
                     <br className=' block lg:hidden' /> 인터넷 사이트(홈페이지
-                    URL이하 “이카루스”)를 이용하는 이용자님들의 개인정보를 매우
+                    URL이하 “모드”)를 이용하는 이용자님들의 개인정보를 매우
                     중요하게 생각하며
                     <br className=' block lg:hidden' /> 아래와 같은
                     개인정보처리방침을 가지고 있습니다.
                     <br className=' block lg:hidden' /> 이 개인정보처리방침은
                     개인정보와 관련한 법령 또는 지침의 변경이 있는 경우
                     갱신되고, 정책의 변화에 따라 달라질 수 있으니 이용자께서는
-                    이카루스 마케팅 플랫폼 사이트를 방문 시 수시로 확인하여
+                    모드 마케팅 플랫폼 사이트를 방문 시 수시로 확인하여
                     주시기 바랍니다.
                     <br />
-                    이카루스 마케팅 플랫폼의 개인정보처리방침은 다음과 같은
+                    모드 마케팅 플랫폼의 개인정보처리방침은 다음과 같은
                     내용을 담고 있습니다. */}
                     {dictionary.privacy.section01InfoText}
                   </div>

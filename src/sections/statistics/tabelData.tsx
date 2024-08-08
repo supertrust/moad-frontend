@@ -25,7 +25,7 @@ export const columns = [
 ];
 
 export const rows: rowData[] = [
-  { key: 1, ad_type: "item1", advertising_name: "이카루스 서비스 오픈 출시 기념", vehicles: 10, period: 6, status: "active" },
+  { key: 1, ad_type: "item1", advertising_name: "모아드 서비스 오픈 출시 기념", vehicles: 10, period: 6, status: "active" },
   { key: 2, ad_type: "item2", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
   { key: 3, ad_type: "item3", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },
   { key: 4, ad_type: "item4", advertising_name: "f_item", vehicles: 10, period: 6, status: "active" },

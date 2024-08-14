@@ -70,7 +70,7 @@ export default function Advertising() {
               ) : (
                 formatNumberWithCommas(advertisements?.data?.length)
               )}
-              {dictionary.dashboard.case}
+              {" "}{dictionary.dashboard.case}
             </span>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function Advertising() {
               ) : (
                 formatNumberWithCommas(advertiserVehiclesStats?.total_vehicles)
               )}
-              {dictionary.dashboard.big}
+              {" "}{dictionary.dashboard.big}
             </span>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function Advertising() {
                   height={28}
                 />
               ) : (
-                `${formatNumberWithCommas(advertiserVehiclesStats?.running)}${dictionary.dashboard.big}`
+                `${formatNumberWithCommas(advertiserVehiclesStats?.running)} ${dictionary.dashboard.big}`
               )}
             </span>
           </div>
@@ -128,7 +128,7 @@ export default function Advertising() {
                 />
               ) : (
                 formatNumberWithCommas(advertiserVehiclesStats?.suspensions)
-              )}
+              )}{" "}
               {dictionary.dashboard.big}
             </span>
           </div>
@@ -172,7 +172,7 @@ export default function Advertising() {
               ) : (
                 formatNumberWithCommas(advertiserVehiclesStats?.total_hours)
               )}{" "}
-              {dictionary.dashboard.minutes}
+               {dictionary.dashboard.minutes}
             </span>
           </div>
         </div>

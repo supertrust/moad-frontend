@@ -5,6 +5,7 @@ const hostnames = [
   "dev-backend.icarus.mufin.lol",
   "dev-static.icarus.mufin.lol",
   process.env.STATIC_IMAGE_HOST,
+  process.env.API_URL?.replace('https://', '').replace('http://', '') || "",
   "dev-api.moad.live",
   "dev-static.moad.live"
 ];

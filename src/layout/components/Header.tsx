@@ -125,7 +125,9 @@ function Header(props: HeaderProps) {
                   <Skeleton variant='circular' width={40} height={40} />
                 ) : (
                   <Image
-                    src={user?.image || '/images/account_circle.png'}
+                    src={  props.profileImage
+                        ? URL.createObjectURL(props.profileImage)
+                        : user?.image || '/images/account_circle.png'}
                     alt=''
                     className='img rounded-full w-[30px] h-[30px]'
                     width={30}

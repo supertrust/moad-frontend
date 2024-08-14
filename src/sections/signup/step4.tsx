@@ -28,16 +28,18 @@ const Step4 = () => {
                     </div>
                 }
                 <div className="right-wrap">
-                    <div className="right-content">
+                    <div className="right-content ">
                         <div className="step-title">{step4.title}</div>
                         <div className="step-text">
                             {step4.subtitle}
                         </div>
-                       <div className={'flex justify-center w-[100%]'}>
-                           <Link href="/login" className="link link-step01 !mt-[20px]">
-                               {step4.login}
-                           </Link>
-                       </div>
+                      <div className={'flex justify-center'}>
+                          <div className={'flex justify-center w-[250px]'}>
+                              <Link href="/login" className="link link-step01 !mt-[10px]  hover:!text-[#FFFFFF] hover:!no-underline">
+                                  {step4.login}
+                              </Link>
+                          </div>
+                      </div>
                     </div>
                 </div>
             </div>

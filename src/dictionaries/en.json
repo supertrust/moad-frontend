@@ -1433,7 +1433,12 @@
     },
     "step4": {
       "title": "Registration completed.",
-      "subtitle": "Please click the login button to log in.",
+      "subtitle": "You can use the service when your membership is approved.",
+      "login": "Login"
+    },
+    "deny": {
+      "title": "You are a member whose membership registration has been rejected.",
+      "subtitle": "For further details, please contact customer service.",
       "login": "Login"
     }
   },

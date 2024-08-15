@@ -209,7 +209,7 @@
 }
 
 .modify_btn {
-    width: 92px;
+    width: auto;
     font-weight: 400;
     font-size: 14px;
     height: 35px;

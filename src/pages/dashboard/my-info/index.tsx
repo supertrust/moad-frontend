@@ -441,7 +441,7 @@ export default function MyInfoScreen() {
                         <Button
                           loading={isLoading || isProfilePicUpdating}
                           type='submit'
-                          className={`${styles.modify_btn} p-0 `}
+                          className={`${styles.modify_btn} p-1 `}
                           onClick={onSubmit}
                           disabled={disabledSubmit}>
                           {myInfo.modificationsCompleted}

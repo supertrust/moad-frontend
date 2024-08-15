@@ -1231,6 +1231,11 @@
     "signupBtn": "Sign up",
     "findIdBtn": "Find ID",
     "findPwBtn":"Find password",
+    "registration" : {
+      "blocked" : "Your account has been blocked by admin",
+      "rejected" : "Your registration has been rejected by admin",
+      "waiting" : "Your registration is waiting for admin approval"
+    },
     "loginForm": {
       "emailLabel": "ID (email)",
       "emailPlaceholder": "Enter your email",

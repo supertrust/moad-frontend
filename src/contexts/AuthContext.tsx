@@ -25,6 +25,13 @@ const ADVERTISER_ROLE = {
     updated_at: null,
 }
 
+export const UserStatus = {
+    Active: 0,
+    Blocked : 1,
+    Waiting: 2,
+    Rejected: 3
+}
+
 function AuthProvider({ children }: AuthProviderProps) {
 
     const isPcOnly = useMediaQuery('(min-width:1024px)');
@@ -92,9 +99,20 @@ function AuthProvider({ children }: AuthProviderProps) {
     const login = useCallback(async (props: LoginPropsType) => {
         try {
             const data = await _login(props);
-            await localStorage.setItem("token", data.token);
-            checkAuth();
-            await localDataUpdated(data)
+            if(data.status === UserStatus.Waiting) router.push("registration/waiting").then(() =>
+                toast.info("Your registration is waiting for admin approval"))
+
+            else if(data.status === UserStatus.Rejected) router.push("registration/rejected").then(() =>
+                toast.error("Your registration has been rejected by admin"))
+
+            else if( data.status === UserStatus.Blocked)  toast.info("Your account has been blocked by admin")
+
+            else {
+                await localStorage.setItem("token", data.token);
+                checkAuth();
+                await localDataUpdated(data)
+            }
+            return data.status===UserStatus.Active
         } catch (error) {
             throw error
         }

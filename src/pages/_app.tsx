@@ -6,7 +6,7 @@ import ReactQueryClient from '@src/services/ReactQueryClient';
 import '@src/styles/globals.css';
 import '@src/styles/responsive.css';
 import { setRouter } from '@src/utils/axios';
-import { WithoutAuthenticationRoute } from "@src/utils/route";
+import { isWithoutAuthenticateRoute, WithoutAuthenticationRoute } from "@src/utils/route";
 import type { AppProps } from 'next/app';
 import { Noto_Sans_KR } from 'next/font/google';
 import { useRouter } from 'next/router';
@@ -31,7 +31,7 @@ const _App = ({ Component, pageProps }: AppProps) => {
     }, [router])
 
     useEffect(() => {
-        if (path.includes('/signup') && !token)
+        if ( isWithoutAuthenticateRoute()  && !token)
             return;
         else if (!token && !path.includes("/login")) {
             const returnUrl = window.location.href.replace(window.location.origin, '');

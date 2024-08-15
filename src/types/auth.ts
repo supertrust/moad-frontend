@@ -1,14 +1,16 @@
 import { IUser, IUserRole } from "./user";
 
 export type LoginPropsType = {
-    email?: string;
-    phone?:string,
+    email?: string
+    phone?:string
     username?: string
-    password: string;
+    password: string
+    status? : number
 }
 
 export type ILoginResponse = {
     token: string
+    status: number
 }
 
 export interface IRegisterResponse {
@@ -35,7 +37,7 @@ export type Dictionary = Record<string, any>
 
 export type AuthContextType = {
     isAuthenticated: boolean;
-    login: (props: LoginPropsType) => Promise<void>;
+    login: (props: LoginPropsType) => Promise<boolean>;
     register: (props: RegisterPropsType) => Promise<boolean>;
     logout: () => Promise<void>;
     token: string | null;

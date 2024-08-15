@@ -1225,6 +1225,11 @@
     "signupBtn": "회원가입",
     "findIdBtn": "아이디 찾기",
     "findPwBtn":"비밀번호 찾기",
+    "registration": {
+      "blocked": "귀하의 계정은 관리자에 의해 차단되었습니다.",
+      "rejected": "귀하의 등록은 관리자에 의해 거부되었습니다.",
+      "waiting": "귀하의 등록은 관리자의 승인을 기다리고 있습니다."
+    },
     "loginForm": {
       "emailLabel": "아이디 (이메일)",
       "emailPlaceholder": "이메일 입력",

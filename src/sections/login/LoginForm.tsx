@@ -62,10 +62,12 @@ const LoginFormModule = ({ enabledSubmit }: { enabledSubmit: boolean }) => {
 	const onSubmit = handleSubmit(async (props) => {
 		if (!enabledSubmit) return;
 		try {
-			await login(props);
+			const isActiveUser = await login(props);
 			setFormError(false);
-			toast(loginForm.onSubmit.successToast, { type: 'success' });
-			await router.replace(returnUrl as string || "/dashboard")
+			if(isActiveUser) {
+				toast(loginForm.onSubmit.successToast, { type: 'success' });
+				await router.replace(returnUrl as string || "/dashboard")
+			}
 		} catch (error) {
 			setFormError(true);
 			toast(loginForm.onSubmit.errorToast, {

@@ -1,4 +1,4 @@
-export const WithoutAuthenticationRoute = ["signup","login"]
+export const WithoutAuthenticationRoute = ["signup","login","registration/waiting","registration/rejected"]
 
 //todo: "admin/advertisement" will be removed after api implement
 export const PublicRoute = [...WithoutAuthenticationRoute,"landing","admin/member-inquiry"];

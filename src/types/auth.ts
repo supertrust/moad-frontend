@@ -52,6 +52,7 @@ export type AuthContextType = {
     localDataUpdated : VoidFunction
     changeLocale : (lang : Langs) => {}
     isPcOnly : boolean
+    isKorean : boolean
 }
 
 export type VerifyInputPropsType = {

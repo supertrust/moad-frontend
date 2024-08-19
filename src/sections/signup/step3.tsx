@@ -11,6 +11,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import Tooltip from '@mui/material/Tooltip';
 
 interface Step3Props {
 	onPrevStep: () => void;
@@ -41,7 +42,7 @@ const Step3 = ({
 
 	const { RegisterSchema, allowedFiles } = useSchema()
 	const { mutateAsync: verifyInput } = useVerifyInput();
-	const { register, dictionary:{ signup: { step3 } },isPcOnly } = useAuth();
+	const { register, dictionary:{ signup: { step3 } },isPcOnly,isKorean } = useAuth();
 	const [showModal, setShowModal] = useState(false);
 	const [isReadonly, setReadonly] = useState(false);
 	const [verifybtnclick, setverifybtn] = useState(false);
@@ -324,46 +325,50 @@ const Step3 = ({
 									}
 								/>
 								<div className='business-num-wrap'>
-									<RHFInput
-										wrapperClassName='business-num  flex-1'
-										required
-										label={step3.businessRegistrationNumberLabel}
-										type='phoneNumber'
-										minLength={12}
-										maxLength={12}
-										id='business_registration_number'
-										name='business_registration_number'
-										className='company-input'
-										placeholder={step3.businessRegistrationNumberPlaceholder}
-										spellCheck={false}
-										data-ms-editor='true'
-										readOnly={isReadonly}
-										caption={
-											<div className='error-text'>
-												{step3.businessRegistrationNumberCaption}
-											</div>
-										}
-										right={
-											<button
-												type='button'
-												disabled={isReadonly}
-												className='business-num-btn ml-2'
-												onClick={() => {
-													setverifybtn(true);
-													trigger('business_registration_number', {
-														shouldFocus: true,
-													}).then((isValid) => {
-														isValid &&
+									<Tooltip title={(isKorean || watch().business_registration_number) ?"": step3.businessRegistrationNumberPlaceholder}>
+										<RHFInput
+											wrapperClassName='business-num  flex-1'
+											required
+											label={step3.businessRegistrationNumberLabel}
+											type='phoneNumber'
+											minLength={12}
+											maxLength={12}
+											id='business_registration_number'
+											name='business_registration_number'
+											className='company-input'
+											placeholder={step3.businessRegistrationNumberPlaceholder}
+											spellCheck={false}
+											data-ms-editor='true'
+											readOnly={isReadonly}
+											caption={
+												<div className='error-text'>
+													{step3.businessRegistrationNumberCaption}
+												</div>
+											}
+											right={
+												<button
+													type='button'
+													disabled={isReadonly}
+													className='business-num-btn ml-2'
+													onClick={() => {
+														setverifybtn(true);
+														trigger('business_registration_number', {
+															shouldFocus: true,
+														}).then((isValid) => {
+															isValid &&
 															_verifyBusinessNumber(
 																'business_registration_number',
 																getValues().business_registration_number,
 															);
-													});
-												}}>
-												{step3.businessRegistrationNumberBtn}
-											</button>
-										}
-									/>
+														});
+													}}>
+													{step3.businessRegistrationNumberBtn}
+												</button>
+											}
+										/>
+
+									</Tooltip>
+
 									{errors.verify_business_registration_number && (
 										<span className='text-danger'>
 											{String(

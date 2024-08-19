@@ -1300,7 +1300,7 @@ a {
 /*.input-wrap  */
 .business-num-wrap .business-num-btn {
 	flex: 0 0 auto;
-	width: 84px;
+	min-width: 84px;
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 48px;
@@ -1310,6 +1310,7 @@ a {
 	border-radius: 4px;
 	cursor: pointer;
 	justify-content: center;
+	padding-inline : 8px;
 }
 
 #sign_up

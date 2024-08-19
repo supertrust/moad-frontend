@@ -169,7 +169,8 @@ function AuthProvider({ children }: AuthProviderProps) {
         isUserLoading: !user && isUserLoading,
         isRoleLoading: false,
         localDataUpdated,
-        isPcOnly
+        isPcOnly,
+        isKorean : lang === 'kr'
     }), [
         lang,
         user,
@@ -177,7 +178,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         loading,
         dictionary,
         isUserLoading,
-        isPcOnly
+        isPcOnly,
     ]);
 
     return (

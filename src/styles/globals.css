@@ -753,7 +753,7 @@ a {
 	color: #ffffff;
 	background-color: var(--primary-color);
 	cursor: pointer;
-	width: 92px;
+	width: auto;
 	align-items: center;
 	justify-content: center;
 }

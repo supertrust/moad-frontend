@@ -11,6 +11,7 @@ import React, { ReactNode, useState } from "react";
 import { API_BASE_URL } from "@src/config";
 import { useDeleteInquiry, useGetInquiryDetail } from "@src/apis/inquiry";
 import useAuth from "@src/hooks/useAuth";
+import { toast } from "react-toastify";
 import styles from "./styles.module.scss";
 
 function InquireDetailsPage() {
@@ -37,8 +38,21 @@ function InquireDetailsPage() {
       { id },
       {
         onSuccess: () => {
+            toast.success(dictionary?.inquiryPage?.delete_success_msg)
+            setDeleteModal({
+                text: null,
+                open : false
+            })
           router.push("/dashboard/customer-service/inquire");
         },
+        onError: ()=>{
+            toast.error(dictionary?.inquiryPage?.delete_error_msg)
+            setDeleteModal({
+                text: null,
+                open : false
+            })
+
+          }
       }
     );
   };

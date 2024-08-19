@@ -529,7 +529,9 @@
       "error": "오류",
       "usage_inquiry": "이용문의",
       "member_related": "회원관련"
-    }
+    },
+    "delete_error_msg": "문의 삭제에 실패했습니다.",
+    "delete_success_msg": "문의가 삭제되었습니다."
   },
   "inquireFormPage": {
     "pageTitle": "문의내역",

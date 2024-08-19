@@ -11,6 +11,7 @@ export const useGetInquiries = ({ page }: GetInquiriesPropsType) => useQuery<IGe
 export const useGetInquiryDetail = ({ id }: GetInquiryDetailPropsType) => useQuery<IInquiryDetail, string>({
     queryKey: ["inquiry", id],
     queryFn: async () => (await axios.get(API_URL.getInquiryDetails(id))).data.data,
+    enabled : !!id
 })
 
 export const useSaveInquiry = () => useMutation<void, string, SaveInquiryType>({
@@ -25,5 +26,5 @@ export const useUpdateInquiry = () => useMutation<void, string, UpdateInquiryTyp
 
 
 export const useDeleteInquiry = () => useMutation<void, string, DeleteInquiryPropsType>({
-    mutationFn: async ({ id }) => axios.get(API_URL.deleteInquiry(id))
+    mutationFn: async ({ id }) => axios.post(API_URL.deleteInquiry(),{ id})
 })

@@ -495,7 +495,9 @@
       "error": "Error",
       "usage_inquiry": "Usage inquiry",
       "member_related": "Member related"
-    }
+    },
+    "delete_error_msg" : "Failed to delete the inquiry.",
+    "delete_success_msg" : "Inquiry has been deleted."
   },
   "inquireFormPage": {
     "pageTitle": "Inquiry Details",

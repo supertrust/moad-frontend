@@ -34,7 +34,7 @@ function Sidebar({ msg }: SidebarProps) {
 
     const barStatus = (status: string) => {
         setTab(status);
-        msg(dictionary?.pageTitle[status]);
+        msg(status);
     };
 
     const handleLogout = async () => {

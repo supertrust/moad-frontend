@@ -1,3 +1,4 @@
+import useUtils from "@src/hooks/useUtils";
 import React, { useMemo, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import { styles } from '@src/sections/statistics';
@@ -22,7 +23,6 @@ import Link from 'next/link';
 import {
   DateSelected,
   ISOformatDate,
-  formatTimeFromMinute,
 } from '@src/helpers';
 import { Types } from '@src/components/pages/AdFullDetails';
 import {
@@ -35,8 +35,9 @@ import useAuth from '@src/hooks/useAuth';
 
 export default function StatisticsScreen() {
   const {
-    dictionary: { types: adTypes, statistics, dateRangePickerCtrls },
+    dictionary: { types: adTypes, statistics, dateRangePickerCtrls,dashboard,isKorean,adList : {allAdStatuses} },
   } = useAuth();
+  const { formatTimeFromMinute } = useUtils();
   const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
@@ -74,7 +75,7 @@ export default function StatisticsScreen() {
     {
       title: statistics.opVehicle.driving_vehicle[0].title,
       data: formatNumberWithCommas(total_add),
-      tooltip: `${statistics.opVehicle.driving_vehicle[0].tooltip} : ${operating_vehicles}대`,
+      tooltip: `${statistics.opVehicle.driving_vehicle[0].tooltip} : ${operating_vehicles}${dashboard?.big}`,
     },
     {
       title: statistics.opVehicle.driving_vehicle[1].title,
@@ -93,10 +94,10 @@ export default function StatisticsScreen() {
   ];
 
   const statusMapper = {
-    in_progress: '광고진행중',
-    end: '광고종료',
-    proceeding: '광고검토중',
-    applying: '광고승인',
+    in_progress: allAdStatuses.inProgress,
+    end: allAdStatuses.end,
+    proceeding: allAdStatuses.proceeding,
+    applying: allAdStatuses.applying,
   };
 
   const SelectTypes = [
@@ -235,7 +236,7 @@ export default function StatisticsScreen() {
                                 className='w-14 items-center'
                               />
                             ) : data.data != undefined ? (
-                              data.data + '대'
+                              data.data + ` ${dashboard?.big}`
                             ) : (
                               '-'
                             )}
@@ -282,8 +283,8 @@ export default function StatisticsScreen() {
                         <div className={styles.selectDropdown}>
                           <Form.Select
                             aria-label='Default select example'
-                            className={`border-[1px] border-advertiser-primary text-advertiser-primary text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
-													${styles.selectOption} cursor-pointer`}>
+                            className={clsx(`border-[1px] border-advertiser-primary text-advertiser-primary text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
+													${styles.selectOption} cursor-pointer`, !isKorean && "!max-w-[200px]")}>
                             <option selected>
                               {statistics.drivingDstTime.chooseAdType}
                             </option>
@@ -317,7 +318,7 @@ export default function StatisticsScreen() {
                           // onClick={handleDeleteAds}
                           className={clsx(
                             styles.adDeleteBtn,
-                            'border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-advertiser-primary !text-advertiser-primary ',
+                            'flex justify-center border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-advertiser-primary !text-advertiser-primary ',
                           )}>
                           {statistics.drivingDstTime.delete}
                         </button>
@@ -326,7 +327,7 @@ export default function StatisticsScreen() {
                   </div>
                   {/* <DataGrid columns={columns} rows={stats} loading={isLoading} /> */}
                   <div className={styles.tabWrap}>
-                    <div className={`${styles.listHd} ${styles.listFlex}`}>
+                    <div className={clsx(`${styles.listHd} ${styles.listFlex}`, isKorean? "" : "!py-8")}>
                       <div className={styles.grid}>
                         <div className={styles.chkBox}>
                           <div className={styles.form_group}>
@@ -348,9 +349,9 @@ export default function StatisticsScreen() {
                           className={`${styles.typeWrap} ${styles.gridBox} !font-medium`}>
                           {statistics.drivingDstTime.columns[0]}
                         </div>
-                        <div className={`${styles.gridBox} !font-medium`}>
-                          {statistics.drivingDstTime.columns[0]}
-                        </div>
+                        {/*<div className={`${styles.gridBox} !font-medium`}>*/}
+                        {/*  {statistics.drivingDstTime.columns[0]}*/}
+                        {/*</div>*/}
                         <div className={`${styles.gridBox} !font-medium`}>
                           {statistics.drivingDstTime.columns[1]}
                         </div>
@@ -365,6 +366,10 @@ export default function StatisticsScreen() {
                         <div
                           className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>
                           {statistics.drivingDstTime.columns[4]}
+                        </div>
+                        <div
+                            className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>
+                          {statistics.drivingDstTime.columns[5]}
                         </div>
 
                         {/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
@@ -424,7 +429,7 @@ export default function StatisticsScreen() {
                                     {`${formatNumberWithCommas(
                                       item.number_of_vehicle,
                                     )}`}
-                                    대
+                                    {dashboard?.big}
                                   </div>
                                   <div className={styles.gridBox}>
                                     {formatNumberWithCommas(

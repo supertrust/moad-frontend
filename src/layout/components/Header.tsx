@@ -37,7 +37,7 @@ function Header(props: HeaderProps) {
         <div className='only-pc'>
           <div className='header-pc'>
             <div className='header-title'>
-              {!props.text ? dictionary.dashboard.title : props.text}
+              {props.text ? dictionary?.pageTitle?.[props.text] || props.text : props.text || dictionary.dashboard.title }
             </div>
             <div className='flex items-center'>
               <LanguageChange/>

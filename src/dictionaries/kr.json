@@ -51,7 +51,10 @@
     "advertisement_images": "광고 이미지",
     "min_max_number_vehicales": "최소 운행차량수 / 최대 운행차량수",
     "advertisement_details": "광고 상세",
-    "download" : "다운로드"
+    "download" : "다운로드",
+    "a" : "가",
+    "b" : "나",
+    "c" : "다"
   },
   "operationStatus": {
     "active": "운행대기중",

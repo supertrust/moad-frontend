@@ -51,7 +51,10 @@
     "advertisement_images": "Advertisement Images",
     "min_max_number_vehicales": "Minimum number of operating vehicles / Maximum number of operating vehicles",
     "advertisement_details": "Advertisement Details",
-    "download" : "Download"
+    "download" : "Download",
+    "a" : "a",
+    "b" : "b",
+    "c" : "c"
   },
   "operationStatus": {
     "active": "Waiting for operation",

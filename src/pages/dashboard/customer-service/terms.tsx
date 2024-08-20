@@ -355,7 +355,7 @@ export default function PolicyModulePage() {
                       </h5>
                       <ul>
                         <li>
-                          <div>가.</div>
+                          <div>{dictionary.common.a}.</div>
                           <div>
                             {
                               dictionary.privacy.policyList.policyItem02
@@ -384,7 +384,7 @@ export default function PolicyModulePage() {
                           </div>
                         </li>
                         <li>
-                          <div>나.</div>
+                          <div>{dictionary.common.b}.</div>
                           {
                             dictionary.privacy.policyList.policyItem02
                               .description.items[4].text
@@ -401,7 +401,7 @@ export default function PolicyModulePage() {
                       </h5>
                       <ul>
                         <li>
-                          <div> 가.</div>
+                          <div> {dictionary.common.a}.</div>
                           <div>
                             {
                               dictionary.privacy.policyList.policyItem03
@@ -426,14 +426,14 @@ export default function PolicyModulePage() {
                           </div>
                         </li>
                         <li>
-                          <div> 나.</div>
+                          <div> {dictionary.common.b}.</div>
                           {
                             dictionary.privacy.policyList.policyItem03
                               .description.items[3].text
                           }
                         </li>
                         <li>
-                          <div> 다.</div>
+                          <div> {dictionary.common.c}.</div>
                           {
                             dictionary.privacy.policyList.policyItem03
                               .description.items[4].text
@@ -534,7 +534,7 @@ export default function PolicyModulePage() {
                       </h5>
                       <ul>
                         <li>
-                          <div>가.</div>
+                          <div>{dictionary.common.a}.</div>
                           <div>
                             {dictionary.privacy.policyList.policyItem06.description.items[0].text
                               .split('\n')
@@ -546,7 +546,7 @@ export default function PolicyModulePage() {
                           </div>
                         </li>
                         <li>
-                          <div>나.</div>
+                          <div>{dictionary.common.b}.</div>
                           <div>
                             {dictionary.privacy.policyList.policyItem06.description.items[1].text
                               .split('\n')
@@ -558,7 +558,7 @@ export default function PolicyModulePage() {
                           </div>
                         </li>
                         <li>
-                          <div>다.</div>
+                          <div>{dictionary.common.c}.</div>
                           <div>
                             {dictionary.privacy.policyList.policyItem06.description.items[2].text
                               .split('\n')

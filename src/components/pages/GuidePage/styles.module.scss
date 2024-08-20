@@ -214,12 +214,13 @@ $background-color_2: #456192;
 }
 
 ._root__list_items {
-  padding: 79px;
+  padding: 42px 79px;
   background-color: #f7f7f7;
-  padding-top: 42px;
+
   margin: 46px;
   margin-top: 0;
-  > ._root__text_img:nth-child(5) {
+  > ._root__text_img:nth-child(4) {
+    margin-bottom: 0px;
     ._step_avatar_style {
       &::before {
         display: none;

@@ -1,8 +1,9 @@
 import { ConfirmModal } from "@src/components/ConfirmModal";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import { DeleteIconSvg, EditIconSvg } from "@src/components/icons/inquiry";
 import { dateFormat, downloadFile, getFileName } from "@src/helpers";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import { Card, CircularProgress } from "@mui/material";
+import { Card, CircularProgress, IconButton } from "@mui/material";
 import clsx from "clsx";
 import Head from "next/head";
 import Link from "next/link";
@@ -153,56 +154,57 @@ function InquireDetailsPage() {
                     </div>
                   </div>
 
-                  <div className="mt-3 flex justify-end gap-2 !text-sm">
+                  <div className="mt-3 flex justify-end gap-2 !text-sm items-center">
                     {data?.inquiry_answer !== null ? (
                       <span className={styles["answer-complete"]}>
                         {dictionary.InquireDetailsPage.answer_complete}
                       </span>
                     ) : (
                       <>
+                      <Link
+                          href={`/dashboard/customer-service/inquire/form/${id}`}
+                      >
                         <span className={styles["before-reply-correction"]}>
                           {
-                            dictionary.InquireDetailsPage
-                              .before_reply_correction
+                          <IconButton>
+                              <EditIconSvg/>
+                          </IconButton>
                           }
                         </span>
-                        <Link
-                          href={`/dashboard/customer-service/inquire/form/${id}`}
-                        >
+                      </Link>
                           <span className={styles["before-reply-correction"]}>
-                            {dictionary.InquireDetailsPage.delete}
+                           <IconButton  onClick={() => {
+                               deleteModal.open = true;
+                               if (!deleteModal.text) {
+                                   deleteModal.text = (
+                                       <>
+                                           <div
+                                               className={styles[`delete-modal-header`]}
+                                           >
+                                               {
+                                                   dictionary.InquireDetailsPage
+                                                       .delete_modal_header
+                                               }
+                                           </div>
+                                           <div className={styles["delete-modal-body"]}>
+                                               {
+                                                   dictionary.InquireDetailsPage
+                                                       .delete_modal_body
+                                               }
+                                           </div>
+                                       </>
+                                   );
+                               }
+                               setDeleteModal({ ...deleteModal });
+                           }}>
+                               <DeleteIconSvg/>
+                           </IconButton>
                           </span>
-                        </Link>
-                        <button
-                          onClick={() => {
-                            deleteModal.open = true;
-                            if (!deleteModal.text) {
-                              deleteModal.text = (
-                                <>
-                                  <div
-                                    className={styles[`delete-modal-header`]}
-                                  >
-                                    {
-                                      dictionary.InquireDetailsPage
-                                        .delete_modal_header
-                                    }
-                                  </div>
-                                  <div className={styles["delete-modal-body"]}>
-                                    {
-                                      dictionary.InquireDetailsPage
-                                        .delete_modal_body
-                                    }
-                                  </div>
-                                </>
-                              );
-                            }
-                            setDeleteModal({ ...deleteModal });
-                          }}
-                        >
+
                           <span className={styles["delete-inquire"]}>
-                            {dictionary.InquireDetailsPage.delete_inquire}
+                            {dictionary.inquiryPage.answerBtn}
                           </span>
-                        </button>
+
                       </>
                     )}
                   </div>
@@ -415,51 +417,58 @@ function InquireDetailsPage() {
                     </div>
                   </div>
 
-                  <div className="mt-9 flex justify-end gap-2 !text-sm">
+                  <div className="mt-9 flex justify-end gap-2 !text-sm items-center">
                     {data?.inquiry_answer !== null ? (
                       <span className={styles["answer-complete"]}>
                         {dictionary.InquireDetailsPage.answer_complete}
                       </span>
                     ) : (
-                      <>
+                        <>
+                            <Link
+                                href={`/dashboard/customer-service/inquire/form/${id}`}
+                            >
                         <span className={styles["before-reply-correction"]}>
-                          {dictionary.InquireDetailsPage.correction}
+                          {
+                              <IconButton>
+                                  <EditIconSvg/>
+                              </IconButton>
+                          }
                         </span>
-                        <Link
-                          href={`/dashboard/customer-service/inquire/form/${id}`}
-                        >
-                          <span className={styles["before-reply-correction"]}>
-                            {dictionary.InquireDetailsPage.delete}
+                            </Link>
+                            <span className={styles["before-reply-correction"]}>
+                           <IconButton  onClick={() => {
+                               deleteModal.open = true;
+                               if (!deleteModal.text) {
+                                   deleteModal.text = (
+                                       <>
+                                           <div
+                                               className={styles[`delete-modal-header`]}
+                                           >
+                                               {
+                                                   dictionary.InquireDetailsPage
+                                                       .delete_modal_header
+                                               }
+                                           </div>
+                                           <div className={styles["delete-modal-body"]}>
+                                               {
+                                                   dictionary.InquireDetailsPage
+                                                       .delete_modal_body
+                                               }
+                                           </div>
+                                       </>
+                                   );
+                               }
+                               setDeleteModal({ ...deleteModal });
+                           }}>
+                               <DeleteIconSvg/>
+                           </IconButton>
                           </span>
-                        </Link>
-                        <button
-                          onClick={() => {
-                            deleteModal.open = true;
-                            if (!deleteModal.text) {
-                              deleteModal.text = (
-                                <>
-                                  <div
-                                    className={styles[`delete-modal-header`]}
-                                  >
-                                    {dictionary.InquireDetailsPage.delete_post}
-                                  </div>
-                                  <div className={styles["delete-modal-body"]}>
-                                    {
-                                      dictionary.InquireDetailsPage
-                                        .delete_modal_body
-                                    }
-                                  </div>
-                                </>
-                              );
-                            }
-                            setDeleteModal({ ...deleteModal });
-                          }}
-                        >
-                          <span className={styles["delete-inquire"]}>
-                            {dictionary.InquireDetailsPage.before_reply}
+
+                            <span className={styles["delete-inquire"]}>
+                            {dictionary.inquiryPage.answerBtn}
                           </span>
-                        </button>
-                      </>
+
+                        </>
                     )}
                   </div>
                 </div>

@@ -488,7 +488,7 @@
     "contactUsBtn": "Contact Us",
     "columns": ["no", "Category", "Title", "Creation date", "Status"],
     "answerCompletedBtn": "Answer completed",
-    "answerBtn": "Answer Btn",
+    "answerBtn": "Before reply",
     "noRegInquiriesMsg": "There are no registered inquiries.",
     "inquiryType": {
       "classification_of_payments": "Payments",

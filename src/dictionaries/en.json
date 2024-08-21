@@ -1274,8 +1274,8 @@
       "modalFindBtn": "Find",
       "modalCloseBtn": "Cancel",
       "onSubmit": {
-        "successToast": "You have successfully logged in",
-        "errorToast": "You have logged in successfully"
+        "successToast" : "Successfully ID found",
+        "errorToast" : "ID not found"
       }
     },
     "findPasswordModal": {

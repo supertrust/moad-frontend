@@ -49,13 +49,10 @@ const FindIdModel = ({ SetFindId }: { SetFindId: (show: boolean) => void }) => {
 					},
 				},
 			);
-			toast(findIdModal.onSubmit.successToast, { type: 'success' });
-			router.push('/login');
+			toast.success(findIdModal.onSubmit.successToast);
 		} catch (error) {
 			setId(false);
-			toast(findIdModal.onSubmit.errorToast, {
-				type: 'error',
-			});
+			toast.error(findIdModal.onSubmit.errorToast);
 		}
 	});
 

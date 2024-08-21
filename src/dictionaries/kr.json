@@ -1268,8 +1268,8 @@
       "modalFindBtn": "찾기",
       "modalCloseBtn": "취소",
       "onSubmit": {
-        "successToast": "성공적으로 로그인했습니다",
-        "errorToast": "성공적으로 로그인했습니다"
+        "successToast": "ID를 성공적으로 찾았습니다",
+        "errorToast": "ID를 찾지 못했습니다"
       }
     },
     "findPasswordModal": {

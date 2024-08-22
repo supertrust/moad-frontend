@@ -20,10 +20,12 @@ const nextConfig = {
     STATIC_IMAGE_HOST: process.env.STATIC_IMAGE_HOST
   },
   images: {
-    remotePatterns: hostnames.map((hostname) => ({
-      protocol: "https",
-      hostname,
-    })),
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
 };
 

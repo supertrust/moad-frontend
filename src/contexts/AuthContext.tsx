@@ -98,14 +98,15 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     const login = useCallback(async (props: LoginPropsType) => {
         try {
+            console.log("login",lang)
             const data = await _login(props);
             if(data.status === UserStatus.Waiting) router.push("registration/waiting").then(() =>
-                toast.info("Your registration is waiting for admin approval"))
+                toast.info(dictionary?.signup?.waiting?.waiting_registration_toast))
 
             else if(data.status === UserStatus.Rejected) router.push("registration/rejected").then(() =>
-                toast.error("Your registration has been rejected by admin"))
+                toast.error(dictionary?.signup?.deny?.reject_registration_toast))
 
-            else if( data.status === UserStatus.Blocked)  toast.info("Your account has been blocked by admin")
+            else if( data.status === UserStatus.Blocked)  toast.error(dictionary?.signup?.block?.block_toast)
 
             else {
                 await localStorage.setItem("token", data.token);
@@ -117,7 +118,7 @@ function AuthProvider({ children }: AuthProviderProps) {
             throw error
         }
 
-    }, []);
+    }, [lang,dictionary]);
 
     const register = useCallback(async (props: RegisterPropsType) => {
         return _register(props).then(res => {

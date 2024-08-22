@@ -1449,7 +1449,14 @@
     "deny": {
       "title": "You are a member whose membership registration has been rejected.",
       "subtitle": "For further details, please contact customer service.",
-      "login": "Login"
+      "login": "Login",
+      "reject_registration_toast": "Your registration has been rejected. Please contact customer support."
+    },
+    "waiting" : {
+      "waiting_registration_toast": "Your registration is pending approval. You can use the service once approved."
+    },
+    "block" : {
+      "block_toast": "Your account has been suspended. Please contact the administrator."
     }
   },
   "view": "View"

@@ -1444,7 +1444,14 @@
     "deny": {
       "title": "회원가입이 거절된 회원입니다.",
       "subtitle": "자세한 사항은 고객센터로 문의 주시기 바랍니다.",
-      "login": "로그인"
+      "login": "로그인",
+      "reject_registration_toast" : "가입이 거절된 회원입니다. 고객센터로 연락 부탁드립니다."
+    },
+    "waiting": {
+      "waiting_registration_toast": "회원가입 승인 이전입니다. 승인후 정상적으로 사용이 가능합니다."
+    },
+    "block" : {
+      "block_toast" : "사용이 중지된 계정입니다. 관리자에게 문의바랍니다."
     }
   },
   "view": "보기"

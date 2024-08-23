@@ -1,20 +1,13 @@
-import {
-    FormProvider,
-    RHFInput,
-    useForm,
-    yupResolver,
-    Button, LanguageChange,
-} from '@src/components/common';
-import { Logo } from "@src/components/icons";
-import { logoMobileSize } from "@src/utils/values";
-import React, { useEffect, useState } from 'react';
-import * as Yup from 'yup';
+import { useVerifyInput } from '@src/apis/auth';
+import { Button, FormProvider, LanguageChange, RHFInput, useForm, yupResolver, } from '@src/components/common';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '@src/constants';
-import Image from 'next/image';
 import useAuth from "@src/hooks/useAuth";
 import { RegisterPropsType } from '@src/types/auth';
-import { useVerifyInput } from '@src/apis/auth';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { debounce } from "@src/utils/func";
+import { logoMobileSize } from "@src/utils/values";
+import Image from 'next/image';
+import React, { useCallback, useEffect, useState } from 'react';
+import * as Yup from 'yup';
 
 interface Step2Props {
     onPrevStep: () => void;
@@ -27,6 +20,7 @@ const defaultValues = {
     email: '',
     password: '',
 };
+
 
 const Step2 = ({
                    onPrevStep,
@@ -64,6 +58,7 @@ const Step2 = ({
     const {
         handleSubmit,
         formState: { dirtyFields, errors },
+        watch,
         setError,
         setFocus,
     } = methods;
@@ -101,6 +96,31 @@ const Step2 = ({
             document.removeEventListener('keydown', handleKeyPress);
         };
     }, [Object.keys(dirtyFields).length !== 3]);
+
+    const handleValidation = useCallback(
+        debounce(async (value) => {
+            await verifyInput(
+                { key: 'email', value },
+                {
+                    onSuccess: () => {
+                        setError('email', { message: '' });
+                    },
+                    onError: (error) => {
+                        setError('email', {
+                            message: step2.emailOnErrorMsg,
+                        });
+                        //   setFocus("email");
+                    },
+                }
+            );
+        }, 500),
+        [] // No dependencies here
+    );
+
+    useEffect(() => {
+        const email = watch('email');
+        handleValidation(email);
+    }, [watch('email'), handleValidation])
 
     return (
         <div className='step02 step-section'>
@@ -146,24 +166,26 @@ const Step2 = ({
                                     id='email'
                                     label={step2.emailLabel}
                                     errorPosition="bottom"
-                                    onBlur={(event) => {
-                                        if (errors.email) return;
-                                        event.target.value &&
-                                        verifyInput(
-                                            { key: 'email', value: event.target.value },
-                                            {
-                                                onSuccess: () => {
-                                                    setError('email', { message: '' });
-                                                },
-                                                onError: (error) => {
-                                                    setError('email', {
-                                                        message: step2.emailOnErrorMsg,
-                                                    });
-                                                    //   setFocus("email");
-                                                },
-                                            },
-                                        );
-                                    }}
+                                    // onBlur={(event) => {
+                                    //
+                                    //     console.log("event",errors)
+                                    //     // if (errors.email) return;
+                                    //     event.target.value &&
+                                    //     verifyInput(
+                                    //         { key: 'email', value: event.target.value },
+                                    //         {
+                                    //             onSuccess: () => {
+                                    //                 setError('email', { message: '' });
+                                    //             },
+                                    //             onError: (error) => {
+                                    //                 setError('email', {
+                                    //                     message: step2.emailOnErrorMsg,
+                                    //                 });
+                                    //                 //   setFocus("email");
+                                    //             },
+                                    //         },
+                                    //     );
+                                    // }}
                                 />
                                 <RHFInput
                                     type={visiblePassword ? 'text' : 'password'}

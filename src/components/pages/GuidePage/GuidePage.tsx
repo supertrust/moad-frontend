@@ -1,4 +1,5 @@
 import ArrowBack from "@src/components/icons/ArrowBack";
+import useAuth from "@src/hooks/useAuth";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -11,12 +12,13 @@ import clsx from 'clsx';
 const GuidePage = () => {
 
   const { setPageTitle } = useIcarusContext();
+  const { dictionary : {pageTitle, guide_page},isKorean} = useAuth()
 
   const router = useRouter();
 
   useEffect(()=> {
-    setPageTitle("가이드");
-  },[])
+    setPageTitle(guide_page?.title);
+  },[isKorean])
 
   const onBack = ()=>
   {
@@ -34,39 +36,39 @@ const GuidePage = () => {
                     <div className={`${styles["mobile-top-header"]}`}>
                       <ArrowBack handleAction={onBack}/>
                       <div className={styles['header']}>
-                        가이드
+                        {pageTitle?.top_bar_guide}
                       </div>
                       <div></div>
                     </div>
 
                   </div>
                   <div className={clsx(styles["title"],"only-pc")}>
-                    <span className="font-bold">광고 시작 가이드</span>
+                    <span className="font-bold">{guide_page?.starting_guide?.title}</span>
                   </div>
                   <div className={clsx(styles['sub-text'],"only-pc")}>
-                    <span >이카루스가 처음이신가요? 시작하는 광고주분들에게 도움이 될 수 있는 내용을 정리해보았습니다.</span>
+                    <span >{guide_page?.starting_guide?.subtitle}</span>
                   </div>
                 </div>
                 <div className={styles["guide-box-wrap"]}>
                   <ul className={styles["box-wrap"]}>
                     <li className={styles["box-list"]}>
                       <div className={`${styles["box-title"]} font-semibold`}>
-                        <span className="font-medium">랩핑광고가 처음이신가요?</span>
+                        <span className="font-medium">{guide_page?.boxes?.[0]?.title}</span>
                       </div>
                       <div className={styles["box-sub-text"]}>
-                        <span>브랜드를 알릴 수 있는 최고의 기회! 랩핑광고 시작 전 확인하세요!</span>
+                        <span>{guide_page?.boxes?.[0].subtitle}</span>
                       </div>
                       <div className={styles["box-link-wrap"]}>
                         <Link href="/dashboard/customer-service/guide/wrapping-advertising" className={styles["box-link"]}>
                                             <span className={styles["box-text"]}>
-                                                <span>랩핑 광고란?</span>
+                                                <span>{guide_page?.boxes?.[0]?.links?.[0]?.text}</span>
                                             </span>
                           <ChevronRightIcon className={clsx("w-7 h-7 text-[#FFFFFF]",
                               styles['extra'])} />
                         </Link>
                         <Link href="/dashboard/customer-service/guide/advertising-process" className={styles["box-link"]}>
                                                     <span className={styles["box-text"]}>
-                                                    <span>광고 진행 프로세스 확인하기</span>
+                                                    <span>{guide_page?.boxes?.[0]?.links?.[1]?.text}</span>
                                                 </span>
                           <ChevronRightIcon className={clsx("w-7 h-7 text-[#FFFFFF]",styles['icon2'])}/>
                         </Link>
@@ -74,15 +76,15 @@ const GuidePage = () => {
                     </li>
                     <li className={styles["box-list"]}>
                       <div className={`${styles["box-title"]} font-semibold`}>
-                        <span className="font-medium">광고 시작 전 확인하세요!</span>
+                        <span className="font-medium">{guide_page?.boxes?.[1]?.title}</span>
                       </div>
                       <div className={styles["box-sub-text"]}>
-                        <span>나에게 알맞는 광고는 어떤것이 있는지 확인하세요!</span>
+                        <span>{guide_page?.boxes?.[1]?.subtitle}</span>
                       </div>
                       <div className={styles["box-link-wrap"]}>
                         <Link href="/dashboard/customer-service/guide/ad-type" className={styles["box-link"]}>
                                             <span className={styles["box-text"]}>
-                                                <span>광고 유형 확인하기</span>
+                                                <span>{guide_page?.boxes?.[1]?.links?.[0]?.text}</span>
                                             </span>
                           <ChevronRightIcon className={clsx("w-7 h-7 text-[#FFFFFF]", styles['extra'])} />
                         </Link>

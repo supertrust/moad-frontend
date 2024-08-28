@@ -86,33 +86,38 @@
   "process_page": {
     "titles": "MOAD",
     "headers": "Guide",
+    "subtitle": "MOAD Advertising Process",
     "steps": [
       {
         "number": "STEP 1",
         "title": "Apply for Advertisement",
-        "description": "Apply for an advertisement by setting conditions such as advertisement type, desired period, and desired number of vehicles, depending on the purpose of the advertisement."
+        "description1": "Select the advertisement type, desired duration, preferred vehicles, etc.",
+        "description2": "Set the conditions and apply for the advertisement."
       },
       {
         "number": "STEP 2",
-        "title": "Consultation for Advertisement",
-        "description": "An MOAD representative will contact you after confirmation. They will assist you with detailed consultations regarding the progress of the advertisement."
+        "title": "Advertisement Consultation",
+        "description1": "Our representative will review your application and contact you.",
+        "description2": "We will provide detailed consultation about the advertisement process."
       },
       {
         "number": "STEP 3",
         "title": "Vehicle Recruitment",
-        "description": "Recruit vehicles that have been verified by MOAD, and recruit vehicles to attach the advertisement."
+        "description1": "Verified vehicles from our platform will be used,",
+        "description2": "and we will recruit vehicles to display the advertisement."
       },
       {
         "number": "STEP 4",
-        "title": "Advertisement Progress",
-        "description": "You can check the progress of the advertisement, such as the real-time location of the operating vehicles."
+        "title": "Advertisement Execution",
+        "description1": "You can monitor the advertisement progress, including the real-time location of the vehicles,",
+        "description2": "and track the advertisement execution."
       }
     ]
   },
   "guide_page": {
     "title": "Guide",
     "starting_guide": {
-      "title": "Starting Guide",
+      "title": "Guide to Starting an Advertisement",
       "subtitle": "Are you new to MOAD? Here are some helpful tips for new advertisers."
     },
     "boxes": [
@@ -145,6 +150,8 @@
   "confirm_page": {
     "titles": "MOAD",
     "headers": "Guide",
+    "sub_header" : "Check your ad type",
+    "description": "You can increase the efficiency of your advertisement by selecting the appropriate type of advertisement according to the purpose of the advertisement.",
     "steps": [
       {
         "number": "1",
@@ -161,6 +168,85 @@
         "title": "Spot Ads",
         "description": "Ads that can be exposed in specific areas and times on an hourly basis"
       }
+    ],
+    "ad_types": [
+      {
+        "title": "Fixed Advertising",
+        "subtitle": "Fixed advertising that can be exposed by matching with shippers in specific areas",
+        "details": [
+          {
+            "title": "Regional Targeting Effect",
+            "subtitle1": "It allows for the concentrated delivery of advertising messages to consumers in the specific area. Particularly, it can",
+            "subtitle2": "create an effective advertising strategy by considering local characteristics or culture, leading to more effective advertising results."
+          },
+          {
+            "title": "Budget Efficiency",
+            "subtitle": "When advertising is limited to a specific area, the advertising budget for that area can be efficiently allocated. In other words, by focusing the budget more intensively, you can increase the frequency of exposure or the size of the advertisement."
+          },
+          {
+            "title": "Response to Local Competitors",
+            "subtitle1": "In areas where there is a lot of competition, advertising only in that specific area allows you to respond to competitors.",
+            "subtitle2": "This can also greatly help in increasing local market competitiveness."
+          },
+          {
+            "title": "Measurement of Regional Effect",
+            "subtitle1": "When advertising is conducted only in a specific area, you can analyze and improve the advertising effect by measuring the sales or awareness in that area.",
+            "subtitle2": "This provides accurate information for media planning, which is very helpful for future advertising strategy development."
+          }
+        ]
+      },
+      {
+        "title": "National Advertising",
+        "subtitle": "Advertising that matches all shippers nationwide to maximize advertising effectiveness at a low cost",
+        "details": [
+          {
+            "title": "National Advertising",
+            "subtitle1": "When advertising is exposed nationwide, a broader branding effect can be expected.",
+            "subtitle2": "Since the advertisement is exposed to many people, it can increase brand awareness."
+          },
+          {
+            "title": "National Marketing Effect",
+            "subtitle1": "Conducting advertising nationwide allows you to achieve a national marketing effect.",
+            "subtitle2": "Since branding is not limited to a specific area, it can help make your product or service known to more consumers."
+          },
+          {
+            "title": "Exposure to a Broad Audience",
+            "subtitle1": "By advertising nationwide, you can reach an audience that is active across the country, not limited to a specific region.",
+            "subtitle2": "This is effective in increasing brand awareness, as there is no need to consider specific regional characteristics."
+          },
+          {
+            "title": "Low Cost",
+            "subtitle": "Conducting advertising nationwide can be done at a lower cost than fixed advertising."
+          }
+        ]
+      },
+      {
+        "title": "Spot Advertising",
+        "subtitle": "Advertising that can be exposed in specific areas and at specific times on an hourly basis",
+        "details": [
+          {
+            "title": "Targeted Marketing Effect",
+            "subtitle1": "Concentrated advertising in specific locations or time periods can achieve targeted marketing effects for those areas or times.",
+            "subtitle2": "For example, preferred products or services can vary by region or time of day."
+          },
+          {
+            "title": "Efficient Advertising Cost",
+            "subtitle1": "By advertising only in specific locations or time periods, you can allocate your advertising budget more efficiently. This allows you to achieve desired results more quickly and efficiently than advertising that targets an entire region or time period.",
+            "subtitle2": ""
+          },
+          {
+            "title": "Exposure to a Broad Audience",
+            "subtitle1": "When advertising is conducted nationwide, it can be exposed to an audience that is active across the country, not limited to a specific region.",
+            "subtitle2": "This is effective in increasing brand awareness, as there is no need to consider specific regional characteristics."
+          },
+          {
+            "title": "Gaining a Competitive Advantage",
+            "subtitle1": "By advertising in areas or time periods where competitors are not focused, you can gain a competitive advantage in those regions or times.",
+            "subtitle2": "Therefore, conducting advertising only in specific locations or time periods has advantages such as targeted marketing effects and efficient advertising costs.",
+            "subtitle3": "Additionally, you can expect a high advertising effect in those areas or times and secure a competitive advantage."
+          }
+        ]
+      }
     ]
   },
   "pc_page": {
@@ -170,31 +256,41 @@
     "content": [
       {
         "title": "Truck Wrapping Advertisement",
-        "description": "A marketing method that covers the exterior of a vehicle with special vinyl film to deliver advertising messages. It can promote products, brands, services, events, or other campaigns through driving roads, and advertisements can be placed on the sides and rear of vehicles. It has the advantage of obtaining a very large advertising effect in popular means of transportation."
+        "description1": "A marketing method that conveys an advertising message by covering the exterior of a vehicle with a special vinyl film.",
+        "description2": "It can promote products, brands, services, events, or other campaigns through the roads on which the vehicle operates.",
+        "description3": "Advertising can be done on the sides and rear of the vehicle.",
+        "description4": "It has the advantage of achieving a very high advertising effect on popular means of transportation."
       },
       {
         "title": "High Exposure Rate",
-        "description": "Truck wrapping advertisements have a very high exposure rate as they are visible to vehicles driving on the road. In addition, vehicles pass through various areas while driving on the road, ensuring diversity in advertising areas. Especially, the advertising effect is higher when driving in traffic congestion or on major roads."
+        "description1": "Vehicle wrapping advertisements have a very high exposure rate as they catch the eye of vehicles on the road.",
+        "description2": "Additionally, since vehicles pass through various areas while driving, the diversity of advertising regions is ensured.",
+        "description3": "In particular, the advertising effect is even higher when driving in traffic jams or on major roads."
       },
       {
         "title": "Wide Advertising Range",
-        "description": "Wrapping advertisements can include various advertising areas and can be advertised in many places. Also, as trucks generally use highways with heavy traffic, more people can see the advertisements."
+        "description1": "Wrapping advertisements can include various advertising areas, allowing for multiple locations to display the ads.",
+        "description2": "Additionally, since trucks typically use highways with heavy traffic, more people can see the advertisements."
       },
       {
         "title": "Cost Saving",
-        "description": "Truck wrapping advertisements can propagate advertisements at a lower cost compared to conventional advertising media. Also, as trucks operate on fixed routes every day, they can deliver advertising messages on the route without additional advertising costs."
+        "description1": "Truck wrapping advertisements can spread ads at a lower cost compared to traditional advertising media.",
+        "description2": "Additionally, since trucks operate on a fixed route daily, the advertising message can be delivered along the route without incurring additional advertising costs."
       },
       {
         "title": "High Participation Rate",
-        "description": "Wrapping advertisements have a high participation rate due to the size of the vehicle, bright colors, unique designs, etc. This arouses curiosity about the advertisement and makes it memorable."
+        "description1": "Wrapping advertisements have high engagement due to the size of the vehicle, bright colors, and unique design.",
+        "description2": "This makes people curious about the advertisement and helps it stay memorable."
       },
       {
         "title": "Sustainability of Advertising Messages",
-        "description": "Wrapping advertisements have a high sustainability of advertising messages. The advertising film can be maintained for a certain period, and vehicle wrapping can be relatively easily removed, so advertisers can easily update or change advertisements even if advertising strategies or campaigns change."
+        "description1": "Wrapping advertisements have a high level of message durability. The advertisement film can last for a certain period, and since vehicle wrapping can be relatively easily removed,",
+        "description2": "advertisers can easily update or change the advertisement if their strategy or campaign changes."
       },
       {
         "title": "Enhancement of Brand Recognition",
-        "description": "Truck wrapping advertisements can promote the brand, products, or services of advertisers in a large image, thereby increasing brand recognition and awareness."
+        "description1": "Vehicle wrapping advertisements allow advertisers to promote their brand, product, or service with large images.",
+        "description2": "This can increase brand awareness and recognition."
       }
     ]
   },

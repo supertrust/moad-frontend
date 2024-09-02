@@ -1,24 +1,48 @@
+import useMediaQuery from "@mui/material/useMediaQuery";
+import LogoPc from "@src/components/icons/LogoPc";
+import useAuth from "@src/hooks/useAuth";
+import clsx from "clsx";
+import styles from "./styles.module.scss"
+
 function Footer() {
-  // Get the current URL pathname
-  const currentURL = window.location.pathname;
 
-  // Define the URL to hide the footer on
-  const targetURL = '/dashboard/customer-service/guide/confirm';
+    const isMobile = useMediaQuery('(max-width:1023px)');
+    const { dictionary : { footer}} = useAuth();
 
-  // Check if the current URL pathname matches the target URL
-  const shouldHideFooter = currentURL === targetURL;
+    // Get the current URL pathname
+    // const currentURL = window.location.pathname;
 
-  // Conditionally render the footer based on the URL
-  if (shouldHideFooter) {
-    return null; // Hide the footer
-  }
+    // Define the URL to hide the footer on
+    // const targetURL = '/dashboard/customer-service/guide/confirm';
+    //
+    // // Check if the current URL pathname matches the target URL
+    // const shouldHideFooter = currentURL === targetURL;
+    //
+    // // Conditionally render the footer based on the URL
+    // if (shouldHideFooter) {
+    //   return null; // Hide the footer
+    // }
 
-  // Render the footer for other pages
-  return (
-    <div id="inner_footer" className="inner-footer" style={{ width: '100%' }}>
-      <span>2023@copyright. All rights reserved</span>
-    </div>
-  );
+    // Render the footer for other pages
+    return (
+        <div className={'flex flex-col px-[20px] lg:px-[60px] py-[36px] lg:py-10 border-t border-[#cfd2db] mt-3 lg:mt-[48px]'} style={{ width: '100%' }}>
+            <LogoPc height={!isMobile ? "38" : "20"} width={!isMobile ? "121" : "64"}/>
+            <div className={clsx('flex flex-col gap-1 pb-4 lg:pb-6 pt-7 lg:pt-8 text-sm lg:text-base text-[#2b303b]')}>
+         <span className={'font-semibold lg:font-normal'}>
+              {footer?.first1} {isMobile? <br/> :<span className={'px-1'}>|</span>}  {footer?.first2}
+         </span>
+                <span  className={'font-semibold lg:font-normal'}>
+              {footer?.second}
+          </span>
+                <span  className={'font-semibold lg:font-normal'}>
+             {footer?.third1} {isMobile? <br/> :<span className={'px-1'}>|</span>}  {footer?.third2}
+          </span>
+            </div>
+            <div className={'text-sm text-[#717784] '}>
+                © 2024 MOAD. All rights reserved.
+            </div>
+        </div>
+    );
 }
 
 export default Footer;

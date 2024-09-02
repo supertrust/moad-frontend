@@ -1555,5 +1555,13 @@
       "block_toast": "Your account has been suspended. Please contact the administrator."
     }
   },
-  "view": "View"
+  "view": "View",
+  "footer": {
+    "first1": "Company Name: 주식회사 슈퍼트러스트 Co., Ltd. (SUPER TRUST)",
+    "first2" : "Representative: Byung-Ho, Choi",
+    "second": "Address: Room 917, Building A, 167 Songpa-daero, Songpa-gu, Seoul (Munjeong-dong, Munjeong Station Terra Tower)",
+    "third1": "Business Registration Number: 559-87-02646",
+    "third2" : "Email: cs@moad.live"
+  }
+
 }

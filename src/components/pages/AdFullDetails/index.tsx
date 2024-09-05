@@ -1,21 +1,19 @@
-import ArrowBack from "@src/components/icons/ArrowBack";
-import Loader from "@src/components/Loader";
-import { DataRow, AdImage } from "@src/components/common";
+import CloseIcon from "@mui/icons-material/Close";
+import { Box } from "@mui/material";
+import Modal from "@mui/material/Modal";
+import { useGetAdvertisementDetail } from "@src/apis/advertisement";
+import { AdImage, DataRow } from "@src/components/common";
 import HeaderLine from "@src/components/common/HeaderLine";
-import styles from "@src/components/pages/GuidePage/styles.module.scss";
+import Loader from "@src/components/Loader";
+import useAuth from "@src/hooks/useAuth";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { clsx } from "clsx";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { Carousel } from "react-bootstrap";
 import PageTitleBackButton from "../../common/PageTitleBackButton/PageTitleBackButton";
 import style from "./style.module";
-import { useGetAdvertisementDetail } from "@src/apis/advertisement";
-import Modal from "@mui/material/Modal";
-import { Box } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { Carousel } from "react-bootstrap";
-import Image from "next/image";
-import useAuth from "@src/hooks/useAuth";
 
 const labelColClass = " bg-advertiser-light font-medium";
 
@@ -137,6 +135,23 @@ function AdFullDetails() {
             </textarea>
           </DataRow>
           <DataRow
+              title={dictionary.common.operating_area}
+              className={style.className}
+              firstColumClass={style.firstColumnClass}
+              colSpan={2}
+          >
+            {advertisement?.operating_areas?.toString()}
+          </DataRow>
+          <DataRow
+              title={dictionary.common.advertisement_period}
+              className={style.className}
+              firstColumClass={style.firstColumnClass}
+              colSpan={2}
+
+          >
+            {advertisement?.start_date} ~ {advertisement?.end_date}
+          </DataRow>
+          <DataRow
             title={dictionary.common.vehicle_recruitment_period}
             className={style.className}
             firstColumClass={style.firstColumnClass}
@@ -202,23 +217,6 @@ function AdFullDetails() {
               {getMinVehicleTypeCount(type)} / {getVehicleTypeCount(type)}
             </DataRow>
           ))}
-          <DataRow
-            title={dictionary.common.advertisement_period}
-            className={style.className}
-            firstColumClass={style.firstColumnClass}
-            colSpan={2}
-
-          >
-            {advertisement?.start_date} ~ {advertisement?.end_date}
-          </DataRow>
-          <DataRow
-            title={dictionary.common.operating_area}
-            className={style.className}
-            firstColumClass={style.firstColumnClass}
-            colSpan={2}
-          >
-            {advertisement?.operating_areas?.toString()}
-          </DataRow>
           <DataRow
             title={dictionary.common.advertisement_images}
             className={style.className}

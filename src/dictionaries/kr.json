@@ -52,6 +52,8 @@
     "min_max_number_vehicales": "최소 운행차량수 / 최대 운행차량수",
     "advertisement_details": "광고 상세",
     "download" : "다운로드",
+    "no_of_vehicle_recruited" : "모집차량수",
+    "no_of_vehicle_in_operation" : "운행 차량수",
     "a" : "가",
     "b" : "나",
     "c" : "다"

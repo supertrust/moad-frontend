@@ -160,7 +160,7 @@ function AdFullDetails() {
               )?.text}
           </DataRow>
           <DataRow
-            title={dictionary.common.vehicle_count}
+            title={dictionary.common.no_of_vehicle_recruited}
             className={style.className}
             firstColumClass={style.firstColumnClass}
             colSpan={2}
@@ -171,7 +171,7 @@ function AdFullDetails() {
           <DataRow
             title={
               <p className={labelColClass}>
-                {dictionary.common.min_vehicle_count}
+                {dictionary.common.no_of_vehicle_in_operation}
                 <br />{" "}
                 <span className={"text-[12px] md:text-[14px] font-normal"}>
                   ({dictionary.common.min_max_number_vehicales})

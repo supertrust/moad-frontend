@@ -52,6 +52,8 @@
     "min_max_number_vehicales": "Minimum number of operating vehicles / Maximum number of operating vehicles",
     "advertisement_details": "Advertisement Details",
     "download" : "Download",
+    "no_of_vehicle_recruited": "Number of Vehicles Recruited",
+    "no_of_vehicle_in_operation": "Number of Vehicles in Operation",
     "a" : "a",
     "b" : "b",
     "c" : "c"

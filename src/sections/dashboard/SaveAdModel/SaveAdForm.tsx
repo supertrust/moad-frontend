@@ -238,6 +238,8 @@ const SaveAdForm = ({
         ),
       });
     }
+    if(imageRef && imageRef?.current)
+    imageRef.current.value = '';
   };
   const removeFile = (file: File, key) => {
     setImages(images.filter((image) => image !== file));

@@ -66,7 +66,7 @@ endDate : Date | string
 }
 const currentYearStart = new Date(new Date().getFullYear(), 0, 1);
 function StatisticsDetailsPage() {
-  const { dictionary: { dateRangePickerCtrls, statisticsDetailsPage } } = useAuth();
+  const { dictionary: { dateRangePickerCtrls, statisticsDetailsPage },isKorean } = useAuth();
   const router = useRouter();
   const { RangePicker } = DatePicker;
   const { id } = router.query;
@@ -99,8 +99,8 @@ function StatisticsDetailsPage() {
     setCurrentPage(page);
   };
   useEffect(() => {
-    setPageTitle("통계");
-  }, []);
+    setPageTitle("top_bar_statistics")
+  },[isKorean])
 
   const allStatuses = [
     { label: "시작", value: "accepted" },

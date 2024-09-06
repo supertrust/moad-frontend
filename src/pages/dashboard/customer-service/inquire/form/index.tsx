@@ -36,7 +36,7 @@ export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
   const { mutateAsync: saveInquiry } = useSaveInquiry();
   const { data } = useGetInquiryDetail({ id });
-  const { user, dictionary: { inquireFormPage } } = useAuth();
+  const { user, dictionary: { inquireFormPage,pageTitle },isKorean } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const [allError, setErrors] = useState<string | undefined>('')
   const [form, setForm] = useState({
@@ -50,8 +50,8 @@ export default function Index({ id }: { id: string }) {
 
   const { confirm } = useConfirmDialog();
   useEffect(()=>{
-    setPageTitle(inquireFormPage.pageTitle)
-  },[])
+    setPageTitle(pageTitle['top_bar_inquiry'])
+  },[isKorean])
   useEffect(() => {
     if (data) {
       setData(data);

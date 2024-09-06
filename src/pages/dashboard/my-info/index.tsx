@@ -39,7 +39,8 @@ export default function MyInfoScreen() {
   const {
     user,
     localDataUpdated,
-    dictionary: { myInfo },
+    dictionary: { myInfo,pageTitle },
+      isKorean
   } = useAuth();
   const email = user?.email;
   console.log(email, 'email');
@@ -111,8 +112,8 @@ export default function MyInfoScreen() {
   });
 
   useEffect(() => {
-    setPageTitle(myInfo.title);
-  }, []);
+    setPageTitle(pageTitle["top_bar_my_page"]);
+  }, [isKorean]);
 
   useEffect(() => {
     if (user) {

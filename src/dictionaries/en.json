@@ -15,8 +15,8 @@
     "notification_center": "Notification Center"
   },
   "pageTitle" : {
-    "top_bar_dashboard" : "Ad Management",
-    "top_bar_my_page" : "My Page",
+    "top_bar_dashboard" : "Advertising Management",
+    "top_bar_my_page" : "My Information",
     "top_bar_ad_management" : "Ad Management",
     "top_bar_statistics" : "Statistics",
     "top_bar_announcement" : "Announcement",
@@ -327,7 +327,7 @@
   "sidebar": {
     "advertisementManagement": "Advertising Management",
     "statistics": "Statistics",
-    "myInfo": "My Info",
+    "myInfo": "My Information",
     "customerService": "Customer Service Center",
     "notice" : "Announcement",
     "guide": "Guide",

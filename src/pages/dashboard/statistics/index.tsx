@@ -1,5 +1,6 @@
+import { useIcarusContext } from "@src/hooks";
 import useUtils from "@src/hooks/useUtils";
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import { styles } from '@src/sections/statistics';
 // import { DataGrid } from '@src/components/common';
@@ -42,6 +43,7 @@ export default function StatisticsScreen() {
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
   const [currentPage, setCurrentPage] = useState(1); // Current page number
+  const { setPageTitle } = useIcarusContext()
   const { data: advertisement_stats, isLoading } = useGetShowAdvertisementStats(
     {
       status: status,
@@ -149,6 +151,11 @@ export default function StatisticsScreen() {
       color: 'red', // Custom colour
     }),
   };
+
+  useEffect(() => {
+    setPageTitle("top_bar_statistics")
+  },[isKorean])
+
   const advertisementElement = (
     <div className='relative'>
       <Form.Select

@@ -13,11 +13,11 @@ const GuidePage = () => {
 
   const { setPageTitle } = useIcarusContext();
   const { dictionary : {pageTitle, guide_page},isKorean} = useAuth()
-
   const router = useRouter();
 
-  useEffect(()=> {
-    setPageTitle(guide_page?.title);
+  useEffect(()=>
+  {
+    setPageTitle(pageTitle['top_bar_guide']);
   },[isKorean])
 
   const onBack = ()=>

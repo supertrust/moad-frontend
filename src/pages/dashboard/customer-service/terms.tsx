@@ -1,15 +1,23 @@
-import React from 'react';
+import { useIcarusContext } from "@src/hooks";
+import React, { useEffect } from 'react';
 import { Accordion, Pagination, Tab, Tabs } from 'react-bootstrap';
 import ArrowBack from '@src/components/icons/ArrowBack';
 import { useRouter } from 'next/router';
 import useAuth from '@src/hooks/useAuth';
 export default function PolicyModulePage() {
   const router = useRouter();
-  const { dictionary } = useAuth();
+  const { dictionary,isKorean } = useAuth();
+  const { setPageTitle } = useIcarusContext()
 
   const onBack = () => {
     router.back();
   };
+
+  useEffect(()=>
+  {
+    setPageTitle(dictionary?.pageTitle['top_bar_policies_and_terms']);
+  },[isKorean])
+
   return (
     <>
       <div className='policy-container'>

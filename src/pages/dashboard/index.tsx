@@ -1,8 +1,19 @@
-import React from "react";
+import { useIcarusContext } from "@src/hooks";
+import useAuth from "@src/hooks/useAuth";
+import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { AdList, Advertising, NotificationCentre } from '@src/sections/dashboard';
 
 const DashboardScreen = () => {
+
+    const { isKorean, dictionary } = useAuth();
+    const {setPageTitle} = useIcarusContext();
+
+
+    useEffect(()=>{
+        setPageTitle(dictionary.pageTitle["top_bar_dashboard"]);
+    },[isKorean])
+
   return (
     <main className="py-[30px] px-[20px] sm:py-[20px] sm:px-[30px]">
       <Row className="ad-page">

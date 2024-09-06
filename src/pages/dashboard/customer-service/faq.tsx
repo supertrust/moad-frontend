@@ -1,4 +1,5 @@
 import { CircularProgress } from "@mui/material";
+import { useIcarusContext } from "@src/hooks";
 import React, { useState, useEffect } from "react";
 import { Accordion, Tab, Tabs } from "react-bootstrap";
 import { Pagination } from "antd";
@@ -9,7 +10,8 @@ import { useRouter } from "next/router";
 
 export default function FaqScreen() {
   const router = useRouter();
-	const { dictionary:{ faqPage } } = useAuth();
+	const { dictionary:{ faqPage,pageTitle },isKorean } = useAuth();
+    const { setPageTitle} = useIcarusContext()
   const [selectedTab, setSelectedTab] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const { data: faq,isLoading : isFaqLoading } = useGetFaq(currentPage,selectedTab);
@@ -44,7 +46,13 @@ export default function FaqScreen() {
         router.back();
     }
 
-  return (
+    useEffect(()=>
+    {
+        setPageTitle(pageTitle['top_bar_faq']);
+    },[isKorean])
+
+
+    return (
     <div className="faq-content ">
       <div className="faq">
       <div className={`block lg:hidden px-[20px]`}>

@@ -1,3 +1,5 @@
+import { useIcarusContext } from "@src/hooks";
+import useAuth from "@src/hooks/useAuth";
 import React, { useEffect, useRef, useState } from "react";
 import { getMapScriptTag, registerEvents } from "@src/helpers/map";
 import { useSaveLocation } from "@src/apis/map";
@@ -12,6 +14,8 @@ const Map = () => {
   const { ad_id, vehicle_id } = query;
 
   const mapRef = useRef(null);
+  const { setPageTitle } = useIcarusContext()
+  const { isKorean,dictionary : {pageTitle} } = useAuth()
   const startInputRef = useRef<HTMLInputElement | null>(null);
   const endInputRef = useRef<HTMLInputElement | null>(null);
   const [savingRide, setSavingRide] = useState(false);
@@ -38,6 +42,11 @@ const Map = () => {
       setSavingRide(false);
     }
   };
+
+  useEffect(()=>{
+    setPageTitle(pageTitle["top_bar_dashboard"]);
+  },[isKorean])
+
   useEffect(() => {
     const mapScript = getMapScriptTag(mapRef.current);
     registerEvents(mapScript, mapRef, startInputRef, endInputRef);

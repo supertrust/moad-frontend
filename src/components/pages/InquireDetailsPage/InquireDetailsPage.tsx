@@ -4,11 +4,12 @@ import { DeleteIconSvg, EditIconSvg } from "@src/components/icons/inquiry";
 import { dateFormat, downloadFile, getFileName } from "@src/helpers";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Card, CircularProgress, IconButton } from "@mui/material";
+import { useIcarusContext } from "@src/hooks";
 import clsx from "clsx";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { API_BASE_URL } from "@src/config";
 import { useDeleteInquiry, useGetInquiryDetail } from "@src/apis/inquiry";
 import useAuth from "@src/hooks/useAuth";
@@ -19,7 +20,8 @@ function InquireDetailsPage() {
   const id = useRouter().query.id as string;
   const { data, isFetching: isLoading } = useGetInquiryDetail({ id });
   const { mutateAsync: deleteInquiry } = useDeleteInquiry();
-  const { user, dictionary, lang, setLang } = useAuth();
+  const { user, dictionary, lang, setLang,isKorean } = useAuth();
+  const {setPageTitle} = useIcarusContext();
   const [deleteModal, setDeleteModal] = useState<{
     open: boolean;
     text: ReactNode;
@@ -33,6 +35,10 @@ function InquireDetailsPage() {
     const url = API_BASE_URL;
     return downloadFile(path, getFileName(path) as string);
   };
+
+    useEffect(()=>{
+        setPageTitle(dictionary?.inquireFormPage.pageTitle)
+    },[isKorean])
 
   const deleteData = async () => {
     deleteInquiry(

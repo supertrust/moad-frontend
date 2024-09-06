@@ -18,7 +18,7 @@ function NoticePage() {
     const {setPageTitle} = useIcarusContext()
     const [pin, setPin] = useState<number | null>(null);
     const { data, isLoading } = useGetNotices({ page });
-	const { dictionary:{ noticePage } } = useAuth();
+	const { dictionary:{ noticePage,pageTitle },isKorean } = useAuth();
     const router = useRouter();
 
     const onBack = ()=>
@@ -49,8 +49,9 @@ function NoticePage() {
 
     useEffect(()=>
     {
-       setPageTitle(noticePage.pageTitle);
-    },[noticePage])
+       setPageTitle(pageTitle['top_bar_announcement']);
+
+    },[isKorean])
     return (
         <>
             <Head>

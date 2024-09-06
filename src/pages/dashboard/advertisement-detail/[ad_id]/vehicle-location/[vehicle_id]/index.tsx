@@ -32,7 +32,7 @@ const VehicleLocationScreen = () => {
 	const { ad_id, vehicle_id } = query;
 	const { setPageTitle } = useIcarusContext();
 	const [showDrawer, setShowDrawer] = useState(false);
-  const { dictionary: { adVehicleLocDetailsPage } } = useAuth();
+  const { dictionary: { adVehicleLocDetailsPage },isKorean } = useAuth();
   const [cargoLocation, setCargoLocation] = useState<IVehicleLocationDetails | null>(null);
   const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
   const selectedDate = selectedDateRange ? ISOformatDate(selectedDateRange as Date) : null;
@@ -66,7 +66,7 @@ const VehicleLocationScreen = () => {
 
   useEffect(() => {
     setPageTitle(adVehicleLocDetailsPage.pageTitle);
-  }, []);
+  }, [isKorean]);
 
   useEffect(() => {
     if(cargoAllLocation){

@@ -37,7 +37,7 @@ function Sidebar({ msg }: SidebarProps) {
 
     const barStatus = (status: string) => {
         setTab(status);
-        msg(status);
+        // msg(status);
     };
 
     const handleLogout = async () => {
@@ -60,9 +60,9 @@ function Sidebar({ msg }: SidebarProps) {
 
             setTab(sideBarPath[router.pathname])
             barStatus(sideBarPath[router.pathname]);
-            msg(dictionary.pageTitle[sideBarPath[router.pathname]]);
+            // msg(dictionary.pageTitle[sideBarPath[router.pathname]]);
         }
-    }, [])
+    }, [router?.pathname])
 
     return (
         <div className="content">

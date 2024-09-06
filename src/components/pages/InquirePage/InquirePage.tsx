@@ -24,7 +24,7 @@ function InquirePage() {
   const [page, setPage] = useState(1);
   const { setPageTitle } = useIcarusContext();
   const { data, isLoading } = useGetInquiries({ page });
-  const { user, dictionary: { inquiryPage } } = useAuth();
+  const { user, dictionary: { inquiryPage,pageTitle },isKorean } = useAuth();
   const inquiries = data?.data;
   const router = useRouter();
 
@@ -49,9 +49,11 @@ function InquirePage() {
     router.back();
   };
 
-  useEffect(() => {
-    setPageTitle(inquiryPage.pageTitle);
-  }, []);
+  useEffect(()=>
+  {
+    setPageTitle(pageTitle['top_bar_inquiry']);
+  },[isKorean])
+
   return (
     <>
       <Head>

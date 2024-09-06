@@ -28,9 +28,9 @@ const imageStyle = {
 
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
-  const { dictionary: { adVehicleDetailsPage } } = useAuth();
+  const { dictionary: { adVehicleDetailsPage,pageTitle },isKorean } = useAuth();
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-  const {pageTitle,setPageTitle} = useIcarusContext()
+  const {setPageTitle} = useIcarusContext()
   const advertisementId = query.ad_id as string;
   const vehicleId   = query.vehicle_id as string;
   const { data: advertisement , isLoading } = useGetVehicleDetail({
@@ -45,9 +45,9 @@ export default function VehicleInfoScreen() {
   const [fullSize, showFullSize ] = useState(false);
   const images =  advertisementImages || [undefined, undefined, undefined, undefined];
 
-  useEffect(()=>{
-    setPageTitle(adVehicleDetailsPage.title)
-  },[])
+    useEffect(()=>{
+        setPageTitle(adVehicleDetailsPage.title)
+    },[isKorean])
 
   const showImage = (image?:  ICargoImage) => {
     const size = 500;

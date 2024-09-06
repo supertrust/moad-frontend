@@ -18,12 +18,13 @@ function NoticeDetailsPage() {
     const id = useRouter().query.id as string;
     const { data, isFetching:isLoading } = useGetNoticeDetail({ id });
     const {setPageTitle } = useIcarusContext();
-	const { dictionary:{ loadingPageMsg, noticeDetailPage } } = useAuth();
+	const { dictionary:{ loadingPageMsg, noticeDetailPage, pageTitle }, isKorean } = useAuth();
     const router = useRouter();
 
-    useEffect(()=>{
-       setPageTitle(noticeDetailPage.pageTitle)
-    },[noticeDetailPage])
+    useEffect(()=>
+    {
+        setPageTitle(pageTitle['top_bar_announcement']);
+    },[isKorean])
 
     return (
         <>

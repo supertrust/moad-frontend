@@ -65,7 +65,7 @@ const AllVehicleLocation = () => {
 
   const { setPageTitle } = useIcarusContext();
   const [showDrawer, setShowDrawer] = useState(false);
-  const { dictionary: { adVehicleLocDetailsPage,viewAllLocation } } = useAuth();
+  const { dictionary: { adVehicleLocDetailsPage,viewAllLocation },isKorean } = useAuth();
 
   useEffect(()=>{
 
@@ -104,7 +104,7 @@ const AllVehicleLocation = () => {
 
   useEffect(() => {
     setPageTitle(adVehicleLocDetailsPage.pageTitle);
-  }, []);
+  }, [isKorean]);
 
   const router = useRouter();
 

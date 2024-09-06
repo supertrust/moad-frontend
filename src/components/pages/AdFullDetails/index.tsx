@@ -36,23 +36,23 @@ export const allStatuses = {
 
 function AdFullDetails() {
   const { query } = useRouter();
-  const { dictionary,isPcOnly } = useAuth();
+  const { dictionary,isPcOnly,isKorean } = useAuth();
+  const {setPageTitle} = useIcarusContext();
 
   const advertisementId = query.ad_id as string;
   const { data: advertisement, isLoading: isAdvertisementLoading } =
     useGetAdvertisementDetail({ id: advertisementId });
 
-  const title = dictionary.common.advertisement_management;
-  const { pageTitle, setPageTitle } = useIcarusContext();
   const [viewopen, setViewOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const handleSelect = (selectedIndex: any, e: any) => {
     setIndex(selectedIndex);
   };
 
-  useEffect(() => {
-    pageTitle !== title && setPageTitle(title);
-  }, []);
+
+  useEffect(()=>{
+    setPageTitle(dictionary.common.advertisement_details);
+  },[isKorean])
 
   const getVehicleTypeCount = (type: string) => {
     if (!advertisement?.vehicles_in_operation) return `0${dictionary.dashboard.big}`;

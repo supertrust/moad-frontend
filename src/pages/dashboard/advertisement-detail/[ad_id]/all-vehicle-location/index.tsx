@@ -196,10 +196,10 @@ const AllVehicleLocation = () => {
             {id===hover && (
                 <div onClick={isMultiple?()=>{  setDuplicateDestination(info?.destination),
                   setShowDrawer(false)
-                } :()=> {}} className={clsx('all-location-truck-tooltip flex items-center flex-col',
+                } :()=> {}} className={clsx('all-location-truck-tooltip flex items-center flex-col !rounded',
                     isMultiple && "cursor-pointer")}  onMouseEnter={() =>  setHover(id)} onMouseLeave={() => setHover(-1)}>
                   <Paper elevation={24}>
-                    <div  style={{border: '1px solid #FFFFFF'}}  className={'!shadow-xxl bg-[#FFFFFF] flex flex-col gap-2 w-[260px] p-4'}>
+                    <div  style={{border: '1px solid #FFFFFF'}}  className={'!rounded !shadow-xxl bg-[#FFFFFF] flex flex-col gap-2 w-[260px] p-4'}>
                       {
                         isMultiple ?
                             <div  className={'text-base text-[#10121d]'}>{allLocation?.duplicateDestination}</div> :

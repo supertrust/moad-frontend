@@ -104,6 +104,10 @@ export default function MyInfoScreen() {
     );
   });
 
+  useEffect(()=>{
+    localDataUpdated()
+  },[])
+
   useEffect(() => {
     setPageTitle(pageTitle["top_bar_my_page"]);
   }, [isKorean]);

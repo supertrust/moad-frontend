@@ -4,6 +4,7 @@ export interface IUser {
     company_name: string;
     company_phone_number: string;
     email: string;
+    contact_email: string;
     employee_email: string;
     employee_name: string;
     employee_phone_number: string;

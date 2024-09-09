@@ -1,25 +1,18 @@
-import clsx from 'clsx';
+import { useUpdateUserInfo, useUpdateUserProfileImage } from '@src/apis/user';
+import { Button, FormProvider, RHFInput, useForm, Yup, yupResolver, } from '@src/components/common';
+import { EMAIL_REGEX } from '@src/constants';
+import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
+import { isHangul } from '@src/helpers';
+import useAuth from '@src/hooks/useAuth';
+import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { useIcarusContext } from '@src/hooks/useIcarusContext';
+import { styles } from '@src/sections/my-info';
+import clsx from 'clsx';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { Col, Modal, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import useAuth from '@src/hooks/useAuth';
-import { useUpdateUserInfo, useUpdateUserProfileImage } from '@src/apis/user';
-import {
-  FormProvider,
-  RHFInput,
-  Yup,
-  useForm,
-  yupResolver,
-  Button,
-} from '@src/components/common';
-import { styles } from '@src/sections/my-info';
-import Image from 'next/image';
-import { isHangul } from '@src/helpers';
-import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
-import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
-import { EMAIL_REGEX } from '@src/constants';
 
 const defaultValues = {
   company_phone_number: '',
@@ -42,7 +35,7 @@ export default function MyInfoScreen() {
     dictionary: { myInfo,pageTitle },
       isKorean
   } = useAuth();
-  const email = user?.email;
+  const email = user?.contact_email;
   console.log(email, 'email');
   const [showModal, setShowModal] = useState(false);
   const { confirm } = useConfirmDialog();
@@ -273,7 +266,7 @@ export default function MyInfoScreen() {
                       <div>
                         <span id='comoany-name'>{user?.company_name}</span>
                       </div>
-                      <div className={styles.email}>{email}</div>
+                      <div className={styles.email}>{user?.email}</div>
                     </div>
                   </div>
                   <div className={styles.change_password}>

@@ -13,9 +13,8 @@ import { darkenColor, getRandomColor, ISOformatDate } from "@src/helpers";
 import { toLatLng } from "@src/helpers/map";
 import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
-import { IVehicleLocationDetails } from "@src/types/map";
 import { formatNumberWithCommas } from "@src/utils/formatter";
-import { cargoAllLocation } from "@src/utils/test_data";
+// import { cargoAllLocation } from "@src/utils/test_data";
 import clsx from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -62,7 +61,7 @@ const AllVehicleLocation = () => {
   })
   const [similarPoint,setSimilarPoint] = useState({})
   const [cargoList,setCargoList] = useState<any[]>([])
-  const { data: cargoAllLocations, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails(advertisementId,ISOformatDate(selectedDateRange as Date))
+  const { data: cargoAllLocation, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails(advertisementId,ISOformatDate(selectedDateRange as Date))
   const { data: cargoAllLocationDate} = useGetAdvertisementAllVehicleLocationDate(advertisementId as string);
 
   const [loading] = useKakaoLoader({

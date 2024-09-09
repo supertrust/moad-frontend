@@ -1,3 +1,5 @@
+// @ts-nocheck
+import { Paper } from "@mui/material";
 import { useAllAdvertisementVehicleLocationDetails, useGetAdvertisementAllVehicleLocationDate } from "@src/apis/map";
 import { Button } from "@src/components/common";
 import MultipleLocationDrawer from "@src/components/common/Drawer/MultipleLocationDrawer/MultipleLocationDrawer";
@@ -13,6 +15,8 @@ import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { IVehicleLocationDetails } from "@src/types/map";
 import { formatNumberWithCommas } from "@src/utils/formatter";
+import { cargoAllLocation } from "@src/utils/test_data";
+import clsx from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -45,16 +49,20 @@ type DateRange = {
 //   },
 // ]
 
+
 const AllVehicleLocation = () => {
 
   const { query } = useRouter();
+
   const advertisementId = query.ad_id as string;
   const [selectedDateRange, setSelectedDateRange] = useState<Date | null>(new Date());
+  const [duplicateDestination,setDuplicateDestination] = useState<string | undefined>(undefined)
   const [values,setValues] = useState({
     in_total_distance_covered : 0
   })
+  const [similarPoint,setSimilarPoint] = useState({})
   const [cargoList,setCargoList] = useState<any[]>([])
-  const { data: cargoAllLocation, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails(advertisementId,ISOformatDate(selectedDateRange as Date))
+  const { data: cargoAllLocations, refetch , isLoading, isRefetching,isFetching} = useAllAdvertisementVehicleLocationDetails(advertisementId,ISOformatDate(selectedDateRange as Date))
   const { data: cargoAllLocationDate} = useGetAdvertisementAllVehicleLocationDate(advertisementId as string);
 
   const [loading] = useKakaoLoader({
@@ -65,7 +73,7 @@ const AllVehicleLocation = () => {
 
   const { setPageTitle } = useIcarusContext();
   const [showDrawer, setShowDrawer] = useState(false);
-  const { dictionary: { adVehicleLocDetailsPage,viewAllLocation },isKorean } = useAuth();
+  const { dictionary: { adVehicleLocDetailsPage,viewAllLocation,allLocation },isKorean } = useAuth();
 
   useEffect(()=>{
 
@@ -85,7 +93,8 @@ const AllVehicleLocation = () => {
           name : cargo_to_advertisment?.advertisement?.ad_name,
           logs,
           info : { start_time,end_time,total_time_covered,total_distance_covered, truck_number : cargo_to_advertisment?.vehicle_information?.car_number,
-            color : mp[cargo_to_advertisment?.vehicle_information?.car_number]
+            color : mp[cargo_to_advertisment?.vehicle_information?.car_number],
+            destination
           },
 
         }
@@ -93,7 +102,20 @@ const AllVehicleLocation = () => {
 
       const sum = cargoAllLocation.reduce((acc, curr) => acc +( Number(curr.total_distance_covered) || 0), 0);
 
+      const similarDes={};
+
+      newCargo.forEach((cargo)=>{
+        if(!similarDes[cargo.destination]){
+          similarDes[cargo.destination] = []
+        }
+        similarDes[cargo.destination].push(cargo)
+        // console.log('sdas', similarDes[cargo.destination].length)
+      })
+
+      setSimilarPoint({...similarDes})
+
       setCargoList([...newCargo])
+      // console.log('asdas',cargoList.length)
       setValues({
         ...values,
         in_total_distance_covered : sum
@@ -127,7 +149,7 @@ const AllVehicleLocation = () => {
   };
 
 
-
+  // console.log('asd',similarPoint)
 
   const renderCargo = (
     { origin, destination, currentPosition, name,logs=[],id,info }:
@@ -143,6 +165,9 @@ const AllVehicleLocation = () => {
 
     let end = logs?.length ? logs[logs.length-1]?.created_at?.split(' '): end_time ? end_time.split('T') : null
     let endTime = end ? end[1].split(':') : null
+    const isMultiple = similarPoint[info.destination]?.length>1
+
+    // console.log('render',info.destination,isMultiple,similarPoint[info.destination]?.length,origin)
 
 
     return (
@@ -168,36 +193,50 @@ const AllVehicleLocation = () => {
             }}
          position={{ lat: destination.getLat(), lng: destination.getLng() }} title={ ``}>
 
-          <div className="all-location-truck-tooltip-container">
+          <div  style={{zIndex : 100}} className="all-location-truck-tooltip-container">
             {id===hover && (
-                <div className={'all-location-truck-tooltip flex items-center flex-col'}>
-                  <div  style={{border: '1px solid #FFFFFF'}}  className={'bg-[#FFFFFF] flex flex-col gap-2 w-[260px] p-4'}>
-                    {
-                      [{ title : viewAllLocation?.total_driving_distance, value : formatNumberWithCommas(Number(total_distance_covered),2), extra : <span>km</span>},
-                        { title : viewAllLocation?.total_driving_time, value : total_time_covered},
-                        { title : viewAllLocation?.operation_start_time, value : `${startTime?.[0]}:${startTime?.[1]}`},
-                        { title : viewAllLocation?.operation_end_time, value : `${endTime?.[0]}:${endTime?.[1]}`}
-                      ].map((item,index)=> <div style={{zIndex : 100}} key={index} className={'flex justify-between items-center gap-2'}>
-                        <span className={`text-[16px] text-[#2C324C] flex-1`}>{item.title}</span>
-                        <div className={'text-[16px] flex-1 flex justify-end gap-1 break-all flex-wrap'}>
-                          <span className={'font-bold text-advertiser-primary'}>{item.value}</span>  {item?.extra && item?.extra}
-                        </div>
-                      </div>)
-                    }
-                  </div>
+                <div onClick={isMultiple?()=>{  setDuplicateDestination(info?.destination),
+                  setShowDrawer(false)
+                } :()=> {}} className={clsx('all-location-truck-tooltip flex items-center flex-col',
+                    isMultiple && "cursor-pointer")}  onMouseEnter={() =>  setHover(id)} onMouseLeave={() => setHover(-1)}>
+                  <Paper elevation={24}>
+                    <div  style={{border: '1px solid #FFFFFF'}}  className={'!shadow-xxl bg-[#FFFFFF] flex flex-col gap-2 w-[260px] p-4'}>
+                      {
+                        isMultiple ?
+                            <div  className={'text-base text-[#10121d]'}>{allLocation?.duplicateDestination}</div> :
+                            <>
+                              {
+                                [{ title : viewAllLocation?.total_driving_distance, value : formatNumberWithCommas(Number(total_distance_covered),2), extra : <span>km</span>},
+                                  { title : viewAllLocation?.total_driving_time, value : total_time_covered},
+                                  { title : viewAllLocation?.operation_start_time, value : `${startTime?.[0]}:${startTime?.[1]}`},
+                                  { title : viewAllLocation?.operation_end_time, value : `${endTime?.[0]}:${endTime?.[1]}`}
+                                ].map((item,index)=> <div style={{zIndex : 100}} key={index} className={'flex justify-between items-center gap-2'}>
+                                  <span className={`text-[16px] text-[#2C324C] flex-1`}>{item.title}</span>
+                                  <div className={'text-[16px] flex-1 flex justify-end gap-1 break-all flex-wrap'}>
+                                    <span className={'font-bold text-advertiser-primary'}>{item.value}</span>  {item?.extra && item?.extra}
+                                  </div>
+                                </div>)
+                              }
+                            </>
+                      }
+                    </div>
+                  </Paper>
                    <div className={'mt-[-3px]'}>
                      <PolygonSvg/>
                    </div>
                 </div>
             )}
             <div
-                className="all-location-truck-tooltip-trigger flex gap-1 items-center w-[100%] justify-center"
+                className="px-[20px] py-[8px] all-location-truck-tooltip-trigger flex gap-1 min-w-[68px] items-center justify-center"
                 onMouseEnter={() =>  setHover(id)}
                 onMouseLeave={() => setHover(-1)}
             >
-            <img className={'h-[11px] w-[20px] flex-1'} src={'/images/vehicle_location/truck-marker.png'}/>
-              <div className={'flex-1 text-sm font-normal text-advertiser-primary flex w-[100%] whitespace-nowrap'}>{truck_number}</div>
-            </div>
+              <img className={'!h-[11px] !w-[20px] !shrink-0'} src={'/images/vehicle_location/truck-marker.png'}/>
+              {
+                isMultiple ? <div  className={'!shrink-0 flex-1 text-sm font-normal text-advertiser-primary flex w-[100%] whitespace-nowrap'}>{ similarPoint[info.destination]?.length}</div>
+                    :
+                    <div className={'flex-1 text-sm font-normal text-advertiser-primary flex w-[100%] whitespace-nowrap'}>{truck_number}</div>
+              }</div>
           </div>
 
         </MapMarker>}
@@ -274,6 +313,7 @@ const AllVehicleLocation = () => {
         dateChangeHandler={handleDateChange}
         rideChangeHandler={handleRideChange}
         in_total_distance_covered={values?.in_total_distance_covered}
+        duplicateRideInfoList = {duplicateDestination ? similarPoint[duplicateDestination] : []}
       />
     </div>
   );

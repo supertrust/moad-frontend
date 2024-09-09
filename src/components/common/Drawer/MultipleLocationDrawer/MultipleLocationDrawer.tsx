@@ -1,6 +1,8 @@
+// @ts-nocheck
 import CaretUp from '@images/vehicle_location/ic-arrow-up.png'
 import Skeleton from '@mui/material/Skeleton';
 import AmbulanceIconSvg from "@src/components/icons/AmbulanceIconSvg";
+import ArrowIcon from "@src/components/icons/locations/ArrowIcon";
 import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
 import { dateFormat, getNextPrevDates, ISOformatDate } from "@src/helpers";
@@ -24,17 +26,18 @@ interface DrawerProps {
     open: boolean
     handleClose: VoidFunction
     isLoading: boolean
-    vehicle?:IVehicleLocationDetails | null
-    vehicleDate?:string[] | null
-    locationIds?:{id:number}[]
+    vehicle?: IVehicleLocationDetails | null
+    vehicleDate?: string[] | null
+    locationIds?: { id: number }[]
     dateChangeHandler: (...args: any[]) => void
     rideChangeHandler: (...args: any[]) => void
-    in_total_distance_covered : number
-    isFetching : boolean
+    in_total_distance_covered: number
+    isFetching: boolean
 }
+
 type DateRange = {
-    startDate : Date |string,
-    endDate : Date | string
+    startDate: Date | string,
+    endDate: Date | string
 }
 const dateRangePickerCtrls = [
     {
@@ -73,16 +76,103 @@ const dateRangePickerCtrls = [
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehicle,vehicleDate, dateChangeHandler,rideChangeHandler,locationIds,in_total_distance_covered }: DrawerProps) {
+const CollapseAble = ({duplicateRideInfoList}) => {
+    const { dictionary: { adVehicleLocDetailsPage, viewAllLocation }, isKorean, } = useAuth();
+    const [open, setOpen] = useState(-1)
+    const [currentInfo,setCurrentInfo] = useState({
+       startTime : null,endTime : null,
+        total_time_covered : 0, total_distance_covered : 0
+    })
+    const {startTime, endTime, total_time_covered, total_distance_covered} = currentInfo
+
+
+   useEffect(()=>{
+
+       if(open!=-1){
+           const { start_time,end_time,total_time_covered,total_distance_covered, } = open!=-1? duplicateRideInfoList[open]?.info : {};
+           const logs = duplicateRideInfoList[open]?.logs
+           let start = logs?.length ? logs[0]?.created_at?.split(' '): start_time ? start_time.split('T') : null
+           let startTime = start ? start[1].split(':') : null
+
+           let end = logs?.length ? logs[logs.length-1]?.created_at?.split(' '): end_time ? end_time.split('T') : null
+           let endTime = end ? end[1].split(':') : null
+           setCurrentInfo({
+                startTime, endTime, total_time_covered, total_distance_covered
+           })
+
+
+       }
+       else {
+           setCurrentInfo({
+              start_time : null,end_time : null,total_time_covered: 0, total_distance_covered: 0
+           })
+       }
+
+   },[open])
+
+
+    return <div className={'flex flex-col border border-radius max-h-[400px] overflow-auto rounded-lg'}>
+        {
+            duplicateRideInfoList.map((item, index) => {
+                return <>
+                    <div
+                        className={clsx('flex justify-between cursor-pointer text-[#10121d] font-semibold text-base border-[#e1e4ea] px-[12px] py-[16.5px]', duplicateRideInfoList?.length - 1 != index && "border-b")}
+                        onClick={() => open === index ? setOpen(-1) : setOpen(index)}>
+                        <span>
+                            {item?.info?.truck_number}
+                        </span>
+                        <ArrowIcon rotation={open===index? 0 : 180}/>
+                    </div>
+                    {open === index && <div style={{transition: 'transform 0.6s ease' }} className={clsx('border-[#e1e4ea] bg-[#f5f7fa] py-[20px] px-[12px] flex flex-col gap-[10px]',duplicateRideInfoList?.length - 1 != index && "border-b")}>
+                        {
+                            [{ title : viewAllLocation?.total_driving_distance, value : formatNumberWithCommas(Number(total_distance_covered),2), extra : <span className={'pl-1'}>km</span>},
+                                { title : viewAllLocation?.total_driving_time, value : total_time_covered},
+                                { title : viewAllLocation?.operation_start_time, value : `${startTime?.[0]}:${startTime?.[1]}`},
+                                { title : viewAllLocation?.operation_end_time, value : `${endTime?.[0]}:${endTime?.[1]}`}
+                            ].map((item, index) => {
+                                return <div key={index} className={'flex justify-between items-center'}>
+                                    <div className={'text-[#10121d] text-base'}>
+                                        {item.title}
+                                    </div>
+                                    <div className={'text-[#10121d] text-base font-semibold'}>
+                                        {item.value}
+                                        {item.extra}
+                                    </div>
+                                </div>
+                            })
+                        }
+                    </div>
+                    }
+                </>
+
+            })}
+
+    </div>
+
+}
+
+function MultipleLocationDrawer({
+                                    open,
+                                    handleClose,
+                                    isLoading,
+                                    isFetching,
+                                    vehicle,
+                                    vehicleDate,
+                                    dateChangeHandler,
+                                    rideChangeHandler,
+                                    locationIds,
+                                    in_total_distance_covered,
+                                    duplicateRideInfoList
+                                }: DrawerProps) {
 
     const { RangePicker } = DatePicker;
-    const { dictionary: { adVehicleLocDrawerPage,viewAllLocation } } = useAuth();
+    const { dictionary: { adVehicleLocDrawerPage, viewAllLocation },isPcOnly } = useAuth();
     const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
-    const [selectedRide, setSelectedRide] = useState<number|undefined>(vehicle?.id);
+    const [selectedRide, setSelectedRide] = useState<number | undefined>(vehicle?.id);
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [bufferdDate, setBufferdDate] = useState<Date | null>(new Date());
-    const handleChange = (type,date) => {
-        const newDate = getNextPrevDates(type,date)
+    const handleChange = (type, date) => {
+        const newDate = getNextPrevDates(type, date)
         setBufferdDate(newDate);
         setSelectedDate(newDate);
     }
@@ -100,7 +190,7 @@ function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehi
     }, [selectedRide])
 
     useEffect(() => {
-        if(locationIds) setSelectedRide(locationIds[0]?.id)
+        if (locationIds) setSelectedRide(locationIds[0]?.id)
     }, [JSON.stringify(locationIds)])
 
 
@@ -112,7 +202,7 @@ function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehi
 
     const {
         passing_vehicle_descent,
-        passing_vehicle_up ,
+        passing_vehicle_up,
         start_time,
         end_time,
         avarageMonthlyDistance,
@@ -131,12 +221,12 @@ function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehi
     let endDate = end ? end[0].split('-')[2] : null
     let endTime = end ? end[1].split(':') : null
     const categories = adVehicleLocDrawerPage.categories;
-    const data = [today_distance||0,total_distance||0,avarageMonthlyDistance||0];
+    const data = [today_distance || 0, total_distance || 0, avarageMonthlyDistance || 0];
 
     const style: React.CSSProperties = {
         border: `1px solid rgba(86, 26, 164, 0.2)`,
         lineHeight: 'normal',
-        background : 'rgba(86, 26, 164, .2)',
+        background: 'rgba(86, 26, 164, .2)',
         color: '#606060'
     };
     const cellRender = React.useCallback((current: number | Dayjs, info: CellRenderInfo<Dayjs>) => {
@@ -157,12 +247,12 @@ function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehi
         );
     }, [vehicleDate]);
     return (
-        <div >
+        <div>
             <div className={`${styles.button_wrap} z-50`}>
                 <button
                     type="button"
                     id="location_detail_btn"
-                    className={clsx(styles.arrow_wrap, open ? styles.btn_closed : styles.btn_open )}
+                    className={clsx(styles.arrow_wrap, open ? styles.btn_closed : styles.btn_open)}
                     onClick={handleClose}
                 >
                     <i className={styles.ic_arrrow}></i>
@@ -172,35 +262,35 @@ function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehi
             <div className='block sm:hidden mt-[-20px]'>
                 <div className='flex flex-row justify-center bg-transparent z-[200] relative'>
                     <div className='bg-white rounded-t-md px-3 py-[8px] cursor-pointer' onClick={handleClose}>
-                        <Image  src={CaretUp} width={13} alt='' />
+                        <Image src={CaretUp} width={13} alt=''/>
                     </div>
                 </div>
                 <div className='px-2 py-3 text-secondary font-bold bg-white'>
                     {adVehicleLocDrawerPage.wolpi}
                 </div>
             </div>
-            <div className={`${styles.vehicle_location_content} h-[calc(100vh-120px)]`}>
-                <div className={clsx(styles.location_detail_wrap, open ? styles.closed : styles.open)} >
-                    <div className={styles.address}>{current_point_name ?? '-'}</div>
+            <div className={clsx(styles.vehicle_location_content, isPcOnly && "h-[calc(100vh-120px)]")}>
+                <div className={clsx(styles.location_detail_wrap, open ? styles.closed : styles.open)}>
                     <div className={`${styles.content_inner}`}>
-                            <div className={styles.inner}>
-                                <div className={`${styles.section} ${styles.now_location}`}>
-                                    {/* DatesPicker start */}
-                                    <div
-                                        className={
-                                            "min-h-[74px] flex items-center justify-between space-x-1 relative"
-                                        }
-                                    >
-                                        <div className={"flex space-x-[20px]"}>
-                                            <div
-                                                className={
-                                                    "flex items-center justify-between  bg-white border-y border-[#ebedf4] w-[300px]"
-                                                }
-                                            >
-                                                <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleChange('prev',selectedDate)}>
-                                                    <PrevIcon width={16} height={16} />
-                                                </div>
-                                                <div>
+                        <div className={styles.inner}>
+                            <div className={`${styles.section} ${styles.now_location}`}>
+                                {/* DatesPicker start */}
+                                <div
+                                    className={
+                                        "min-h-[74px] flex items-center justify-between space-x-1 relative"
+                                    }
+                                >
+                                    <div className={"flex space-x-[20px]"}>
+                                        <div
+                                            className={
+                                                "flex items-center justify-between  bg-white border-y border-[#ebedf4] w-[300px]"
+                                            }
+                                        >
+                                            <div className={`${styles["date-next-prev"]} cursor-pointer`}
+                                                 onClick={() => handleChange('prev', selectedDate)}>
+                                                <PrevIcon width={16} height={16}/>
+                                            </div>
+                                            <div>
                         <span
                             className={`${styles["date"]} ${
                                 datePickerOpen ? "hidden" : "block"
@@ -221,226 +311,98 @@ function MultipleLocationDrawer({ open, handleClose , isLoading,isFetching, vehi
                             </div>
                           </div>
                         </span>
-                                                    <div>
-                                                        <ConfigProvider locale={koKR}>
-                                                            <DatePicker
-                                                                className={datePickerOpen ? "custom_picker" : "hidden"}
-                                                                popupClassName={"custom_popup_picker vehicle-location !left-[calc(100%-314px)]"}
-                                                                format="YYYY-MM-DD"
-                                                                onChange={handleDateChange}
-                                                                // separator={"~"}
-                                                                defaultValue={dayjs(bufferStartDate)}
-                                                                value={dayjs(bufferStartDate)}
-                                                                allowClear={false}
-                                                                suffixIcon={""}
-                                                                inputReadOnly
-                                                                open={datePickerOpen}
-                                                                onOpenChange={(open) =>
-                                                                    setDatePickerOpen(datePickerOpen)
-                                                                }
-                                                                renderExtraFooter={() => (
-                                                                    <div className="flex justify-end px-[20px] bg-advertiser-light py-[15px] items-center">
-                                                                        <div className="flex gap-[4px]">
-                                                                            <button
-                                                                                className=" bg-advertiser-primary text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
-                                                                                onClick={() => {
-                                                                                    setSelectedDate(bufferStartDate);
-                                                                                    setDatePickerOpen(false)
-                                                                                }}
-                                                                            >
-                                                                                {adVehicleLocDrawerPage.checkBtn}
-                                                                            </button>
-                                                                            <button
-                                                                                className=" bg-[#fff] text-[#999] px-[12px] py-[5px] rounded text-[12px] leading-normal"
-                                                                                onClick={() => {
-                                                                                    setDatePickerOpen(false);
-                                                                                }}
-                                                                            >
-                                                                                {adVehicleLocDrawerPage.cancelBtn}
-                                                                            </button>
-                                                                        </div>
+                                                <div>
+                                                    <ConfigProvider locale={koKR}>
+                                                        <DatePicker
+                                                            className={datePickerOpen ? "custom_picker" : "hidden"}
+                                                            popupClassName={"custom_popup_picker vehicle-location !left-[calc(100%-314px)]"}
+                                                            format="YYYY-MM-DD"
+                                                            onChange={handleDateChange}
+                                                            // separator={"~"}
+                                                            defaultValue={dayjs(bufferStartDate)}
+                                                            value={dayjs(bufferStartDate)}
+                                                            allowClear={false}
+                                                            suffixIcon={""}
+                                                            inputReadOnly
+                                                            open={datePickerOpen}
+                                                            onOpenChange={(open) =>
+                                                                setDatePickerOpen(datePickerOpen)
+                                                            }
+                                                            renderExtraFooter={() => (
+                                                                <div
+                                                                    className="flex justify-end px-[20px] bg-advertiser-light py-[15px] items-center">
+                                                                    <div className="flex gap-[4px]">
+                                                                        <button
+                                                                            className=" bg-advertiser-primary text-[#fff] px-[12px] py-[5px] rounded text-[12px] leading-normal"
+                                                                            onClick={() => {
+                                                                                setSelectedDate(bufferStartDate);
+                                                                                setDatePickerOpen(false)
+                                                                            }}
+                                                                        >
+                                                                            {adVehicleLocDrawerPage.checkBtn}
+                                                                        </button>
+                                                                        <button
+                                                                            className=" bg-[#fff] text-[#999] px-[12px] py-[5px] rounded text-[12px] leading-normal"
+                                                                            onClick={() => {
+                                                                                setDatePickerOpen(false);
+                                                                            }}
+                                                                        >
+                                                                            {adVehicleLocDrawerPage.cancelBtn}
+                                                                        </button>
                                                                     </div>
-                                                                )}
-                                                                cellRender={cellRender}
-                                                            />
-                                                        </ConfigProvider>
-                                                    </div>
-                                                </div>
-                                                <div className={`${styles["date-next-prev"]} cursor-pointer`} onClick={() => handleChange('next',selectedDate)}>
-                                                    <NextIcon width={16} height={16} />
+                                                                </div>
+                                                            )}
+                                                            cellRender={cellRender}
+                                                        />
+                                                    </ConfigProvider>
                                                 </div>
                                             </div>
-
-                                            <div className={"h-[40px] w-[1px] bg-[#EBEDF4]"}></div>
+                                            <div className={`${styles["date-next-prev"]} cursor-pointer`}
+                                                 onClick={() => handleChange('next', selectedDate)}>
+                                                <NextIcon width={16} height={16}/>
+                                            </div>
                                         </div>
-                                    </div>
 
-
-                                    {/* DatesPicker end */}
-                                    {/*<div className={styles.title}>{adVehicleLocDrawerPage.vehicleSelection}</div>*/}
-                                    {/* <Image
-                    src="/images/img-location.png"
-                    alt=""
-                    className={styles.img}
-                    width={300}
-                    height={300}
-                    priority
-                  /> */}
-                                    {/*<Select*/}
-                                    {/*    popupClassName={"admin-advertisement-select"}*/}
-                                    {/*    size={"large"}*/}
-                                    {/*    style={{ width: '100%', borderRadius: "4px!important" }}*/}
-                                    {/*    onChange={(e) => setSelectedRide(Number(e))}*/}
-                                    {/*    value={ locationIds?.length || 0 > 0 ? selectedRide : 0}*/}
-                                    {/*    defaultValue={0}*/}
-                                    {/*    className='mb-2'*/}
-                                    {/*>*/}
-                                    {/*    {locationIds ? (*/}
-                                    {/*        locationIds?.map((ride, index) => {*/}
-                                    {/*            return (*/}
-                                    {/*                <Select.Option key={index} value={ride?.id}>*/}
-                                    {/*                    {adVehicleLocDrawerPage.drivingRecord} {index + 1}*/}
-                                    {/*                </Select.Option>*/}
-                                    {/*            );*/}
-                                    {/*        })*/}
-                                    {/*    ) : (*/}
-                                    {/*        <Select.Option value={0}>{adVehicleLocDrawerPage.noRecordMsg}</Select.Option>*/}
-                                    {/*    )}*/}
-                                    {/*</Select>*/}
-
-                                    {/*<div className={styles.location_name}>{adVehicleLocDrawerPage.expressWay}</div>*/}
-                                    {/*<div className={styles.text_wrap}>*/}
-                                    {/*    <div className={styles.text}>{adVehicleLocDrawerPage.avgVehiclesPerDay}</div>*/}
-                                    {/*    <div className={styles.text}>{adVehicleLocDrawerPage.uphill} : {passing_vehicle_up || '- '}대</div>*/}
-                                    {/*    <div className={styles.text}>{adVehicleLocDrawerPage.downhill} : {passing_vehicle_descent || '- '}대</div>*/}
-                                    {/*</div>*/}
-                                </div>
-
-                                {/*<div className={clsx(styles.section, styles.operation_history)}>*/}
-                                {/*    <div className={`${styles.text}  mb-[16px]`}>{adVehicleLocDrawerPage.opDetails}</div>*/}
-                                {/*    <ul className={styles.history}>*/}
-                                {/*        <li className={styles.list}>*/}
-                                {/*            <div>*/}
-                                {/*                <i className={`${styles.icons} ${styles.ic_start}`}></i>*/}
-                                {/*                <div className={`${styles.data} !text-[12px] !text-gray !leading-normal	`}>{startDate ? `${startMonth}/${startDate}` : '-'}</div>*/}
-                                {/*            </div>*/}
-                                {/*            <div>*/}
-                                {/*                <div className={styles.data}>{startTime ? `${startTime[0]}:${startTime[1]}` : '-'}</div>*/}
-                                {/*                <div className={styles.text}>{adVehicleLocDrawerPage.startOfOperation}</div>*/}
-                                {/*            </div>*/}
-                                {/*        </li>*/}
-                                {/*        <li className={styles.list}>*/}
-                                {/*            <div>*/}
-                                {/*                <i className={`${styles.icons} ${styles.ic_end}`}></i>*/}
-                                {/*                <div className={`${styles.data} !text-[12px] !text-gray !leading-normal	`}>{endDate ? `${endMonth}/${endDate}` : '-'}</div>*/}
-                                {/*            </div>*/}
-                                {/*            <div>*/}
-                                {/*                <div className={styles.data}>*/}
-                                {/*                    {endTime ? `${endTime[0]}:${endTime[1]}` : (startTime ? '운행중' : '-')}*/}
-                                {/*                </div>*/}
-                                {/*                <div className={styles.text}>{adVehicleLocDrawerPage.opEnd}</div>*/}
-                                {/*            </div>*/}
-                                {/*        </li>*/}
-                                {/*        <li className={styles.list}>*/}
-                                {/*            <div className='min-h-[50px]'>*/}
-                                {/*                <i className={`${styles.icons} ${styles.ic_drive}`}></i>*/}
-                                {/*                <div className={`${styles.data} !text-[12px] !text-gray !leading-normal	`}></div>*/}
-                                {/*            </div>*/}
-                                {/*            <div>*/}
-                                {/*                <div className={styles.data}>{`${today_distance || 0}km`}</div>*/}
-                                {/*                <div className={styles.text}>{adVehicleLocDrawerPage.drivingDistance}</div>*/}
-                                {/*            </div>*/}
-                                {/*        </li>*/}
-                                {/*    </ul>*/}
-                                {/*</div>*/}
-
-                                {/*<div*/}
-                                {/*    className={`${styles.section} ${styles.accomplishment_rate} !pb-0`}*/}
-                                {/*>*/}
-                                {/*    <div className={`${styles.title} !mb-[7px]`}>{adVehicleLocDrawerPage.drivingAchievementRate}</div>*/}
-                                {/*    <ul className={`${styles.list_wrap} !m-0`}>*/}
-                                {/*        <Chart*/}
-                                {/*            options={*/}
-                                {/*                {*/}
-                                {/*                    xaxis: {*/}
-                                {/*                        categories:categories,*/}
-                                {/*                    },*/}
-                                {/*                    yaxis: {*/}
-                                {/*                        show: false,*/}
-                                {/*                    },*/}
-                                {/*                    chart: {*/}
-                                {/*                        toolbar: {*/}
-                                {/*                            show: true,*/}
-                                {/*                            tools: {*/}
-                                {/*                                download: false*/}
-                                {/*                            }*/}
-                                {/*                        }*/}
-                                {/*                    },*/}
-                                {/*                    dataLabels: {*/}
-                                {/*                        enabled: true,*/}
-                                {/*                        formatter: function (val, opts) {*/}
-                                {/*                            return `${val} KM`*/}
-                                {/*                        },*/}
-                                {/*                        style: {*/}
-                                {/*                            fontSize: '11px',*/}
-                                {/*                            fontFamily: 'Roboto, Helvetica, Arial, sans-serif',*/}
-                                {/*                            fontWeight: 500,*/}
-                                {/*                            colors: ["#2C324C"]*/}
-                                {/*                        },*/}
-                                {/*                    },*/}
-                                {/*                    plotOptions: {*/}
-                                {/*                        bar : {*/}
-                                {/*                            dataLabels: {*/}
-                                {/*                                position: 'top',*/}
-                                {/*                                total: {*/}
-                                {/*                                    enabled: true,*/}
-                                {/*                                    formatter: undefined,*/}
-                                {/*                                    offsetX: 0,*/}
-                                {/*                                    offsetY: 0,*/}
-                                {/*                                }*/}
-                                {/*                            }*/}
-                                {/*                        }*/}
-                                {/*                    },*/}
-                                {/*                    colors: [*/}
-                                {/*                        function ({ value, seriesIndex, dataPointIndex, w }) {*/}
-                                {/*                            if (dataPointIndex == 0) {*/}
-                                {/*                                return "var(--primary-color)";*/}
-                                {/*                            } else if (dataPointIndex == 1){*/}
-                                {/*                                return "#515E93";*/}
-                                {/*                            } else {*/}
-                                {/*                                return "#2C324C";*/}
-                                {/*                            }*/}
-                                {/*                        }*/}
-                                {/*                    ]*/}
-                                {/*                }}*/}
-                                {/*            series  ={[{ data:data }]}*/}
-                                {/*            type="bar"*/}
-                                {/*            width={300}*/}
-                                {/*            height={180}*/}
-                                {/*        />*/}
-                                {/*    </ul>*/}
-                                {/*</div>*/}
-                                {/* <div className={styles.standard}>
-                  2023.03.01 ~ 2023.03.28 기준
-                </div> */}
-                                <div className={'flex flex-col gap-2'}>
-                                    <div className={'flex items-center justify-between gap-2 p-3 rounded-lg flex-wrap'} style={{background : "rgba(86, 26, 164, 0.06)"}}>
-                                        <div className={'flex items-center gap-2 flex-1'}>
-                                            <AmbulanceIconSvg/>
-                                                <span className={'font-medium text-base text-[#2C324C]'}>
-                                                    {viewAllLocation?.in_total_driving_distance}
-                                                </span>
-                                        </div>
-                                        <div className={'font-bold text-advertiser-primary text-xl flex-1 break-all flex justify-end items-center gap-1'}>
-                                            { isFetching ? <Skeleton width={40} animation="wave" /> : formatNumberWithCommas(in_total_distance_covered,2)} <span className={'font-medium text-[#373737] text-base'}>km</span>
-                                        </div>
-                                    </div>
-                                    <div className={'font-normal text-[#999999] text-xs'}>
-                                        *{viewAllLocation?.noteInfo}
+                                        {/*<div className={"h-[40px] w-[1px] bg-[#EBEDF4]"}></div>*/}
                                     </div>
                                 </div>
                             </div>
+
+                            <div className={'flex flex-col gap-2'}>
+                                {
+                                    duplicateRideInfoList?.length ?
+                                        <CollapseAble duplicateRideInfoList = {duplicateRideInfoList}/> : <></>
+                                }
+                                <div className={'flex items-center justify-between gap-2 p-3 rounded-lg flex-wrap'}
+                                     style={{ background: "rgba(86, 26, 164, 0.06)" }}>
+                                    <div className={'flex items-center gap-2 flex-1'}>
+                                        <div className={'!shrink-0'}>
+                                            <AmbulanceIconSvg/>
+                                        </div>
+                                        <span className={'font-medium text-base text-[#2C324C]'}>
+                                                    {viewAllLocation?.in_total_driving_distance}
+                                                </span>
+                                    </div>
+                                    <div
+                                        className={'font-bold text-advertiser-primary text-xl flex-1 break-all flex justify-end items-center gap-1'}>
+                                        {isFetching ? <Skeleton width={40}
+                                                                animation="wave"/> : formatNumberWithCommas(in_total_distance_covered, 2)}
+                                        <span className={'font-medium text-[#373737] text-base'}>km</span>
+                                    </div>
+                                </div>
+                                {
+                                    !isPcOnly &&   <div className={'font-normal text-[#999999] text-sm px-4'}>
+                                        *{viewAllLocation?.noteInfo}
+                                    </div>
+                                }
+                            </div>
+                        </div>
                     </div>
+                    {
+                        isPcOnly &&  <div className={'font-normal text-[#999999] text-sm px-4'}>
+                            *{viewAllLocation?.noteInfo}
+                        </div>
+                    }
                 </div>
             </div>
         </div>

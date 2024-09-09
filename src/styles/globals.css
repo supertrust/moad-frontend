@@ -4390,7 +4390,7 @@ div[style*='position: absolute; width: 11px; height: 9px; background: url("http:
 .all-location-truck-tooltip-trigger {
 	background-color: white;
 	color: black;
-	padding: 8px 20px;
+	/*padding: 8px 20px;*/
 	border: none;
 	cursor: pointer;
 	width: 100%;

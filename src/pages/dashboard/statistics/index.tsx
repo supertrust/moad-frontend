@@ -73,18 +73,18 @@ export default function StatisticsScreen() {
     advertisement_progress,
   } = totalStat || {};
 
-  const driving_vehicle = [
+  const ad_statistics = [
     {
-      title: statistics.opVehicle.driving_vehicle[0].title,
+      title: statistics.adStatistics.report[0].title,
       data: formatNumberWithCommas(total_add),
-      tooltip: `${statistics.opVehicle.driving_vehicle[0].tooltip} : ${operating_vehicles}${dashboard?.big}`,
+      tooltip: `${statistics.adStatistics.report[0].tooltip} : ${operating_vehicles}${dashboard?.big}`,
     },
     {
-      title: statistics.opVehicle.driving_vehicle[1].title,
+      title: statistics.adStatistics.report[1].title,
       data: formatNumberWithCommas(advertisement_progress),
     },
     {
-      title: statistics.opVehicle.driving_vehicle[2].title,
+      title: statistics.adStatistics.report[2].title,
       data: formatNumberWithCommas(end),
     },
   ];
@@ -221,12 +221,12 @@ export default function StatisticsScreen() {
                 </div>
                 <div className={styles.driving_vehicle}>
                   <HeaderLine
-                    title={statistics.opVehicle.title}
+                    title={statistics.adStatistics.title}
                     element={vehicleElement}
                   />
                   <div className={styles.driving_vehicle_box}>
                     <ul className={clsx(styles.list_wrap)}>
-                      {driving_vehicle.map((data, index) => (
+                      {ad_statistics.map((data, index) => (
                         <li
                           key={index}
                           className={clsx(styles.list, '!items-center')}>

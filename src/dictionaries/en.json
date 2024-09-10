@@ -422,9 +422,9 @@
       "tooltipMsg": "Sum of total advertising amount contracted within the period.",
       "won": "won"
     },
-    "opVehicle": {
-      "title": "Operating Vehicle",
-      "driving_vehicle": [
+    "adStatistics": {
+      "title": "Advertising Statistics",
+      "report": [
         {
           "title": "Total number of ads",
           "tooltip": "Number of vehicles in operation"

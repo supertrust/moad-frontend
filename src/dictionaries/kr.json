@@ -423,9 +423,9 @@
       "tooltipMsg": "기간내 계약진행된 총 광고 금액의 합계.",
       "won": "원"
     },
-    "opVehicle": {
-      "title": "운행차량",
-      "driving_vehicle": [
+    "adStatistics": {
+      "title": "광고통계",
+      "report": [
         {
           "title": "총 광고 수",
           "tooltip": "운행중인 차량수"

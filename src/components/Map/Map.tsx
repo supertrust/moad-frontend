@@ -21,7 +21,8 @@ const Map = ({
   showMarker = true, 
   children, className,
   onClick ,
-  onLoad
+  onLoad,
+    ...res
 } : MapProps, ref: Ref<kakao.maps.Map>) => {
 
   const [ loading ] = useKakaoLoader({
@@ -50,6 +51,7 @@ const Map = ({
             style={{ width: '100%', height: '100%' }}
             level={3}
             onClick={onClick}
+              {...res}
           >
             {showMarker && 
               <MapMarker 

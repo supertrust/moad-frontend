@@ -17,11 +17,13 @@ import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
 import useAuth from '@src/hooks/useAuth';
 import RHFTextarea from '@src/components/common/Form/RHFTextarea';
+import { useIcarusContext } from "@src/hooks/useIcarusContext";
 
 function MembershipWithdrawalScreen() {
 	const { mutateAsync: memberWithdrawal, isLoading } = useMemberWithdrawal();
 	const { confirm } = useConfirmDialog();
-	const { logout, dictionary:{ membershipWithdrawal } } = useAuth();
+	const { logout, dictionary: { membershipWithdrawal, pageTitle }, isKorean } = useAuth();
+	const { setPageTitle } = useIcarusContext();
 	const MembershipWithDrawalSchema = Yup.object({
 		reason: Yup.string()
 			.required(membershipWithdrawal.validations.reason.required),
@@ -44,6 +46,7 @@ function MembershipWithdrawalScreen() {
 		});
 	}, [watch]);
 
+	useEffect(() => setPageTitle(pageTitle["top_bar_my_page"]), [isKorean]);
 
 	const onSubmit = handleSubmit(async ({ reason }) => {
 		const options: ConfirmPropsType = {

@@ -17,6 +17,7 @@ import Link from 'next/link';
 import Input from '@src/components/common/Input';
 import { Controller } from "react-hook-form";
 import useAuth from '@src/hooks/useAuth';
+import { useIcarusContext } from "@src/hooks/useIcarusContext";
 
 
 const defaultValues = {
@@ -28,7 +29,8 @@ const defaultValues = {
 
 
 export default function ChangePasswordScreen() {
-	const { dictionary:{ changePasswordScreen } } = useAuth();
+	const { dictionary: { changePasswordScreen, pageTitle }, isKorean } = useAuth();
+	const { setPageTitle } = useIcarusContext();
 	const { mutateAsync: changePassword, isLoading } = useChangePassword();
 	const router = useRouter();
 
@@ -113,6 +115,8 @@ export default function ChangePasswordScreen() {
 			document.removeEventListener('keydown', handleKeyPress);
 		};
 	}, []);
+
+	useEffect(() => setPageTitle(pageTitle["top_bar_my_page"]), [isKorean]);
 
 	return (
 		<>

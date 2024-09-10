@@ -1065,6 +1065,10 @@ body .div {
   cursor: pointer;
 }
 
+.react_datepicker_popper {
+  z-index: 6 !important;
+}
+
 @media only screen and (max-width: 1023px) {
   .mobile-top-header {
     display: none !important;

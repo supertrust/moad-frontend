@@ -488,7 +488,7 @@ const SaveAdForm = ({
         />
         <svg
           onClick={props.onClick}
-          className='absolute right-[12px] top-[30%] z-[99]'
+          className='absolute right-[12px] top-[30%] z-[5]'
           width='14'
           height='16'
           viewBox='0 0 14 16'
@@ -1040,6 +1040,7 @@ const SaveAdForm = ({
                             setStartDate(convertDate(date));
                             setValue('start_date', convertDate(date));
                           }}
+                          popperClassName={styles.react_datepicker_popper}
                           customInput={<CustomInput />}
                         />
                       </>
@@ -1165,6 +1166,7 @@ const SaveAdForm = ({
                                 convertDate(date),
                               );
                             }}
+                            popperClassName={styles.react_datepicker_popper}
                             customInput={<CustomInput />}
                           />
                         </>
@@ -1193,6 +1195,7 @@ const SaveAdForm = ({
                               convertDate(date),
                             );
                           }}
+                          popperClassName={styles.react_datepicker_popper}
                           customInput={<CustomInput />}
                         />
                       </>

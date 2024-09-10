@@ -320,7 +320,7 @@ export default function StatisticsScreen() {
                             className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}
                           />
                         </div>
-                        <button
+                        {/* <button
                           disabled={!selectedAds.length}
                           // onClick={handleDeleteAds}
                           className={clsx(
@@ -328,7 +328,7 @@ export default function StatisticsScreen() {
                             'flex justify-center border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-advertiser-primary !text-advertiser-primary ',
                           )}>
                           {statistics.drivingDstTime.delete}
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>

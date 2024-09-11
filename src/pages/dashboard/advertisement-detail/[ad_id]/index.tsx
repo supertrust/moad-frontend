@@ -112,13 +112,13 @@ function AdvertisementDetailScreen() {
   }>({ advertisement_id: 0, cargo_vehicle_id: 0 });
 
   const [modelImages, setModelImages] = useState({
-    left: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+    left: "https://dev-static.moad.live/left.png",
     right:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+      "https://dev-static.moad.live/right.png",
     doorLeft:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+      "https://dev-static.moad.live/rear-left.png",
     doorRight:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg",
+      "https://dev-static.moad.live/rear-right.png",
   });
 
   useEffect(()=>{

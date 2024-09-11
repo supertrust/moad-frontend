@@ -231,9 +231,6 @@ const AllVehicleLocation = () => {
         setShowDrawer(!showDrawer);
     };
 
-
-    // console.log('asd',similarPoint)
-
     const renderCargo = (
         { origin, destination, currentPosition, name, logs = [], id, info }:
             {
@@ -251,11 +248,6 @@ const AllVehicleLocation = () => {
         let end = logs?.length ? logs[logs.length - 1]?.created_at?.split(' ') : end_time ? end_time.split('T') : null
         let endTime = end ? end[1].split(':') : null
         const isMultiple = destinationList[destinationMap[info.destination]]?.length > 1;
-
-        //console.log('dest', destination, zoomDestination)
-
-        // console.log('render',info.destination,isMultiple,similarPoint[info.destination]?.length,origin)
-
 
         return (
             <>

@@ -1293,7 +1293,7 @@ const SaveAdForm = ({
                                   }
                                 }}
                                 id={`vehicles_num_${item.vehicle_type}`}
-                                placeholder='직접입력'
+                                placeholder={dictionary.adForm.vehicleType}
                                 min={0}
                                 onKeyDown={(e) => {
                                   // Allow only numeric characters and prevent negative sign
@@ -1340,7 +1340,7 @@ const SaveAdForm = ({
                                     }
                                   }
                                   id={`vehicle_min_${item.vehicle_type}`}
-                                  placeholder="직접입력"
+                                  placeholder={dictionary.adForm.vehicleType}
                                   min={0}
                                   onKeyDown={(e) => {
                                     // Allow only numeric characters and prevent negative sign

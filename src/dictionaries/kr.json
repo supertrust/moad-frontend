@@ -966,6 +966,7 @@
       "담당자 전화번호로 연락드립니다.",
       "부착예시"
     ],
+    "vehicleType": "직접입력",
     "buttons": ["접기", "자세히"],
     "ad_type": "광고유형",
     "detailed_description": "상세설명",

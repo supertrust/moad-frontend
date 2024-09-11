@@ -971,6 +971,7 @@
       "I'll contact you at the phone number in charge.",
       "Attachment example"
     ],
+    "vehicleType": "Direct input",
     "buttons": ["Close", "Details"],
     "ad_type": "Ad type",
     "detailed_description": "Detailed Description",

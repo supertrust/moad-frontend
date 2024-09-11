@@ -76,8 +76,6 @@ export const TypeOfVechicle = [
   { text: '윙바디', value: 'loaded' },
 ];
 
-const CurrentTypeOfVechicle = [{ text: '윙바디', value: 'loaded' }];
-
 const defaultStartDate = addWeeks(new Date(), 2);
 const defaultValues: FormDataType = {
   ad_name: '',
@@ -206,6 +204,8 @@ const SaveAdForm = ({
       faq: true,
     },
   ];
+
+  const CurrentTypeOfVechicle = [{ text: dictionary.adForm.type_of_vehicle[0], value: 'loaded' }];
 
   const handleFileChange = (event) => {
     const currentImage = [...images, ...(event.target.files as File[])];
@@ -996,7 +996,7 @@ const SaveAdForm = ({
                                 htmlFor={`${period}_months`}
                                 className={
                                   styles.period_label
-                                }>{`${period}개월`}</label>
+                                }>{`${period}${dictionary.adForm.months}`}</label>
                               <input
                                 type='radio'
                                 value={period}

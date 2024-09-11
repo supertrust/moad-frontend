@@ -972,6 +972,7 @@
       "I'll contact you at the phone number in charge.",
       "Attachment example"
     ],
+    "type_of_vehicle": ["Wing Body"],
     "vehicleType": "Direct input",
     "buttons": ["Close", "Details"],
     "ad_type": "Ad type",
@@ -986,6 +987,7 @@
     "image_limit2": "You can register up to 5 items.",
     "select_file": "Select File",
     "advertising_period": "Advertising period",
+    "months": " Months",
     "six_months": "6 Months",
     "twelve_months": "12 Months",
     "start_date": "Start Date",

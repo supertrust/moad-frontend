@@ -76,7 +76,7 @@ const dateRangePickerCtrls = [
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const CollapseAble = ({duplicateRideInfoList}) => {
+const CollapseAble = ({duplicateRideInfoList,duplicateDestination}) => {
     const { dictionary: { adVehicleLocDetailsPage, viewAllLocation }, isKorean, } = useAuth();
     const [open, setOpen] = useState(-1)
     const [currentInfo,setCurrentInfo] = useState({
@@ -84,7 +84,6 @@ const CollapseAble = ({duplicateRideInfoList}) => {
         total_time_covered : 0, total_distance_covered : 0
     })
     const {startTime, endTime, total_time_covered, total_distance_covered} = currentInfo
-
 
    useEffect(()=>{
 
@@ -99,16 +98,20 @@ const CollapseAble = ({duplicateRideInfoList}) => {
            setCurrentInfo({
                 startTime, endTime, total_time_covered, total_distance_covered
            })
-
-
        }
        else {
            setCurrentInfo({
-              start_time : null,end_time : null,total_time_covered: 0, total_distance_covered: 0
+              startTime : null,endTime : null,total_time_covered: 0, total_distance_covered: 0
            })
        }
 
    },[open])
+
+    useEffect(()=>{
+        return ()=>{
+            setOpen(-1)
+        }
+    },[duplicateDestination])
 
 
     return <div className={'flex flex-col border border-radius max-h-[400px] overflow-auto rounded-lg'}>
@@ -162,7 +165,8 @@ function MultipleLocationDrawer({
                                     rideChangeHandler,
                                     locationIds,
                                     in_total_distance_covered,
-                                    duplicateRideInfoList
+                                    duplicateRideInfoList,
+                                    duplicateDestination
                                 }: DrawerProps) {
 
     const { RangePicker } = DatePicker;
@@ -368,11 +372,7 @@ function MultipleLocationDrawer({
                                 </div>
                             </div>
 
-                            <div className={'flex flex-col gap-2'}>
-                                {
-                                    duplicateRideInfoList?.length ?
-                                        <CollapseAble duplicateRideInfoList = {duplicateRideInfoList}/> : <></>
-                                }
+                            <div className={'flex flex-col gap-4'}>
                                 <div className={'flex items-center justify-between gap-2 p-3 rounded-lg flex-wrap'}
                                      style={{ background: "rgba(86, 26, 164, 0.06)" }}>
                                     <div className={'flex items-center gap-2 flex-1'}>
@@ -390,6 +390,10 @@ function MultipleLocationDrawer({
                                         <span className={'font-medium text-[#373737] text-base'}>km</span>
                                     </div>
                                 </div>
+                                {
+                                    duplicateRideInfoList?.length ?
+                                        <CollapseAble duplicateRideInfoList = {duplicateRideInfoList} duplicateDestination={duplicateDestination}/> : <></>
+                                }
                                 {
                                     !isPcOnly &&   <div className={'font-normal text-[#999999] text-sm px-4'}>
                                         *{viewAllLocation?.noteInfo}

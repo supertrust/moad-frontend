@@ -88,12 +88,9 @@ const AllVehicleLocation = () => {
         let marked = {}
         const destiMap = {}
         const destiList = {}
-        if (!map) {
-            //console.log('map is not loaded')
+        if (!map || zoomLevel == map.getLevel())
             return {}
 
-        }
-        //console.log('loaded map', cargoList.length)
         const markers = cargoList.map(({ destination }) => ({
             position: toLatLng(destination),
             screenCoords: map.getProjection().pointFromCoords(toLatLng(destination)),
@@ -162,7 +159,8 @@ const AllVehicleLocation = () => {
                     start_time,
                     end_time,
                     total_time_covered,
-                    total_distance_covered
+                    total_distance_covered,
+                    id
                 } = cargo;
 
                 return {
@@ -172,6 +170,7 @@ const AllVehicleLocation = () => {
                     name: cargo_to_advertisment?.advertisement?.ad_name,
                     logs,
                     info: {
+                        id,
                         start_time,
                         end_time,
                         total_time_covered,
@@ -186,17 +185,17 @@ const AllVehicleLocation = () => {
 
             const sum = cargoAllLocation.reduce((acc, curr) => acc + (Number(curr.total_distance_covered) || 0), 0);
 
-            const similarDes = {};
-
-            newCargo.forEach((cargo) => {
-                if (!similarDes[cargo.destination]) {
-                    similarDes[cargo.destination] = []
-                }
-                similarDes[cargo.destination].push(cargo)
-                // console.log('sdas', similarDes[cargo.destination].length)
-            })
-
-            setSimilarPoint({ ...similarDes })
+            // const similarDes = {};
+            //
+            // newCargo.forEach((cargo) => {
+            //     if (!similarDes[cargo.destination]) {
+            //         similarDes[cargo.destination] = []
+            //     }
+            //     similarDes[cargo.destination].push(cargo)
+            //     // console.log('sdas', similarDes[cargo.destination].length)
+            // })
+            //
+            // setSimilarPoint({ ...similarDes })
 
             setCargoList([...newCargo])
             // console.log('asdas',cargoList.length)
@@ -283,11 +282,7 @@ const AllVehicleLocation = () => {
 
                     <div style={{ zIndex: 100 }} className="all-location-truck-tooltip-container">
                         {id === hover && (
-                            <div onClick={() => {
-                                setDuplicateDestination(destinationMap[info.destination]),
-                                    setShowDrawer(false)
-                            }}
-                                 className={clsx('all-location-truck-tooltip flex items-center flex-col !rounded cursor-pointer')}
+                            <div className={clsx('all-location-truck-tooltip flex items-center flex-col !rounded')}
                                  onMouseEnter={() => setHover(id)} onMouseLeave={() => setHover(-1)}>
                                 <Paper elevation={24}>
                                     <div style={{ border: '1px solid #FFFFFF' }}
@@ -339,6 +334,10 @@ const AllVehicleLocation = () => {
                             className="px-[20px] py-[8px] all-location-truck-tooltip-trigger flex gap-1 min-w-[68px] items-center justify-center"
                             onMouseEnter={() => setHover(id)}
                             onMouseLeave={() => setHover(-1)}
+                            onClick={() => {
+                                setDuplicateDestination(destinationMap[info.destination]),
+                                    setShowDrawer(false)
+                            }}
                         >
                             <img className={'!h-[11px] !w-[20px] !shrink-0'}
                                  src={'/images/vehicle_location/truck-marker.png'}/>
@@ -447,6 +446,7 @@ const AllVehicleLocation = () => {
                 dateChangeHandler={handleDateChange}
                 rideChangeHandler={handleRideChange}
                 in_total_distance_covered={values?.in_total_distance_covered}
+                duplicateDestination={duplicateDestination}
                 duplicateRideInfoList={duplicateDestination ? zoomDestination?.destinationList?.[duplicateDestination] || [] : []}
             />
         </div>

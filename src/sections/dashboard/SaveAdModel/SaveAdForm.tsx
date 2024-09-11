@@ -923,7 +923,7 @@ const SaveAdForm = ({
                             onClick={() => imageRef.current.click()}>
                             <Image src={ImagePlaceholder} alt='' />
                             <span className='text-admin-placeholder text-lg font-medium'>
-                              이미지 추가
+                              {dictionary.adForm.imagePlaceholder}
                             </span>
                             <Image src={IconPlus} alt='' />
                           </div>

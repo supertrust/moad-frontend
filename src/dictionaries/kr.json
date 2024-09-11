@@ -920,6 +920,7 @@
   },
   "adForm": {
     "title": "광고신청",
+    "imagePlaceholder": "이미지 추가",
     "validations": {
       "files": {
         "msg": "광고이미지는 필수 입력 항목입니다."

@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 
 function SaveAdSuccessPopup({ open,onCancel}: { onCancel: (e: any) => void,open : boolean }) {
-  const { user } = useAuth();
+  const { user, dictionary } = useAuth();
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -39,26 +39,25 @@ function SaveAdSuccessPopup({ open,onCancel}: { onCancel: (e: any) => void,open 
                     width={40}
                     height={40}
                 />
-                <div className={styles.popup_success_title}>광고 신청 완료</div>
+                <div className={styles.popup_success_title}>{dictionary.adForm.success.title}</div>
                 <div className={styles.popup_success_text}>
-                  다음 진행을 위하여 등록하신 담당자님의 연락처로 <br /> 최대한 빠르게
-                  연락드리겠습니다.
+                  {dictionary.adForm.success.text[0]}
+                  <br />
+                  {dictionary.adForm.success.text[1]}
                   <br />
                   {`${user?.employee_name} / ${user?.employee_phone_number}`}
                 </div>
                 <div className={styles.popup_sub_text}>
-                  등록하신 광고는 광고관리에서 확인 가능합니다.
+                  {dictionary.adForm.success.sub_text}
                 </div>
                 <div className={'flex justify-center'}>
-
                     <button
                         type="button"
                         className={styles['apply_completed_btn']}
                         onClick={onCancel}
                     >
-                      확인
+                      {dictionary.adForm.done}
                     </button>
-
                 </div>
               </div>
             </div>

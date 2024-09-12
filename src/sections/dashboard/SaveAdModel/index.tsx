@@ -9,6 +9,7 @@ import { SaveAdvertisementType } from "@src/types/advertisement";
 import AdAgreementForm from "./AdAgreementForm";
 import SaveAdSuccessPopup from "./SaveAdSuccessPopup";
 import { Modal } from "antd";
+import useAuth from "@src/hooks/useAuth";
 
 interface IAdModelProps {
     refetchAds: VoidFunction
@@ -23,6 +24,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
     const [open, setOpen] = useState(false);
     const [done, setDone] = useState(false);
     const {confirm} = useConfirmDialog();
+    const { dictionary } = useAuth();
 
     const { mutateAsync: saveAdvertisement, isLoading: isLoadingSaveAdvertisement } = useSaveAdvertisement();
 
@@ -50,7 +52,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
 
     const onConfirmModal = async (props: SaveAdvertisementType)=>{
         const options: ConfirmPropsType = {
-            title: '광고신청',
+            title: dictionary.adForm.title,
             size: 'sm',
             disableConfirmBtn: false,
             footerClassName: 'flex flex-row justify-end',
@@ -59,10 +61,7 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
         confirm({
             ...options,
             description: (
-                <div className='mt-3 text-center'>
-                    광고신청 완료시에는, 모든 약관이나 면책서에
-                    동의하는 것으로 간주합니다.
-                </div>
+                <div className='mt-3 text-center'>{dictionary.adForm.confirmation_description}</div>
             ),
         });
 

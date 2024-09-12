@@ -2,6 +2,7 @@ import { ButtonProps, Button } from '@src/components/common';
 import { clsx } from 'clsx';
 import React, { ReactNode, createContext, useState } from 'react';
 import { Modal } from 'react-bootstrap';
+import useAuth from "@src/hooks/useAuth";
 
 export interface ConfirmPropsType {
     title: string;
@@ -45,6 +46,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
         dialogClassName,
         ref
     } = confirmProps || {};
+    const { dictionary } = useAuth();
 
     const { className: confirmButtonStyle, ...restConfirmButtonProps } = confirmButtonProps || {};
     const { className: cancelButtonStyle, ...restCancelButtonProps } = cancelButtonProps || {};
@@ -81,7 +83,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
                         )}
                         onClick={handelCancel}
                     >
-                        {cancelText || '취소'}
+                        {cancelText || dictionary.adForm.cancel}
                     </Button>
                     {!disableConfirmBtn && 
                         <Button 
@@ -93,7 +95,7 @@ const ConfirmDialogProvider = ({ children }: { children: ReactNode }) => {
                             onClick={handleConfirm}
                             loading={confirmLoading}
                         >
-                            {confirmText || '확인'}
+                            {confirmText || dictionary.adForm.confirm}
                         </Button>
                     }
                 </Modal.Footer>

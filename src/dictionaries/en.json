@@ -972,6 +972,7 @@
       "I'll contact you at the phone number in charge.",
       "Attachment example"
     ],
+    "confirmation_description": "Upon completing the advertisement application, it is considered that all terms and disclaimers have been agreed to.",
     "type_of_vehicle": ["Wing Body"],
     "vehicleType": "Direct input",
     "buttons": ["Close", "Details"],
@@ -1016,6 +1017,11 @@
     "cancel": "Cancel",
     "confrim_toc": "Please read the terms and conditions before agreeing.",
     "confirm": "Confirm",
+    "success": {
+      "title": "Ad Application Completed",
+      "text": ["To the contact information of the registered contact for further proceedings", "We will contact you as soon as possible."],
+      "sub_text": "The advertisement you registered can be checked in the advertisement management section."
+    },
     "done": "Done"
   },
   "policyPage": {

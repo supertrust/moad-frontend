@@ -1001,6 +1001,11 @@
     "icarus_toc": "광고 신청전 확인서",
     "look": "보기",
     "operating_area": "운행지역 (다중 선택 가능)",
+    "operating_region": {
+      "title": "확인사항",
+      "content": ["모든 운행 지역을 선택할 시", "광고 유형을 전국형으로 변경해주세요"],
+      "check": "확인"
+    },
     "vehicle": "차량",
     "num_of_vehicles": "차량대수",
     "min_vehicles": "최소필요 차량수",

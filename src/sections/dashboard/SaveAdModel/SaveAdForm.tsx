@@ -1658,18 +1658,19 @@ const SaveAdForm = ({
           className='bussiness-modal'>
           <Modal.Header className='py-0 pl-0'>
             <Modal.Title className='text-[#2C324C] text-left text-xl mb-[20px] font-bold'>
-              확인사항
+              {dictionary.adForm.operating_region.title}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className='text-center'>
-            모든 운행 지역을 선택할 시<br />
-            광고 유형을 전국형으로 변경해주세요
+            {dictionary.adForm.operating_region.content[0]}
+            <br />
+            {dictionary.adForm.operating_region.content[1]}
           </Modal.Body>
           <Modal.Footer className='py-0 pr-0'>
             <Button
               className='bg-primary text-white px-4 !mt-[20px]'
               onClick={() => setShowModal(false)}>
-              확인
+              {dictionary.adForm.operating_region.check}
             </Button>
           </Modal.Footer>
         </Modal>

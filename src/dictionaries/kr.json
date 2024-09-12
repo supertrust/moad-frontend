@@ -953,6 +953,9 @@
       },
       "operatingArea":{
         "min": "운행지역을 선택해주세요."
+      },
+      "recruit_end": {
+        "msg": "표시 종료일은 시작일보다 커야 합니다."
       }
     },
     "info_text": [

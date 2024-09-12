@@ -958,6 +958,9 @@
       },
       "operatingArea":{
         "min": "Please select an operating area."
+      },
+      "recruit_end": {
+        "msg": "The display end date must be greater than the start date."
       }
     },
     "info_text": [

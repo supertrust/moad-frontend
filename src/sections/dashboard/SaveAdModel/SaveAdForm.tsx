@@ -522,7 +522,7 @@ const SaveAdForm = ({
     const tStartDate = new Date(startDate);
 
     if (tRecruitEnd < tRecruitStart)
-      return '표시 종료일은 시작일보다 커야 합니다.';
+      return dictionary.adForm.validations.recruit_end.msg;
     else if (tRecruitEnd >= tStartDate)
       return '광고 시작일은 표시 종료일보다 커야 합니다.';
 

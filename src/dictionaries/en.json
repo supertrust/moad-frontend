@@ -341,7 +341,10 @@
     "noNotification": "There are no notifications."
   },
   "adList": {
-    "noAdsMsg": "There are no ads running.",
+    "noAdsMsg": {
+      "all": "There are no ads running.",
+      "end": "None of the ads have completed their run."
+    },
     "title": "Advertisement List",
     "applyForAdBtn": "Apply for Ad",
     "deleteAdBtn": "Delete",
@@ -414,7 +417,10 @@
         "Total driving time",
         "Status"
       ],
-      "noAdsMsg": "There are no ads running."
+      "noAdsMsg": {
+        "all": "There are no ads running.",
+        "finished": "None of the ads have completed their run."
+      }
     },
     "vehicleElement": "Based on the entire period",
     "adAmount": {

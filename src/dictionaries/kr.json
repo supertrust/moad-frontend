@@ -342,7 +342,11 @@
     "noNotification": "알림이 없습니다."
   },
   "adList": {
-    "noAdsMsg": "진행중인 광고가 없습니다.",
+    "noAdsMsg": {
+      "all": "진행중인 광고가 없습니다.",
+      "end": "광고 중 어떤 것도 실행을 완료하지 않았습니다."
+    },
+    "noAdsEndedMsg": "광고 중 어떤 것도 실행을 완료하지 않았습니다.",
     "title": "광고 목록",
     "applyForAdBtn": "광고 신청",
     "deleteAdBtn": "삭제",
@@ -415,7 +419,10 @@
         "총 운행시간",
         "상태"
       ],
-      "noAdsMsg": "진행중인 광고가 없습니다."
+      "noAdsMsg": {
+        "all": "진행중인 광고가 없습니다.",
+        "finished": "광고 중 어떤 것도 실행을 완료하지 않았습니다."
+      }
     },
     "vehicleElement": "전체 기간 기준",
     "adAmount": {

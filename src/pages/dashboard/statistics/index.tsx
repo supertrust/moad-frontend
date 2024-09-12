@@ -464,7 +464,10 @@ export default function StatisticsScreen() {
                       </ul>
                       {!isLoading && !advertisement_stats?.length && (
                         <div className='w-fit m-auto'>
-                          {statistics.drivingDstTime.noAdsMsg}
+                          {status === "end"
+                            ? statistics.drivingDstTime.noAdsMsg.finished
+                            : statistics.drivingDstTime.noAdsMsg.all
+                          }
                         </div>
                       )}
                     </div>

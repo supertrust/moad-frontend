@@ -353,7 +353,7 @@ export default function AdListModule() {
 
                         {
                             ((!sortedAdvertisements || sortedAdvertisements?.length === 0) && !isLoading) &&
-                            <div>{noAdsMsg}</div>
+                            <div>{status === "end" ? noAdsMsg.end : noAdsMsg.all}</div>
                         }
                     </div>
 

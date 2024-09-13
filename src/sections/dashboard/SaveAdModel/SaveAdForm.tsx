@@ -354,9 +354,9 @@ const SaveAdForm = ({
     const allowedImages = ['image/jpeg', 'image/jpg', 'image/png'];
     const options: ConfirmPropsType = {
       ref: errorModal,
-      title: '확인사항',
+      title: dictionary?.common?.checkList,
       size: 'sm',
-      cancelText: <span className='text-[#FFFFFF]'>확인</span>,
+      cancelText: <span className='text-[#FFFFFF]'>{dictionary?.common?.check}</span>,
       disableConfirmBtn: true,
       cancelButtonProps: {
         className: 'border-primary bg-primary !text-[#FFFFFF]',
@@ -375,7 +375,7 @@ const SaveAdForm = ({
           ...options,
           description: (
             <div className='mt-3 text-center'>
-              JPG, JPEG, PNG 파일만 가능합니다.
+              {dictionary?.common?.allowedFileTypesMsg}
             </div>
           ),
         });
@@ -388,7 +388,7 @@ const SaveAdForm = ({
         confirm({
           ...options,
           description: (
-            <div className='mt-3 text-center'>최대 5MB까지만 가능합니다.</div>
+            <div className='mt-3 text-center'>{dictionary?.adForm?.validations?.upTo5mb}</div>
           ),
         });
         break;
@@ -410,7 +410,7 @@ const SaveAdForm = ({
         return;
       }
       if (!minimumNumberVehicleValidation({ ...watch() })) {
-        setErrors('필요한 최소 차량 수는 차량 수와 작거나 같아야 합니다.');
+        setErrors(dictionary?.adForm?.validations?.minimumVehicle);
         return;
       }
 
@@ -1416,7 +1416,7 @@ const SaveAdForm = ({
                 onClick={() => {
                   setValue('operating_area', []);
                 }}>
-                <span className={styles.text}>초기화</span>
+                <span className={styles.text}>{dictionary?.adForm?.reset}</span>
                 <i className={styles.ic_reset}></i>
               </button>
               {isLoadingCars && <Loader size='sm' content='로드 중...' />}

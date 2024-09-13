@@ -56,7 +56,10 @@
     "no_of_vehicle_in_operation" : "운행 차량수",
     "a" : "가",
     "b" : "나",
-    "c" : "다"
+    "c" : "다",
+    "check" : "확인",
+    "checkList" :  "확인사항",
+    "allowedFileTypesMsg": "JPG, JPEG, PNG 파일만 가능합니다."
   },
   "operationStatus": {
     "active": "운행대기중",
@@ -930,7 +933,9 @@
   "adForm": {
     "title": "광고신청",
     "imagePlaceholder": "이미지 추가",
+    "reset" : "초기화",
     "validations": {
+      "upTo5mb" : "최대 5MB까지만 가능합니다.",
       "files": {
         "msg": "광고이미지는 필수 입력 항목입니다."
       },
@@ -965,7 +970,8 @@
       },
       "recruit_end": {
         "msg": "표시 종료일은 시작일보다 커야 합니다."
-      }
+      },
+      "minimumVehicle" : "필요한 최소 차량 수는 차량 수와 작거나 같아야 합니다."
     },
     "info_text": [
       "광고가 노출되는 지역을 선택해 광고를 생성하세요.",

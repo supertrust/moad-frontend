@@ -56,7 +56,10 @@
     "no_of_vehicle_in_operation": "Number of Vehicles in Operation",
     "a" : "a",
     "b" : "b",
-    "c" : "c"
+    "c" : "c",
+    "check" : "Check",
+    "checkList" : "Check List",
+    "allowedFileTypesMsg" : "Only JPG, JPEG, and PNG files are accepted."
   },
   "operationStatus": {
     "active": "Waiting for operation",
@@ -934,7 +937,9 @@
   "adForm": {
     "title": "Advertising Form",
     "imagePlaceholder": "Add image",
+    "reset" : "Reset",
     "validations": {
+      "upTo5mb" : "Up to 5MB is allowed.",
       "files": {
         "msg": "Ad image is required."
       },
@@ -969,7 +974,8 @@
       },
       "recruit_end": {
         "msg": "The display end date must be greater than the start date."
-      }
+      },
+      "minimumVehicle" : "The minimum number of vehicles required must be less than or equal to the number of vehicles."
     },
     "info_text": [
       "Create an ad by selecting the region where the ad is displayed.",

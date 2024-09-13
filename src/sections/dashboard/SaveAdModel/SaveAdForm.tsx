@@ -57,17 +57,20 @@ type FormDataType = {
 };
 
 type AdDataType = {
-  mainTitle: string;
-  subTitle: string;
-  mainLine: string;
+  main_title: string;
+  sub_title: string;
+  main_line: string;
   details: {
-    mainHeading: string;
-    subHeading: string;
+    main_heading: string;
+    sub_heading: string;
     list: {
       title: string;
       description: string;
+      description1: string;
+      description2: string;
     }[];
   };
+  check: string;
 };
 
 export const TypeOfVechicle = [
@@ -1691,7 +1694,7 @@ const SaveAdForm = ({
           open={openDetailModal}
           handleClose={() => setOpenDetailModal(false)}
           iconClassName={styles[`detailModalIcon${detailModal}`]}
-          adData={adDetailsData[detailModal - 1]}
+          adData={dictionary.adForm.ad_details_data[detailModal - 1]}
         />
       </div>
     </FormProvider>
@@ -1709,18 +1712,21 @@ const DetailModal = ({
   iconClassName: string;
   adData: AdDataType;
 }) => {
-  const ListItem = ({ title, description }) => (
+  const ListItem = ({ title, description, description1, description2 }) => (
     <div className='gap-2 flex flex-col'>
       <div className='text-xl font-bold text-secondary'>{title}</div>
       <div>{description}</div>
+      <div>{description1}</div>
+      <div>{description2}</div>
     </div>
   );
 
   const {
-    mainTitle,
-    subTitle,
-    mainLine,
-    details: { mainHeading, subHeading, list },
+    main_title,
+    sub_title,
+    main_line,
+    details: { main_heading, sub_heading, list },
+    check
   } = adData;
 
   return (
@@ -1733,22 +1739,22 @@ const DetailModal = ({
       <Modal.Header className={styles.bg_Head_}>
         <Modal.Title className='w-full text-left px-4'>
           <div>
-            <div className={'!text-[24px] !text-[#2C324C] !font-medium'}>{mainTitle}</div>
-            <div className='!text-[44px] !text-[#2C324C] font-bold'>{subTitle}</div>
+            <div className={'!text-[24px] !text-[#2C324C] !font-medium'}>{main_title}</div>
+            <div className='!text-[44px] !text-[#2C324C] font-bold'>{sub_title}</div>
           </div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className='h-auto'>
         <div className='terms-text'>
-          <div className='text-lg mb-1'>{mainLine}</div>
+          <div className='text-lg mb-1'>{main_line}</div>
           <div className='bg-[#F7F7F7] p-[40px] '>
             <div className='flex gap-2'>
               <div className={iconClassName}></div>
               <div className='gap-2 flex flex-col justify-center'>
                 <div className='text-2xl font-bold text-secondary'>
-                  {mainHeading}
+                  {main_heading}
                 </div>
-                <div>{subHeading}</div>
+                <div>{sub_heading}</div>
               </div>
             </div>
             <Divider />
@@ -1764,7 +1770,7 @@ const DetailModal = ({
         <Button
           className='bg-secondary primary border-solid border-[1px] border-[transparent] text-[#fff] !py-[5px]'
           onClick={handleClose}>
-          확인
+          {check}
         </Button>
       </Modal.Footer>
     </Modal>

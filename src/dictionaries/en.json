@@ -1001,6 +1001,102 @@
     "buttons": ["Close", "Details"],
     "ad_type": "Ad type",
     "detailed_description": "Detailed Description",
+    "ad_details_data": [
+      {
+        "main_title": "Guide",
+        "sub_title": "Checking Fixed Advertising",
+        "main_line": "By appropriately selecting the advertising type according to the advertising purpose, we can increase the efficiency of the advertisement.",
+        "details": {
+          "main_heading": "Fixed Advertising",
+          "sub_heading": "Fixed advertising that can be displayed by matching with shippers in specific areas",
+          "list": [
+            {
+              "title": "Regional Targeting Effect",
+              "description1": "It allows for the concentrated delivery of advertising messages to consumers in the specific area. Particularly, it can",
+              "description2": "create an effective advertising strategy by considering local characteristics or culture, leading to more effective advertising results."
+            },
+            {
+              "title": "Budget Efficiency",
+              "description": "When advertising is limited to a specific area, the advertising budget for that area can be efficiently allocated. In other words, by focusing the budget more intensively, you can increase the frequency of exposure or the size of the advertisement."
+            },
+            {
+              "title": "Response to Local Competitors",
+              "description1": "In areas where there is a lot of competition, advertising only in that specific area allows you to respond to competitors.",
+              "description2": "This can also greatly help in increasing local market competitiveness."
+            },
+            {
+              "title": "Measurement of Regional Effect",
+              "description1": "When advertising is conducted only in a specific area, you can analyze and improve the advertising effect by measuring the sales or awareness in that area.",
+              "description2": "This provides accurate information for media planning, which is very helpful for future advertising strategy development."
+            }
+          ]
+        },
+        "check": "OK"
+      },
+      {
+        "main_title": "Guide",
+        "sub_title": "Checking National Advertising",
+        "main_line": "By appropriately selecting the advertising type according to the advertising purpose, we can increase the efficiency of the advertisement.",
+        "details": {
+          "main_heading": "National Advertising",
+          "sub_heading": "Advertising that matches all shippers nationwide to maximize advertising effectiveness at a low cost",
+          "list": [
+            {
+              "title": "Popular Branding Effects",
+              "description1": "When advertising is exposed nationwide, a broader branding effect can be expected.",
+              "description2": "Since the advertisement is exposed to many people, it can increase brand awareness."
+            },
+            {
+              "title": "National Marketing Effect",
+              "description1": "Conducting advertising nationwide allows you to achieve a national marketing effect.",
+              "description2": "Since branding is not limited to a specific area, it can help make your product or service known to more consumers."
+            },
+            {
+              "title": "Exposure to a Broad Audience",
+              "description1": "By advertising nationwide, you can reach an audience that is active across the country, not limited to a specific region.",
+              "description2": "This is effective in increasing brand awareness, as there is no need to consider specific regional characteristics."
+            },
+            {
+              "title": "Low Cost",
+              "description": "Conducting advertising nationwide can be done at a lower cost than fixed advertising."
+            }
+          ]
+        },
+        "check": "OK"
+      },
+      {
+        "main_title": "Guide",
+        "sub_title": "Checking Spot Advertising",
+        "main_line": "By appropriately selecting the advertising type according to the advertising purpose, we can increase the efficiency of the advertisement.",
+        "details": {
+          "main_heading": "Spot Advertising",
+          "sub_heading": "Advertising that can be exposed in specific areas and at specific times on an hourly basis",
+          "list": [
+            {
+              "title": "Targeted Marketing Effect",
+              "description1": "Concentrated advertising in specific locations or time periods can achieve targeted marketing effects for those areas or times.",
+              "description2": "For example, preferred products or services can vary by region or time of day."
+            },
+            {
+              "title": "Efficient Advertising Cost",
+              "description": "By advertising only in specific locations or time periods, you can allocate your advertising budget more efficiently. This allows you to achieve desired results more quickly and efficiently than advertising that targets an entire region or time period."
+            },
+            {
+              "title": "Exposure to a Broad Audience",
+              "description1": "When advertising is conducted nationwide, it can be exposed to an audience that is active across the country, not limited to a specific region.",
+              "description2": "This is effective in increasing brand awareness, as there is no need to consider specific regional characteristics."
+            },
+            {
+              "title": "Gaining a Competitive Advantage",
+              "description1": "By advertising in areas or time periods where competitors are not focused, you can gain a competitive advantage in those regions or times.",
+              "description2": "Therefore, conducting advertising only in specific locations or time periods has advantages such as targeted marketing effects and efficient advertising costs.",
+              "description3": "Additionally, you can expect a high advertising effect in those areas or times and secure a competitive advantage."
+            }
+          ]
+        },
+        "check": "OK"
+      }
+    ],
     "fixed_advertising": "Fixed Advertising",
     "lbl_advertisement_name": "Advertisement name",
     "advertisement_name": "Please write the advertisement name.",

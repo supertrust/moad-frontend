@@ -363,6 +363,11 @@
       "recruitmentPeriod": "모집기간",
       "status": "상태"
     },
+    "types": {
+      "fixed_ad": "고정",
+      "national_ad": "전국",
+      "spot_ad": "스팟"
+    },
     "adTypes": {
       "all": "전체",
       "fixed": "고정형",

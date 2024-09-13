@@ -361,6 +361,11 @@
       "recruitmentPeriod": "Recruitment Period",
       "status": "Status"
     },
+    "types": {
+      "fixed_ad": "Fixed",
+      "national_ad": "National",
+      "spot_ad": "Spot"
+    },
     "adTypes": {
       "all": "All",
       "fixed": "Fixed",

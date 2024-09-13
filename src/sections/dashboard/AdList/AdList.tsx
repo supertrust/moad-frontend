@@ -1,6 +1,5 @@
 import { CircularProgress, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useDeleteAdvertisement, useGetAdvertisements, useUpdateAdStatus, } from '@src/apis/advertisement';
-import { Types } from "@src/components/pages/AdFullDetails";
 import useAuth from '@src/hooks/useAuth';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { AdStatusesType, AdTypesType, IAdvertisement, } from '@src/types/advertisement';
@@ -295,7 +294,7 @@ export default function AdListModule() {
                                                             href={`/dashboard/advertisement-detail/${item.id}`}
                                                             className="text-[#2C324C]"
                                                         >
-                                                            {Types[item.type]}
+                                                            {adList.types[item.type]}
                                                         </Link>
                                                     </TableCell>
                                                     <TableCell

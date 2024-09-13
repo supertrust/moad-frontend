@@ -339,7 +339,9 @@
   },
   "notificationCenter": {
     "title": "알림 센터",
-    "noNotification": "알림이 없습니다."
+    "noNotification": "알림이 없습니다.",
+    "startOperation": "운행시작",
+    "stopOperation": "운행정지"
   },
   "adList": {
     "noAdsMsg": {

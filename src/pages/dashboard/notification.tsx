@@ -4,13 +4,14 @@ import { getHoursAgoByDate } from "@src/helpers";
 import { styles } from "@src/sections/notification";
 import { Pagination } from "antd";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useAuth from "@src/hooks/useAuth";
 
 export default function NotificationScreen() {
   const [currentPage, setCurrentPage] = useState(1);
-  const {  user } = useAuth();
+  const {  user,dictionary } = useAuth();
   const { data, refetch, isLoading } = useGetAllNotification({
     type: 'advertiser',
     user_id:user?.id,
@@ -76,13 +77,13 @@ useEffect(()=>{
                       <div className={styles.title}>{data.title}</div>
                       <div className={styles.text}>{data.content}</div>
                       <div className={styles.badge_wrap}>
-                        <div
+                        <span
                           className={`${
                             data.status ? styles.driving : styles.stop
                           } ${styles.badge}`}
                         >
-                          {data.status ? "운행시작" : "운행정지"}
-                        </div>
+                          {data.status ? dictionary?.notificationCenter?.startOperation : dictionary?.notificationCenter?.stopOperation }
+                        </span>
                       </div>
                     </div>
                     <div className={styles.date}>
@@ -95,7 +96,7 @@ useEffect(()=>{
           }
           </ul>
           {!notifications?.length ?
-           (<div className="text-center p-[100px]">알림이 없습니다.</div>)
+           (<div className="text-center p-[100px]">{dictionary.notificationCenter.noNotification}</div>)
           : ''
           }
         </div>
@@ -104,7 +105,7 @@ useEffect(()=>{
           <div className={`only-mb`}>
             <div className={`${styles["mobile-top-header"]}`}>
               <ArrowBack handleAction={onBack} />
-              <div className={styles["header"]}>알림센터</div>
+              <div className={styles["header"]}>{dictionary?.notificationCenter?.title}</div>
               <div></div>
             </div>
           </div>
@@ -118,14 +119,14 @@ useEffect(()=>{
                     <div className={styles.info}>
                       <div className={styles.title}>{data.title}</div>
                       <div className={styles.text}>{data.content}</div>
-                      <div className={styles.badge_wrap}>
-                        <div
+                      <div className={clsx(styles.badge_wrap)}>
+                        <span
                           className={`${
                             data.status ? styles.driving : styles.stop
-                          } ${styles.badge}`}
+                          } ${styles.badge} !w-[64px]`}
                         >
-                          {data.status ? "운행시작" : "운행정지"}
-                        </div>
+                          {data.status ? dictionary?.notificationCenter?.startOperation : dictionary?.notificationCenter?.stopOperation }
+                        </span>
                       </div>
                     </div>
                     <div className={styles.date}>

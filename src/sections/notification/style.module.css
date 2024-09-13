@@ -106,12 +106,12 @@
 }
 
 .notification_center_content .notification_wrap .list .info .badge_wrap .badge {
-	width: 64px;
 	line-height: 21px;
 	border-radius: 10px;
 	font-weight: 500;
 	font-size: 12px;
-	text-align: center
+	text-align: center;
+	padding : 4px 8px;
 }
 
 .notification_center_content .notification_wrap .list .info .badge_wrap .driving {

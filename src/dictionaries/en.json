@@ -338,7 +338,9 @@
   },
   "notificationCenter": {
     "title": "Notification Center",
-    "noNotification": "There are no notifications."
+    "noNotification": "There are no notifications.",
+    "startOperation": "Start Operation",
+    "stopOperation": "Operation suspended"
   },
   "adList": {
     "noAdsMsg": {

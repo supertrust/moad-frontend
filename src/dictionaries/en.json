@@ -944,6 +944,7 @@
     "imagePlaceholder": "Add image",
     "reset" : "Reset",
     "validations": {
+      "noVehicleSelect" : "You must select at least one vehicle to operate.",
       "upTo5mb" : "Up to 5MB is allowed.",
       "files": {
         "msg": "Ad image is required."

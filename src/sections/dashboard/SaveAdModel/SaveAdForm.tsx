@@ -131,11 +131,19 @@ function removeValueNotExistInOtherObject(obj, otherObj) {
 const minimumNumberVehicleValidation = (watch) => {
   let res = true;
   Object.keys(watch['vehicle_details']).forEach(function (key) {
-    // //console.log(key + ': ' + myObject[key]);
     const ve = watch['vehicle_details'][key];
     const minV = watch['vehicle_min'][key];
 
-    if(minV===undefined || minV>ve )
+    if( ve && (!minV || minV>ve ))
+      res=false;
+  });
+
+  if(res)
+  Object.keys(watch['vehicle_min']).forEach(function (key) {
+    const ve = watch['vehicle_details'][key];
+    const minV = watch['vehicle_min'][key];
+
+    if(!ve && minV )
       res=false;
   });
 
@@ -406,7 +414,7 @@ const SaveAdForm = ({
       });
 
       if (!totalPrice) {
-        setErrors('운행할 차량을 하나 이상 선택해야 합니다.');
+        setErrors(dictionary?.adForm?.validations?.noVehicleSelect);
         return;
       }
       if (!minimumNumberVehicleValidation({ ...watch() })) {
@@ -1281,6 +1289,11 @@ const SaveAdForm = ({
                                       ? '!border-[#ebedf4]'
                                       : '!border-[#ff0000]'
                                   }
+                                   ${
+                                    ((!watch('vehicle_details')[item.id]) && watch('vehicle_min')[item.id])
+                                        ? '!border-[#ff0000]' : '!border-[#ebedf4]'
+                                }
+                        
                                   `}
                                 value={value[item.id] || ''}
                                 onChange={(e) => {

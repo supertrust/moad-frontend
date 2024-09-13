@@ -38,14 +38,6 @@ function MembershipWithdrawalScreen() {
 	});
 	const { handleSubmit, control, watch } = methods;
 
-	const [disabledSubmit, setDisabledSubmit] = useState(true);
-	useEffect(() => {
-		watch(({ condition, reason }) => {
-			const disabled = !reason || !condition ;
-			disabledSubmit !== disabled && setDisabledSubmit(disabled);
-		});
-	}, [watch]);
-
 	useEffect(() => setPageTitle(pageTitle["top_bar_my_page"]), [isKorean]);
 
 	const onSubmit = handleSubmit(async ({ reason }) => {
@@ -183,9 +175,9 @@ function MembershipWithdrawalScreen() {
 										<Button
 											loading={isLoading}
 											type='submit'
-											className={`${styles.modify_btn} !leading-6`}
+											className={`${styles.modify_btn}`}
 											onClick={onSubmit}
-											disabled={disabledSubmit}
+											disabled={(!watch('condition') || !watch('reason'))}
 										>
 											{membershipWithdrawal.btnText}
 										</Button>

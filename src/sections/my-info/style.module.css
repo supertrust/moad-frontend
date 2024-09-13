@@ -212,7 +212,7 @@
     width: auto;
     font-weight: 400;
     font-size: 14px;
-    height: 35px;
+    /*height: 35px;*/
     color: #ffffff;
     background: var(--primary-color);
     border-radius: 5px;

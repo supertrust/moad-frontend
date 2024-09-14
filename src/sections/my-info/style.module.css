@@ -220,6 +220,7 @@
     justify-content: inherit;
     cursor: pointer;
     align-items: center;
+    padding : 8px 16px!important;
 
 }
 
@@ -330,4 +331,15 @@
     width: 100%;
     position: relative;
     top: 14px;
+}
+
+.email {
+    word-break: break-all;
+}
+
+@media (max-width: 768px){
+    .my_info_content {
+        left: 0;
+        padding : 31px 20px
+    }
 }

@@ -166,7 +166,7 @@ export default function AdListModule() {
             <div className={styles.adContents}>
                 <div className={styles.menuHd}>
                     <div className={clsx(styles.tabMenu, !isPcOnly && 'w-[100%] flex !justify-between items-center')}>
-                        <div className={'flex gap-[20px]'}>
+                        <div className={'flex gap-[12px] md:gap-[20px]'}>
                             {statuses.map((item) => (
                                 <div
                                     onClick={() => setStatus(item.value as AdStatusesType)}
@@ -187,7 +187,7 @@ export default function AdListModule() {
                                 <button
                                     onClick={openModal}
                                     id={styles.adAddBtn}
-                                    className={clsx(styles.adAddBtn, styles.buttonfont, "font-[Inter] items-center md:!w-[138px]", lang === "kr" ? " !w-[90px]" : " !w-[120px]")}>
+                                    className={clsx(styles.adAddBtn, styles.buttonfont, "font-[Inter] flex items-center ", lang === "kr" ? " !w-[90px]" : " !w-[120px]")}>
                                     <i className='ic-plus'></i>
                                     {adList.applyForAdBtn}
                                 </button>

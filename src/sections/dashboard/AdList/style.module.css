@@ -93,12 +93,11 @@
 }
 
 .adAddBtn {
-    width: 149px;
-    padding: 10px;
+    /*width: 149px;*/
     height: 36px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center!important;
     column-gap: 9px;
     font-weight: 600;
     font-size: 14px;

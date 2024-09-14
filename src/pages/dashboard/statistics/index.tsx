@@ -36,7 +36,7 @@ import useAuth from '@src/hooks/useAuth';
 
 export default function StatisticsScreen() {
   const {
-    dictionary: { types: adTypes, statistics, dateRangePickerCtrls,dashboard,isKorean,adList : {allAdStatuses} },
+    dictionary: { pageTitle,types: adTypes, statistics, dateRangePickerCtrls,dashboard,isKorean,adList : {allAdStatuses} },
   } = useAuth();
   const { formatTimeFromMinute } = useUtils();
   const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
@@ -187,7 +187,7 @@ export default function StatisticsScreen() {
             <div className={styles.statistics_content}>
               <div className={styles.step_01}>
                 <div className={styles.ad_amount}>
-                  <div className={styles.title_wrap_top}>통계</div>
+                  <div className={styles.title_wrap_top}>{pageTitle?.top_bar_statistics}</div>
                   <HeaderLine
                     title={statistics.adAmount.title}
                     element={advertisementElement}
@@ -284,7 +284,7 @@ export default function StatisticsScreen() {
                     </div>
                     <div className={styles.rightMenu}>
                       <div className='block lg:!hidden'>
-                        선택 {selectedAds.length}건
+                        {/*선택 {selectedAds.length}건*/}
                       </div>
                       <div className='flex flex-row gap-2'>
                         <div className={styles.selectDropdown}>
@@ -336,22 +336,22 @@ export default function StatisticsScreen() {
                   <div className={styles.tabWrap}>
                     <div className={clsx(`${styles.listHd} ${styles.listFlex}`, isKorean? "" : "!py-8")}>
                       <div className={styles.grid}>
-                        <div className={styles.chkBox}>
-                          <div className={styles.form_group}>
-                            <input
-                              type='checkbox'
-                              onChange={handleSelectAll}
-                              checked={
-                                selectedAds.length ===
-                                advertisement_stats?.length
-                              }
-                              name='all_chk'
-                              id='all_chk'
-                              className='all-chk w-[15px] h-[15px]'
-                            />
-                            <label htmlFor='all_chk'></label>
-                          </div>
-                        </div>
+                        {/*<div className={styles.chkBox}>*/}
+                        {/*  <div className={styles.form_group}>*/}
+                        {/*    <input*/}
+                        {/*      type='checkbox'*/}
+                        {/*      onChange={handleSelectAll}*/}
+                        {/*      checked={*/}
+                        {/*        selectedAds.length ===*/}
+                        {/*        advertisement_stats?.length*/}
+                        {/*      }*/}
+                        {/*      name='all_chk'*/}
+                        {/*      id='all_chk'*/}
+                        {/*      className='all-chk w-[15px] h-[15px]'*/}
+                        {/*    />*/}
+                        {/*    <label htmlFor='all_chk'></label>*/}
+                        {/*  </div>*/}
+                        {/*</div>*/}
                         <div
                           className={`${styles.typeWrap} ${styles.gridBox} !font-medium`}>
                           {statistics.drivingDstTime.columns[0]}
@@ -401,24 +401,24 @@ export default function StatisticsScreen() {
                                 key={index}
                                 className={`${styles.listFlex} relative`}>
                                 <div className={styles.grid}>
-                                  <div className={styles.chkBox}>
-                                    <div className={styles.form_group}>
-                                      <input
-                                        type='checkbox'
-                                        onChange={handleToggleSelect(
-                                          item,
-                                          selected,
-                                        )}
-                                        checked={selected}
-                                        className='list-chk'
-                                        name='list_chk'
-                                        id={`item_${index}`}
-                                      />
-                                      <label
-                                        htmlFor={`item_${index}`}
-                                        className='w-[15px] h-[15px]'></label>
-                                    </div>
-                                  </div>
+                                  {/*<div className={styles.chkBox}>*/}
+                                  {/*  <div className={styles.form_group}>*/}
+                                  {/*    <input*/}
+                                  {/*      type='checkbox'*/}
+                                  {/*      onChange={handleToggleSelect(*/}
+                                  {/*        item,*/}
+                                  {/*        selected,*/}
+                                  {/*      )}*/}
+                                  {/*      checked={selected}*/}
+                                  {/*      className='list-chk'*/}
+                                  {/*      name='list_chk'*/}
+                                  {/*      id={`item_${index}`}*/}
+                                  {/*    />*/}
+                                  {/*    <label*/}
+                                  {/*      htmlFor={`item_${index}`}*/}
+                                  {/*      className='w-[15px] h-[15px]'></label>*/}
+                                  {/*  </div>*/}
+                                  {/*</div>*/}
                                   <div
                                     className={clsx(
                                       styles.typeWrap,

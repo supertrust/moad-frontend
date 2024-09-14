@@ -1205,8 +1205,8 @@ display: none !important;
 
 
 
-
-@media only screen and (max-width: 575px) {
+ /*it's was 575px, need to recheck it's have any issue or not*/
+@media only screen and (max-width: 1024px) {
   #ad_apply_modal {
     padding: 62px 0px 0px 0px !important;
     background: none !important;
@@ -1285,7 +1285,7 @@ display: none !important;
     width: 50% !important;
   } */
   .ad_period_section,.ad_start_date{
-    width: 100% !important;
+    /*width: 100% !important;*/
   }
   #ad_apply_modal .ad_modal_wrap .ad_apply_content .modal_step .date_section .input_wrap .date_content .input_date_start {
     width: 50%;

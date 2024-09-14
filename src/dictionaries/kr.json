@@ -33,6 +33,7 @@
     "cart": "Toevoegen aan Winkelwagen"
   },
   "common": {
+    "enter_date" : "날짜 입력",
     "selected_count_prefix" : "선택",
     "selected_count_suffix" : "건",
     "ad_details": "광고 상세",

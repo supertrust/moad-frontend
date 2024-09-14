@@ -166,7 +166,7 @@ const SaveAdForm = ({
   isLoadingSaveAdvertisement: boolean;
   done: boolean;
 }) => {
-  const { dictionary } = useAuth();
+  const { dictionary,isPcOnly } = useAuth();
   const { data: vehicles, isLoading: isLoadingVehicles } = useGetVehicles();
   const { data: areas, isLoading: isLoadingCars } = useGetOperatingAreas();
 
@@ -491,10 +491,12 @@ const SaveAdForm = ({
       <div className={`input-group ${styles.datepicker}`}>
         <input
           type='text'
-          className={`form-control h-[36px] ${styles.input_date} !text-[14px]`}
+          className={`form-control !top-0 h-[36px] ${styles.input_date} !text-[14px]`}
+          style={{top : "0"}}
           onClick={props.onClick}
           value={watch()[props.name]}
           onChange={props.onChange}
+          placeholder={dictionary?.common?.enter_date}
           readOnly
         />
         <svg
@@ -1091,8 +1093,8 @@ const SaveAdForm = ({
             <div className={'flex flex-col mb-3'}>
               <div className={'flex gap-3 flex-wrap'}>
                 <div
-                  className={`${styles.input_section} ${styles.date_section} !mb-[20px]`}>
-                  <div className='flex gap-[13px] w-full sm:!w-[100%] md:w-[60%]'>
+                  className={clsx(`${styles.input_section} ${styles.date_section}`, isPcOnly ?"!mb-[20px]": "w-[50%] !mb-[0px] pr-[6.5px]")}>
+                  <div className='flex gap-[13px] w-full sm:!w-[100%] lg:w-[60%]'>
                     <div
                       className={`${styles.input_wrap} ${styles.ad_period_section} w-[50%] sm:w-full`}>
                       <div className={styles.input_title}>
@@ -1156,63 +1158,65 @@ const SaveAdForm = ({
                     </div>
                   </div>
                 </div>
-                <div
-                  className={` ${styles.input_wrap} customdatepickerwidth relative w-[175px]`}>
-                  <div className={styles.sub_title}>
-                    {dictionary.adForm.display_start_date}
-                    <span className='text-[#F24747]'>*</span>
-                  </div>
-                  <Controller
-                    name='ad_recruitment_period_start_date'
-                    control={control}
-                    render={({ field: { value, onChange } }) => {
-                      return (
-                        <>
-                          <DatePicker
-                            dateFormat='yyyy-mm-dd'
-                            name={'ad_recruitment_period_start_date'}
-                            onChange={(date: string) => {
-                              setValue(
-                                'ad_recruitment_period_start_date',
-                                convertDate(date),
-                              );
-                            }}
-                            popperClassName={styles.react_datepicker_popper}
-                            customInput={<CustomInput />}
-                          />
-                        </>
-                      );
-                    }}
-                  />
-                </div>
-                <div
-                  className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative w-[175px]`}>
-                  <div className={styles.sub_title}>
-                    {dictionary.adForm.display_end_date}
-                    <span className='text-[#F24747]'>*</span>
-                  </div>
-                  <Controller
-                    name='ad_recruitment_period_end_date'
-                    control={control}
-                    render={({ field: { value, onChange } }) => (
-                      <>
-                        <DatePicker
-                          name={'ad_recruitment_period_end_date'}
-                          dateFormat='yyyy-mm-dd'
-                          onChange={(date: string) => {
-                            //console.log('date', new Date(date));
-                            setValue(
-                              'ad_recruitment_period_end_date',
-                              convertDate(date),
-                            );
-                          }}
-                          popperClassName={styles.react_datepicker_popper}
-                          customInput={<CustomInput />}
-                        />
-                      </>
-                    )}
-                  />
-                </div>
+               <div className={clsx("flex gap-[13px]",isPcOnly? "" : "w-[100%] items-center")}>
+                 <div
+                     className={` ${styles.input_wrap} customdatepickerwidth relative w-[50%] lg:w-[175px]`}>
+                   <div className={styles.sub_title}>
+                     {dictionary.adForm.display_start_date}
+                     <span className='text-[#F24747]'>*</span>
+                   </div>
+                   <Controller
+                       name='ad_recruitment_period_start_date'
+                       control={control}
+                       render={({ field: { value, onChange } }) => {
+                         return (
+                             <>
+                               <DatePicker
+                                   dateFormat='yyyy-mm-dd'
+                                   name={'ad_recruitment_period_start_date'}
+                                   onChange={(date: string) => {
+                                     setValue(
+                                         'ad_recruitment_period_start_date',
+                                         convertDate(date),
+                                     );
+                                   }}
+                                   popperClassName={styles.react_datepicker_popper}
+                                   customInput={<CustomInput />}
+                               />
+                             </>
+                         );
+                       }}
+                   />
+                 </div>
+                 <div
+                     className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative w-[50%] lg:w-[175px]`}>
+                   <div className={styles.sub_title}>
+                     {dictionary.adForm.display_end_date}
+                     <span className='text-[#F24747]'>*</span>
+                   </div>
+                   <Controller
+                       name='ad_recruitment_period_end_date'
+                       control={control}
+                       render={({ field: { value, onChange } }) => (
+                           <>
+                             <DatePicker
+                                 name={'ad_recruitment_period_end_date'}
+                                 dateFormat='yyyy-mm-dd'
+                                 onChange={(date: string) => {
+                                   //console.log('date', new Date(date));
+                                   setValue(
+                                       'ad_recruitment_period_end_date',
+                                       convertDate(date),
+                                   );
+                                 }}
+                                 popperClassName={styles.react_datepicker_popper}
+                                 customInput={<CustomInput />}
+                             />
+                           </>
+                       )}
+                   />
+                 </div>
+               </div>
               </div>
               {isSubmitted && validationOfDisplayingTime().length ? (
                 <span className='text-danger'>

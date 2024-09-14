@@ -33,6 +33,7 @@
     "cart": "Toevoegen aan Winkelwagen"
   },
   "common": {
+    "enter_date" : "Enter Date",
     "selected_count_prefix": "Selected",
     "selected_count_suffix": " items",
     "ad_details": "Ad Details",
@@ -1124,7 +1125,7 @@
     "required": "Essential",
     "icarus_toc": "Confirmation before applying for advertisement",
     "look": "See",
-    "operating_area": "Operating area (multiple selections possible)",
+    "operating_area": "Operating area (multiple selections)",
     "operating_region": {
       "title": "Checklist",
       "content": ["When selecting all operating regions,", "please change the ad type to nationwide."],

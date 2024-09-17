@@ -6,7 +6,7 @@ import Truck03 from '@images/advertising/img-car03.png';
 import { useGetOperatingAreas, useGetVehicles } from '@src/apis/advertisement';
 import { AdImage, Button, Controller, FormProvider, useForm, Yup, yupResolver, } from '@src/components/common';
 import ArrowBack from '@src/components/icons/ArrowBack';
-import { adDetailsData } from '@src/constants';
+import { adDetailsData, OperatingAreaTranslation } from '@src/constants';
 import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
 import { addWeeks } from '@src/helpers';
 import useAuth from '@src/hooks/useAuth';
@@ -166,7 +166,7 @@ const SaveAdForm = ({
   isLoadingSaveAdvertisement: boolean;
   done: boolean;
 }) => {
-  const { dictionary,isPcOnly } = useAuth();
+  const { dictionary,isPcOnly,isKorean } = useAuth();
   const { data: vehicles, isLoading: isLoadingVehicles } = useGetVehicles();
   const { data: areas, isLoading: isLoadingCars } = useGetOperatingAreas();
 
@@ -1450,7 +1450,7 @@ const SaveAdForm = ({
                       return (
                         <div
                           key={item.id}
-                          className={styles.chk_wrap}
+                          className={clsx(styles.chk_wrap,!isKorean && "!w-[175px]")}
                           onClick={() => {
                             setErrors('');
                             if (selected) {
@@ -1480,7 +1480,10 @@ const SaveAdForm = ({
                           <label
                             htmlFor={`area${item.id}`}
                             className={styles.chk_area}>
-                            {item.area.replace('_', ' ').toUpperCase()}
+                            {
+                              (OperatingAreaTranslation[item.area]? dictionary.operatingAreas[OperatingAreaTranslation[item.area]]
+                                : item.area.replace('_', ' ').toUpperCase())
+                            }
                           </label>
                         </div>
                       );

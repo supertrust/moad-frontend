@@ -5,6 +5,7 @@ import { useGetAdvertisementDetail } from "@src/apis/advertisement";
 import { AdImage, DataRow } from "@src/components/common";
 import HeaderLine from "@src/components/common/HeaderLine";
 import Loader from "@src/components/Loader";
+import { OperatingAreaTranslation } from "@src/constants";
 import useAuth from "@src/hooks/useAuth";
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { clsx } from "clsx";
@@ -140,7 +141,17 @@ function AdFullDetails() {
               firstColumClass={style.firstColumnClass}
               colSpan={2}
           >
-            {advertisement?.operating_areas?.toString()}
+           <div className={'flex gap-1 flex-wrap'}>
+             {advertisement?.operating_areas?.map((area,idx)=>{
+               return <span key={idx}>
+                 {
+                   (OperatingAreaTranslation[area]? dictionary.operatingAreas[OperatingAreaTranslation[area]]
+                       : area.replace('_', ' ').toUpperCase())
+                 }
+                 { advertisement?.operating_areas.length - 1 !== idx ? ' , ' : ''}
+               </span>
+             })}
+           </div>
           </DataRow>
           <DataRow
               title={dictionary.common.advertisement_period}

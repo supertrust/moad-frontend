@@ -62,6 +62,25 @@
     "checkList" :  "확인사항",
     "allowedFileTypesMsg": "JPG, JPEG, PNG 파일만 가능합니다."
   },
+  "operatingAreas" : {
+    "seoul": "서울",
+    "gyeonggi": "경기",
+    "incheon": "인천",
+    "daejeon": "대전",
+    "sejong": "세종",
+    "chungcheongnam_do": "충남",
+    "chungcheongbuk_do": "충북",
+    "gwangju": "광주",
+    "jeollanam_do": "전남",
+    "jeollabuk_do": "전북",
+    "daegu": "대구",
+    "gyeongsangbuk_do": "경북",
+    "busan": "부산",
+    "ulsan": "울산",
+    "gyeongsangnam_do": "경남",
+    "gangwon_do": "강원",
+    "jeju": "제주"
+  },
   "operationStatus": {
     "active": "운행대기중",
     "service": "점검중",

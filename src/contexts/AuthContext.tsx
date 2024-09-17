@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from "react-toastify";
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const   AuthContext = createContext<AuthContextType | null>(null);
 
 interface AuthProviderProps {
     children: ReactNode

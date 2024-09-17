@@ -12,6 +12,7 @@ import {
 import { DataGrid } from "@src/components/common";
 import { DateIcon } from "@src/components/icons";
 import ArrowBack from "@src/components/icons/ArrowBack";
+import { OperatingAreaTranslation } from "@src/constants";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
@@ -73,7 +74,7 @@ const DisabledButton = ({ children }) => {
 function AdvertisementDetailScreen() {
   const router = useRouter();
   const [isAllCargoButtonShow,setIsAllCargoButtonShow] = useState(false);
-  const { dictionary: { types, view, operationStatus, adDetailsPage, common } } = useAuth();
+  const { dictionary: { types, view, operationStatus, adDetailsPage, common,operatingAreas : operatingAreasTrans } } = useAuth();
   const [open, setOpen] = useState(false);
   const [filters, setFilters] = useState<{ page: number; status: string }>({
     page: 1,
@@ -210,7 +211,17 @@ function AdvertisementDetailScreen() {
     },
     {
       title: adDetailsPage.adDetailColumns[4],
-      value: operationAreas?.map((item) => item.area).join(', '),
+      value:  <div className={'flex gap-1 flex-wrap'}>
+        {operationAreas?.map(({area},idx)=>{
+          return <span key={idx}>
+                 {
+                   OperatingAreaTranslation[area]? operatingAreasTrans[OperatingAreaTranslation[area]]
+                       : area.replace('_', ' ').toUpperCase()
+                 }
+            { operationAreas?.length - 1 !== idx ? ' , ' : ''}
+               </span>
+        })}
+      </div>
     },
     {
       title: adDetailsPage.adDetailColumns[5],
@@ -688,7 +699,7 @@ const VerifyPicturesModal = ({
 }) => {
   const [index, setIndex] = useState(0);
   const [step, setStep] = useState(0);
-  const { dictionary: { verifyPicturesModal } } = useAuth();
+  const { dictionary: { verifyPicturesModal,operatingAreas : operatingAreasTrans } } = useAuth();
   const [{ start_date, end_date }, setDate] = useState({ start_date: '', end_date: '' });
   const [selectedRow, setSelectedRow] = useState(0);
   const { data, isLoading } = useGetCargoVerificationImages({

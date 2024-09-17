@@ -62,6 +62,25 @@
     "checkList" : "Check List",
     "allowedFileTypesMsg" : "Only JPG, JPEG, and PNG files are accepted."
   },
+  "operatingAreas": {
+    "seoul": "Seoul",
+    "gyeonggi": "Gyeonggi",
+    "incheon": "Incheon",
+    "daejeon": "Daejeon",
+    "sejong": "Sejong",
+    "chungcheongnam_do": "Chungcheongnam-do",
+    "chungcheongbuk_do": "Chungcheongbuk-do",
+    "gwangju": "Gwangju",
+    "jeollanam_do": "Jeollanam-do",
+    "jeollabuk_do": "Jeollabuk-do",
+    "daegu": "Daegu",
+    "gyeongsangbuk_do": "Gyeongsangbuk-do",
+    "busan": "Busan",
+    "ulsan": "Ulsan",
+    "gyeongsangnam_do": "Gyeongsangnam-do",
+    "gangwon_do": "Gangwon-do",
+    "jeju": "Jeju"
+  },
   "operationStatus": {
     "active": "Waiting for operation",
     "service": "Inspecting",

@@ -6,12 +6,12 @@ import clsx from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import styles from "./styles.module.scss";
+import styles from "./confirm.module.scss";
 
 function ConfirmPage() {
 
     const { setPageTitle } = useIcarusContext();
-    const { dictionary: { guide_page, confirm_page }, isKorean } = useAuth();
+    const { dictionary: { guide_page, confirm_page }, isKorean,isPcOnly } = useAuth();
     const ad_types = confirm_page?.ad_types;
     const router = useRouter();
     const onBack = () => {
@@ -41,9 +41,9 @@ function ConfirmPage() {
                     </div>
                 </div>
                 <div
-                    className={`pl-[45px] pr-[32px]  pt-[20px] pb-[35px] text-gray-700 flex flex-col gap-[20px] ${styles["_ava_root"]}`}
+                    className={clsx( isPcOnly && "pl-[45px] pr-[32px]",`pt-[20px] pb-[35px] text-gray-700 flex flex-col gap-[20px] ${styles["_ava_root"]}`)}
                     style={{ backgroundColor: "#f5f7fb" }}>
-                    <div style={{ backgroundColor: "white" }}>
+                    <div style={{ backgroundColor: isPcOnly? "white":"transparent" }}>
                         <div className={`${styles["bg_Head_"]}`}>
                             <div className='font-bold text-[30px] text-[#373737]'>{confirm_page?.headers}</div>
                             <div className='font-bold text-[40px] text-[#373737]'>
@@ -53,7 +53,7 @@ function ConfirmPage() {
                         <Card
                             variant='elevation'
                             elevation={3}
-                            className={`flex flex-col justify-between h-full gap-2 !shadow-[0px_2px_8px_0px_rgba(38,51,77,0.00)] ${styles["_bottom_card_list_wrapper"]}`}>
+                            className={clsx(!isPcOnly && "!bg-[transparent] !mx-[24px]",`flex flex-col justify-between h-full gap-2 !shadow-[0px_2px_8px_0px_rgba(38,51,77,0.00)] ${styles["_bottom_card_list_wrapper"]}`)}>
                             <p className={`${styles["cap_txt"]}`}>
                                 {confirm_page?.description}
                             </p>

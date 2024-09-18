@@ -25,7 +25,7 @@ import {
     VehicleAdvertisementStatsResponse,
     GetTotalAdvertisementStatProps,
     GetCargoVerificationImagesProps,
-    CargoVerificationImage
+    CargoVerificationImage, IAdvertisementStatResponse
 } from "@src/types/advertisement";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@src/services/ReactQueryClient";
@@ -142,9 +142,9 @@ export const useGetAdvertiserVehiclesStats = (props:{notfication?: boolean }={})
 
 export const useGetShowAdvertisementStats = (
     { status, page } : {status?: AdStatusesType, page: number}
-) => useQuery<IAdvertisementStat[], string>({
+) => useQuery<IAdvertisementStatResponse, string>({
     queryKey: ["show-advertisement-stats", status, page],
-    queryFn: async () => (await axios.get(API_URL.getAdvertisementStats(), { params: { status, page } })).data.data
+    queryFn: async () => (await axios.get(API_URL.getAdvertisementStats(), { params: { status, page } })).data
 });
 
 export const useGetVehicleAdvertisementStatsDetails = (

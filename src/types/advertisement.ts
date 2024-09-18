@@ -252,6 +252,12 @@ export type IAdvertisementStat ={
     status: AdStatusesType
 }
 
+export interface IAdvertisementStatResponse {
+    data: IAdvertisementStat[]
+    totalRecords: number
+    per_page: number
+}
+
 export type ITotalAdvertisementStat = {
     advertisement_amount: number,
     all_vehicles: number,

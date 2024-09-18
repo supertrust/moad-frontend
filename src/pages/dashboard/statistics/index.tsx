@@ -1,42 +1,26 @@
-import { useIcarusContext } from "@src/hooks";
-import useUtils from "@src/hooks/useUtils";
-import React, { useEffect, useMemo, useState } from 'react';
-import { CircularProgress } from '@mui/material';
-import { styles } from '@src/sections/statistics';
-// import { DataGrid } from '@src/components/common';
-import { Tooltip } from 'antd';
-import { Arrow, TooltipIcon } from '@src/components/icons';
-import { Form } from 'react-bootstrap';
-import {
-  useGetShowAdvertisementStats,
-  useGetStatBasedAdvertisment,
-} from '@src/apis/advertisement';
-import { clsx } from 'clsx';
-import { Pagination, Skeleton } from 'antd';
-import {
-  AdStatusesType,
-  AdTypesType,
-  IAdvertisement,
-  IAdvertisementStat,
-} from '@src/types/advertisement';
+import { CircularProgress, TableBody, TableCell, TableHead, TableRow,Table } from "@mui/material";
+import { useGetShowAdvertisementStats, useGetStatBasedAdvertisment, } from '@src/apis/advertisement';
 import HeaderLine from '@src/components/common/HeaderLine';
-import Link from 'next/link';
-import {
-  DateSelected,
-  ISOformatDate,
-} from '@src/helpers';
-import { Types } from '@src/components/pages/AdFullDetails';
-import {
-  DateRange,
-  DateRangePickerCtrls,
-} from '@src/components/pages/StatisticsDetailsPage/StatisticsDetailsPage';
-import { formatNumberWithCommas } from '@src/utils/formatter';
+import { Arrow, TooltipIcon } from '@src/components/icons';
+import { DateRange, } from '@src/components/pages/StatisticsDetailsPage/StatisticsDetailsPage';
+import { DateSelected, ISOformatDate, } from '@src/helpers';
+import { useIcarusContext } from "@src/hooks";
 // import { DataGrid } from '@src/components/common';
 import useAuth from '@src/hooks/useAuth';
+import useUtils from "@src/hooks/useUtils";
+import { styles } from '@src/sections/statistics';
+import { AdStatusesType, AdTypesType, IAdvertisementStat, } from '@src/types/advertisement';
+import { formatNumberWithCommas } from '@src/utils/formatter';
+// import { DataGrid } from '@src/components/common';
+import { Pagination, Skeleton, Tooltip } from 'antd';
+import { clsx } from 'clsx';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { Form } from 'react-bootstrap';
 
 export default function StatisticsScreen() {
   const {
-    dictionary: { pageTitle,types: adTypes, statistics, dateRangePickerCtrls,dashboard,isKorean,adList : {allAdStatuses} },
+    dictionary: { pageTitle,types: adTypes, statistics, dateRangePickerCtrls,dashboard,isKorean,adList : {allAdStatuses,noAdsMsg} },
   } = useAuth();
   const { formatTimeFromMinute } = useUtils();
   const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
@@ -44,12 +28,13 @@ export default function StatisticsScreen() {
   const [type, setType] = useState<AdTypesType | undefined>();
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const { setPageTitle } = useIcarusContext()
-  const { data: advertisement_stats, isLoading } = useGetShowAdvertisementStats(
+  const { data: advertisementStatsData, isLoading } = useGetShowAdvertisementStats(
     {
       status: status,
       page: currentPage,
     },
   );
+  const advertisement_stats = advertisementStatsData?.data;
 
   const [selectedDate, setSelectedDate] = useState<DateRange | null>({
     startDate: '',
@@ -122,11 +107,9 @@ export default function StatisticsScreen() {
   };
 
   // Pagination
-  const itemsPerPage = 6;
+  const itemsPerPage = advertisementStatsData?.per_page || 15;
 
-  const totalItems = advertisement_stats?.length ?? 0; // Total number of items
-  const prevItems = (currentPage - 1) * itemsPerPage;
-  const currentItems = currentPage * itemsPerPage;
+  const totalItems = advertisementStatsData?.totalRecords || 0 // Total number of items
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -320,168 +303,103 @@ export default function StatisticsScreen() {
                             className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}
                           />
                         </div>
-                        {/* <button
-                          disabled={!selectedAds.length}
-                          // onClick={handleDeleteAds}
-                          className={clsx(
-                            styles.adDeleteBtn,
-                            'flex justify-center border-1 disabled:!border-[#EEEEEE] disabled:!text-[#999999] !border-advertiser-primary !text-advertiser-primary ',
-                          )}>
-                          {statistics.drivingDstTime.delete}
-                        </button> */}
                       </div>
                     </div>
+                  </div>
+                  <div className='overflow-auto'>
+                    <Table width={`100%`} className="mb-[0px] relative" id="notice-table">
+                      <TableHead className={`bg-advertiser-light !h-[60px]`}>
+                        <TableRow>
+                          <TableCell style={{ minWidth: '140px' }}
+                                     className="!text-center">{statistics.drivingDstTime.columns[0]}</TableCell>
+                          <TableCell style={{ minWidth: '280px' }}
+                                     className="!text-center">{statistics.drivingDstTime.columns[1]}</TableCell>
+                          <TableCell style={{ minWidth: '140px' }} className="!text-center">
+                            <Tooltip placement="top" title={statistics.drivingDstTime.columns[2]} color={"#ECECEC"}>
+                                           <span className={'!font-medium'}>
+                                               {statistics.drivingDstTime.columns[2]}
+                                           </span>
+                            </Tooltip>
+                          </TableCell>
+                          <TableCell style={{ minWidth: '200px' }}
+                                     className="!text-center">{statistics.drivingDstTime.columns[3]}</TableCell>
+                          <TableCell style={{ minWidth: '200px' }}
+                                     className="!text-center">{statistics.drivingDstTime.columns[4]}</TableCell>
+                          <TableCell style={{ minWidth: '84px' }}
+                                     className="!text-center">{statistics.drivingDstTime.columns[5]}</TableCell>
+
+                        </TableRow>
+                      </TableHead>
+                      <TableBody className="divide-y">
+                        {advertisement_stats? advertisement_stats
+                            .map((item, index) => {
+                              const selected = selectedAds.includes(item);
+                              const hours = formatTimeFromMinute(
+                                  item.total_hours * 60,
+                              );
+                                  return (
+                                      <TableRow key={index} style={{ height: "50px" }}>
+                                        <TableCell className="!text-center !text-[14px] !w-[55px]">
+                                          {adTypes[item.ad_type]}
+                                        </TableCell>
+                                        <TableCell className="!text-[14px] text-center"
+                                                   style={{ letterSpacing: "-0.16px" }}>
+                                          <Link
+                                              href={`/dashboard/advertisement-detail/${item.id}`}
+                                              className="text-[#2C324C] underline"
+                                          >
+                                            {item.ad_name}
+                                          </Link>
+                                        </TableCell>
+                                        <TableCell
+                                            className="!text-center !text-[14px]">
+                                          {`${formatNumberWithCommas(
+                                              item.number_of_vehicle,
+                                          )}`}
+                                          {dashboard?.big}
+                                        </TableCell>
+                                        <TableCell className="!text-[14px] text-center"
+                                                   style={{ letterSpacing: "-0.16px" }}>
+                                          {formatNumberWithCommas(
+                                              item.total_distance,
+                                              10,
+                                          ) || '-'}{' '}
+                                          km
+                                        </TableCell>
+                                        <TableCell
+                                            className="!text-center !text-[14px]">
+                                          {hours || '-'}
+                                          {/*<Arrow fill={'#999999'} className='block sm:hidden absolute right-[10px] top-[24px] rotate-[-90deg]'/>*/}
+                                        </TableCell>
+                                        <TableCell className="!text-[14px] !text-center"
+                                                   style={{ letterSpacing: "-0.16px" }}>
+                                          {statusMapper[item.status] || '-'}
+                                        </TableCell>
+
+
+                                      </TableRow>
+                                  );
+                                })
+                            : <></>
+
+                        }
+
+                      </TableBody>
+                    </Table>
+                    <div className={'!text-center justify-center flex w-[100%] pt-2 pb-2'}>
+                      {isLoading && <div className="flex justify-center items-center w-full h-15 backdrop-blur-sm">
+                        <CircularProgress color="primary"/>
+                      </div>}
+
+                      {
+                          ((!advertisement_stats || advertisement_stats?.length === 0) && !isLoading) &&
+                          <div>{status === "end" ? noAdsMsg.end : noAdsMsg.all}</div>
+                      }
+                    </div>
+
+                    {/* Render the Pagination component */}
                   </div>
                   {/* <DataGrid columns={columns} rows={stats} loading={isLoading} /> */}
-                  <div className={styles.tabWrap}>
-                    <div className={clsx(`${styles.listHd} ${styles.listFlex}`, isKorean? "" : "!py-8")}>
-                      <div className={styles.grid}>
-                        {/*<div className={styles.chkBox}>*/}
-                        {/*  <div className={styles.form_group}>*/}
-                        {/*    <input*/}
-                        {/*      type='checkbox'*/}
-                        {/*      onChange={handleSelectAll}*/}
-                        {/*      checked={*/}
-                        {/*        selectedAds.length ===*/}
-                        {/*        advertisement_stats?.length*/}
-                        {/*      }*/}
-                        {/*      name='all_chk'*/}
-                        {/*      id='all_chk'*/}
-                        {/*      className='all-chk w-[15px] h-[15px]'*/}
-                        {/*    />*/}
-                        {/*    <label htmlFor='all_chk'></label>*/}
-                        {/*  </div>*/}
-                        {/*</div>*/}
-                        <div
-                          className={`${styles.typeWrap} ${styles.gridBox} !font-medium`}>
-                          {statistics.drivingDstTime.columns[0]}
-                        </div>
-                        {/*<div className={`${styles.gridBox} !font-medium`}>*/}
-                        {/*  {statistics.drivingDstTime.columns[0]}*/}
-                        {/*</div>*/}
-                        <div className={`${styles.gridBox} !font-medium`}>
-                          {statistics.drivingDstTime.columns[1]}
-                        </div>
-                        <div
-                          className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>
-                          {statistics.drivingDstTime.columns[2]}
-                        </div>
-                        <div
-                          className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>
-                          {statistics.drivingDstTime.columns[3]}
-                        </div>
-                        <div
-                          className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>
-                          {statistics.drivingDstTime.columns[4]}
-                        </div>
-                        <div
-                            className={`${styles.gridBox} !font-medium ${styles.only_pc}`}>
-                          {statistics.drivingDstTime.columns[5]}
-                        </div>
-
-                        {/* <div className={`${styles.statusWrap} ${styles.gridBox}`}>Total Cost</div> */}
-                      </div>
-                    </div>
-                    <div className='tab-content all-wrap on min-h-[288px] sm:min-h-[298px] h-full'>
-                      <ul className='list-wrap mb-0'>
-                        {isLoading && (
-                          <div className='flex justify-center items-center w-full h-32 backdrop-blur-sm'>
-                            <CircularProgress color='primary' />
-                          </div>
-                        )}
-                        {advertisement_stats
-                          ?.slice(prevItems, currentItems)
-                          .map((item, index) => {
-                            const selected = selectedAds.includes(item);
-                            const hours = formatTimeFromMinute(
-                              item.total_hours * 60,
-                            );
-                            return (
-                              <li
-                                key={index}
-                                className={`${styles.listFlex} relative`}>
-                                <div className={styles.grid}>
-                                  {/*<div className={styles.chkBox}>*/}
-                                  {/*  <div className={styles.form_group}>*/}
-                                  {/*    <input*/}
-                                  {/*      type='checkbox'*/}
-                                  {/*      onChange={handleToggleSelect(*/}
-                                  {/*        item,*/}
-                                  {/*        selected,*/}
-                                  {/*      )}*/}
-                                  {/*      checked={selected}*/}
-                                  {/*      className='list-chk'*/}
-                                  {/*      name='list_chk'*/}
-                                  {/*      id={`item_${index}`}*/}
-                                  {/*    />*/}
-                                  {/*    <label*/}
-                                  {/*      htmlFor={`item_${index}`}*/}
-                                  {/*      className='w-[15px] h-[15px]'></label>*/}
-                                  {/*  </div>*/}
-                                  {/*</div>*/}
-                                  <div
-                                    className={clsx(
-                                      styles.typeWrap,
-                                      styles.gridBox,
-                                    )}>
-                                    {adTypes[item.ad_type]}
-                                  </div>
-                                  <Link
-                                    href={`/dashboard/statistics/${item.id}`}
-                                    className={`${styles.gridBox} !text-left !justify-start underline text-[#2C324C] hover:!text-[#2C324C]`}>
-                                    {item.ad_name}
-                                  </Link>
-                                  <div
-                                    className={`${styles.gridBox} ${styles.only_pc}`}>
-                                    {`${formatNumberWithCommas(
-                                      item.number_of_vehicle,
-                                    )}`}
-                                    {dashboard?.big}
-                                  </div>
-                                  <div className={styles.gridBox}>
-                                    {formatNumberWithCommas(
-                                      item.total_distance,
-                                      10,
-                                    ) || '-'}{' '}
-                                    km
-                                  </div>
-                                  <div
-                                    className={`${styles.gridBox} ${styles.only_pc} `}>
-                                    {hours || '-'}
-                                  </div>
-                                  <div
-                                    className={`${styles.gridBox} ${styles.only_pc} `}>
-                                    {statusMapper[item.status] || '-'}
-                                  </div>
-                                  <Arrow
-                                    fill={'#999999'}
-                                    className='block sm:hidden absolute right-[12px] top-[28px] rotate-[-90deg]'
-                                  />
-                                </div>
-                              </li>
-                            );
-                          })}
-                      </ul>
-                      {!isLoading && !advertisement_stats?.length && (
-                        <div className='w-fit m-auto'>
-                          {status === "end"
-                            ? statistics.drivingDstTime.noAdsMsg.finished
-                            : statistics.drivingDstTime.noAdsMsg.all
-                          }
-                        </div>
-                      )}
-                    </div>
-                    {advertisement_stats?.length && (
-                      <div className='flex justify-center py-[30px] notification_pagination'>
-                        <Pagination
-                          current={currentPage}
-                          total={totalItems}
-                          pageSize={itemsPerPage}
-                          onChange={handlePageChange}
-                        />
-                      </div>
-                    )}
-                  </div>
                   {/* <BootstrapTable
                     keyField="id"
                     data={data}
@@ -491,7 +409,19 @@ export default function StatisticsScreen() {
                     noDataIndication={'진행중인 광고가 없습니다.'}
                   /> */}
                 </div>
+                {
+                    (!isLoading && totalItems) ?
+                    <div className='flex justify-center py-[30px] notification_pagination'>
+                      <Pagination
+                          current={currentPage}
+                          total={totalItems}
+                          pageSize={itemsPerPage}
+                          onChange={handlePageChange}
+                      />
+                    </div> : <></>
+                }
               </div>
+
             </div>
           </div>
         </div>

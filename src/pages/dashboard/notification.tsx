@@ -8,10 +8,12 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useAuth from "@src/hooks/useAuth";
+import { useIcarusContext } from "@src/hooks";
 
 export default function NotificationScreen() {
   const [currentPage, setCurrentPage] = useState(1);
-  const {  user,dictionary } = useAuth();
+  const { user, dictionary: { pageTitle, notificationCenter }, isKorean } = useAuth();
+  const { setPageTitle } = useIcarusContext();
   const { data, refetch, isLoading } = useGetAllNotification({
     type: 'advertiser',
     user_id:user?.id,
@@ -20,9 +22,12 @@ export default function NotificationScreen() {
 
   const { data: notifications } = data || {};
   const router = useRouter();
-useEffect(()=>{
-  refetch()
-}, [currentPage])
+
+  useEffect(()=>{
+    refetch()
+  }, [currentPage]);
+
+  useEffect(() => setPageTitle(pageTitle["top_bar_dashboard"]), [isKorean]);
   // pagination
   const itemsPerPage = window.innerWidth > 767 ? 12 : 5;
    // Current page number
@@ -82,7 +87,7 @@ useEffect(()=>{
                             data.status ? styles.driving : styles.stop
                           } ${styles.badge}`}
                         >
-                          {data.status ? dictionary?.notificationCenter?.startOperation : dictionary?.notificationCenter?.stopOperation }
+                          {data.status ? notificationCenter?.startOperation : notificationCenter?.stopOperation }
                         </span>
                       </div>
                     </div>
@@ -96,7 +101,7 @@ useEffect(()=>{
           }
           </ul>
           {!notifications?.length ?
-           (<div className="text-center p-[100px]">{dictionary.notificationCenter.noNotification}</div>)
+           (<div className="text-center p-[100px]">{notificationCenter.noNotification}</div>)
           : ''
           }
         </div>
@@ -105,7 +110,7 @@ useEffect(()=>{
           <div className={`only-mb`}>
             <div className={`${styles["mobile-top-header"]}`}>
               <ArrowBack handleAction={onBack} />
-              <div className={styles["header"]}>{dictionary?.notificationCenter?.title}</div>
+              <div className={styles["header"]}>{notificationCenter?.title}</div>
               <div></div>
             </div>
           </div>
@@ -125,7 +130,7 @@ useEffect(()=>{
                             data.status ? styles.driving : styles.stop
                           } ${styles.badge} !w-[64px]`}
                         >
-                          {data.status ? dictionary?.notificationCenter?.startOperation : dictionary?.notificationCenter?.stopOperation }
+                          {data.status ? notificationCenter?.startOperation : notificationCenter?.stopOperation }
                         </span>
                       </div>
                     </div>

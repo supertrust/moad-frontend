@@ -1,10 +1,11 @@
 import useAuth from "@src/hooks/useAuth";
 import { PageRouting } from "@src/utils/values";
+import clsx from "clsx";
 import Link from "next/link";
 
 function MobileNav({toggle} :{ toggle : ()=>void}) {
 
-  const { logout, dictionary : {sidebar} } = useAuth();
+  const { logout, dictionary : {sidebar},isKorean } = useAuth();
 
   return (
         <div className="side-content"><div className="inner-header-wrap"></div>
@@ -55,7 +56,7 @@ function MobileNav({toggle} :{ toggle : ()=>void}) {
             <Link onClick={()=>{
               toggle()
               logout()
-            }} href="" className="side-logout">
+            }} href="" className={clsx("side-logout", isKorean && "!left-[37%]")}>
               <i className="ic-logout"></i>
               <div className="text">{sidebar?.logout}</div>
             </Link>

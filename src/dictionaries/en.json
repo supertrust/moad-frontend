@@ -1664,7 +1664,7 @@
         "successToast": "User registration successful"
       },
       "contact_position" : {
-        "contact_person_position": "",
+        "contact_person_position": "Contact person position",
         "employee": "Employee",
         "team_leader": "Team Leader",
         "manager": "Manager",

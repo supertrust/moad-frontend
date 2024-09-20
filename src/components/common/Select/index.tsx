@@ -46,8 +46,11 @@ function Select(props: SelectProps, ref: Ref<any>) {
     labelClassName,
     options,
     selected,
+      placeholder,
     ...rest
   } = props;
+
+  const allowPlaceholder =  (!rest?.value && !selected && placeholder) ? true : false;
   return (
     <div className={`select-wrap ${wrapperClassName}`}>
       <div className="flex flex-row justify-between items-center">
@@ -78,10 +81,12 @@ function Select(props: SelectProps, ref: Ref<any>) {
           {...rest}
           className={clsx(
             className,
+              allowPlaceholder? "!text-[#9CA3AF]" : "",
             error && "border border-danger",
             right && "pr-10"
           )}
         >
+          { allowPlaceholder ?<option className={'!text-[red]'} value="" disabled selected hidden>{placeholder}</option> : <></>}
           {options?.map((data: Option, index) => (
             <option key={index} value={data?.value}>
               {data.text}

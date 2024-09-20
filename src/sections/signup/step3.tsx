@@ -49,7 +49,7 @@ const Step3 = ({
 	const [message, setMessage] = useState('');
 	const ModalhandleClose = () => setShowModal(false);
 	const options = [
-		{value : '', text : step3?.contact_position?.contact_person_position},
+		// {value : '', text : step3?.contact_position?.contact_person_position},
 		{value : '사원', text : step3?.contact_position?.employee},
 		{value : '주임', text : step3?.contact_position?.team_leader},
 		{value : '대리', text : step3?.contact_position?.manager},

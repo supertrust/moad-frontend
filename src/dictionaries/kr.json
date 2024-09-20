@@ -1660,7 +1660,7 @@
         "successToast": "사용자 등록 성공"
       },
       "contact_position" : {
-        "contact_person_position": "",
+        "contact_person_position": "담당자 직위",
         "employee": "사원",
         "team_leader": "주임",
         "manager": "대리",

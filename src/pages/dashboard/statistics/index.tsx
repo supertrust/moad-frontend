@@ -1,4 +1,4 @@
-import { CircularProgress, TableBody, TableCell, TableHead, TableRow,Table } from "@mui/material";
+import { CircularProgress, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useGetShowAdvertisementStats, useGetStatBasedAdvertisment, } from '@src/apis/advertisement';
 import HeaderLine from '@src/components/common/HeaderLine';
 import { Arrow, TooltipIcon } from '@src/components/icons';
@@ -285,7 +285,7 @@ export default function StatisticsScreen() {
                             ))}
                           </Form.Select>
                           <Arrow
-                            className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}
+                            className={`absolute right-[14px] top-[40%] pointer-events-none`}
                           />
                         </div>
                         <div className={styles.selectDropdown}>
@@ -300,7 +300,7 @@ export default function StatisticsScreen() {
                             ))}
                           </Form.Select>
                           <Arrow
-                            className={`absolute right-[14px] top-[40%] ${styles.only_pc} pointer-events-none`}
+                            className={`absolute right-[14px] top-[40%] pointer-events-none`}
                           />
                         </div>
                       </div>

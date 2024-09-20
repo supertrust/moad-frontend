@@ -1128,7 +1128,7 @@ const SaveAdForm = ({
                               <div id='calender_area'></div>
                             </div>
                             <ul
-                              className={`${styles.date_select_box} z-1 !h-auto`}>
+                              className={`${styles.date_select_box} !z-[1] !h-auto`}>
                               {CurrentTypeOfVechicle.map((type) => (
                                 <li
                                   key={type.value}

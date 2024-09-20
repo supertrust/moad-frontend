@@ -211,15 +211,17 @@ function AdvertisementDetailScreen() {
     },
     {
       title: adDetailsPage.adDetailColumns[4],
-      value:  <div className={'flex gap-1 flex-wrap'}>
-        {operationAreas?.map(({area},idx)=>{
-          return <span key={idx}>
-                 {
-                   OperatingAreaTranslation[area]? operatingAreasTrans[OperatingAreaTranslation[area]]
-                       : area.replace('_', ' ').toUpperCase()
-                 }
-            { operationAreas?.length - 1 !== idx ? ' , ' : ''}
-               </span>
+      value:  <div className={'flex gap-1 flex-wrap h-[100%]'}>
+        {operationAreas?.map(({ area }, idx) => {
+          return (
+            <span key={idx}>
+              {OperatingAreaTranslation[area]
+                ? operatingAreasTrans[OperatingAreaTranslation[area]]
+                : area.replace('_', ' ').toUpperCase()
+              }
+            {operationAreas?.length - 1 !== idx ? ' , ' : ''}
+            </span>
+          );
         })}
       </div>
     },
@@ -229,9 +231,11 @@ function AdvertisementDetailScreen() {
     },
     {
       title: adDetailsPage.adDetailColumns[6],
-      value: advertisement?.advertising_contract ?
-        <button className="bg-advertiser-deep px-4 py-2 text-center justify-center rounded-md h-9 text-white">
-          <a target={"_blank"} className={'!no-underline !text-[#FFFFFF]'} href={advertisement?.advertising_contract}>{common?.download}</a></button> : "-",
+      value: advertisement?.advertising_contract
+        ? <button className="bg-advertiser-deep px-4 py-2 text-center justify-center rounded-md h-9 text-white">
+          <a target={"_blank"} className={'!no-underline !text-[#FFFFFF]'} href={advertisement?.advertising_contract}>{common?.download}</a>
+        </button>
+        : "-",
     },
 
   ];
@@ -578,15 +582,24 @@ function AdvertisementDetailScreen() {
                   </div>
                 </div>
                 <div className={styles.right_side}>
-                  <div className={styles.table_box}>
+                {/* <table className={`border-collapse border lg:h-[393px] w-[100%] bg-white rounded`}>
+                    {ad_detail_arr.map((data, index) =>
+                      <tr key={index} className={`${styles.table_line} lg:h-[49px]`}>
+                        <td className={`${styles.title} lg:px-[30px] font-bold border`}>{data.title}</td>
+                        <td className={`${styles.text} lg:pl-[30px] border`}>{data.value}</td>
+                      </tr>
+                    )}
+                  </table> */}
+                  <div className={`${styles.table_box} h-[100%]`}>
                     {ad_detail_arr.map((data, index) => (
-                      <div key={index} className={styles.table_line}>
-                        <div className={styles.title}>{data.title}</div>
-                        <div className={styles.text}>{data.value}</div>
+                      <div key={index} className={`${styles.table_line} w-[100%] h-[100%]`}>
+                        <div className={`${styles.title} lg:w-[120px] w-[90px] h-[100%] lg:px-[30px] text-center`}>{data.title}</div>
+                        <div className={`${data.title === adDetailsPage.adDetailColumns[4] ? "overflow-y-auto" : ""} ${styles.text} lg:pl-[20px] sm:pl-[12px] py-2 h-[100%]`}>
+                          {data.value}
+                        </div>
                       </div>
                     ))}
                   </div>
-
                 </div>
               </div>
 

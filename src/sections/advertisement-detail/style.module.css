@@ -434,7 +434,7 @@
   .table_box {
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(5, minmax(78px, auto));
+  grid-template-rows: repeat(5, minmax(49px, auto));
   background: #ffffff;
   border-radius: 5px;
   overflow: hidden;
@@ -496,9 +496,8 @@
   .table_box
   .table_line
   .title {
-
-  width: 145px;
-  padding: 27px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -507,6 +506,7 @@
   font-size: 16px;
   line-height: 23px;
   color: #2c324c;
+  border-right: 1px solid #ebedf4;
 }
 
 #ad_detail_list
@@ -517,19 +517,20 @@
   .table_box
   .table_line
   .text {
-  height: 78px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0 26px;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   color: #2c324c;
-  border-left: 1px solid #ebedf4;
 }
 
-#ad_detail_list .container .board_content .ad_detail_list_content .ad_contents {
+#ad_detail_list
+  .container 
+  .board_content 
+  .ad_detail_list_content 
+  .ad_contents {
   height: 560px;
   margin-top: 20px;
   background: #ffffff;
@@ -879,17 +880,6 @@
     .detail_content
     .table_box
     .table_line
-    .title {
-    width: 85px;
-  }
-
-  #ad_detail_list
-    .container
-    .board_content
-    .ad_detail_list_content
-    .detail_content
-    .table_box
-    .table_line
     .text {
     padding: 0 15px;
   }
@@ -902,17 +892,6 @@
     display: none;
   }
 
-  
-  #ad_detail_list
-  .container
-  .board_content
-  .ad_detail_list_content
-  .detail_content
-  .table_box
-  .table_line
-  .title {
-    padding: 0px;
-}
 }
 
 @media (max-width: 1500px) {
@@ -929,14 +908,12 @@
   #ad_detail_list
     .container
     .board_content
-    .ad_detail_list_content
-    .detail_content
-     {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 23px;
-  }
+    .ad_detail_list_content 
+    .detail_content {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
 
   #ad_detail_list
     .container
@@ -950,18 +927,7 @@
     .img {
     top: initial;
     transform: initial;
-  }
-
-  #ad_detail_list
-    .container
-    .board_content
-    .ad_detail_list_content
-    .detail_content
-    .table_box
-    .table_line
-    .text {
-    padding: 30px;
-  }
+    }
 }
 
 @media screen and (max-width: 1023px) {
@@ -1019,7 +985,6 @@
     .table_box
     .table_line
     .title {
-    height: auto;
     padding: 15px 0;
     font-size: 14px;
     line-height: 20px;
@@ -1033,7 +998,6 @@
     .table_box
     .table_line
     .text {
-    height: auto;
     padding: 15px;
     font-size: 13px;
     line-height: 19px;
@@ -1315,6 +1279,11 @@ span.carousel-control-prev-icon {
   display: block;
 }
 
+#ad_detail_list
+  .right_side {
+    height: 392px;
+  }
+
 #ad_detail_list .slide_box div#div2d {
   height: 100% !important;
   width: 530px;
@@ -1395,7 +1364,6 @@ span.carousel-control-prev-icon {
 @media screen and (min-width: 1200px) and (max-width: 1500px) {
   .right_side {
     width: 50%;
-
   }
 .model_contents_container{
   flex-wrap: nowrap;
@@ -1434,22 +1402,26 @@ span.carousel-control-prev-icon {
 }
 
 @media screen and (max-width: 1199px) {
+  .right_side {
+    height: 100% !important;
+  }
+
 .detail_content{
   display: block !important;
 }
 
 #ad_detail_list
-    .container
-    .board_content
-    .ad_detail_list_content
-    .detail_content
-    .slide_box {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    display: block;
-  }
+  .container
+  .board_content
+  .ad_detail_list_content
+  .detail_content
+  .slide_box {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  display: block;
+}
 
 }
 
@@ -1547,17 +1519,6 @@ display: grid;
 }
 
 #ad_detail_list
-.container
-.board_content
-.ad_detail_list_content
-.detail_content
-.table_box
-.table_line
-.title {
-  padding: 15px 0px 15px 0;
-}
-
-#ad_detail_list
   .container
   .board_content
   .ad_detail_list_content
@@ -1566,13 +1527,37 @@ display: grid;
   height: 248px;
 }
 #ad_detail_list
-.container
-.board_content
-.ad_detail_list_content
-.ad_contents
-.tab_menu {
-column-gap: 16px;
+  .container
+  .board_content
+  .ad_detail_list_content
+  .ad_contents
+  .tab_menu {
+    column-gap: 16px;
+  }
 }
+
+@media screen and (max-width: 376px) {
+  #ad_detail_list
+    .container
+    .board_content
+    .ad_detail_list_content
+    .detail_content
+    .table_box
+    .table_line
+    .text {
+      padding-right: 12px;
+    }
+
+    #ad_detail_list
+    .container
+    .board_content
+    .ad_detail_list_content
+    .detail_content
+    .table_box
+    .table_line
+    .title {
+      padding: 15px 12px;
+    }
 }
 
 

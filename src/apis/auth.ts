@@ -30,7 +30,6 @@ export const useRegister = () => useMutation<IRegisterResponse, string, Register
         return (await axios.post(API_URL.postRegister(), formData, {
             headers: { 
                 'content-type': 'multipart/form-data',
-                'Accept-Language': 'ko'
          }
         })).data
     }
@@ -45,13 +44,7 @@ export const useVerifyInput = () => useMutation<void, string, VerifyInputPropsTy
         return((await axios.post(API_URL.postVerifyInput(), JSON.stringify({
         "key":props.key,
         "value":props.value.toString()
-    }),{
-        headers: { 
-            'accept': '*/*',
-            'Accept-Language': 'ko',
-            'Content-Type' : 'application/json'
-     }
-    })).data)}
+    }))).data)}
 })
 
 export const useFindId = () => useMutation<string, string, FindIdProps>({

@@ -172,7 +172,7 @@ const Step3 = ({
 				}
 				<div className='right-wrap'>
 					<div className='right-content'>
-						<div onClick={onPrevStep} className='cursor-pointer back-btn lg:mt-[181px] mt-[65.4px]'></div>
+						<div onClick={onPrevStep} className={clsx('cursor-pointer back-btn',isPcOnly? "!mt-[181px]": "!mt-[110px]")}></div>
 						<div className='step-title'>{step3.stepTitle}</div>
 						<div className='step-text'>
 							{step3.stepText}

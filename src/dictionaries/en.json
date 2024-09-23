@@ -1622,7 +1622,7 @@
     },
     "step3":{
       "stepTitle": "Please enter company information",
-      "stepText":"Please enter the information and press the finish button",
+      "stepText":"This information is used when retrieving your ID/password. Please enter it accurately.",
       "stepTextRequired":"The mark is a required input value",
       "companyNameLabel":"Company Name",
       "companyNameCaption":"This company name is already in use",

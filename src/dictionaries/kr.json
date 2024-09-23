@@ -1618,7 +1618,7 @@
     },
     "step3":{
       "stepTitle": "회사 정보를 입력해주세요",
-      "stepText":"기입정보를 입력 후 완료버튼을 눌러주세요",
+      "stepText":"아이디/비밀번호를 찾을 때 활용되는 정보입니다. 정확히 입력해 주세요.",
       "stepTextRequired":"표시는 필수 입력값 입니다",
       "companyNameLabel":"회사명",
       "companyNameCaption":"이미 사용중인 회사명입니다",

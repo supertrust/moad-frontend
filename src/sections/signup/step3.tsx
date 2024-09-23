@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { useVerifyInput } from '@src/apis/auth';
 import { Button, FormProvider, RHFInput, useForm, yupResolver, } from '@src/components/common';
 import RHFSelect from '@src/components/common/Form/RHFSelect';
@@ -47,6 +48,7 @@ const Step3 = ({
     const [isReadonly, setReadonly] = useState(false);
     const [verifybtnclick, setverifybtn] = useState(false);
     const [message, setMessage] = useState('');
+    const [businessVerifyLoading, setBusinessVerifyLoading] = useState(false);
     const ModalhandleClose = () => setShowModal(false);
     const options = [
         // {value : '', text : step3?.contact_position?.contact_person_position},
@@ -87,6 +89,7 @@ const Step3 = ({
         cb?: VoidFunction,
     ) => {
         try {
+            setBusinessVerifyLoading(true)
             await verifyInput(
                 { key, value },
                 {
@@ -101,7 +104,9 @@ const Step3 = ({
                     },
                 },
             );
+            setBusinessVerifyLoading(false)
         } catch (error) {
+            setBusinessVerifyLoading(false)
         }
     };
 
@@ -366,7 +371,10 @@ const Step3 = ({
                                                             );
                                                         });
                                                     }}>
-                                                    {step3.businessRegistrationNumberBtn}
+                                                  <div className={'flex items-center gap-1'}>
+                                                      {  businessVerifyLoading?  <CircularProgress size={'20px'} color={'secondary'}/>  :<></> }
+                                                      {step3.businessRegistrationNumberBtn}
+                                               </div>
                                                 </button>
                                             }
                                         />

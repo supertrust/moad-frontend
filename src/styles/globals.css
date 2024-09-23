@@ -4334,6 +4334,10 @@ a:hover {
 	color: var(--primary-color) !important;
 }
 
+.MuiCircularProgress-colorSecondary {
+	color: #FFFFFF!important;
+}
+
 button[aria-expanded="true"] {
 	background-color: var(--light-color) !important;
 }

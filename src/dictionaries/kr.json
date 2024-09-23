@@ -1649,6 +1649,7 @@
         "btn": "확인"
       },
       "businessRegistrationNumberPlaceholder":"사업자 번호 입력 (-없이 입력)",
+      "businessRegError" : "국세청에 등록되지 않은 사업자등록번호입니다",
       "businessRegistrationNumberCaption":"이미 사용중인 사업자 번호입니다.",
       "businessRegistrationNumberBtn":"확인",
       "managerNamePlaceholder":"담당자 성함 입력",

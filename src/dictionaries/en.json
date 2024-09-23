@@ -1642,6 +1642,7 @@
       "employeeEmailPlaceholder":"Enter employee email",
       "employeeEmailCaption":"Please check your email format.",
       "businessRegistrationNumberLabel":"Business registration number (10 digits)",
+      "businessRegError" : "The business registration number is not registered with the National Tax Service",
       "attachBusinessLicense":"Attach business license",
       "plsAttachBusinessLicense":"Please attach your business registration",
       "browse": "Browse",

@@ -52,11 +52,12 @@ function AuthProvider({ children }: AuthProviderProps) {
     } = useGetUser({ isAuthenticated: false });
     const [user, setUser] = useState(null);
 
-    const changeLangState = (_locale: Langs) => {
+    const changeLangState = async (_locale: Langs) => {
         setLang(_locale);
         const dictionaries = { en, kr }
         setDictionary(dictionaries[_locale])
-        axios.defaults.headers['Accept-Language'] = _locale === 'en' ? 'en' : 'kr';
+        // axios.defaults.headers['Accept-Language'] = _locale === 'en' ? 'en' : 'ko';
+        await queryClient.invalidateQueries();
     };
 
     const changeLocale = async (_locale: Langs) => {

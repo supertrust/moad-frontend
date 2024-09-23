@@ -10,17 +10,20 @@ export const setRouter = (nextRouter) => {//Inject Router
     router = nextRouter
 }
 
+const acceptLang =
+    typeof window !== 'undefined' && localStorage?.getItem('lang') === 'en' ? 'en' : 'ko';
+
 const axios = Axios.create({
     baseURL: API_BASE_URL,
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'Accept-Language': 'kr'
+        'Accept-Language': acceptLang
     },
 });
 
 const handleError = (error: any) => {
-    process.env.NODE_ENV === 'development' &&  console.error('🚀 ~ Api error by axios ====> ', {
+    process.env.NODE_ENV === 'development' && console.error('🚀 ~ Api error by axios ====> ', {
         url: error.config.url,
         method: error.config.method,
         request_data: error.config.data,
@@ -32,12 +35,18 @@ const handleError = (error: any) => {
     return Promise.reject(errorMessage);
 };
 
+axios.interceptors.request.use((config) => {
+    const lang = localStorage.getItem('lang') === "en" ? "en" : "ko" || 'ko';
+    config.headers['Accept-Language'] = lang;
+    return config;
+});
+
 axios.interceptors.response.use(
     (res) => {
         if (!(res.data.status === "success") || ((res.data.success !== undefined) && !res.data.success)) {
             return handleError(res);
         }
-        if(res.data.message === "UNAUTHORIZED"){
+        if (res.data.message === "UNAUTHORIZED") {
             toast.error('이 항목에 대한 권한이 없습니다.')
             router.push('/dashboard')
             Promise.reject('Unauthorised calll')
@@ -51,7 +60,7 @@ axios.interceptors.response.use(
                 // Redirect to the login page
                 localStorage.removeItem('token');
                 localStorage.removeItem('user');
-                if(window.location.pathname.includes('/login')) return;
+                if (window.location.pathname.includes('/login')) return;
                 const returnUrl = window.location.href.replace(window.location.origin, '');
                 router.push(`/login?returnUrl=${returnUrl}`);
             }

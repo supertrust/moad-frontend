@@ -1188,8 +1188,7 @@ const SaveAdForm = ({
                        }}
                    />
                  </div>
-                 <div
-                     className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative w-[50%] lg:w-[175px]`}>
+                 <div className={`${styles.ad_start_date} ${styles.input_wrap} customdatepickerwidth relative w-[50%] lg:w-[175px]`}>
                    <div className={styles.sub_title}>
                      {dictionary.adForm.display_end_date}
                      <span className='text-[#F24747]'>*</span>
@@ -1229,30 +1228,24 @@ const SaveAdForm = ({
 
             {/* <span className='text-danger'>{errors?.ad_period?.message || errors?.start_date?.message}</span> */}
 
-            <div
-              className={`${styles.input_section} ${styles.vehicles_section}`}>
+            <div className={`${styles.input_section} ${styles.vehicles_section} overflow-x-auto`}>
               <div className={styles.input_title}>
                 {dictionary.adForm.operating_vehicles}
                 <span className='text-[#F24747]'>*</span>
               </div>
-              <Table
-                bordered
-                className='text-center rounded-sm  bg-[#FFFFFF] !m-0'
-                responsive>
+              <Table bordered className='text-center rounded-sm bg-[#FFFFFF] !m-0'>
                 <thead className='rounded-sm !bg-advertiser-light border-advertiser-light'>
-                  <tr className='rounded-r-sm text-[#2C324C]'>
-                    <td width={'18%'} className='!font-medium !p-[7px]'>
+                  <tr className='rounded-r-sm'>
+                    <td style={{ minWidth: '50px' }} className='!text-center !bg-[#ededfc] !text-[#2C324C] align-middle !font-medium !p-[7px]'>
                       {dictionary.adForm.vehicle}
                     </td>
-                    <td width={'15%'} className='!font-medium !p-[7px]'>
+                    <td className='!text-center !bg-[#ededfc] !text-[#2C324C] align-middle !font-medium !p-[7px]'>
                       {dictionary.adForm.num_of_vehicles}
                     </td>
-                    <td width={'15%'} className='!font-medium !p-[7px]'>
+                    <td className='!text-center !bg-[#ededfc] !text-[#2C324C] align-middle !font-medium !p-[7px]'>
                       {dictionary.adForm.min_vehicles}
                     </td>
-                    <td
-                      width={'25%'}
-                      className='!font-medium !p-[7px] hidden sm:block sm:w-full'>
+                    <td style={{ minWidth: '300px' }} className='!text-center !bg-[#ededfc] !text-[#2C324C] align-middle !font-medium !p-[7px]'>
                       {dictionary.adForm.standard}
                     </td>
                     {/*<td width={'27%'} className='!font-medium !p-[7px]'>*/}
@@ -1296,7 +1289,7 @@ const SaveAdForm = ({
                                       ? '!border-[#ebedf4]'
                                       : '!border-[#ff0000]'
                                   }
-                                   ${
+                                  ${
                                     ((!watch('vehicle_details')[item.id]) && watch('vehicle_min')[item.id])
                                         ? '!border-[#ff0000]' : '!border-[#ebedf4]'
                                 }
@@ -1380,8 +1373,7 @@ const SaveAdForm = ({
                                 {dictionary.adForm.big}
                               </span>
                             </td>
-                            <td
-                              className={` ${styles.cell} ${styles.standard_wrap} !p-[7px] hidden sm:block`}>
+                            <td className={`${styles.cell} ${styles.standard_wrap} !p-[7px]`}>
                               <span className={styles.text}>
                                 {item.vehicle_standard}
                               </span>

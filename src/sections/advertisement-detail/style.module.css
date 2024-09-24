@@ -270,7 +270,7 @@
   .board_content
   .ad_detail_list_content
   .detail_content
-  .slide_box
+  .slide_boxstyle
   .mockup-type-btns
   .mockup-icon-slide
   .swiper_wrapper
@@ -1290,7 +1290,7 @@ span.carousel-control-prev-icon {
 }
 
 .ad_contents thead th {
-  background-color: #F5F7FB !important;
+  /*background-color: #F5F7FB !important;*/
 }
 
 .ad_contents td,
@@ -1425,7 +1425,7 @@ span.carousel-control-prev-icon {
 
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 1023px) {
   #ad_detail_list .container .board_content {
     padding-top: 0px;
   }
@@ -1486,7 +1486,7 @@ margin-bottom: 21px;
 .ad_detail_list_content
 .ad_contents
 .tab_menu {
-padding: 0px 0px 12px 0px;
+padding: 0px 0px 0px 0px;
 }
 
 #ad_detail_list
@@ -1536,7 +1536,7 @@ display: grid;
   }
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 1023px) {
   #ad_detail_list
     .container
     .board_content

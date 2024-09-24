@@ -4113,7 +4113,7 @@ input:focus-visible {
 	}
 
 	.ad-detail-list .notification_pagination {
-		background: #fff !important;
+		background: #fff;
 		padding: 24px 0 24px 0;
 	  }
 

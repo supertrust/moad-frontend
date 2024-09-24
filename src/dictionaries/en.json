@@ -60,7 +60,8 @@
     "c" : "c",
     "check" : "Check",
     "checkList" : "Check List",
-    "allowedFileTypesMsg" : "Only JPG, JPEG, and PNG files are accepted."
+    "allowedFileTypesMsg" : "Only JPG, JPEG, and PNG files are accepted.",
+    "no_data_found": "No data found!"
   },
   "operatingAreas": {
     "seoul": "Seoul",

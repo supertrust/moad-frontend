@@ -217,8 +217,8 @@ export type GetTotalAdvertisementStatProps = {
     end_date: Date | string
 }
 export type GetCargoVerificationImagesProps = {
-    start_date?: Date | string
-    end_date?: Date | string
+    startDate?: Date | string
+    endDate?: Date | string
     advertisement_id: number
     cargo_vehicle_id: number
     status?: string

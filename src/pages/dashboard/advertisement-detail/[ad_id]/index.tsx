@@ -79,7 +79,16 @@ function AdvertisementDetailScreen() {
     const [isAllCargoButtonShow, setIsAllCargoButtonShow] = useState(false);
     const { AllStatuses } = useOptions()
     const {
-        dictionary: { types, view, operationStatus, adDetailsPage, common, operatingAreas: operatingAreasTrans,pageTitle,adForm },
+        dictionary: {
+            types,
+            view,
+            operationStatus,
+            adDetailsPage,
+            common,
+            operatingAreas: operatingAreasTrans,
+            pageTitle,
+            adForm
+        },
         isPcOnly,
         isKorean
     } = useAuth();
@@ -161,9 +170,9 @@ function AdvertisementDetailScreen() {
     }, [isDraftAdvertisementImagesLoading, draftAdvertisementImages]);
 
 
-    useEffect(()=>{
+    useEffect(() => {
         setPageTitle(pageTitle["top_bar_dashboard"]);
-    },[isKorean])
+    }, [isKorean])
 
     const CarouselWrapper = styled.div`
       .carousel.slide {
@@ -699,22 +708,28 @@ function AdvertisementDetailScreen() {
                                             <Table width={`100%`} className="mb-[0px] relative">
                                                 <TableHead className={`bg-advertiser-light !h-[60px]`}>
                                                     <TableRow>
-                                                        <TableCell style={{ minWidth: isPcOnly? '70px' : "40px" }}
+                                                        <TableCell style={{ minWidth: isPcOnly ? '70px' : "40px" }}
                                                                    className="!text-center">{adDetailsPage.columns[0]}</TableCell>
-                                                        <TableCell style={{ minWidth: isPcOnly?'210px' : isKorean? "90px" : "180px" }}
-                                                                   className="!text-center">{adDetailsPage.columns[1]}</TableCell>
-                                                        <TableCell style={{ minWidth: isPcOnly?'180px' : isKorean?"80px" : "120px" }}
-                                                                   className="!text-center">
+                                                        <TableCell
+                                                            style={{ minWidth: isPcOnly ? '210px' : isKorean ? "90px" : "180px" }}
+                                                            className="!text-center">{adDetailsPage.columns[1]}</TableCell>
+                                                        <TableCell
+                                                            style={{ minWidth: isPcOnly ? '180px' : isKorean ? "80px" : "120px" }}
+                                                            className="!text-center">
                                                             {adDetailsPage.columns[2]}
                                                         </TableCell>
-                                                        <TableCell style={{ minWidth: isPcOnly?'175px' : isKorean?"70px" : "120px" }}
-                                                                   className="!text-center">{adDetailsPage.columns[3]}</TableCell>
-                                                        <TableCell style={{ minWidth: isPcOnly?'140px' : isKorean? "70px" : "160px" }}
-                                                                   className="!text-center">{adDetailsPage.columns[4]}</TableCell>
-                                                        <TableCell style={{ minWidth: isPcOnly?'140px' : isKorean?"70px" : "160px" }}
-                                                                   className="!text-center">{adDetailsPage.columns[5]}</TableCell>
-                                                        <TableCell style={{ minWidth: isPcOnly?'140px' : isKorean?"70px" : "180px" }}
-                                                                   className="!text-center">{adDetailsPage.columns[6]}</TableCell>
+                                                        <TableCell
+                                                            style={{ minWidth: isPcOnly ? '175px' : isKorean ? "70px" : "120px" }}
+                                                            className="!text-center">{adDetailsPage.columns[3]}</TableCell>
+                                                        <TableCell
+                                                            style={{ minWidth: isPcOnly ? '140px' : isKorean ? "70px" : "160px" }}
+                                                            className="!text-center">{adDetailsPage.columns[4]}</TableCell>
+                                                        <TableCell
+                                                            style={{ minWidth: isPcOnly ? '140px' : isKorean ? "70px" : "160px" }}
+                                                            className="!text-center">{adDetailsPage.columns[5]}</TableCell>
+                                                        <TableCell
+                                                            style={{ minWidth: isPcOnly ? '140px' : isKorean ? "70px" : "180px" }}
+                                                            className="!text-center">{adDetailsPage.columns[6]}</TableCell>
 
                                                     </TableRow>
                                                 </TableHead>
@@ -724,41 +739,46 @@ function AdvertisementDetailScreen() {
                                                                 return (
                                                                     <TableRow key={index} style={{ height: "50px" }}>
 
-                                                                        <TableCell className={clsx("text-center", isPcOnly? "!text-[14px]" : "!text-[13px]")}
-                                                                                   style={{ letterSpacing: "-0.16px" }}>
-                                                                            {index+1}
+                                                                        <TableCell
+                                                                            className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}
+                                                                            style={{ letterSpacing: "-0.16px" }}>
+                                                                            {index + 1}
                                                                         </TableCell>
                                                                         <TableCell
-                                                                            className={clsx("text-center", isPcOnly? "!text-[14px]" : "!text-[13px]")}>
+                                                                            className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}>
                                                                             {item?.car_number}
                                                                         </TableCell>
-                                                                        <TableCell  className={clsx("text-center", isPcOnly? "!text-[14px]" : "!text-[13px]")}
-                                                                                   style={{ letterSpacing: "-0.16px" }}>
+                                                                        <TableCell
+                                                                            className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}
+                                                                            style={{ letterSpacing: "-0.16px" }}>
                                                                             {item?.vehicle_type}
                                                                         </TableCell>
                                                                         <TableCell
-                                                                             className={clsx("text-center", isPcOnly? "!text-[14px]" : "!text-[13px]")}>
+                                                                            className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}>
                                                                             {
-                                                                                item?.vehicle_status ?  operationStatus[item?.vehicle_status.toLowerCase()] :"-"
+                                                                                item?.vehicle_status ? operationStatus[item?.vehicle_status.toLowerCase()] : "-"
                                                                             }
                                                                         </TableCell>
                                                                         <TableCell className="!text-[14px] !text-center"
                                                                                    style={{ letterSpacing: "-0.16px" }}>
                                                                             {
-                                                                                item?.vehicle_status === "end" ? <DisabledButton>{item?.vehicle_information}</DisabledButton> : <Link
-                                                                                    legacyBehavior
-                                                                                    href={`/dashboard/advertisement-detail/${item.advertisement_id}/vehicle/${item.cargo_vehicle_id}`}
-                                                                                >
-                                                                                    <a className="text-advertiser-primary hover:no-underline">
-                                                                                        {item?.vehicle_information}
-                                                                                    </a>
-                                                                                </Link>
+                                                                                item?.vehicle_status === "end" ?
+                                                                                    <DisabledButton>{item?.vehicle_information}</DisabledButton> :
+                                                                                    <Link
+                                                                                        legacyBehavior
+                                                                                        href={`/dashboard/advertisement-detail/${item.advertisement_id}/vehicle/${item.cargo_vehicle_id}`}
+                                                                                    >
+                                                                                        <a className="text-advertiser-primary hover:no-underline">
+                                                                                            {item?.vehicle_information}
+                                                                                        </a>
+                                                                                    </Link>
                                                                             }
                                                                         </TableCell>
                                                                         <TableCell
-                                                                             className={clsx("text-center", isPcOnly? "!text-[14px]" : "!text-[13px]")}>
+                                                                            className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}>
                                                                             {
-                                                                                item?.vehicle_status === "end" ? <DisabledButton>{item?.vehicle_location}</DisabledButton> :
+                                                                                item?.vehicle_status === "end" ?
+                                                                                    <DisabledButton>{item?.vehicle_location}</DisabledButton> :
                                                                                     <Link
                                                                                         legacyBehavior
                                                                                         href={`/dashboard/advertisement-detail/${item.advertisement_id}/vehicle-location/${item.cargo_vehicle_id}`}
@@ -770,9 +790,10 @@ function AdvertisementDetailScreen() {
                                                                             }
                                                                         </TableCell>
                                                                         <TableCell
-                                                                             className={clsx("text-center", isPcOnly? "!text-[14px]" : "!text-[13px]")}>
+                                                                            className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}>
                                                                             {
-                                                                                item?.vehicle_status === "end" ? <DisabledButton>{item?.vehicle_location}</DisabledButton> :
+                                                                                item?.vehicle_status === "end" ?
+                                                                                    <DisabledButton>{item?.vehicle_location}</DisabledButton> :
                                                                                     <div
                                                                                         className="text-advertiser-primary cursor-pointer"
                                                                                         onClick={() => {
@@ -785,7 +806,7 @@ function AdvertisementDetailScreen() {
                                                                                     >
                                                                                         {item?.vehicle_location}
                                                                                     </div>
-                                                                                
+
                                                                             }
                                                                         </TableCell>
 
@@ -802,27 +823,29 @@ function AdvertisementDetailScreen() {
                                         </div>
 
                                         <div className={'!text-center justify-center flex w-[100%] pt-2 pb-2'}>
-                                          {isLoading && <div className="flex justify-center items-center w-full h-15 backdrop-blur-sm">
-                                            <CircularProgress color="primary"/>
-                                          </div>}
+                                            {isLoading && <div
+                                                className="flex justify-center items-center w-full h-15 backdrop-blur-sm">
+                                                <CircularProgress color="primary"/>
+                                            </div>}
 
-                                          {
-                                              ((!vehiclesData || vehiclesData?.length === 0) && !isLoading) &&
-                                              <div>{common?.no_data_found}</div>
-                                          }
+                                            {
+                                                ((!vehiclesData || vehiclesData?.length === 0) && !isLoading) &&
+                                                <div>{common?.no_data_found}</div>
+                                            }
                                         </div>
 
                                         {/* Render the Pagination component */}
                                         {
                                             vehiclesData?.length ?
-                                            <div className='flex justify-center py-[30px] notification_pagination' style={{ background : "none"}}>
-                                              <Pagination
-                                                  current={currentPage}
-                                                  total={totalRecords}
-                                                  pageSize={per_page}
-                                                  onChange={(page) => setFilters({ ...filters, page })}
-                                              />
-                                            </div> : <></>
+                                                <div className='flex justify-center py-[30px] notification_pagination'
+                                                     style={{ background: "none" }}>
+                                                    <Pagination
+                                                        current={currentPage}
+                                                        total={totalRecords}
+                                                        pageSize={per_page}
+                                                        onChange={(page) => setFilters({ ...filters, page })}
+                                                    />
+                                                </div> : <></>
                                         }
                                     </div>
 
@@ -858,11 +881,18 @@ const VerifyPicturesModal = ({
 }) => {
     const [index, setIndex] = useState(0);
     const [step, setStep] = useState(0);
-    const { dictionary: { verifyPicturesModal, operatingAreas: operatingAreasTrans,common,pageTitle }, isPcOnly,isKorean } = useAuth();
+    const {
+        dictionary: { verifyPicturesModal, operatingAreas: operatingAreasTrans, common, pageTitle },
+        isPcOnly,
+        isKorean
+    } = useAuth();
     const [{ start_date, end_date }, setDate] = useState({ start_date: '', end_date: '' });
+    const [filterDate, setFilterDate] = useState({
+        start_date: '', end_date: ''
+    })
     const [selectedRow, setSelectedRow] = useState(0);
-    const { data, isLoading } = useGetCargoVerificationImages({
-        ...verifyPicturesModalData, start_date, end_date
+    const { data, isFetching: isLoading } = useGetCargoVerificationImages({
+        ...verifyPicturesModalData, startDate: filterDate?.start_date, endDate: filterDate?.end_date
     });
 
     const handleSelect = (selectedIndex: any, e: any) => {
@@ -874,6 +904,12 @@ const VerifyPicturesModal = ({
         height: 395px;
       }
     `;
+
+    useEffect(() => {
+        if ((start_date && end_date) || (!start_date && !end_date)) {
+            setFilterDate({ start_date, end_date })
+        }
+    }, [start_date, end_date])
 
     const columns = [
         {
@@ -941,11 +977,12 @@ const VerifyPicturesModal = ({
             footer={false}
             closable={false}
             className={"ad_modal"}
+            width={isPcOnly ? 600 : 370}
         >
-            <div className="p-[16px] flex justify-center">
+            <div className="flex justify-center w-[100%] p-0 lg:p-6 lg:w-[100%]">
                 {step === 1 && data && data[selectedRow].image_path?.length && (
                     <div
-                        className={`!w-[550px] overflow-hidden ${styles.active} ${styles.detail_slide} ${styles.box}`}
+                        className={`!lg:w-[550px] overflow-hidden ${styles.active} ${styles.detail_slide} ${styles.box}`}
                         id="div3d"
                     >
                         <ArrowBack
@@ -969,11 +1006,11 @@ const VerifyPicturesModal = ({
                     </div>
                 )}
                 {step === 0 &&
-                    <div>
-                        <div className="flex justify-between pb-4 w-[483px]">
+                    <div className={'w-[340px] lg:w-[100%] lg:p-4 pb-6'}>
+                        <div className="flex justify-between pb-3 lg:pb-4  w-[340px] px-2 lg:px-0 lg:w-[100%]">
                             <DatePicker
                                 suffixIcon={<DateIcon/>}
-                                popupClassName={"admin-advertisement-date-picker"}
+                                popupClassName={clsx("admin-advertisement-date-picker", isKorean ? "korean-date" : "eng-date")}
                                 placeholder={verifyPicturesModal.selectStartDate}
                                 className={clsx(
                                     styles['date-picker'],
@@ -983,7 +1020,7 @@ const VerifyPicturesModal = ({
                             />
                             <DatePicker
                                 suffixIcon={<DateIcon/>}
-                                popupClassName={"admin-advertisement-date-picker"}
+                                popupClassName={clsx("admin-advertisement-date-picker", isKorean ? "korean-date" : "eng-date")}
                                 placeholder={verifyPicturesModal.selectEndDate}
                                 className={clsx(
                                     styles['date-picker'],
@@ -997,11 +1034,6 @@ const VerifyPicturesModal = ({
                             rows={data || []}
                             loading={isLoading}
                             additionalTableProps={{ scroll: { y: 500 } }}
-                            // showPagination
-                            // currentPage={currentPage}
-                            // itemsPerPage={per_page}
-                            // totalItems={totalRecords}
-                            // onChangePage={(page) => setFilters({ ...filters, page })}
                         />
                     </div>
                 }

@@ -210,5 +210,5 @@ export const useGetDraftAdvertisementImages = (id:string) => useQuery<DraftAdver
 export const useGetCargoVerificationImages = (props:GetCargoVerificationImagesProps) => useQuery<CargoVerificationImage[], string>({
     queryKey: ["get-cargo-verification-images", props ],
     queryFn: async () => (await axios.get(API_URL.getCargoVerificationImages(), { params: props })).data.data,
-    retry: 0
+    retry: 0,
 });

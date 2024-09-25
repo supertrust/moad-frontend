@@ -4285,9 +4285,14 @@ a.ant-picker-today-btn {
    color : var(--primary-color) !important;
 }
 
-a.ant-picker-today-btn:after {
-  content: "오늘";
-  font-size: 16px; /* original font size */
+.korean-date a.ant-picker-today-btn:after {
+	font-size : 14px;
+	content: "오늘";
+}
+
+.eng-date a.ant-picker-today-btn:after {
+	font-size : 14px;
+	content: "Today";
 }
 
 .ant-picker-cell-selected .ant-picker-cell-inner{
@@ -4358,7 +4363,7 @@ input[type="checkbox"]:checked {
 	accent-color: var(--primary-color) !important;
 }
 
-input:focus {
+input:focus:not(.ant-picker-input input) {
 	border:1px solid var(--primary-color) !important;
 }
 

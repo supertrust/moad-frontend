@@ -16,6 +16,7 @@ import { OperatingAreaTranslation } from "@src/constants";
 import RoleBasedGuard from "@src/guards/RoleBasedGuard";
 import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
+import useOptions from "@src/hooks/useOptions";
 import TruckModel from "@src/models/truck";
 import { styles } from "@src/sections/advertisement-detail";
 import { allStatuses } from "@src/sections/dashboard/AdList/AdList";
@@ -76,8 +77,9 @@ const DisabledButton = ({ children }) => {
 function AdvertisementDetailScreen() {
     const router = useRouter();
     const [isAllCargoButtonShow, setIsAllCargoButtonShow] = useState(false);
+    const { AllStatuses } = useOptions()
     const {
-        dictionary: { types, view, operationStatus, adDetailsPage, common, operatingAreas: operatingAreasTrans },
+        dictionary: { types, view, operationStatus, adDetailsPage, common, operatingAreas: operatingAreasTrans,pageTitle,adForm },
         isPcOnly,
         isKorean
     } = useAuth();
@@ -159,10 +161,9 @@ function AdvertisementDetailScreen() {
     }, [isDraftAdvertisementImagesLoading, draftAdvertisementImages]);
 
 
-    useEffect(() => {
-        if (advertisement?.ad_name) setPageTitle(advertisement?.ad_name);
-        else setPageTitle("");
-    }, [advertisement?.ad_name]);
+    useEffect(()=>{
+        setPageTitle(pageTitle["top_bar_dashboard"]);
+    },[isKorean])
 
     const CarouselWrapper = styled.div`
       .carousel.slide {
@@ -199,7 +200,7 @@ function AdvertisementDetailScreen() {
             title: adDetailsPage.adDetailColumns[1],
             value:
                 advertisement?.start_date && advertisement?.end_date
-                    ? `${advertisement?.start_date} ~ ${advertisement?.end_date} (${advertisement.ad_period}개월)`
+                    ? `${advertisement?.start_date} ~ ${advertisement?.end_date} (${advertisement.ad_period}${adForm?.months})`
                     : "--",
         },
         {
@@ -211,7 +212,7 @@ function AdvertisementDetailScreen() {
         {
             title: adDetailsPage.adDetailColumns[3],
             value: advertisement?.status
-                ? allStatuses.find((status) => advertisement?.status === status.value)
+                ? AllStatuses.find((status) => advertisement?.status === status.value)
                     ?.label
                 : advertisement?.status,
         },
@@ -233,7 +234,7 @@ function AdvertisementDetailScreen() {
         },
         {
             title: adDetailsPage.adDetailColumns[5],
-            value: `${advertisement?.total_cost?.toLocaleString() || 0} 원`,
+            value: `${advertisement?.total_cost?.toLocaleString() || 0} ${adForm?.won}`,
         },
         {
             title: adDetailsPage.adDetailColumns[6],
@@ -857,7 +858,7 @@ const VerifyPicturesModal = ({
 }) => {
     const [index, setIndex] = useState(0);
     const [step, setStep] = useState(0);
-    const { dictionary: { verifyPicturesModal, operatingAreas: operatingAreasTrans,common }, isPcOnly } = useAuth();
+    const { dictionary: { verifyPicturesModal, operatingAreas: operatingAreasTrans,common,pageTitle }, isPcOnly,isKorean } = useAuth();
     const [{ start_date, end_date }, setDate] = useState({ start_date: '', end_date: '' });
     const [selectedRow, setSelectedRow] = useState(0);
     const { data, isLoading } = useGetCargoVerificationImages({
@@ -915,11 +916,10 @@ const VerifyPicturesModal = ({
             render: (text: any, record: any, index) => {
                 const enabled = record.image_path.length > 0
                 return <div
-                    className={`text-center underline ${enabled ? 'text-advertiser-primary' : 'text-[#999999]'}`}
+                    className={`text-center underline ${enabled ? 'text-advertiser-primary cursor-pointer' : 'cursor-not-allowed text-[#999999]'}`}
                     onClick={() => {
                         if (enabled) {
                             setStep(1)
-                            console.log('index: ', index);
 
                             setSelectedRow(index)
                         }

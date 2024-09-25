@@ -1466,7 +1466,7 @@
     "refresh": "refresh"
   },
   "adVehicleLocDrawerPage": {
-    "categories" : ["Today's driving distance","Total driving distance","Average monthly driving distance"],
+    "categories" : ["Today's driving distance","Total driving distance","Avg monthly driving distance"],
     "wolpi":"Wolpi-dong, Sangnok-gu, Ansan-si",
     "checkBtn":"Confirm",
     "cancelBtn":"Cancel",

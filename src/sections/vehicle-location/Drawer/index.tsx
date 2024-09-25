@@ -7,13 +7,14 @@ import useAuth from '@src/hooks/useAuth';
 import { IVehicleLocationDetails } from '@src/types/map';
 import { ConfigProvider, DatePicker, Select } from "antd";
 import koKR from 'antd/locale/ko_KR';
+import en_US from 'antd/locale/en_US';
 import { clsx } from 'clsx';
 import dayjs, { Dayjs } from "dayjs";
 import 'dayjs/locale/ko';
 import dynamic from "next/dynamic";
 import Image from 'next/image';
 import type { CellRenderInfo } from 'rc-picker/es/interface';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../style.module.scss';
 
 dayjs.locale('ko');
@@ -72,7 +73,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChangeHandler,rideChangeHandler,locationIds }: DrawerProps) {
 
   const { RangePicker } = DatePicker;
-  const { dictionary: { adVehicleLocDrawerPage } } = useAuth();
+  const { dictionary: { adVehicleLocDrawerPage },isKorean } = useAuth();
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
   const [selectedRide, setSelectedRide] = useState<number|undefined>(vehicle?.id);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -90,6 +91,32 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
 
     setBufferdDate(startDate);
   };
+
+  const datePickerRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (datePickerRef.current) {
+      setDatePickerOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setDatePickerOpen(false); // Close DatePicker when scrolling
+    };
+
+    if (datePickerOpen) {
+      window.addEventListener('scroll', handleScroll); // Add scroll event listener
+    } else {
+      window.removeEventListener('scroll', handleScroll); // Remove scroll event listener
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll); // Cleanup on unmount or close
+    };
+  }, [datePickerOpen]);
+
+
 
   useEffect(() => {
     rideChangeHandler(selectedRide)
@@ -261,8 +288,9 @@ function Drawer({ open, handleClose , isLoading, vehicle,vehicleDate, dateChange
                           </div>
                         </span>
                         <div>
-                        <ConfigProvider locale={koKR}>
+                        <ConfigProvider locale={isKorean? koKR : en_US}>
                           <DatePicker
+                              ref={datePickerRef}
                             className={datePickerOpen ? "custom_picker" : "hidden"}
                             popupClassName={"custom_popup_picker vehicle-location !left-[calc(100%-314px)]"}
                             format="YYYY-MM-DD"

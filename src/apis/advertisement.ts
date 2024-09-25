@@ -141,10 +141,11 @@ export const useGetAdvertiserVehiclesStats = (props:{notfication?: boolean }={})
 
 
 export const useGetShowAdvertisementStats = (
-    { status, page } : {status?: AdStatusesType, page: number}
+    { status, page,ad_type,start_date,end_date,limit=10 } : {status?: AdStatusesType, page: number, ad_type?: string,  start_date: Date | string
+        end_date: Date | string,limit?: number}
 ) => useQuery<IAdvertisementStatResponse, string>({
-    queryKey: ["show-advertisement-stats", status, page],
-    queryFn: async () => (await axios.get(API_URL.getAdvertisementStats(), { params: { status, page } })).data
+    queryKey: ["show-advertisement-stats", status, page,start_date,end_date,  ad_type,limit],
+    queryFn: async () => (await axios.get(API_URL.getAdvertisementStats(), { params: { status, page,  ...(ad_type && { ad_type }),start_date,end_date,limit } })).data
 });
 
 export const useGetVehicleAdvertisementStatsDetails = (

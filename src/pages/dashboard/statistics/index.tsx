@@ -26,12 +26,20 @@ export default function StatisticsScreen() {
   const [selectedAds, setSelectedAds] = useState<IAdvertisementStat[]>([]);
   const [status, setStatus] = useState<AdStatusesType | undefined>();
   const [type, setType] = useState<AdTypesType | undefined>();
+  const [dataFilter, setDataFilter] = useState<DateRange | null>({
+    startDate : '',
+    endDate : '',
+  })
   const [currentPage, setCurrentPage] = useState(1); // Current page number
   const { setPageTitle } = useIcarusContext()
   const { data: advertisementStatsData, isLoading } = useGetShowAdvertisementStats(
     {
       status: status,
       page: currentPage,
+      ad_type : type,
+      start_date: dataFilter?.startDate ?? '',
+      end_date: dataFilter?.endDate ?? '',
+      limit : 5
     },
   );
   const advertisement_stats = advertisementStatsData?.data;
@@ -88,7 +96,7 @@ export default function StatisticsScreen() {
   };
 
   const SelectTypes = [
-    { text: statistics.drivingDstTime.selectTypes[0], value: 'all' },
+    { text: statistics.drivingDstTime.selectTypes[0], value: "" },
     { text: statistics.drivingDstTime.selectTypes[1], value: 'fixed_ad' },
     { text: statistics.drivingDstTime.selectTypes[2], value: 'national_ad' },
     { text: statistics.drivingDstTime.selectTypes[3], value: 'spot_ad' },
@@ -100,6 +108,18 @@ export default function StatisticsScreen() {
     } else {
       const filteredItemsToday: DateRange = DateSelected(value);
       setSelectedDate({
+        startDate: ISOformatDate(filteredItemsToday?.startDate as Date),
+        endDate: ISOformatDate(filteredItemsToday?.endDate as Date),
+      });
+    }
+  };
+
+  const tableFilterDate = (value: string) => {
+    if (value == 'all') {
+      setDataFilter({ startDate: '', endDate: '' });
+    } else {
+      const filteredItemsToday: DateRange = DateSelected(value);
+      setDataFilter({
         startDate: ISOformatDate(filteredItemsToday?.startDate as Date),
         endDate: ISOformatDate(filteredItemsToday?.endDate as Date),
       });
@@ -272,10 +292,15 @@ export default function StatisticsScreen() {
                       <div className='flex flex-row gap-2'>
                         <div className={styles.selectDropdown}>
                           <Form.Select
+                              onChange={(e)=>
+                              {
+                                // @ts-ignore
+                                setType(e.target.value)
+                              }}
                             aria-label='Default select example'
                             className={clsx(`border-[1px] border-advertiser-primary text-advertiser-primary text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
 													${styles.selectOption} cursor-pointer`, !isKorean && "!max-w-[200px]")}>
-                            <option selected>
+                            <option selected  disabled={true} hidden={true}>
                               {statistics.drivingDstTime.chooseAdType}
                             </option>
                             {SelectTypes.map((data) => (
@@ -290,6 +315,7 @@ export default function StatisticsScreen() {
                         </div>
                         <div className={styles.selectDropdown}>
                           <Form.Select
+                              onChange={(e) => tableFilterDate(e.target.value)}
                             aria-label='Default select example'
                             className={`border-[1px]  border-advertiser-primary text-advertiser-primary  text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
 													${styles.selectOption} cursor-pointer`}>

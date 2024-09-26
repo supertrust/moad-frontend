@@ -1,23 +1,23 @@
+import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useGetCargoImage, useGetVehicleDetail, } from "@src/apis/advertisement";
+import ArrowBack from "@src/components/icons/ArrowBack";
 import Loader from "@src/components/Loader";
+import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { styles } from "@src/sections/vehicle-info";
 import { ICargoImage } from "@src/types/advertisement";
-import { Breadcrumb, Skeleton } from "antd";
+import { Breadcrumb } from "antd";
 import { clsx } from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Carousel, Modal } from "react-bootstrap";
+import { Carousel,Modal } from "react-bootstrap";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { XMarkIcon } from '@heroicons/react/24/solid';
-import ArrowBack from "@src/components/icons/ArrowBack";
-import useAuth from '@src/hooks/useAuth';
 
 const imageStyle = {
   objectFit: "cover",
@@ -28,7 +28,7 @@ const imageStyle = {
 
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
-  const { dictionary: { adVehicleDetailsPage,pageTitle },isKorean } = useAuth();
+  const { dictionary: { adVehicleDetailsPage,pageTitle },isKorean,isPcOnly } = useAuth();
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const {setPageTitle} = useIcarusContext()
   const advertisementId = query.ad_id as string;
@@ -49,18 +49,33 @@ export default function VehicleInfoScreen() {
         setPageTitle(adVehicleDetailsPage.title)
     },[isKorean])
 
-  const showImage = (image?:  ICargoImage) => {
-    const size = 500;
-    return (
-      <Image
-        className={clsx(styles.img, 'rounded-md object-center')}
-        src={image?.image_path || '/images/ad-detail-list/no-image.png'}
-        alt={image?.image_title || ''}
-        width={size}
-        height={size}
-      />
-    )
-  }
+    const showImage = (image?:  ICargoImage) => {
+        const size = 500;
+        return (
+            <Image
+                className={clsx(styles.img, 'rounded-md object-center')}
+                src={image?.image_path || '/images/ad-detail-list/no-image.png'}
+                alt={image?.image_title || ''}
+                width={size}
+                height={size}
+            />
+        )
+    }
+
+  const showFullImage = (image?:  ICargoImage) => {
+        const size = 1000;
+        return (
+            <Image
+                className={clsx('rounded-md mx-auto')} // `mx-auto` to center, `rounded-md` for rounded corners
+                src={image?.image_path || '/images/ad-detail-list/no-image.png'}
+                alt={image?.image_title || ''}
+                width={1000}
+                height={1000}
+            />
+
+        )
+    }
+
   const ShowNoImage = ({ classname = "" }: { classname?: string }) => {
     return (
       <div
@@ -145,8 +160,8 @@ export default function VehicleInfoScreen() {
                         }}
                       >
                         <div className={styles.badge}>
-                      <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
-                      <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
+                      <div className={styles.text}>{adVehicleDetailsPage?.imageBadge[index]}</div>
+                      {/*<div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>*/}
                     </div>
                         {showImage(image)}
                       </SwiperSlide>
@@ -181,8 +196,7 @@ export default function VehicleInfoScreen() {
                    {!isImagesLoading && images?.length && images[0]?.image_path ?
                     <React.Fragment>
                     <div className={`${styles.badge} hidden sm:block`}>
-                      <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
-                      <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
+                      <div className={styles.text}>{adVehicleDetailsPage.imageBadge[0]}</div>
                     </div>
                       <Image
                         className={`${styles.img} ${styles.main_img} hidden sm:block`}
@@ -332,13 +346,39 @@ export default function VehicleInfoScreen() {
           </div>
         </div>
       </div>
+        {/*<Modal*/}
+        {/*    title="Modal 1000px width"*/}
+        {/*    centered*/}
+        {/*    open={fullSize && !!advertisementImages?.length}*/}
+        {/*    onOk={() => showFullSize(false)}*/}
+        {/*    onCancel={() => showFullSize(false)}*/}
+        {/*    width={500}*/}
+        {/*    height={50}*/}
+        {/*>*/}
+        {/*    <XMarkIcon*/}
+        {/*        width={25}*/}
+        {/*        className="p-1 bg-[#000] bg-opacity-70 text-white absolute right-6 top-6 z-50 rounded-sm cursor-pointer"*/}
+        {/*        onClick={() => showFullSize(false)}*/}
+        {/*    />*/}
+        {/*    <Carousel>*/}
+        {/*        {images.map((item, index) => (*/}
+        {/*            <Carousel.Item key={index}>*/}
+        {/*                <div className={styles.badge}>*/}
+        {/*                    <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>*/}
+        {/*                    <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>*/}
+        {/*                </div>*/}
+        {/*                {showImage(item)}*/}
+        {/*            </Carousel.Item>*/}
+        {/*        ))}*/}
+        {/*    </Carousel>*/}
+        {/*</Modal>*/}
         <Modal
           show={fullSize && !!advertisementImages?.length}
-          centered size="lg"
+          centered
           className="gallery"
           contentClassName="bg-transparent m-0 border-none"
         >
-          <Modal.Body className="m-0 flex-1">
+          <Modal.Body className="m-0 flex-1" style={{minWidth : isPcOnly ? "500px" : "30s0px"}}>
             <XMarkIcon
               width={25}
               className="p-1 bg-[#000] bg-opacity-70 text-white absolute right-6 top-6 z-50 rounded-sm cursor-pointer"
@@ -348,10 +388,9 @@ export default function VehicleInfoScreen() {
               {images.map((item, index) => (
                   <Carousel.Item key={index}>
                     <div className={styles.badge}>
-                      <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
-                      <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
+                      <div className={styles.text}>{adVehicleDetailsPage.imageBadge[index]}</div>
                     </div>
-                    {showImage(item)}
+                    {showFullImage(item)}
                   </Carousel.Item>
               ))}
             </Carousel>

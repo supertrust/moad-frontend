@@ -156,8 +156,8 @@ export default function StatisticsScreen() {
   };
 
   useEffect(() => {
-    setPageTitle("top_bar_statistics")
-  },[isKorean])
+    setPageTitle(pageTitle["top_bar_statistics"]);
+  },[isKorean]);
 
   const advertisementElement = (
     <div className='relative'>

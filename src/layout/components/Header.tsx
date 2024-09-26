@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import LanguageChange from "../../components/common/LanguageChange/LanguageChange";
 import MobileNav from './MobileNav';
+import { useTheme } from '@mui/material/styles';
 
 interface HeaderProps {
   text: string;
@@ -18,6 +19,7 @@ function Header(props: HeaderProps) {
   const { logout, user, isUserLoading, dictionary, changeLocale, lang } = useAuth();
   const [showMobileNav, setShowMobileNav] = useState(false);
   const router = useRouter();
+  const theme = useTheme();
 
   function toggle() {
     setShowMobileNav(!showMobileNav);
@@ -149,11 +151,12 @@ function Header(props: HeaderProps) {
         </div>
       </div>
 
-      <div
-        id={showMobileNav ? 'side_mb' : ''}
-        className={`side-mb ${showMobileNav ? 'block' : 'hidden'}`}>
-        {showMobileNav && <MobileNav toggle={toggle} />}
-      </div>
+      <MobileNav
+        open={showMobileNav}
+        onClose={toggle}
+        theme={theme}
+        text={props.text}
+      />
     </div>
   );
 }

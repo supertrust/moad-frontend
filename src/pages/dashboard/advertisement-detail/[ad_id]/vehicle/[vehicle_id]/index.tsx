@@ -179,12 +179,12 @@ export default function VehicleInfoScreen() {
 
 
                    {!isImagesLoading && images?.length && images[0]?.image_path ?
-                   <React.Fragment>
+                    <React.Fragment>
                     <div className={`${styles.badge} hidden sm:block`}>
                       <div className={styles.text}>{adVehicleDetailsPage.badge.text}</div>
                       <div className={styles.text_sub}>({adVehicleDetailsPage.badge.subText})</div>
                     </div>
-                     <Image
+                      <Image
                         className={`${styles.img} ${styles.main_img} hidden sm:block`}
                         src={images[0]?.image_path }
                         alt={images[0]?.image_title || ''}
@@ -279,13 +279,10 @@ export default function VehicleInfoScreen() {
                     </li>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                      {adVehicleDetailsPage.listItemsLabels[2]}
+                        {adVehicleDetailsPage.listItemsLabels[2]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
-                        {
-                          advertisement
-                              ?.estimated_driving_distance
-                        }
+                        {(advertisement?.estimated_driving_distance ?? '---') + (advertisement?.estimated_driving_distance ? 'km' : '')}
                       </div>
                     </li>
                     <li className={styles.list}>

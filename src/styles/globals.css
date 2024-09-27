@@ -6,11 +6,12 @@
 
 :root {
 	--primary-color: #561AA4;
-	--light-color : #EDEDFC;
+	--light-color : rgba(86, 26, 164, 0.08);
 	--light-border : #EBEDF4;
 	--deep-color : #4D5394;
 	--light-gray : #EEEFF3;
 	--gray-color : #99A0AC;
+	--table-header : rgba(86, 26, 164, 0.15);
 }
 
 
@@ -173,7 +174,7 @@ header nav {
 
 .sidebar_menu .sidemenu-wrap .menu-wrap .menu-list.active .link,
 .side-menu-wrap .list-menu.active .link {
-	background-color: rgba(86, 26, 164, 0.10);
+	background-color: rgba(86, 26, 164, 0.08);
 	border-radius: 5px 0px 0px 5px;
 }
 
@@ -3441,13 +3442,13 @@ ul.pagination .page-item a:focus {
 }
 
 .policy-container .content-table {
-	background: #f7f9ff;
+	background: var(--light-color)
 }
 
 .policy-container .content-table .card {
 	border-radius: 0;
 	border-width: 0 1px 1px 0;
-	border-color: #999;
+	border-color: #e1e4ea;
 }
 
 .policy-container .content-table .col:nth-child(3n + 1) .card {
@@ -4361,7 +4362,7 @@ button[aria-expanded="true"] {
 }
 
 .ant-table-thead .ant-table-cell {
-	background-color: var(--light-color) !important;
+	background-color: var(--table-header) !important;
 }
 
 .ant-select:hover .ant-select-selector {

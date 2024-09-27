@@ -16,7 +16,7 @@ import { Carousel } from "react-bootstrap";
 import PageTitleBackButton from "../../common/PageTitleBackButton/PageTitleBackButton";
 import style from "./style.module";
 
-const labelColClass = " bg-advertiser-light font-medium";
+const labelColClass = "font-medium";
 
 export const Types = {
   fixed_ad: "고정",

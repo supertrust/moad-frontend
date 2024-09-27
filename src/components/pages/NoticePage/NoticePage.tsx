@@ -67,7 +67,7 @@ function NoticePage() {
                     ) : (
                         <Table width={`100%`} className="mb-[0px] relative" id="notice-table">
                             {/* <TableHead className={`bg-sky-100 bg-[#E1ECFF] ${pin?'table-head-notice' : ''}`}> */}
-                            <TableHead className={`bg-advertiser-light`}>
+                            <TableHead className={`bg-table-header`}>
                                 <TableRow>
                                     <TableCell className="!text-center">{noticePage.columns[0]}</TableCell>
                                     <TableCell className="!text-center">{noticePage.columns[1]}</TableCell>

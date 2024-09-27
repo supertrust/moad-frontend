@@ -83,7 +83,7 @@ function InquirePage() {
             </div>
           ) : (
             <Table width={`100%`} className="m-0 !text-[16px]">
-              <TableHead className="bg-advertiser-light">
+              <TableHead className="bg-table-header">
                 <TableRow className={"!h-[3rem]"}>
                   <TableCell className="!text-center">
                   {inquiryPage.columns[0]}

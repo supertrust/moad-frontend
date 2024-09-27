@@ -233,7 +233,7 @@ export default function AdListModule() {
                 <div>
                     <div className='overflow-auto'>
                         <Table width={`100%`} className="mb-[0px] relative" id="notice-table">
-                            <TableHead className={`bg-advertiser-light !h-[60px]`}>
+                            <TableHead className={`bg-table-header !h-[60px]`}>
                                 <TableRow>
                                     <TableCell className="!text-center" style={{ width: '55px' }}>
                                         <div className={clsx(styles.form_group, '!w-[55px]')}>

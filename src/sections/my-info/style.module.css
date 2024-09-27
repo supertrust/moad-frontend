@@ -82,9 +82,9 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 30px;
-    color: #9E9E9E;
+    color: #525866;
     text-align: center;
-    background: #EBEDF4;
+    background: #e1e4ea;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -115,7 +115,7 @@
     font-weight: 400;
     font-size: 11px;
     line-height: 16px;
-    color: #999999;
+    color: #525866;
     text-decoration-line: underline;
 }
 

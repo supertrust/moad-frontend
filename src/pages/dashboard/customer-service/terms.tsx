@@ -39,7 +39,7 @@ export default function PolicyModulePage() {
               title={dictionary.terms.privacy_policy}>
               <Accordion className='accordion-section'>
                 <div className='content-terms'>
-                  <div className='content !bg-advertiser-light'>
+                  <div className='content !bg-table-header'>
                     {/* ㈜모드(이하 “회사”)는 회사가 운영하는
                     <br className=' block lg:hidden' /> 인터넷 사이트(홈페이지
                     URL이하 “모드”)를 이용하는 이용자님들의 개인정보를 매우

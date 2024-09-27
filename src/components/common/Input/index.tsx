@@ -85,7 +85,7 @@ function Input(props: InputProps, ref: Ref<any>) {
           )}
         />
         {showCount && typeof value !== "number" && (
-          <span className={clsx(countClassName, "text-sm ml-[-50px] font-medium text-[#999999]")}>
+          <span className={clsx(countClassName, "text-sm ml-[-50px] font-medium text-[#10121d]")}>
             (<span className="text-advertiser-primary font-medium">{value?.length}</span>
             {maxCount && "/" + maxCount})
           </span>

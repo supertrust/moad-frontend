@@ -19,10 +19,9 @@ import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import useOptions from "@src/hooks/useOptions";
 import TruckModel from "@src/models/truck";
 import { styles } from "@src/sections/advertisement-detail";
-import { allStatuses } from "@src/sections/dashboard/AdList/AdList";
 import { IAdvertisementCargo } from "@src/types/advertisement";
 import { formatDate } from "@src/utils/formatter";
-import { Breadcrumb, DatePicker, Modal, Pagination, Tooltip } from "antd";
+import { DatePicker, Modal, Pagination } from "antd";
 import { clsx } from "clsx";
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat'
@@ -34,7 +33,7 @@ import weekYear from 'dayjs/plugin/weekYear'
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ChangeEvent, Suspense, useEffect, useMemo, useState, } from "react";
+import React, { Suspense, useEffect, useMemo, useState, } from "react";
 import { Carousel, Table } from "react-bootstrap";
 import { Autoplay } from "swiper";
 import "swiper/css";
@@ -582,22 +581,10 @@ function AdvertisementDetailScreen() {
                                             </div> : ""}
                                     </div>
 
-
-                                    {/*<DataGrid*/}
-                                    {/*  columns={columns}*/}
-                                    {/*  rows={vehiclesData}*/}
-                                    {/*  loading={isLoading}*/}
-                                    {/*  showPagination*/}
-                                    {/*  currentPage={currentPage}*/}
-                                    {/*  itemsPerPage={per_page}*/}
-                                    {/*  totalItems={totalRecords}*/}
-                                    {/*  onChangePage={(page) => setFilters({ ...filters, page })}*/}
-                                    {/*/>*/}
-
                                     <div>
                                         <div className='overflow-auto'>
                                             <Table width={`100%`} className="mb-[0px] relative">
-                                                <TableHead className={`bg-advertiser-light !h-[60px]`}>
+                                                <TableHead className={`bg-table-header !h-[60px]`}>
                                                     <TableRow>
                                                         <TableCell style={{ minWidth: isPcOnly ? '70px' : "40px" }}
                                                                    className="!text-center">{adDetailsPage.columns[0]}</TableCell>

@@ -1236,16 +1236,16 @@ const SaveAdForm = ({
               <Table bordered className='text-center rounded-sm bg-[#FFFFFF] !m-0'>
                 <thead className='rounded-sm !bg-advertiser-light border-advertiser-light'>
                   <tr className='rounded-r-sm'>
-                    <td style={{ minWidth: '50px' }} className='!text-center !bg-[#ededfc] !text-[#2C324C] align-middle !font-medium !p-[7px]'>
+                    <td style={{ minWidth: '50px' }} className='!text-center  !text-[#2C324C] align-middle !font-medium !p-[7px]'>
                       {dictionary.adForm.vehicle}
                     </td>
-                    <td className='!text-center !bg-[#ededfc] !text-[#2C324C] align-middle !font-medium !p-[7px]'>
+                    <td className='!text-center  !text-[#2C324C] align-middle !font-medium !p-[7px]'>
                       {dictionary.adForm.num_of_vehicles}
                     </td>
-                    <td className='!text-center !bg-[#ededfc] !text-[#2C324C] align-middle !font-medium !p-[7px]'>
+                    <td className='!text-center  !text-[#2C324C] align-middle !font-medium !p-[7px]'>
                       {dictionary.adForm.min_vehicles}
                     </td>
-                    <td style={{ minWidth: '300px' }} className='!text-center !bg-[#ededfc] !text-[#2C324C] align-middle !font-medium !p-[7px]'>
+                    <td style={{ minWidth: '300px' }} className='!text-center  !text-[#2C324C] align-middle !font-medium !p-[7px]'>
                       {dictionary.adForm.standard}
                     </td>
                     {/*<td width={'27%'} className='!font-medium !p-[7px]'>*/}

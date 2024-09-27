@@ -394,11 +394,11 @@ export default function Index({ id }: { id: string }) {
                           />
                           <label
                             htmlFor={`file-list`}
-                            className="py-2 px-3 bg-[#EBEDF4] rounded cursor-pointer hover:bg-gray-300"
+                            className="py-2 px-3 bg-[#3e4164] text-[#ffffff] rounded cursor-pointer hover:bg-gray-300"
                           >
                             {inquireFormPage.selectFile}
                           </label>
-                          <span className="text-[#999999] text-sm">
+                          <span className="text-[#3e4164] text-sm">
                            {inquireFormPage.validFilesMsg}
                           </span>
                         </div>

@@ -44,6 +44,7 @@ module.exports = {
       "advertiser-light" : 'var(--light-color)',
       "advertiser-light-border" : 'var(--light-border)',
       'advertiser-deep' : 'var(--deep-color)',
+      "table-header" : 'var(--table-header)'
     },
   },
   plugins: [],

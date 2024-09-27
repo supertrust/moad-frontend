@@ -85,9 +85,11 @@ function AdvertisementDetailScreen() {
             operationStatus,
             adDetailsPage,
             common,
+            dashboard,
             operatingAreas: operatingAreasTrans,
             pageTitle,
-            adForm
+            adForm,
+            vehicle_types
         },
         isPcOnly,
         isKorean
@@ -213,6 +215,13 @@ function AdvertisementDetailScreen() {
                     : "--",
         },
         {
+            title: adDetailsPage.adDetailColumns[7],
+            value:
+                advertisement?.recruitment_period_start_date && advertisement?.recruitment_period_end_date
+                    ? `${advertisement?.recruitment_period_start_date} ~ ${advertisement?.recruitment_period_end_date}`
+                    : "--",
+        },
+        {
             title: adDetailsPage.adDetailColumns[2],
             value: advertisement?.type
                 ? types[advertisement.type]
@@ -224,6 +233,14 @@ function AdvertisementDetailScreen() {
                 ? AllStatuses.find((status) => advertisement?.status === status.value)
                     ?.label
                 : advertisement?.status,
+        },
+        {
+            title: adDetailsPage.adDetailColumns[9],
+            value: !advertisement?.vehicle_type? "-" :`${vehicle_types[advertisement?.vehicle_type]} ${advertisement.vehicles_in_operation.map(vehicle => vehicle.vehicle_type).join(', ')}`
+        },
+        {
+            title: adDetailsPage.adDetailColumns[8],
+            value: !advertisement?.vehicles_in_operation? "-": `${advertisement?.vehicles_in_operation.reduce((sum, vehicle) => sum + vehicle.number_of_vehicles, 0)}${dashboard?.big}`
         },
         {
             title: adDetailsPage.adDetailColumns[4],
@@ -281,120 +298,6 @@ function AdvertisementDetailScreen() {
         [cargoItems, view]
     );
 
-    const columns = [
-        {
-            dataIndex: "no",
-            title: adDetailsPage.columns[0],
-            formatter: (cell: any, row: any, rowIndex: any, formatExtraData: any) => {
-                return rowIndex + 1;
-            },
-            sort: true,
-            headerStyle: {
-                backgroundColor: "rgb(244 247 251)",
-                paddingTop: "20px",
-                paddingBottom: "20px",
-                borderStartStartRadius: "0px",
-            },
-        },
-        {
-            dataIndex: "car_number",
-            title: adDetailsPage.columns[1],
-            sort: true,
-            headerStyle: {
-                backgroundColor: "rgb(244 247 251)",
-                paddingTop: "20px",
-                paddingBottom: "20px",
-            },
-        },
-        {
-            dataIndex: "vehicle_type",
-            title: adDetailsPage.columns[2],
-            headerStyle: {
-                backgroundColor: "rgb(244 247 251)",
-                paddingTop: "20px",
-                paddingBottom: "20px",
-            },
-        },
-        {
-            title: adDetailsPage.columns[3],
-            headerStyle: {
-                backgroundColor: "rgb(244 247 251)",
-                paddingTop: "20px",
-                paddingBottom: "20px",
-            },
-            render: ({ vehicle_status }) => {
-                return vehicle_status && operationStatus[vehicle_status.toLowerCase()];
-            },
-        },
-        {
-            dataIndex: "vehicle_information",
-            title: adDetailsPage.columns[4],
-            headerStyle: {
-                backgroundColor: "rgb(244 247 251)",
-                paddingTop: "20px",
-                paddingBottom: "20px",
-            },
-            render: (text: any, record: any) => (
-                record?.vehicle_status === "end" ? <DisabledButton>{text}</DisabledButton> : <Link
-                    legacyBehavior
-                    href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle/${record.cargo_vehicle_id}`}
-                >
-                    <a className="text-advertiser-primary hover:no-underline">
-                        {text}
-                    </a>
-                </Link>
-            ),
-        },
-        {
-            dataIndex: "vehicle_location",
-            title: adDetailsPage.columns[5],
-            headerStyle: {
-                backgroundColor: "rgb(244 247 251)",
-                paddingTop: "20px",
-                paddingBottom: "20px",
-            },
-            render: (text: any, record: any) => (
-                record?.vehicle_status === "end" ? <DisabledButton>{text}</DisabledButton> :
-                    <Link
-                        legacyBehavior
-                        href={`/dashboard/advertisement-detail/${record.advertisement_id}/vehicle-location/${record.cargo_vehicle_id}`}
-                    >
-                        <a className="text-advertiser-primary hover:no-underline">
-                            {text}
-                        </a>
-                    </Link>
-
-            ),
-        },
-        {
-            dataIndex: "vehicle_location",
-            title: adDetailsPage.columns[6],
-            headerStyle: {
-                backgroundColor: "rgb(244 247 251)",
-                paddingTop: "20px",
-                paddingBottom: "20px",
-            },
-            render: (text: any, record: any) => (
-                record?.vehicle_status === "end" ? <DisabledButton>{text}</DisabledButton> :
-                    <div
-                        className="text-advertiser-primary cursor-pointer"
-                        onClick={() => {
-                            setVerifyPicturesModalData({
-                                advertisement_id: record.advertisement_id,
-                                cargo_vehicle_id: record.cargo_vehicle_id
-                            })
-                            setOpen(true)
-                        }}
-                    >
-                        {text}
-                    </div>
-            ),
-        },
-    ];
-    if (window.innerWidth < 767) {
-        columns.splice(0, 1);
-        columns.splice(1, 1);
-    }
     const [swiper, setSwiper] = useState(false);
     const openBox = () => {
         setSwiper(!swiper);
@@ -455,19 +358,7 @@ function AdvertisementDetailScreen() {
                             </div>
                         </div>
                         <div className={styles.ad_detail_list_content}>
-                            <Breadcrumb
-                                separator=">"
-                                items={[
-                                    {
-                                        href: "/dashboard",
-                                        title: adDetailsPage.breadCrumb[0],
-                                    },
-                                    {
-                                        title: adDetailsPage.breadCrumb[1],
-                                    },
-                                ]}
-                                className="text-[#2c324c] mb-[20px] hidden sm:block"
-                            />
+                          <span className={'title_wrap_top'}>{adDetailsPage?.operationDetails}</span>
                             <div className={'flex flex-col gap-[10px]'}>
                                 <div className={clsx(styles.detail_content, 'h-[100%] w-[100%]')}>
                                     <div className={styles.slide_box}>
@@ -598,7 +489,7 @@ function AdvertisementDetailScreen() {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className={styles.right_side}>
+                                    <div className={clsx(styles.right_side,"mb-[20px]")}>
                                         {/* <table className={`border-collapse border lg:h-[393px] w-[100%] bg-white rounded`}>
                     {ad_detail_arr.map((data, index) =>
                       <tr key={index} className={`${styles.table_line} lg:h-[49px]`}>
@@ -607,7 +498,7 @@ function AdvertisementDetailScreen() {
                       </tr>
                     )}
                   </table> */}
-                                        <div className={`${styles.table_box} h-[100%]`}>
+                                        <div className={clsx(styles.table_box,isKorean && "h-[100%]")}>
                                             {ad_detail_arr.map((data, index) => (
                                                 <div key={index} className={`${styles.table_line} w-[100%] h-[100%]`}>
                                                     <div

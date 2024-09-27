@@ -1423,8 +1423,9 @@
     }
   },
   "adDetailsPage": {
-    "adDetailColumns":["Ad name", "Ad period", "Ad type", "Ad status", "Ad area", "Ad amount", "Advertising contract"],
-    "columns":["no","Registration number", "Vehicle type", "Driving status", "Vehicle information", "Vehicle location", "Authentication photo"],
+    "operationDetails" : "Operation Details",
+    "adDetailColumns":["Ad name", "Ad period","Ad type", "Ad status", "Ad area", "Ad amount", "Advertising contract", "Recruitment period","Vehicle Count","Vehicle type"],
+    "columns":["no","Registration number", "Vehicle type", "Operation status", "Vehicle information", "Vehicle location", "Authentication photo"],
     "breadCrumb":["Ad Management", "Advertising Vehicle Details"],
     "mockupOptions":["Rotate 360°", "View as image"],
     "tabs": ["All", "In operation", " Operation suspended"],

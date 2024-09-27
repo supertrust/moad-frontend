@@ -4431,6 +4431,16 @@ div[style*='position: absolute; width: 11px; height: 9px; background: url("http:
 	opacity: 2;
 }
 
+.title_wrap_top{
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: -0.2px;
+	margin-bottom: 24px;
+	color: #2C324C;
+}
+
 
 /*@media only screen and (min-width: 1023px) {*/
 /*	.only-mb{*/

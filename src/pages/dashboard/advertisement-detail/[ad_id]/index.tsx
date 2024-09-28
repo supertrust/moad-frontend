@@ -31,6 +31,7 @@ import weekday from 'dayjs/plugin/weekday'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import weekYear from 'dayjs/plugin/weekYear'
 import Image from "next/image";
+import { Image as AntImage } from 'antd';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Suspense, useEffect, useMemo, useState, } from "react";
@@ -791,6 +792,7 @@ const VerifyPicturesModal = ({
 
     const columns = [
         {
+            width : 160,
             dataIndex: "date",
             title: verifyPicturesModal.columns[0],
             headerStyle: {
@@ -805,6 +807,7 @@ const VerifyPicturesModal = ({
             }
         },
         {
+            width : 160,
             dataIndex: "status",
             title: verifyPicturesModal.columns[1],
             headerStyle: {
@@ -820,6 +823,7 @@ const VerifyPicturesModal = ({
             },
         },
         {
+            width : 160,
             dataIndex: "date",
             title: verifyPicturesModal.columns[2],
             headerStyle: {
@@ -848,14 +852,24 @@ const VerifyPicturesModal = ({
             open={open}
             onCancel={close}
             title={
-                <p className="text-2xl font-bold text-center text-[#29293E] py-2 border-b border-white">
-                    {verifyPicturesModal.title}
-                </p>
+              <div className={'flex justify-between items-center px-[10px] h-[78px]'}>
+                  <ArrowBack
+                      handleAction={() => {
+                          if (step === 1) setStep(0)
+                           else close()
+
+                      }}
+                  />
+                  <p className="text-2xl font-bold text-center text-[#29293E] border-b border-white">
+                      {verifyPicturesModal.title}
+                  </p>
+                  <span className={'invisible'}>.</span>
+              </div>
             }
             footer={false}
             closable={false}
             className={"ad_modal"}
-            width={isPcOnly ? 600 : 370}
+            width={isPcOnly ? 520 : 370}
         >
             <div className="flex justify-center w-[100%] p-0 lg:p-6 lg:w-[100%]">
                 {step === 1 && data && data[selectedRow].image_path?.length && (
@@ -863,19 +877,16 @@ const VerifyPicturesModal = ({
                         className={`!lg:w-[550px] overflow-hidden ${styles.active} ${styles.detail_slide} ${styles.box}`}
                         id="div3d"
                     >
-                        <ArrowBack
-                            className={"ml-4 mb-4"}
-                            handleAction={() => setStep(0)}
-                        />
                         <CarouselWrapper className={styles.swiper_wrapper}>
                             <Carousel activeIndex={index} onSelect={handleSelect}>
                                 {data[selectedRow].image_path?.map((item, index) => (
                                     <Carousel.Item key={index}>
-                                        <Image
+                                        <AntImage
                                             src={item}
                                             alt="slides"
-                                            width={550}
-                                            height={500}
+                                            width={isPcOnly ? 520 : 370}
+                                            height={395}
+                                            fallback="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMIAAADDCAYAAADQvc6UAAABRWlDQ1BJQ0MgUHJvZmlsZQAAKJFjYGASSSwoyGFhYGDIzSspCnJ3UoiIjFJgf8LAwSDCIMogwMCcmFxc4BgQ4ANUwgCjUcG3awyMIPqyLsis7PPOq3QdDFcvjV3jOD1boQVTPQrgSkktTgbSf4A4LbmgqISBgTEFyFYuLykAsTuAbJEioKOA7DkgdjqEvQHEToKwj4DVhAQ5A9k3gGyB5IxEoBmML4BsnSQk8XQkNtReEOBxcfXxUQg1Mjc0dyHgXNJBSWpFCYh2zi+oLMpMzyhRcASGUqqCZ16yno6CkYGRAQMDKMwhqj/fAIcloxgHQqxAjIHBEugw5sUIsSQpBobtQPdLciLEVJYzMPBHMDBsayhILEqEO4DxG0txmrERhM29nYGBddr//5/DGRjYNRkY/l7////39v///y4Dmn+LgeHANwDrkl1AuO+pmgAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAwqADAAQAAAABAAAAwwAAAAD9b/HnAAAHlklEQVR4Ae3dP3PTWBSGcbGzM6GCKqlIBRV0dHRJFarQ0eUT8LH4BnRU0NHR0UEFVdIlFRV7TzRksomPY8uykTk/zewQfKw/9znv4yvJynLv4uLiV2dBoDiBf4qP3/ARuCRABEFAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghggQAQZQKAnYEaQBAQaASKIAQJEkAEEegJmBElAoBEgghgg0Aj8i0JO4OzsrPv69Wv+hi2qPHr0qNvf39+iI97soRIh4f3z58/u7du3SXX7Xt7Z2enevHmzfQe+oSN2apSAPj09TSrb+XKI/f379+08+A0cNRE2ANkupk+ACNPvkSPcAAEibACyXUyfABGm3yNHuAECRNgAZLuYPgEirKlHu7u7XdyytGwHAd8jjNyng4OD7vnz51dbPT8/7z58+NB9+/bt6jU/TI+AGWHEnrx48eJ/EsSmHzx40L18+fLyzxF3ZVMjEyDCiEDjMYZZS5wiPXnyZFbJaxMhQIQRGzHvWR7XCyOCXsOmiDAi1HmPMMQjDpbpEiDCiL358eNHurW/5SnWdIBbXiDCiA38/Pnzrce2YyZ4//59F3ePLNMl4PbpiL2J0L979+7yDtHDhw8vtzzvdGnEXdvUigSIsCLAWavHp/+qM0BcXMd/q25n1vF57TYBp0a3mUzilePj4+7k5KSLb6gt6ydAhPUzXnoPR0dHl79WGTNCfBnn1uvSCJdegQhLI1vvCk+fPu2ePXt2tZOYEV6/fn31dz+shwAR1sP1cqvLntbEN9MxA9xcYjsxS1jWR4AIa2Ibzx0tc44fYX/16lV6NDFLXH+YL32jwiACRBiEbf5KcXoTIsQSpzXx4N28Ja4BQoK7rgXiydbHjx/P25TaQAJEGAguWy0+2Q8PD6/Ki4R8EVl+bzBOnZY95fq9rj9zAkTI2SxdidBHqG9+skdw43borCXO/ZcJdraPWdv22uIEiLA4q7nvvCug8WTqzQveOH26fodo7g6uFe/a17W3+nFBAkRYENRdb1vkkz1CH9cPsVy/jrhr27PqMYvENYNlHAIesRiBYwRy0V+8iXP8+/fvX11Mr7L7ECueb/r48eMqm7FuI2BGWDEG8cm+7G3NEOfmdcTQw4h9/55lhm7DekRYKQPZF2ArbXTAyu4kDYB2YxUzwg0gi/41ztHnfQG26HbGel/crVrm7tNY+/1btkOEAZ2M05r4FB7r9GbAIdxaZYrHdOsgJ/wCEQY0J74TmOKnbxxT9n3FgGGWWsVdowHtjt9Nnvf7yQM2aZU/TIAIAxrw6dOnAWtZZcoEnBpNuTuObWMEiLAx1HY0ZQJEmHJ3HNvGCBBhY6jtaMoEiJB0Z29vL6ls58vxPcO8/zfrdo5qvKO+d3Fx8Wu8zf1dW4p/cPzLly/dtv9Ts/EbcvGAHhHyfBIhZ6NSiIBTo0LNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiECRCjUbEPNCRAhZ6NSiAARCjXbUHMCRMjZqBQiQIRCzTbUnAARcjYqhQgQoVCzDTUnQIScjUohAkQo1GxDzQkQIWejUogAEQo121BzAkTI2agUIkCEQs021JwAEXI2KoUIEKFQsw01J0CEnI1KIQJEKNRsQ80JECFno1KIABEKNdtQcwJEyNmoFCJAhELNNtScABFyNiqFCBChULMNNSdAhJyNSiEC/wGgKKC4YMA4TAAAAABJRU5ErkJggg=="
                                         />
                                     </Carousel.Item>
                                 ))}
@@ -884,22 +895,25 @@ const VerifyPicturesModal = ({
                     </div>
                 )}
                 {step === 0 &&
-                    <div className={'w-[340px] lg:w-[100%] lg:p-4 pb-6'}>
-                        <div className="flex justify-between pb-3 lg:pb-4  w-[340px] px-2 lg:px-0 lg:w-[100%]">
+                    <div className={'w-[340px] lg:w-[100%] lg:p-4 pb-0 pt-0'}>
+                        <div className="flex justify-between items-center gap-2 pb-3 lg:pb-4  w-[340px] lg:px-0 lg:w-[100%]">
                             <DatePicker
+                                style={{width : "50%",height :"40px"}}
                                 suffixIcon={<DateIcon/>}
                                 popupClassName={clsx("admin-advertisement-date-picker", isKorean ? "korean-date" : "eng-date")}
-                                placeholder={verifyPicturesModal.selectStartDate}
+                                placeholder={common?.select_date}
                                 className={clsx(
                                     styles['date-picker'],
                                 )}
                                 onChange={(date, dateString) => setDate({ end_date, start_date: dateString })}
                                 value={start_date ? dayjs(start_date, "YYYY-MM-DD") : undefined}
                             />
+                            <span>~</span>
                             <DatePicker
+                                style={{width : "50%",height :"40px"}}
                                 suffixIcon={<DateIcon/>}
                                 popupClassName={clsx("admin-advertisement-date-picker", isKorean ? "korean-date" : "eng-date")}
-                                placeholder={verifyPicturesModal.selectEndDate}
+                                placeholder={common?.select_date}
                                 className={clsx(
                                     styles['date-picker'],
                                 )}
@@ -911,7 +925,8 @@ const VerifyPicturesModal = ({
                             columns={columns}
                             rows={data || []}
                             loading={isLoading}
-                            additionalTableProps={{ scroll: { y: 500 } }}
+                            showPagination={true}
+                            // additionalTableProps={{ scroll: { x: isK } }}
                         />
                     </div>
                 }

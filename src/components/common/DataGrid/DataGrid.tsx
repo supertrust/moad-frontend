@@ -78,6 +78,7 @@ const DataGrid: React.FC<TableProps> = ({
   return (
     <>
       <Table
+          className={'advertiser-ant-table-container'}
         rowSelection={selection ? rowSelection : undefined}
         pagination={false}
         columns={columns}

@@ -4063,23 +4063,13 @@ input:focus-visible {
 	}
 }
 
-/*Landing page css end*/
-
-.ant-table-wrapper
-	.ant-table-container
-	table
-	> thead
-	> tr:first-child
-	> *:last-child {
-	border-start-end-radius: 0px !important;
+.advertiser-ant-table-container .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table > thead > tr > th {
+	border-right: 0px !important;
+	border-bottom: 0px !important;
 }
-.ant-table-wrapper
-.ant-table-container
-	table
-	> thead
-	> tr:first-child
-	> *:first-child {
-	border-start-start-radius: 0px !important;
+
+.advertiser-ant-table-container .ant-table.ant-table-bordered > .ant-table-container > .ant-table-content > table > tbody > tr > td:not(:last-child) {
+	border-right: 0px !important;
 }
 
 .ant-breadcrumb a {

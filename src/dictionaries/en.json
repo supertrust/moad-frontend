@@ -33,6 +33,7 @@
     "cart": "Toevoegen aan Winkelwagen"
   },
   "common": {
+    "select_date" : "Select Date",
     "enter_date" : "Enter Date",
     "selected_count_prefix": "Selected",
     "selected_count_suffix": " items",

@@ -90,6 +90,7 @@ const DataGrid: React.FC<TableProps> = ({
       {showPagination && (
         <div className="flex justify-center py-[30px] notification_pagination">
           <Pagination
+              className={'notification_pagination'}
             current={currentPage || 1}
             total={totalItems || 1}
             pageSize={itemsPerPage || 1}

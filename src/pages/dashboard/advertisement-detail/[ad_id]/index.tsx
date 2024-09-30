@@ -769,10 +769,16 @@ const VerifyPicturesModal = ({
     const [filterDate, setFilterDate] = useState({
         start_date: '', end_date: ''
     })
+    const [page,setPage] = useState(1)
     const [selectedRow, setSelectedRow] = useState(0);
-    const { data, isFetching: isLoading } = useGetCargoVerificationImages({
-        ...verifyPicturesModalData, startDate: filterDate?.start_date, endDate: filterDate?.end_date
+    const { data : resData, isFetching: isLoading } = useGetCargoVerificationImages({
+        ...verifyPicturesModalData, startDate: filterDate?.start_date, endDate: filterDate?.end_date,
+        page,
+        per_page : 5
     });
+
+    const data = resData?.data
+    const pagination = resData?.pagination
 
     const handleSelect = (selectedIndex: any, e: any) => {
         setIndex(selectedIndex);
@@ -871,7 +877,7 @@ const VerifyPicturesModal = ({
             className={"ad_modal"}
             width={isPcOnly ? 520 : 370}
         >
-            <div className="flex justify-center w-[100%] p-0 lg:p-6 lg:w-[100%]">
+            <div className="flex justify-center w-[100%] p-0 lg:p-6 lg:w-[100%] pb-3">
                 {step === 1 && data && data[selectedRow].image_path?.length && (
                     <div
                         className={`!lg:w-[550px] overflow-hidden ${styles.active} ${styles.detail_slide} ${styles.box}`}
@@ -925,8 +931,11 @@ const VerifyPicturesModal = ({
                             columns={columns}
                             rows={data || []}
                             loading={isLoading}
-                            showPagination={true}
-                            // additionalTableProps={{ scroll: { x: isK } }}
+                            showPagination={!!data?.length}
+                            itemsPerPage={5}
+                            currentPage={page || 1}
+                            totalItems={pagination?.total_items}
+                            onChangePage={(page) => setPage(page)}
                         />
                     </div>
                 }

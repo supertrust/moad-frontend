@@ -1,3 +1,4 @@
+import { useGetCargoVerificationImages } from "@src/apis/advertisement";
 import { number } from "yup";
 
 export type AdTypesType = "national_ad" | "spot_ad" | "fixed_ad";
@@ -222,6 +223,8 @@ export type GetCargoVerificationImagesProps = {
     advertisement_id: number
     cargo_vehicle_id: number
     status?: string
+    page?: number
+    per_page? : number
 }
 
 export type ICargoImage = {
@@ -241,6 +244,15 @@ export type CargoVerificationImage = {
     image_path: string[]
 }
 
+export type ICargoVerificationImageRes = {
+    data: CargoVerificationImage[]
+    pagination : {
+        current_page: number
+        per_page: number
+        total_items: number
+        total_pages: number
+    }
+}
 
 export type IAdvertisementStat ={
     id?:number,

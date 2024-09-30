@@ -1,34 +1,33 @@
 import { API_URL } from "@src/apis/urls";
-import { GetVehicleDetailsPropsType, GetVehicleDetailsResponseType } from "@src/types/vehicle";
-import axios from "@src/utils/axios";
+import { queryClient } from "@src/services/ReactQueryClient";
 import {
     AdStatusesType,
+    DraftAdvertisementImage,
     GetAdvertisementCargoPropsType,
     GetAdvertisementDetailPropType,
     GetAdvertisementOperationAreaPropsType,
-    GetAdvertisementVehiclesPropsType,
     GetAdvertisementsPropType,
+    GetAdvertisementVehiclesPropsType,
     GetCargoImageListProps,
+    GetCargoVerificationImagesProps,
+    GetTotalAdvertisementStatProps,
     IAdvertisement,
     IAdvertisementData,
     IAdvertisementOperatingArea,
-    IAdvertisementStat,
+    IAdvertisementStatResponse,
     IAdvertisementVehicle,
     IAdvertissementCargoResponse,
-    ICargoImage,
+    ICargoImage, ICargoVerificationImageRes,
     IOperatingArea,
     ITotalAdvertisementStat,
     IVehicle,
     SaveAdvertisementType,
     UpdateAdvertisementStatusType,
-    DraftAdvertisementImage,
-    VehicleAdvertisementStatsResponse,
-    GetTotalAdvertisementStatProps,
-    GetCargoVerificationImagesProps,
-    CargoVerificationImage, IAdvertisementStatResponse
+    VehicleAdvertisementStatsResponse
 } from "@src/types/advertisement";
+import { GetVehicleDetailsPropsType, GetVehicleDetailsResponseType } from "@src/types/vehicle";
+import axios from "@src/utils/axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { queryClient } from "@src/services/ReactQueryClient";
 
 export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) =>
     useQuery<IAdvertisementData, string>({
@@ -208,7 +207,7 @@ export const useGetDraftAdvertisementImages = (id:string) => useQuery<DraftAdver
     enabled : !!id
 });
 
-export const useGetCargoVerificationImages = (props:GetCargoVerificationImagesProps) => useQuery<CargoVerificationImage[], string>({
+export const useGetCargoVerificationImages = (props:GetCargoVerificationImagesProps) => useQuery<ICargoVerificationImageRes, string>({
     queryKey: ["get-cargo-verification-images", props ],
     queryFn: async () => (await axios.get(API_URL.getCargoVerificationImages(), { params: props })).data.data,
     retry: 0,

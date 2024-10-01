@@ -11,7 +11,7 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Carousel,Modal } from "react-bootstrap";
+import { Carousel, Modal } from "react-bootstrap";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -296,7 +296,9 @@ export default function VehicleInfoScreen() {
                         {adVehicleDetailsPage.listItemsLabels[2]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
-                        {(advertisement?.estimated_driving_distance ?? '---') + (advertisement?.estimated_driving_distance ? 'km' : '')}
+                        {( advertisement
+                            ?.monthly_avg_operating_days ?? '---') + ( advertisement
+                            ?.monthly_avg_operating_days ? 'km' : '')}
                       </div>
                     </li>
                     <li className={styles.list}>
@@ -304,10 +306,9 @@ export default function VehicleInfoScreen() {
                       {adVehicleDetailsPage.listItemsLabels[3]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
-                        {
-                          advertisement
-                              ?.monthly_avg_operating_days
-                        }
+                          {
+                              //@ts-ignore
+                              (advertisement?.daily_avg_drive_time || 0)*24 }{ isKorean? "일" : ""}
                       </div>
                     </li>
                     <li className={styles.list}>

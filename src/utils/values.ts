@@ -8,6 +8,7 @@ export const PageRouting = {
     "faq" : "/dashboard/customer-service/faq",
     "inquire" : "/dashboard/customer-service/inquire",
     "terms" : "/dashboard/customer-service/terms",
+    "privacy" : "/dashboard/customer-service/privacy",
 
 }
 

@@ -27,7 +27,8 @@ const sideBarPath = {
     "/dashboard/customer-service/inquire": "top_bar_inquiry",
     "/dashboard/customer-service/inquire/[id]": "top_bar_inquiry",
     "/dashboard/customer-service/inquire/form": "top_bar_inquiry",
-    "/dashboard/customer-service/terms": "top_bar_policies_and_terms"
+    "/dashboard/customer-service/terms": "top_bar_policies_and_terms",
+    "/dashboard/customer-service/privacy": "top_bar_policies_and_terms"
 }
 
 function Sidebar({ msg }: SidebarProps) {
@@ -223,7 +224,7 @@ function Sidebar({ msg }: SidebarProps) {
                                     </li>
                                     <li className="sub-list terms ">
                                         <Link
-                                            href={PageRouting.terms}
+                                            href={PageRouting.privacy}
                                             className={
                                                 tab === "top_bar_policies_and_terms"
                                                     ? "sub-link active"

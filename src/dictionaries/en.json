@@ -62,7 +62,8 @@
     "check" : "Check",
     "checkList" : "Check List",
     "allowedFileTypesMsg" : "Only JPG, JPEG, and PNG files are accepted.",
-    "no_data_found": "No data found!"
+    "no_data_found": "No data found!",
+    "letterList" : ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"]
   },
   "operatingAreas": {
     "seoul": "Seoul",
@@ -715,6 +716,819 @@
       "value": "last_year"
     }
   ],
+  "customer_policy" : {
+    "policyList": [
+      {
+        "title": "Article 1 (Purpose)",
+        "content": "Must Fintech Co., Ltd. (hereinafter referred to as the 'Company') establishes this personal information processing policy (hereinafter referred to as 'this Policy') to protect the information (hereinafter referred to as 'Personal Information') of individuals (hereinafter referred to as 'Users' or 'Individuals') who use the services (hereinafter referred to as 'Company Services') provided by the Company, in compliance with relevant laws such as the Personal Information Protection Act and the Act on Promotion of Information and Communications Network Utilization and Information Protection (hereinafter referred to as 'Information and Communications Network Act'), and to promptly and smoothly handle complaints related to the protection of Users' Personal Information."
+      },
+      {
+        "title": "Article 2 (Principles of Personal Information Processing)",
+        "content": "In accordance with personal information-related laws and this Policy, the Company may collect Users' Personal Information, and the collected Personal Information may be provided to third parties only with the individual's consent. However, in cases where it is legally mandated by laws and regulations, the Company may provide the collected Users' Personal Information to third parties without prior consent."
+      },
+      {
+        "title": "Article 3 (Disclosure of This Policy)",
+        "content": "The Company discloses this Policy through the main page of the Company’s website or a linked screen so that Users can easily check this Policy at any time. When the Company discloses this Policy in accordance with Paragraph 1, it will use font size, color, and other methods to ensure that Users can easily review this Policy."
+      },
+      {
+        "title": "Article 4 (Changes to This Policy)",
+        "content": "This Policy may be amended in accordance with changes in personal information-related laws, guidelines, notifications, or changes in government or Company service policies or content.",
+        "items": [
+          {
+            "title": "If the Company amends this Policy in accordance with Paragraph 1, it will notify Users using one or more of the following methods.",
+            "subItems": [
+              {
+                "title": "By posting on the notice section of the main page of the Company's website or through a separate pop-up window."
+              },
+              {
+                "title": "By notifying Users via written document, fax, email, or similar methods."
+              }
+            ]
+          },
+          {
+            "title": "The Company will provide notice of the amendment at least 7 days before the effective date of the Policy change. However, if there is a significant change in Users' rights, the notice will be provided at least 30 days in advance."
+          }
+        ]
+      },
+      {
+        "title": "Article 5 (Information for Membership Registration)",
+        "content": "The Company collects the following information for Users to register for membership in Company Services.",
+        "items": [
+          {
+            "title": "Required information: Name, Nickname, Date of Birth, ID and Password, Mobile Phone Number, Affiliated Company, Owned Vehicle"
+          }
+        ]
+      },
+      {
+        "title": "Article 6 (Information for Identity Verification)",
+        "content": "The Company collects the following information for Users' identity verification.",
+        "items": [
+          {
+            "title": "Required information: Mobile Phone Number, Name, Date of Birth, Gender, Mobile Carrier, and whether the individual is a Korean national or foreigner."
+          }
+        ]
+      },
+      {
+        "title": "Article 7 (Information for Consent of Legal Representative)",
+        "content": "If consent from a legal representative is required, the Company collects the following information for the consent of the legal representative.",
+        "items": [
+          {
+            "title": "Required information: Guardian's Name, Guardian's Date of Birth, Guardian's Gender, whether the Guardian is a Korean national or foreigner, Guardian's Mobile Phone Number, Guardian's Mobile Carrier Information, and the relationship with the individual."
+          }
+        ]
+      },
+      {
+        "title": "Article 8 (Information for Payment Services)",
+        "content": "The Company collects the following information to provide its payment services to users.",
+        "items": [
+          {
+            "title": "Information collected for future services: Card number, expiration date, 6-digit date of birth (yy/mm/dd), bank name, and account number."
+          }
+        ]
+      },
+      {
+        "title": "Article 9 (Information for Issuing Cash Receipts)",
+        "content": "The Company collects the following information to issue cash receipts for users.",
+        "items": [
+          {
+            "title": "Mandatory collected information: Name of the recipient of the cash receipt, date of birth of the cash receipt recipient, address of the cash receipt recipient, mobile phone number, and cash receipt card number."
+          }
+        ]
+      },
+      {
+        "title": "Article 10 (Information for Providing Company Services)",
+        "content": "The Company collects the following information to provide services to users.",
+        "items": [
+          {
+            "title": "Mandatory collected information: Name, date of birth, time of birth, contact information, IP address, service usage records, records of inappropriate use, access logs, inquiry history, mobile device information, location information of your mobile device during service use, and advertising identifier information (ADID, IDFA)."
+          },
+          {
+            "title": "Optional collected information: When using customer service or entering events, additional personal information that is not collected during registration may be collected for complaint handling, prize delivery, and tax reporting. In this process, information regarding the collection will be provided and separate consent will be obtained.",
+            "subItems": [
+              {
+                "title": "Customer Service: Email address, real name change information, etc."
+              },
+              {
+                "title": "Event Participation and Winning: Name, phone number, email address, delivery address, and resident registration number*."
+              },
+              {
+                "title": "Collection of Resident Registration Number: Separate consent will be obtained when collecting in accordance with relevant laws for the tax processing of winners."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Article 11 (Information for Service Usage and Fraud Verification)",
+        "content": "The Company collects the following information for statistical analysis and verification of fraudulent use based on users' service usage. (Fraudulent use refers to acts such as rejoining after membership withdrawal, repeatedly canceling purchases after buying products, and illegally receiving economic benefits such as discount coupons and event benefits provided by the Company, as well as behaviors prohibited by terms and conditions, identity theft, and other illegal activities.)",
+        "items": [
+          {
+            "title": "Mandatory collected information: Service usage records, cookies, access location information, and device information."
+          }
+        ]
+      },
+      {
+        "title": "Article 12 (Items of Personal Information Collected and Collection Methods)",
+        "content": "The Company collects users' personal information by the following methods:",
+        "items": [
+          {
+            "title": "Users input their personal information on the Company's homepage."
+          },
+          {
+            "title": "Users input their personal information through services other than the homepage provided by the Company, such as applications."
+          },
+          {
+            "title": "Users input their information while using the Company's services, such as during customer service consultations and activities on bulletin boards."
+          }
+        ]
+      },
+      {
+        "title": "Article 13 (Use of Personal Information)",
+        "content": "The Company uses personal information in the following cases:",
+        "items": [
+          {
+            "title": "When necessary for company operations, such as delivering announcements."
+          },
+          {
+            "title": "To respond to user inquiries, handle complaints, and improve services for users."
+          },
+          {
+            "title": "To provide the Company's services."
+          },
+          {
+            "title": "For measures to restrict use against members who violate laws and company terms, and to prevent and sanction acts that disrupt the smooth operation of services, including fraudulent use."
+          },
+          {
+            "title": "For the development of new services."
+          },
+          {
+            "title": "For marketing purposes such as event and activity announcements."
+          },
+          {
+            "title": "For demographic analysis and analysis of service visits and usage records."
+          },
+          {
+            "title": "To form relationships between users based on personal information and interests."
+          }
+        ]
+      },
+      {
+        "title": "Article 14 (Provision of Personal Information Based on Prior Consent)",
+        "content": "Despite the prohibition on providing personal information to third parties, the company may provide personal information to third parties if the user has publicly disclosed it in advance or agreed to the following matters. However, even in this case, the company will provide personal information only to the minimum extent necessary within the relevant laws.",
+        "items": [
+          {
+            "title": "The company may provide personal information to third parties if the user has publicly disclosed it in advance or agreed to the following matters. However, even in this case, the company will provide personal information only to the minimum extent necessary within the relevant laws.",
+            "subItems": [
+              {
+                "title": "If users have agreed to prior disclosure or provision to third parties."
+              },
+              {
+                "title": "If required by law or upon request from investigative agencies and supervisory authorities in accordance with established procedures and methods under the law for investigation or inquiry purposes."
+              },
+              {
+                "title": "If necessary for billing purposes."
+              },
+              {
+                "title": "In the case of payments within the service according to Article 8."
+              }
+            ]
+          },
+          {
+            "title": "The company will notify users and seek consent through the same procedures if there is a change in the third-party provision relationship or if the third-party provision relationship is terminated."
+          }
+        ]
+      },
+      {
+        "title": "Article 15 (Retention and Use Period of Personal Information)",
+        "items": [
+          {
+            "title": "The company retains and uses users' personal information for the period necessary to achieve the purpose of collection and use of personal information."
+          },
+          {
+            "title": "Notwithstanding the previous item, the company retains records of fraudulent use of the service for up to one year from the time of membership withdrawal to prevent fraudulent registration and use."
+          }
+        ]
+      },
+      {
+        "title": "Article 16 (Retention and Use Period of Personal Information According to Law)",
+        "content": "The company retains and uses personal information as follows in accordance with relevant laws.",
+        "items": [
+          {
+            "title": "Retention Information and Period Under the Consumer Protection Act in Electronic Commerce",
+            "subItems": [
+              {
+                "title": "Records related to contracts or withdrawal from subscription: 5 years"
+              },
+              {
+                "title": "Records related to payment and supply of goods: 5 years"
+              },
+              {
+                "title": "Records related to consumer complaints or dispute resolution: 3 years"
+              },
+              {
+                "title": "Records related to labeling & advertising: 6 months"
+              }
+            ]
+          },
+          {
+            "title": "Retention Information and Period Under the Communication Secrets Protection Act",
+            "subItems": [
+              {
+                "title": "APP log records: 3 months"
+              }
+            ]
+          },
+          {
+            "title": "Retention Information and Period Under the Electronic Financial Transactions Act",
+            "subItems": [
+              {
+                "title": "Records related to electronic financial transactions: 5 years"
+              }
+            ]
+          },
+          {
+            "title": "Protection and Use of Location Information Act",
+            "subItems": [
+              {
+                "title": "Records related to personal location information: 6 months"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Article 17 (Principles of Personal Information Destruction)",
+        "content": "In principle, the company will destroy personal information without delay when it is no longer needed for the purpose of processing users' personal information or when the retention and use period has elapsed."
+      },
+      {
+        "title": "Article 18 (Procedures for Destruction of Personal Information)",
+        "items": [
+          {
+            "title": "Information entered by users for membership registration, etc., will be transferred to a separate DB (or a separate filing cabinet in the case of paper) after the purpose of processing personal information has been achieved and will be stored for a certain period for information protection reasons in accordance with internal policies and other relevant laws (see retention and use period) before being destroyed."
+          },
+          {
+            "title": "The company will destroy personal information for which the reason for destruction has occurred after obtaining approval from the personal information protection officer."
+          }
+        ]
+      },
+      {
+        "title": "Article 19 (Methods of Destruction of Personal Information)",
+        "content": "The company will delete personal information stored in electronic file format using technical methods that prevent record reproduction, and personal information printed on paper will be destroyed through shredding or incineration."
+      },
+      {
+        "title": "Article 20 (Measures for Transmitting Advertising Information)",
+        "items": [
+          {
+            "title": "The company will obtain explicit prior consent from users when transmitting advertising information for commercial purposes using electronic transmission media. However, prior consent is not required in any of the following cases:",
+            "subItems": [
+              {
+                "title": "If the company has collected direct contact information from the recipient through a transaction relationship and intends to send advertising information for commercial purposes related to the same type of goods within six months from the end date of the transaction."
+              },
+              {
+                "title": "If the telephone salesperson, under the Act on Door-to-Door Sales, informs the recipient of the source of personal information during the phone solicitation."
+              }
+            ]
+          },
+          {
+            "title": "Notwithstanding the preceding paragraph, if the recipient expresses a refusal to receive or withdraws their consent, the company will not send advertising information for commercial purposes and will inform the recipient of the result of the refusal and withdrawal of consent."
+          },
+          {
+            "title": "If the company transmits advertising information for commercial purposes using electronic transmission media from 9 PM to 8 AM the following day, it will obtain separate prior consent from the recipient."
+          },
+          {
+            "title": "When transmitting advertising information for commercial purposes using electronic transmission media, the company will clearly specify the following matters in the advertising information:",
+            "subItems": [
+              {
+                "title": "Company name and contact information"
+              },
+              {
+                "title": "Information on how to express refusal to receive or withdraw consent"
+              }
+            ]
+          },
+          {
+            "title": "When transmitting advertising information for commercial purposes using electronic transmission media, the company will not take any of the following actions:",
+            "subItems": [
+              {
+                "title": "Actions that avoid or interfere with the recipient's refusal to receive or withdrawal of consent."
+              },
+              {
+                "title": "Actions that automatically generate the recipient's contact information, such as telephone numbers or email addresses, by combining numbers, symbols, or letters."
+              },
+              {
+                "title": "Actions that automatically register telephone numbers or email addresses for the purpose of transmitting advertising information for commercial purposes."
+              },
+              {
+                "title": "Various actions to conceal the identity of the sender of the advertising information or the source of the advertisement."
+              },
+              {
+                "title": "Various actions to deceive the recipient for the purpose of transmitting advertising information for commercial purposes to induce a reply."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Article 21 (Protection of Children's Personal Information)",
+        "items": [
+          {
+            "title": "The company allows only users aged 14 and above to register for membership to protect the personal information of children under 14."
+          },
+          {
+            "title": "Notwithstanding the preceding paragraph, if the user is under 14 years old, the company will obtain consent for the collection, use, and provision of the child's personal information from the child's legal representative."
+          },
+          {
+            "title": "In the case of the preceding paragraph, the company will additionally collect the name, date of birth, gender, duplicate registration confirmation information (ID), mobile phone number, etc., of the legal representative."
+          }
+        ]
+      },
+      {
+        "title": "Article 22 (Inquiry and Withdrawal of Consent for Personal Information Collection)",
+        "items": [
+          {
+            "title": "Users and legal representatives may inquire about or modify their registered personal information at any time and may request withdrawal of consent for personal information collection."
+          },
+          {
+            "title": "To withdraw consent for the collection of their registration information, users and legal representatives may contact the personal information protection officer or the responsible person via written communication, phone, or email, and the company will take action without delay."
+          }
+        ]
+      },
+      {
+        "title": "Article 23 (Change of Personal Information, etc.)",
+        "items": [
+          {
+            "title": "Users may request correction of errors in their personal information using the methods described above."
+          },
+          {
+            "title": "In the case of the preceding paragraph, the company will not use or provide the personal information until the correction is completed, and if incorrect personal information has already been provided to a third party, the company will notify the third party of the correction results without delay to ensure that the correction is made."
+          }
+        ]
+      },
+      {
+        "title": "Article 24 (Obligations of Users)",
+        "items": [
+          {
+            "title": "Users must keep their personal information up to date, and they are responsible for any issues that arise from inaccurate information input."
+          },
+          {
+            "title": "In cases of membership registration using another person's personal information, users may lose their membership eligibility or face penalties under relevant personal information protection laws."
+          },
+          {
+            "title": "Users are responsible for maintaining the security of their accounts and may not transfer or lend their accounts to third parties."
+          }
+        ]
+      },
+      {
+        "title": "Article 25 (Company's Management of Personal Information)",
+        "items": [
+          {
+            "title": "The company will take necessary measures to protect users' personal information from any risks and will implement measures to minimize exposure to personal information by minimizing the amount of information retained."
+          },
+          {
+            "title": "In the event of a data breach or violation of users' personal information, the company will take immediate action to investigate the cause and minimize damage."
+          }
+        ]
+      },
+      {
+        "title": "Article 26 (Handling of Deleted Information)",
+        "content": "The company processes personal information that has been terminated or deleted at the request of the user or their legal representative in accordance with the 'Retention and Use Period of Personal Information' specified by the company and ensures that it cannot be accessed or used for any other purposes."
+      },
+      {
+        "title": "Article 27 (Encryption of Passwords)",
+        "content": "Users' passwords are stored and managed using one-way encryption, and verification or changes to personal information can only be performed by the individual who knows the password."
+      },
+      {
+        "title": "Article 28 (Measures Against Hacking, etc.)",
+        "items": [
+          {
+            "title": "The company strives to prevent the leakage or damage of users' personal information due to hacking, computer viruses, or intrusions into the information and communication network."
+          },
+          {
+            "title": "The company uses the latest antivirus programs to prevent the leakage or damage of users' personal information or data."
+          },
+          {
+            "title": "The company uses an intrusion prevention system to ensure the utmost security in case of emergencies."
+          },
+          {
+            "title": "If the company collects and retains sensitive personal information, it ensures the secure transmission of personal information over the network through encrypted communication."
+          }
+        ]
+      },
+      {
+        "title": "Article 29 (Minimization of Personal Information Processing and Training)",
+        "content": "The company restricts the number of personnel handling personal information to a minimum and emphasizes compliance with laws and internal policies through training and other administrative measures for personal information processors."
+      },
+      {
+        "title": "Article 30 (Measures Regarding Personal Information Leakage, etc.)",
+        "content": "When the company becomes aware of the loss, theft, or leakage of personal information (hereinafter referred to as 'leakage, etc.'), it promptly notifies the affected user of all matters listed below and reports to the Korea Communications Commission or the Korea Internet & Security Agency.",
+        "items": [
+          {
+            "title": "Items of personal information that have leaked, etc."
+          },
+          {
+            "title": "Time when the leakage, etc. occurred"
+          },
+          {
+            "title": "Measures that the user can take"
+          },
+          {
+            "title": "Response measures taken by information and communication service providers, etc."
+          },
+          {
+            "title": "Department and contact information where users can receive consultations, etc."
+          }
+        ]
+      },
+      {
+        "title": "Article 31 (Exceptions to Measures Regarding Personal Information Leakage, etc.)",
+        "content": "Despite the above provisions, if there is a legitimate reason such as the company not being able to ascertain the user's contact information, the company may take measures to notify users by posting on its website for more than 30 days in lieu of the notification."
+      },
+      {
+        "title": "Article 32 (Protection of Personal Information Transferred Abroad)",
+        "items": [
+          {
+            "title": "The company does not enter into international contracts that violate personal information protection laws and related regulations regarding users' personal information."
+          },
+          {
+            "title": "The company obtains the user's consent to provide (including inquiries), entrust processing, or store users' personal information abroad (hereinafter referred to as 'transfer')."
+          },
+          {
+            "title": "If all matters specified in paragraph 3 of this article are disclosed in accordance with the personal information protection law and related regulations, or are notified to the user in a method specified by Presidential Decree such as email, the consent procedure for processing, entrusting, or storing personal information may not be required."
+          },
+          {
+            "title": "To obtain consent under the main text of paragraph 2 of this article, the company shall notify the user in advance of all matters specified below.",
+            "subItems": [
+              {
+                "title": "Items of personal information to be transferred"
+              },
+              {
+                "title": "Country to which personal information is transferred, date and method of transfer"
+              },
+              {
+                "title": "Name of the recipient of personal information (if a corporation, the name and contact information of the person in charge of information management)"
+              },
+              {
+                "title": "Purpose of use of the recipient's personal information and retention/use period"
+              }
+            ]
+          },
+          {
+            "title": "When the company obtains consent to transfer personal information abroad under the main text of paragraph 2, it implements protective measures in accordance with the personal information protection law and related regulations."
+          }
+        ]
+      },
+      {
+        "title": "Article 33 (Designation of Personal Information Protection Officer)",
+        "items": [
+          {
+            "title": "The company has designated related departments and a personal information protection officer as follows to protect users' personal information and address complaints related to personal information."
+          },
+          {
+            "title": "Personal Information Protection Officer",
+            "name": "Name: Cha Juheon",
+            "position": "Position: CEO",
+            "phone": "Phone Number: 010-6669-6314",
+            "email": "Email: youngcha@webloom.us"
+          }
+        ]
+      },
+      {
+        "title": "Article 34 (Remedies for Rights Infringement)",
+        "items": [
+          {
+            "title": "Data subjects may apply for dispute resolution or consultation with the Personal Information Dispute Mediation Committee, the Korea Internet & Security Agency Personal Information Infringement Reporting Center, etc., for remedies due to personal information infringement. For other personal information infringement reports or consultations, please contact the institutions listed below.",
+            "subItems": [
+              {
+                "title": "Personal Information Dispute Mediation Committee: (toll-free) 1833-6972 (www.kopico.go.kr)"
+              },
+              {
+                "title": "Personal Information Infringement Reporting Center: (toll-free) 118 (privacy.kisa.or.kr)"
+              },
+              {
+                "title": "Supreme Prosecutors' Office: (toll-free) 1301 (www.spo.go.kr)"
+              },
+              {
+                "title": "Korean National Police Agency: (toll-free) 182 (ecrm.cyber.go.kr)"
+              }
+            ]
+          },
+          {
+            "title": "The company guarantees the data subject's right to self-determination regarding personal information and strives to provide consultation and remedy for damages due to personal information infringement. If reporting or consultation is needed, please contact the relevant department mentioned in paragraph 1."
+          },
+          {
+            "title": "Those who suffer infringement of rights or interests due to a disposition or omission made by the head of a public institution in response to requests under Articles 35 (Access to Personal Information), 36 (Correction or Deletion of Personal Information), and 37 (Suspension of Personal Information Processing, etc.) of the Personal Information Protection Act may file an administrative appeal in accordance with the provisions of the Administrative Appeal Act.",
+            "content": "Central Administrative Appeals Commission: (toll-free) 110 (www.simpan.go.kr)"
+          }
+        ]
+      },
+      {
+        "title": "Supplementary Provision",
+        "content": "Article 1 This policy shall be enforced from May 1, 2024."
+      }
+    ],
+    "privacyList": [
+      {
+        "title": "Article 1 (Purpose)",
+        "content": "The purpose of these terms is to define the rights, obligations, and responsibilities of the \"Company\" (hereinafter referred to as \"Company\") and the \"Advertiser\" (defined below) in providing advertising services (defined below) offered by the \"Company\" to the \"Advertiser\"."
+      },
+      {
+        "title": "Article 2 (Definitions)",
+        "content": "The definitions of the terms used in these terms are as follows:",
+        "items": [
+          {
+            "title": "\"Advertisement\" (hereinafter referred to as \"Advertisement\") refers to the exposure of the \"Advertiser\"'s \"Advertising Material\" (defined below) on \"Advertising Media\" according to the content and procedures of the advertising products applied for by the \"Advertiser\" (defined below) as provided by the \"Company\"."
+          },
+          {
+            "title": "\"Advertising Material\" refers to the product descriptions, product photos, texts, or images created by the \"Advertiser\" and registered with the advertising media."
+          },
+          {
+            "title": "\"Advertising Product\" refers to what the \"Company\" sells to the \"Advertiser\" for publishing the \"Advertising Material\" on the \"Advertising Media\". The specific details of the types of advertising products, exposure forms, locations, etc., are as specified in the separate descriptions provided for each advertisement and advertising product (posted on the website). Other costs related to advertising execution will be posted in the advertising contract at the time of the agreement as a principle."
+          },
+          {
+            "title": "\"Advertising Service\" refers to all services such as exposing the \"Advertising Material\" of the \"Advertiser\" on the \"Advertising Media\" according to the content of the advertising product purchased by the \"Advertiser\", including ad registration, ad management, reports, and other services."
+          },
+          {
+            "title": "\"Advertiser\" refers to a person who applies for and uses the \"Service\" according to the procedures defined in these terms."
+          },
+          {
+            "title": "\"Mode Advertiser Web\" refers to the service page (website URL) provided by the \"Company\" for the \"Advertiser\" to apply for, publish, manage, and cancel advertisements."
+          },
+          {
+            "title": "\"Service Usage Fee\" refers to the amount paid by the \"Advertiser\" to the \"Company\" as compensation for using the service. This amount will be specified in the advertising contract upon signing the agreement after the advertisement application."
+          },
+          {
+            "title": "\"Advertising Media\" refers to the platform or channel where the \"Advertisement\" is exposed."
+          },
+          {
+            "title": "\"Sales Deposit\" refers to the amount that the \"Advertiser\" deposits in advance for executing advertisements."
+          }
+        ]
+      },
+      {
+        "title": "Article 3 (Posting and Composition of Terms)",
+        "items": [
+          {
+            "title": "\"Company\" shall post the contents of these terms on \"Mode (website URL)\" in a way that is easily accessible for the \"Advertiser\"."
+          },
+          {
+            "title": "If the \"Company\" revises these terms, it shall specify the application date and the reasons for the revision, and notify the current terms along with the revised terms at least seven (7) days prior to the application date. However, if the terms are changed to the detriment of the \"Advertiser\", it shall notify at least thirty (30) days in advance."
+          },
+          {
+            "title": "If the \"Company\" clearly notifies or communicates to the \"Advertiser\" that if the \"Advertiser\" does not express any intention within the period specified in the previous paragraph after notifying or communicating the revised terms, it will be considered as agreed, and if the \"Advertiser\" does not explicitly express refusal, the \"Advertiser\" shall be deemed to have agreed to the revised terms."
+          }
+        ]
+      },
+      {
+        "title": "Article 4 (Establishment of Usage Contract, etc.)",
+        "items": [
+          {
+            "title": "The \"Advertiser\" shall agree to the contents of the following \"Terms\" provided by the \"Company\", apply for use according to the procedures set by the \"Company\", and the contract shall be established upon acceptance of such application by the \"Company.\"",
+            "subItems": [
+              {
+                "title": "Agreement to the \"Basic Terms\""
+              },
+              {
+                "title": "Agreement to these \"Terms\""
+              },
+              {
+                "title": "Confirmation of completion of \"Advertiser\" registration"
+              }
+            ]
+          },
+          {
+            "title": "The \"Company\" may restrict the use of advertising services if the \"Advertiser\" has any of the following reasons:",
+            "subItems": [
+              {
+                "title": "If false information is provided or if the content presented by the \"Company\" is not included"
+              },
+              {
+                "title": "If the \"Advertiser\" loses eligibility due to violation of the basic terms"
+              },
+              {
+                "title": "If the \"Company\" reasonably determines that it is necessary to restrict the use of advertising services"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Article 5 (Registration, Restriction, and Management of Advertisements)",
+        "items": [
+          {
+            "title": "\"Company\" announces the types of advertising products, advertising areas, registration procedures, billing methods, and advertising products at the \"Mode Advertising Center\", and the \"Advertiser\" should carefully check this before applying for advertisements."
+          },
+          {
+            "title": "\"Company\" will only conduct formal inspections to verify whether the \"Advertisement\" and \"Advertising Material\" applied for by the \"Advertiser\" meet the procedures, standards, and methods set by the \"Company.\" The \"Company\" will not review the substantive validity, scope, subject of rights, or relevant contracts between the \"Advertisement\" and the \"Advertising Material.\" The \"Company\" is not responsible for the cancellation, deletion, or temporary suspension of the \"Advertisement\" or \"Advertising Material\" based on reports or requests from claimants, and this should be resolved between the claimant and the \"Advertiser.\" The \"Company\" will publish advertisements approved after inspection by the \"Company\" of the \"Advertiser\"'s \"Advertising Material\" on the \"Advertising Media.\""
+          },
+          {
+            "title": "The \"Advertiser\" must deposit the sales deposit before the advertisement is published. If the \"Advertiser\" has not deposited sufficient sales deposit in advance, the publication of the \"Advertisement\" may be suspended, and the \"Advertiser\" will be responsible for any issues arising from this."
+          },
+          {
+            "title": "\"Company\" may restrict or suspend the publication of the \"Advertisement\" if the \"Advertisement\" and \"Advertising Material\" of the \"Advertiser\" fall under any of the following conditions, and the \"Company\" shall not be liable regarding the suspension of the advertisement.",
+            "subItems": [
+              {
+                "title": "If the \"Advertiser\" accesses the \"Advertising Service\" in a manner not provided by the \"Company\""
+              },
+              {
+                "title": "If any legal or financial risks are caused or likely to arise for the \"Company\""
+              },
+              {
+                "title": "If actions cause system load on the \"Company\"'s advertising media, servers, and facilities"
+              },
+              {
+                "title": "If actions violate the advertising contract with the \"Company\""
+              },
+              {
+                "title": "Any other actions that interfere with the normal operation of the \"Advertising Service\""
+              }
+            ]
+          },
+          {
+            "title": "The \"Advertiser\" may apply for the purchase, addition, deletion, publication, or suspension of the \"Advertisement\" at any time by accessing \"Mode\" according to the procedures and methods specified by the \"Company.\""
+          }
+        ]
+      },
+      {
+        "title": "Article 6 (Change and Suspension of Advertising Services)",
+        "items": [
+          {
+            "title": "\"Company\" has the authority to determine the scope of advertising media where advertisements are displayed, the display area on the advertising media, display order, display information, UI, etc. (hereinafter referred to as \"Advertising Area, etc.\"), and may change or add to them."
+          },
+          {
+            "title": "\"Company\" may conduct tests targeting certain keywords and traffic for the improvement of the quality of the \"Advertising Service\" and the enhancement of the effectiveness of advertisements, and will notify the contents of the tests through the \"Mode\" announcement section at least five days in advance before conducting them."
+          },
+          {
+            "title": "In the event of maintenance checks and replacements of information and communication facilities, or due to communication or system failures, the provision of services may be temporarily suspended. In case of service suspension, the \"Company\" will promptly notify the \"Advertiser\" of the suspension via the main \"Mode Advertising Center\", announcement board, or through email, telephone, etc. However, exceptions apply to service suspensions due to unforeseen circumstances that the \"Company\" cannot predict."
+          }
+        ]
+      },
+      {
+        "title": "Article 7 (Settlement of Advertising Service Usage Fees, etc.)",
+        "items": [
+          {
+            "title": "The \"Company\" will automatically deduct the advertising service fees specified in the previous clause from the sales deposit that the \"advertiser\" has deposited with the advertising media on a daily basis. This portion will be separately detailed in the advertising contract between the \"Company\" and the \"advertiser\" regarding service fees."
+          },
+          {
+            "title": "The \"Company\" will issue a tax invoice for the actual advertising service fees incurred by the \"advertiser,\" and the \"advertiser\" can request the issuance of the tax invoice through the \"Company.\""
+          },
+          {
+            "title": "The advertising service fees specified in paragraph 1 of this article may vary, and in such cases, the \"Company\" will display the intended changes on the initial screen of the \"Mode Advertising Center\" and provide notification seven (7) days in advance."
+          },
+          {
+            "title": "In the event that a reason for compensation or refund arises during the use of the \"advertising service,\" the \"Company\" will generally compensate or refund the corresponding amount to the \"advertiser.\" The refund amount will vary depending on the advertising period and content. Detailed information will be subject to the advertising application terms and conditions."
+          }
+        ]
+      },
+      {
+        "title": "Article 8 (Notice to \"Advertiser\")",
+        "items": [
+          {
+            "title": "When the \"Company\" sends a notice to the \"Advertiser,\" unless otherwise specified in the \"Basic Terms,\" \"Terms and Conditions,\" or \"Advertising Contract,\" the notice can be sent to one of the email addresses, (mobile) phone numbers, or addresses provided by the \"Advertiser\" to the \"Mode Advertising Center,\" or in lieu of a notice, through methods such as alert windows when the \"Advertiser\" logs into the \"Mode Advertising Center.\""
+          },
+          {
+            "title": "The \"Advertiser\" must provide the \"Company\" with accurate and reachable email addresses, (mobile) phone numbers, and addresses, keep this information up to date, and confirm the notices from the \"Company.\""
+          },
+          {
+            "title": "The \"Company\" is not responsible for any disadvantages arising from the \"Advertiser\"'s neglect of the obligations in the preceding paragraph."
+          }
+        ]
+      },
+      {
+        "title": "Article 9 (Termination, Conclusion, and Refund of the Service Agreement)",
+        "items": [
+          {
+            "title": "The \"Advertiser\" may request the termination of the advertising service agreement at any time by accessing the \"Mode Advertising Center.\" However, in this case, the termination details will follow the termination clause outlined in the advertising contract created at the time of the advertising contract. If not explicitly stated, the \"Advertiser\" can terminate the advertising contract after paying a penalty of 10% of the total contracted advertising amount."
+          },
+          {
+            "title": "The \"Company\" may terminate the service agreement in the following cases. In this case, the \"Company\" will notify the \"Advertiser\" of the termination reasons through email, phone, fax, or other methods. However, the \"Company\" may give the \"Advertiser\" an opportunity to express their opinion on the termination reasons in advance.",
+            "subItems": [
+              {
+                "title": "The \"Advertiser\" loses or is suspended from their mode membership."
+              },
+              {
+                "title": "The \"Advertiser\" fails to deposit the \"Sales Deposit,\" preventing the \"Company\" from executing the advertisement."
+              },
+              {
+                "title": "The \"Advertiser\" has made false applications, violated relevant laws, or breached the \"Basic Terms\" and these terms."
+              },
+              {
+                "title": "Other objectively judged circumstances that indicate the \"Advertiser\" cannot fulfill this contract."
+              }
+            ]
+          },
+          {
+            "title": "Except for the contents specified in Article 9, Section 2, if the \"Company\" terminates the service agreement, any service application made by the \"Advertiser\" will be automatically canceled, and regarding the refund of the advertising amount after the termination of the advertising contract, it will follow the termination clause outlined in the advertising contract created at the time of the advertising contract. If not explicitly stated, a full refund will be given for the remaining balance from the total contracted advertising amount."
+          }
+        ]
+      },
+      {
+        "title": "Article 10 (Obligations of the \"Company\")",
+        "items": [
+          {
+            "title": "The \"Company\" shall comply with relevant laws and these \"Terms and Conditions\" and shall make every effort to continuously and stably provide the \"Advertising Service.\""
+          },
+          {
+            "title": "The \"Company\" shall establish a security system to protect personal information (including credit information) so that the \"Advertiser\" can securely use the \"Advertising Service\" and must publicly announce and comply with the privacy policy."
+          },
+          {
+            "title": "If the \"Company\" recognizes that the opinions or complaints raised by the \"Advertiser\" regarding relevant laws are legitimate, it must address them and can communicate the processing process and results to the \"Advertiser\" via bulletin boards or emails within the \"Mode Advertising Center.\""
+          },
+          {
+            "title": "To improve advertising effectiveness, the \"Company\" may provide the \"Advertiser\" with advertising setting features and will make every effort to ensure that advertisements are displayed according to the conditions set by the \"Advertiser.\""
+          }
+        ]
+      },
+      {
+        "title": "Article 11 (Obligations of the \"Advertiser\")",
+        "items": [
+          {
+            "title": "The \"Advertiser\" must comply with relevant laws such as the e-commerce law, the Telecommunications Business Act, the Act on Fair Labeling and Advertising, the Consumer Basic Act, and other policies established and published by the \"Company\" for customer protection and service reliability improvement, along with these terms, individual agreements, and seller operation policies."
+          },
+          {
+            "title": "To ensure smooth service provision by the \"Company,\" the \"Advertiser\" must regularly check notices posted on the Mode Advertising Center or delivered to their email notified to the \"Company.\""
+          },
+          {
+            "title": "The \"Advertiser\" may only use the service for advertising purposes and must not provide or leak the information provided by the service to third parties."
+          },
+          {
+            "title": "If a dispute arises between the \"Company\" and the \"Advertiser,\" customers, or third parties due to the \"Advertiser\"'s fault, the \"Advertiser\" must indemnify the \"Company\" at their own cost and responsibility and must compensate for any damages caused to the \"Company,\" customers, or third parties immediately."
+          },
+          {
+            "title": "The \"Advertiser\" must not lend or transfer the service usage rights under these terms to anyone other than themselves. However, the \"Company\" may grant usage rights to an agency designated by the \"Advertiser\" from the agencies posted on the \"Mode Advertising Center\" only if the \"Advertiser\" agrees, and the supervisory responsibility towards the \"Advertising Agency\" falls to the \"Advertiser.\" When the \"Advertiser\" designates the \"Advertising Agency,\" the effect of that designation will be maintained for the period announced by the \"Company\" on the \"Mode Advertising Center\" (hereinafter referred to as the \"Minimum Maintenance Period\"), and the \"Advertiser\" cannot designate another \"Advertising Agency\" during the \"Minimum Maintenance Period.\" The \"Minimum Maintenance Period\" can be confirmed."
+          },
+          {
+            "title": "If the contract relationship between the \"Company\" and the \"Advertising Agency\" ends or is terminated, the \"Advertiser\" may choose to either perform advertising work directly or designate another advertising agency with whom the \"Company\" has a contract. If the \"Advertiser\" does not make a choice, it will automatically be changed to performing advertising work directly."
+          },
+          {
+            "title": "If the \"Advertising Agency\" designated by the \"Advertiser\" has not logged in and has no record of paying the \"Service Usage Fee\" for 365 days from the day the \"Advertising Agency\" was designated or the day the \"Advertising Agency\" executed the \"Service Usage Fee,\" the \"Company\" will cancel the use of the \"Mode ID\" account designated by the \"Advertiser\" and change it to performing advertising work directly. However, if the \"Advertiser\" has logged in and has a record of paying the \"Service Usage Fee\" through the designated \"Advertising Agency\" within 7 days after the notice of the cancellation of the \"Mode ID\" account usage, it can be re-used."
+          }
+        ]
+      },
+
+      {
+        "title": "Article 12 (Liability of the \"Company\")",
+        "items": [
+          {
+            "title": "\"The Company\" shall be exempt from liability for service provision if it is unable to provide services normally due to reasons beyond its control, such as natural disasters, DDoS attacks, external attacks on service usage, IDC failures, or line failures from telecommunications service providers."
+          },
+          {
+            "title": "Unless there is intent or gross negligence, \"The Company\" shall not be liable for any damages incurred by the \"Advertiser\" due to service interruptions as specified in the previous paragraph, including loss of business or special damages."
+          },
+          {
+            "title": "\"The Company\" only provides the service of offering an advertising platform to expose advertisements. Under no circumstances does \"The Company\" represent or act on behalf of the \"Advertiser\" or their agency, and it assumes no responsibility for the sale of goods or services."
+          },
+          {
+            "title": "\"The Company\" is not responsible for any disruptions in service usage due to the fault of the \"Advertiser.\""
+          },
+          {
+            "title": "\"The Company\" is not liable for the reliability, accuracy, legality, etc., of the products advertised by the \"Advertiser,\" and it shall not be liable for damages incurred by the \"Advertiser,\" customers, or any third parties based on reliance on this information. However, if the \"Advertiser\" violates relevant laws or the advertising policies of the Company, \"The Company\" may refrain from posting advertisements and shall not be responsible for the posting or cessation of advertisements."
+          }
+        ]
+      },
+      {
+        "title": "Article 13 (Obligations for Personal Information Protection and Confidentiality)",
+        "items": [
+          {
+            "title": "Each party shall endeavor to protect the \"Advertiser\"'s personal information in accordance with relevant laws such as the \"Act on Promotion of Information and Communications Network Utilization and Information Protection.\" The protection and use of the \"Advertiser\"'s personal information shall be governed by the policies of \"The Company.\""
+          },
+          {
+            "title": "Each party must not disclose the personal information, technical information, management information, etc., received from the other party under paragraph 1, which is managed as confidential, to third parties unless required by law, and shall not use that information for any purposes other than fulfilling the contract."
+          }
+        ]
+      },
+      {
+        "title": "Article 14 (Dispute Resolution)",
+        "content": "These terms and conditions shall be governed and executed in accordance with the laws of the Republic of Korea, and any disputes arising in connection with the use of this service shall be subject to the jurisdiction of the court that has jurisdiction over the address specified in the Civil Procedure Act."
+      },
+      {
+        "title": "Article 15 (External Platform Advertising)",
+        "items": [
+          {
+            "title": "\"The Company\" does not guarantee where and how frequently the \"advertising materials\" for \"external platform advertising\" will be posted on the \"external platform advertising\" network, nor the method by which priority is determined among different \"Advertisers.\""
+          },
+          {
+            "title": "\"The Company\" may change the technology for \"external platform advertising\" or suspend the posting of \"advertising materials\" without notifying or compensating the \"Advertiser.\""
+          },
+          {
+            "title": "\"The Company\" will measure the necessary metrics to calculate clicks and/or the advertising fees that the \"Advertiser\" will incur through servers of external platform advertising companies selected by \"The Company\" and will provide the measurement results to the \"Advertiser.\""
+          },
+          {
+            "title": "\"External platform advertising\" carries the risk that a third party may perform acts that mislead or inappropriately affect the number of clicks or other fees under this contract. \"The Company\" assumes no liability to the \"Advertiser\" for such fraudulent clicks or any other inappropriate acts that may occur."
+          },
+          {
+            "title": "\"The Advertiser\" must diligently review the measurement results provided by \"The Company\" regarding the implementation of \"external platform advertising\" and decide whether to continue the \"external platform advertising.\" The \"Advertiser\" may not contest the measurement results specified in (3) against \"The Company.\""
+          }
+        ]
+      },
+      {
+        "title": "Article 16 (Effective Date)",
+        "content": "These terms and conditions are effective from October 1, 2024."
+      }
+
+    ]
+
+
+  },
 
   "privacy": {
     "pageTitle": "Privacy Policy",

@@ -52,6 +52,7 @@ export const API_URL = {
     updateAdvertisementStatus: () => `/api/update-advertisement-status`,
     getAdvertisementCargoList: () => `/api/get-advehicles-list`,
     getCargoImages: () => `/api/get-cargo-images`,
+    getCargoVehicleImages: () => `/api/get-cargo-vehicle-images`,
     getStatBasedAdvertisement: () => `/api/stats-based-advertisement`,
     getDraftAdvertisementImages: (id: string) => `/api/get-advertisement-images/${id}/draft`,
     getCargoVerificationImages: () => `/api/get-cargo-verification-images`

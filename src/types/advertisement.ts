@@ -213,6 +213,11 @@ export type GetCargoImageListProps = {
     advertisement_id: number
     cargo_vehicle_id: number
 }
+
+export type GetCargoVehicleImageListProps = {
+    cargo_vehicle_id: number
+}
+
 export type GetTotalAdvertisementStatProps = {
     start_date: Date | string
     end_date: Date | string
@@ -237,6 +242,17 @@ export type ICargoImage = {
     created_at: string,
     updated_at: string
   }
+
+export type ICargoVehicleImage = {
+    id: number,
+    advertisement_id: number,
+    cargo_vehicle_id: number,
+    file_title: string,
+    file_thumbnail: string,
+    file_path: string,
+    created_at: string,
+    updated_at: string
+}
 
 export type CargoVerificationImage = {
     date: string

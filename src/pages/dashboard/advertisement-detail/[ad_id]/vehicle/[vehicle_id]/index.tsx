@@ -1,16 +1,16 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { useGetCargoImage, useGetVehicleDetail, } from "@src/apis/advertisement";
+import { useGetCargoVehicleImages, useGetVehicleDetail, } from "@src/apis/advertisement";
 import ArrowBack from "@src/components/icons/ArrowBack";
 import Loader from "@src/components/Loader";
 import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { styles } from "@src/sections/vehicle-info";
-import { ICargoImage } from "@src/types/advertisement";
+import { ICargoVehicleImage } from "@src/types/advertisement";
 import { Breadcrumb } from "antd";
 import { clsx } from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Carousel, Modal } from "react-bootstrap";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import "swiper/css";
@@ -25,6 +25,13 @@ const imageStyle = {
   height: "100%",
 };
 
+const titles = [
+    "driver_side_of_vehicle",
+    "passenger_side_of_vehicle",
+    "back_side_of_vehicle",
+    "dashboard_of_vehicle"
+];
+
 
 export default function VehicleInfoScreen() {
   const { query } = useRouter();
@@ -37,38 +44,48 @@ export default function VehicleInfoScreen() {
     advertisement_id: advertisementId,
     cargo_vehicle_id: vehicleId
   }) ;
-  const { data: advertisementImages, isLoading: isImagesLoading } = useGetCargoImage({
-    advertisement_id: Number(advertisementId),
+  const { data: advertisementImages, isLoading: isImagesLoading } = useGetCargoVehicleImages({
     cargo_vehicle_id: Number(vehicleId)
   }) ;
 
   const [fullSize, showFullSize ] = useState(false);
-  const images =  advertisementImages || [undefined, undefined, undefined, undefined];
+  const vehicleImages =  advertisementImages || [undefined, undefined, undefined, undefined];
+
+    const images = useMemo(() => {
+
+        if( vehicleImages?.length<2 || (vehicleImages?.length && vehicleImages[0]===undefined))
+            return vehicleImages;
+
+        return [...vehicleImages].sort((a, b) => {
+            if (!a || !b) return 0;
+            return titles.indexOf(a.file_title) - titles.indexOf(b.file_title);
+        });
+    }, [vehicleImages]);
 
     useEffect(()=>{
         setPageTitle(adVehicleDetailsPage.title)
     },[isKorean])
 
-    const showImage = (image?:  ICargoImage) => {
+    const showImage = (image?:  ICargoVehicleImage) => {
         const size = 500;
         return (
             <Image
                 className={clsx(styles.img, 'rounded-md object-center')}
-                src={image?.image_path || '/images/ad-detail-list/no-image.png'}
-                alt={image?.image_title || ''}
+                src={image?.file_path || '/images/ad-detail-list/no-image.png'}
+                alt={image?.file_title || ''}
                 width={size}
                 height={size}
             />
         )
     }
 
-  const showFullImage = (image?:  ICargoImage) => {
+  const showFullImage = (image?:  ICargoVehicleImage) => {
         const size = 1000;
         return (
             <Image
                 className={clsx('rounded-md mx-auto')} // `mx-auto` to center, `rounded-md` for rounded corners
-                src={image?.image_path || '/images/ad-detail-list/no-image.png'}
-                alt={image?.image_title || ''}
+                src={image?.file_path || '/images/ad-detail-list/no-image.png'}
+                alt={image?.file_title || ''}
                 width={1000}
                 height={1000}
             />
@@ -121,8 +138,8 @@ export default function VehicleInfoScreen() {
 
                     <Image
                       className={`${styles.img} ${styles.main_img} hidden sm:block`}
-                      src={!isImagesLoading && images?.length && images[0]?.image_path || '/images/ad-detail-list/no-image.png'}
-                      alt={!isImagesLoading  && images?.length && images[0]?.image_title || ''}
+                      src={!isImagesLoading && images?.length && images[0]?.file_path || '/images/ad-detail-list/no-image.png'}
+                      alt={!isImagesLoading  && images?.length && images[0]?.file_title || ''}
                       width={500}
                       height={500}
                       onClick={() => showFullSize(true)}
@@ -193,15 +210,15 @@ export default function VehicleInfoScreen() {
 
 
 
-                   {!isImagesLoading && images?.length && images[0]?.image_path ?
+                   {!isImagesLoading && images?.length && images[0]?.file_path ?
                     <React.Fragment>
                     <div className={`${styles.badge} hidden sm:block`}>
                       <div className={styles.text}>{adVehicleDetailsPage.imageBadge[0]}</div>
                     </div>
                       <Image
                         className={`${styles.img} ${styles.main_img} hidden sm:block`}
-                        src={images[0]?.image_path }
-                        alt={images[0]?.image_title || ''}
+                        src={images[0]?.file_path }
+                        alt={images[0]?.file_title || ''}
                         width={500}
                         height={500}
                         onClick={() => showFullSize(true)}

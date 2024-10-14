@@ -8,7 +8,7 @@ import {
     GetAdvertisementOperationAreaPropsType,
     GetAdvertisementsPropType,
     GetAdvertisementVehiclesPropsType,
-    GetCargoImageListProps,
+    GetCargoImageListProps, GetCargoVehicleImageListProps,
     GetCargoVerificationImagesProps,
     GetTotalAdvertisementStatProps,
     IAdvertisement,
@@ -17,7 +17,7 @@ import {
     IAdvertisementStatResponse,
     IAdvertisementVehicle,
     IAdvertissementCargoResponse,
-    ICargoImage, ICargoVerificationImageRes,
+    ICargoImage, ICargoVehicleImage, ICargoVerificationImageRes,
     IOperatingArea,
     ITotalAdvertisementStat,
     IVehicle,
@@ -193,6 +193,12 @@ export const useGetCargoImage = (props: GetCargoImageListProps) => useQuery<ICar
     queryKey: ["advertisement-cargo-image", {...Object.values(props)}],
     queryFn: async () => (await axios.get(API_URL.getCargoImages(), { params: props })).data.data,
     enabled: !!props.cargo_vehicle_id && !!props.advertisement_id,
+});
+
+export const useGetCargoVehicleImages = (props: GetCargoVehicleImageListProps) => useQuery<ICargoVehicleImage[], string>({
+    queryKey: ["cargo-vehicle-images", {...Object.values(props)}],
+    queryFn: async () => (await axios.get(API_URL.getCargoVehicleImages(), { params: props })).data.data,
+    enabled: !!props.cargo_vehicle_id
 });
 
 

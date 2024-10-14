@@ -21,7 +21,7 @@ import TruckModel from "@src/models/truck";
 import { styles } from "@src/sections/advertisement-detail";
 import { IAdvertisementCargo } from "@src/types/advertisement";
 import { formatDate } from "@src/utils/formatter";
-import { DatePicker, Modal, Pagination } from "antd";
+import { DatePicker, Image as AntImage, Modal, Pagination } from "antd";
 import { clsx } from "clsx";
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat'
@@ -31,7 +31,6 @@ import weekday from 'dayjs/plugin/weekday'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import weekYear from 'dayjs/plugin/weekYear'
 import Image from "next/image";
-import { Image as AntImage } from 'antd';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { Suspense, useEffect, useMemo, useState, } from "react";
@@ -122,8 +121,8 @@ function AdvertisementDetailScreen() {
     });
     const {
         data: cargoItems,
-        currentPage,
-        per_page,
+        currentPage=1,
+        per_page=5,
         totalRecords,
     } = cargoList || {};
     const [verifyPicturesModalData, setVerifyPicturesModalData] = useState<{
@@ -621,7 +620,7 @@ function AdvertisementDetailScreen() {
                                                                         <TableCell
                                                                             className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}
                                                                             style={{ letterSpacing: "-0.16px" }}>
-                                                                            {index + 1}
+                                                                            {( (currentPage-1)*per_page)+ index + 1}
                                                                         </TableCell>
                                                                         <TableCell
                                                                             className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}>

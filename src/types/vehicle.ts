@@ -25,6 +25,29 @@ export interface GetVehicleDetailsResponseType {
     status: string;
     total_mileage: number | null;
     updated_at: string;
+    user_cargos_id: number;
+    user_cargo: {
+        agree_yn: string;
+        approval_date: string;
+        cargo_request_logs_id: string | null;
+        completed_image_path: string;
+        created_at: string;
+        deleted_at: string | null;
+        email: string;
+        fcm_token: string;
+        id: number;
+        marketing_yn: string;
+        name: string;
+        otp: string | null;
+        phone_number: string;
+        profile_img: string | null;
+        reason: string | null;
+        request_count: number;
+        review_section: string;
+        signup_error: string | null;
+        status: string;
+        updated_at: string;
+    }
     vehicle: {
         id: number;
         vehicle_type: string;

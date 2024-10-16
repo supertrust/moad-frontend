@@ -2275,7 +2275,7 @@
       "subText": "Driver's Seat"
     },
     "imageBadge" : ["Side (Driver's Seat)", "Side (Passenger Seat)", "Rear", "Dashboard"],
-    "listItemsLabels": [["No.", "No."], "Vehicle type", "Average driving distance (months)", "Average driving days (months)", "Average daily driving time (days)", ["day", "hour"], "fixed origin", "fixed destination"]
+    "listItemsLabels": [["No.", "No."], "Name", "Phone Number", "Vehicle type", "Average driving distance (months)", "Average driving days (months)", "Average daily driving time (days)", ["day", "hour"], "fixed origin", "fixed destination"]
   },
   "adVehicleLocDetailsPage": {
     "pageTitle": "Vehicle Location",

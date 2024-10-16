@@ -299,18 +299,31 @@ export default function VehicleInfoScreen() {
                   <ul className={styles.list_wrap}>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                      {adVehicleDetailsPage.listItemsLabels[1]}
+                        {adVehicleDetailsPage.listItemsLabels[1]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
-                        {
-                          advertisement?.vehicle
-                              ?.vehicle_type
-                        }
+                        {advertisement?.user_cargo?.name}
                       </div>
                     </li>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
                         {adVehicleDetailsPage.listItemsLabels[2]}
+                      </div>
+                      <div className={`${styles.value} ${styles.text}`}>
+                        {advertisement?.user_cargo?.phone_number}
+                      </div>
+                    </li>
+                    <li className={styles.list}>
+                      <div className={`${styles.title} ${styles.text}`}>
+                      {adVehicleDetailsPage.listItemsLabels[3]}
+                      </div>
+                      <div className={`${styles.value} ${styles.text}`}>
+                        {advertisement?.vehicle?.vehicle_type}
+                      </div>
+                    </li>
+                    <li className={styles.list}>
+                      <div className={`${styles.title} ${styles.text}`}>
+                        {adVehicleDetailsPage.listItemsLabels[4]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                         {( advertisement
@@ -320,7 +333,7 @@ export default function VehicleInfoScreen() {
                     </li>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                      {adVehicleDetailsPage.listItemsLabels[3]}
+                      {adVehicleDetailsPage.listItemsLabels[5]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                           {
@@ -330,28 +343,25 @@ export default function VehicleInfoScreen() {
                     </li>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                      {adVehicleDetailsPage.listItemsLabels[4]}
-                      </div>
-                      <div className={`${styles.value} ${styles.text}`}>
-                      {adVehicleDetailsPage.listItemsLabels[5][0]}{" "}
-                        {advertisement?.daily_avg_drive_time}{" "}
-                        {adVehicleDetailsPage.listItemsLabels[5][1]}
-                      </div>
-                    </li>
-                    <li className={styles.list}>
-                      <div className={`${styles.title} ${styles.text}`}>
                       {adVehicleDetailsPage.listItemsLabels[6]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
-                        {
-                          advertisement
-                              ?.start_point
-                        }
+                      {adVehicleDetailsPage.listItemsLabels[7][0]}{" "}
+                        {advertisement?.daily_avg_drive_time}{" "}
+                        {adVehicleDetailsPage.listItemsLabels[7][1]}
                       </div>
                     </li>
                     <li className={styles.list}>
                       <div className={`${styles.title} ${styles.text}`}>
-                      {adVehicleDetailsPage.listItemsLabels[7]}
+                      {adVehicleDetailsPage.listItemsLabels[8]}
+                      </div>
+                      <div className={`${styles.value} ${styles.text}`}>
+                        {advertisement?.start_point}
+                      </div>
+                    </li>
+                    <li className={styles.list}>
+                      <div className={`${styles.title} ${styles.text}`}>
+                      {adVehicleDetailsPage.listItemsLabels[9]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                         {advertisement?.end_point}

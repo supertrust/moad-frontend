@@ -1,6 +1,11 @@
 import dayjs from "dayjs";
 import parse from 'html-react-parser';
+import timezone from 'dayjs/plugin/timezone'; // Import timezone plugin
+import utc from 'dayjs/plugin/utc';
 
+const KOREA_TZ = 'Asia/Seoul';
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export const formatDate = (
     date: string | Date | undefined | null,
@@ -12,6 +17,14 @@ export const formatDate = (
         return date;
     const timeString = time ? ` ${timeFormat}` : "";
     return dayjs(date).format(`${dateFormat}${timeString}`);
+};
+
+export const formatDateKorean = (range,time=false,format=undefined) => {
+    if(!range)
+        return range;
+    console.log('asd',range)
+    const currFormat = time ? `YYYY-MM-DD HH:mm` : format || "YYYY-MM-DD";
+    return dayjs(range).tz(KOREA_TZ).format(currFormat);
 };
 
 export const formatNumberWithCommas = (

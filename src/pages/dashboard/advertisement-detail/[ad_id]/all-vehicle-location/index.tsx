@@ -9,12 +9,11 @@ import Loader from "@src/components/Loader";
 import { Map } from "@src/components/Map";
 import DirectionRender from "@src/components/Map/DirectionRender";
 import { KAKAO_MAP_API_KEY } from "@src/config";
-import { darkenColor, getRandomColor, ISOformatDate } from "@src/helpers";
+import { darkenColor, getRandomColor } from "@src/helpers";
 import { toLatLng } from "@src/helpers/map";
 import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
-import { formatNumberWithCommas } from "@src/utils/formatter";
-// import { cargoAllLocation } from "@src/utils/test_data";
+import { formatDateKorean, formatNumberWithCommas } from "@src/utils/formatter";
 import clsx from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -63,7 +62,6 @@ const AllVehicleLocation = () => {
     const [values, setValues] = useState({
         in_total_distance_covered: 0
     })
-    const [similarPoint, setSimilarPoint] = useState({})
     const [cargoList, setCargoList] = useState<any[]>([])
     const {
         data: cargoAllLocation,
@@ -71,7 +69,7 @@ const AllVehicleLocation = () => {
         isLoading,
         isRefetching,
         isFetching
-    } = useAllAdvertisementVehicleLocationDetails(advertisementId, ISOformatDate(selectedDateRange as Date))
+    } = useAllAdvertisementVehicleLocationDetails(advertisementId, formatDateKorean(selectedDateRange))
     const { data: cargoAllLocationDate } = useGetAdvertisementAllVehicleLocationDate(advertisementId as string);
 
     const [loading] = useKakaoLoader({
@@ -218,7 +216,15 @@ const AllVehicleLocation = () => {
     };
 
     const handleDateChange = (dateRange: Date) => {
-        setSelectedDateRange(dateRange)
+
+        const currentDate = new Date(); // Get the current date and time
+        const diffMin = ((currentDate.getMinutes() - dateRange.getMinutes())+60)%60;
+
+        const updatedStartDate = new Date(dateRange);
+        updatedStartDate.setMinutes(updatedStartDate.getMinutes() + diffMin);
+        // console.log('final',formatDateKorean(updatedStartDate,true))
+
+        setSelectedDateRange(updatedStartDate)
         // refetch();
     }
 

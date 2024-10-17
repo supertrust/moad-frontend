@@ -1,4 +1,5 @@
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
+import { formatDateKorean } from "@src/utils/formatter";
 import React, { useEffect, useState } from "react";
 import { useAllVehicleLocationDate, useAllVehicleLocationDetails } from "@src/apis/map";
 import { useRouter } from "next/router";
@@ -41,7 +42,7 @@ const VehicleLocationScreen = () => {
   //   ISOformatDate(selectedDateRange as Date));
 
   const { data: cargoAllLocation, refetch , isLoading, isRefetching} = useAllVehicleLocationDetails(vehicle_id as string,
-  ISOformatDate(selectedDateRange as Date));
+      formatDateKorean(selectedDateRange));
 
   const { data: cargoAllLocationDate} = useAllVehicleLocationDate(vehicle_id as string);
 
@@ -55,7 +56,12 @@ const VehicleLocationScreen = () => {
     setShowDrawer(!showDrawer);
   };
   const handleDateChange = (dateRange:Date) => {
-    setSelectedDateRange(dateRange)
+    const currentDate = new Date(); // Get the current date and time
+    const diffMin = ((currentDate.getMinutes() - dateRange.getMinutes())+60)%60;
+
+    const updatedStartDate = new Date(dateRange);
+    updatedStartDate.setMinutes(updatedStartDate.getMinutes() + diffMin);
+    setSelectedDateRange(updatedStartDate)
     // refetch();
   }
 

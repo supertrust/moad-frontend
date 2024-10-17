@@ -8,7 +8,7 @@ import PrevIcon from "@src/components/icons/PrevIcon";
 import { dateFormat, getNextPrevDates, ISOformatDate } from "@src/helpers";
 import useAuth from '@src/hooks/useAuth';
 import { IVehicleLocationDetails } from '@src/types/map';
-import { formatNumberWithCommas } from "@src/utils/formatter";
+import { formatDateKorean, formatNumberWithCommas } from "@src/utils/formatter";
 import { ConfigProvider, DatePicker } from "antd";
 import koKR from 'antd/locale/ko_KR';
 import { clsx } from 'clsx';
@@ -75,6 +75,17 @@ const dateRangePickerCtrls = [
 ];
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
+
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+// Set default timezone to Asia/Seoul
+const KOREA_TZ = 'Asia/Seoul';
+
 
 const CollapseAble = ({duplicateRideInfoList,duplicateDestination}) => {
     const { dictionary: { adVehicleLocDetailsPage, viewAllLocation }, isKorean, } = useAuth();
@@ -182,10 +193,7 @@ function MultipleLocationDrawer({
     }
     const handleDateChange = (range) => {
         const startDate = new Date(range.format());
-        var day = startDate.getDate();
-        var month = startDate.getMonth();
-        var year = startDate.getFullYear();
-
+        console.log('hello',formatDateKorean(startDate,true))
         setBufferdDate(startDate);
     };
 
@@ -203,29 +211,6 @@ function MultipleLocationDrawer({
     }, [selectedDate])
 
     const bufferStartDate = !Array.isArray(bufferdDate) ? bufferdDate : new Date();
-
-    const {
-        passing_vehicle_descent,
-        passing_vehicle_up,
-        start_time,
-        end_time,
-        avarageMonthlyDistance,
-        today_distance,
-        total_distance,
-        current_point_name
-    } = vehicle || {}
-
-    let start = start_time ? start_time.split('T') : null
-    let startMonth = start ? start[0].split('-')[1] : null
-    let startDate = start ? start[0].split('-')[2] : null
-    let startTime = start ? start[1].split(':') : null
-
-    let end = end_time ? end_time.split('T') : null
-    let endMonth = end ? end[0].split('-')[1] : null
-    let endDate = end ? end[0].split('-')[2] : null
-    let endTime = end ? end[1].split(':') : null
-    const categories = adVehicleLocDrawerPage.categories;
-    const data = [today_distance || 0, total_distance || 0, avarageMonthlyDistance || 0];
 
     const style: React.CSSProperties = {
         border: `1px solid rgba(86, 26, 164, 0.2)`,

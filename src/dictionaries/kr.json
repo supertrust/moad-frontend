@@ -2336,6 +2336,7 @@
     }
   },
   "adVehicleDetailsPage": {
+    "sir" : "기사님",
     "title": "차량정보",
     "header": "차량정보",
     "imagesAreScheduled": "이미지 등록 예정입니다.",

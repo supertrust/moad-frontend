@@ -61,3 +61,11 @@ export const getImagePreviewUrl = (file?: File | null) => {
         return file;
     return URL.createObjectURL(file)
 }
+
+export const formatPhoneNumber = (phoneNumber?: string | null) => {
+    /* add hyphen after first 3 digit and then after 4 digit */
+    if (!phoneNumber)
+        return phoneNumber;
+
+    return phoneNumber.replace(/(\d{3})(\d{4})/, '$1-$2-'); // match the first 3 digits and then next 3 digits and then next 4 digits
+}

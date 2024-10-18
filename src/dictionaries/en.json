@@ -2266,6 +2266,7 @@
     }
   },
   "adVehicleDetailsPage": {
+    "sir" : "driver",
     "title": "Vehicle Information",
     "header": "Vehicle information",
     "imagesAreScheduled": "Images are scheduled to be registered.",
@@ -2275,7 +2276,7 @@
       "subText": "Driver's Seat"
     },
     "imageBadge" : ["Side (Driver's Seat)", "Side (Passenger Seat)", "Rear", "Dashboard"],
-    "listItemsLabels": [["No.", "No."], "Name", "Phone Number", "Vehicle type", "Average driving distance (months)", "Average driving days (months)", "Average daily driving time (days)", ["day", "hour"], "fixed origin", "fixed destination"]
+    "listItemsLabels": [["No.", "No."], "Name", "Phone Number", "Vehicle type", "Monthly average driving distance ", "Monthly average number of operating days", "Average daily operating time", ["day", "hour"], "fixed origin", "fixed destination"]
   },
   "adVehicleLocDetailsPage": {
     "pageTitle": "Vehicle Location",

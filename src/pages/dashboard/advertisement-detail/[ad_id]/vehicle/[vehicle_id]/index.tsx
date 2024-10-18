@@ -6,6 +6,7 @@ import useAuth from '@src/hooks/useAuth';
 import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import { styles } from "@src/sections/vehicle-info";
 import { ICargoVehicleImage } from "@src/types/advertisement";
+import { formatPhoneNumber } from "@src/utils/formatter";
 import { Breadcrumb } from "antd";
 import { clsx } from "clsx";
 import Image from "next/image";
@@ -285,7 +286,7 @@ export default function VehicleInfoScreen() {
 
                 <div className={`${styles.table_box} ${styles.content_body}`}>
                   <div className="vehicle_number">
-                    {adVehicleDetailsPage.listItemsLabels[0][0]} {advertisement?.car_number} {adVehicleDetailsPage.listItemsLabels[0][1]}
+                    {advertisement?.car_number}
                     <style jsx>{`
                     .vehicle_number {
                       padding: 38px 30px;
@@ -302,7 +303,7 @@ export default function VehicleInfoScreen() {
                         {adVehicleDetailsPage.listItemsLabels[1]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
-                        {advertisement?.user_cargo?.name}
+                          <span className={'!font-bold pr-[6px]'}>{advertisement?.user_cargo?.name}</span> {adVehicleDetailsPage.sir}
                       </div>
                     </li>
                     <li className={styles.list}>
@@ -310,7 +311,7 @@ export default function VehicleInfoScreen() {
                         {adVehicleDetailsPage.listItemsLabels[2]}
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
-                        {advertisement?.user_cargo?.phone_number}
+                        {formatPhoneNumber(advertisement?.user_cargo?.phone_number) || "-"}
                       </div>
                     </li>
                     <li className={styles.list}>
@@ -327,8 +328,8 @@ export default function VehicleInfoScreen() {
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                         {( advertisement
-                            ?.monthly_avg_operating_days ?? '---') + ( advertisement
-                            ?.monthly_avg_operating_days ? 'km' : '')}
+                            ?.daily_avg_drive_time ?? '---') + ( advertisement
+                            ?.daily_avg_drive_time ? 'km' : '')}
                       </div>
                     </li>
                     <li className={styles.list}>
@@ -338,7 +339,7 @@ export default function VehicleInfoScreen() {
                       <div className={`${styles.value} ${styles.text}`}>
                           {
                               //@ts-ignore
-                              (advertisement?.daily_avg_drive_time || 0)*24 }{ isKorean? "일" : ""}
+                              advertisement?.monthly_avg_operating_days }{ isKorean? "일" : ""}
                       </div>
                     </li>
                     <li className={styles.list}>
@@ -347,7 +348,7 @@ export default function VehicleInfoScreen() {
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                       {adVehicleDetailsPage.listItemsLabels[7][0]}{" "}
-                        {advertisement?.daily_avg_drive_time}{" "}
+                        {advertisement?.average_daily_hours_operation}{" "}
                         {adVehicleDetailsPage.listItemsLabels[7][1]}
                       </div>
                     </li>

@@ -328,8 +328,8 @@ export default function VehicleInfoScreen() {
                       </div>
                       <div className={`${styles.value} ${styles.text}`}>
                         {( advertisement
-                            ?.daily_avg_drive_time ?? '---') + ( advertisement
-                            ?.daily_avg_drive_time ? 'km' : '')}
+                            ?.monthly_avg_operating_days ?? '---') + ( advertisement
+                            ?.monthly_avg_operating_days ? 'km' : '')}
                       </div>
                     </li>
                     <li className={styles.list}>
@@ -339,7 +339,7 @@ export default function VehicleInfoScreen() {
                       <div className={`${styles.value} ${styles.text}`}>
                           {
                               //@ts-ignore
-                              advertisement?.monthly_avg_operating_days }{ isKorean? "일" : ""}
+                              advertisement?.daily_avg_drive_time }{ isKorean? "일" : ""}
                       </div>
                     </li>
                     <li className={styles.list}>

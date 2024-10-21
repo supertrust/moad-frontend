@@ -195,7 +195,7 @@ export default function VehicleInfoScreen() {
                   title: adVehicleDetailsPage.breadcrumb[0],
                 },  {
                   href: `/dashboard/advertisement-detail/${advertisementId}`,
-                  title: adVehicleDetailsPage.breadcrumb[1],
+                  title: advertisement?.ad_name || "-"
                 },{
                   title: adVehicleDetailsPage.breadcrumb[2],
                 }

@@ -4,6 +4,7 @@ export type GetVehicleDetailsPropsType = {
 }
 
 export interface GetVehicleDetailsResponseType {
+    ad_name : string;
     average_daily_hours_operation: number;
     car_number: string;
     cargo_id: number;

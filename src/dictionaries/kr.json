@@ -1799,8 +1799,10 @@
   "adForm": {
     "title": "광고신청",
     "imagePlaceholder": "이미지 추가",
+    "adSelectionHover" : "선택하신 상품은 추후 업데이트로 제공 예정입니다. 광고 신청후 광고계약 진행시 상담하여 주시길 바랍니다. 감사합니다.",
     "reset": "초기화",
     "validations": {
+      "adStartDateMustBeGreaterDisplayDate" : "광고 시작일은 표시 종료일보다 커야 합니다.",
       "noVehicleSelect": "운행할 차량을 하나 이상 선택해야 합니다.",
       "upTo5mb": "최대 5MB까지만 가능합니다.",
       "files": {
@@ -2085,8 +2087,8 @@
     {
       "type": "spot_ad",
       "title": "스팟광고",
-      "subtitle_1": "특정 지역 화주들을 매칭하여",
-      "subtitle_2": "노출할 수 있는 고정형 광고",
+      "subtitle_1": "특정 시간 단위로 원하는 특정지역과",
+      "subtitle_2": "특정시간에 집중 노출할 수 있는 광고",
       "faq": true
     }
   ],

@@ -1778,8 +1778,10 @@
   "adForm": {
     "title": "Advertising Form",
     "imagePlaceholder": "Add image",
+    "adSelectionHover": "The selected product will be available in a future update. Please consult with us when proceeding with an advertising contract after applying for an advertisement. Thank you.",
     "reset" : "Reset",
     "validations": {
+      "adStartDateMustBeGreaterDisplayDate" : "The ad start date must be greater than the display end date.",
       "noVehicleSelect" : "You must select at least one vehicle to operate.",
       "upTo5mb" : "Up to 5MB is allowed.",
       "files": {
@@ -2053,8 +2055,8 @@
     {
       "type": "spot_ad",
       "title": "Spot Ad",
-      "subtitle_1": "Matching specific local shippers",
-      "subtitle_2": "for exposure as a fixed ad",
+      "subtitle_1": "An advertisement that can be intensively exposed in a",
+      "subtitle_2": "specific area and at a specific time for a certain time period.",
       "faq": true
     }
   ],

@@ -67,26 +67,6 @@ function AdModel({ refetchAds }: IAdModelProps, ref: Ref<AdModelRef>) {
 
     }
 
-    // const onAgree = () => {
-    //     const data = {
-    //         ...advertisment,
-    //         vehicle_details: JSON.stringify(advertisment?.vehicle_details),
-    //         operating_area: JSON.stringify(advertisment?.operating_area),
-    //     }
-    //     // @ts-ignore
-    //     advertisment && saveAdvertisement(data, {
-    //         onSuccess: () => {
-    //             refetchAds();
-    //             setDone(true);
-    //         },
-    //         onError:(error)=>{
-    //             toast.error("뭔가 잘못됐어!")
-    //
-    //     }
-    //     });
-    // }
-
-
     const onCancel = (e) => {
         if (e.code === "Enter") {
             e.preventDefault(); // Prevent form submission

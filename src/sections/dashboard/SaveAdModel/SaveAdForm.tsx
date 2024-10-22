@@ -19,6 +19,7 @@ import Image from 'next/image';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Table } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
+import { Popover } from 'antd';
 import { ThreeDots } from 'react-loader-spinner';
 import { Loader } from 'rsuite';
 import styles from './styles.module.css';
@@ -83,7 +84,7 @@ const defaultStartDate = addWeeks(new Date(), 2);
 const defaultValues: FormDataType = {
   ad_name: '',
   ad_period: 6,
-  type: 'fixed_ad',
+  type: 'national_ad',
   start_date: defaultStartDate.toISOString().split('T')[0],
   vehicle_details: {},
   vehicle_min: {},
@@ -152,6 +153,8 @@ const minimumNumberVehicleValidation = (watch) => {
 
   return res;
 };
+
+const allwedAdType = "national_ad"
 
 const SaveAdForm = ({
   onOpenModal,
@@ -537,12 +540,10 @@ const SaveAdForm = ({
     if (tRecruitEnd < tRecruitStart)
       return dictionary.adForm.validations.recruit_end.msg;
     else if (tRecruitEnd >= tStartDate)
-      return '광고 시작일은 표시 종료일보다 커야 합니다.';
+      return dictionary.adForm.validations.adStartDateMustBeGreaterDisplayDate;
 
     return '';
   };
-
-  // //console.log('hash', watch('vehicle_details')[1],watch('vehicle_min')[1])
 
   const agreemenetFormClose = () => setIsAggrementFormOpen(false);
 
@@ -707,9 +708,11 @@ const SaveAdForm = ({
                       id='imput_ad_type'
                       className={clsx(styles.modal_select_wrap)}>
                       {adTypes.map((item, index) => (
+                          <Popover key={index}  placement="top" content={allwedAdType==item.type ? null :<div className={'break-words w-[300px]'}>{dictionary.adForm.adSelectionHover}</div>}>
                         <div
                           key={item.type}
                           onClick={() => {
+                              return;
                             setErrors('');
                             const selectedAreas = getValues('operating_area');
                             item.type == 'spot_ad' &&
@@ -726,14 +729,15 @@ const SaveAdForm = ({
                             onChange(item.type);
                           }}
                           className={`${
-                            value === item.type ? styles.active : ''
+                              allwedAdType==item.type ? 'cursor-pointer': 'cursor-not-allowed'},
+                            ${value === item.type ? styles.active : ''
                           } ${styles.modal_select} h-auto sm:h-[204px]`}>
-                          <label className={clsx(styles.select_box,'cursor-pointer')}>
+                          <label className={clsx(styles.select_box,allwedAdType==item.type ? 'cursor-pointer': 'cursor-not-allowed')}>
                             <input
                               type='radio'
                               name='ad_type'
                               id={item.type}
-                              className={clsx(styles.hidden,'cursor-pointer')}
+                              className={clsx(styles.hidden,allwedAdType==item.type ? 'cursor-pointer': 'cursor-not-allowed')}
                             />
                             <i className={styles.ic_radio}></i>
                             {item.faq && (
@@ -741,9 +745,12 @@ const SaveAdForm = ({
                                 // href="/dashboard/customer-service/faq"
                                 className={clsx(
                                   styles.detail_desc,
-                                  'md:mt-[10px] md:mr-[10px] underline cursor-pointer',
+                                  'md:mt-[10px] md:mr-[10px] underline',
+                                    allwedAdType==item.type ? 'cursor-pointer': 'cursor-not-allowed'
                                 )}
                                 onClick={() => {
+                                  if(allwedAdType!=item.type)
+                                    return;
                                   setDetailModal(index + 1);
                                   setOpenDetailModal(true);
                                 }}>
@@ -754,8 +761,8 @@ const SaveAdForm = ({
                               className={`${styles.box_icon} ${
                                 styles[`box_icon0${index + 1}`]
                               }`}></div>
-                            <div className={styles.text}>
-                              <strong className={styles.text}>
+                            <div className={clsx(styles.text,allwedAdType!=item.type && "!text-[#999999]")}>
+                              <strong className={clsx(styles.text,allwedAdType!=item.type && "!text-[#999999]")}>
                                 {item.title}
                               </strong>
                               <br />
@@ -765,6 +772,7 @@ const SaveAdForm = ({
                             </div>
                           </label>
                         </div>
+                          </Popover>
                       ))}
                     </div>
                     {/* <span className="text-danger">{error?.message}</span> */}

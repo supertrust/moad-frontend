@@ -7,6 +7,7 @@ import NextIcon from "@src/components/icons/NextIcon";
 import PrevIcon from "@src/components/icons/PrevIcon";
 import { dateFormat, getNextPrevDates, ISOformatDate } from "@src/helpers";
 import useAuth from '@src/hooks/useAuth';
+import useOptions from "@src/hooks/useOptions";
 import { IVehicleLocationDetails } from '@src/types/map';
 import { formatDateKorean, formatNumberWithCommas } from "@src/utils/formatter";
 import { ConfigProvider, DatePicker } from "antd";
@@ -181,6 +182,7 @@ function MultipleLocationDrawer({
                                 }: DrawerProps) {
 
     const { RangePicker } = DatePicker;
+    const { getAntDesignLocale } = useOptions()
     const { dictionary: { adVehicleLocDrawerPage, viewAllLocation },isPcOnly } = useAuth();
     const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
     const [selectedRide, setSelectedRide] = useState<number | undefined>(vehicle?.id);
@@ -225,9 +227,12 @@ function MultipleLocationDrawer({
         if (typeof current === 'number') {
             return <div className="ant-picker-cell-inner">{current}</div>;
         }
-        const currentDate = current.toDate();
-        const formattedCurrentDate = ISOformatDate(currentDate);
+        // const currentDate = current.toDate();
+        // const formattedCurrentDate = ISOformatDate(currentDate);
+        const formattedCurrentDate = current.format("YYYY-MM-DD");
         const isVehicleDate = vehicleDate?.includes(formattedCurrentDate);
+        //
+        // console.log('current',current.format("YYYY-MM-DD"),current.date())
 
         return (
             <div className="ant-picker-cell-inner" style={isVehicleDate ? style : {}}>
@@ -301,7 +306,7 @@ function MultipleLocationDrawer({
                           </div>
                         </span>
                                                 <div>
-                                                    <ConfigProvider locale={koKR}>
+                                                    <ConfigProvider locale={getAntDesignLocale()}>
                                                         <DatePicker
                                                             className={datePickerOpen ? "custom_picker" : "hidden"}
                                                             popupClassName={"custom_popup_picker vehicle-location !left-[calc(100%-314px)]"}

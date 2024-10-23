@@ -22,7 +22,6 @@ export const formatDate = (
 export const formatDateKorean = (range,time=false,format=undefined) => {
     if(!range)
         return range;
-    console.log('asd',range)
     const currFormat = time ? `YYYY-MM-DD HH:mm` : format || "YYYY-MM-DD";
     return dayjs(range).tz(KOREA_TZ).format(currFormat);
 };

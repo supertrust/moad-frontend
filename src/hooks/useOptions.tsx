@@ -1,9 +1,11 @@
 import useAuth from "@src/hooks/useAuth";
-import React from 'react';
+import koKR from "antd/locale/ko_KR";
+import enUS from "antd/locale/en_US";
+import React, { useCallback } from 'react';
 
 const useOptions = () => {
 
-    const { dictionary : { adList : {allAdStatuses}} } = useAuth();
+    const { dictionary : { adList : {allAdStatuses}}, isKorean } = useAuth();
 
      const AllStatuses = [
         { label: allAdStatuses?.inProgress, value: 'in_progress' },
@@ -16,8 +18,11 @@ const useOptions = () => {
         { label: allAdStatuses?.proceeding, value: 'proceeding' },
     ]
 
+    const getAntDesignLocale = useCallback(()=>isKorean ? koKR : enUS, [isKorean]);
+
     return {
-        AllStatuses
+        AllStatuses,
+        getAntDesignLocale
     }
 };
 

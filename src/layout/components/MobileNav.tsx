@@ -7,6 +7,7 @@ import {
   ListItemButton
 } from "@mui/material";
 import useAuth from "@src/hooks/useAuth";
+import { logger } from "@src/utils/func";
 import { PageRouting } from "@src/utils/values";
 import CloseIcon from '@mui/icons-material/Close';
 import { Icon1, Icon2, Icon3, Icon4 } from "@src/components/icons";
@@ -35,7 +36,7 @@ function MobileNav({ open, onClose, theme, text }: MobileNavProps) {
     try {
       await logout();
     } catch (error) {
-      console.error("Error logging out:", error);
+      logger.error("Error logging out:", error);
     }
   };
 

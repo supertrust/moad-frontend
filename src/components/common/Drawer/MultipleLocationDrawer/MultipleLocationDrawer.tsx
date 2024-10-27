@@ -10,6 +10,7 @@ import useAuth from '@src/hooks/useAuth';
 import useOptions from "@src/hooks/useOptions";
 import { IVehicleLocationDetails } from '@src/types/map';
 import { formatDateKorean, formatNumberWithCommas } from "@src/utils/formatter";
+import { logger } from "@src/utils/func";
 import { ConfigProvider, DatePicker } from "antd";
 import koKR from 'antd/locale/ko_KR';
 import { clsx } from 'clsx';
@@ -195,7 +196,7 @@ function MultipleLocationDrawer({
     }
     const handleDateChange = (range) => {
         const startDate = new Date(range.format());
-        console.log('hello',formatDateKorean(startDate,true))
+        logger.log('hello',formatDateKorean(startDate,true))
         setBufferdDate(startDate);
     };
 
@@ -232,7 +233,7 @@ function MultipleLocationDrawer({
         const formattedCurrentDate = current.format("YYYY-MM-DD");
         const isVehicleDate = vehicleDate?.includes(formattedCurrentDate);
         //
-        // console.log('current',current.format("YYYY-MM-DD"),current.date())
+        // logger.log('current',current.format("YYYY-MM-DD"),current.date())
 
         return (
             <div className="ant-picker-cell-inner" style={isVehicleDate ? style : {}}>

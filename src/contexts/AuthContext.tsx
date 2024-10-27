@@ -7,6 +7,7 @@ import { parseJwt } from '@src/helpers';
 import { queryClient } from '@src/services/ReactQueryClient';
 import { AuthContextType, Dictionary, Langs, LoginPropsType, RegisterPropsType } from '@src/types/auth';
 import axios, { removeAxiosToken, setAxiosToken } from '@src/utils/axios';
+import { logger } from "@src/utils/func";
 import { isCargoRoute } from "@src/utils/route";
 import { useRouter } from "next/router";
 import React, { createContext, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
@@ -99,7 +100,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     const login = useCallback(async (props: LoginPropsType) => {
         try {
-            console.log("login",lang)
+            logger.log("login",lang)
             const data = await _login(props);
             if(data.status === UserStatus.Waiting) router.push("registration/waiting").then(() =>
                 toast.info(dictionary?.signup?.waiting?.waiting_registration_toast))

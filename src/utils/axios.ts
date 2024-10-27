@@ -1,3 +1,4 @@
+import { logger } from "@src/utils/func";
 import { isAuthenticateRoute } from "@src/utils/route";
 import { toast } from "react-toastify";
 import Axios from 'axios';
@@ -23,7 +24,7 @@ const axios = Axios.create({
 });
 
 const handleError = (error: any) => {
-    process.env.NODE_ENV === 'development' && console.error('🚀 ~ Api error by axios ====> ', {
+    process.env.NODE_ENV === 'development' && logger.error('🚀 ~ Api error by axios ====> ', {
         url: error.config.url,
         method: error.config.method,
         request_data: error.config.data,

@@ -1,4 +1,5 @@
 import { API_BASE_URL } from "@src/config";
+import { logger } from "@src/utils/func";
 
 export const parseJwt = (token: string) => {
   try {
@@ -257,10 +258,10 @@ export function numberWithoutHyphens(koreanPhoneNumber, prevValue) {
     const numberWithoutHyphens = koreanPhoneNumber.replace(/-/g, '').replace(/[^\d]/g, '');
     if (!numberWithoutHyphens) return;
 
-    console.log('numberWithoutHyphens: ', numberWithoutHyphens, parseInt(numberWithoutHyphens, 10));
+    logger.log('numberWithoutHyphens: ', numberWithoutHyphens, parseInt(numberWithoutHyphens, 10));
     return parseInt(numberWithoutHyphens, 10);
   } catch (e) {
-    console.log('numberWithoutHyphens-catch: ', prevValue, 'error: ', e);
+    logger.log('numberWithoutHyphens-catch: ', prevValue, 'error: ', e);
     return prevValue;
   }
 }

@@ -7,6 +7,7 @@ import useAuth from '@src/hooks/useAuth';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { useIcarusContext } from '@src/hooks/useIcarusContext';
 import { styles } from '@src/sections/my-info';
+import { logger } from "@src/utils/func";
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -36,7 +37,7 @@ export default function MyInfoScreen() {
       isKorean
   } = useAuth();
   const email = user?.contact_email;
-  console.log(email, 'email');
+  logger.log(email, 'email');
   const [showModal, setShowModal] = useState(false);
   const { confirm } = useConfirmDialog();
   const { validations } = myInfo;

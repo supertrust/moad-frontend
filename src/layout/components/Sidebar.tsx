@@ -2,6 +2,7 @@ import { Skeleton } from "@mui/material";
 import { Icon1, Icon2, Icon3, Icon4 } from "@src/components/icons";
 import LogoPc from "@src/components/icons/LogoPc";
 import useAuth from "@src/hooks/useAuth";
+import { logger } from "@src/utils/func";
 import { PageRouting } from "@src/utils/values";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -45,7 +46,7 @@ function Sidebar({ msg }: SidebarProps) {
         try {
             await logout();
         } catch (error) {
-            console.error("Error logging out:", error);
+            logger.error("Error logging out:", error);
         }
     };
 

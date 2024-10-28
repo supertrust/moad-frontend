@@ -36,7 +36,7 @@ export default function MyInfoScreen() {
     dictionary: { myInfo,pageTitle },
       isKorean
   } = useAuth();
-  const email = user?.contact_email;
+  const email = user?.employee_email;
   logger.log(email, 'email');
   const [showModal, setShowModal] = useState(false);
   const { confirm } = useConfirmDialog();
@@ -215,6 +215,8 @@ export default function MyInfoScreen() {
       document.removeEventListener('keydown', handleKeyPress);
     };
   }, [showModal]);
+
+  // logger.log('employe',watch().employee_email,user.employee_email)
 
   return (
     <>

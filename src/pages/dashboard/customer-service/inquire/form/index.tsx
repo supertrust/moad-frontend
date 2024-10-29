@@ -1,4 +1,5 @@
 import {  Card } from "@mui/material";
+import { logger } from "@src/utils/func";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -23,6 +24,8 @@ import { clsx } from "clsx";
 import { ConfirmPropsType } from '@src/contexts/ConfirmDialogContext';
 import { useConfirmDialog } from "@src/hooks/useConfirmationDialog";
 
+const inquiryMaxLen = 600;
+
 const defaultValues = {
   inquiry_type: "",
   inquiry_title: "",
@@ -36,6 +39,7 @@ export default function Index({ id }: { id: string }) {
   const { mutateAsync: updateInquiry } = useUpdateInquiry();
   const { mutateAsync: saveInquiry } = useSaveInquiry();
   const { data } = useGetInquiryDetail({ id });
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { user, dictionary: { inquireFormPage,pageTitle },isKorean } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const [allError, setErrors] = useState<string | undefined>('')
@@ -131,11 +135,17 @@ export default function Index({ id }: { id: string }) {
       inquireFormPage.validations.inquiryTitle.checkForOnlySpaces,
       value => !/^\s*$/.test(value),
     ),
-    inquiry_question: Yup.string().required(inquireFormPage.validations.inquiryQuestion.required).test(
-      'not-only-spaces',
-      inquireFormPage.validations.inquiryQuestion.checkForOnlySpaces,
-      value => !/^\s*$/.test(value),
-    ),
+    inquiry_question: Yup.string()
+        .required(inquireFormPage.validations.inquiryQuestion.required)
+        .test(
+            'not-only-spaces',
+            inquireFormPage.validations.inquiryQuestion.checkForOnlySpaces,
+            value => !/^\s*$/.test(value),
+        )
+        .max(
+            inquiryMaxLen,
+            inquireFormPage.validations.inquiryQuestion.maxLengthExceeded // Assuming you have a message here
+        ),
     inquiry_answer: Yup.string().optional(),
     inquiry_documents: Yup.array().optional()
   })
@@ -146,10 +156,10 @@ export default function Index({ id }: { id: string }) {
   });
 
 
-  const { handleSubmit, control, formState} = methods;
-  const { errors } = formState;
+  const { handleSubmit, control, formState,watch} = methods;
+  const { errors, } = formState;
 
-  const onSubmit = handleSubmit(async (event: any) => {
+  const onSubmit = async (event: any) => {
     const formData = new FormData();
     setSubmitting(true);
     formData.append("user_id", user?.id);
@@ -175,7 +185,7 @@ export default function Index({ id }: { id: string }) {
       toast(error?.response?.data?.message, { type: "error" });
       setSubmitting(false);
     }
-  });
+  };
 
   const MenuItemStyles = {
     border: "0px solid",
@@ -219,6 +229,7 @@ export default function Index({ id }: { id: string }) {
             <FormProvider methods={methods}>
               <form
                 // onSubmit={formik.handleSubmit}
+                  onSubmit={handleSubmit(onSubmit)}
                 method=""
                 className="flex flex-col gap-4 w-full text-[16px]"
               >
@@ -328,7 +339,7 @@ export default function Index({ id }: { id: string }) {
                       disabled={submitting || (id !== null && id !== undefined)}
                     />
                   </div>
-                  <div className="text-sm text-right">(<span className="text-advertiser-primary">{value?.length || "0"}</span>/300)</div>
+                  <div className="text-sm text-right">(<span className={clsx(value?.length>inquiryMaxLen ?"text-[red]" : "text-advertiser-primary")}>{value?.length || "0"}</span>/{inquiryMaxLen})</div>
                 </div>
                 )}
                 />
@@ -380,6 +391,7 @@ export default function Index({ id }: { id: string }) {
                         </label>
                         <div className="flex flex-row gap-2 items-center">
                           <input
+                              ref={fileInputRef}
                             type="file"
                             name={`file-list`}
                             id={`file-list`}
@@ -389,7 +401,12 @@ export default function Index({ id }: { id: string }) {
                             onChange={(e) => {
                               const files = e.target.files ? Array.from(e.target.files) : [];
                               if(!checkFiles(files))
+                              {
                                 onChange([...(value || []), ...files])
+                                if (fileInputRef.current) {
+                                  fileInputRef.current.value = "";
+                                }
+                              }
                             }}
                           />
                           <label
@@ -426,7 +443,10 @@ export default function Index({ id }: { id: string }) {
                 disabled={submitting}
                 loading={submitting}
                 className="w-full bg-advertiser-primary text-[#fff] p-[13px] h-[50px] items-center	justify-center"
-                  onClick={onSubmit}
+                  onClick={()=>{
+                    if(watch().inquiry_question?.length>inquiryMaxLen)
+                      toast.error(inquireFormPage.inquiryMaxLenExceed)
+                  }}
                 >
                   {inquireFormPage.btnText}
                 </Button>

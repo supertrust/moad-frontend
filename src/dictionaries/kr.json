@@ -706,6 +706,7 @@
     "delete_success_msg": "문의가 삭제되었습니다."
   },
   "inquireFormPage": {
+    "inquiryMaxLenExceed" : "문의 내용은 600자를 초과할 수 없습니다.",
     "pageTitle": "문의내역",
     "title": "모드",
     "checkInquiryDetailsBtn": "문의내역확인",

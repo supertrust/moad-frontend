@@ -640,6 +640,7 @@
     "delete_success_msg" : "Inquiry has been deleted."
   },
   "inquireFormPage": {
+    "inquiryMaxLenExceed" : "Inquiry should not exceed 600 characters",
     "pageTitle": "Inquiry Details",
     "title": "MOAD",
     "checkInquiryDetailsBtn": "Check inquiry details",

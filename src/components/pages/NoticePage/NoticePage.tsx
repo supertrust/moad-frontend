@@ -87,7 +87,7 @@ function NoticePage() {
                                                             <PushPin className="!w-4" />
                                                         ) : (
                                                             // data.slice(prevItems,currentItems).length - i
-                                                            totalItems - index - (currentPage - 1) * itemsPerPage
+                                                             index+1 + (currentPage - 1) * itemsPerPage
                                                             //- data?.filter((v) => notice.important == true)
                                                             //   .length +
                                                             // (page - 1) * 10

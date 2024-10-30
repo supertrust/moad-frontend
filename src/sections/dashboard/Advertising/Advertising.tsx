@@ -67,10 +67,10 @@ export default function Advertising() {
                   width={20}
                   height={28}
                 />
-              ) : (
-                formatNumberWithCommas(advertisements?.data?.length)
-              )}
-              {" "}{dictionary.dashboard.case}
+              ) : <>
+                {formatNumberWithCommas(advertisements?.data?.length)}
+                {" "}{dictionary.dashboard.case}
+              </>}
             </span>
           </div>
         </div>
@@ -87,10 +87,10 @@ export default function Advertising() {
                   width={20}
                   height={28}
                 />
-              ) : (
-                formatNumberWithCommas(advertiserVehiclesStats?.total_vehicles)
-              )}
+              ) : <>
+                  { formatNumberWithCommas(advertiserVehiclesStats?.total_vehicles)}
               {" "}{dictionary.dashboard.big}
+              </>}
             </span>
           </div>
         </div>
@@ -126,10 +126,11 @@ export default function Advertising() {
                   width={20}
                   height={28}
                 />
-              ) : (
-                formatNumberWithCommas(advertiserVehiclesStats?.suspensions)
-              )}{" "}
-              {dictionary.dashboard.big}
+              ) : <>{
+                formatNumberWithCommas(advertiserVehiclesStats?.suspensions)}
+                {" "}
+                {dictionary.dashboard.big}
+              </>}
             </span>
           </div>
         </div>
@@ -146,13 +147,14 @@ export default function Advertising() {
                   width={20}
                   height={28}
                 />
-              ) : (
+              ) : <>{
                 formatNumberWithCommas(
                   advertiserVehiclesStats?.total_distance,
                   2
-                )
-              )}{" "}
-              km
+                )}
+                {" "}
+                km
+              </>}
             </span>
           </div>
         </div>
@@ -169,10 +171,11 @@ export default function Advertising() {
                   width={20}
                   height={28}
                 />
-              ) : (
-                formatNumberWithCommas(advertiserVehiclesStats?.total_hours)
-              )}{" "}
-               {dictionary.dashboard.minutes}
+              ) : <>
+                      {formatNumberWithCommas(advertiserVehiclesStats?.total_hours)}
+                {" "}
+                {dictionary.dashboard.minutes}
+              </>}
             </span>
           </div>
         </div>

@@ -485,9 +485,9 @@
     "edit": "Edit",
     "companyName": "Company Name",
     "companyPhoneNumber": "Company phone number",
-    "contactPersonName": "Contact Person Name",
-    "contactPersonsCellPhone": "Contact Person's Cell Phone",
-    "contactPersonsEmail": "Person in charge email (invoice issued)",
+    "contactPersonName": "Manager",
+    "contactPersonsCellPhone": "Manager Phone Number",
+    "contactPersonsEmail": "Manager Email (invoice issued)",
     "companyRegistrationNumber": "Business registration number",
     "sectors": "Industry",
     "modificationsCompleted": "Modifications completed",
@@ -606,7 +606,7 @@
     "pageTitle": "Notice",
     "title": "MOAD",
     "heading": "Notice from MOAD.",
-    "columns": ["no", "Title", "Creation date"],
+    "columns": ["No", "Title", "Creation date"],
     "noAdsMsg": "There are no registered announcements."
   },
   "noticeDetailPage": {
@@ -626,7 +626,7 @@
     "title": "MOAD",
     "checkInquiryDetailsBtn": "Check inquiry details",
     "contactUsBtn": "Contact Us",
-    "columns": ["no", "Category", "Title", "Creation date", "Status"],
+    "columns": ["No", "Category", "Title", "Creation date", "Status"],
     "answerCompletedBtn": "Answer completed",
     "answerBtn": "Before reply",
     "noRegInquiriesMsg": "There are no registered inquiries.",
@@ -2228,7 +2228,7 @@
     "noDataMsg": "No content was viewed.",
     "celebratingMsg": "Celebrating the launch of the MOAD service",
     "columns": [
-      "no", "Registration number", "Vehicle type", "Driving distance", "Driving time", "Status", "Advertisement period"
+      "No", "Registration number", "Vehicle type", "Driving distance", "Driving time", "Status", "Advertisement period"
     ],
     "standard": "standard",
     "rangePicker": {
@@ -2243,7 +2243,7 @@
   "adDetailsPage": {
     "operationDetails" : "Operation Details",
     "adDetailColumns":["Ad name", "Ad period","Ad type", "Ad status", "Ad area", "Ad amount", "Advertising contract", "Recruitment period","Vehicle Count","Vehicle type"],
-    "columns":["no","Registration number", "Vehicle type", "Operation status", "Vehicle information", "Vehicle location", "Authentication photo"],
+    "columns":["No","Registration number", "Vehicle type", "Operation status", "Vehicle information", "Vehicle location", "Authentication photo"],
     "breadCrumb":["Ad Management", "Advertising Vehicle Details"],
     "mockupOptions":["Rotate 360°", "View as image"],
     "tabs": ["All", "In operation", " Operation suspended"],
@@ -2453,12 +2453,12 @@
       "companyPhoneNumberLabel":"Company phone number",
       "companyPhoneNumberPlaceholder":"Enter your company phone number",
       "companyPhoneNumberCaption":"Phone number format is incorrect",
-      "managerNameLabel":"Name of person in charge",
-      "contactPositionLabel":"Contact position",
-      "employeePhoneNumberLabel":"Employee phone number",
+      "managerNameLabel":"Manager",
+      "contactPositionLabel":"Manager role",
+      "employeePhoneNumberLabel":"Manager phone number",
       "employeePhoneNumberPlaceholder":"01012345678",
       "employeePhoneNumberCaption":"Please enter your cell phone number",
-      "employeeEmailLabel":"Email of person in charge (invoice issuance)",
+      "employeeEmailLabel":"Manager email (invoice issuance)",
       "sectorLabel":"Sector",
       "sectorPlaceholder":"Enter business type/industry",
       "employeeEmailPlaceholder":"Enter employee email",
@@ -2487,7 +2487,7 @@
         "successToast": "User registration successful"
       },
       "contact_position" : {
-        "contact_person_position": "Contact person position",
+        "contact_person_position": "Manager Role",
         "employee": "Employee",
         "team_leader": "Team Leader",
         "manager": "Manager",

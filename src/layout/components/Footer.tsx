@@ -2,28 +2,12 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import LogoPc from "@src/components/icons/LogoPc";
 import useAuth from "@src/hooks/useAuth";
 import clsx from "clsx";
-import styles from "./styles.module.scss"
 
 function Footer() {
 
     const isMobile = useMediaQuery('(max-width:1023px)');
     const { dictionary : { footer}} = useAuth();
 
-    // Get the current URL pathname
-    // const currentURL = window.location.pathname;
-
-    // Define the URL to hide the footer on
-    // const targetURL = '/dashboard/customer-service/guide/confirm';
-    //
-    // // Check if the current URL pathname matches the target URL
-    // const shouldHideFooter = currentURL === targetURL;
-    //
-    // // Conditionally render the footer based on the URL
-    // if (shouldHideFooter) {
-    //   return null; // Hide the footer
-    // }
-
-    // Render the footer for other pages
     return (
         <div className={'flex flex-col px-[20px] lg:px-[60px] py-[36px] lg:py-10 border-t border-[#cfd2db] mt-3 lg:mt-[48px]'} style={{ width: '100%' }}>
             <LogoPc height={!isMobile ? "38" : "20"} width={!isMobile ? "121" : "64"}/>

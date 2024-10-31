@@ -182,16 +182,14 @@ export default function Index({ id }: { id: string }) {
         router.push(`/dashboard/customer-service/inquire/${id}`);
       }
     } catch (error: any) {
-      toast(error?.response?.data?.message, { type: "error" });
+      toast(error, { type: "error" });
       setSubmitting(false);
     }
   };
 
   const MenuItemStyles = {
     border: "0px solid",
-    // "border-width": "0px 0px 1px 0px",
     color: "#535A65",
-    // padding: "10px 12px",
   };
   return (
     <>

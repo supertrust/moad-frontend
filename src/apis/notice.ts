@@ -3,13 +3,13 @@ import {
   GetNoticeDetailPropsType,
   GetNoticesPropsType,
   INotice,
-  INoticeDetail,
+  INoticeDetail, INoticeResponse,
   INotificationResponse
 } from "@src/types/notice";
 import axios from "@src/utils/axios";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetNotices = ({ page }: GetNoticesPropsType) => useQuery<INotice[], string>({
+export const useGetNotices = ({ page }: GetNoticesPropsType) => useQuery<INoticeResponse, string>({
   queryKey: ["notices", page],
   queryFn: async () => (await axios.get(API_URL.getNotices(), { params: { page } })).data.data
 })

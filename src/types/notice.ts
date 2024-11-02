@@ -13,6 +13,13 @@ export interface INotice {
     image: string | null;
     important: boolean;
     created_at: string | null;
+    sort_order : null | number
+}
+
+export interface INoticeResponse {
+    data : INotice[],
+    total : number,
+    totalPinned : number,
 }
 
 export interface INoticeDetail {

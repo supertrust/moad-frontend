@@ -1,5 +1,5 @@
 import { API_URL } from "@src/apis/urls";
-import { CategoryType, IFaq, IGetCategoriesResp } from "@src/types/faq";
+import { CategoryType, IFaq, IFaqRes, IGetCategoriesResp } from "@src/types/faq";
 import axios from "@src/utils/axios";
 import { useQuery } from "@tanstack/react-query";
 
@@ -9,7 +9,7 @@ export const useGetCategories = ({ type }: { type?: CategoryType }) =>
         queryFn: async () => (await axios.get(API_URL.getPostCategories(type))).data,
         enabled: !!type
 })
-export const useGetFaq = (currentPage:number, filter?: string) => useQuery<IFaq[], string>({
-    queryKey: ["faq" , filter ],
-    queryFn: async () => (await axios.get(API_URL.getFaqList(currentPage,filter))).data.data,
+export const useGetFaq = (currentPage:number, filter?: string) => useQuery<IFaqRes, string>({
+    queryKey: ["faq" , currentPage,filter ],
+    queryFn: async () => (await axios.get(API_URL.getFaqList(currentPage,filter))).data,
 })

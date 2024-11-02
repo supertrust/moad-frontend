@@ -17,8 +17,10 @@ export interface INotice {
 }
 
 export interface INoticeResponse {
-    data : INotice[],
-    total : number,
+    data : {
+        data : INotice[],
+        total : number,
+    }
     totalPinned : number,
 }
 

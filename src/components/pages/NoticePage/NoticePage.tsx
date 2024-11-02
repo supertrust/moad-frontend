@@ -23,9 +23,10 @@ function NoticePage() {
         totalPinned : 0
     })
     const { setPageTitle } = useIcarusContext()
-    const { data: res,isInitialLoading, isLoading, isFetching } = useGetNotices({ page: filter.page });
+    const { data: response,isInitialLoading, isLoading, isFetching } = useGetNotices({ page: filter.page });
     const { dictionary: { noticePage, pageTitle }, isKorean } = useAuth();
     const router = useRouter();
+    const res = response?.data;
     const data = res?.data
 
     const onBack = () => {
@@ -48,7 +49,7 @@ function NoticePage() {
             setFilter({
                 ...filter,
                 total: res?.total,
-                totalPinned : res?.totalPinned || 0
+                totalPinned : response?.totalPinned || 0
             })
         }
 

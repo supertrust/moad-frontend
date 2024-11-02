@@ -1,8 +1,17 @@
 export interface IFaq {
     question: string;
     answer: string;
-    type:string;
+    type: {
+        name : string
+    }
+    sort_order : null | number
 }
+
+export interface IFaqRes {
+    data : IFaq[]
+    totalRecords : number
+}
+
 export type GetFaqPropsType = {
     type: string
 }

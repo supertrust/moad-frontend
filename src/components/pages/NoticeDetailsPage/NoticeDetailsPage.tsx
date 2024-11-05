@@ -16,15 +16,15 @@ import useAuth from '@src/hooks/useAuth';
 
 function NoticeDetailsPage() {
     const id = useRouter().query.id as string;
-    const { data, isFetching:isLoading } = useGetNoticeDetail({ id });
-    const {setPageTitle } = useIcarusContext();
-	const { dictionary:{ loadingPageMsg, noticeDetailPage, pageTitle }, isKorean } = useAuth();
+    const { data : res, isFetching: isLoading } = useGetNoticeDetail({ id });
+    const { setPageTitle } = useIcarusContext();
+    const { dictionary: { loadingPageMsg, noticeDetailPage, pageTitle }, isKorean } = useAuth();
     const router = useRouter();
+    const data = res?.notice
 
-    useEffect(()=>
-    {
+    useEffect(() => {
         setPageTitle(pageTitle['top_bar_announcement']);
-    },[isKorean])
+    }, [isKorean])
 
     return (
         <>
@@ -40,16 +40,20 @@ function NoticeDetailsPage() {
                 >
                     {isLoading ? (
                         <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
-                            <CircularProgress color="primary" />
+                            <CircularProgress color="primary"/>
                         </div>
                     ) : (
                         <>
-                            <div className="sm:px-7  sm:!border-b-[1px] flex flex-wrap !h-[48px] sm:gap-2 justify-between items-center">
-                                <span className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[20px] sm:px-[0px]">{data?.title}</span>
-                                <div className="flex justify-end text-sm w-full lg:w-auto sm:w-auto py-[8px] sm:py-[0px] px-[10px] sm:px-[0px]">
-                                    <span className={clsx(styles["author"],"pr-[24px]")}>{noticeDetailPage.postBy}</span>
-                                    <span className={clsx(styles["created-date"],"!pr-[2px]")}>
-                                        {formatDate(data?.created_at,true)}</span>
+                            <div
+                                className="sm:px-7  sm:!border-b-[1px] flex flex-wrap !h-[48px] sm:gap-2 justify-between items-center">
+                                <span
+                                    className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[20px] sm:px-[0px]">{data?.title}</span>
+                                <div
+                                    className="flex justify-end text-sm w-full lg:w-auto sm:w-auto py-[8px] sm:py-[0px] px-[10px] sm:px-[0px]">
+                                    <span
+                                        className={clsx(styles["author"], "pr-[24px]")}>{noticeDetailPage.postBy}</span>
+                                    <span className={clsx(styles["created-date"], "!pr-[2px]")}>
+                                        {formatDate(data?.created_at, true)}</span>
                                 </div>
                             </div>
                             <div className="px-7 !py-[12px] max-h-96 overflow-y-auto flex flex-col gap-2">
@@ -62,19 +66,23 @@ function NoticeDetailsPage() {
                                         height={500}
                                     />
                                 )}
-                                <div ><div className={clsx(styles["content"],"break-words whitespace-break-spaces")}
-                                dangerouslySetInnerHTML={{ __html: data?.content || '' }}/></div>
+                                <div>
+                                    <div className={clsx(styles["content"], "break-words whitespace-break-spaces")}
+                                         dangerouslySetInnerHTML={{ __html: data?.content || '' }}/>
+                                </div>
                             </div>
-                            <div className="sm:py-[25px] p-[20px] !px-[45px] flex justify-between sm:justify-around items-center gap-0 border-t border-[#EBEDF4]">
+                            <div
+                                className="sm:py-[25px] p-[20px] !px-[45px] flex justify-between sm:justify-around items-center gap-0 border-t border-[#EBEDF4]">
                                 <Link
-                                    href={data?.prev !== null ? `${data?.prev}` : "#"}
-                                    className="hover:no-underline" >
+                                    href={res?.prev !== null ? `${res?.prev}` : "#"}
+                                    className="hover:no-underline">
                                     <button
-                                        disabled={data?.prev === null}
+                                        disabled={res?.prev === null}
                                         type="button"
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-advertiser-primary transition-all duration-200"
                                     >
-                                       <PrevIcon/> <span className={styles['next-prev']}>{noticeDetailPage.prevBtnText}</span>
+                                        <PrevIcon/> <span
+                                        className={styles['next-prev']}>{noticeDetailPage.prevBtnText}</span>
                                     </button>
                                 </Link>
                                 <Link href={`/dashboard/customer-service/notice`} className="hidden sm:block">
@@ -82,19 +90,20 @@ function NoticeDetailsPage() {
                                         type="button"
                                         className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-advertiser-primary !border-solid w-[92px] h-9 flex justify-center text-advertiser-primary"
                                     >
-                                        <span className={styles['list']} >{noticeDetailPage.listBtnText}</span>
+                                        <span className={styles['list']}>{noticeDetailPage.listBtnText}</span>
                                     </button>
                                 </Link>
                                 <Link
-                                    href={data?.next !== null ? `${data?.next}` : "#"} className="hover:no-underline"
+                                    href={res?.next !== null ? `${res?.next}` : "#"} className="hover:no-underline"
                                 >
                                     <button
-                                        disabled={data?.next === null}
+                                        disabled={res?.next === null}
                                         type="button"
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C]
                                         disabled:hover:text-gray-200 hover:text-advertiser-primary transition-all duration-200"
                                     >
-                                        <span className={styles['next-prev']}>{noticeDetailPage.nextBtnText}</span> <NextIcon/>
+                                        <span className={styles['next-prev']}>{noticeDetailPage.nextBtnText}</span>
+                                        <NextIcon/>
                                     </button>
                                 </Link>
                             </div>
@@ -106,7 +115,7 @@ function NoticeDetailsPage() {
 
             <div className={`only-mb`}>
                 <div className={`${styles["mobile-top-header"]}`}>
-                    <ArrowBack handleAction={()=>router.back()}/>
+                    <ArrowBack handleAction={() => router.back()}/>
                     <div className={styles['header']}>
                         {noticeDetailPage.pageTitle}
                     </div>
@@ -123,46 +132,56 @@ function NoticeDetailsPage() {
                 >
                     {isLoading ? (
                         <div className="flex justify-center items-center w-full h-32 backdrop-blur-sm">
-                            <CircularProgress color="primary" />
+                            <CircularProgress color="primary"/>
                         </div>
                     ) : (
                         <>
-                            <div className="sm:px-7  sm:!border-b-[1px] flex flex-wrap h-full sm:gap-2 justify-between items-center">
-                                <span className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[18px]">{data?.title}</span>
+                            <div
+                                className="sm:px-7  sm:!border-b-[1px] flex flex-wrap h-full sm:gap-2 justify-between items-center">
+                                <span
+                                    className="text-[16px] font-medium	w-full lg:w-auto sm:w-auto border-[#EBEDF4] border-b-[1px] sm:!border-b-[0px] py-[12px] sm:py-[0px] px-[18px]">{data?.title}</span>
 
                             </div>
-                            <div className={clsx(styles['mb-main-content'],"px-[18px]   overflow-y-auto flex flex-col gap-2")}>
-                                <div className="flex justify-end text-sm w-full lg:w-auto sm:w-auto  sm:px-[0px] pb-[16px]">
-                                    <span className={clsx(styles["author"],"pr-[12px]")}>{noticeDetailPage.postBy}</span>
-                                    <span className={clsx(styles["created-date"],"!pr-[0px]")}>
+                            <div
+                                className={clsx(styles['mb-main-content'], "px-[18px]   overflow-y-auto flex flex-col gap-2")}>
+                                <div
+                                    className="flex justify-end text-sm w-full lg:w-auto sm:w-auto  sm:px-[0px] pb-[16px]">
+                                    <span
+                                        className={clsx(styles["author"], "pr-[12px]")}>{noticeDetailPage.postBy}</span>
+                                    <span className={clsx(styles["created-date"], "!pr-[0px]")}>
                                         {formatDate(data?.created_at)}</span>
 
                                 </div>
 
-                               <div className={''}>
-                                   {data?.image && (
-                                       <Image
-                                           src={data?.image}
-                                           className="w-full"
-                                           alt=""
-                                           width={500}
-                                           height={500}
-                                       />
-                                   )}
-                                   <div ><div className={clsx(styles["content"],"break-words whitespace-break-spaces")}>{data?.content}</div></div>
+                                <div className={''}>
+                                    {data?.image && (
+                                        <Image
+                                            src={data?.image}
+                                            className="w-full"
+                                            alt=""
+                                            width={500}
+                                            height={500}
+                                        />
+                                    )}
+                                    <div>
+                                        <div
+                                            className={clsx(styles["content"], "break-words whitespace-break-spaces")}>{data?.content}</div>
+                                    </div>
 
-                               </div>
+                                </div>
                             </div>
-                            <div className="h-[60px] !px-[18px] flex justify-between sm:justify-around items-center gap-0 border-t border-[#EBEDF4]">
+                            <div
+                                className="h-[60px] !px-[18px] flex justify-between sm:justify-around items-center gap-0 border-t border-[#EBEDF4]">
                                 <Link
-                                    href={data?.prev !== null ? `${data?.prev}` : "#"}
-                                    className="hover:no-underline" >
+                                    href={res?.prev !== null ? `${res?.prev}` : "#"}
+                                    className="hover:no-underline">
                                     <button
-                                        disabled={data?.prev === null}
+                                        disabled={res?.prev === null}
                                         type="button"
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C] disabled:hover:text-gray-200 hover:text-advertiser-primary transition-all duration-200"
                                     >
-                                        <PrevIcon/> <span className={styles['next-prev']}>{noticeDetailPage.prevBtnText}</span>
+                                        <PrevIcon/> <span
+                                        className={styles['next-prev']}>{noticeDetailPage.prevBtnText}</span>
                                     </button>
                                 </Link>
                                 <Link href={`/dashboard/customer-service/notice`} className="hidden sm:block">
@@ -170,20 +189,21 @@ function NoticeDetailsPage() {
                                         type="button"
                                         className="px-3 py-2 border hover:bg-blue-600 hover:text-gray-50 transition-all duration-200 	!border-advertiser-primary !border-solid w-[92px] h-9 flex justify-center text-advertiser-primary"
                                     >
-                                        <span className={styles['list']} >{noticeDetailPage.listBtnText}</span>
+                                        <span className={styles['list']}>{noticeDetailPage.listBtnText}</span>
                                     </button>
                                 </Link>
                                 <Link
-                                    href={data?.next !== null ? `${data?.next}` : "#"} className="hover:no-underline"
+                                    href={res?.next !== null ? `${res?.next}` : "#"} className="hover:no-underline"
                                 >
                                     <button
-                                        disabled={data?.next === null}
+                                        disabled={res?.next === null}
                                         type="button"
                                         className="flex items-center disabled:font-normal disabled:hover:font-normal disabled:text-gray-200 text-[#2C324C]
                                         disabled:hover:text-gray-200 hover:text-advertiser-primary transition-all duration-200"
                                     >
-                                        <span className={styles['next-prev']}>{noticeDetailPage.nextBtnText}</span> <NextIcon
-                                    />
+                                        <span className={styles['next-prev']}>{noticeDetailPage.nextBtnText}</span>
+                                        <NextIcon
+                                        />
                                     </button>
                                 </Link>
                             </div>

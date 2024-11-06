@@ -321,6 +321,7 @@ const Step3 = ({
                                     label={step3.sectorLabel}
                                     required
                                     type='text'
+                                    maxLength={10}
                                     id='sector'
                                     name='sector'
                                     className='company-input'

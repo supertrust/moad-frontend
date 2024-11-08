@@ -273,7 +273,7 @@ export default function VehicleInfoScreen() {
                 }
                 </Swiper>
                 : (
-                  <div className="flex justify-between gap-2">
+                  <div className="flex overflow-x-scroll justify-between gap-2">
 
                     {[0,1,2,3].map((data,index) =>
                         <ShowNoImage key={index} classname={'min-h-[136px]'}/>

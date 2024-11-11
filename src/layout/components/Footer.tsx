@@ -19,7 +19,7 @@ function Footer() {
               {footer?.second}
           </span>
                 <span  className={'font-semibold lg:font-normal'}>
-             {footer?.third1} {isMobile? <br/> :<span className={'px-1'}>|</span>}  {footer?.third2}  <a href="mailto:cs@moad.live?subject=모드 문의 메일입니다.">
+             {footer?.third1} {isMobile? <br/> :<span className={'px-1'}>|</span>}  {footer?.third2}  <a href="mailto:cs@moad.live?subject=MOAD 문의 메일입니다.">
                     <span className={"text-[#2b303b] text-sm lg:text-base font-semibold lg:font-normal"}> cs@moad.live </span></a>
           </span>
             </div>

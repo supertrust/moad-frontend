@@ -1189,7 +1189,9 @@ const SaveAdForm = ({
                                      );
                                    }}
                                    popperClassName={styles.react_datepicker_popper}
+                                   minDate={new Date()}
                                    customInput={<CustomInput />}
+
                                />
                              </>
                          );
@@ -1217,6 +1219,7 @@ const SaveAdForm = ({
                                    );
                                  }}
                                  popperClassName={styles.react_datepicker_popper}
+                                 minDate={new Date()}
                                  customInput={<CustomInput />}
                              />
                            </>

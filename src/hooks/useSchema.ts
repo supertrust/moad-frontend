@@ -1,6 +1,8 @@
 import { EMAIL_REGEX } from "@src/constants";
 import { isHangul } from "@src/helpers";
 import useAuth from "@src/hooks/useAuth";
+import { KOREAN_PHONE_REGEX } from "@src/utils/formatter";
+import { companyPhoneNumberSchema, phoneNumberSchema } from "@src/utils/validationSchema";
 import * as Yup from "yup";
 
 
@@ -25,12 +27,8 @@ const useSchema = () => {
             .required(registerSchemaValidation?.employee_name)
             .max(10, registerSchemaValidation?.employee_max_len)
             .test('isKorean', registerSchemaValidation?.is_korean, isHangul),
-        company_phone_number: Yup.string()
-            .required(registerSchemaValidation?.company_phone_number)
-            .matches(/^[0-9]{11}$/, registerSchemaValidation?.phone_number_validation),
-        employee_phone_number: Yup.string()
-            .required(registerSchemaValidation?.employee_phone_number)
-            .matches(/^[0-9]{11}$/, registerSchemaValidation?.phone_number_validation),
+        company_phone_number: companyPhoneNumberSchema(registerSchemaValidation),
+        employee_phone_number: phoneNumberSchema(KOREAN_PHONE_REGEX, registerSchemaValidation?.error_please_enter_a_valid_phone_num),
         business_registration_number: Yup.string()
             .required(registerSchemaValidation?.business_registration_number)
             .matches(/^[0-9]{10}$/, registerSchemaValidation?.business_registration_number_validation),

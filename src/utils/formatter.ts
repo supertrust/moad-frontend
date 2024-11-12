@@ -68,3 +68,10 @@ export const formatPhoneNumber = (phoneNumber?: string | null) => {
 
     return phoneNumber.replace(/(\d{3})(\d{4})/, '$1-$2-'); // match the first 3 digits and then next 3 digits and then next 4 digits
 }
+
+
+export const KOREAN_PHONE_REGEX = /^010-?\d{4}-?\d{4}$/;
+
+export const KOREAN_COMPANY_PHONE_REGEX =  /^0\d+$/;
+
+

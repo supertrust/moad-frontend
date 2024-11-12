@@ -2513,7 +2513,12 @@
         "employee_email_validation": "Please enter a valid email address.",
         "business_license": "Please upload the business license.",
         "business_license_file_format": "Only .pdf, .jpg, .jpeg, .png files are allowed.",
-        "business_license_file_size": "File size should be less than 10MB."
+        "business_license_file_size": "File size should be less than 10MB.",
+        "error_please_enter_a_valid_phone_num": "Please enter a valid phone number.",
+        "error_company_number_min_length_9": "Number must be at least 9 digits",
+        "error_company_number_max_length_11": "Number must be at most 11 digits",
+        "error_company_number_must_start_with_0": "Number must start with 0",
+        "error_number_is_required": "Number is required"
       }
     },
     "step4": {

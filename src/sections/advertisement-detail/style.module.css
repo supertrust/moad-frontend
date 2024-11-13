@@ -1282,6 +1282,7 @@ span.carousel-control-prev-icon {
 #ad_detail_list
   .right_side {
     height: 420px;
+    overflow-y: auto;
   }
 
 #ad_detail_list .slide_box div#div2d {

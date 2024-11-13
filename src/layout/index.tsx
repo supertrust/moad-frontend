@@ -1,9 +1,9 @@
 import { CircularProgress } from "@mui/material";
+import AuthGuard from "@src/guards/AuthGuard";
 import useAuth from "@src/hooks/useAuth";
+import Head from "next/head";
 import React, { createContext, ReactNode, useState } from "react";
 import { Footer, Header, Sidebar } from "./components";
-import AuthGuard from "@src/guards/AuthGuard";
-import Head from "next/head";
 
 interface LayoutProps {
   children: ReactNode
@@ -26,7 +26,6 @@ function Layout(props: LayoutProps) {
     <div id="dashboard" className="dashboard page">
       <Head>
         <title>MOAD 광고플랫폼</title>
-        <meta property="og:title" content="My page title" key="title" />
       </Head>
       <div className="sidebar_menu only-pc">
         <Sidebar msg={setPageTitle} />

@@ -55,7 +55,7 @@
     "advertisement_details": "Advertisement Details",
     "download" : "Download",
     "no_of_vehicle_recruited": "Number of Vehicles Recruited",
-    "no_of_vehicle_in_operation": "Number of Vehicles in Operation",
+    "no_of_vehicle_in_operation": "assigned vehicle to the advertisement",
     "a" : "a",
     "b" : "b",
     "c" : "c",
@@ -379,7 +379,7 @@
     "columns": {
       "adType": "Ad Type",
       "adName": "Ad Name",
-      "noOfVehiclesInOp": "Number of vehicles in operation",
+      "noOfVehiclesInOp": "assigned vehicle to the advertisement",
       "adPeriod": "Advertisement period",
       "recruitmentPeriod": "Recruitment Period",
       "status": "Status"
@@ -466,7 +466,7 @@
       "report": [
         {
           "title": "Total number of ads",
-          "tooltip": "Number of vehicles in operation"
+          "tooltip": "assigned vehicle to the advertisement"
         },
         {
           "title": "Ongoing Advertisement"

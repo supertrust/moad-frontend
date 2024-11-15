@@ -44,14 +44,14 @@ export default function MyInfoScreen() {
   const UpdateUserInfoSchema = Yup.object({
     company_phone_number: Yup.string()
       .required(validations.companyPhoneNumber.required)
-      .matches(/^[0-9]{11}$/, validations.companyPhoneNumber.length),
+      .matches(/^0[0-9]{8,10}$/, validations.companyPhoneNumber.startAndLength),
     employee_name: Yup.string()
       .required(validations.employeeName.required)
       .max(10, validations.employeeName.length)
       .test('isKorean', validations.employeeName.isKorean, isHangul),
     employee_phone_number: Yup.string()
       .required(validations.employeePhoneNumber.required)
-      .matches(/^[0-9]{11}$/, validations.employeePhoneNumber.length),
+      .matches(/^010[0-9]{8}$/, validations.employeePhoneNumber.startAndLength),
     employee_email: Yup.string()
       .matches(EMAIL_REGEX, validations.employeeEmail.format)
       .required(validations.employeeEmail.required),

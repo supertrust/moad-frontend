@@ -517,7 +517,8 @@
     "validations": {
       "companyPhoneNumber": {
         "required": "핸드폰번호를 입력해주세요",
-        "length": "전화번호는 11자리여야 합니다."
+        "length": "전화번호는 11자리여야 합니다.",
+        "startAndLength": "회사 전화번호는 0으로 시작하고 9자리에서 11자리 사이여야 합니다."
       },
       "employeeName": {
         "required": "직원 이름을 입력하세요.",
@@ -526,7 +527,8 @@
       },
       "employeePhoneNumber": {
         "required": "핸드폰번호를 입력해주세요",
-        "length": "전화번호는 11자리여야 합니다."
+        "length": "전화번호는 11자리여야 합니다.",
+        "startAndLength": "직원 전화번호는 010으로 시작하고 정확히 11자리여야 합니다."
       },
       "employeeEmail": {
         "format": "유효한 이메일을 입력하세요.",

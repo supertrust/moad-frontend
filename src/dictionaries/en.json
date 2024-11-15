@@ -504,7 +504,8 @@
     "validations": {
       "companyPhoneNumber": {
         "required": "Please enter your cell phone number",
-        "length": "Phone number must be 11 digits."
+        "length": "Phone number must be 11 digits.",
+        "startAndLength": "Company Phone number must start with 0 and be 9 to 11 digits long."
       },
       "employeeName": {
         "required": "Please enter the employee's name.",
@@ -513,7 +514,8 @@
       },
       "employeePhoneNumber": {
         "required": "Please enter your cell phone number",
-        "length": "Phone number must be 11 digits."
+        "length": "Phone number must be 11 digits.",
+        "startAndLength": "Employee phone number must start with 010 and be exactly 11 digits."
       },
       "employeeEmail": {
         "format": "Please enter a valid email.",

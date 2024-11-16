@@ -163,7 +163,7 @@ export default function StatisticsScreen() {
     <div className='relative'>
       <Form.Select
         aria-label='Default select example'
-        className={`border-[0px] !bg-[#f5f7fb] text-advertiser-primary text-[14px] rounded-[5px] block w-full py-[8px] px-[12px] pr-[40px]
+        className={`border-[0px] !bg-[#f5f7fb] !h-fit text-advertiser-primary text-[14px] rounded-[5px] block w-full py-0 px-[12px] pr-[40px]
 			${styles.selectOption} cursor-pointer`}
         onChange={(e) => filterDate(e.target.value)}>
         {dateRangePickerCtrls.map((data) => (

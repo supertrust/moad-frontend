@@ -259,6 +259,7 @@
 
 #statistics .container .board_content .statistics_content .step_01 .ad_amount {
 	width: 32%;
+	min-width: 300px;
 }
 
 #statistics .container .board_content .statistics_content .step_01 .ad_amount .ad_amount_box {

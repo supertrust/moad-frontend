@@ -32,10 +32,10 @@ function HeaderLine({
   };
 
   return (
-    <div className={clsx("flex flex-row items-center my-[20px]", className)}>
-      <div className="mr-3 font-bold text-[20px] text-[#2C324C]">{title}</div>
+    <div className={clsx("flex flex-row overflow-auto items-center py-[20px]", className)}>
+      <div className="mr-3 font-bold text-nowrap text-[20px] text-[#2C324C]">{title}</div>
       {element}
-      <div className="flex-grow h-[1px] bg-[#EBEDF4] flex-1"></div>
+      <div className="flex-grow h-[1px] text-nowrap bg-[#EBEDF4] flex-1"></div>
       {left && renderLeft()}
     </div>
   );

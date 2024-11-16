@@ -445,7 +445,7 @@
       "columns": [
         "Ad type",
         "Ad name",
-        "Number of vehicles operating",
+        "Number of Vehicles Assigned",
         "Total driving distance",
         "Total driving time",
         "Status"

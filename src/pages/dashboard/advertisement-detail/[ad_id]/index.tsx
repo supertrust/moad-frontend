@@ -640,8 +640,8 @@ function AdvertisementDetailScreen() {
                                                                         <TableCell className="!text-[14px] !text-center"
                                                                                    style={{ letterSpacing: "-0.16px" }}>
                                                                             {
-                                                                                item?.vehicle_status === "end" ?
-                                                                                    <DisabledButton>{item?.vehicle_information}</DisabledButton> :
+                                                                                // item?.vehicle_status === "end" ?
+                                                                                //     <DisabledButton>{item?.vehicle_information}</DisabledButton> :
                                                                                     <Link
                                                                                         legacyBehavior
                                                                                         href={`/dashboard/advertisement-detail/${item.advertisement_id}/vehicle/${item.cargo_vehicle_id}`}
@@ -655,8 +655,8 @@ function AdvertisementDetailScreen() {
                                                                         <TableCell
                                                                             className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}>
                                                                             {
-                                                                                item?.vehicle_status === "end" ?
-                                                                                    <DisabledButton>{item?.vehicle_location}</DisabledButton> :
+                                                                                // item?.vehicle_status === "end" ?
+                                                                                //     <DisabledButton>{item?.vehicle_location}</DisabledButton> :
                                                                                     <Link
                                                                                         legacyBehavior
                                                                                         href={`/dashboard/advertisement-detail/${item.advertisement_id}/vehicle-location/${item.cargo_vehicle_id}`}
@@ -670,8 +670,8 @@ function AdvertisementDetailScreen() {
                                                                         <TableCell
                                                                             className={clsx("text-center", isPcOnly ? "!text-[14px]" : "!text-[13px]")}>
                                                                             {
-                                                                                item?.vehicle_status === "end" ?
-                                                                                    <DisabledButton>{item?.vehicle_location}</DisabledButton> :
+                                                                                // item?.vehicle_status === "end" ?
+                                                                                //     <DisabledButton>{item?.vehicle_location}</DisabledButton> :
                                                                                     <div
                                                                                         className="text-advertiser-primary cursor-pointer"
                                                                                         onClick={() => {

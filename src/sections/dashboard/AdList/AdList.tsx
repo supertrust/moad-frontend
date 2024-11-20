@@ -82,7 +82,7 @@ export default function AdListModule() {
             let canDelete = true;
             selectedAds.map((ad) => {
                 if (!canDelete) return false;
-                if (ad.type !== 'spot_ad' && new Date(ad.end_date) > new Date()) {
+                if (ad.type !== 'spot_ad' && ad.status!='end') {
                     canDelete = false;
                 }
             });

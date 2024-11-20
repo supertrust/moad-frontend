@@ -415,7 +415,7 @@
       "deleteTitle": "Delete Ad",
       "deleteMsg": "If you delete it, you will not be able to see it in statistics.",
       "deleteConfirmationMsg": "Are you sure you want to delete?",
-      "deleteCancelBtn": "Confirm",
+      "deleteCancelBtn": "Cancel",
 
       "confirmBtn": "Delete",
 

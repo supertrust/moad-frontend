@@ -19,7 +19,7 @@ import { useIcarusContext } from "@src/hooks/useIcarusContext";
 import useOptions from "@src/hooks/useOptions";
 import TruckModel from "@src/models/truck";
 import { styles } from "@src/sections/advertisement-detail";
-import { IAdvertisementCargo } from "@src/types/advertisement";
+import { DraftAdvertisementImage, IAdvertisementCargo } from "@src/types/advertisement";
 import { formatDate } from "@src/utils/formatter";
 import { DatePicker, Image as AntImage, Modal, Pagination } from "antd";
 import { clsx } from "clsx";
@@ -67,6 +67,10 @@ const OperationStatus = {
     end: "종료됨"
 };
 
+const ImageTypeValue = {
+    'left' : 0,
+    'right' : 1, 'doorright' : 2, 'doorleft' : 3};
+
 const DisabledButton = ({ children }) => {
     return <div className={'flex justify-center'}>
         <button disabled={true} className={'text-[black] !opacity-80'}>{children}</button>
@@ -106,9 +110,11 @@ function AdvertisementDetailScreen() {
             id: advertisementId,
         });
     const {
-        data: draftAdvertisementImages,
+        data: draftAdvertisementImagesRes,
         isLoading: isDraftAdvertisementImagesLoading,
     } = useGetDraftAdvertisementImages(advertisementId);
+
+    const [draftAdvertisementImages, setDraftAdvertisementImages] = useState<DraftAdvertisementImage[]>([])
 
     const { data: operationAreas, isLoading: isOperationAreasLoading } =
         useGetAdvertisementOperationArea({
@@ -151,24 +157,42 @@ function AdvertisementDetailScreen() {
         const propertyMap = {
             0: 'left',
             1: 'right',
-            2: 'doorLeft',
-            3: 'doorRight',
+            2: 'doorRight',
+            3: 'doorLeft',
         };
 
         draftAdvertisementImages?.map((data, index) => {
-            if (data?.is_3d == "0") {
-                const propertyName = propertyMap[index];
-                if (propertyName) {
+            if (data?.is_3d == "0" && data?.type) {
+                const typeId = ImageTypeValue[data.type];
+                const propertyName = propertyMap[typeId];
+                if (propertyName)
                     modalImagesArr[propertyName] = data?.completed_url;
-                }
+
             }
-
-            setModelImages(modalImagesArr);
         });
-
+        setModelImages(modalImagesArr);
         if (!isDraftAdvertisementImagesLoading && !draftAdvertisementImages?.length)
             openModel("model");
     }, [isDraftAdvertisementImagesLoading, draftAdvertisementImages]);
+
+    useEffect(()=>{
+        if(draftAdvertisementImagesRes){
+            const order = ['left', 'right', 'doorright', 'doorleft'];
+            let newDraftAdvertisementImagesRes : DraftAdvertisementImage[]  =[]
+
+                order.map((type,index)=>{
+                    const newData = [...draftAdvertisementImagesRes]?.filter(item => item?.type == type).pop()
+
+                    if(newData)
+                        newDraftAdvertisementImagesRes.push(newData)
+
+                })
+
+;
+            setDraftAdvertisementImages([...newDraftAdvertisementImagesRes])
+
+        }
+    },[isDraftAdvertisementImagesLoading])
 
 
     useEffect(() => {
@@ -371,18 +395,12 @@ function AdvertisementDetailScreen() {
                                                     <Carousel activeIndex={index} onSelect={handleSelect}>
                                                         {draftAdvertisementImages?.map((item, index) => (
                                                             <Carousel.Item key={index}>
-                                                                <Image
+                                                                <AntImage
                                                                     src={item.completed_url}
                                                                     alt="slides"
-                                                                    width={550}
+                                                                    width={"100%"}
                                                                     height={500}
                                                                 />
-                                                                {/* <Carousel.Caption className="valu-text">
-                              <h3>
-                                {item.badge_text}
-                                {item.badge_text2}
-                              </h3>
-                            </Carousel.Caption> */}
                                                             </Carousel.Item>
                                                         ))}
                                                     </Carousel>
@@ -489,14 +507,6 @@ function AdvertisementDetailScreen() {
                                         </div>
                                     </div>
                                     <div className={clsx(styles.right_side,"mb-[20px]")}>
-                                        {/* <table className={`border-collapse border lg:h-[393px] w-[100%] bg-white rounded`}>
-                    {ad_detail_arr.map((data, index) =>
-                      <tr key={index} className={`${styles.table_line} lg:h-[49px]`}>
-                        <td className={`${styles.title} lg:px-[30px] font-bold border`}>{data.title}</td>
-                        <td className={`${styles.text} lg:pl-[30px] border`}>{data.value}</td>
-                      </tr>
-                    )}
-                  </table> */}
                                         <div className={clsx(styles.table_box,isKorean && "h-[100%]")}>
                                             {ad_detail_arr.map((data, index) => (
                                                 <div key={index} className={`${styles.table_line} w-[100%] h-[100%]`}>
@@ -512,23 +522,6 @@ function AdvertisementDetailScreen() {
                                     </div>
                                 </div>
 
-                                {/*{*/}
-
-                                {/*        <div className={clsx('flex justify-end w-[100%] pt-[70px]',  isAllCargoButtonShow ?*/}
-                                {/*        "pt-[100px] 2xl:pt-[70px]" : "")}>*/}
-                                {/*          {*/}
-                                {/*            isAllCargoButtonShow ?  <div className={styles.text}>*/}
-                                {/*              <Link*/}
-                                {/*                  className="bg-primary px-4 py-3 text-white rounded hover:!text-[#FFFFFF]"*/}
-                                {/*                  href={`/dashboard/advertisement/all-vehicle-location`}*/}
-                                {/*              >*/}
-                                {/*                {adDetailsPage.ViewAllCargoLocation}*/}
-                                {/*              </Link>*/}
-                                {/*            </div> : ""}*/}
-                                {/*        </div>*/}
-
-                                {/*}*/}
-                                {/* Table */}
                                 <div className={styles.ad_contents}>
                                     <div
                                         className={clsx('flex justify-between items-center  lg:pr-[20px] pb-[12px] lg:pb-[0px]', (!isPcOnly && !isKorean) && "flex-wrap")}>

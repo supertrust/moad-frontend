@@ -62,6 +62,7 @@ interface AdvertisementImage  {
     created_at: string,
     updated_at: string
     is_3d: string
+    type: string
 }
 
 export interface DraftAdvertisementImage extends AdvertisementImage {

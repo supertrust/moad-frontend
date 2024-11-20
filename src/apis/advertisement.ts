@@ -33,7 +33,10 @@ export const useGetAdvertisements = (props: GetAdvertisementsPropType = {}) =>
     useQuery<IAdvertisementData, string>({
         queryKey: ["advertisements", ...Object.values(props).filter(value => value != undefined && value != null)],
         queryFn: async () =>
-            (await axios.get(API_URL.getAdvertisements(), { params: props })).data,
+            (await axios.get(API_URL.getAdvertisements(), { params: {
+                ...props,
+                for_web : true
+                } })).data,
         retry: 0, // Disable retries
     });
 

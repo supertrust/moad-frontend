@@ -115,7 +115,10 @@ export default function AdListModule() {
                         }),
                     );
                     setSelectedAds([]);
-                    refetchAdvertisements();
+                    const res = await refetchAdvertisements();
+
+                    if(res.data?.data?.length && res?.data?.data?.slice(prevItems, currentItems)?.length === 0 && currentPage>1)
+                        setCurrentPage(currentPage-1)
                 },
             });
         } catch (error: any) {
@@ -169,7 +172,10 @@ export default function AdListModule() {
                         <div className={'flex gap-[12px] md:gap-[20px]'}>
                             {statuses.map((item) => (
                                 <div
-                                    onClick={() => setStatus(item.value as AdStatusesType)}
+                                    onClick={() => {
+                                        setStatus(item.value as AdStatusesType)
+                                        setCurrentPage(1)
+                                    }}
                                     key={item.label}
                                     className={styles.tabTitle}>
 								<span
@@ -210,7 +216,10 @@ export default function AdListModule() {
                         <div className={'flex gap-2 items-center'}>
                             <div className='select-box  md:w-[149px]'>
                                 <Form.Select
-                                    onChange={(e) => setType(e.target.value as AdTypesType)}
+                                    onChange={(e) => {
+                                        setType(e.target.value as AdTypesType)
+                                        setCurrentPage(1)
+                                    }}
                                     aria-label='광고 유형 선택'
                                     className='font-medium custom-select  border-1 border-advertiser-primary text-advertiser-primary h-[36px]'
                                 >

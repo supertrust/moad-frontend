@@ -3,6 +3,7 @@ import { useDeleteAdvertisement, useGetAdvertisements, useUpdateAdStatus, } from
 import useAuth from '@src/hooks/useAuth';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import { AdStatusesType, AdTypesType, IAdvertisement, } from '@src/types/advertisement';
+import { logger } from "@src/utils/func";
 import { Pagination, Tooltip } from 'antd';
 import { clsx } from 'clsx';
 import Link from "next/link";
@@ -70,8 +71,8 @@ export default function AdListModule() {
     };
 
     const handleSelectAll = () => {
-        if (selectedAds.length !== advertisements?.data?.length) {
-            setSelectedAds(advertisements?.data || []);
+        if (selectedAds.length !== Math.min(itemsPerPage, (advertisements?.data?.length || 0)-(currentPage - 1) * itemsPerPage)) {
+            setSelectedAds(advertisements?.data?.slice(  (currentPage - 1) * itemsPerPage, currentPage * itemsPerPage) || []);
         } else {
             setSelectedAds([]);
         }
@@ -154,6 +155,7 @@ export default function AdListModule() {
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
+        setSelectedAds([]);
     };
 
     const getAdvertisementStatus = (ad: IAdvertisement) => allStatuses.find((status) => ad.status === status.value)?.label;
@@ -249,7 +251,7 @@ export default function AdListModule() {
                                             <input
                                                 type='checkbox'
                                                 onChange={handleSelectAll}
-                                                checked={selectedAds.length === advertisements?.data?.length}
+                                                checked={selectedAds.length === Math.min(itemsPerPage, (advertisements?.data?.length || 0)-(currentPage - 1) * itemsPerPage)}
                                                 name='all_chk'
                                                 id='all_chk'
                                                 className='all-chk'

@@ -1784,6 +1784,8 @@
     "adSelectionHover": "The selected product will be available in a future update. Please consult with us when proceeding with an advertising contract after applying for an advertisement. Thank you.",
     "reset" : "Reset",
     "validations": {
+      "alert_posting_and_ad_date_compare_start_date": "The posting start date cannot be after the ad start date.",
+      "alert_posting_and_ad_date_compare_end_date": "The posting end date cannot be after the ad end date.",
       "adStartDateMustBeGreaterDisplayDate" : "The ad start date must be greater than the display end date.",
       "noVehicleSelect" : "You must select at least one vehicle to operate.",
       "upTo5mb" : "Up to 5MB is allowed.",

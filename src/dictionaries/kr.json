@@ -1806,6 +1806,8 @@
     "reset": "초기화",
     "validations": {
       "adStartDateMustBeGreaterDisplayDate" : "광고 시작일은 표시 종료일보다 커야 합니다.",
+      "alert_posting_and_ad_date_compare_start_date": "게시 시작일은 광고 시작일 이후일 수 없습니다.",
+      "alert_posting_and_ad_date_compare_end_date": "게시 종료일은 광고 종료일 이후일 수 없습니다.",
       "noVehicleSelect": "운행할 차량을 하나 이상 선택해야 합니다.",
       "upTo5mb": "최대 5MB까지만 가능합니다.",
       "files": {

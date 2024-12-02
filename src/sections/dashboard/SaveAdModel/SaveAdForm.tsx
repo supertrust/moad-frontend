@@ -13,8 +13,10 @@ import useAuth from '@src/hooks/useAuth';
 import { useConfirmDialog } from '@src/hooks/useConfirmationDialog';
 import AdAgreementForm from '@src/sections/dashboard/SaveAdModel/AdAgreementForm';
 import { SaveAdvertisementType } from '@src/types/advertisement';
+import { logger } from "@src/utils/func";
 import { Divider } from 'antd';
 import clsx from 'clsx';
+import dayjs from "dayjs";
 import Image from 'next/image';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Table } from 'react-bootstrap';
@@ -536,11 +538,15 @@ const SaveAdForm = ({
     const tRecruitStart = new Date(watch().ad_recruitment_period_start_date);
     const tRecruitEnd = new Date(watch().ad_recruitment_period_end_date);
     const tStartDate = new Date(startDate);
+    const tEndDate = new Date(endDate)
 
     if (tRecruitEnd < tRecruitStart)
       return dictionary.adForm.validations.recruit_end.msg;
-    else if (tRecruitEnd >= tStartDate)
-      return dictionary.adForm.validations.adStartDateMustBeGreaterDisplayDate;
+    else if (tRecruitStart > tStartDate)
+      return dictionary.adForm.validations.alert_posting_and_ad_date_compare_start_date;
+
+    else if(tRecruitEnd > tEndDate)
+      return dictionary.adForm.validations.alert_posting_and_ad_date_compare_end_date;
 
     return '';
   };
